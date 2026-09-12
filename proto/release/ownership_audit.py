@@ -37,7 +37,7 @@ RULES = (
 LEAD_ONLY = {'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'out/results.csv', 'out/validation.csv', 'refresh.sh', 'cleanup_pass.sh'}
 # Globs match segment-wise ('*' never crosses '/'), so 'out/*.pdf' means direct children of out/ only.
 LEAD_ONLY_GLOBS = ('extract_*.py', 'build_*.py', 'refresh*.log', 'out/*.pptx', 'out/*.pdf', 'out/excluded_*.csv', 'deck_src/*',   # lead decision 12 Sep 20:58: deck source is lead-only
-                   'out/THE_CASE.md', 'out/talk_track.md', 'out/ROADMAP.md', 'out/JURY_QUESTIONS.md', 'out/forecast_*.json', 'out/forecast_*.sha256')   # lead decision 12 Sep 22:00: outputs of the lead-only builders (build_case.py, build_manual.py, build_forecast.py)
+                   'out/CONTEXT_NOTES.md', 'out/THE_CASE.md', 'out/talk_track.md', 'out/ROADMAP.md', 'out/JURY_QUESTIONS.md', 'out/forecast_*.json', 'out/forecast_*.sha256')   # lead decision 12 Sep 22:00: outputs of the lead-only builders (build_case.py, build_manual.py, build_forecast.py)
 SEALED_PATTERNS = ('evaluation/holdout/sealed_holdout_manifest.*',)   # lead-only after sealing
 WORKSTREAM_NAMES = {1: 'contract and fixtures', 2: 'counterfactual core and events', 3: 'blind evaluation', 4: 'geometry and animation',
                5: 'frozen field', 6: 'dashboard', 7: 'red team', 8: 'live intelligence', 9: 'build control'}

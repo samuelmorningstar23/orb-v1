@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T23:07:39",
+ "generated_at": "2026-09-12T23:17:50",
  "workstream": 7,
  "checkpoint_target": "C4",
  "lock": {
@@ -8,7 +8,7 @@
  },
  "verdict": {
   "decision": "GO",
-  "paragraph": "Red team verdict for C4: GO. Blocking list: 0 open, 1 resolved (RT-BLK-1 closed at the live_bridge boundary with guarding tests). Acceptance suite tests/red_team: 53 passed, 0 failed, 1 xfailed in 1.72 s. Consistency probe: PASS (1692 rendered numbers, 0 mismatches). Leakage audit PASS (5 of 5 checks pass); identity checks PASS {'passed': 41, 'failed': 0}. Hashed forecast out/forecast_Madrid_2026.json: PASS (issued 2026-09-12T21:33:14+05:30 from sessions ['FP1', 'FP2', 'FP3', 'Q']; pointers resolve {'lock_v2_forecast_hash': True, 'lock_sha256': True, 'lock_v2_sha256': True}). Forecast-hash provenance: PASS (runtime readers agree: True; stale sidecars: 0; content-only proof: the hash changes with the per-event data_cutoff stamp alone). Madrid anchors: PASS (0 stated times that did not happen as written). Wording flags outstanding: 0 (owners: [])."
+  "paragraph": "Red team verdict for C4: GO. Blocking list: 0 open, 1 resolved (RT-BLK-1 closed at the live_bridge boundary with guarding tests). Acceptance suite tests/red_team: 53 passed, 0 failed, 1 xfailed in 1.74 s. Consistency probe: PASS (1692 rendered numbers, 0 mismatches). Leakage audit PASS (5 of 5 checks pass); identity checks PASS {'passed': 41, 'failed': 0}. Hashed forecast out/forecast_Madrid_2026.json: PASS (issued 2026-09-12T21:33:14+05:30 from sessions ['FP1', 'FP2', 'FP3', 'Q']; pointers resolve {'lock_v2_forecast_hash': True, 'lock_sha256': True, 'lock_v2_sha256': True}). Forecast-hash provenance: PASS (runtime readers agree: True; stale sidecars: 0; content-only proof: the hash changes with the per-event data_cutoff stamp alone). Madrid anchors: PASS (0 stated times that did not happen as written). Wording flags outstanding: 0 (owners: [])."
  },
  "counts": {
   "checks": 9,
@@ -31,7 +31,7 @@
  "checks": {
   "consistency_probe": {
    "status": "PASS",
-   "generated_at": "2026-09-12T23:07:36",
+   "generated_at": "2026-09-12T23:17:46",
    "exit_code": 0,
    "counts": {
     "routes": 15,
@@ -78,7 +78,7 @@
   },
   "claim_audit": {
    "status": "PASS",
-   "generated_at": "2026-09-12T23:07:37",
+   "generated_at": "2026-09-12T23:17:47",
    "counts": {
     "wording_hits": 9,
     "reword": 0,
@@ -101,7 +101,7 @@
    "status": "PASS",
    "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python -m pytest tests/red_team -q -p no:cacheprovider",
    "returncode": 0,
-   "seconds": 1.72,
+   "seconds": 1.74,
    "counts": {
     "passed": 53,
     "failed": 0,
@@ -117,7 +117,7 @@
      "message": "Workstream 1 / lead: pre_race_forecast.events.*.data_cutoff is stamped with the lock generated_at, so the hash changes at every refresh with identical numbers (proven 21:03 vs 18:11); exclude data_cutoff from the hashed content or set it to the real session cutoff"
     }
    ],
-   "summary_line": "53 passed, 1 xfailed in 1.72s"
+   "summary_line": "53 passed, 1 xfailed in 1.74s"
   },
   "forecast_file_audit": {
    "status": "PASS",
@@ -480,9 +480,9 @@
  "wording_flags_outstanding": [],
  "inputs": {
   "leakage": "2026-09-12T22:16:02",
-  "claims": "2026-09-12T23:07:37",
+  "claims": "2026-09-12T23:17:47",
   "identity": "2026-09-12T22:16:25",
-  "probe": "2026-09-12T23:07:36"
+  "probe": "2026-09-12T23:17:46"
  },
  "rerun": [
   "claims"

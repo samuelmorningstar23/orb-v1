@@ -2,11 +2,11 @@
  "checkpoint": "C4",
  "decision": "GO",
  "proposed": "GO",
- "note": "Lead takeover: C4 decision engine, feedback and animation end to end. Active workstreams 3, 6, 7; others completed or unstarted by design. Post-freeze sealed holdout, aggregate only: MAE 0.0372 vs naive 0.1713 s/lap, coverage 1.00, 5 weekends / 9 compound-weekends. Frozen Madrid forecast preserved; scenarios and live sidecars aligned with post-qualifying lock; documents rebuilt by previous lead. Ordered probes rerun: 1692 numbers, 0 mismatches; claims empty; red team GO, 9/9 PASS; recorded leakage 5/5 and identity 41/41.",
- "at": "2026-09-12T23:10:09",
- "git_commit": "cdb1a45",
+ "note": "Completion after resuming: late C3-era context notes reviewed and replaced through their builder with the current continuation guide; PDF rendered and checked; context Markdown classified lead-only. Validate full tree including late files. Active workstreams 3/6/7. Ordered probes after final source edit: 1692 numbers, 0 mismatches; claim rewords empty; red team GO 9/9 PASS; leakage 5/5 and identity 41/41 reports retained. Frozen artefacts unchanged. This rerun supersedes initial C4 snapshot before late context files.",
+ "at": "2026-09-12T23:20:32",
+ "git_commit": "295ebc9",
  "git_branch": "main",
- "git_dirty_paths": 151,
+ "git_dirty_paths": 15,
  "decided_by": "lead",
  "all_green": true,
  "decision_overrides_checks": false,
@@ -17,7 +17,7 @@
    "note": "",
    "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
    "returncode": 0,
-   "duration_s": 0.11,
+   "duration_s": 0.12,
    "timed_out": false,
    "log": "checkpoints/C4/logs/schema_validation.txt"
   },
@@ -27,7 +27,7 @@
    "note": "",
    "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
    "returncode": 0,
-   "duration_s": 112.76,
+   "duration_s": 113.54,
    "timed_out": false,
    "counts": {
     "passed": 484,
@@ -50,42 +50,25 @@
   {
    "name": "ownership_audit",
    "status": "WARN",
-   "note": "149 changed paths, 15 flagged: proto/build_case.py, proto/build_manual.py, proto/deck_src/build_deck.js, proto/out/JURY_QUESTIONS.md, proto/out/Orb_v1_ChallengeDay.pdf, proto/out/Orb_v1_Mentor_Briefing.pptx, proto/out/Orb_v1_Roadmap_and_Manual.pdf, proto/out/Orb_v1_The_Case.pdf, proto/out/ROADMAP.md, proto/out/THE_CASE.md, proto/out/forecast_Madrid_2026.json, proto/out/forecast_Madrid_2026.pdf, proto/out/forecast_Madrid_2026.sha256, proto/out/lock.json, proto/out/talk_track.md",
+   "note": "13 changed paths, 3 flagged: proto/build_notes.py, proto/out/Orb_v1_Context_Notes.pdf, proto/out/CONTEXT_NOTES.md",
    "command": "release/ownership_audit.py",
    "summary": {
-    "total": 149,
-    "flagged": 15,
+    "total": 13,
+    "flagged": 3,
     "unowned": 0,
-    "lead_only": 15,
+    "lead_only": 3,
     "outside_proto": 0,
     "by_owner": {
-     "1": 2,
-     "2": 15,
-     "3": 12,
-     "6": 57,
-     "7": 21,
-     "8": 17,
-     "9": 6,
-     "lead": 15,
-     "lead/notes": 4
+     "7": 4,
+     "9": 5,
+     "lead": 3,
+     "lead/notes": 1
     }
    },
    "flagged": [
-    "proto/build_case.py",
-    "proto/build_manual.py",
-    "proto/deck_src/build_deck.js",
-    "proto/out/JURY_QUESTIONS.md",
-    "proto/out/Orb_v1_ChallengeDay.pdf",
-    "proto/out/Orb_v1_Mentor_Briefing.pptx",
-    "proto/out/Orb_v1_Roadmap_and_Manual.pdf",
-    "proto/out/Orb_v1_The_Case.pdf",
-    "proto/out/ROADMAP.md",
-    "proto/out/THE_CASE.md",
-    "proto/out/forecast_Madrid_2026.json",
-    "proto/out/forecast_Madrid_2026.pdf",
-    "proto/out/forecast_Madrid_2026.sha256",
-    "proto/out/lock.json",
-    "proto/out/talk_track.md"
+    "proto/build_notes.py",
+    "proto/out/Orb_v1_Context_Notes.pdf",
+    "proto/out/CONTEXT_NOTES.md"
    ]
   },
   {
@@ -94,7 +77,7 @@
    "note": "",
    "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python evaluation/red_team/consistency_probe.py",
    "returncode": 0,
-   "duration_s": 20.71,
+   "duration_s": 20.99,
    "timed_out": false,
    "log": "checkpoints/C4/logs/lock_dashboard_consistency.txt"
   },
@@ -117,17 +100,14 @@
   "theme/base.css": "f0b55603d5ed6e7b"
  },
  "hash_changes_since_last_green": {
-  "changed": [
-   "out/lock.json",
-   "out/lock_v2.json"
-  ],
+  "changed": [],
   "added": [],
   "removed": []
  },
  "previous_green": {
-  "checkpoint": "C3",
-  "git_commit": "b0b924c",
-  "at": "2026-09-12T21:06:31",
+  "checkpoint": "C4",
+  "git_commit": "cdb1a45",
+  "at": "2026-09-12T23:10:09",
   "decision": "GO"
  },
  "active_workstreams": [
@@ -141,6 +121,7 @@
   2,
   3,
   4,
+  6,
   7,
   8,
   9
@@ -149,8 +130,8 @@
   {
    "workstream": 1,
    "status": "GREEN",
-   "effective": "AMBER (stale 400 min)",
-   "age_min": 400.1,
+   "effective": "AMBER (stale 410 min)",
+   "age_min": 410.5,
    "stale": true,
    "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
    "tests_passed": 109,
@@ -181,8 +162,8 @@
   {
    "workstream": 2,
    "status": "GREEN",
-   "effective": "AMBER (stale 390 min)",
-   "age_min": 390.1,
+   "effective": "AMBER (stale 400 min)",
+   "age_min": 400.5,
    "stale": true,
    "task": "0.3 PreRaceCurveProvider (provider A); 0.4 counterfactual core (fixed_context, tyre_only); 0.9 RaceEventSource (replay, recorded-live, live stub)",
    "tests_passed": 53,
@@ -211,8 +192,8 @@
   {
    "workstream": 3,
    "status": "GREEN",
-   "effective": "AMBER (stale 99 min)",
-   "age_min": 99.2,
+   "effective": "AMBER (stale 109 min)",
+   "age_min": 109.6,
    "stale": true,
    "task": "blind evaluation: sealed-holdout evaluator (dry-run flag), freeze-gate tests, reviews of Workstream 2 / Workstream 8, feedback ablation, scorecards refreshed vs lock 21:03",
    "tests_passed": 59,
@@ -240,8 +221,8 @@
   {
    "workstream": 4,
    "status": "GREEN",
-   "effective": "AMBER (stale 382 min)",
-   "age_min": 382.1,
+   "effective": "AMBER (stale 392 min)",
+   "age_min": 392.5,
    "stale": true,
    "task": "0.5 track geometry, trajectory, time warp, browser player, Plotly fallback",
    "tests_passed": 30,
@@ -272,9 +253,9 @@
   {
    "workstream": 6,
    "status": "GREEN",
-   "effective": "GREEN",
-   "age_min": 39.6,
-   "stale": false,
+   "effective": "AMBER (stale 49 min)",
+   "age_min": 50.0,
+   "stale": true,
    "task": "C4 task 2 acceptance pass on the post-freeze data: sealed block / landing scorecards on the 21:37 aggregate and 21:53 scorecards, Ghost audit hidden-stop + regret, Scenario Explorer across both pre-race fidelities, red-team live_position_claim, reversible driver-feedback posterior, Race Twin offline at 1440x900 and 1920x1080, goldens only for routes the new data changed",
    "tests_passed": 67,
    "tests_failed": 0,
@@ -307,8 +288,8 @@
   {
    "workstream": 7,
    "status": "GREEN",
-   "effective": "AMBER (stale 53 min)",
-   "age_min": 53.4,
+   "effective": "AMBER (stale 63 min)",
+   "age_min": 63.8,
    "stale": true,
    "task": "red team C4 re-run: four probes against the post-qualifying / post-freeze / post-rebuild tree, refreshed blocking list and verdict, tests/red_team acceptance suite",
    "tests_passed": 53,
@@ -341,8 +322,8 @@
   {
    "workstream": 8,
    "status": "GREEN",
-   "effective": "AMBER (stale 400 min)",
-   "age_min": 400.1,
+   "effective": "AMBER (stale 410 min)",
+   "age_min": 410.5,
    "stale": true,
    "task": "live intelligence: 0.8 replay estimator, 0.10 feedback adapter, 0.12 action engine, prefix evaluation, view-model adapter",
    "tests_passed": 31,
@@ -375,8 +356,8 @@
   {
    "workstream": 9,
    "status": "GREEN",
-   "effective": "AMBER (stale 390 min)",
-   "age_min": 390.3,
+   "effective": "AMBER (stale 400 min)",
+   "age_min": 400.7,
    "stale": true,
    "task": "build_control_system (task 0.16)",
    "tests_passed": 83,
@@ -412,11 +393,11 @@
  "merge_queue_before": {
   "state": "FROZEN",
   "reason": "checkpoint C4 in progress (run_checkpoint.sh)",
-  "since": "2026-09-12T23:07:55",
+  "since": "2026-09-12T23:18:17",
   "by": "workstream 9"
  },
  "rehearsal": false,
  "directory": "checkpoints/C4",
- "decided_at": "2026-09-12T23:10:35",
- "decision_note": "Acting lead: reviewed checkpoint.md; schema, pytest (484 passed / 1 skipped / 1 xfailed including screenshots), consistency and sealed integrity PASS. Ownership WARN accepted as expected: 15 lead-only, 0 unowned. No failed checks or override. Active workstreams 3/6/7 reflect C4 contributors; stale historical heartbeats retained without impersonation. Red team 9/9 PASS, no required rewords; frozen artefacts unchanged."
+ "decided_at": "2026-09-12T23:22:16",
+ "decision_note": "Lead final completion: full tree including corrected late context files validated; 484 passed / 1 skipped / 1 xfailed including screenshots; schema, consistency and sealed integrity PASS; ownership WARN 3 lead-only, 0 unowned. No override. Ordered probes 1692 numbers, zero mismatches, claims empty, red team 9/9 PASS. Tested inputs and all protected files match fingerprints; no new untracked paths. Closure resumed; late-file issue resolved. C5 next."
 }

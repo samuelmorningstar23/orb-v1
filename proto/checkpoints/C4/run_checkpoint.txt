@@ -1,24 +1,25 @@
-== Orb v1 checkpoint C4 (AUTO) started 2026-09-12T23:07:55 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
-git: main @ cdb1a45, 146 uncommitted paths
+== Orb v1 checkpoint C4 (AUTO) started 2026-09-12T23:18:17 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
+git: main @ 295ebc9, 11 uncommitted paths
 merge queue FROZEN (checkpoint C4 in progress (run_checkpoint.sh))
-== checkpoint C4 (AUTO) at 2026-09-12T23:07:55 == merge queue FROZEN
-[1/5] schema_validation ... PASS (0.11s)
-[2/5] pytest ... PASS (112.76s)
-[3/5] ownership_audit ... WARN - 149 changed paths, 15 flagged: proto/build_case.py, proto/build_manual.py, proto/deck_src/build_deck.js, proto/out/JURY_QUESTIONS.md, proto/out/Orb_v1_ChallengeDay.pdf, proto/out/Orb_v1_Mentor_Briefing.pptx, proto/out/Orb_v1_Roadmap_and_Manual.pdf, proto/out/Orb_v1_The_Case.pdf, proto/out/ROADMAP.md, proto/out/THE_CASE.md, proto/out/forecast_Madrid_2026.json, proto/out/forecast_Madrid_2026.pdf, proto/out/forecast_Madrid_2026.sha256, proto/out/lock.json, proto/out/talk_track.md
-[4/5] lock_dashboard_consistency ... PASS (20.71s)
+== checkpoint C4 (AUTO) at 2026-09-12T23:18:17 == merge queue FROZEN
+[1/5] schema_validation ... PASS (0.12s)
+[2/5] pytest ... PASS (113.54s)
+[3/5] ownership_audit ... WARN - 13 changed paths, 3 flagged: proto/build_notes.py, proto/out/Orb_v1_Context_Notes.pdf, proto/out/CONTEXT_NOTES.md
+[4/5] lock_dashboard_consistency ... PASS (20.99s)
 [5/5] sealed_holdout_integrity ... PASS
-checks: {'PASS': 4, 'WARN': 1}  green=True  hashes changed since last green: ['out/lock.json', 'out/lock_v2.json']
-heartbeats: missing none, stale [1, 2, 3, 4, 7, 8, 9]
-C4 recorded: PENDING at commit cdb1a45; merge queue FROZEN (C4 pending lead decision (checks green; proposed GO))
+checks: {'PASS': 4, 'WARN': 1}  green=True  hashes changed since last green: none
+heartbeats: missing none, stale [1, 2, 3, 4, 6, 7, 8, 9]
+C4 recorded: PENDING at commit 295ebc9; merge queue FROZEN (C4 pending lead decision (checks green; proposed GO))
 next: python build_control.py decide C4 GO|GO_WITH_REASSIGNMENT|ROLLBACK|CUT_FROM_DEMO|HOLD 'note'
 == artifacts in checkpoints/C4 ==
    artifact_hashes.json
    checkpoint.json
    checkpoint.md
+   last_green.json
    logs
    ownership_audit.json
    red_team_report.json
    run_checkpoint.txt
    test_report.json
 == merge queue: FROZEN - C4 pending lead decision (checks green; proposed GO) ==
-== checkpoint C4 finished 2026-09-12T23:10:09 exit 3 ==
+== checkpoint C4 finished 2026-09-12T23:20:32 exit 3 ==
