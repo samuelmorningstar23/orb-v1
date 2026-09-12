@@ -1,0 +1,402 @@
+{
+ "events": [
+  "Australia",
+  "Japan",
+  "Barcelona",
+  "Austria",
+  "Belgium",
+  "Hungary"
+ ],
+ "n_rows": 12,
+ "mae": {
+  "err_naive": 0.18,
+  "errA": 0.0588,
+  "errG": 0.052,
+  "errC": 0.0276
+ },
+ "mae_by_comp": {
+  "HARD": {
+   "err_naive": 0.0896,
+   "errA": 0.0103,
+   "errC": 0.0103
+  },
+  "MEDIUM": {
+   "err_naive": 0.183,
+   "errA": 0.0886,
+   "errC": 0.0139
+  },
+  "SOFT": {
+   "err_naive": 0.213,
+   "errA": 0.0483,
+   "errC": 0.0483
+  }
+ },
+ "k": {
+  "HARD": 1.1738768439501244,
+  "MEDIUM": 0.4292503306578138,
+  "SOFT": 0.9673403796626557
+ },
+ "wins_C_over_A": 4,
+ "wins_C_over_naive": 11,
+ "energy_event": "Austria",
+ "energy_ratio": 1.0170994532888953,
+ "n_prac_laps": 1544,
+ "n_race_laps": 3177,
+ "energy_source": {
+  "Australia": "telemetry",
+  "Japan": "telemetry",
+  "Barcelona": "telemetry",
+  "Austria": "telemetry",
+  "Belgium": "telemetry",
+  "Hungary": "pace-estimated (telemetry degraded)"
+ },
+ "sector": {
+  "SOFT": {
+   "s1": -0.004645435205084425,
+   "s2": 0.026771006176616652,
+   "s3": 0.015955112083105405,
+   "total": 0.03808068305463763,
+   "share": {
+    "s1": -0.12198928255617736,
+    "s2": 0.7030075100860451,
+    "s3": 0.41898177247013224
+   }
+  },
+  "MEDIUM": {
+   "s1": 0.007059749104900703,
+   "s2": 0.02618160440398043,
+   "s3": 0.013087350109994844,
+   "total": 0.04632870361887598,
+   "share": {
+    "s1": 0.15238391220652045,
+    "s2": 0.5651270672143976,
+    "s3": 0.28248902057908193
+   }
+  },
+  "HARD": {
+   "s1": 0.007992058970904522,
+   "s2": 0.027196072386889352,
+   "s3": 0.013882788321203344,
+   "total": 0.04907091967899722,
+   "share": {
+    "s1": 0.16286751956526285,
+    "s2": 0.5542197408321554,
+    "s3": 0.28291273960258173
+   }
+  }
+ },
+ "per_event": {
+  "Australia": [
+   {
+    "compound": "SOFT",
+    "naive": 0.076,
+    "predA": 0.0205,
+    "obs": 0.0612,
+    "errA": 0.0406,
+    "race_E": 72.855,
+    "prac_E": 75.031
+   },
+   {
+    "compound": "MEDIUM",
+    "naive": 0.1742,
+    "predA": -0.0755,
+    "obs": 0.0223,
+    "errA": 0.0979,
+    "race_E": 74.142,
+    "prac_E": 73.2657
+   },
+   {
+    "compound": "HARD",
+    "naive": 0.1796,
+    "predA": -0.0241,
+    "obs": 0.0439,
+    "errA": 0.068,
+    "race_E": 73.8246,
+    "prac_E": 74.4015
+   }
+  ],
+  "Japan": [
+   {
+    "compound": "MEDIUM",
+    "naive": 0.2641,
+    "predA": 0.0446,
+    "obs": 0.0382,
+    "errA": 0.0064,
+    "race_E": 87.2835,
+    "prac_E": 89.429
+   },
+   {
+    "compound": "HARD",
+    "naive": 0.0989,
+    "predA": -0.074,
+    "obs": 0.0234,
+    "errA": 0.0975,
+    "race_E": 90.682,
+    "prac_E": 88.4665
+   }
+  ],
+  "Barcelona": [
+   {
+    "compound": "SOFT",
+    "naive": 0.3219,
+    "predA": 0.2199,
+    "obs": 0.2127,
+    "errA": 0.0072,
+    "race_E": 67.6588,
+    "prac_E": 69.1405
+   },
+   {
+    "compound": "MEDIUM",
+    "naive": 0.3692,
+    "predA": 0.3079,
+    "obs": 0.1322,
+    "errA": 0.1757,
+    "race_E": 68.0322,
+    "prac_E": 69.2061
+   },
+   {
+    "compound": "HARD",
+    "naive": 0.2018,
+    "predA": 0.34,
+    "obs": 0.1003,
+    "errA": 0.2398,
+    "race_E": 68.721,
+    "prac_E": 68.5198
+   }
+  ],
+  "Austria": [
+   {
+    "compound": "SOFT",
+    "naive": 0.4362,
+    "predA": 0.1393,
+    "obs": 0.0677,
+    "errA": 0.0717,
+    "race_E": 50.3221,
+    "prac_E": 52.6985
+   },
+   {
+    "compound": "MEDIUM",
+    "naive": 0.1214,
+    "predA": 0.16,
+    "obs": 0.0759,
+    "errA": 0.0841,
+    "race_E": 51.9949,
+    "prac_E": 52.7949
+   },
+   {
+    "compound": "HARD",
+    "naive": 0.1091,
+    "predA": 0.0672,
+    "obs": 0.0786,
+    "errA": 0.0114,
+    "race_E": 53.4198,
+    "prac_E": 52.8155
+   }
+  ],
+  "Belgium": [
+   {
+    "compound": "SOFT",
+    "naive": 0.1141,
+    "predA": 0.1593,
+    "obs": 0.1857,
+    "errA": 0.0264,
+    "race_E": 89.7365,
+    "prac_E": 91.4377
+   },
+   {
+    "compound": "MEDIUM",
+    "naive": 0.2139,
+    "predA": 0.1472,
+    "obs": 0.0498,
+    "errA": 0.0974,
+    "race_E": 93.5423,
+    "prac_E": 91.444
+   },
+   {
+    "compound": "HARD",
+    "naive": 0.1009,
+    "predA": 0.1463,
+    "obs": 0.0563,
+    "errA": 0.0899,
+    "race_E": 91.9985,
+    "prac_E": 88.6954
+   }
+  ],
+  "Hungary": [
+   {
+    "compound": "SOFT",
+    "naive": 0.5423,
+    "predA": 0.1369,
+    "obs": 0.0413,
+    "errA": 0.0957,
+    "race_E": 65.3703,
+    "prac_E": 66.5992
+   },
+   {
+    "compound": "MEDIUM",
+    "naive": 0.2849,
+    "predA": 0.1216,
+    "obs": 0.0423,
+    "errA": 0.0793,
+    "race_E": 63.5141,
+    "prac_E": 65.5465
+   },
+   {
+    "compound": "HARD",
+    "naive": 0.2096,
+    "predA": 0.0516,
+    "obs": 0.0608,
+    "errA": 0.0092,
+    "race_E": 64.9597,
+    "prac_E": 64.8411
+   }
+  ]
+ },
+ "hard_err": 0.01030252992082735,
+ "excluded": [
+  {
+   "event": "Australia",
+   "compound": "MEDIUM",
+   "n_prac": 121,
+   "predA": -0.076,
+   "obs": 0.022,
+   "gate": "no positive degradation signal in cleaned practice"
+  },
+  {
+   "event": "Australia",
+   "compound": "HARD",
+   "n_prac": 75,
+   "predA": -0.024,
+   "obs": 0.044,
+   "gate": "no positive degradation signal in cleaned practice"
+  },
+  {
+   "event": "Barcelona",
+   "compound": "HARD",
+   "n_prac": 12,
+   "predA": 0.34,
+   "obs": 0.1,
+   "gate": "too few practice laps"
+  },
+  {
+   "event": "Belgium",
+   "compound": "HARD",
+   "n_prac": 13,
+   "predA": 0.146,
+   "obs": 0.056,
+   "gate": "too few practice laps"
+  },
+  {
+   "event": "Japan",
+   "compound": "HARD",
+   "n_prac": 87,
+   "predA": -0.074,
+   "obs": 0.023,
+   "gate": "no positive degradation signal in cleaned practice"
+  }
+ ],
+ "min_prac": 30,
+ "min_slope": 0.02,
+ "ci": {
+  "err_naive": [
+   0.11735941234112739,
+   0.247027760587239
+  ],
+  "errA": [
+   0.03676813193523133,
+   0.08231044718117488
+  ],
+  "errG": [
+   0.041776199482285004,
+   0.06247648177332843
+  ],
+  "errC": [
+   0.016307111830219254,
+   0.04185339711821301
+  ]
+ },
+ "p_C_beats_A": 0.99025,
+ "per_comp": {
+  "SOFT": {
+   "n": 5,
+   "mae_naive": 0.21303827523022587,
+   "mae_A": 0.048309965265497024,
+   "mae_C": 0.048309965265497024,
+   "k_applied": false,
+   "k_values": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "ratios": [
+    2.98,
+    0.49,
+    0.97,
+    1.17,
+    0.3
+   ],
+   "gain_ci90": [
+    0.0,
+    0.0
+   ]
+  },
+  "MEDIUM": {
+   "n": 5,
+   "mae_naive": 0.18301315303264937,
+   "mae_A": 0.08857273436428645,
+   "mae_C": 0.01390933105762356,
+   "k_applied": true,
+   "k_values": [
+    0.39,
+    0.41,
+    0.45,
+    0.45,
+    0.39
+   ],
+   "ratios": [
+    0.47,
+    0.43,
+    0.34,
+    0.35,
+    0.86
+   ],
+   "gain_ci90": [
+    0.03566792280754315,
+    0.11439952823656574
+   ]
+  },
+  "HARD": {
+   "n": 2,
+   "mae_naive": 0.08963983990480874,
+   "mae_A": 0.01030252992082735,
+   "mae_C": 0.01030252992082735,
+   "k_applied": false,
+   "k_values": [
+    1.0,
+    1.0
+   ],
+   "ratios": [
+    1.17,
+    1.18
+   ],
+   "gain_ci90": [
+    NaN,
+    NaN
+   ]
+  }
+ },
+ "k_applied_to": [
+  "MEDIUM"
+ ],
+ "n_per_comp": {
+  "HARD": 2,
+  "MEDIUM": 5,
+  "SOFT": 5
+ },
+ "wins_C_over_G": 9,
+ "n_gated_lown": 2,
+ "n_gated_neg": 3,
+ "n_all": 17
+}

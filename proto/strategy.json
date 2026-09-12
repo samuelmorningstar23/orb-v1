@@ -1,0 +1,211 @@
+{
+ "Hungary": {
+  "event": "Hungary",
+  "n_laps": 70,
+  "offsets": {
+   "SOFT": 0.0,
+   "MEDIUM": 0.6,
+   "HARD": 1.2
+  },
+  "n_offsets": {
+   "assumed_step_s": 0.6
+  },
+  "comps": [
+   "SOFT",
+   "MEDIUM",
+   "HARD"
+  ],
+  "views": {
+   "Naive fit": {
+    "SOFT": 0.5422890199231624,
+    "MEDIUM": 0.284865421171148,
+    "HARD": 0.2095595165549486
+   },
+   "Clean practice curve": {
+    "SOFT": 0.1369389443596915,
+    "MEDIUM": 0.1216038442914069,
+    "HARD": 0.051619236758853
+   },
+   "ClearStint": {
+    "SOFT": 0.1369389443596915,
+    "MEDIUM": 0.0549438823843829,
+    "HARD": 0.051619236758853
+   },
+   "Race-observed (truth)": {
+    "SOFT": 0.0412565004693262,
+    "MEDIUM": 0.0423040455795415,
+    "HARD": 0.060776937391395
+   }
+  },
+  "table": [
+   {
+    "view": "Naive fit",
+    "plan": "M-H-H",
+    "stints": [
+     20,
+     24,
+     26
+    ],
+    "cost_vs_truth_s": 74.1
+   },
+   {
+    "view": "Clean practice curve",
+    "plan": "S-S-H",
+    "stints": [
+     20,
+     20,
+     30
+    ],
+    "cost_vs_truth_s": 35.2
+   },
+   {
+    "view": "ClearStint",
+    "plan": "S-M-M",
+    "stints": [
+     14,
+     28,
+     28
+    ],
+    "cost_vs_truth_s": 25.9
+   },
+   {
+    "view": "Race-observed (truth)",
+    "plan": "S-S-M",
+    "stints": [
+     28,
+     28,
+     14
+    ],
+    "cost_vs_truth_s": 0.0
+   }
+  ],
+  "crossover_clearstint": {
+   "Soft vs Medium": 7.3,
+   "Soft vs Hard": 14.1
+  },
+  "field": {
+   "n_laps": 70,
+   "stops_mode": 2,
+   "stops_share": {
+    "2": 12,
+    "3": 5,
+    "1": 2
+   },
+   "median_stint": {
+    "HARD": 22.5,
+    "MEDIUM": 20.5,
+    "SOFT": 14.0
+   },
+   "seqs": {
+    "M-H-H": 6,
+    "M-H-S": 4,
+    "S-M-S": 2
+   }
+  },
+  "pit_loss": 21.0
+ },
+ "Austria": {
+  "event": "Austria",
+  "n_laps": 71,
+  "offsets": {
+   "SOFT": 0.0,
+   "MEDIUM": 0.6,
+   "HARD": 1.2
+  },
+  "n_offsets": {
+   "assumed_step_s": 0.6
+  },
+  "comps": [
+   "SOFT",
+   "MEDIUM",
+   "HARD"
+  ],
+  "views": {
+   "Naive fit": {
+    "SOFT": 0.4361597830246014,
+    "MEDIUM": 0.12142918611667,
+    "HARD": 0.1091454851137672
+   },
+   "Clean practice curve": {
+    "SOFT": 0.1393245058067833,
+    "MEDIUM": 0.1600034318374206,
+    "HARD": 0.0672010252585906
+   },
+   "ClearStint": {
+    "SOFT": 0.1393245058067833,
+    "MEDIUM": 0.0621720890387591,
+    "HARD": 0.0672010252585906
+   },
+   "Race-observed (truth)": {
+    "SOFT": 0.0676581478433995,
+    "MEDIUM": 0.0759061684076201,
+    "HARD": 0.0786483844677032
+   }
+  },
+  "table": [
+   {
+    "view": "Naive fit",
+    "plan": "M-H-M",
+    "stints": [
+     24,
+     22,
+     25
+    ],
+    "cost_vs_truth_s": 50.2
+   },
+   {
+    "view": "Clean practice curve",
+    "plan": "S-S-H",
+    "stints": [
+     22,
+     22,
+     27
+    ],
+    "cost_vs_truth_s": 23.4
+   },
+   {
+    "view": "ClearStint",
+    "plan": "S-M-M",
+    "stints": [
+     16,
+     28,
+     27
+    ],
+    "cost_vs_truth_s": 28.7
+   },
+   {
+    "view": "Race-observed (truth)",
+    "plan": "S-M-S",
+    "stints": [
+     28,
+     16,
+     27
+    ],
+    "cost_vs_truth_s": 0.0
+   }
+  ],
+  "crossover_clearstint": {
+   "Soft vs Medium": 7.8,
+   "Soft vs Hard": 16.6
+  },
+  "field": {
+   "n_laps": 71,
+   "stops_mode": 2,
+   "stops_share": {
+    "2": 14,
+    "3": 3
+   },
+   "median_stint": {
+    "HARD": 26.0,
+    "MEDIUM": 19.0,
+    "SOFT": 17.0
+   },
+   "seqs": {
+    "M-H-H": 5,
+    "M-M-H": 4,
+    "M-H-M": 4
+   }
+  },
+  "pit_loss": 21.0
+ }
+}

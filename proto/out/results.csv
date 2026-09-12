@@ -1,0 +1,36 @@
+event,compound,n_prac,naive,clean,clean_se,push_adj,push_adj_se,energy_trend,gate,obs,obs_se,obs_push,n_race,issued,completed
+Australia,SOFT,75,0.076,0.0205,0.0268,0.0335,0.0205,0.0284,ok,0.0612,0.0168,0.0588,55,True,True
+Australia,MEDIUM,121,0.1742,-0.0755,0.0218,-0.0172,0.0173,0.1275,no positive degradation signal in cleaned practice,0.0223,0.0124,0.0444,69,False,True
+Australia,HARD,75,0.1796,-0.0241,0.0254,0.045,0.0202,0.1512,no positive degradation signal in cleaned practice,0.0439,0.0035,0.052,357,False,True
+Austria,SOFT,62,0.4362,0.1393,0.0362,0.0892,0.0251,-0.0834,ok,0.0677,0.0117,0.0614,66,True,True
+Austria,MEDIUM,140,0.1214,0.16,0.0175,0.1223,0.0122,-0.0627,ok,0.0759,0.0058,0.067,295,True,True
+Austria,HARD,77,0.1091,0.0672,0.0283,0.0645,0.0195,-0.0045,ok,0.0786,0.0034,0.0737,408,True,True
+Barcelona,SOFT,114,0.3219,0.2199,0.0269,0.1169,0.0131,-0.1784,ok,0.2127,0.0353,0.1167,39,True,True
+Barcelona,MEDIUM,126,0.3692,0.3079,0.0225,0.1599,0.0119,-0.2561,ok,0.1322,0.0108,0.0853,118,True,True
+Barcelona,HARD,12,0.2018,0.34,0.0866,0.1507,0.0411,-0.3279,too few clean practice laps,0.1003,0.0045,0.0764,483,False,True
+Belgium,SOFT,69,0.1141,0.1593,0.0377,0.1399,0.0332,-0.1315,ok,0.1857,0.0362,0.1572,27,True,True
+Belgium,MEDIUM,56,0.2139,0.1472,0.0368,0.1523,0.0322,0.0348,ok,0.0498,0.0322,0.0199,29,True,True
+Belgium,HARD,13,0.1009,0.1463,0.0752,0.1214,0.066,-0.1689,too few clean practice laps,0.0563,0.0048,0.0652,289,False,True
+Britain,HARD,133,0.0139,-0.0509,0.0293,0.031,0.0129,0.1457,no positive degradation signal in cleaned practice,0.0384,0.0053,0.0591,259,False,True
+Canada,SOFT,20,0.0806,0.0501,0.0502,0.0061,0.0463,-0.1546,too few clean practice laps,-0.0093,0.0067,0.0173,179,False,True
+Canada,HARD,92,-0.0507,-0.0491,0.0239,-0.047,0.0216,0.0075,no positive degradation signal in cleaned practice,-0.0053,0.0124,0.041,41,False,True
+Hungary,SOFT,80,0.5423,0.1369,0.0392,0.0591,0.0236,-0.1351,ok,0.0413,0.008,0.0413,136,True,True
+Hungary,MEDIUM,159,0.2849,0.1216,0.0242,0.0741,0.0146,-0.0824,ok,0.0423,0.0112,0.0423,82,True,True
+Hungary,HARD,57,0.2096,0.0516,0.0367,0.0511,0.0218,-0.0009,ok,0.0608,0.0047,0.0608,330,True,True
+Japan,SOFT,88,0.4655,0.1884,0.0428,0.0604,0.0345,-0.3982,ok,,,,0,True,True
+Japan,MEDIUM,135,0.2641,0.0446,0.0281,0.0487,0.0217,0.0127,ok,0.0382,0.0065,0.0327,161,True,True
+Japan,HARD,87,0.0989,-0.074,0.0343,-0.0073,0.027,0.2074,no positive degradation signal in cleaned practice,0.0234,0.0037,0.0286,241,False,True
+Madrid,SOFT,41,0.4794,0.1009,0.0868,0.1053,0.0472,0.0084,ok,,,,0,True,False
+Madrid,MEDIUM,112,0.1532,-0.1987,0.0442,0.0548,0.0284,0.4815,no positive degradation signal in cleaned practice,,,,0,False,False
+Miami,SOFT,15,0.4951,0.2932,0.0821,0.0096,0.0513,-0.5652,too few clean practice laps,0.0176,0.0236,0.0554,27,False,True
+Miami,MEDIUM,41,0.1275,0.0605,0.0376,0.1033,0.0225,0.0852,ok,0.0496,0.0094,0.0404,129,True,True
+Miami,HARD,152,0.0478,0.0489,0.0227,0.0735,0.0135,0.049,ok,0.0569,0.004,0.0609,296,True,True
+Monaco,SOFT,172,-0.0017,-0.002,0.0227,0.0258,0.011,0.0413,no positive degradation signal in cleaned practice,,,,0,False,False
+Monaco,MEDIUM,78,-0.0034,-0.0627,0.0312,0.0486,0.0156,0.1654,no positive degradation signal in cleaned practice,,,,0,False,False
+Monaco,HARD,79,-0.1081,-0.057,0.0266,0.0516,0.0134,0.1614,no positive degradation signal in cleaned practice,,,,0,False,False
+Monza,SOFT,98,0.2424,0.0254,0.0268,0.0526,0.0205,0.0518,ok,0.0246,0.0137,0.0183,32,True,True
+Monza,MEDIUM,149,0.1284,-0.0611,0.0221,-0.008,0.0173,0.1011,no positive degradation signal in cleaned practice,0.0276,0.003,0.033,250,False,True
+Monza,HARD,83,0.0563,-0.0327,0.0236,0.0352,0.0187,0.1291,no positive degradation signal in cleaned practice,0.023,0.003,0.0285,214,False,True
+Zandvoort,SOFT,31,0.1754,0.0385,0.068,0.0418,0.048,0.0093,ok,0.037,0.0088,0.0489,143,True,True
+Zandvoort,MEDIUM,91,-0.014,-0.0128,0.0365,0.0123,0.0259,0.0711,no positive degradation signal in cleaned practice,0.0726,0.0088,0.0693,108,False,True
+Zandvoort,HARD,56,0.0231,-0.1012,0.0368,-0.0205,0.0269,0.2284,no positive degradation signal in cleaned practice,0.0303,0.0045,0.0403,341,False,True

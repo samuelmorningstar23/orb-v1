@@ -1,0 +1,247 @@
+{
+ "eligible_pool": [
+  "2023_Australia",
+  "2023_Bahrain",
+  "2023_Barcelona",
+  "2023_Britain",
+  "2023_Canada",
+  "2023_Hungary",
+  "2023_Japan",
+  "2023_Miami",
+  "2023_Monza",
+  "2023_SaudiArabia",
+  "2023_Singapore",
+  "2023_USA",
+  "2024_Australia",
+  "2024_Bahrain",
+  "2024_Belgium",
+  "2024_China",
+  "2024_Hungary",
+  "2024_Japan",
+  "2024_LasVegas",
+  "2024_Mexico",
+  "2024_Miami",
+  "2024_Monaco",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Singapore",
+  "2024_Zandvoort",
+  "2025_AbuDhabi",
+  "2025_Austria",
+  "2025_Bahrain",
+  "2025_Barcelona",
+  "2025_Brazil",
+  "2025_China",
+  "2025_Hungary",
+  "2025_Imola",
+  "2025_Japan",
+  "2025_Monaco",
+  "2025_Monza",
+  "2025_Qatar",
+  "2025_SaudiArabia",
+  "2025_USA",
+  "2025_Zandvoort"
+ ],
+ "eligible_weekends": 41,
+ "holdout_count": 6,
+ "holdout_version": "gold-v1",
+ "ineligible": {
+  "2023_Austria": {
+   "fp_laps": 0,
+   "n_fp": 1,
+   "race_laps": 1332,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2023_Belgium": {
+   "fp_laps": 42,
+   "n_fp": 1,
+   "race_laps": 815,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2023_Brazil": {
+   "fp_laps": 496,
+   "n_fp": 1,
+   "race_laps": 1092,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2023_Monaco": {
+   "fp_laps": 1335,
+   "n_fp": 3,
+   "race_laps": 1512,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2024_Austria": {
+   "fp_laps": 426,
+   "n_fp": 1,
+   "race_laps": 1405,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2024_Barcelona": {
+   "fp_laps": 1227,
+   "n_fp": 3,
+   "race_laps": 1310,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2024_Britain": {
+   "fp_laps": 1082,
+   "n_fp": 3,
+   "race_laps": 960,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2024_Canada": {
+   "fp_laps": 970,
+   "n_fp": 3,
+   "race_laps": 1267,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2025_Australia": {
+   "fp_laps": 1065,
+   "n_fp": 3,
+   "race_laps": 858,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2025_Belgium": {
+   "fp_laps": 268,
+   "n_fp": 1,
+   "race_laps": 819,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2025_Britain": {
+   "fp_laps": 966,
+   "n_fp": 3,
+   "race_laps": 734,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2025_Canada": {
+   "fp_laps": 1399,
+   "n_fp": 3,
+   "race_laps": 1346,
+   "telemetry_ok": 1.0,
+   "wet": true
+  },
+  "2025_Miami": {
+   "fp_laps": 315,
+   "n_fp": 1,
+   "race_laps": 1002,
+   "telemetry_ok": 1.0,
+   "wet": true
+  }
+ },
+ "metadata": {
+  "2023_Canada": {
+   "circuit_class": "street",
+   "degradation_class": "low",
+   "event": "Canada",
+   "fp_laps": 968,
+   "n_fp": 3,
+   "race_laps": 1314,
+   "sc_or_vsc": true,
+   "season": 2023,
+   "telemetry_ok": 1.0,
+   "temperature_regime": "mild",
+   "track_temp": 30.8,
+   "wet": false
+  },
+  "2024_Monza": {
+   "circuit_class": "permanent",
+   "degradation_class": "low",
+   "event": "Monza",
+   "fp_laps": 945,
+   "n_fp": 3,
+   "race_laps": 1008,
+   "sc_or_vsc": false,
+   "season": 2024,
+   "telemetry_ok": 1.0,
+   "temperature_regime": "hot",
+   "track_temp": 49.5,
+   "wet": false
+  },
+  "2024_SaudiArabia": {
+   "circuit_class": "street",
+   "degradation_class": "low",
+   "event": "SaudiArabia",
+   "fp_laps": 1020,
+   "n_fp": 3,
+   "race_laps": 873,
+   "sc_or_vsc": true,
+   "season": 2024,
+   "telemetry_ok": 1.0,
+   "temperature_regime": "mild",
+   "track_temp": 31.5,
+   "wet": false
+  },
+  "2024_Zandvoort": {
+   "circuit_class": "permanent",
+   "degradation_class": "high",
+   "event": "Zandvoort",
+   "fp_laps": 776,
+   "n_fp": 3,
+   "race_laps": 1426,
+   "sc_or_vsc": false,
+   "season": 2024,
+   "telemetry_ok": 1.0,
+   "temperature_regime": "mild",
+   "track_temp": 31.3,
+   "wet": false
+  },
+  "2025_Qatar": {
+   "circuit_class": "permanent",
+   "degradation_class": "high",
+   "event": "Qatar",
+   "fp_laps": 466,
+   "n_fp": 1,
+   "race_laps": 1064,
+   "sc_or_vsc": true,
+   "season": 2025,
+   "telemetry_ok": 1.0,
+   "temperature_regime": "cool",
+   "track_temp": 28.1,
+   "wet": false
+  },
+  "2025_Zandvoort": {
+   "circuit_class": "permanent",
+   "degradation_class": "high",
+   "event": "Zandvoort",
+   "fp_laps": 1138,
+   "n_fp": 3,
+   "race_laps": 1342,
+   "sc_or_vsc": true,
+   "season": 2025,
+   "telemetry_ok": 1.0,
+   "temperature_regime": "cool",
+   "track_temp": 28.1,
+   "wet": false
+  }
+ },
+ "prohibited_for_tuning": true,
+ "race_ids": [
+  "2023_Canada",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Zandvoort",
+  "2025_Qatar",
+  "2025_Zandvoort"
+ ],
+ "reveal_conditions": {
+  "feature_list_frozen": false,
+  "gate_threshold_frozen": false,
+  "git_commit": null,
+  "model_frozen": false,
+  "note": "per-race results may be revealed only when all four are true and a commit is recorded in freeze.json; any tuning after reveal is labelled post_holdout_tuning",
+  "provider_frozen": false
+ },
+ "seed": 2026,
+ "selected_at": "2026-09-12T14:27:12",
+ "selection_rule": "holdout_count = clamp(round(0.18 * eligible_weekends), 4, 6); eligible = 2023-2025 weekends with >=1 practice file, >=300 practice laps, race >=500 laps, race position-telemetry ok share >=0.5, dry; constraints in order: one per season, one street, one high-degradation, one low-degradation, one hot, one cool, one SC/VSC; fill by seeded shuffle"
+}

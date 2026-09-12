@@ -1,0 +1,4570 @@
+{
+ "generated_at": "2026-09-12T14:26:30",
+ "rules": {
+  "min_practice_laps": 30,
+  "min_slope": 0.02,
+  "factor_rule": "median of other weekends, applied only if >=3 exist and a majority sit within \u00b150% of it",
+  "fuel_prior_kg_per_lap": 1.1,
+  "fuel_s_per_kg": 0.03,
+  "traffic_max": 0.3,
+  "min_stint": 5
+ },
+ "events": {
+  "Australia": {
+   "event": "Australia",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 271,
+   "practice_runs": 60,
+   "practice_laps_total": 1135,
+   "evolution_s_per_min": {
+    "FP1": -0.01,
+    "FP2": -0.0088,
+    "FP3": -0.0074
+   },
+   "beta_practice_s_per_MJ": -0.4572534175525238,
+   "beta_practice_se": 0.03729562089765278,
+   "track_temp": {
+    "FP1": 35.0,
+    "FP2": 33.2,
+    "FP3": 36.849999999999994,
+    "Q": 34.4,
+    "R": 35.95
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "pit in/out lap": 243,
+    "short run (<5 clean laps)": 243,
+    "cool-down / aborted (>105% of run best)": 171,
+    "yellow / SC / VSC / red flag": 111,
+    "traffic (>30% of lap within 60 m of a car)": 45,
+    "no gap-to-car-ahead data": 38,
+    "telemetry missing": 12,
+    "timing flagged inaccurate": 1
+   },
+   "race": {
+    "beta_race": -0.35873154582335914,
+    "n": 481,
+    "stints": 26,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.346499999999999
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.40 s implausible, nominal Pirelli-range step",
+    "HARD": "practice (14 drivers)"
+   }
+  },
+  "Austria": {
+   "event": "Austria",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 279,
+   "practice_runs": 51,
+   "practice_laps_total": 1309,
+   "evolution_s_per_min": {
+    "FP1": -0.0013,
+    "FP2": -0.0093,
+    "FP3": -0.0085
+   },
+   "beta_practice_s_per_MJ": -0.6011459397336409,
+   "beta_practice_se": 0.03792328601607556,
+   "track_temp": {
+    "FP1": 50.3,
+    "FP2": 47.3,
+    "FP3": 50.8,
+    "Q": 51.8,
+    "R": 50.8
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 408,
+    "pit in/out lap": 361,
+    "cool-down / aborted (>105% of run best)": 98,
+    "traffic (>30% of lap within 60 m of a car)": 65,
+    "no gap-to-car-ahead data": 49,
+    "yellow / SC / VSC / red flag": 49
+   },
+   "race": {
+    "beta_race": -0.5895883364294274,
+    "n": 769,
+    "stints": 49,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.7510000000000048
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.01 s implausible, nominal Pirelli-range step",
+    "HARD": "practice (15 drivers)"
+   }
+  },
+  "Barcelona": {
+   "event": "Barcelona",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 252,
+   "practice_runs": 45,
+   "practice_laps_total": 1162,
+   "evolution_s_per_min": {
+    "FP1": -0.0043,
+    "FP2": -0.0124,
+    "FP3": -0.0071
+   },
+   "beta_practice_s_per_MJ": -0.5775054418907684,
+   "beta_practice_se": 0.02137833494228287,
+   "track_temp": {
+    "FP1": 48.7,
+    "FP2": 47.5,
+    "FP3": 48.2,
+    "Q": 50.3,
+    "R": 50.4
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "pit in/out lap": 367,
+    "short run (<5 clean laps)": 346,
+    "cool-down / aborted (>105% of run best)": 84,
+    "no gap-to-car-ahead data": 49,
+    "traffic (>30% of lap within 60 m of a car)": 48,
+    "yellow / SC / VSC / red flag": 13,
+    "telemetry missing": 3
+   },
+   "race": {
+    "beta_race": -0.5751783145435628,
+    "n": 640,
+    "stints": 43,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.9154999999999944,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (26 drivers)",
+    "HARD": "practice value +2.66 s implausible, nominal Pirelli-range step"
+   }
+  },
+  "Belgium": {
+   "event": "Belgium",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 138,
+   "practice_runs": 24,
+   "practice_laps_total": 733,
+   "evolution_s_per_min": {
+    "FP1": -0.0147,
+    "FP2": -0.0093,
+    "FP3": -0.0108
+   },
+   "beta_practice_s_per_MJ": -0.1472005019103025,
+   "beta_practice_se": 0.024945504182482897,
+   "track_temp": {
+    "FP1": 39.7,
+    "FP2": 32.7,
+    "FP3": 34.2,
+    "Q": 35.3,
+    "R": 30.7
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 365,
+    "pit in/out lap": 147,
+    "no gap-to-car-ahead data": 27,
+    "yellow / SC / VSC / red flag": 27,
+    "traffic (>30% of lap within 60 m of a car)": 23,
+    "cool-down / aborted (>105% of run best)": 6
+   },
+   "race": {
+    "beta_race": -0.32988083943517976,
+    "n": 345,
+    "stints": 22,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.16 s implausible, nominal Pirelli-range step",
+    "HARD": "practice value +3.01 s implausible, nominal Pirelli-range step"
+   }
+  },
+  "Britain": {
+   "event": "Britain",
+   "sessions": [
+    "FP1",
+    "Q",
+    "R",
+    "S",
+    "SQ"
+   ],
+   "format": "sprint",
+   "completed": true,
+   "practice_laps_clean": 146,
+   "practice_runs": 34,
+   "practice_laps_total": 493,
+   "evolution_s_per_min": {
+    "FP1": -0.0043
+   },
+   "beta_practice_s_per_MJ": -0.5621184544521197,
+   "beta_practice_se": 0.024712164646598023,
+   "track_temp": {
+    "FP1": 40.3,
+    "Q": 41.2,
+    "R": 39.650000000000006,
+    "S": 37.4,
+    "SQ": 40.5
+   },
+   "rain": {
+    "FP1": false,
+    "Q": false,
+    "R": false,
+    "S": false,
+    "SQ": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 118,
+    "pit in/out lap": 101,
+    "cool-down / aborted (>105% of run best)": 69,
+    "lap deleted (track limits)": 19,
+    "traffic (>30% of lap within 60 m of a car)": 14,
+    "yellow / SC / VSC / red flag": 14,
+    "no gap-to-car-ahead data": 12
+   },
+   "race": {
+    "beta_race": -0.49105670904928467,
+    "n": 521,
+    "stints": 37,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.32500000000000284,
+    "HARD": 1.274000000000001
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (21 drivers)",
+    "HARD": "practice (16 drivers)"
+   }
+  },
+  "Canada": {
+   "event": "Canada",
+   "sessions": [
+    "FP1",
+    "Q",
+    "R",
+    "S",
+    "SQ"
+   ],
+   "format": "sprint",
+   "completed": true,
+   "practice_laps_clean": 118,
+   "practice_runs": 19,
+   "practice_laps_total": 508,
+   "evolution_s_per_min": {
+    "FP1": 0.0005
+   },
+   "beta_practice_s_per_MJ": -0.28474552174050644,
+   "beta_practice_se": 0.059603196711009235,
+   "track_temp": {
+    "FP1": 40.2,
+    "Q": 30.9,
+    "R": 17.9,
+    "S": 31.8,
+    "SQ": 41.7
+   },
+   "rain": {
+    "FP1": false,
+    "Q": true,
+    "R": false,
+    "S": false,
+    "SQ": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 114,
+    "pit in/out lap": 96,
+    "yellow / SC / VSC / red flag": 60,
+    "cool-down / aborted (>105% of run best)": 31,
+    "telemetry missing": 28,
+    "traffic (>30% of lap within 60 m of a car)": 26,
+    "lap deleted (track limits)": 20,
+    "no gap-to-car-ahead data": 15
+   },
+   "race": {
+    "beta_race": -0.7123286059408092,
+    "n": 592,
+    "stints": 32,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6530000000000058,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (20 drivers)",
+    "HARD": "practice value -42.24 s implausible, nominal Pirelli-range step"
+   }
+  },
+  "Hungary": {
+   "event": "Hungary",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 296,
+   "practice_runs": 61,
+   "practice_laps_total": 1215,
+   "evolution_s_per_min": {
+    "FP1": -0.0012,
+    "FP2": -0.0061,
+    "FP3": -0.0121
+   },
+   "beta_practice_s_per_MJ": -0.5763532795331123,
+   "beta_practice_se": 0.027972199946473427,
+   "track_temp": {
+    "FP1": 43.0,
+    "FP2": 30.3,
+    "FP3": 52.349999999999994,
+    "Q": 47.25,
+    "R": 50.8
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 343,
+    "pit in/out lap": 284,
+    "cool-down / aborted (>105% of run best)": 150,
+    "traffic (>30% of lap within 60 m of a car)": 70,
+    "no gap-to-car-ahead data": 45,
+    "yellow / SC / VSC / red flag": 27
+   },
+   "race": {
+    "beta_race": NaN,
+    "n": 548,
+    "stints": 38,
+    "telemetry": "degraded: energy pace-estimated"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.59 s implausible, nominal Pirelli-range step",
+    "HARD": "practice value +2.12 s implausible, nominal Pirelli-range step"
+   }
+  },
+  "Japan": {
+   "event": "Japan",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 310,
+   "practice_runs": 66,
+   "practice_laps_total": 1200,
+   "evolution_s_per_min": {
+    "FP1": -0.0097,
+    "FP2": -0.0095,
+    "FP3": -0.0095
+   },
+   "beta_practice_s_per_MJ": -0.3216364161692731,
+   "beta_practice_se": 0.02500033416943779,
+   "track_temp": {
+    "FP1": 37.2,
+    "FP2": 27.4,
+    "FP3": 36.849999999999994,
+    "Q": 29.6,
+    "R": 34.45
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 329,
+    "pit in/out lap": 263,
+    "cool-down / aborted (>105% of run best)": 170,
+    "no gap-to-car-ahead data": 42,
+    "traffic (>30% of lap within 60 m of a car)": 40,
+    "telemetry missing": 27,
+    "yellow / SC / VSC / red flag": 18,
+    "timing flagged inaccurate": 1
+   },
+   "race": {
+    "beta_race": -0.10678845131370977,
+    "n": 402,
+    "stints": 26,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6825000000000045,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (20 drivers)",
+    "HARD": "practice value +2.07 s implausible, nominal Pirelli-range step"
+   }
+  },
+  "Madrid": {
+   "event": "Madrid",
+   "sessions": [
+    "FP1",
+    "FP2"
+   ],
+   "format": "conventional",
+   "completed": false,
+   "practice_laps_clean": 157,
+   "practice_runs": 39,
+   "practice_laps_total": 734,
+   "evolution_s_per_min": {
+    "FP1": -0.0105,
+    "FP2": -0.0127
+   },
+   "beta_practice_s_per_MJ": -0.5265489069904642,
+   "beta_practice_se": 0.03159636087251637,
+   "track_temp": {
+    "FP1": 49.849999999999994,
+    "FP2": 51.0
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 217,
+    "pit in/out lap": 140,
+    "cool-down / aborted (>105% of run best)": 100,
+    "lap deleted (track limits)": 55,
+    "traffic (>30% of lap within 60 m of a car)": 35,
+    "no gap-to-car-ahead data": 19,
+    "yellow / SC / VSC / red flag": 11
+   },
+   "race": null,
+   "race_unusable": false,
+   "tyres": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6949999999999932,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (22 drivers)",
+    "HARD": "nominal Pirelli-range step"
+   }
+  },
+  "Miami": {
+   "event": "Miami",
+   "sessions": [
+    "FP1",
+    "Q",
+    "R",
+    "S",
+    "SQ"
+   ],
+   "format": "sprint",
+   "completed": true,
+   "practice_laps_clean": 208,
+   "practice_runs": 38,
+   "practice_laps_total": 610,
+   "evolution_s_per_min": {
+    "FP1": -0.0059
+   },
+   "beta_practice_s_per_MJ": -0.5018681813688537,
+   "beta_practice_se": 0.028600231006271192,
+   "track_temp": {
+    "FP1": 52.650000000000006,
+    "Q": 52.0,
+    "R": 36.75,
+    "S": 48.3,
+    "SQ": 52.4
+   },
+   "rain": {
+    "FP1": false,
+    "Q": false,
+    "R": true,
+    "S": false,
+    "SQ": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 114,
+    "pit in/out lap": 110,
+    "cool-down / aborted (>105% of run best)": 72,
+    "traffic (>30% of lap within 60 m of a car)": 31,
+    "lap deleted (track limits)": 25,
+    "yellow / SC / VSC / red flag": 24,
+    "no gap-to-car-ahead data": 21,
+    "telemetry missing": 5
+   },
+   "race": {
+    "beta_race": -0.36640637767765705,
+    "n": 452,
+    "stints": 27,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.7355000000000018,
+    "HARD": 0.9465000000000003
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (20 drivers)",
+    "HARD": "practice (16 drivers)"
+   }
+  },
+  "Monaco": {
+   "event": "Monaco",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": false,
+   "practice_laps_clean": 329,
+   "practice_runs": 91,
+   "practice_laps_total": 1617,
+   "evolution_s_per_min": {
+    "FP1": -0.008,
+    "FP2": -0.0129,
+    "FP3": -0.0079
+   },
+   "beta_practice_s_per_MJ": -0.6730237137763169,
+   "beta_practice_se": 0.024198031509864687,
+   "track_temp": {
+    "FP1": 30.9,
+    "FP2": 30.5,
+    "FP3": 29.8,
+    "Q": 36.95,
+    "R": 37.4
+   },
+   "rain": {
+    "FP1": true,
+    "FP2": true,
+    "FP3": true,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "cool-down / aborted (>105% of run best)": 332,
+    "short run (<5 clean laps)": 288,
+    "pit in/out lap": 257,
+    "traffic (>30% of lap within 60 m of a car)": 135,
+    "lap deleted (track limits)": 130,
+    "yellow / SC / VSC / red flag": 96,
+    "no gap-to-car-ahead data": 50
+   },
+   "race": null,
+   "race_unusable": true,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.21 s implausible, nominal Pirelli-range step",
+    "HARD": "practice value +2.65 s implausible, nominal Pirelli-range step"
+   }
+  },
+  "Monza": {
+   "event": "Monza",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 330,
+   "practice_runs": 68,
+   "practice_laps_total": 1328,
+   "evolution_s_per_min": {
+    "FP1": -0.0066,
+    "FP2": -0.0151,
+    "FP3": -0.0082
+   },
+   "beta_practice_s_per_MJ": -0.5257307233474506,
+   "beta_practice_se": 0.03859577259174531,
+   "track_temp": {
+    "FP1": 51.650000000000006,
+    "FP2": 55.1,
+    "FP3": 51.8,
+    "Q": 53.8,
+    "R": 55.4
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 348,
+    "pit in/out lap": 310,
+    "cool-down / aborted (>105% of run best)": 133,
+    "traffic (>30% of lap within 60 m of a car)": 83,
+    "no gap-to-car-ahead data": 50,
+    "lap deleted (track limits)": 49,
+    "yellow / SC / VSC / red flag": 25
+   },
+   "race": {
+    "beta_race": -0.23469723404626297,
+    "n": 496,
+    "stints": 21,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.8059999999999974,
+    "HARD": 1.343999999999994
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (23 drivers)",
+    "HARD": "practice (21 drivers)"
+   }
+  },
+  "Zandvoort": {
+   "event": "Zandvoort",
+   "sessions": [
+    "FP1",
+    "Q",
+    "R",
+    "S",
+    "SQ"
+   ],
+   "format": "sprint",
+   "completed": true,
+   "practice_laps_clean": 178,
+   "practice_runs": 42,
+   "practice_laps_total": 601,
+   "evolution_s_per_min": {
+    "FP1": -0.0043
+   },
+   "beta_practice_s_per_MJ": -0.3533531676083352,
+   "beta_practice_se": 0.030391159887904824,
+   "track_temp": {
+    "FP1": 27.55,
+    "Q": 32.5,
+    "R": 32.8,
+    "S": 25.05,
+    "SQ": 32.8
+   },
+   "rain": {
+    "FP1": true,
+    "Q": true,
+    "R": true,
+    "S": true,
+    "SQ": true
+   },
+   "excluded_by_reason": {
+    "cool-down / aborted (>105% of run best)": 117,
+    "pit in/out lap": 86,
+    "yellow / SC / VSC / red flag": 67,
+    "short run (<5 clean laps)": 60,
+    "traffic (>30% of lap within 60 m of a car)": 30,
+    "telemetry missing": 26,
+    "no gap-to-car-ahead data": 16,
+    "unknown / wet compound": 14,
+    "lap deleted (track limits)": 7
+   },
+   "race": {
+    "beta_race": -0.5551814196580082,
+    "n": 592,
+    "stints": 43,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.9480000000000004,
+    "HARD": 0.9604999999999961
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (22 drivers)",
+    "HARD": "practice (4 drivers)"
+   }
+  }
+ },
+ "validation": {
+  "n_weekends": 11,
+  "n_compound_weekends": 29,
+  "n_issued": 16,
+  "n_withheld": 13,
+  "mae_issued": {
+   "naive": 0.16267078585895134,
+   "clean": 0.045398693822790964,
+   "clearstint": 0.022578579345158285,
+   "push_adjusted": 0.034650396668385985
+  },
+  "mae_all_with_fallback": {
+   "naive": 0.1371372633798251,
+   "clearstint": 0.02273090763948737
+  },
+  "ci90_mae_clearstint_all": [
+   0.016034340023302184,
+   0.030120024352749512
+  ],
+  "p_clearstint_beats_clean_issued": 0.993,
+  "p_clearstint_beats_naive_all": 1.0,
+  "calibration": {
+   "naive": {
+    "slope": 0.06534299583722919,
+    "r": 0.19570921400280697,
+    "n": 29
+   },
+   "clean": {
+    "slope": 0.4533958435690814,
+    "r": 0.66632529726246,
+    "n": 16
+   },
+   "clearstint": {
+    "slope": 0.762347390449753,
+    "r": 0.8175644356016055,
+    "n": 16
+   },
+   "all_with_fallback": {
+    "slope": 0.7653025986667082,
+    "r": 0.7806457826398171,
+    "n": 29
+   }
+  },
+  "by_compound": {
+   "SOFT": {
+    "n": 9,
+    "mae_naive": 0.22097530110927568,
+    "mae_clearstint": 0.0315792396733294,
+    "k_median": 0.9673403796626557
+   },
+   "MEDIUM": {
+    "n": 9,
+    "mae_naive": 0.14801769703131212,
+    "mae_clearstint": 0.017375020483689798,
+    "k_median": 0.45182685386752625
+   },
+   "HARD": {
+    "n": 11,
+    "mae_naive": 0.05964033224996701,
+    "mae_clearstint": 0.019873452739269187,
+    "k_median": 1.1703450083546054
+   }
+  },
+  "withheld_cases": [
+   {
+    "event": "Australia",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0755,
+    "obs": 0.0223,
+    "floor": 0.0276
+   },
+   {
+    "event": "Australia",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0241,
+    "obs": 0.0439,
+    "floor": 0.0276
+   },
+   {
+    "event": "Barcelona",
+    "compound": "HARD",
+    "gate": "too few clean practice laps",
+    "clean": 0.34,
+    "obs": 0.1003,
+    "floor": 0.0255
+   },
+   {
+    "event": "Belgium",
+    "compound": "HARD",
+    "gate": "too few clean practice laps",
+    "clean": 0.1463,
+    "obs": 0.0563,
+    "floor": 0.0255
+   },
+   {
+    "event": "Britain",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0509,
+    "obs": 0.0384,
+    "floor": 0.0255
+   },
+   {
+    "event": "Canada",
+    "compound": "SOFT",
+    "gate": "too few clean practice laps",
+    "clean": 0.0501,
+    "obs": -0.0093,
+    "floor": 0.0303
+   },
+   {
+    "event": "Canada",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0491,
+    "obs": -0.0053,
+    "floor": 0.0303
+   },
+   {
+    "event": "Japan",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.074,
+    "obs": 0.0234,
+    "floor": 0.0289
+   },
+   {
+    "event": "Miami",
+    "compound": "SOFT",
+    "gate": "too few clean practice laps",
+    "clean": 0.2932,
+    "obs": 0.0176,
+    "floor": 0.0289
+   },
+   {
+    "event": "Monza",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0611,
+    "obs": 0.0276,
+    "floor": 0.0303
+   },
+   {
+    "event": "Monza",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0327,
+    "obs": 0.023,
+    "floor": 0.0303
+   },
+   {
+    "event": "Zandvoort",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0128,
+    "obs": 0.0726,
+    "floor": 0.0234
+   },
+   {
+    "event": "Zandvoort",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.1012,
+    "obs": 0.0303,
+    "floor": 0.0234
+   }
+  ],
+  "push_diagnostic": {
+   "energy_trend_withheld": {
+    "min": -0.565,
+    "50%": 0.101,
+    "max": 0.228
+   },
+   "energy_trend_issued": {
+    "min": -0.256,
+    "50%": -0.003,
+    "max": 0.085
+   },
+   "beta_practice_vs_race": [
+    {
+     "event": "Australia",
+     "practice": -0.457,
+     "race": -0.359
+    },
+    {
+     "event": "Austria",
+     "practice": -0.601,
+     "race": -0.59
+    },
+    {
+     "event": "Barcelona",
+     "practice": -0.578,
+     "race": -0.575
+    },
+    {
+     "event": "Belgium",
+     "practice": -0.147,
+     "race": -0.33
+    },
+    {
+     "event": "Britain",
+     "practice": -0.562,
+     "race": -0.491
+    },
+    {
+     "event": "Canada",
+     "practice": -0.285,
+     "race": -0.712
+    },
+    {
+     "event": "Japan",
+     "practice": -0.322,
+     "race": -0.107
+    },
+    {
+     "event": "Miami",
+     "practice": -0.502,
+     "race": -0.366
+    },
+    {
+     "event": "Monza",
+     "practice": -0.526,
+     "race": -0.235
+    },
+    {
+     "event": "Zandvoort",
+     "practice": -0.353,
+     "race": -0.555
+    }
+   ]
+  },
+  "path_b_push_adjusted": {
+   "n_withheld_with_push_signal": 5,
+   "mae_fallback": 0.028414499790670067,
+   "mae_push_adjusted": 0.028603159178244714,
+   "k3_medians": {
+    "SOFT": 0.8836286498713259,
+    "MEDIUM": 0.5957916857091475,
+    "HARD": 0.874368710199429
+   }
+  },
+  "band_coverage": {
+   "raw_all": 0.7586206896551724,
+   "calibrated_issued": 1.0,
+   "calibrated_fallback": 0.6923076923076923,
+   "calibrated_all": 0.8620689655172413,
+   "nominal": 0.9,
+   "widening_factor_median": 1.4949781425173776,
+   "widening_issued": 1.4949781425173776,
+   "widening_fallback": 1.4787075479983502,
+   "method": "leave-one-weekend-out conformal, pooled over issued and fallback cases: half-widths scaled by the 90th percentile of standardised residuals on the other weekends"
+  },
+  "wins_clearstint_over_naive": 28,
+  "wins_clearstint_over_clean_issued": 9
+ },
+ "validation_rows": [
+  {
+   "event": "Australia",
+   "compound": "SOFT",
+   "n_prac": 75,
+   "naive": 0.076,
+   "clean": 0.0205,
+   "clean_se": 0.0268,
+   "push_adj": 0.0335,
+   "push_adj_se": 0.0205,
+   "energy_trend": 0.0284,
+   "gate": "ok",
+   "obs": 0.0612,
+   "obs_se": 0.0168,
+   "obs_push": 0.0588,
+   "n_race": 55,
+   "issued": true,
+   "completed": true,
+   "ratio": 2.9772,
+   "k": 0.9632,
+   "k_applied": true,
+   "lo": -0.0393,
+   "hi": 0.0779,
+   "floor": 0.0276,
+   "k3": 0.8212,
+   "k3_applied": true,
+   "pred_push": 0.0275,
+   "pred_clearstint": 0.0198,
+   "half": 0.0392,
+   "z": 1.0552,
+   "lo_raw": -0.0197,
+   "hi_raw": 0.0587,
+   "widen": 1.495,
+   "err_naive": 0.0149,
+   "err_clean": 0.0406,
+   "err_cs": 0.0414,
+   "err_push": 0.0277
+  },
+  {
+   "event": "Australia",
+   "compound": "MEDIUM",
+   "n_prac": 121,
+   "naive": 0.1742,
+   "clean": -0.0755,
+   "clean_se": 0.0218,
+   "push_adj": -0.0172,
+   "push_adj_se": 0.0173,
+   "energy_trend": 0.1275,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0223,
+   "obs_se": 0.0124,
+   "obs_push": 0.0444,
+   "n_race": 69,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 0.4518,
+   "k_applied": true,
+   "lo": -0.0215,
+   "hi": 0.0949,
+   "floor": 0.0276,
+   "k3": 0.5958,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0276,
+   "half": 0.0389,
+   "z": 0.1349,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0726,
+   "widen": 1.495,
+   "err_naive": 0.1518,
+   "err_clean": null,
+   "err_cs": 0.0053,
+   "err_push": null
+  },
+  {
+   "event": "Australia",
+   "compound": "HARD",
+   "n_prac": 75,
+   "naive": 0.1796,
+   "clean": -0.0241,
+   "clean_se": 0.0254,
+   "push_adj": 0.045,
+   "push_adj_se": 0.0202,
+   "energy_trend": 0.1512,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0439,
+   "obs_se": 0.0035,
+   "obs_push": 0.052,
+   "n_race": 357,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.0215,
+   "hi": 0.0949,
+   "floor": 0.0276,
+   "k3": 0.7747,
+   "k3_applied": true,
+   "pred_push": 0.0349,
+   "pred_clearstint": 0.0276,
+   "half": 0.0389,
+   "z": 0.4184,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0726,
+   "widen": 1.495,
+   "err_naive": 0.1357,
+   "err_clean": null,
+   "err_cs": 0.0163,
+   "err_push": null
+  },
+  {
+   "event": "Austria",
+   "compound": "SOFT",
+   "n_prac": 62,
+   "naive": 0.4362,
+   "clean": 0.1393,
+   "clean_se": 0.0362,
+   "push_adj": 0.0892,
+   "push_adj_se": 0.0251,
+   "energy_trend": -0.0834,
+   "gate": "ok",
+   "obs": 0.0677,
+   "obs_se": 0.0117,
+   "obs_push": 0.0614,
+   "n_race": 66,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.4856,
+   "k": 0.9675,
+   "k_applied": true,
+   "lo": 0.0412,
+   "hi": 0.2996,
+   "floor": 0.0276,
+   "k3": 1.1053,
+   "k3_applied": true,
+   "pred_push": 0.0986,
+   "pred_clearstint": 0.1348,
+   "half": 0.0864,
+   "z": 0.7768,
+   "lo_raw": 0.0722,
+   "hi_raw": 0.245,
+   "widen": 1.495,
+   "err_naive": 0.3685,
+   "err_clean": 0.0717,
+   "err_cs": 0.0671,
+   "err_push": 0.0215
+  },
+  {
+   "event": "Austria",
+   "compound": "MEDIUM",
+   "n_prac": 140,
+   "naive": 0.1214,
+   "clean": 0.16,
+   "clean_se": 0.0175,
+   "push_adj": 0.1223,
+   "push_adj_se": 0.0122,
+   "energy_trend": -0.0627,
+   "gate": "ok",
+   "obs": 0.0759,
+   "obs_se": 0.0058,
+   "obs_push": 0.067,
+   "n_race": 295,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.4744,
+   "k": 0.4293,
+   "k_applied": true,
+   "lo": 0.0388,
+   "hi": 0.186,
+   "floor": 0.0276,
+   "k3": 0.5709,
+   "k3_applied": true,
+   "pred_push": 0.0698,
+   "pred_clearstint": 0.0687,
+   "half": 0.0492,
+   "z": 0.1468,
+   "lo_raw": 0.0487,
+   "hi_raw": 0.1471,
+   "widen": 1.495,
+   "err_naive": 0.0455,
+   "err_clean": 0.0841,
+   "err_cs": 0.0072,
+   "err_push": 0.0464
+  },
+  {
+   "event": "Austria",
+   "compound": "HARD",
+   "n_prac": 77,
+   "naive": 0.1091,
+   "clean": 0.0672,
+   "clean_se": 0.0283,
+   "push_adj": 0.0645,
+   "push_adj_se": 0.0195,
+   "energy_trend": -0.0045,
+   "gate": "ok",
+   "obs": 0.0786,
+   "obs_se": 0.0034,
+   "obs_push": 0.0737,
+   "n_race": 408,
+   "issued": true,
+   "completed": true,
+   "ratio": 1.1703,
+   "k": 1.0,
+   "k_applied": false,
+   "lo": -0.0024,
+   "hi": 0.1359,
+   "floor": 0.0276,
+   "k3": 0.7747,
+   "k3_applied": true,
+   "pred_push": 0.05,
+   "pred_clearstint": 0.0672,
+   "half": 0.0463,
+   "z": 0.2475,
+   "lo_raw": 0.0206,
+   "hi_raw": 0.1132,
+   "widen": 1.495,
+   "err_naive": 0.0305,
+   "err_clean": 0.0114,
+   "err_cs": 0.0114,
+   "err_push": 0.0141
+  },
+  {
+   "event": "Barcelona",
+   "compound": "SOFT",
+   "n_prac": 114,
+   "naive": 0.3219,
+   "clean": 0.2199,
+   "clean_se": 0.0269,
+   "push_adj": 0.1169,
+   "push_adj_se": 0.0131,
+   "energy_trend": -0.1784,
+   "gate": "ok",
+   "obs": 0.2127,
+   "obs_se": 0.0353,
+   "obs_push": 0.1167,
+   "n_race": 39,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.9673,
+   "k": 0.9633,
+   "k_applied": true,
+   "lo": 0.0737,
+   "hi": 0.412,
+   "floor": 0.0255,
+   "k3": 0.8212,
+   "k3_applied": true,
+   "pred_push": 0.096,
+   "pred_clearstint": 0.2118,
+   "half": 0.1362,
+   "z": 0.0065,
+   "lo_raw": 0.1006,
+   "hi_raw": 0.373,
+   "widen": 1.2418,
+   "err_naive": 0.1092,
+   "err_clean": 0.0072,
+   "err_cs": 0.0009,
+   "err_push": 0.0958
+  },
+  {
+   "event": "Barcelona",
+   "compound": "MEDIUM",
+   "n_prac": 126,
+   "naive": 0.3692,
+   "clean": 0.3079,
+   "clean_se": 0.0225,
+   "push_adj": 0.1599,
+   "push_adj_se": 0.0119,
+   "energy_trend": -0.2561,
+   "gate": "ok",
+   "obs": 0.1322,
+   "obs_se": 0.0108,
+   "obs_push": 0.0853,
+   "n_race": 118,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.4293,
+   "k": 0.4744,
+   "k_applied": true,
+   "lo": 0.0864,
+   "hi": 0.3044,
+   "floor": 0.0255,
+   "k3": 0.5709,
+   "k3_applied": true,
+   "pred_push": 0.0913,
+   "pred_clearstint": 0.1461,
+   "half": 0.0878,
+   "z": 0.1583,
+   "lo_raw": 0.098,
+   "hi_raw": 0.2736,
+   "widen": 1.2418,
+   "err_naive": 0.237,
+   "err_clean": 0.1757,
+   "err_cs": 0.0139,
+   "err_push": 0.0278
+  },
+  {
+   "event": "Barcelona",
+   "compound": "HARD",
+   "n_prac": 12,
+   "naive": 0.2018,
+   "clean": 0.34,
+   "clean_se": 0.0866,
+   "push_adj": 0.1507,
+   "push_adj_se": 0.0411,
+   "energy_trend": -0.3279,
+   "gate": "too few clean practice laps",
+   "obs": 0.1003,
+   "obs_se": 0.0045,
+   "obs_push": 0.0764,
+   "n_race": 483,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.0098,
+   "hi": 0.0623,
+   "floor": 0.0255,
+   "k3": 0.974,
+   "k3_applied": true,
+   "pred_push": 0.1467,
+   "pred_clearstint": 0.0255,
+   "half": 0.029,
+   "z": 2.5756,
+   "lo_raw": -0.003,
+   "hi_raw": 0.0551,
+   "widen": 1.2418,
+   "err_naive": 0.1015,
+   "err_clean": null,
+   "err_cs": 0.0748,
+   "err_push": null
+  },
+  {
+   "event": "Belgium",
+   "compound": "SOFT",
+   "n_prac": 69,
+   "naive": 0.1141,
+   "clean": 0.1593,
+   "clean_se": 0.0377,
+   "push_adj": 0.1399,
+   "push_adj_se": 0.0332,
+   "energy_trend": -0.1315,
+   "gate": "ok",
+   "obs": 0.1857,
+   "obs_se": 0.0362,
+   "obs_push": 0.1572,
+   "n_race": 27,
+   "issued": true,
+   "completed": true,
+   "ratio": 1.1657,
+   "k": 0.9632,
+   "k_applied": true,
+   "lo": 0.0222,
+   "hi": 0.3353,
+   "floor": 0.0255,
+   "k3": 0.8212,
+   "k3_applied": true,
+   "pred_push": 0.1149,
+   "pred_clearstint": 0.1534,
+   "half": 0.1047,
+   "z": 0.3081,
+   "lo_raw": 0.0656,
+   "hi_raw": 0.2751,
+   "widen": 1.495,
+   "err_naive": 0.0716,
+   "err_clean": 0.0264,
+   "err_cs": 0.0323,
+   "err_push": 0.0458
+  },
+  {
+   "event": "Belgium",
+   "compound": "MEDIUM",
+   "n_prac": 56,
+   "naive": 0.2139,
+   "clean": 0.1472,
+   "clean_se": 0.0368,
+   "push_adj": 0.1523,
+   "push_adj_se": 0.0322,
+   "energy_trend": 0.0348,
+   "gate": "ok",
+   "obs": 0.0498,
+   "obs_se": 0.0322,
+   "obs_push": 0.0199,
+   "n_race": 29,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.3383,
+   "k": 0.4744,
+   "k_applied": true,
+   "lo": 0.0255,
+   "hi": 0.1935,
+   "floor": 0.0255,
+   "k3": 0.6206,
+   "k3_applied": true,
+   "pred_push": 0.0945,
+   "pred_clearstint": 0.0698,
+   "half": 0.0562,
+   "z": 0.3563,
+   "lo_raw": 0.0401,
+   "hi_raw": 0.1526,
+   "widen": 1.495,
+   "err_naive": 0.1641,
+   "err_clean": 0.0974,
+   "err_cs": 0.02,
+   "err_push": 0.1025
+  },
+  {
+   "event": "Belgium",
+   "compound": "HARD",
+   "n_prac": 13,
+   "naive": 0.1009,
+   "clean": 0.1463,
+   "clean_se": 0.0752,
+   "push_adj": 0.1214,
+   "push_adj_se": 0.066,
+   "energy_trend": -0.1689,
+   "gate": "too few clean practice laps",
+   "obs": 0.0563,
+   "obs_se": 0.0048,
+   "obs_push": 0.0652,
+   "n_race": 289,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.017,
+   "hi": 0.0916,
+   "floor": 0.0255,
+   "k3": 0.974,
+   "k3_applied": true,
+   "pred_push": 0.1183,
+   "pred_clearstint": 0.0255,
+   "half": 0.0363,
+   "z": 0.849,
+   "lo_raw": -0.003,
+   "hi_raw": 0.0697,
+   "widen": 1.495,
+   "err_naive": 0.0445,
+   "err_clean": null,
+   "err_cs": 0.0308,
+   "err_push": null
+  },
+  {
+   "event": "Britain",
+   "compound": "HARD",
+   "n_prac": 133,
+   "naive": 0.0139,
+   "clean": -0.0509,
+   "clean_se": 0.0293,
+   "push_adj": 0.031,
+   "push_adj_se": 0.0129,
+   "energy_trend": 0.1457,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0384,
+   "obs_se": 0.0053,
+   "obs_push": 0.0591,
+   "n_race": 259,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.0161,
+   "hi": 0.092,
+   "floor": 0.0255,
+   "k3": 0.7747,
+   "k3_applied": true,
+   "pred_push": 0.024,
+   "pred_clearstint": 0.0255,
+   "half": 0.037,
+   "z": 0.3499,
+   "lo_raw": -0.003,
+   "hi_raw": 0.071,
+   "widen": 1.4624,
+   "err_naive": 0.0246,
+   "err_clean": null,
+   "err_cs": 0.0129,
+   "err_push": null
+  },
+  {
+   "event": "Canada",
+   "compound": "SOFT",
+   "n_prac": 20,
+   "naive": 0.0806,
+   "clean": 0.0501,
+   "clean_se": 0.0502,
+   "push_adj": 0.0061,
+   "push_adj_se": 0.0463,
+   "energy_trend": -0.1546,
+   "gate": "too few clean practice laps",
+   "obs": -0.0093,
+   "obs_se": 0.0067,
+   "obs_push": 0.0173,
+   "n_race": 179,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 0.9673,
+   "k_applied": true,
+   "lo": 0.0218,
+   "hi": 0.0752,
+   "floor": 0.0303,
+   "k3": 0.8836,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0303,
+   "half": 0.0251,
+   "z": 1.5763,
+   "lo_raw": 0.0223,
+   "hi_raw": 0.0726,
+   "widen": 1.0611,
+   "err_naive": 0.09,
+   "err_clean": null,
+   "err_cs": 0.0396,
+   "err_push": null
+  },
+  {
+   "event": "Canada",
+   "compound": "HARD",
+   "n_prac": 92,
+   "naive": -0.0507,
+   "clean": -0.0491,
+   "clean_se": 0.0239,
+   "push_adj": -0.047,
+   "push_adj_se": 0.0216,
+   "energy_trend": 0.0075,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": -0.0053,
+   "obs_se": 0.0124,
+   "obs_push": 0.041,
+   "n_race": 41,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": 0.0218,
+   "hi": 0.0752,
+   "floor": 0.0303,
+   "k3": 0.8744,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0303,
+   "half": 0.0251,
+   "z": 1.4136,
+   "lo_raw": 0.0223,
+   "hi_raw": 0.0726,
+   "widen": 1.0611,
+   "err_naive": 0.0454,
+   "err_clean": null,
+   "err_cs": 0.0355,
+   "err_push": null
+  },
+  {
+   "event": "Hungary",
+   "compound": "SOFT",
+   "n_prac": 80,
+   "naive": 0.5423,
+   "clean": 0.1369,
+   "clean_se": 0.0392,
+   "push_adj": 0.0591,
+   "push_adj_se": 0.0236,
+   "energy_trend": -0.1351,
+   "gate": "ok",
+   "obs": 0.0413,
+   "obs_se": 0.008,
+   "obs_push": 0.0413,
+   "n_race": 136,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.3013,
+   "k": 0.9675,
+   "k_applied": true,
+   "lo": 0.0356,
+   "hi": 0.2905,
+   "floor": 0.0276,
+   "k3": 1.1053,
+   "k3_applied": true,
+   "pred_push": 0.0653,
+   "pred_clearstint": 0.1325,
+   "half": 0.0853,
+   "z": 1.0699,
+   "lo_raw": 0.0677,
+   "hi_raw": 0.2382,
+   "widen": 1.495,
+   "err_naive": 0.501,
+   "err_clean": 0.0957,
+   "err_cs": 0.0912,
+   "err_push": 0.0178
+  },
+  {
+   "event": "Hungary",
+   "compound": "MEDIUM",
+   "n_prac": 159,
+   "naive": 0.2849,
+   "clean": 0.1216,
+   "clean_se": 0.0242,
+   "push_adj": 0.0741,
+   "push_adj_se": 0.0146,
+   "energy_trend": -0.0824,
+   "gate": "ok",
+   "obs": 0.0423,
+   "obs_se": 0.0112,
+   "obs_push": 0.0423,
+   "n_race": 82,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.3479,
+   "k": 0.4744,
+   "k_applied": true,
+   "lo": 0.0267,
+   "hi": 0.1501,
+   "floor": 0.0276,
+   "k3": 0.6206,
+   "k3_applied": true,
+   "pred_push": 0.046,
+   "pred_clearstint": 0.0577,
+   "half": 0.0413,
+   "z": 0.3727,
+   "lo_raw": 0.037,
+   "hi_raw": 0.1195,
+   "widen": 1.495,
+   "err_naive": 0.2426,
+   "err_clean": 0.0793,
+   "err_cs": 0.0154,
+   "err_push": 0.0318
+  },
+  {
+   "event": "Hungary",
+   "compound": "HARD",
+   "n_prac": 57,
+   "naive": 0.2096,
+   "clean": 0.0516,
+   "clean_se": 0.0367,
+   "push_adj": 0.0511,
+   "push_adj_se": 0.0218,
+   "energy_trend": -0.0009,
+   "gate": "ok",
+   "obs": 0.0608,
+   "obs_se": 0.0047,
+   "obs_push": 0.0608,
+   "n_race": 330,
+   "issued": true,
+   "completed": true,
+   "ratio": 1.1774,
+   "k": 1.0,
+   "k_applied": false,
+   "lo": -0.0364,
+   "hi": 0.1424,
+   "floor": 0.0276,
+   "k3": 0.7747,
+   "k3_applied": true,
+   "pred_push": 0.0396,
+   "pred_clearstint": 0.0516,
+   "half": 0.0598,
+   "z": 0.1532,
+   "lo_raw": -0.0073,
+   "hi_raw": 0.1123,
+   "widen": 1.495,
+   "err_naive": 0.1488,
+   "err_clean": 0.0092,
+   "err_cs": 0.0092,
+   "err_push": 0.0097
+  },
+  {
+   "event": "Japan",
+   "compound": "MEDIUM",
+   "n_prac": 135,
+   "naive": 0.2641,
+   "clean": 0.0446,
+   "clean_se": 0.0281,
+   "push_adj": 0.0487,
+   "push_adj_se": 0.0217,
+   "energy_trend": 0.0127,
+   "gate": "ok",
+   "obs": 0.0382,
+   "obs_se": 0.0065,
+   "obs_push": 0.0327,
+   "n_race": 161,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.8571,
+   "k": 0.4293,
+   "k_applied": true,
+   "lo": -0.0094,
+   "hi": 0.0524,
+   "floor": 0.0289,
+   "k3": 0.5709,
+   "k3_applied": true,
+   "pred_push": 0.0278,
+   "pred_clearstint": 0.0191,
+   "half": 0.0209,
+   "z": 0.9135,
+   "lo_raw": -0.0001,
+   "hi_raw": 0.0416,
+   "widen": 1.4787,
+   "err_naive": 0.2259,
+   "err_clean": 0.0064,
+   "err_cs": 0.0191,
+   "err_push": 0.0105
+  },
+  {
+   "event": "Japan",
+   "compound": "HARD",
+   "n_prac": 87,
+   "naive": 0.0989,
+   "clean": -0.074,
+   "clean_se": 0.0343,
+   "push_adj": -0.0073,
+   "push_adj_se": 0.027,
+   "energy_trend": 0.2074,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0234,
+   "obs_se": 0.0037,
+   "obs_push": 0.0286,
+   "n_race": 241,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.0182,
+   "hi": 0.0911,
+   "floor": 0.0289,
+   "k3": 0.8744,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0289,
+   "half": 0.037,
+   "z": 0.1489,
+   "lo_raw": -0.003,
+   "hi_raw": 0.071,
+   "widen": 1.4787,
+   "err_naive": 0.0755,
+   "err_clean": null,
+   "err_cs": 0.0055,
+   "err_push": null
+  },
+  {
+   "event": "Miami",
+   "compound": "SOFT",
+   "n_prac": 15,
+   "naive": 0.4951,
+   "clean": 0.2932,
+   "clean_se": 0.0821,
+   "push_adj": 0.0096,
+   "push_adj_se": 0.0513,
+   "energy_trend": -0.5652,
+   "gate": "too few clean practice laps",
+   "obs": 0.0176,
+   "obs_se": 0.0236,
+   "obs_push": 0.0554,
+   "n_race": 27,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 0.9673,
+   "k_applied": true,
+   "lo": -0.018,
+   "hi": 0.0918,
+   "floor": 0.0289,
+   "k3": 0.8836,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0289,
+   "half": 0.0367,
+   "z": 0.307,
+   "lo_raw": -0.0025,
+   "hi_raw": 0.071,
+   "widen": 1.495,
+   "err_naive": 0.4774,
+   "err_clean": null,
+   "err_cs": 0.0113,
+   "err_push": null
+  },
+  {
+   "event": "Miami",
+   "compound": "MEDIUM",
+   "n_prac": 41,
+   "naive": 0.1275,
+   "clean": 0.0605,
+   "clean_se": 0.0376,
+   "push_adj": 0.1033,
+   "push_adj_se": 0.0225,
+   "energy_trend": 0.0852,
+   "gate": "ok",
+   "obs": 0.0496,
+   "obs_se": 0.0094,
+   "obs_push": 0.0404,
+   "n_race": 129,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.8199,
+   "k": 0.4293,
+   "k_applied": true,
+   "lo": -0.0149,
+   "hi": 0.0727,
+   "floor": 0.0289,
+   "k3": 0.6206,
+   "k3_applied": true,
+   "pred_push": 0.0641,
+   "pred_clearstint": 0.026,
+   "half": 0.0293,
+   "z": 0.807,
+   "lo_raw": -0.0014,
+   "hi_raw": 0.0573,
+   "widen": 1.495,
+   "err_naive": 0.0779,
+   "err_clean": 0.0109,
+   "err_cs": 0.0237,
+   "err_push": 0.0536
+  },
+  {
+   "event": "Miami",
+   "compound": "HARD",
+   "n_prac": 152,
+   "naive": 0.0478,
+   "clean": 0.0489,
+   "clean_se": 0.0227,
+   "push_adj": 0.0735,
+   "push_adj_se": 0.0135,
+   "energy_trend": 0.049,
+   "gate": "ok",
+   "obs": 0.0569,
+   "obs_se": 0.004,
+   "obs_push": 0.0609,
+   "n_race": 296,
+   "issued": true,
+   "completed": true,
+   "ratio": 1.1648,
+   "k": 1.0,
+   "k_applied": false,
+   "lo": -0.0059,
+   "hi": 0.1047,
+   "floor": 0.0289,
+   "k3": 0.974,
+   "k3_applied": true,
+   "pred_push": 0.0716,
+   "pred_clearstint": 0.0489,
+   "half": 0.037,
+   "z": 0.2177,
+   "lo_raw": 0.0122,
+   "hi_raw": 0.0862,
+   "widen": 1.495,
+   "err_naive": 0.0091,
+   "err_clean": 0.0081,
+   "err_cs": 0.0081,
+   "err_push": 0.0166
+  },
+  {
+   "event": "Monza",
+   "compound": "SOFT",
+   "n_prac": 98,
+   "naive": 0.2424,
+   "clean": 0.0254,
+   "clean_se": 0.0268,
+   "push_adj": 0.0526,
+   "push_adj_se": 0.0205,
+   "energy_trend": 0.0518,
+   "gate": "ok",
+   "obs": 0.0246,
+   "obs_se": 0.0137,
+   "obs_push": 0.0183,
+   "n_race": 32,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.9676,
+   "k": 0.9632,
+   "k_applied": true,
+   "lo": -0.0372,
+   "hi": 0.0954,
+   "floor": 0.0303,
+   "k3": 1.1053,
+   "k3_applied": true,
+   "pred_push": 0.0582,
+   "pred_clearstint": 0.0245,
+   "half": 0.0443,
+   "z": 0.0025,
+   "lo_raw": -0.0168,
+   "hi_raw": 0.0719,
+   "widen": 1.495,
+   "err_naive": 0.2178,
+   "err_clean": 0.0008,
+   "err_cs": 0.0001,
+   "err_push": 0.028
+  },
+  {
+   "event": "Monza",
+   "compound": "MEDIUM",
+   "n_prac": 149,
+   "naive": 0.1284,
+   "clean": -0.0611,
+   "clean_se": 0.0221,
+   "push_adj": -0.008,
+   "push_adj_se": 0.0173,
+   "energy_trend": 0.1011,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0276,
+   "obs_se": 0.003,
+   "obs_push": 0.033,
+   "n_race": 250,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 0.4518,
+   "k_applied": true,
+   "lo": -0.0228,
+   "hi": 0.0935,
+   "floor": 0.0303,
+   "k3": 0.5958,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0303,
+   "half": 0.0389,
+   "z": 0.0692,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0726,
+   "widen": 1.495,
+   "err_naive": 0.1008,
+   "err_clean": null,
+   "err_cs": 0.0027,
+   "err_push": null
+  },
+  {
+   "event": "Monza",
+   "compound": "HARD",
+   "n_prac": 83,
+   "naive": 0.0563,
+   "clean": -0.0327,
+   "clean_se": 0.0236,
+   "push_adj": 0.0352,
+   "push_adj_se": 0.0187,
+   "energy_trend": 0.1291,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.023,
+   "obs_se": 0.003,
+   "obs_push": 0.0285,
+   "n_race": 214,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.0228,
+   "hi": 0.0935,
+   "floor": 0.0303,
+   "k3": 0.974,
+   "k3_applied": true,
+   "pred_push": 0.0342,
+   "pred_clearstint": 0.0303,
+   "half": 0.0389,
+   "z": 0.1859,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0726,
+   "widen": 1.495,
+   "err_naive": 0.0333,
+   "err_clean": null,
+   "err_cs": 0.0072,
+   "err_push": null
+  },
+  {
+   "event": "Zandvoort",
+   "compound": "SOFT",
+   "n_prac": 31,
+   "naive": 0.1754,
+   "clean": 0.0385,
+   "clean_se": 0.068,
+   "push_adj": 0.0418,
+   "push_adj_se": 0.048,
+   "energy_trend": 0.0093,
+   "gate": "ok",
+   "obs": 0.037,
+   "obs_se": 0.0088,
+   "obs_push": 0.0489,
+   "n_race": 143,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.959,
+   "k": 0.9675,
+   "k_applied": true,
+   "lo": -0.0933,
+   "hi": 0.1814,
+   "floor": 0.0234,
+   "k3": 1.0428,
+   "k3_applied": true,
+   "pred_push": 0.0436,
+   "pred_clearstint": 0.0373,
+   "half": 0.1106,
+   "z": 0.0029,
+   "lo_raw": -0.0679,
+   "hi_raw": 0.1534,
+   "widen": 1.2418,
+   "err_naive": 0.1384,
+   "err_clean": 0.0016,
+   "err_cs": 0.0003,
+   "err_push": 0.0049
+  },
+  {
+   "event": "Zandvoort",
+   "compound": "MEDIUM",
+   "n_prac": 91,
+   "naive": -0.014,
+   "clean": -0.0128,
+   "clean_se": 0.0365,
+   "push_adj": 0.0123,
+   "push_adj_se": 0.0259,
+   "energy_trend": 0.0711,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0726,
+   "obs_se": 0.0088,
+   "obs_push": 0.0693,
+   "n_race": 108,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 0.4518,
+   "k_applied": true,
+   "lo": -0.0122,
+   "hi": 0.0643,
+   "floor": 0.0234,
+   "k3": 0.5958,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0234,
+   "half": 0.0308,
+   "z": 1.5962,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0563,
+   "widen": 1.2418,
+   "err_naive": 0.0866,
+   "err_clean": null,
+   "err_cs": 0.0492,
+   "err_push": null
+  },
+  {
+   "event": "Zandvoort",
+   "compound": "HARD",
+   "n_prac": 56,
+   "naive": 0.0231,
+   "clean": -0.1012,
+   "clean_se": 0.0368,
+   "push_adj": -0.0205,
+   "push_adj_se": 0.0269,
+   "energy_trend": 0.2284,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0303,
+   "obs_se": 0.0045,
+   "obs_push": 0.0403,
+   "n_race": 341,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.0122,
+   "hi": 0.0643,
+   "floor": 0.0234,
+   "k3": 0.8744,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0234,
+   "half": 0.0308,
+   "z": 0.2224,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0563,
+   "widen": 1.2418,
+   "err_naive": 0.0071,
+   "err_clean": null,
+   "err_cs": 0.0068,
+   "err_push": null
+  }
+ ],
+ "live": {
+  "Madrid": {
+   "meta": {
+    "event": "Madrid",
+    "sessions": [
+     "FP1",
+     "FP2"
+    ],
+    "format": "conventional",
+    "completed": false,
+    "practice_laps_clean": 157,
+    "practice_runs": 39,
+    "practice_laps_total": 734,
+    "evolution_s_per_min": {
+     "FP1": -0.0105,
+     "FP2": -0.0127
+    },
+    "beta_practice_s_per_MJ": -0.5265489069904642,
+    "beta_practice_se": 0.03159636087251637,
+    "track_temp": {
+     "FP1": 49.849999999999994,
+     "FP2": 51.0
+    },
+    "rain": {
+     "FP1": false,
+     "FP2": false
+    },
+    "excluded_by_reason": {
+     "short run (<5 clean laps)": 217,
+     "pit in/out lap": 140,
+     "cool-down / aborted (>105% of run best)": 100,
+     "lap deleted (track limits)": 55,
+     "traffic (>30% of lap within 60 m of a car)": 35,
+     "no gap-to-car-ahead data": 19,
+     "yellow / SC / VSC / red flag": 11
+    },
+    "race": null,
+    "race_unusable": false,
+    "tyres": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.6949999999999932,
+     "HARD": 1.2
+    },
+    "offsets_source": {
+     "MEDIUM": "practice (22 drivers)",
+     "HARD": "nominal Pirelli-range step"
+    }
+   },
+   "compounds": [
+    {
+     "compound": "SOFT",
+     "n_prac": 41,
+     "second_opinion": null,
+     "naive": 0.4794433604638165,
+     "clean": 0.10093563048728363,
+     "clean_se": 0.08678463181303231,
+     "gate": "ok",
+     "issued": true,
+     "factor": 0.9673403796626557,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "prediction": 0.09763911111705847,
+     "band90": [
+      -0.09555284627831415,
+      0.3000899632831943
+     ],
+     "energy_trend": 0.008356327501629702,
+     "push_adj": 0.105335645599527,
+     "basis": "cleaned Friday curve \u00d7 season transfer factor"
+    },
+    {
+     "compound": "MEDIUM",
+     "n_prac": 112,
+     "second_opinion": {
+      "prediction": 0.032655689056113775,
+      "factor": 0.5957916857091475,
+      "factor_applied": true,
+      "basis": "push-adjusted Friday curve (degradation at constant tyre energy) \u00d7 its own season factor"
+     },
+     "naive": 0.15318851442158327,
+     "clean": -0.19873171654803912,
+     "clean_se": 0.0441554421984582,
+     "gate": "no positive degradation signal in cleaned practice",
+     "issued": false,
+     "factor": 0.45182685386752625,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "prediction": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "energy_trend": 0.4815170921473892,
+     "push_adj": 0.05481058201952749,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases this season"
+    }
+   ]
+  }
+ },
+ "strategy": {
+  "Australia": {
+   "n_laps": 58,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.346499999999999
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.40 s implausible, nominal Pirelli-range step",
+    "HARD": "practice (14 drivers)"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "S-S-M",
+     "stints": [
+      24,
+      26,
+      8
+     ],
+     "stops": 2,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        24,
+        26,
+        8
+       ],
+       "time": 102.56519298307738,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        24,
+        8,
+        26
+       ],
+       "time": 102.56519298307738,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-S",
+       "stops": 2,
+       "stints": [
+        8,
+        24,
+        26
+       ],
+       "time": 102.56519298307738,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        26,
+        26,
+        6
+       ],
+       "time": 107.22360228726866,
+       "delta_to_best": 4.658409304191281
+      }
+     ],
+     "cost_under_truth_vs_best_s": 14.4781521943585,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       22,
+       36
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-M",
+     "stints": [
+      46,
+      12
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        46,
+        12
+       ],
+       "time": 52.55969279968797,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        12,
+        46
+       ],
+       "time": 52.55969279968797,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        52,
+        6
+       ],
+       "time": 57.96849436550205,
+       "delta_to_best": 5.4088015658140804
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        52
+       ],
+       "time": 57.96849436550205,
+       "delta_to_best": 5.4088015658140804
+      }
+     ],
+     "cost_under_truth_vs_best_s": 23.116718265934125,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       22,
+       36
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-M",
+     "stints": [
+      47,
+      11
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        47,
+        11
+       ],
+       "time": 51.74101624048648,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        11,
+        47
+       ],
+       "time": 51.74101624048648,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        52,
+        6
+       ],
+       "time": 56.92602990042847,
+       "delta_to_best": 5.185013659941987
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        52
+       ],
+       "time": 56.92602990042847,
+       "delta_to_best": 5.185013659941987
+      }
+     ],
+     "cost_under_truth_vs_best_s": 25.123551291829983,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       22,
+       36
+      ]
+     }
+    }
+   }
+  },
+  "Austria": {
+   "n_laps": 71,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.7510000000000048
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.01 s implausible, nominal Pirelli-range step",
+    "HARD": "practice (15 drivers)"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "M-M-H",
+     "stints": [
+      26,
+      26,
+      19
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 1.9063923428312843,
+      "M-H": 93.7014015342779,
+      "S-H": 5.354505938078107
+     },
+     "alternatives": [
+      {
+       "plan": "M-M-H",
+       "stops": 2,
+       "stints": [
+        26,
+        26,
+        19
+       ],
+       "time": 212.44993082551824,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-H-M",
+       "stops": 2,
+       "stints": [
+        26,
+        18,
+        27
+       ],
+       "time": 212.50375463350676,
+       "delta_to_best": 0.05382380798852182
+      },
+      {
+       "plan": "H-M-M",
+       "stops": 2,
+       "stints": [
+        18,
+        26,
+        27
+       ],
+       "time": 212.50375463350676,
+       "delta_to_best": 0.05382380798852182
+      },
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        10,
+        30,
+        31
+       ],
+       "time": 219.28223592447299,
+       "delta_to_best": 6.832305098954748
+      }
+     ],
+     "cost_under_truth_vs_best_s": 59.73109645835149,
+     "best_under_truth": {
+      "plan": "S-M-S",
+      "stints": [
+       28,
+       16,
+       27
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-S-M",
+     "stints": [
+      26,
+      26,
+      19
+     ],
+     "stops": 2,
+     "crossover": {
+      "M-H": 12.402695602751425,
+      "S-H": 24.27780781918852
+     },
+     "alternatives": [
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        26,
+        26,
+        19
+       ],
+       "time": 181.60645512547183,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        26,
+        18,
+        27
+       ],
+       "time": 181.728151577344,
+       "delta_to_best": 0.12169645187216815
+      },
+      {
+       "plan": "M-S-S",
+       "stops": 2,
+       "stints": [
+        18,
+        26,
+        27
+       ],
+       "time": 181.728151577344,
+       "delta_to_best": 0.12169645187216815
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        24,
+        24,
+        23
+       ],
+       "time": 184.41518645544113,
+       "delta_to_best": 2.808731329969305
+      }
+     ],
+     "cost_under_truth_vs_best_s": 0.35096497085274336,
+     "best_under_truth": {
+      "plan": "S-M-S",
+      "stints": [
+       28,
+       16,
+       27
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-M-M",
+     "stints": [
+      18,
+      26,
+      27
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 9.075790769283854,
+      "M-H": 777.4396528406317,
+      "S-H": 25.906029495914037
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        18,
+        26,
+        27
+       ],
+       "time": 146.9181734766857,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        26,
+        18,
+        27
+       ],
+       "time": 146.9181734766857,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        26,
+        28,
+        17
+       ],
+       "time": 147.0150097836119,
+       "delta_to_best": 0.09683630692620682
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        20,
+        20,
+        31
+       ],
+       "time": 151.2784534136939,
+       "delta_to_best": 4.360279937008215
+      }
+     ],
+     "cost_under_truth_vs_best_s": 25.73791323771482,
+     "best_under_truth": {
+      "plan": "S-M-S",
+      "stints": [
+       28,
+       16,
+       27
+      ]
+     }
+    }
+   }
+  },
+  "Barcelona": {
+   "n_laps": 66,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.9154999999999944,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (26 drivers)",
+    "HARD": "practice value +2.66 s implausible, nominal Pirelli-range step"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "S-H-H",
+     "stints": [
+      18,
+      24,
+      24
+     ],
+     "stops": 2,
+     "crossover": {
+      "M-H": 1.6995878407383362,
+      "S-H": 9.98582132228673
+     },
+     "alternatives": [
+      {
+       "plan": "S-H-H",
+       "stops": 2,
+       "stints": [
+        18,
+        24,
+        24
+       ],
+       "time": 275.71209386761745,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S-H",
+       "stops": 2,
+       "stints": [
+        24,
+        18,
+        24
+       ],
+       "time": 275.71209386761745,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-H-S",
+       "stops": 2,
+       "stints": [
+        24,
+        24,
+        18
+       ],
+       "time": 275.71209386761745,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        20,
+        20,
+        26
+       ],
+       "time": 279.2345199111445,
+       "delta_to_best": 3.522426043527048
+      }
+     ],
+     "cost_under_truth_vs_best_s": 0.0,
+     "best_under_truth": {
+      "plan": "S-H-H",
+      "stints": [
+       18,
+       24,
+       24
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-H",
+     "stints": [
+      11,
+      55
+     ],
+     "stops": 1,
+     "crossover": {
+      "M-H": 1.0075514078547079,
+      "S-H": 6.172483429548532
+     },
+     "alternatives": [
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        11,
+        55
+       ],
+       "time": 140.7839195249063,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        55,
+        11
+       ],
+       "time": 140.7839195249063,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-H",
+       "stops": 2,
+       "stints": [
+        8,
+        28,
+        30
+       ],
+       "time": 141.72717911844927,
+       "delta_to_best": 0.9432595935429617
+      },
+      {
+       "plan": "H-S-H",
+       "stops": 2,
+       "stints": [
+        28,
+        8,
+        30
+       ],
+       "time": 141.72717911844927,
+       "delta_to_best": 0.9432595935429617
+      }
+     ],
+     "cost_under_truth_vs_best_s": 59.31815013281246,
+     "best_under_truth": {
+      "plan": "S-H-H",
+      "stints": [
+       18,
+       24,
+       24
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-H",
+     "stints": [
+      12,
+      54
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 13.916090635444307,
+      "M-H": 2.3599468752341224,
+      "S-H": 6.439816428717007
+     },
+     "alternatives": [
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        12,
+        54
+       ],
+       "time": 140.19086107214258,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        54,
+        12
+       ],
+       "time": 140.19086107214258,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-H",
+       "stops": 2,
+       "stints": [
+        8,
+        28,
+        30
+       ],
+       "time": 141.43664114888549,
+       "delta_to_best": 1.2457800767429035
+      },
+      {
+       "plan": "H-S-H",
+       "stops": 2,
+       "stints": [
+        28,
+        8,
+        30
+       ],
+       "time": 141.43664114888549,
+       "delta_to_best": 1.2457800767429035
+      }
+     ],
+     "cost_under_truth_vs_best_s": 55.15599496641556,
+     "best_under_truth": {
+      "plan": "S-H-H",
+      "stints": [
+       18,
+       24,
+       24
+      ]
+     }
+    }
+   }
+  },
+  "Belgium": {
+   "n_laps": 44,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.16 s implausible, nominal Pirelli-range step",
+    "HARD": "practice value +3.01 s implausible, nominal Pirelli-range step"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "S-S-M",
+     "stints": [
+      18,
+      18,
+      8
+     ],
+     "stops": 2,
+     "crossover": {
+      "M-H": 5.310686829719924,
+      "S-H": 90.77973657870622
+     },
+     "alternatives": [
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        18,
+        18,
+        8
+       ],
+       "time": 93.51918517245511,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        18,
+        8,
+        18
+       ],
+       "time": 93.51918517245511,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-S",
+       "stops": 2,
+       "stints": [
+        8,
+        18,
+        18
+       ],
+       "time": 93.51918517245511,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        18,
+        18,
+        8
+       ],
+       "time": 94.25191464934291,
+       "delta_to_best": 0.7327294768877977
+      }
+     ],
+     "cost_under_truth_vs_best_s": 31.121526231262436,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       12,
+       32
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-H",
+     "stints": [
+      12,
+      32
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 49.562546702966195,
+      "M-H": 4.931241007327739,
+      "S-H": 8.970008252265233
+     },
+     "alternatives": [
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        12,
+        32
+       ],
+       "time": 85.28768975673086,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        32,
+        12
+       ],
+       "time": 85.28768975673086,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        10,
+        34
+       ],
+       "time": 91.06693811592788,
+       "delta_to_best": 5.779248359197027
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        34,
+        10
+       ],
+       "time": 91.06693811592788,
+       "delta_to_best": 5.779248359197027
+      }
+     ],
+     "cost_under_truth_vs_best_s": 22.661937461587243,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       12,
+       32
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "M-H",
+     "stints": [
+      18,
+      26
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 7.177504978728756,
+      "M-H": 13.538044362252503,
+      "S-H": 9.381298966577669
+     },
+     "alternatives": [
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        18,
+        26
+       ],
+       "time": 83.88957090812212,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        26,
+        18
+       ],
+       "time": 83.88957090812212,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        13,
+        31
+       ],
+       "time": 84.8085984408582,
+       "delta_to_best": 0.9190275327360808
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        31,
+        13
+       ],
+       "time": 84.8085984408582,
+       "delta_to_best": 0.9190275327360808
+      }
+     ],
+     "cost_under_truth_vs_best_s": 10.319805885397514,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       12,
+       32
+      ]
+     }
+    }
+   }
+  },
+  "Britain": {
+   "n_laps": 52,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.32500000000000284,
+    "HARD": 1.274000000000001
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (21 drivers)",
+    "HARD": "practice (16 drivers)"
+   },
+   "pit_loss": 21.0,
+   "views": {}
+  },
+  "Canada": {
+   "n_laps": 68,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6530000000000058,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (20 drivers)",
+    "HARD": "practice value -42.24 s implausible, nominal Pirelli-range step"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "S-H",
+     "stints": [
+      6,
+      62
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-H": 9.141271794280941
+     },
+     "alternatives": [
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        6,
+        62
+       ],
+       "time": -1.836594112999201,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        62,
+        6
+       ],
+       "time": -1.836594112999201,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        6,
+        6,
+        56
+       ],
+       "time": 31.740273832533813,
+       "delta_to_best": 33.57686794553301
+      },
+      {
+       "plan": "S-H-S",
+       "stops": 2,
+       "stints": [
+        6,
+        56,
+        6
+       ],
+       "time": 31.740273832533813,
+       "delta_to_best": 33.57686794553301
+      }
+     ],
+     "cost_under_truth_vs_best_s": 75.09923033625537,
+     "best_under_truth": {
+      "plan": "S-H",
+      "stints": [
+       62,
+       6
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-S-H",
+     "stints": [
+      30,
+      32,
+      6
+     ],
+     "stops": 2,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        30,
+        32,
+        6
+       ],
+       "time": 79.89456975065359,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-S",
+       "stops": 2,
+       "stints": [
+        30,
+        6,
+        32
+       ],
+       "time": 79.89456975065359,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S-S",
+       "stops": 2,
+       "stints": [
+        6,
+        30,
+        32
+       ],
+       "time": 79.89456975065359,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        54,
+        14
+       ],
+       "time": 85.93053836640946,
+       "delta_to_best": 6.035968615755877
+      }
+     ],
+     "cost_under_truth_vs_best_s": 29.967126736988572,
+     "best_under_truth": {
+      "plan": "S-H",
+      "stints": [
+       62,
+       6
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-S-H",
+     "stints": [
+      30,
+      32,
+      6
+     ],
+     "stops": 2,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        30,
+        32,
+        6
+       ],
+       "time": 79.89456975065359,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-S",
+       "stops": 2,
+       "stints": [
+        30,
+        6,
+        32
+       ],
+       "time": 79.89456975065359,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S-S",
+       "stops": 2,
+       "stints": [
+        6,
+        30,
+        32
+       ],
+       "time": 79.89456975065359,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        54,
+        14
+       ],
+       "time": 85.93053836640946,
+       "delta_to_best": 6.035968615755877
+      }
+     ],
+     "cost_under_truth_vs_best_s": 29.967126736988572,
+     "best_under_truth": {
+      "plan": "S-H",
+      "stints": [
+       62,
+       6
+      ]
+     }
+    }
+   }
+  },
+  "Hungary": {
+   "n_laps": 70,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice value +1.59 s implausible, nominal Pirelli-range step",
+    "HARD": "practice value +2.12 s implausible, nominal Pirelli-range step"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "M-H-H",
+     "stints": [
+      20,
+      24,
+      26
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 2.330788641401918,
+      "M-H": 7.967502721837448,
+      "S-H": 3.606533198446261
+     },
+     "alternatives": [
+      {
+       "plan": "M-H-H",
+       "stops": 2,
+       "stints": [
+        20,
+        24,
+        26
+       ],
+       "time": 310.2449837232126,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M-H",
+       "stops": 2,
+       "stints": [
+        24,
+        20,
+        26
+       ],
+       "time": 310.2449837232126,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-H-M",
+       "stops": 2,
+       "stints": [
+        24,
+        26,
+        20
+       ],
+       "time": 310.2449837232126,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-H",
+       "stops": 2,
+       "stints": [
+        22,
+        22,
+        26
+       ],
+       "time": 317.2972934233879,
+       "delta_to_best": 7.052309700175272
+      }
+     ],
+     "cost_under_truth_vs_best_s": 74.10743264655716,
+     "best_under_truth": {
+      "plan": "S-S-M",
+      "stints": [
+       28,
+       28,
+       14
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-S-H",
+     "stints": [
+      20,
+      20,
+      30
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 39.12592662116973,
+      "M-H": 8.573313777903312,
+      "S-H": 14.064745810125192
+     },
+     "alternatives": [
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        20,
+        20,
+        30
+       ],
+       "time": 159.51730172393712,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-S",
+       "stops": 2,
+       "stints": [
+        20,
+        30,
+        20
+       ],
+       "time": 159.51730172393712,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-S-S",
+       "stops": 2,
+       "stints": [
+        30,
+        20,
+        20
+       ],
+       "time": 159.51730172393712,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-H",
+       "stops": 2,
+       "stints": [
+        18,
+        26,
+        26
+       ],
+       "time": 164.0532636902221,
+       "delta_to_best": 4.535961966284987
+      }
+     ],
+     "cost_under_truth_vs_best_s": 35.24680291717098,
+     "best_under_truth": {
+      "plan": "S-S-M",
+      "stints": [
+       28,
+       28,
+       14
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-M-M",
+     "stints": [
+      16,
+      26,
+      28
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 8.02200722795186,
+      "M-H": 98.84617455878511,
+      "S-H": 14.839678443268415
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        16,
+        26,
+        28
+       ],
+       "time": 136.08853979769538,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        26,
+        16,
+        28
+       ],
+       "time": 136.08853979769538,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        26,
+        28,
+        16
+       ],
+       "time": 136.08853979769538,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        18,
+        18,
+        34
+       ],
+       "time": 142.03448300886555,
+       "delta_to_best": 5.945943211170174
+      }
+     ],
+     "cost_under_truth_vs_best_s": 23.692843400596573,
+     "best_under_truth": {
+      "plan": "S-S-M",
+      "stints": [
+       28,
+       28,
+       14
+      ]
+     }
+    }
+   }
+  },
+  "Japan": {
+   "n_laps": 53,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6825000000000045,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (20 drivers)",
+    "HARD": "practice value +2.07 s implausible, nominal Pirelli-range step"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "M-H-H",
+     "stints": [
+      10,
+      22,
+      21
+     ],
+     "stops": 2,
+     "crossover": {
+      "M-H": 3.1322797356970353
+     },
+     "alternatives": [
+      {
+       "plan": "M-H-H",
+       "stops": 2,
+       "stints": [
+        10,
+        22,
+        21
+       ],
+       "time": 162.8249668813661,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M-H",
+       "stops": 2,
+       "stints": [
+        22,
+        10,
+        21
+       ],
+       "time": 162.8249668813661,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-H-M",
+       "stops": 2,
+       "stints": [
+        22,
+        22,
+        9
+       ],
+       "time": 162.877249948676,
+       "delta_to_best": 0.052283067309900844
+      },
+      {
+       "plan": "M-M-H",
+       "stops": 2,
+       "stints": [
+        12,
+        12,
+        29
+       ],
+       "time": 177.41007709785362,
+       "delta_to_best": 14.585110216487521
+      }
+     ],
+     "cost_under_truth_vs_best_s": 20.624505101005255,
+     "best_under_truth": {
+      "plan": "M-H",
+      "stints": [
+       28,
+       25
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "M-H",
+     "stints": [
+      28,
+      25
+     ],
+     "stops": 1,
+     "crossover": {
+      "M-H": 33.03836832073422
+     },
+     "alternatives": [
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        28,
+        25
+       ],
+       "time": 97.61301363030947,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        25,
+        28
+       ],
+       "time": 97.61301363030947,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-H",
+       "stops": 2,
+       "stints": [
+        20,
+        20,
+        13
+       ],
+       "time": 106.25898036148388,
+       "delta_to_best": 8.645966731174411
+      },
+      {
+       "plan": "M-H-M",
+       "stops": 2,
+       "stints": [
+        20,
+        14,
+        19
+       ],
+       "time": 106.28966303851408,
+       "delta_to_best": 8.67664940820461
+      }
+     ],
+     "cost_under_truth_vs_best_s": 0.0,
+     "best_under_truth": {
+      "plan": "M-H",
+      "stints": [
+       28,
+       25
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "M-H",
+     "stints": [
+      43,
+      10
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        43,
+        10
+       ],
+       "time": 82.04413731292084,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        10,
+        43
+       ],
+       "time": 82.04413731292084,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-H-M",
+       "stops": 2,
+       "stints": [
+        24,
+        6,
+        23
+       ],
+       "time": 92.90916237458515,
+       "delta_to_best": 10.865025061664312
+      },
+      {
+       "plan": "H-M-M",
+       "stops": 2,
+       "stints": [
+        6,
+        24,
+        23
+       ],
+       "time": 92.90916237458515,
+       "delta_to_best": 10.865025061664312
+      }
+     ],
+     "cost_under_truth_vs_best_s": 6.5513925315057975,
+     "best_under_truth": {
+      "plan": "M-H",
+      "stints": [
+       28,
+       25
+      ]
+     }
+    }
+   }
+  },
+  "Miami": {
+   "n_laps": 57,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.7355000000000018,
+    "HARD": 0.9465000000000003
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (20 drivers)",
+    "HARD": "practice (16 drivers)"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "M-H-H",
+     "stints": [
+      10,
+      24,
+      23
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 2.0009973994330097,
+      "M-H": 2.6480141992118584,
+      "S-H": 2.1162705808482043
+     },
+     "alternatives": [
+      {
+       "plan": "M-H-H",
+       "stops": 2,
+       "stints": [
+        10,
+        24,
+        23
+       ],
+       "time": 128.39291178342455,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M-H",
+       "stops": 2,
+       "stints": [
+        24,
+        10,
+        23
+       ],
+       "time": 128.39291178342455,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-H-M",
+       "stops": 2,
+       "stints": [
+        24,
+        24,
+        9
+       ],
+       "time": 128.47646758616864,
+       "delta_to_best": 0.0835558027440868
+      },
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        17,
+        40
+       ],
+       "time": 130.07676293959662,
+       "delta_to_best": 1.683851156172068
+      }
+     ],
+     "cost_under_truth_vs_best_s": 79.50560797777959,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       51,
+       6
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-M",
+     "stints": [
+      47,
+      10
+     ],
+     "stops": 1,
+     "crossover": {
+      "M-H": 18.097648077993735
+     },
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        47,
+        10
+       ],
+       "time": 64.31095429514954,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        10,
+        47
+       ],
+       "time": 64.31095429514954,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        48,
+        9
+       ],
+       "time": 65.73280604660889,
+       "delta_to_best": 1.421851751459343
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        9,
+        48
+       ],
+       "time": 65.73280604660889,
+       "delta_to_best": 1.421851751459343
+      }
+     ],
+     "cost_under_truth_vs_best_s": 1.1350238289521073,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       51,
+       6
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-M",
+     "stints": [
+      40,
+      17
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 250.23193234206553
+     },
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        40,
+        17
+       ],
+       "time": 61.197036744369626,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        17,
+        40
+       ],
+       "time": 61.197036744369626,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        48,
+        9
+       ],
+       "time": 65.73280604660889,
+       "delta_to_best": 4.53576930223926
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        9,
+        48
+       ],
+       "time": 65.73280604660889,
+       "delta_to_best": 4.53576930223926
+      }
+     ],
+     "cost_under_truth_vs_best_s": 5.71178568682754,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       51,
+       6
+      ]
+     }
+    }
+   }
+  },
+  "Monza": {
+   "n_laps": 53,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.8059999999999974,
+    "HARD": 1.343999999999994
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (23 drivers)",
+    "HARD": "practice (21 drivers)"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "M-H",
+     "stints": [
+      19,
+      34
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 7.069549766351558,
+      "M-H": 7.468319178815388,
+      "S-H": 7.223953179912
+     },
+     "alternatives": [
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        19,
+        34
+       ],
+       "time": 139.91512610891715,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        34,
+        19
+       ],
+       "time": 139.91512610891715,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-H",
+       "stops": 2,
+       "stints": [
+        10,
+        22,
+        21
+       ],
+       "time": 140.38575754521426,
+       "delta_to_best": 0.47063143629711135
+      },
+      {
+       "plan": "H-S-H",
+       "stops": 2,
+       "stints": [
+        22,
+        10,
+        21
+       ],
+       "time": 140.38575754521426,
+       "delta_to_best": 0.47063143629711135
+      }
+     ],
+     "cost_under_truth_vs_best_s": 47.1021096312529,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       43,
+       10
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-M",
+     "stints": [
+      43,
+      10
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        43,
+        10
+       ],
+       "time": 54.7810990168676,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        10,
+        43
+       ],
+       "time": 54.7810990168676,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        47,
+        6
+       ],
+       "time": 58.38404213947333,
+       "delta_to_best": 3.60294312260573
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        47
+       ],
+       "time": 58.38404213947333,
+       "delta_to_best": 3.60294312260573
+      }
+     ],
+     "cost_under_truth_vs_best_s": 0.0,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       43,
+       10
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-M",
+     "stints": [
+      44,
+      9
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        44,
+        9
+       ],
+       "time": 53.86426903752059,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        9,
+        44
+       ],
+       "time": 53.86426903752059,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        47,
+        6
+       ],
+       "time": 57.32780629523704,
+       "delta_to_best": 3.463537257716446
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        47
+       ],
+       "time": 57.32780629523704,
+       "delta_to_best": 3.463537257716446
+      }
+     ],
+     "cost_under_truth_vs_best_s": 0.000851514734243608,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       43,
+       10
+      ]
+     }
+    }
+   }
+  },
+  "Zandvoort": {
+   "n_laps": 72,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.9480000000000004,
+    "HARD": 0.9604999999999961
+   },
+   "offsets_source": {
+    "MEDIUM": "qualifying (22 drivers)",
+    "HARD": "practice (4 drivers)"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "S-M",
+     "stints": [
+      6,
+      66
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 5.004469345710251,
+      "S-H": 6.307710429071554
+     },
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        6,
+        66
+       ],
+       "time": 56.235514016724196,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        66,
+        6
+       ],
+       "time": 56.235514016724196,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        66,
+        6
+       ],
+       "time": 58.800761008431934,
+       "delta_to_best": 2.5652469917077383
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        6,
+        66
+       ],
+       "time": 58.800761008431934,
+       "delta_to_best": 2.5652469917077383
+      }
+     ],
+     "cost_under_truth_vs_best_s": 155.02562816262457,
+     "best_under_truth": {
+      "plan": "S-S-H",
+      "stints": [
+       32,
+       32,
+       8
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-S-M",
+     "stints": [
+      30,
+      32,
+      10
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 62.716339014917814,
+      "S-H": 63.54329496184419
+     },
+     "alternatives": [
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        30,
+        32,
+        10
+       ],
+       "time": 91.03623585226268,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        30,
+        10,
+        32
+       ],
+       "time": 91.03623585226268,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-S",
+       "stops": 2,
+       "stints": [
+        10,
+        30,
+        32
+       ],
+       "time": 91.03623585226268,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        30,
+        32,
+        10
+       ],
+       "time": 91.16123585226265,
+       "delta_to_best": 0.12499999999997158
+      }
+     ],
+     "cost_under_truth_vs_best_s": 2.369999541750346,
+     "best_under_truth": {
+      "plan": "S-S-H",
+      "stints": [
+       32,
+       32,
+       8
+      ]
+     }
+    },
+    "ClearStint": {
+     "plan": "S-S-M",
+     "stints": [
+      30,
+      32,
+      10
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 68.38929016385083,
+      "S-H": 69.29104768183379
+     },
+     "alternatives": [
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        30,
+        32,
+        10
+       ],
+       "time": 89.79115419663535,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        30,
+        10,
+        32
+       ],
+       "time": 89.79115419663535,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-S",
+       "stops": 2,
+       "stints": [
+        10,
+        30,
+        32
+       ],
+       "time": 89.79115419663535,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        32,
+        32,
+        8
+       ],
+       "time": 89.89902150487694,
+       "delta_to_best": 0.10786730824159463
+      }
+     ],
+     "cost_under_truth_vs_best_s": 2.369999541750346,
+     "best_under_truth": {
+      "plan": "S-S-H",
+      "stints": [
+       32,
+       32,
+       8
+      ]
+     }
+    }
+   }
+  },
+  "Madrid": {
+   "n_laps": 56,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6949999999999932,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (22 drivers)",
+    "HARD": "nominal Pirelli-range step"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "S-M-M",
+     "stints": [
+      8,
+      24,
+      24
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 2.1302365571913264
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        8,
+        24,
+        24
+       ],
+       "time": 184.53306962964703,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        24,
+        8,
+        24
+       ],
+       "time": 184.53306962964703,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        24,
+        24,
+        8
+       ],
+       "time": 184.53306962964703,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        12,
+        12,
+        32
+       ],
+       "time": 219.9166998469511,
+       "delta_to_best": 35.38363021730407
+      }
+     ]
+    },
+    "ClearStint": {
+     "plan": "S-M",
+     "stints": [
+      18,
+      38
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 9.919857237831318
+     },
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        18,
+        38
+       ],
+       "time": 84.54130365541633,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        38,
+        18
+       ],
+       "time": 84.54130365541633,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        14,
+        14,
+        28
+       ],
+       "time": 93.16072663510332,
+       "delta_to_best": 8.619422979686988
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        14,
+        28,
+        14
+       ],
+       "time": 93.16072663510332,
+       "delta_to_best": 8.619422979686988
+      }
+     ]
+    },
+    "ClearStint, band low": {
+     "plan": "S-M",
+     "stints": [
+      50,
+      6
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        50,
+        6
+       ],
+       "time": -96.93867015878689,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        6,
+        50
+       ],
+       "time": -96.93867015878689,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        6,
+        44,
+        6
+       ],
+       "time": -50.71271874131196,
+       "delta_to_best": 46.22595141747493
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        6,
+        6,
+        44
+       ],
+       "time": -50.71271874131196,
+       "delta_to_best": 46.22595141747493
+      }
+     ]
+    },
+    "ClearStint, band high": {
+     "plan": "S-M-M",
+     "stints": [
+      8,
+      24,
+      24
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 3.2764222487769077
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        8,
+        24,
+        24
+       ],
+       "time": 138.9442437717787,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        24,
+        8,
+        24
+       ],
+       "time": 138.9442437717787,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        24,
+        24,
+        8
+       ],
+       "time": 138.9442437717787,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        12,
+        12,
+        32
+       ],
+       "time": 157.50131875453204,
+       "delta_to_best": 18.557074982753335
+      }
+     ]
+    }
+   },
+   "note": "two compounds in the data only; hard had 4 clean laps on Friday"
+  }
+ }
+}
