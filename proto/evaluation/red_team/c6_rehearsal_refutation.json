@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-09-12T20:03:26.378708+00:00",
+  "report_sha256": "60bcfcc4a1884424429be11ab0924a4dc63a60e411b9897aeedaefb9498264d8",
+  "gate": {
+    "status": "PASS",
+    "generated_at": "2026-09-12T19:57:29.722591+00:00",
+    "elapsed_s": 302.51102354202885,
+    "steps": 12,
+    "numbers": 4823,
+    "failures": []
+  },
+  "independent_precision_records": 4823,
+  "independent_animation_samples": 62,
+  "failures": [],
+  "note": "Direct report, raw-error, duration, provenance precision and recorded-frame interpolation checks; no dashboard run or product mutation."
+}

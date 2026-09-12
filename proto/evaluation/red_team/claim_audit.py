@@ -38,7 +38,7 @@ from evaluation.red_team import PROTO, RT_DIR, LOCK_V1, now_iso, owner_of, read_
 MAP_PATH = RT_DIR / 'claim_evidence_map.json'
 DECK = PROTO / 'out' / 'Orb_v1_Mentor_Briefing.pptx'
 CHALLENGE_DECK = PROTO / 'out' / 'Orb_v1_ChallengeDay.pdf'
-DOC_SOURCES = ('out/talk_track.md', 'out/THE_CASE.md', 'out/ROADMAP_v5.md')
+DOC_SOURCES = ('README.md', 'out/talk_track.md', 'out/THE_CASE.md', 'out/ROADMAP_v5.md')
 CODE_SOURCES = ('app_v2/pages/*.py', 'app_v2/ui/*.py', 'app_v2/services/*.py', 'live/viewmodel.py', 'decision/optimizer.py')
 
 # (rule id, regex, allowed-context regex (same line / slide) or None, note)
@@ -144,7 +144,7 @@ def number_claims(lock: dict) -> list[dict]:
         and the claim fires the moment the number is printed without its basis. A bare-form guard is paired with a
         separate claim that states the qualified sentence and carries its own evidence path and verdict, so the audit
         never has to record a flagged verdict against a sentence that the evidence does support (C4 rework)."""
-        claims.append(dict(id=cid, claim=claim, pattern=pattern, evidence_path=evidence_path, evidence_value=value, verdict=verdict, note=note, search_in=list(sources), severity=severity,
+        claims.append(dict(id=cid, claim=claim, pattern=pattern, evidence_path=evidence_path, evidence_value=value, verdict=verdict, note=note, search_in=list(sources) + (['README'] if any(k in sources for k in ('deck', 'talk_track', 'THE_CASE')) else []), severity=severity,
                            qualified_by=list(qualified_by), disqualified_by=list(disqualified_by), counts_only_unqualified=bool(counts_only_unqualified)))
 
     mae_n, mae_c = v['mae_all_with_fallback']['naive'], v['mae_all_with_fallback']['clearstint']
@@ -323,11 +323,13 @@ def number_claims(lock: dict) -> list[dict]:
     return claims
 
 
-PRESENTATION_KINDS = ('deck', 'talk_track', 'THE_CASE')      # what is said on stage; ROADMAP_v5 is a build contract, not a claim surface
+PRESENTATION_KINDS = ('deck', 'talk_track', 'THE_CASE', 'README')      # what is said on stage; ROADMAP_v5 is a build contract, not a claim surface
 BLOCKING_VERDICTS = ('mismatch', 'exceeds_evidence', 'unverifiable')
 
 
 def source_kind(src: str) -> str:
+    if src == 'README.md':
+        return 'README'
     return 'deck' if ('#slide-' in src or '#page-' in src) else ('talk_track' if 'talk_track' in src else ('THE_CASE' if 'THE_CASE' in src else ('ROADMAP_v5' if 'ROADMAP' in src else 'code')))
 
 

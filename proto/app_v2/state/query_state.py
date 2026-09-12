@@ -62,14 +62,32 @@ def mirror() -> None:
     if s.get('present'):
         out['present'] = '1'
     try:
-        current = {k: st.query_params.get(k) for k in out}
-        if current != out:
+        current = dict(st.query_params)
+        desired = {k: v for k, v in current.items() if k not in KEYS}
+        desired.update(out)
+        if current != desired:
+            for key in list(current):
+                if key in KEYS and key not in out:
+                    del st.query_params[key]
             st.query_params.update(out)
     except Exception:
         pass
 
 
 def set_state(**kw) -> None:
+    s = st.session_state
+    event_changed = 'ev' in kw and kw['ev'] != s.get('ev')
+    driver_changed = 'drv' in kw and kw['drv'] != s.get('drv')
+    if event_changed or driver_changed:
+        for key in ('lap', 'ilap', 'rep', 'glap', 'scenario', 'set_state', 'fid'):
+            s.pop(key, None)
+        if event_changed:
+            s.pop('drv', None); s.pop('cmp', None)
+        for key in list(s):
+            if key.startswith('_src_'):
+                src = s.pop(key)
+                if hasattr(src, 'pause'):
+                    src.pause()
     for k, v in kw.items():
         st.session_state[k] = v
     mirror()

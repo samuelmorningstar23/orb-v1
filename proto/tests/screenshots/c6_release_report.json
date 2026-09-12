@@ -1,0 +1,3622 @@
+{
+  "checkpoint": "C6",
+  "generated_at": "2026-09-13T02:11:56+0530",
+  "base": "http://localhost:8502",
+  "limits": {
+    "cold_load_ms": 2000,
+    "route_switch_ms": 600,
+    "golden_diff_ratio": 0.15
+  },
+  "expected_matrix": {
+    "routes": 19,
+    "viewports": [
+      "1440x900",
+      "1920x1080"
+    ]
+  },
+  "capture": {
+    "base": "http://localhost:8502",
+    "routes": {
+      "landing": {
+        "1440x900": {
+          "path": "/?ev=Monza&drv=LIN",
+          "load_ms": 420,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "landing",
+            "viewport": "1440x900",
+            "local_request_count": 100,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/?ev=Monza&drv=LIN",
+          "load_ms": 418,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "landing",
+            "viewport": "1920x1080",
+            "local_request_count": 100,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "live_stable": {
+        "1440x900": {
+          "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
+          "load_ms": 1047,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "live_stable",
+            "viewport": "1440x900",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
+          "load_ms": 640,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "live_stable",
+            "viewport": "1920x1080",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "live_after_feedback": {
+        "1440x900": {
+          "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
+          "load_ms": 621,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "live_after_feedback",
+            "viewport": "1440x900",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
+          "load_ms": 638,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "live_after_feedback",
+            "viewport": "1920x1080",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "decision_change": {
+        "1440x900": {
+          "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
+          "load_ms": 619,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "decision_change",
+            "viewport": "1440x900",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
+          "load_ms": 638,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "decision_change",
+            "viewport": "1920x1080",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "decision_board": {
+        "1440x900": {
+          "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
+          "load_ms": 500,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "decision_board",
+            "viewport": "1440x900",
+            "local_request_count": 103,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
+          "load_ms": 604,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "decision_board",
+            "viewport": "1920x1080",
+            "local_request_count": 103,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "ghost_audit": {
+        "1440x900": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
+          "load_ms": 570,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "ghost_audit",
+            "viewport": "1440x900",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.00032407407407407406
+        },
+        "1920x1080": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
+          "load_ms": 569,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "ghost_audit",
+            "viewport": "1920x1080",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "ghost_audit_fixed_context": {
+        "1440x900": {
+          "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
+          "load_ms": 610,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "ghost_audit_fixed_context",
+            "viewport": "1440x900",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
+          "load_ms": 578,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "ghost_audit_fixed_context",
+            "viewport": "1920x1080",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "scenario_explorer": {
+        "1440x900": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
+          "load_ms": 563,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "scenario_explorer",
+            "viewport": "1440x900",
+            "local_request_count": 104,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
+          "load_ms": 576,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "scenario_explorer",
+            "viewport": "1920x1080",
+            "local_request_count": 104,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "out_of_support": {
+        "1440x900": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
+          "load_ms": 607,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "out_of_support",
+            "viewport": "1440x900",
+            "local_request_count": 104,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
+          "load_ms": 602,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "out_of_support",
+            "viewport": "1920x1080",
+            "local_request_count": 104,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "missing_position": {
+        "1440x900": {
+          "path": "/ghost?ev=Canada&drv=ANT&mode=audit",
+          "load_ms": 518,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "missing_position",
+            "viewport": "1440x900",
+            "local_request_count": 101,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/ghost?ev=Canada&drv=ANT&mode=audit",
+          "load_ms": 497,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "missing_position",
+            "viewport": "1920x1080",
+            "local_request_count": 101,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "offline_mode": {
+        "1440x900": {
+          "path": "/live?ev=Madrid&mode=live",
+          "load_ms": 494,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "offline_mode",
+            "viewport": "1440x900",
+            "local_request_count": 103,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/live?ev=Madrid&mode=live",
+          "load_ms": 462,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "offline_mode",
+            "viewport": "1920x1080",
+            "local_request_count": 103,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "presentation_live": {
+        "1440x900": {
+          "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
+          "load_ms": 631,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": false,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "presentation_live",
+            "viewport": "1440x900",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
+          "load_ms": 667,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": false,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "presentation_live",
+            "viewport": "1920x1080",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "presentation_ghost": {
+        "1440x900": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
+          "load_ms": 594,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": false,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "presentation_ghost",
+            "viewport": "1440x900",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
+          "load_ms": 595,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": false,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "presentation_ghost",
+            "viewport": "1920x1080",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "prerace": {
+        "1440x900": {
+          "path": "/pre-race?ev=Madrid",
+          "load_ms": 505,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "prerace",
+            "viewport": "1440x900",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/pre-race?ev=Madrid",
+          "load_ms": 590,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "prerace",
+            "viewport": "1920x1080",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "feedback": {
+        "1440x900": {
+          "path": "/feedback?ev=Monza&drv=NOR&lap=32",
+          "load_ms": 507,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "feedback",
+            "viewport": "1440x900",
+            "local_request_count": 118,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/feedback?ev=Monza&drv=NOR&lap=32",
+          "load_ms": 591,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "feedback",
+            "viewport": "1920x1080",
+            "local_request_count": 118,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "generalisation": {
+        "1440x900": {
+          "path": "/generalisation?ev=Monza",
+          "load_ms": 591,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "generalisation",
+            "viewport": "1440x900",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/generalisation?ev=Monza",
+          "load_ms": 619,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "generalisation",
+            "viewport": "1920x1080",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "validation": {
+        "1440x900": {
+          "path": "/validation?ev=Monza",
+          "load_ms": 585,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "validation",
+            "viewport": "1440x900",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/validation?ev=Monza",
+          "load_ms": 597,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "validation",
+            "viewport": "1920x1080",
+            "local_request_count": 106,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "degraded_feed": {
+        "1440x900": {
+          "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
+          "load_ms": 650,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "degraded_feed",
+            "viewport": "1440x900",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
+          "load_ms": 641,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "degraded_feed",
+            "viewport": "1920x1080",
+            "local_request_count": 111,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      },
+      "position_refused": {
+        "1440x900": {
+          "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
+          "load_ms": 615,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1440,
+          "inner_width": 1440,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "position_refused",
+            "viewport": "1440x900",
+            "local_request_count": 101,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        },
+        "1920x1080": {
+          "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
+          "load_ms": 596,
+          "console_errors": [],
+          "benign_base_path_probes_404": [],
+          "other_4xx_5xx": [],
+          "horizontal_overflow": false,
+          "scroll_width": 1920,
+          "inner_width": 1920,
+          "expected_text_missing": [],
+          "sidebar_visible": true,
+          "offline_notice_visible": true,
+          "network": {
+            "route": "position_refused",
+            "viewport": "1920x1080",
+            "local_request_count": 101,
+            "external_requests": [],
+            "websockets": [
+              "ws://localhost:8502/_stcore/stream"
+            ]
+          },
+          "diff_vs_golden": 0.0
+        }
+      }
+    },
+    "external_requests": [],
+    "raw_console_errors": [],
+    "raw_network_failures": [],
+    "timings": {
+      "route_switch_ms_1440x900": 277,
+      "route_switch_validation_ms_1440x900": 207,
+      "keyboard_focus_1440x900": "BUTTON:",
+      "keyboard_nav_1440x900": {
+        "reached": [
+          "Landing",
+          "Pre-race plan",
+          "Live Predictor",
+          "Ghost Strategy",
+          "Driver feedback",
+          "Decision board",
+          "Validation",
+          "Generalisation"
+        ],
+        "missing": [],
+        "tabs": 13,
+        "enter_activates": true,
+        "enter_switch_ms": 195,
+        "activations": [
+          {
+            "target": "Landing",
+            "activated": true,
+            "switch_ms": 89,
+            "focused": {
+              "tag": "A",
+              "text": "Landing",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Pre-race plan",
+            "activated": true,
+            "switch_ms": 211,
+            "focused": {
+              "tag": "A",
+              "text": "Pre-race plan",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Live Predictor",
+            "activated": true,
+            "switch_ms": 226,
+            "focused": {
+              "tag": "A",
+              "text": "Live Predictor",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Decision board",
+            "activated": true,
+            "switch_ms": 191,
+            "focused": {
+              "tag": "A",
+              "text": "Decision board",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Driver feedback",
+            "activated": true,
+            "switch_ms": 204,
+            "focused": {
+              "tag": "A",
+              "text": "Driver feedback",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Ghost Strategy",
+            "activated": true,
+            "switch_ms": 204,
+            "focused": {
+              "tag": "A",
+              "text": "Ghost Strategy",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Generalisation",
+            "activated": true,
+            "switch_ms": 195,
+            "focused": {
+              "tag": "A",
+              "text": "Generalisation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Validation",
+            "activated": true,
+            "switch_ms": 189,
+            "focused": {
+              "tag": "A",
+              "text": "Validation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          }
+        ]
+      },
+      "replay_run_1440x900": {
+        "console_errors": [],
+        "bad_responses": [],
+        "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
+      },
+      "route_switch_ms_1920x1080": 269,
+      "route_switch_validation_ms_1920x1080": 214,
+      "keyboard_focus_1920x1080": "BUTTON:",
+      "keyboard_nav_1920x1080": {
+        "reached": [
+          "Landing",
+          "Pre-race plan",
+          "Live Predictor",
+          "Ghost Strategy",
+          "Driver feedback",
+          "Decision board",
+          "Validation",
+          "Generalisation"
+        ],
+        "missing": [],
+        "tabs": 13,
+        "enter_activates": true,
+        "enter_switch_ms": 209,
+        "activations": [
+          {
+            "target": "Landing",
+            "activated": true,
+            "switch_ms": 95,
+            "focused": {
+              "tag": "A",
+              "text": "Landing",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Pre-race plan",
+            "activated": true,
+            "switch_ms": 226,
+            "focused": {
+              "tag": "A",
+              "text": "Pre-race plan",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Live Predictor",
+            "activated": true,
+            "switch_ms": 239,
+            "focused": {
+              "tag": "A",
+              "text": "Live Predictor",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Decision board",
+            "activated": true,
+            "switch_ms": 190,
+            "focused": {
+              "tag": "A",
+              "text": "Decision board",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Driver feedback",
+            "activated": true,
+            "switch_ms": 192,
+            "focused": {
+              "tag": "A",
+              "text": "Driver feedback",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Ghost Strategy",
+            "activated": true,
+            "switch_ms": 194,
+            "focused": {
+              "tag": "A",
+              "text": "Ghost Strategy",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Generalisation",
+            "activated": true,
+            "switch_ms": 209,
+            "focused": {
+              "tag": "A",
+              "text": "Generalisation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Validation",
+            "activated": true,
+            "switch_ms": 199,
+            "focused": {
+              "tag": "A",
+              "text": "Validation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          }
+        ]
+      },
+      "replay_run_1920x1080": {
+        "console_errors": [],
+        "bad_responses": [],
+        "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
+      }
+    },
+    "generated_at": "2026-09-13T02:11:56",
+    "feedback_fixture": "none: the capture never writes app_v2/state/feedback_events.jsonl (use ORB_FEEDBACK_LOG on the server for a fixture log)"
+  },
+  "checks": [
+    {
+      "name": "complete_route_matrix",
+      "status": "PASS",
+      "detail": {
+        "expected_routes": [
+          "decision_board",
+          "decision_change",
+          "degraded_feed",
+          "feedback",
+          "generalisation",
+          "ghost_audit",
+          "ghost_audit_fixed_context",
+          "landing",
+          "live_after_feedback",
+          "live_stable",
+          "missing_position",
+          "offline_mode",
+          "out_of_support",
+          "position_refused",
+          "prerace",
+          "presentation_ghost",
+          "presentation_live",
+          "scenario_explorer",
+          "validation"
+        ],
+        "actual_routes": [
+          "decision_board",
+          "decision_change",
+          "degraded_feed",
+          "feedback",
+          "generalisation",
+          "ghost_audit",
+          "ghost_audit_fixed_context",
+          "landing",
+          "live_after_feedback",
+          "live_stable",
+          "missing_position",
+          "offline_mode",
+          "out_of_support",
+          "position_refused",
+          "prerace",
+          "presentation_ghost",
+          "presentation_live",
+          "scenario_explorer",
+          "validation"
+        ],
+        "viewports": [
+          "1440x900",
+          "1920x1080"
+        ]
+      }
+    },
+    {
+      "name": "external_requests",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "raw_console_errors",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "raw_network_failures",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_board@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_board@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_board@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "decision_board@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 500
+    },
+    {
+      "name": "decision_board@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_board@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "decision_board@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "decision_board",
+        "viewport": "1440x900",
+        "local_request_count": 103,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "decision_board@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "decision_board@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_board@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_board@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "decision_board@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 604
+    },
+    {
+      "name": "decision_board@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_board@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "decision_board@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "decision_board",
+        "viewport": "1920x1080",
+        "local_request_count": 103,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "decision_board@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "decision_change@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_change@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_change@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "decision_change@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 619
+    },
+    {
+      "name": "decision_change@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_change@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "decision_change@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "decision_change",
+        "viewport": "1440x900",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "decision_change@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "decision_change@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_change@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_change@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "decision_change@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 638
+    },
+    {
+      "name": "decision_change@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "decision_change@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "decision_change@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "decision_change",
+        "viewport": "1920x1080",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "decision_change@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "degraded_feed@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "degraded_feed@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "degraded_feed@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "degraded_feed@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 650
+    },
+    {
+      "name": "degraded_feed@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "degraded_feed@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "degraded_feed@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "degraded_feed",
+        "viewport": "1440x900",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "degraded_feed@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "degraded_feed@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "degraded_feed@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "degraded_feed@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "degraded_feed@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 641
+    },
+    {
+      "name": "degraded_feed@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "degraded_feed@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "degraded_feed@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "degraded_feed",
+        "viewport": "1920x1080",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "degraded_feed@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "feedback@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "feedback@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "feedback@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "feedback@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 507
+    },
+    {
+      "name": "feedback@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "feedback@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "feedback@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "feedback",
+        "viewport": "1440x900",
+        "local_request_count": 118,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "feedback@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "feedback@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "feedback@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "feedback@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "feedback@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 591
+    },
+    {
+      "name": "feedback@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "feedback@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "feedback@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "feedback",
+        "viewport": "1920x1080",
+        "local_request_count": 118,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "feedback@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "generalisation@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "generalisation@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "generalisation@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "generalisation@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 591
+    },
+    {
+      "name": "generalisation@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "generalisation@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "generalisation@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "generalisation",
+        "viewport": "1440x900",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "generalisation@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "generalisation@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "generalisation@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "generalisation@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "generalisation@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 619
+    },
+    {
+      "name": "generalisation@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "generalisation@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "generalisation@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "generalisation",
+        "viewport": "1920x1080",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "generalisation@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "ghost_audit@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "ghost_audit@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 570
+    },
+    {
+      "name": "ghost_audit@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "ghost_audit@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "ghost_audit",
+        "viewport": "1440x900",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "ghost_audit@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.00032407407407407406
+    },
+    {
+      "name": "ghost_audit@1440x900:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": true,
+        "actual": true
+      }
+    },
+    {
+      "name": "ghost_audit@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "ghost_audit@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 569
+    },
+    {
+      "name": "ghost_audit@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "ghost_audit@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "ghost_audit",
+        "viewport": "1920x1080",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "ghost_audit@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "ghost_audit@1920x1080:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": true,
+        "actual": true
+      }
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 610
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "ghost_audit_fixed_context",
+        "viewport": "1440x900",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "ghost_audit_fixed_context@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 578
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "ghost_audit_fixed_context",
+        "viewport": "1920x1080",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "ghost_audit_fixed_context@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "landing@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "landing@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "landing@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "landing@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 420
+    },
+    {
+      "name": "landing@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "landing@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "landing@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "landing",
+        "viewport": "1440x900",
+        "local_request_count": 100,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "landing@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "landing@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "landing@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "landing@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "landing@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 418
+    },
+    {
+      "name": "landing@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "landing@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "landing@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "landing",
+        "viewport": "1920x1080",
+        "local_request_count": 100,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "landing@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "live_after_feedback@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_after_feedback@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_after_feedback@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "live_after_feedback@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 621
+    },
+    {
+      "name": "live_after_feedback@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_after_feedback@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "live_after_feedback@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "live_after_feedback",
+        "viewport": "1440x900",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "live_after_feedback@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "live_after_feedback@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_after_feedback@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_after_feedback@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "live_after_feedback@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 638
+    },
+    {
+      "name": "live_after_feedback@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_after_feedback@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "live_after_feedback@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "live_after_feedback",
+        "viewport": "1920x1080",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "live_after_feedback@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "live_stable@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_stable@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_stable@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "live_stable@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 1047
+    },
+    {
+      "name": "live_stable@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_stable@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "live_stable@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "live_stable",
+        "viewport": "1440x900",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "live_stable@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "live_stable@1440x900:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": true,
+        "actual": true
+      }
+    },
+    {
+      "name": "live_stable@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_stable@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_stable@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "live_stable@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 640
+    },
+    {
+      "name": "live_stable@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "live_stable@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "live_stable@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "live_stable",
+        "viewport": "1920x1080",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "live_stable@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "live_stable@1920x1080:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": true,
+        "actual": true
+      }
+    },
+    {
+      "name": "missing_position@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "missing_position@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "missing_position@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "missing_position@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 518
+    },
+    {
+      "name": "missing_position@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "missing_position@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "missing_position@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "missing_position",
+        "viewport": "1440x900",
+        "local_request_count": 101,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "missing_position@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "missing_position@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "missing_position@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "missing_position@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "missing_position@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 497
+    },
+    {
+      "name": "missing_position@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "missing_position@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "missing_position@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "missing_position",
+        "viewport": "1920x1080",
+        "local_request_count": 101,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "missing_position@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "offline_mode@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "offline_mode@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "offline_mode@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "offline_mode@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 494
+    },
+    {
+      "name": "offline_mode@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "offline_mode@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "offline_mode@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "offline_mode",
+        "viewport": "1440x900",
+        "local_request_count": 103,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "offline_mode@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "offline_mode@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "offline_mode@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "offline_mode@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "offline_mode@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 462
+    },
+    {
+      "name": "offline_mode@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "offline_mode@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "offline_mode@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "offline_mode",
+        "viewport": "1920x1080",
+        "local_request_count": 103,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "offline_mode@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "out_of_support@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "out_of_support@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "out_of_support@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "out_of_support@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 607
+    },
+    {
+      "name": "out_of_support@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "out_of_support@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "out_of_support@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "out_of_support",
+        "viewport": "1440x900",
+        "local_request_count": 104,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "out_of_support@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "out_of_support@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "out_of_support@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "out_of_support@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "out_of_support@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 602
+    },
+    {
+      "name": "out_of_support@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "out_of_support@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "out_of_support@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "out_of_support",
+        "viewport": "1920x1080",
+        "local_request_count": 104,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "out_of_support@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "position_refused@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "position_refused@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "position_refused@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "position_refused@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 615
+    },
+    {
+      "name": "position_refused@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "position_refused@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "position_refused@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "position_refused",
+        "viewport": "1440x900",
+        "local_request_count": 101,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "position_refused@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "position_refused@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "position_refused@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "position_refused@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "position_refused@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 596
+    },
+    {
+      "name": "position_refused@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "position_refused@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "position_refused@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "position_refused",
+        "viewport": "1920x1080",
+        "local_request_count": 101,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "position_refused@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "prerace@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "prerace@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "prerace@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "prerace@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 505
+    },
+    {
+      "name": "prerace@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "prerace@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "prerace@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "prerace",
+        "viewport": "1440x900",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "prerace@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "prerace@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "prerace@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "prerace@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "prerace@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 590
+    },
+    {
+      "name": "prerace@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "prerace@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "prerace@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "prerace",
+        "viewport": "1920x1080",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "prerace@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "presentation_ghost@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_ghost@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_ghost@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "presentation_ghost@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 594
+    },
+    {
+      "name": "presentation_ghost@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_ghost@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "presentation_ghost@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "presentation_ghost",
+        "viewport": "1440x900",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "presentation_ghost@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "presentation_ghost@1440x900:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": false,
+        "actual": false
+      }
+    },
+    {
+      "name": "presentation_ghost@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_ghost@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_ghost@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "presentation_ghost@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 595
+    },
+    {
+      "name": "presentation_ghost@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_ghost@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "presentation_ghost@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "presentation_ghost",
+        "viewport": "1920x1080",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "presentation_ghost@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "presentation_ghost@1920x1080:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": false,
+        "actual": false
+      }
+    },
+    {
+      "name": "presentation_live@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_live@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_live@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "presentation_live@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 631
+    },
+    {
+      "name": "presentation_live@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_live@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "presentation_live@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "presentation_live",
+        "viewport": "1440x900",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "presentation_live@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "presentation_live@1440x900:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": false,
+        "actual": false
+      }
+    },
+    {
+      "name": "presentation_live@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_live@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_live@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "presentation_live@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 667
+    },
+    {
+      "name": "presentation_live@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "presentation_live@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "presentation_live@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "presentation_live",
+        "viewport": "1920x1080",
+        "local_request_count": 111,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "presentation_live@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "presentation_live@1920x1080:presentation",
+      "status": "PASS",
+      "detail": {
+        "expected_sidebar": false,
+        "actual": false
+      }
+    },
+    {
+      "name": "scenario_explorer@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "scenario_explorer@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "scenario_explorer@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "scenario_explorer@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 563
+    },
+    {
+      "name": "scenario_explorer@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "scenario_explorer@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "scenario_explorer@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "scenario_explorer",
+        "viewport": "1440x900",
+        "local_request_count": 104,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "scenario_explorer@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "scenario_explorer@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "scenario_explorer@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "scenario_explorer@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "scenario_explorer@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 576
+    },
+    {
+      "name": "scenario_explorer@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "scenario_explorer@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "scenario_explorer@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "scenario_explorer",
+        "viewport": "1920x1080",
+        "local_request_count": 104,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "scenario_explorer@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "validation@1440x900:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "validation@1440x900:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "validation@1440x900:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "validation@1440x900:cold_load",
+      "status": "PASS",
+      "detail": 585
+    },
+    {
+      "name": "validation@1440x900:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "validation@1440x900:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "validation@1440x900:network",
+      "status": "PASS",
+      "detail": {
+        "route": "validation",
+        "viewport": "1440x900",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "validation@1440x900:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "validation@1920x1080:console",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "validation@1920x1080:responses",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "validation@1920x1080:overflow",
+      "status": "PASS",
+      "detail": false
+    },
+    {
+      "name": "validation@1920x1080:cold_load",
+      "status": "PASS",
+      "detail": 597
+    },
+    {
+      "name": "validation@1920x1080:refusal_labels",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "validation@1920x1080:offline_notice",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "validation@1920x1080:network",
+      "status": "PASS",
+      "detail": {
+        "route": "validation",
+        "viewport": "1920x1080",
+        "local_request_count": 106,
+        "external_requests": [],
+        "websockets": [
+          "ws://localhost:8502/_stcore/stream"
+        ]
+      }
+    },
+    {
+      "name": "validation@1920x1080:golden",
+      "status": "PASS",
+      "detail": 0.0
+    },
+    {
+      "name": "route_switch_ms_1440x900",
+      "status": "PASS",
+      "detail": 277
+    },
+    {
+      "name": "route_switch_validation_ms_1440x900",
+      "status": "PASS",
+      "detail": 207
+    },
+    {
+      "name": "keyboard_1440x900",
+      "status": "PASS",
+      "detail": {
+        "reached": [
+          "Landing",
+          "Pre-race plan",
+          "Live Predictor",
+          "Ghost Strategy",
+          "Driver feedback",
+          "Decision board",
+          "Validation",
+          "Generalisation"
+        ],
+        "missing": [],
+        "tabs": 13,
+        "enter_activates": true,
+        "enter_switch_ms": 195,
+        "activations": [
+          {
+            "target": "Landing",
+            "activated": true,
+            "switch_ms": 89,
+            "focused": {
+              "tag": "A",
+              "text": "Landing",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Pre-race plan",
+            "activated": true,
+            "switch_ms": 211,
+            "focused": {
+              "tag": "A",
+              "text": "Pre-race plan",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Live Predictor",
+            "activated": true,
+            "switch_ms": 226,
+            "focused": {
+              "tag": "A",
+              "text": "Live Predictor",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Decision board",
+            "activated": true,
+            "switch_ms": 191,
+            "focused": {
+              "tag": "A",
+              "text": "Decision board",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Driver feedback",
+            "activated": true,
+            "switch_ms": 204,
+            "focused": {
+              "tag": "A",
+              "text": "Driver feedback",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Ghost Strategy",
+            "activated": true,
+            "switch_ms": 204,
+            "focused": {
+              "tag": "A",
+              "text": "Ghost Strategy",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Generalisation",
+            "activated": true,
+            "switch_ms": 195,
+            "focused": {
+              "tag": "A",
+              "text": "Generalisation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Validation",
+            "activated": true,
+            "switch_ms": 189,
+            "focused": {
+              "tag": "A",
+              "text": "Validation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          }
+        ]
+      }
+    },
+    {
+      "name": "keyboard_all_destinations_1440x900",
+      "status": "PASS",
+      "detail": [
+        {
+          "target": "Landing",
+          "activated": true,
+          "switch_ms": 89,
+          "focused": {
+            "tag": "A",
+            "text": "Landing",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Pre-race plan",
+          "activated": true,
+          "switch_ms": 211,
+          "focused": {
+            "tag": "A",
+            "text": "Pre-race plan",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Live Predictor",
+          "activated": true,
+          "switch_ms": 226,
+          "focused": {
+            "tag": "A",
+            "text": "Live Predictor",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Decision board",
+          "activated": true,
+          "switch_ms": 191,
+          "focused": {
+            "tag": "A",
+            "text": "Decision board",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Driver feedback",
+          "activated": true,
+          "switch_ms": 204,
+          "focused": {
+            "tag": "A",
+            "text": "Driver feedback",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Ghost Strategy",
+          "activated": true,
+          "switch_ms": 204,
+          "focused": {
+            "tag": "A",
+            "text": "Ghost Strategy",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Generalisation",
+          "activated": true,
+          "switch_ms": 195,
+          "focused": {
+            "tag": "A",
+            "text": "Generalisation",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Validation",
+          "activated": true,
+          "switch_ms": 189,
+          "focused": {
+            "tag": "A",
+            "text": "Validation",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        }
+      ]
+    },
+    {
+      "name": "replay_1440x900",
+      "status": "PASS",
+      "detail": {
+        "console_errors": [],
+        "bad_responses": [],
+        "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
+      }
+    },
+    {
+      "name": "route_switch_ms_1920x1080",
+      "status": "PASS",
+      "detail": 269
+    },
+    {
+      "name": "route_switch_validation_ms_1920x1080",
+      "status": "PASS",
+      "detail": 214
+    },
+    {
+      "name": "keyboard_1920x1080",
+      "status": "PASS",
+      "detail": {
+        "reached": [
+          "Landing",
+          "Pre-race plan",
+          "Live Predictor",
+          "Ghost Strategy",
+          "Driver feedback",
+          "Decision board",
+          "Validation",
+          "Generalisation"
+        ],
+        "missing": [],
+        "tabs": 13,
+        "enter_activates": true,
+        "enter_switch_ms": 209,
+        "activations": [
+          {
+            "target": "Landing",
+            "activated": true,
+            "switch_ms": 95,
+            "focused": {
+              "tag": "A",
+              "text": "Landing",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Pre-race plan",
+            "activated": true,
+            "switch_ms": 226,
+            "focused": {
+              "tag": "A",
+              "text": "Pre-race plan",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Live Predictor",
+            "activated": true,
+            "switch_ms": 239,
+            "focused": {
+              "tag": "A",
+              "text": "Live Predictor",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Decision board",
+            "activated": true,
+            "switch_ms": 190,
+            "focused": {
+              "tag": "A",
+              "text": "Decision board",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Driver feedback",
+            "activated": true,
+            "switch_ms": 192,
+            "focused": {
+              "tag": "A",
+              "text": "Driver feedback",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Ghost Strategy",
+            "activated": true,
+            "switch_ms": 194,
+            "focused": {
+              "tag": "A",
+              "text": "Ghost Strategy",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Generalisation",
+            "activated": true,
+            "switch_ms": 209,
+            "focused": {
+              "tag": "A",
+              "text": "Generalisation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          },
+          {
+            "target": "Validation",
+            "activated": true,
+            "switch_ms": 199,
+            "focused": {
+              "tag": "A",
+              "text": "Validation",
+              "is_nav": true,
+              "is_button": false
+            },
+            "keys": "Tab then Enter"
+          }
+        ]
+      }
+    },
+    {
+      "name": "keyboard_all_destinations_1920x1080",
+      "status": "PASS",
+      "detail": [
+        {
+          "target": "Landing",
+          "activated": true,
+          "switch_ms": 95,
+          "focused": {
+            "tag": "A",
+            "text": "Landing",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Pre-race plan",
+          "activated": true,
+          "switch_ms": 226,
+          "focused": {
+            "tag": "A",
+            "text": "Pre-race plan",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Live Predictor",
+          "activated": true,
+          "switch_ms": 239,
+          "focused": {
+            "tag": "A",
+            "text": "Live Predictor",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Decision board",
+          "activated": true,
+          "switch_ms": 190,
+          "focused": {
+            "tag": "A",
+            "text": "Decision board",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Driver feedback",
+          "activated": true,
+          "switch_ms": 192,
+          "focused": {
+            "tag": "A",
+            "text": "Driver feedback",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Ghost Strategy",
+          "activated": true,
+          "switch_ms": 194,
+          "focused": {
+            "tag": "A",
+            "text": "Ghost Strategy",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Generalisation",
+          "activated": true,
+          "switch_ms": 209,
+          "focused": {
+            "tag": "A",
+            "text": "Generalisation",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        },
+        {
+          "target": "Validation",
+          "activated": true,
+          "switch_ms": 199,
+          "focused": {
+            "tag": "A",
+            "text": "Validation",
+            "is_nav": true,
+            "is_button": false
+          },
+          "keys": "Tab then Enter"
+        }
+      ]
+    },
+    {
+      "name": "replay_1920x1080",
+      "status": "PASS",
+      "detail": {
+        "console_errors": [],
+        "bad_responses": [],
+        "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
+      }
+    }
+  ],
+  "failures": [],
+  "status": "PASS"
+}

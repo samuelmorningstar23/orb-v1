@@ -34,7 +34,7 @@ RULES = (
     ('live/', 8), ('decision/', 8), ('out/live/', 8), ('tests/live/', 8),
     ('progress/', 9), ('checkpoints/', 9), ('release/', 9), ('tests/release/', 9), ('build_control.py', 9),
 )
-LEAD_ONLY = {'make_deck_figs.py', 'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'out/results.csv', 'out/validation.csv', 'refresh.sh', 'cleanup_pass.sh'}
+LEAD_ONLY = {'README.md', 'requirements.txt', 'make_deck_figs.py', 'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'out/results.csv', 'out/validation.csv', 'refresh.sh', 'cleanup_pass.sh'}
 # Globs match segment-wise ('*' never crosses '/'), so 'out/*.pdf' means direct children of out/ only.
 LEAD_ONLY_GLOBS = ('extract_*.py', 'build_*.py', 'refresh*.log', 'out/*.pptx', 'out/*.pdf', 'out/excluded_*.csv', 'deck_src/*',   # lead decision 12 Sep 20:58: deck source is lead-only
                    'out/CONTEXT_NOTES.md', 'out/THE_CASE.md', 'out/talk_track.md', 'out/ROADMAP.md', 'out/JURY_QUESTIONS.md', 'out/forecast_*.json', 'out/forecast_*.sha256')   # lead decision 12 Sep 22:00: outputs of the lead-only builders (build_case.py, build_manual.py, build_forecast.py)
@@ -133,6 +133,7 @@ def audit(proto_root, repo_root=None, paths=None) -> dict:
             rel, inside = path, False
         c = classify(rel) if inside else (dict(owner='lead/notes', category='coordination', flagged=False, reason='coordination notes (lead decision 12 Sep 20:58)')
                                           if rel.startswith('coordination/') or rel in ('WORKSTREAMS.md', 'INSTRUCTIONS.md')
+                                          else dict(owner='lead', category='lead_only', flagged=True, reason='C6 lead-authored repository entry-point README') if rel == 'README.md'
                                           else dict(owner=None, category='outside_proto', flagged=True, reason='outside proto/; no workstream owns repository-root paths (lead to confirm)'))
         rec['changed'].append(dict(path=path, git_status=code, **c))
     rec['summary'] = _summary(rec['changed'])

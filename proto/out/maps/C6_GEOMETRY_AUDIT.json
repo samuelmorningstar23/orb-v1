@@ -1,0 +1,152 @@
+{
+ "generated_at": "2026-09-12T20:21:20.239104+00:00",
+ "scope": "Real canonical geometry only, cached 2026 race positions. No added scenario or trajectory coverage.",
+ "command": "../.venv/bin/python /private/tmp/build_orb_maps.py",
+ "commands_per_event": "../.venv/bin/python -m replay.build_maps --event EVENT --year 2026 --cache /private/tmp/orb-map-cache --offline --geometry-only",
+ "network_guard": "sys.addaudithook refused socket.connect and socket.getaddrinfo; no network attempts in final geometry-only build.",
+ "cache": "Isolated copy of existing Trackshift/cache race sessions and HTTP cache; main cache untouched.",
+ "builder_sha256": {
+  "replay/build_maps.py": "437ea15dcf400a32f48187752918fb56f14ce7a2c2971dd7d4fd486981fcf697",
+  "replay/sources.py": "e15a542fba65c2536260cb22a9d53beb07fb899860a5dab8231a6b32e8aa4d7e"
+ },
+ "events": [
+  {
+   "event": "Austria",
+   "geometry_status": "ok",
+   "driver_feed_count": 22,
+   "residual_rms_m": 0.588,
+   "capabilities": {
+    "canonical_geometry": true,
+    "driver_trajectories": false,
+    "scenario_replay": false
+   },
+   "geometry_meta_sha256": "4f43f1bb160b29947ccfc37ceb01f1a4f2a5fc0ab777e6fe6c97d40df2be66b1",
+   "full_build_identity_check": {
+    "driver": "ALB",
+    "max_abs_distance_m": 180.52,
+    "max_abs_time_s": 4.0,
+    "one_sample_m": 102.5,
+    "within_one_sample": false
+   },
+   "full_build_not_released": true
+  },
+  {
+   "event": "Barcelona",
+   "geometry_status": "ok",
+   "driver_feed_count": 22,
+   "residual_rms_m": 0.631,
+   "capabilities": {
+    "canonical_geometry": true,
+    "driver_trajectories": false,
+    "scenario_replay": false
+   },
+   "geometry_meta_sha256": "937822a579685c101b4bcb68eacd72d2ca4763179b3885319b1ebb5b9259faea",
+   "full_build_identity_check": {
+    "driver": "ALB",
+    "max_abs_distance_m": 17.655,
+    "max_abs_time_s": 2.0,
+    "one_sample_m": 111.4,
+    "within_one_sample": false
+   },
+   "full_build_not_released": true
+  },
+  {
+   "event": "Australia",
+   "geometry_status": "ok",
+   "driver_feed_count": 20,
+   "residual_rms_m": 0.662,
+   "capabilities": {
+    "canonical_geometry": true,
+    "driver_trajectories": false,
+    "scenario_replay": false
+   },
+   "geometry_meta_sha256": "334c74ce21929cc9de055fcaf80cb13d9c9e9c7bb42d1cd679222c8464586c8e",
+   "full_build_identity_check": {
+    "driver": "ALB",
+    "max_abs_distance_m": 126.856,
+    "max_abs_time_s": 5.0,
+    "one_sample_m": 164.1,
+    "within_one_sample": false
+   },
+   "full_build_not_released": true
+  },
+  {
+   "event": "Japan",
+   "geometry_status": "ok",
+   "driver_feed_count": 22,
+   "residual_rms_m": 0.805,
+   "capabilities": {
+    "canonical_geometry": true,
+    "driver_trajectories": false,
+    "scenario_replay": false
+   },
+   "geometry_meta_sha256": "92064ad93193999e73e01c7cf1a13d8cc90b67fee58b7b7d9c5917751f2551d1",
+   "full_build_identity_check": {
+    "driver": "ALB",
+    "max_abs_distance_m": 0.052,
+    "max_abs_time_s": 0.001,
+    "one_sample_m": 128.6,
+    "within_one_sample": true
+   },
+   "full_build_not_released": true
+  },
+  {
+   "event": "Belgium",
+   "geometry_status": "ok",
+   "driver_feed_count": 22,
+   "residual_rms_m": 0.592,
+   "capabilities": {
+    "canonical_geometry": true,
+    "driver_trajectories": false,
+    "scenario_replay": false
+   },
+   "geometry_meta_sha256": "67562ad3ea93ce97c6f22cf7a0ec53cd3b15fba99c595f94ee514edd53daa548",
+   "full_build_identity_check": {
+    "driver": "ALB",
+    "max_abs_distance_m": 5.626,
+    "max_abs_time_s": 1.0,
+    "one_sample_m": 210.4,
+    "within_one_sample": true
+   },
+   "full_build_not_released": true
+  },
+  {
+   "event": "Netherlands",
+   "geometry_status": "ok",
+   "driver_feed_count": 22,
+   "residual_rms_m": 0.849,
+   "capabilities": {
+    "canonical_geometry": true,
+    "driver_trajectories": false,
+    "scenario_replay": false
+   },
+   "geometry_meta_sha256": "e43d0914b7e3b6bc1f20b116acae7d05df57c39ecd2f3144cfbe3d65ce95d869",
+   "full_build_identity_check": {
+    "driver": "ALB",
+    "max_abs_distance_m": 0.059,
+    "max_abs_time_s": 0.001,
+    "one_sample_m": 105.0,
+    "within_one_sample": true
+   },
+   "full_build_not_released": true
+  }
+ ],
+ "limitations": [
+  "Failed identity checks preserved and not relaxed. No generated driver trajectories or ghost frames included for any added weekend.",
+  "Hungary remains refused due to original degraded position source. Monza untouched."
+ ],
+ "tests": [
+  {
+   "command": "../.venv/bin/python -m pytest tests/replay/test_geometry_coverage.py -q",
+   "outcome": "First run: 6 failed / 2 passed due to new test referencing nonexistent TrackPath.xy; corrected test to actual x/y arrays. Full replay suite result recorded in the notes."
+  },
+  {
+   "command": "../.venv/bin/python -m pytest tests/replay -q",
+   "outcome": "37 passed, 1 skipped in 1.03s; local Chromium sandbox restriction"
+  },
+  {
+   "command": "../.venv/bin/python -m pytest tests/replay -q -rs",
+   "outcome": "38 passed in 3.18s with browser sandbox escalation; no skips"
+  }
+ ]
+}

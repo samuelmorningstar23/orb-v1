@@ -136,4 +136,9 @@ def load_assets(event: str, driver: Optional[str] = None, scenario_id: Optional[
     return frames, track, pitlane
 
 
-__all__ = ['race_twin_player', 'player_html', 'load_assets', 'list_frames', 'assets_status', 'maps_dir', 'CONTROLS_HEIGHT']
+def load_track(event: str, root: Optional[str | Path] = None) -> TrackPath:
+    """Circuit geometry alone, with no frame set loaded: the accessor a page uses when no scenario applies."""
+    return TrackPath.load(maps_dir(event, root))
+
+
+__all__ = ['race_twin_player', 'player_html', 'load_assets', 'load_track', 'list_frames', 'assets_status', 'maps_dir', 'CONTROLS_HEIGHT']

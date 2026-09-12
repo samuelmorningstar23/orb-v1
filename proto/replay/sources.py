@@ -12,6 +12,7 @@ Feed quality is measured here (distinct points per lap) because both the geometr
 from __future__ import annotations
 
 import json
+import hashlib
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
@@ -135,10 +136,12 @@ def _td(v) -> float:
         return float(v)
 
 
-def from_fastf1(year: int, event: str, cache_dir: str | Path, session: str = 'R') -> PositionSource:
+def from_fastf1(year: int, event: str, cache_dir: str | Path, session: str = 'R', *, offline: bool = False) -> PositionSource:
     """Build a PositionSource from a cached FastF1 session (loads telemetry; X/Y 1/10 m -> metres)."""
     import fastf1
     fastf1.Cache.enable_cache(str(cache_dir))
+    if offline:
+        fastf1.Cache.offline_mode(True)
     s = fastf1.get_session(year, event, session)
     s.load(telemetry=True, laps=True, weather=False, messages=True)
     laps = s.laps
@@ -168,7 +171,12 @@ def from_fastf1(year: int, event: str, cache_dir: str | Path, session: str = 'R'
     ss = s.session_status
     session_status = pd.DataFrame(dict(t=ss['Time'].dt.total_seconds().to_numpy(dtype=float), status=ss['Status'].astype(str).to_numpy())) if ss is not None and len(ss) else pd.DataFrame(columns=['t', 'status'])
     meta = dict(source='fastf1', fastf1_version=fastf1.__version__, event_name=str(s.event['EventName']), date=str(s.date), cache_dir=str(cache_dir),
-                position_units='metres (feed 1/10 m divided by 10)', driver_numbers=numbers)
+                position_units='metres (feed 1/10 m divided by 10)', driver_numbers=numbers, offline=offline)
+    if offline:
+        date = str(s.date)[:10]
+        candidates = list(Path(cache_dir).glob(f'{year}/*/{date}_*'))
+        cache_files = [p for d in candidates for p in d.glob('*.ff1pkl')]
+        meta['cached_source_sha256'] = {str(p.relative_to(cache_dir)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(cache_files)}
     return PositionSource(event=event, year=int(year), session=session, n_laps=int(s.total_laps or lap_df['lap'].max()), laps=lap_df, positions=positions,
                           track_status=track_status, session_status=session_status, meta=meta)
 

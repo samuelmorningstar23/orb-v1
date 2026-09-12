@@ -1,0 +1,114 @@
+{
+ "checkpoint": "C6",
+ "at": "2026-09-13T02:22:17",
+ "git_commit": "d2d0e73",
+ "all_green": true,
+ "summary": {
+  "PASS": 4,
+  "WARN": 1
+ },
+ "pytest": {
+  "passed": 582,
+  "skipped": 1,
+  "xfailed": 1
+ },
+ "test_dirs": [
+  "contract",
+  "counterfactual",
+  "evaluation",
+  "live",
+  "red_team",
+  "release",
+  "replay",
+  "screenshots",
+  "ui"
+ ],
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.12,
+   "timed_out": false,
+   "stdout_tail": "  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified\n  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified\nOK out/lock_v2.json: schema 2.1.0, forecast sha256:66e3201e860b19ef..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB",
+   "stderr_tail": "",
+   "log": "checkpoints/C6/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 114.58,
+   "timed_out": false,
+   "stdout_tail": "..s..................................................................... [ 12%]\n........................................................................ [ 24%]\n........................................................................ [ 36%]\n........................................................................ [ 49%]\n.........................x.............................................. [ 61%]\n........................................................................ [ 73%]\n........................................................................ [ 86%]\n........................................................................ [ 98%]\n........                                                                 [100%]\n582 passed, 1 skipped, 1 xfailed in 114.27s (0:01:54)",
+   "stderr_tail": "",
+   "counts": {
+    "passed": 582,
+    "skipped": 1,
+    "xfailed": 1
+   },
+   "test_dirs": [
+    "contract",
+    "counterfactual",
+    "evaluation",
+    "live",
+    "red_team",
+    "release",
+    "replay",
+    "screenshots",
+    "ui"
+   ],
+   "log": "checkpoints/C6/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "241 changed paths, 3 flagged: README.md, proto/README.md, proto/requirements.txt",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 241,
+    "flagged": 3,
+    "unowned": 0,
+    "lead_only": 3,
+    "outside_proto": 0,
+    "by_owner": {
+     "3": 38,
+     "4": 45,
+     "6": 100,
+     "7": 20,
+     "9": 33,
+     "lead": 3,
+     "lead/notes": 2
+    }
+   },
+   "flagged": [
+    "README.md",
+    "proto/README.md",
+    "proto/requirements.txt"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python evaluation/red_team/consistency_probe.py",
+   "returncode": 0,
+   "duration_s": 44.85,
+   "timed_out": false,
+   "stdout_tail": "consistency probe: 15 routes, 3306 numbers, 0 mismatches, 0 placeholder values, 27 unhashed live values, 734 ambiguous matches, 0 unclassified small integers, 0 load failures -> exit 0\n  ok   landing/Monza                      numbers   52  mismatches  0  placeholders  0  unhashed   0  ambiguous  23\n  ok   pre_race/Monza                     numbers   40  mismatches  0  placeholders  0  unhashed   0  ambiguous  18\n  ok   pre_race/Madrid                    numbers   38  mismatches  0  placeholders  0  unhashed   0  ambiguous  11\n  ok   live_predictor/Monza-LIN-L30       numbers  105  mismatches  0  placeholders  0  unhashed  16  ambiguous  32\n  ok   live_predictor/Monza-NOR-L30       numbers  105  mismatches  0  placeholders  0  unhashed   0  ambiguous  33\n  ok   live_predictor/Madrid              numbers    9  mismatches  0  placeholders  0  unhashed   0  ambiguous   6\n  ok   live_predictor/Austria-NOR-L30     numbers  160  mismatches  0  placeholders  0  unhashed   0  ambiguous  56\n  ok   decision_board/Monza-LIN-L30       numbers   84  mismatches  0  placeholders  0  unhashed  11  ambiguous  25\n  ok   driver_feedback/Monza-LIN          numbers   11  mismatches  0  placeholders  0  unhashed   0  ambiguous   3\n  ok   ghost_strategy/Monza-NOR-audit     numbers   94  mismatches  0  placeholders  0  unhashed   0  ambiguous  35\n  ok   ghost_strategy/Monza-NOR-scenario  numbers   50  mismatches  0  placeholders  0  unhashed   0  ambiguous  18\n  ok   ghost_strategy/Austria-NOR-audit   numbers   65  mismatches  0  placeholders  0  unhashed   0  ambiguous  19\n  ok   ghost_strategy/Madrid-audit        numbers    1  mismatches  0  placeholders  0  unhashed   0  ambiguous   0\n  ok   generalisation                     numbers 1857  mismatches  0  placeholders  0  unhashed   0  ambiguous 323\n  ok   validation                         numbers  635  mismatches  0  placeholders  0  unhashed   0  ambiguous 132\n  note: out/sensitivity.json has no .sha256 sidecar and is not in the lock: its numbers are shown on the validation page as an unsigned asset\n  note: out/validation/*.json (Workstream 3 scorecards) have no .sha256 sidecar; the pages print the file sha256 next to the values, so they are matched as on-screen-hashed assets\n  note: Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED\nreport: /Users/samuelmorningstar/Trackshift/proto/evaluation/red_team/consistency_probe_report.json",
+   "stderr_tail": "2026-09-13 02:21:33.443 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:34.434 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:35.121 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:35.882 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:37.756 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:39.653 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:39.907 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:42.964 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:44.388 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:44.765 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:44.891 Please replace `st.components.v1.html` with `st.iframe`.\n\n`st.components.v1.html` will be removed after 2026-06-01.\n2026-09-13 02:21:46.374 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:47.287 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:48.192 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:21:48.311 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 02:22:10.715 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.",
+   "log": "checkpoints/C6/logs/lock_dashboard_consistency.txt"
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ]
+}

@@ -602,7 +602,8 @@ def match_surfaces(rec: dict, surfaces: list[dict], refs: ReferenceSet, verbose:
             if m is not None:
                 kind, path, ref, amb = m
                 rec['matched'][kind] = rec['matched'].get(kind, 0) + 1
-                entry = dict(widget=s['widget'], value=v, decimals=dec, shown=shown, reference=path, kind=kind, ambiguity=amb)
+                entry = dict(widget=s['widget'], value=v, decimals=dec, shown=shown, reference=path, reference_value=ref, kind=kind, ambiguity=amb)
+                rec.setdefault('matches', []).append(entry)
                 if kind.startswith('live_runtime'):
                     rec['unhashed_live'].append(entry)
                 if amb > 1 and dec > 0:
@@ -615,6 +616,8 @@ def match_surfaces(rec: dict, surfaces: list[dict], refs: ReferenceSet, verbose:
                 rec['placeholders'].append(entry)
             elif dec == 0 and not UNIT_RE.match(ctx) and abs(v) < 100:
                 rec['unclassified'].append(entry)
+                if rec.get('require_classified_numbers'):
+                    rec['mismatches'].append(entry)
             else:
                 rec['mismatches'].append(entry)
     if rec['status'] == 'ok' and rec['mismatches']:

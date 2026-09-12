@@ -1,0 +1,168 @@
+FFFFFFFFFF.................................................F.......      [100%]
+=================================== FAILURES ===================================
+_______ test_cleared_control_is_removed_from_url_and_not_rehydrated[drv] _______
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': None, 'cmp': 'SOFT', ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+key = 'drv'
+
+    @pytest.mark.parametrize('key',['drv','lap','cmp','scenario','ilap','rep'])
+    def test_cleared_control_is_removed_from_url_and_not_rehydrated(routing,key):
+        state,query=routing
+        Q.set_state(**{key:None})
+>       assert key not in query
+E       AssertionError: assert 'drv' not in {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...}
+
+tests/ui/test_query_state_recovery.py:18: AssertionError
+_______ test_cleared_control_is_removed_from_url_and_not_rehydrated[lap] _______
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': None, ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+key = 'lap'
+
+    @pytest.mark.parametrize('key',['drv','lap','cmp','scenario','ilap','rep'])
+    def test_cleared_control_is_removed_from_url_and_not_rehydrated(routing,key):
+        state,query=routing
+        Q.set_state(**{key:None})
+>       assert key not in query
+E       AssertionError: assert 'lap' not in {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...}
+
+tests/ui/test_query_state_recovery.py:18: AssertionError
+_______ test_cleared_control_is_removed_from_url_and_not_rehydrated[cmp] _______
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': 32, ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+key = 'cmp'
+
+    @pytest.mark.parametrize('key',['drv','lap','cmp','scenario','ilap','rep'])
+    def test_cleared_control_is_removed_from_url_and_not_rehydrated(routing,key):
+        state,query=routing
+        Q.set_state(**{key:None})
+>       assert key not in query
+E       AssertionError: assert 'cmp' not in {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...}
+
+tests/ui/test_query_state_recovery.py:18: AssertionError
+____ test_cleared_control_is_removed_from_url_and_not_rehydrated[scenario] _____
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': 32, ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+key = 'scenario'
+
+    @pytest.mark.parametrize('key',['drv','lap','cmp','scenario','ilap','rep'])
+    def test_cleared_control_is_removed_from_url_and_not_rehydrated(routing,key):
+        state,query=routing
+        Q.set_state(**{key:None})
+>       assert key not in query
+E       AssertionError: assert 'scenario' not in {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...}
+
+tests/ui/test_query_state_recovery.py:18: AssertionError
+______ test_cleared_control_is_removed_from_url_and_not_rehydrated[ilap] _______
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': 32, ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+key = 'ilap'
+
+    @pytest.mark.parametrize('key',['drv','lap','cmp','scenario','ilap','rep'])
+    def test_cleared_control_is_removed_from_url_and_not_rehydrated(routing,key):
+        state,query=routing
+        Q.set_state(**{key:None})
+>       assert key not in query
+E       AssertionError: assert 'ilap' not in {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...}
+
+tests/ui/test_query_state_recovery.py:18: AssertionError
+_______ test_cleared_control_is_removed_from_url_and_not_rehydrated[rep] _______
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': 32, ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+key = 'rep'
+
+    @pytest.mark.parametrize('key',['drv','lap','cmp','scenario','ilap','rep'])
+    def test_cleared_control_is_removed_from_url_and_not_rehydrated(routing,key):
+        state,query=routing
+        Q.set_state(**{key:None})
+>       assert key not in query
+E       AssertionError: assert 'rep' not in {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...}
+
+tests/ui/test_query_state_recovery.py:18: AssertionError
+____________________ test_presentation_can_be_switched_off _____________________
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': 32, ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+
+    def test_presentation_can_be_switched_off(routing):
+        state,query=routing
+        Q.set_state(present=False)
+>       assert 'present' not in query
+E       AssertionError: assert 'present' not in {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...}
+
+tests/ui/test_query_state_recovery.py:26: AssertionError
+______________ test_event_switch_clears_explicitly_reset_controls ______________
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'present': True, 'drv': 'NOR', ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+
+    def test_event_switch_clears_explicitly_reset_controls(routing):
+        state,query=routing
+        Q.set_state(ev='Madrid',drv=None,lap=None,cmp=None,scenario=None,ilap=None,rep=None)
+        result=Q.sync(['Monza','Madrid'])
+>       assert result['ev']=='Madrid'
+E       AssertionError: assert 'Monza' == 'Madrid'
+E         
+E         - Madrid
+E         + Monza
+
+tests/ui/test_query_state_recovery.py:33: AssertionError
+_________________ test_driver_change_does_not_restore_old_lap __________________
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'cmp': 'SOFT', ...}, {'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': '32', ...})
+
+    def test_driver_change_does_not_restore_old_lap(routing):
+        state,query=routing
+        Q.set_state(drv='LEC',lap=None)
+        result=Q.sync(['Monza','Madrid'])
+>       assert result['drv']=='LEC' and result['lap'] is None
+E       AssertionError: assert ('NOR' == 'LEC'
+E         
+E         - LEC
+E         + NOR)
+
+tests/ui/test_query_state_recovery.py:42: AssertionError
+________ test_navigation_clearing_all_params_preserves_session_controls ________
+
+routing = ({'ev': 'Monza', 'mode': 'audit', 'drv': 'NOR', 'lap': 32, ...}, {})
+
+    def test_navigation_clearing_all_params_preserves_session_controls(routing):
+        state,query=routing;before=state.copy();query.clear()
+        result=Q.sync(['Monza','Madrid'])
+        assert result==before
+>       assert query['drv']=='NOR' and query['lap']=='32'
+               ^^^^^^^^^^^^
+E       KeyError: 'drv'
+
+tests/ui/test_query_state_recovery.py:49: KeyError
+_________________ test_support_mismatch_is_visible_not_hidden __________________
+
+    def test_support_mismatch_is_visible_not_hidden():
+        from app_v2.services import live_bridge as LB, lock_repository as LR, replay_service as RS
+        if not LB.AVAILABLE:
+            pytest.skip('live package not importable')
+        lock = LR.load_lock(); vm = LB.build(lock, 'Monza', 'NOR', RS.ReplayCursor('Monza', 'NOR', 53).seek(30), 'x')
+        note = LB.support_note(vm); ts = vm.orb_live['tyre_state']['support_status']; chip = vm.support.overall_support_status
+        assert (note == '') == (ts == chip)
+        if note:
+            assert ts in note and chip in note
+>           assert 'support: 7.1 says' in _html(_run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
+E           assert 'support: 7.1 says' in '<header class="cs-header" data-orb-header="1" aria-label="global frame"><span class="brand">ORB</span><span class="mo...px) { .block-container { padding-left: 1rem; padding-right: 1rem; } .cs-kv { grid-template-columns: 1fr; } }\n</style>'
+E            +  where '<header class="cs-header" data-orb-header="1" aria-label="global frame"><span class="brand">ORB</span><span class="mo...px) { .block-container { padding-left: 1rem; padding-right: 1rem; } .cs-kv { grid-template-columns: 1fr; } }\n</style>' = _html(AppTest(\n    _script_path='/var/folders/jq/lm1fq9x932vbm3lxnz1zsvx00000gn/T/tmpoka15h99/6a59cda61dd0bf8872f5ef8c76a44b...k(\n            type='event',\n            children={\n                0: UnknownElement()\n            }\n        )\n    }\n))
+E            +    where AppTest(\n    _script_path='/var/folders/jq/lm1fq9x932vbm3lxnz1zsvx00000gn/T/tmpoka15h99/6a59cda61dd0bf8872f5ef8c76a44b...k(\n            type='event',\n            children={\n                0: UnknownElement()\n            }\n        )\n    }\n) = _run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'})
+
+tests/ui/test_pages.py:419: AssertionError
+----------------------------- Captured stderr call -----------------------------
+2026-09-13 01:53:20.013 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+------------------------------ Captured log call -------------------------------
+WARNING  streamlit.runtime.scriptrunner_utils.script_run_context:script_run_context.py:479 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+=========================== short test summary info ============================
+FAILED tests/ui/test_query_state_recovery.py::test_cleared_control_is_removed_from_url_and_not_rehydrated[drv]
+FAILED tests/ui/test_query_state_recovery.py::test_cleared_control_is_removed_from_url_and_not_rehydrated[lap]
+FAILED tests/ui/test_query_state_recovery.py::test_cleared_control_is_removed_from_url_and_not_rehydrated[cmp]
+FAILED tests/ui/test_query_state_recovery.py::test_cleared_control_is_removed_from_url_and_not_rehydrated[scenario]
+FAILED tests/ui/test_query_state_recovery.py::test_cleared_control_is_removed_from_url_and_not_rehydrated[ilap]
+FAILED tests/ui/test_query_state_recovery.py::test_cleared_control_is_removed_from_url_and_not_rehydrated[rep]
+FAILED tests/ui/test_query_state_recovery.py::test_presentation_can_be_switched_off
+FAILED tests/ui/test_query_state_recovery.py::test_event_switch_clears_explicitly_reset_controls
+FAILED tests/ui/test_query_state_recovery.py::test_driver_change_does_not_restore_old_lap
+FAILED tests/ui/test_query_state_recovery.py::test_navigation_clearing_all_params_preserves_session_controls
+FAILED tests/ui/test_pages.py::test_support_mismatch_is_visible_not_hidden - ...
+11 failed, 56 passed in 10.15s

@@ -23,7 +23,7 @@ import pytest
 from rt_helpers import PROTO
 
 MAP = PROTO / 'evaluation' / 'red_team' / 'claim_evidence_map.json'
-DOCS = ('out/THE_CASE.md', 'out/talk_track.md', 'out/Orb_v1_Mentor_Briefing.pptx', 'out/Orb_v1_ChallengeDay.pdf')
+DOCS = ('README.md', 'out/THE_CASE.md', 'out/talk_track.md', 'out/Orb_v1_Mentor_Briefing.pptx', 'out/Orb_v1_ChallengeDay.pdf')
 BLOCKING_VERDICTS = ('mismatch', 'exceeds_evidence', 'unverifiable')
 
 
@@ -54,7 +54,7 @@ def test_no_flagged_claim_is_unqualified_in_a_presentation_document(claim_map):
     for c in claim_map['claims']:
         if c['verdict'] in BLOCKING_VERDICTS:
             for w in c.get('found_in', []):
-                if w.get('kind') in ('deck', 'talk_track', 'THE_CASE') and not w.get('qualified'):
+                if w.get('kind') in ('deck', 'talk_track', 'THE_CASE', 'README') and not w.get('qualified'):
                     offenders.append(f"{c['id']} ({c['verdict']}) at {w['source']}:{w['line']}: {w['excerpt'][:90]}")
     assert not offenders, 'flagged claims present unqualified:\n  ' + '\n  '.join(offenders)
 
@@ -69,7 +69,7 @@ def test_every_reclassified_claim_really_carries_its_qualifiers(claim_map):
         quals = c.get('qualified_by') or []
         assert quals, f"{c['id']} is reported qualified but declares no qualified_by patterns"
         for w in c['found_in']:
-            if not (w.get('qualified') and w.get('kind') in ('deck', 'talk_track', 'THE_CASE')):
+            if not (w.get('qualified') and w.get('kind') in ('deck', 'talk_track', 'THE_CASE', 'README')):
                 continue
             text = _lines(w['source']).get(w['line'], '')
             assert text, f"{c['id']}: {w['source']}:{w['line']} no longer exists - the map is stale, re-run the claim audit"

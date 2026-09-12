@@ -1,29 +1,34 @@
 {
   "workstream": 3,
-  "task": "C5 evaluation scorecards: eligible n and whole-weekend bootstrap uncertainty; honest rolling origin; prefix-faithful live pooling",
+  "task": "C6 timed five-minute rehearsal and independent numeric evidence",
   "status": "GREEN",
   "commit": null,
   "completed": [
-    "evaluation/common.py: vectorised sufficient-sum mean bootstrap duplicates whole-weekend numerators/denominators; eligible n/unit metadata and win-share interval; deterministic 2000 draws seed2026",
-    "evaluation/scorecards.py: complete forecast/cell bands and n; explicit unavailable single-weekend rolling bands; live median from detected true-stint rows, climatology recomputed on pooled event counts; frozen input hashes; SCORECARDS renderer gives performance n/90% bands",
-    "evaluation/hidden_stop.py: eligible-stop counts and cluster mean bands for all horizons/cells; evaluation/regret.py: cluster bands for reported regret summaries; no predictive rule changes",
-    "evaluation/risk_coverage.py and out/validation/risk_coverage.{json,csv,png}: 121 frozen-rule diagnostic settings, every coverage/MAE carries n and90% weekend band; PNG adds shadedMAE bands and support caption",
-    "out/validation/ghost_scorecard.json,live_scorecard.json,SCORECARDS.md regenerated: lock11/11 matches; prefix pooled17/17 matches; frozen post-freeze aggregate copiedexactly; 64development weekends148compoundweekends; rolling13available rounds11scored, insufficient single-weekend intervals null",
-    "../.venv/bin/python -m pytest tests/evaluation -q: 65passed3.14s (six new tests in tests/evaluation/test_eval_c5_scorecards.py); earlier runs59passed2.70s and65passed3.49s/3.63s",
-    "../.venv/bin/python -m evaluation.scorecards --quiet: exit0 (~13min); ../.venv/bin/python -m evaluation.risk_coverage --quiet: exit0. Current render_md/live_scorecard/lock_meta used afterwards for final presentation wording and frozen INPUT hash metadata; no computed ghost metric changed during full run",
-    "Independent command assertion: 121risk settings x6=726 metric estimates/count/bands verified; final lock11/11/live17/17 and exact sealed aggregate-copy assertions passed; 5changed evaluation sources parse, no predictive/protected-file diff, reveal existence56683bytes only",
-    "Independent Workstream6 refutation command ../.venv/bin/python /private/tmp/orb-c5-workstream3-ui-refute.py /private/tmp/orb-c5-workstream6/proto: PASS1612 artifact estimate/band/count mappings; adversarial formatting/nullCI/shared-render/sealedgate/no directfuture reads. Initial finding: Validation legacyunbanded tables removed by Workstream6, corrected source rechecked. Script/log saved in /private/tmp for lead audit copy",
-    "RiskPNG visually inspected: labels, n, interval caption all visible, no clipping; Workstream6 synced final six validation artifacts",
-    "Workstream7 reported independent refutation PASS:17live metrics/bands rederived,29public lock rows,121x6risk JSON/CSV cells,18risk extreme/production metrics,13rolling rounds with360runtime training-pool guards; report is Workstream7-owned (not a Workstream3-run check)."
+    "Implemented evaluation/rehearsal_runner.py and tests/evaluation/test_rehearsal_runner.py. Root navigation and pumped Playwright waits; strict semantic DOM/widget/Plotly/runtime matching; exact-origin network guard; one feedback event with exact CAS restoration; source-exact Race Twin payload and observed HUD interpolation evidence.",
+    "Final command: ../.venv/bin/python evaluation/rehearsal_runner.py --server-proto /Users/samuelmorningstar/Trackshift/proto --out /private/tmp/orb-c6-workstream3/proto/evaluation/rehearsal --allow-feedback. Exit 0; 302.511 seconds, 12 stable checkpoints, 4823 matched numeric records, zero mismatches/unclassified/load/console/network/external errors. Started 2026-09-12T19:57:30.918645+00:00, ended 20:02:33.432910+00:00.",
+    "One feedback event at lap 31 was consumed at laps 31, 32 and 53. Replay progressed 1 to 17 and 32 to 53. Exact original empty feedback log restored; SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855. Exclusive feedback lease released.",
+    "../.venv/bin/python -m pytest tests/evaluation/test_rehearsal_runner.py -q: 5 passed in 0.20s after final runner run.",
+    "First definitive run FAILED after 184.004 seconds: incorrect Frames.to_dict and 10 real deep-navigation 404s, replay event starvation. Exact executed source and evidence preserved in evaluation/rehearsal_failures/20260912T193948Z; feedback restored. Fixed harness only, no product changes.",
+    "../.venv/bin/python /private/tmp/c6_workstream3_focused.py: replay 32 to 53 with zero raw errors, then failed Twin text fusion; recorded as partial focused check. ../.venv/bin/python /private/tmp/c6_workstream3_twin_probe.py: PASS, 62 observed HUD updates / 1240 source-matched numbers, zero raw errors, after text boundary and authored halo quantile reference fixes."
   ],
   "in_progress": [],
   "blockers": [],
-  "tests_passed": 65,
+  "tests_passed": 5,
   "tests_failed": 0,
   "eta_minutes": 0,
   "needs_review_from": [
+    "7",
     "lead"
   ],
-  "updated_at": "2026-09-12T18:18:08.747431+00:00",
-  "notes": "Complete, all Workstream3 file claims RELEASED for lead integration at base 230870bc9f27f281c515ac7c6108da2e55574688; no commit made. Isolated /private/tmp/orb-c5-workstream3. Frozen manifest/freeze/aggregate/lock/Madrid/predictive rules unchanged; sealed per-race artifact never read (existence/sizeonly). Statistical limits: per-round n<=1weekend means no CI; live only3weekends; feedbackablation NOT RUN because no events; gate sweep diagnostic only. Workstream7 independentrefutation reported PASS; full final product suite/checkpoint/GO/commit owned by lead. Exclude temporary .venv/feat*/node_modules symlinks from integration."
+  "updated_at": "2026-09-12T20:04:09.720516+00:00",
+  "notes": "All Workstream 3 claims released after final evidence generation. No product/model/frozen output changes. Raster chart coverage is source-artifact/hash proof, not pixel OCR; only actual observed animation HUD values claimed, whole embedded frame payload verified. Final report SHA256 60bcfcc4a1884424429be11ab0924a4dc63a60e411b9897aeedaefb9498264d8. Root decides checkpoint after independent refutation.",
+  "claimed_files": [],
+  "released_files": [
+    "evaluation/rehearsal_runner.py",
+    "tests/evaluation/test_rehearsal_runner.py",
+    "evaluation/rehearsal/",
+    "evaluation/rehearsal_failures/",
+    "evaluation/rehearsal_focused/",
+    "progress/workstream_3.json"
+  ]
 }

@@ -1,0 +1,36 @@
+2026-09-13 01:40:50.879 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-09-13 01:40:50.880 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+leakage audit: PASS (exit 0)
+  PASS  static_imports
+        INFO services may bridge to live/ and counterfactual/ (listed for the record): app_v2/services/live_bridge.py:17 imports live; app_v2/services/live_bridge.py:18 imports live
+        INFO live/ importing the dashboard package inverts the dependency direction (listed, not a boundary rule): live/viewmodel.py:220 imports app_v2.services; live/viewmodel.py:221 imports app_v2.services; live/viewmodel.py:222 imports app_v2.services; live/viewmodel.py:223 imports app_v2.services; live/viewmodel.py:224 imports app_v2.services; live/viewmodel.py:258 imports app_v2.services; live/viewmodel.py:188 imports app_v2.theme.tokens
+  PASS  import_closure
+        PASS live side: loaded []
+        PASS ghost side: loaded []
+        PASS replay side: loaded []
+  PASS  future_read_and_deny_list_spy
+        laps 50 feed calls 100 {'row': 50, 'through': 0, 'field_at': 50, 'laps_of': 0} violations [] deny hits []
+  PASS  target_driver_exclusion
+        ok  reference_slopes called with the target driver
+        ok  engine says target_driver_excluded
+        ok  reference frame drops the target driver laps
+        ok  all-driver refit matches the lock obs to 1e-4
+        ok  included run uses every lap
+        ok  label is the lead decision wording
+        ok  post-race reference flagged
+  PASS  one_forecast_hash
+        ok  schemas.lock_v2.compute_forecast_hash(pre_race_forecast) sha256:66e3201e860b19ef
+        ok  out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json sha256:66e3201e860b19ef
+        ok  out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json sha256:66e3201e860b19ef
+        ok  out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json sha256:66e3201e860b19ef
+        ok  out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/summary.json sha256:66e3201e860b19ef
+        ok  out/live/Austria_NOR/summary.json sha256:66e3201e860b19ef
+        ok  out/live/Barcelona_NOR/summary.json sha256:66e3201e860b19ef
+        ok  out/live/Monza_NOR/summary.json sha256:66e3201e860b19ef
+        ok  out/live/Austria_NOR/live_predictor.json prior.forecast_hash sha256:66e3201e860b19ef
+        ok  out/live/Barcelona_NOR/live_predictor.json prior.forecast_hash sha256:66e3201e860b19ef
+        ok  out/live/Monza_NOR/live_predictor.json prior.forecast_hash sha256:66e3201e860b19ef
+        ok  counterfactual.provider.ProviderA().forecast_hash sha256:66e3201e860b19ef
+        ok  app_v2 LockView.forecast_hash (lock_v2.shared.forecast_hash) sha256:66e3201e860b19ef
+        ok  live.priors.load_priors(Monza).forecast_hash sha256:66e3201e860b19ef
+report: /Users/samuelmorningstar/Trackshift/proto/evaluation/red_team/leakage_audit_report.json

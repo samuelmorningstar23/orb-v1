@@ -1,0 +1,482 @@
+{
+ "event": "Japan",
+ "event_id": "2026_Japan",
+ "year": 2026,
+ "session": "R",
+ "n_laps": 53,
+ "grid_m_nominal": 10.0,
+ "quality": {
+  "status": "ok",
+  "min_distinct_per_lap": 100,
+  "drivers_passed": [
+   "ALB",
+   "ALO",
+   "ANT",
+   "BEA",
+   "BOR",
+   "BOT",
+   "COL",
+   "GAS",
+   "HAD",
+   "HAM",
+   "HUL",
+   "LAW",
+   "LEC",
+   "LIN",
+   "NOR",
+   "OCO",
+   "PER",
+   "PIA",
+   "RUS",
+   "SAI",
+   "STR",
+   "VER"
+  ],
+  "drivers_refused": [],
+  "per_driver": {
+   "ALB": {
+    "median": 368,
+    "min": 345,
+    "ok": true
+   },
+   "ALO": {
+    "median": 373,
+    "min": 357,
+    "ok": true
+   },
+   "ANT": {
+    "median": 358,
+    "min": 342,
+    "ok": true
+   },
+   "BEA": {
+    "median": 366,
+    "min": 250,
+    "ok": true
+   },
+   "BOR": {
+    "median": 365,
+    "min": 350,
+    "ok": true
+   },
+   "BOT": {
+    "median": 374,
+    "min": 353,
+    "ok": true
+   },
+   "COL": {
+    "median": 366,
+    "min": 350,
+    "ok": true
+   },
+   "GAS": {
+    "median": 362,
+    "min": 346,
+    "ok": true
+   },
+   "HAD": {
+    "median": 365,
+    "min": 350,
+    "ok": true
+   },
+   "HAM": {
+    "median": 360,
+    "min": 344,
+    "ok": true
+   },
+   "HUL": {
+    "median": 365,
+    "min": 349,
+    "ok": true
+   },
+   "LAW": {
+    "median": 365,
+    "min": 350,
+    "ok": true
+   },
+   "LEC": {
+    "median": 361,
+    "min": 343,
+    "ok": true
+   },
+   "LIN": {
+    "median": 366,
+    "min": 351,
+    "ok": true
+   },
+   "NOR": {
+    "median": 362,
+    "min": 345,
+    "ok": true
+   },
+   "OCO": {
+    "median": 364,
+    "min": 347,
+    "ok": true
+   },
+   "PER": {
+    "median": 369,
+    "min": 354,
+    "ok": true
+   },
+   "PIA": {
+    "median": 359,
+    "min": 344,
+    "ok": true
+   },
+   "RUS": {
+    "median": 360,
+    "min": 344,
+    "ok": true
+   },
+   "SAI": {
+    "median": 366,
+    "min": 352,
+    "ok": true
+   },
+   "STR": {
+    "median": 373,
+    "min": 358,
+    "ok": true
+   },
+   "VER": {
+    "median": 362,
+    "min": 346,
+    "ok": true
+   }
+  },
+  "n_clean_laps": 918,
+  "n_pooled_points": 332830,
+  "seed_lap": {
+   "driver": "NOR",
+   "lap": 21,
+   "n_points": 378,
+   "lap_time": 94.161
+  },
+  "residual_rms_m": 0.805,
+  "share_within_5m": 1.0,
+  "start_line_median_abs_dev_m": 2.53,
+  "n_start_samples": 918,
+  "closure": "closed by construction (consensus bins along a closed seed)",
+  "grid_m": 10.0025
+ },
+ "L": 5751.444,
+ "n_points": 575,
+ "grid_m": 10.0025,
+ "sector1_end_s": 2173.68,
+ "sector2_end_s": 4670.75,
+ "sector_source": {
+  "s1": "positions at sector session times",
+  "s2": "positions at sector session times"
+ },
+ "sector_fractions": [
+  0.3779,
+  0.8121
+ ],
+ "units": "metres, feed frame (FastF1 X/Y / 10)",
+ "pit_entry_s": 5527.69,
+ "pit_exit_s": 516.08,
+ "pit_entry_index": 553,
+ "pit_exit_index": 52,
+ "pitlane_source": "recorded",
+ "status": "ok",
+ "capabilities": {
+  "canonical_geometry": true,
+  "driver_trajectories": false,
+  "scenario_replay": false
+ },
+ "limitation": "Canonical geometry only. No driver trajectories or counterfactual replay are supplied.",
+ "pitlane": {
+  "source": "recorded",
+  "length_m": 739.1,
+  "entry_s": 5527.7,
+  "exit_s": 516.1,
+  "transit_s": 32.5,
+  "s_line": 221.5,
+  "meta": {
+   "source": "recorded",
+   "n_stops": 29,
+   "n_excursions_seen": 30,
+   "median_transit_s": 32.36,
+   "transit_iqr_s": [
+    31.7,
+    33.18
+   ],
+   "entry_s": 5527.69,
+   "exit_s": 516.08,
+   "stops": [
+    {
+     "driver": "ALB",
+     "lap_in": 22,
+     "duration_s": 32.6,
+     "span_m": 723.7,
+     "n_points": 123
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 45,
+     "duration_s": 31.12,
+     "span_m": 757.1,
+     "n_points": 116
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 46,
+     "duration_s": 31.98,
+     "span_m": 756.6,
+     "n_points": 126
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 47,
+     "duration_s": 33.86,
+     "span_m": 746.8,
+     "n_points": 131
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 48,
+     "duration_s": 40.48,
+     "span_m": 731.1,
+     "n_points": 155
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 49,
+     "duration_s": 33.06,
+     "span_m": 734.9,
+     "n_points": 128
+    },
+    {
+     "driver": "ALO",
+     "lap_in": 21,
+     "duration_s": 38.28,
+     "span_m": 742.6,
+     "n_points": 147
+    },
+    {
+     "driver": "ALO",
+     "lap_in": 23,
+     "duration_s": 32.18,
+     "span_m": 739.2,
+     "n_points": 123
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 22,
+     "duration_s": 31.36,
+     "span_m": 738.1,
+     "n_points": 125
+    },
+    {
+     "driver": "BEA",
+     "lap_in": 16,
+     "duration_s": 33.04,
+     "span_m": 734.3,
+     "n_points": 124
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 22,
+     "duration_s": 33.44,
+     "span_m": 728.5,
+     "n_points": 127
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 19,
+     "duration_s": 33.92,
+     "span_m": 751.3,
+     "n_points": 129
+    },
+    {
+     "driver": "COL",
+     "lap_in": 17,
+     "duration_s": 31.86,
+     "span_m": 760.1,
+     "n_points": 117
+    },
+    {
+     "driver": "GAS",
+     "lap_in": 22,
+     "duration_s": 32.86,
+     "span_m": 731.3,
+     "n_points": 131
+    },
+    {
+     "driver": "HAD",
+     "lap_in": 19,
+     "duration_s": 31.7,
+     "span_m": 770.1,
+     "n_points": 120
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 22,
+     "duration_s": 31.54,
+     "span_m": 746.5,
+     "n_points": 130
+    },
+    {
+     "driver": "HUL",
+     "lap_in": 23,
+     "duration_s": 32.36,
+     "span_m": 736.1,
+     "n_points": 123
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 22,
+     "duration_s": 31.86,
+     "span_m": 717.2,
+     "n_points": 120
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 17,
+     "duration_s": 30.54,
+     "span_m": 736.6,
+     "n_points": 116
+    },
+    {
+     "driver": "LIN",
+     "lap_in": 18,
+     "duration_s": 34.08,
+     "span_m": 746.8,
+     "n_points": 126
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 16,
+     "duration_s": 31.5,
+     "span_m": 755.8,
+     "n_points": 114
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 19,
+     "duration_s": 33.16,
+     "span_m": 740.1,
+     "n_points": 127
+    },
+    {
+     "driver": "PER",
+     "lap_in": 21,
+     "duration_s": 36.02,
+     "span_m": 719.6,
+     "n_points": 138
+    },
+    {
+     "driver": "PIA",
+     "lap_in": 18,
+     "duration_s": 31.28,
+     "span_m": 737.2,
+     "n_points": 121
+    },
+    {
+     "driver": "RUS",
+     "lap_in": 21,
+     "duration_s": 31.62,
+     "span_m": 782.7,
+     "n_points": 126
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 22,
+     "duration_s": 32.16,
+     "span_m": 735.2,
+     "n_points": 122
+    },
+    {
+     "driver": "STR",
+     "lap_in": 21,
+     "duration_s": 33.18,
+     "span_m": 728.7,
+     "n_points": 125
+    },
+    {
+     "driver": "STR",
+     "lap_in": 24,
+     "duration_s": 31.86,
+     "span_m": 735.9,
+     "n_points": 127
+    },
+    {
+     "driver": "VER",
+     "lap_in": 22,
+     "duration_s": 32.5,
+     "span_m": 740.4,
+     "n_points": 128
+    }
+   ],
+   "offpath_threshold_m": 4.0
+  }
+ },
+ "drivers": {},
+ "frames": [],
+ "identity_check": null,
+ "files": {
+  "track": {
+   "file": "track.npz",
+   "sha256": "08b7bf48ddda3be0512998e57760655f104b742fd7db7699a3231839cfc5d1bd",
+   "bytes": 8932
+  },
+  "pitlane": {
+   "file": "pitlane.npz",
+   "sha256": "443f22f8223ef2738b704fe235f981b05cb7899ee3d34b5ece673d660cc733da",
+   "bytes": 5171
+  }
+ },
+ "build": {
+  "generated_at": "2026-09-13T01:50:06",
+  "seconds": 2.7,
+  "source": {
+   "source": "fastf1",
+   "fastf1_version": "3.8.3",
+   "event_name": "Japanese Grand Prix",
+   "date": "2026-03-29 05:00:00",
+   "cache_dir": "/private/tmp/orb-map-cache",
+   "position_units": "metres (feed 1/10 m divided by 10)",
+   "driver_numbers": {
+    "NOR": "1",
+    "GAS": "10",
+    "PER": "11",
+    "ANT": "12",
+    "ALO": "14",
+    "LEC": "16",
+    "STR": "18",
+    "ALB": "23",
+    "HUL": "27",
+    "VER": "3",
+    "LAW": "30",
+    "OCO": "31",
+    "LIN": "41",
+    "COL": "43",
+    "HAM": "44",
+    "BOR": "5",
+    "SAI": "55",
+    "HAD": "6",
+    "RUS": "63",
+    "BOT": "77",
+    "PIA": "81",
+    "BEA": "87"
+   },
+   "offline": true,
+   "cached_source_sha256": {
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/_extended_timing_data.ff1pkl": "66871145ed9cc0d61ae57f3aba961ef3703e5bf9f38e06575af61733de643d67",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/car_data.ff1pkl": "f132a283ea8ec2b07800d3fc4f05a189dfdb5aa714bb5c8fb37fd4615368e5ac",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/driver_info.ff1pkl": "f0ea0fc57c7077d3f9a327459f42525d54912791ef65df0444d1c3ddbace2bd9",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/lap_count.ff1pkl": "b844a58df9bddd4964e4d0d96cbcd77b2186c61e44529671eae0cfbb3a373961",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/position_data.ff1pkl": "f0792eed91380d575dc393521c1ac8e8d1cd3aa6c8a38a04c6011fe50ea73944",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/race_control_messages.ff1pkl": "817d44f4cc1da6ffad706d4157705745bd10b5d384096a0b187a6f9aaff7e643",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/session_info.ff1pkl": "3f1ed8bf13fde40e0453f87176a677202d6a7547c522a8ba7dfda4fd961e4f51",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/session_status_data.ff1pkl": "595de007020528a3f5d7c016e87c9800ddedf6eedaeb7cff471f0a1fbcb52a27",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/timing_app_data.ff1pkl": "1d3ff7d3c8ca04d7f4256ff1a86b91e29ff0f50964939322cffdcada0d051ce1",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/track_status_data.ff1pkl": "c26e25e1123cf92869ae4e7f4651a3685b4cff8ed3dc9864c9532b84f634b648",
+    "2026/2026-03-29_Japanese_Grand_Prix/2026-03-29_Race/weather_data.ff1pkl": "33c87f06f4710dc90c3258964b69fbad2e14abcc1af51dac8cbcaea1333f1867"
+   }
+  },
+  "tool": "replay/build_maps.py",
+  "geometry_only": true
+ }
+}

@@ -12,6 +12,8 @@ top-nav click to the next page's marker.
 from __future__ import annotations
 import argparse, json, shutil, sys, tempfile, time
 from pathlib import Path
+from urllib.parse import urlsplit
+from network_guard import install as install_network_guard, bucket as network_bucket
 
 HERE = Path(__file__).resolve().parent
 PROTO = HERE.parents[1]
@@ -29,7 +31,7 @@ ROUTES = [
     ('ghost_audit_fixed_context', '/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT'),
     ('scenario_explorer', '/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM'),
     ('out_of_support', '/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM'),
-    ('missing_position', '/ghost?ev=Australia&drv=ANT&mode=audit'),
+    ('missing_position', '/ghost?ev=Canada&drv=ANT&mode=audit'),
     ('offline_mode', '/live?ev=Madrid&mode=live'),
     ('presentation_live', '/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1'),
     ('presentation_ghost', '/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1'),
@@ -45,9 +47,9 @@ NAV_TITLES = ['Landing', 'Pre-race plan', 'Live Predictor', 'Decision board', 'D
 EXPECTED_TEXT = {
     'offline_mode': ['NO RACE FEED'], 'out_of_support': ['OUT OF SUPPORT', 'MODEL-IMPLIED SCENARIO'], 'missing_position': ['POSITION DATA UNAVAILABLE'],
     'degraded_feed': ['DEGRADED'], 'position_refused': ['POSITION FEED REFUSED'], 'scenario_explorer': ['MODEL-IMPLIED SCENARIO', 'model-implied, pre-race curve'],
-    'ghost_audit': ['HISTORICAL AUDIT', 'leave-one-driver-out Sunday reference', 'held-out strategy replay under a post-race reference model'],
-    'generalisation': [('aggregate revealed after freeze', 'sealed holdout, aggregate only'), 'never merged'], 'validation': ['identity test'], 'landing': ['Ghost Strategy scorecard', 'Live Predictor scorecard'],
-    'decision_board': ['not a position forecast'], 'live_stable': ['not a position forecast'], 'presentation_live': [], 'presentation_ghost': [],
+    'ghost_audit': ['HISTORICAL AUDIT', 'leave-one-driver-out Sunday reference', 'Finish delta'],
+    'generalisation': [('aggregate revealed after freeze', 'sealed holdout, aggregate only'), 'never merged'], 'validation': ['identity test'], 'landing': ['Watch the prediction evolve', 'Compare Monza strategies', 'View Madrid forecast'],
+    'decision_board': ['Modelled tyre-time'], 'live_stable': ['Next lap', 'Modelled tyre-time'], 'presentation_live': [], 'presentation_ghost': [],
 }
 
 
@@ -79,6 +81,21 @@ FOCUS_JS = """() => { const a = document.activeElement; if (!a) return null; con
   return {tag: a.tagName, text: (a.textContent || '').trim().slice(0, 40), is_nav: nav, is_button: !!btn}; }"""
 
 
+def goto_route(page, base: str, path: str):
+    """Bootstrap at root so Streamlit probes use the correct base, then use real navigation."""
+    target = urlsplit(path)
+    page.goto(base + '/' + ('?' + target.query if target.query else ''), wait_until='domcontentloaded')
+    page.wait_for_selector('[data-orb-ready="landing"]', state='attached', timeout=30000)
+    destinations = {'/live': ('Live Predictor', 'live'), '/ghost': ('Ghost Strategy', 'ghost'),
+                    '/decision': ('Decision board', 'decision'), '/pre-race': ('Pre-race plan', 'prerace'),
+                    '/feedback': ('Driver feedback', 'feedback'), '/validation': ('Validation', 'validation'),
+                    '/generalisation': ('Generalisation', 'generalisation')}
+    if target.path not in ('', '/'):
+        title, marker = destinations[target.path]
+        page.get_by_role('link', name=title, exact=True).first.click()
+        page.wait_for_selector(f'[data-orb-ready="{marker}"]', state='attached', timeout=30000)
+
+
 def keyboard_nav(page, base: str, max_tabs: int = 60) -> dict:
     """Tab through the top navigation from the landing page: every route title must be reachable by keyboard (an overflow
     'More' menu is opened with Enter), and Enter on a focused link must switch the route."""
@@ -97,23 +114,36 @@ def keyboard_nav(page, base: str, max_tabs: int = 60) -> dict:
             reached.append(info['text'])
         if len(reached) == len(NAV_TITLES):
             break
-    # second pass: Enter on a focused nav link activates the route
-    page.goto(base + '/?ev=Monza&drv=LIN', wait_until='domcontentloaded'); page.wait_for_selector('[data-orb-ready="landing"]', state='attached'); page.wait_for_timeout(400)
-    page.evaluate('document.activeElement && document.activeElement.blur && document.activeElement.blur()')
-    activated, enter_ms = False, None
-    for _ in range(max_tabs):
-        page.keyboard.press('Tab')
-        info = page.evaluate(FOCUS_JS)
-        if info and info['is_button'] and 'More' in info['text']:
-            page.keyboard.press('Enter'); page.wait_for_timeout(200); continue
-        if info and info['is_nav'] and info['text'] == 'Generalisation':
-            t0 = time.perf_counter(); page.keyboard.press('Enter')
-            try:
-                page.wait_for_selector('[data-orb-ready="generalisation"]', state='attached', timeout=15000); activated = True; enter_ms = round((time.perf_counter() - t0) * 1000)
-            except Exception:
-                activated = False
-            break
-    return {'reached': reached, 'missing': [t for t in NAV_TITLES if t not in reached], 'tabs': tabs, 'enter_activates': activated, 'enter_switch_ms': enter_ms}
+    # Activate every navigation destination with Tab/Enter; each begins on a different route.
+    markers = dict(zip(NAV_TITLES, ['landing', 'prerace', 'live', 'decision', 'feedback', 'ghost', 'generalisation', 'validation']))
+    activations = []
+    for target in NAV_TITLES:
+        start = '/validation?ev=Monza' if target == 'Landing' else '/?ev=Monza&drv=LIN'
+        start_marker = 'validation' if target == 'Landing' else 'landing'
+        goto_route(page, base, start)
+        page.wait_for_selector(f'[data-orb-ready="{start_marker}"]', state='attached')
+        page.wait_for_timeout(150)
+        page.evaluate('document.activeElement && document.activeElement.blur && document.activeElement.blur()')
+        activated, enter_ms, focused = False, None, None
+        for _ in range(max_tabs):
+            page.keyboard.press('Tab')
+            info = page.evaluate(FOCUS_JS)
+            if info and info['is_button'] and 'More' in info['text']:
+                page.keyboard.press('Enter'); page.wait_for_timeout(200); continue
+            if info and info['is_nav'] and info['text'] == target:
+                focused = info
+                t0 = time.perf_counter(); page.keyboard.press('Enter')
+                try:
+                    page.wait_for_selector(f'[data-orb-ready="{markers[target]}"]', state='attached', timeout=15000)
+                    activated = True; enter_ms = round((time.perf_counter() - t0) * 1000)
+                except Exception:
+                    activated = False
+                break
+        activations.append({'target': target, 'activated': activated, 'switch_ms': enter_ms, 'focused': focused, 'keys': 'Tab then Enter'})
+    generalisation = next(a for a in activations if a['target'] == 'Generalisation')
+    return {'reached': reached, 'missing': [t for t in NAV_TITLES if t not in reached], 'tabs': tabs,
+            'enter_activates': all(a['activated'] for a in activations), 'enter_switch_ms': generalisation['switch_ms'], 'activations': activations}
+
 
 
 def scripted_pass(base: str, speed: int = 1, viewport=(1440, 900)) -> dict:
@@ -126,22 +156,17 @@ def scripted_pass(base: str, speed: int = 1, viewport=(1440, 900)) -> dict:
     rep = {'base': base, 'speed': speed, 'viewport': f'{viewport[0]}x{viewport[1]}', 'generated_at': time.strftime('%Y-%m-%dT%H:%M:%S'), 'steps': [], 'external_requests': [], 'feedback_fixture': 'none (shared log never written)'}
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(); ctx = browser.new_context(viewport={'width': viewport[0], 'height': viewport[1]}, device_scale_factor=1, color_scheme='dark')
+            browser = p.chromium.launch(); ctx = browser.new_context(viewport={'width': viewport[0], 'height': viewport[1]}, device_scale_factor=1, color_scheme='dark', service_workers='block')
 
-            def block(route, request):
-                url = request.url
-                if url.startswith(base) or url.startswith('ws://') or url.startswith('data:') or url.startswith('blob:'):
-                    route.continue_()
-                else:
-                    rep['external_requests'].append(url); route.abort()
-            ctx.route('**/*', block)
+            current_network = network_bucket('scripted_rehearsal', rep['viewport'])
+            install_network_guard(ctx, base, rep['external_requests'], lambda: current_network)
             page = ctx.new_page(); errors: list[dict] = []
-            page.on('console', lambda msg: errors.append({'type': msg.type, 'text': msg.text}) if msg.type == 'error' and not msg.text.startswith('Failed to load resource') else None)
+            page.on('console', lambda msg: errors.append({'type': msg.type, 'text': msg.text}) if msg.type == 'error' else None)
             page.on('pageerror', lambda exc: errors.append({'type': 'pageerror', 'text': str(exc)}))
             header = lambda: ' '.join(page.locator('[data-orb-header]').first.inner_text().split())
             t_all = time.perf_counter()
             # 1. Live Predictor: replay Monza NOR from lap 1 to the flag
-            t0 = time.perf_counter(); page.goto(base + '/live?ev=Monza&drv=NOR&lap=1&mode=live', wait_until='domcontentloaded'); page.wait_for_selector('[data-orb-ready="live"]', state='attached', timeout=30000)
+            t0 = time.perf_counter(); goto_route(page, base, '/live?ev=Monza&drv=NOR&lap=1&mode=live'); page.wait_for_selector('[data-orb-ready="live"]', state='attached', timeout=30000)
             load_ms = round((time.perf_counter() - t0) * 1000); page.wait_for_timeout(600)
             if speed != 1:
                 page.get_by_role('radio', name=f'{speed}x').first.click(); page.wait_for_timeout(300)
@@ -182,31 +207,35 @@ def scripted_pass(base: str, speed: int = 1, viewport=(1440, 900)) -> dict:
 def run(base: str, out: Path, compare: bool, routes=ROUTES) -> dict:
     from playwright.sync_api import sync_playwright
     out.mkdir(parents=True, exist_ok=True)
-    report = {'base': base, 'routes': {}, 'external_requests': [], 'timings': {}, 'generated_at': time.strftime('%Y-%m-%dT%H:%M:%S'),
+    report = {'base': base, 'routes': {}, 'external_requests': [], 'raw_console_errors': [], 'raw_network_failures': [], 'timings': {}, 'generated_at': time.strftime('%Y-%m-%dT%H:%M:%S'),
               'feedback_fixture': 'none: the capture never writes app_v2/state/feedback_events.jsonl (use ORB_FEEDBACK_LOG on the server for a fixture log)'}
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch()
             for vp_name, (w, h) in VIEWPORTS.items():
-                ctx = browser.new_context(viewport={'width': w, 'height': h}, device_scale_factor=1, color_scheme='dark')
+                ctx = browser.new_context(viewport={'width': w, 'height': h}, device_scale_factor=1, color_scheme='dark', service_workers='block')
 
-                def block(route, request):
-                    url = request.url
-                    if url.startswith(base) or url.startswith('ws://') or url.startswith('data:') or url.startswith('blob:'):
-                        route.continue_()
-                    else:
-                        report['external_requests'].append({'viewport': vp_name, 'url': url}); route.abort()
-                ctx.route('**/*', block)
+                current_network = network_bucket('initialization', vp_name)
+                install_network_guard(ctx, base, report['external_requests'], lambda: current_network)
                 page = ctx.new_page()
                 errors: list[dict] = []; bad_responses: list[str] = []
-                page.on('console', lambda msg: errors.append({'type': msg.type, 'text': msg.text}) if msg.type == 'error' else None)
-                page.on('pageerror', lambda exc: errors.append({'type': 'pageerror', 'text': str(exc)}))
-                page.on('response', lambda r: bad_responses.append(r.url) if r.status >= 400 else None)
+                def record_error(kind, text):
+                    item = {'type': kind, 'text': text}
+                    errors.append(item)
+                    report['raw_console_errors'].append(dict(item, route=current_network['route'], viewport=vp_name))
+                def record_response(response):
+                    if response.status >= 400:
+                        bad_responses.append(response.url)
+                        report['raw_network_failures'].append({'url': response.url, 'status': response.status, 'route': current_network['route'], 'viewport': vp_name})
+                page.on('console', lambda msg: record_error(msg.type, msg.text) if msg.type == 'error' else None)
+                page.on('pageerror', lambda exc: record_error('pageerror', str(exc)))
+                page.on('response', record_response)
                 for name, path in routes:
+                    current_network = network_bucket(name, vp_name)
                     errors.clear(); bad_responses.clear()
                     marker = {'landing': 'landing', 'prerace': 'prerace', 'feedback': 'feedback', 'generalisation': 'generalisation', 'validation': 'validation', 'decision_board': 'decision'}.get(name, 'ghost' if '/ghost' in path else 'live')
                     t0 = time.perf_counter()
-                    page.goto(base + path, wait_until='domcontentloaded')
+                    goto_route(page, base, path)
                     page.wait_for_selector(f'[data-orb-ready="{marker}"]', state='attached', timeout=30000)
                     load_ms = (time.perf_counter() - t0) * 1000   # navigation start -> page marker attached
                     page.wait_for_timeout(900)          # let Plotly settle and fonts paint before the screenshot
@@ -215,15 +244,17 @@ def run(base: str, out: Path, compare: bool, routes=ROUTES) -> dict:
                     page.screenshot(path=str(fname), full_page=False)
                     entry = report['routes'].setdefault(name, {})
                     probes = [u for u in bad_responses if u.rstrip('/').endswith(('/_stcore/host-config', '/_stcore/health'))]
-                    real = [e for e in errors if not (e['text'].startswith('Failed to load resource') and len(probes) >= 1 and len(bad_responses) == len(probes))]
                     body_text = page.inner_text('body').lower()          # inner_text carries CSS text-transform (labels are uppercase)
                     missing_text = [t if isinstance(t, str) else ' | '.join(t) for t in EXPECTED_TEXT.get(name, []) if not any(x.lower() in body_text for x in ((t,) if isinstance(t, str) else t))]
                     sidebar_visible = page.locator('[data-testid="stSidebar"]').first.is_visible() if page.locator('[data-testid="stSidebar"]').count() else False
-                    entry[vp_name] = {'path': path, 'load_ms': round(load_ms), 'console_errors': real, 'benign_base_path_probes_404': probes, 'other_4xx_5xx': [u for u in bad_responses if u not in probes], 'horizontal_overflow': bool(scroll_w > inner_w), 'scroll_width': scroll_w, 'inner_width': inner_w,
-                                      'expected_text_missing': missing_text, 'sidebar_visible': sidebar_visible}
+                    entry[vp_name] = {'path': path, 'load_ms': round(load_ms), 'console_errors': list(errors), 'benign_base_path_probes_404': probes, 'other_4xx_5xx': list(bad_responses), 'horizontal_overflow': bool(scroll_w > inner_w), 'scroll_width': scroll_w, 'inner_width': inner_w,
+                                      'expected_text_missing': missing_text, 'sidebar_visible': sidebar_visible,
+                                      'offline_notice_visible': 'recorded races replay locally' in body_text,
+                                      'network': current_network}
                     if compare:
                         g = GOLDEN / fname.name
                         entry[vp_name]['diff_vs_golden'] = diff_ratio(fname, g) if g.exists() else None
+                current_network = network_bucket('navigation_and_replay', vp_name)
                 # route switch timing: landing -> Live Predictor via the top navigation (assets cached)
                 page.goto(base + '/?ev=Monza&drv=LIN', wait_until='domcontentloaded'); page.wait_for_selector('[data-orb-ready="landing"]', state='attached')
                 page.wait_for_timeout(500)
@@ -237,7 +268,7 @@ def run(base: str, out: Path, compare: bool, routes=ROUTES) -> dict:
                 report['timings'][f'keyboard_focus_{vp_name}'] = page.evaluate('document.activeElement && (document.activeElement.tagName + ":" + (document.activeElement.textContent || "").trim().slice(0, 40))')
                 report['timings'][f'keyboard_nav_{vp_name}'] = keyboard_nav(page, base)
                 # five-second replay run: no console errors while the fragment polls
-                page.goto(base + '/live?ev=Monza&drv=NOR&lap=5&mode=live', wait_until='domcontentloaded'); page.wait_for_selector('[data-orb-ready="live"]', state='attached')
+                goto_route(page, base, '/live?ev=Monza&drv=NOR&lap=5&mode=live'); page.wait_for_selector('[data-orb-ready="live"]', state='attached')
                 page.wait_for_timeout(500); errors.clear(); bad_responses.clear()
                 page.get_by_role('button', name='Start replay').first.click(); page.wait_for_timeout(6000)
                 lap_text = ' '.join(page.locator('[data-orb-header]').first.inner_text().split())
@@ -255,9 +286,9 @@ def summarise(report: dict) -> str:
     worst_load = max(v['load_ms'] for r in report['routes'].values() for v in r.values())
     lines.append(f"cold loads: worst {worst_load} ms · route switches: " + ', '.join(f'{k} {v}' for k, v in report['timings'].items() if k.startswith('route_switch')))
     errs = [(n, vp, e) for n, r in report['routes'].items() for vp, v in r.items() for e in v['console_errors']]
-    lines.append(f"console errors (excluding Streamlit's benign base-path 404 probes on deep links): {len(errs)}" + (' ' + json.dumps(errs[:5]) if errs else ''))
+    lines.append(f"raw console errors: {len(errs)}" + (' ' + json.dumps(errs[:5]) if errs else ''))
     probes = sum(len(v.get('benign_base_path_probes_404', [])) for r in report['routes'].values() for v in r.values())
-    lines.append(f'benign base-path probe 404s (Streamlit client, deep links only): {probes}')
+    lines.append(f'base-path probe 404s (blocking): {probes}')
     over = [(n, vp) for n, r in report['routes'].items() for vp, v in r.items() if v['horizontal_overflow']]
     lines.append(f"horizontal overflow: {over or 'none'}")
     lines.append(f"external requests attempted: {len(report['external_requests'])}" + (' ' + json.dumps(report['external_requests'][:5]) if report['external_requests'] else ''))

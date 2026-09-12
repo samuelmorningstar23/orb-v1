@@ -416,7 +416,8 @@ def test_support_mismatch_is_visible_not_hidden():
     assert (note == '') == (ts == chip)
     if note:
         assert ts in note and chip in note
-        assert 'support: 7.1 says' in _html(_run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
+        at = _run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'})
+        assert any(note == el.value for el in at.caption)
         assert 'support note' in _html(_run('decision_board', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
 
 
@@ -438,7 +439,7 @@ def test_degraded_feed_and_refused_position_states():
     if LB.AVAILABLE:
         assert 'DEGRADED' in html
     html2 = _html(_run('ghost_strategy', {'ev': 'Hungary', 'drv': 'NOR', 'mode': 'audit'}))
-    assert 'POSITION FEED REFUSED' in html2 and 'Plotly fallback' in html2
+    assert 'POSITION FEED REFUSED' in html2 and 'Plotly fallback' not in html2
 
 
 # ---- C4 acceptance pass on the post-freeze data (12 Sep 22:0x) -------------------------------------------------------

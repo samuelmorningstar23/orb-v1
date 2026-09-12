@@ -1,0 +1,18 @@
+claim audit: 8 wording hits (0 to reword), 37 number claims {'verified': 21, 'exceeds_evidence': 5, 'unverifiable': 5, 'mismatch': 6} -> exit 0
+  EXCEEDS_EVIDENCE withheld_13_of_13_low_deg    (0 occurrences) "low-degradation race" has no definition in the lock; Barcelona HARD (withheld, too few clean laps) degraded at +0.100 s/lap, the 4th highest of all 2
+  UNVERIFIABLE     fallback_0.028_vs_naive_0.082 (0 occurrences) 0.028 is the path-B fallback MAE over the 5 withheld cases with a push signal; the naive MAE is 0.068 on those 5 and 0.106 on all 13 withheld: no subs
+  MISMATCH         hungary_0.055_after_ratio    (0 occurrences) slide 4 multiplies by the pooled medium factor 0.45 (0.1216 x 0.4518 = 0.055) but the lock forecast for Hungary uses its own held-out factor 0.474: pr
+  MISMATCH         madrid_soft_0.098            (0 occurrences) 
+  MISMATCH         madrid_plan_18_38            (0 occurrences) 
+  UNVERIFIABLE     madrid_hard_four_laps        (0 occurrences) the lock carries no HARD row for Madrid; the four-lap count must come from the excluded-laps table (out/excluded_Madrid.csv) if it is to be quoted
+  EXCEEDS_EVIDENCE beats_naive_7_of_8           (0 occurrences) the lock scores 10 weekends: Orb v1 beats naive on 8 of 10 and loses on ['Australia', 'Barcelona'] (Australia naive +14.5 vs Orb +25.1 is a second, un
+  UNVERIFIABLE     push_share_52_68             (0 occurrences) the pooled share reproduces (68%); the per-case median under the natural definition is 13% with shares from -34.0 to 14.3: the 52% needs its definitio
+  EXCEEDS_EVIDENCE every_withheld_rises         (0 occurrences) 4 of the 13 withheld compounds (all withheld for too few clean laps: Barcelona HARD -0.33, Belgium HARD -0.17, Canada SOFT -0.15, Miami SOFT -0.57 MJ 
+  MISMATCH         beta_same_two_decimals       (0 occurrences) Austria -0.601 vs -0.590 (-0.60 vs -0.59), Barcelona -0.578 vs -0.575: consistent within 0.01 s/MJ, not "the same to two decimals"; the deck wording "
+  UNVERIFIABLE     liquid_bare_reduction_pct_without_basis (0 occurrences) 23% is only the lap-weighted reduction with the three degenerate Hungary cells removed; unweighted it is 18%, and with Hungary it is 31% (lap-weighted
+  MISMATCH         liquid_beats_best_10_of_31   (0 occurrences) the real count is 9 of 31; "10 of 31" appears in no current document and must not return
+  EXCEEDS_EVIDENCE offsets_from_qualifying      (0 occurrences) the lock sources the offsets from practice medians for most weekends (Monza: practice, 23 / 21 drivers; Madrid HARD: nominal Pirelli-range step); qual
+  UNVERIFIABLE     roadmap_illustrative         (0 occurrences) the roadmap marks these as examples of the screen; they must not be spoken as results
+  MISMATCH         madrid_timing                (0 occurrences) a stated time that did not happen: 17:40 (FP3; landed 18:11), 21:00 (qualifying; the 21:03 attempt found Q not run, second attempt 21:32), 05:04 / ref
+  EXCEEDS_EVIDENCE rival_field_none_held_out    (0 occurrences) the Live Predictor computes the posterior and ranked actions in-process (deterministic replay of the frozen prior and the hashed race file, but not lo
+map: /Users/samuelmorningstar/Trackshift/proto/evaluation/red_team/claim_evidence_map.json

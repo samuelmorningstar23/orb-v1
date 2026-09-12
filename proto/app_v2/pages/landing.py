@@ -54,34 +54,44 @@ def _status_html(items) -> str:
     return '<div class="cs-status">' + ''.join(f'<span class="item {"ok" if i.ok else "no"}" title="{esc(i.detail)}">{"●" if i.ok else "○"} {esc(i.label)}</span>' for i in items) + '</div>'
 
 
+def replay_target(selected: str, available: list[str]) -> str | None:
+    """A replay CTA must resolve to a race that actually exists."""
+    return selected if selected in available else ('Monza' if 'Monza' in available else next(iter(available), None))
+
+
 def render() -> None:
     ctx = common.context('landing')
-    common.header(ctx, 'landing', session='Landing', support='—' if ctx.lock is None else 'lock loaded', latency='n/a')
-    if ctx.lock is None:
-        empty_states.missing_lock(); shell.ready_marker('landing'); return
+    if not common.require_lock(ctx, 'landing'):
+        return
+    common.header(ctx, 'landing', session='Overview')
     vm = VM.build_landing(ctx.lock)
-    st.markdown('## Predict. Monitor. Decide. Prove.')
-    st.markdown(f'<div class="cs-muted">Pre-race prior locked and hashed ({vm.forecast_hash6}) · live posterior every lap · ranked pit and compound actions · Race Twin proof. Two tools, two data boundaries, one frozen forecast.</div>', unsafe_allow_html=True)
+    st.markdown('# Make the next tyre call.')
+    st.markdown('See how tyre pace is changing. Compare the next stop. Replay the decision.')
+    target = replay_target(ctx.event, vm.race_files)
     left, right = st.columns(2, gap='large')
     with left:
-        st.html(f'<div class="cs-mode live"><h2>LIVE PREDICTOR</h2><div class="lead">Compare actual tyre behaviour against the locked pre-race forecast and receive updated pit and compound recommendations. Sees only what existed at the current timestamp; makes the call.</div>{_status_html(vm.live_status)}</div>')
-        c1, c2, c3 = st.columns(3)
-        if c1.button('Start historical replay', type='primary', width='stretch', key='btn_replay'):
-            common.goto('live', mode='live')
-        c2.button('Load recorded-live session', width='stretch', disabled=True, help='Workstream 2 delivered the RecordedLive source (proto/events/, task 0.9); the dashboard consumes the replay source only in Phase 0.', key='btn_recorded')
-        c3.button('Connect live feed', width='stretch', disabled=True, help='Live adapter is Phase 1.', key='btn_live')
-        st.markdown(f'<div class="cs-muted">Recorded races available for replay: {esc(", ".join(vm.race_files))}. Live forecast weekend: {esc(", ".join(vm.live_events) or "none")} (no race file yet: the forecast is shown, replay waits for a source).</div>', unsafe_allow_html=True)
-        st.html(live_scorecard_html())
+        st.html(cards.card_html('Live Predictor', '<h2>Watch the prediction evolve</h2><p>Replay a recorded race, advance a lap, and see the updated degradation estimate and pit recommendation.</p>', extra_class='start-card'))
+        if st.button(f'Start {target} replay' if target else 'No recorded races available', type='primary', disabled=target is None, width='stretch'):
+            common.goto('live', ev=target, drv=None, lap=1, mode='live')
+        st.caption('Historical replay · an external live feed is not connected.')
     with right:
-        st.html(f'<div class="cs-mode ghost"><h2>GHOST STRATEGY</h2><div class="lead">Audit a completed race, test alternative tyre strategies and inspect generalisation across supported drivers, circuits and weather. Sees the finished race; audits whether the model deserved to make the call.</div>{_status_html(vm.ghost_status)}</div>')
-        c1, c2, c3 = st.columns(3)
-        if c1.button('Historical audit', type='primary', width='stretch', key='btn_audit'):
-            common.goto('ghost', mode='audit')
-        if c2.button('Scenario explorer', width='stretch', key='btn_scenario'):
-            common.goto('ghost', mode='scenario')
-        if c3.button('Generalisation scorecard', width='stretch', key='btn_gen'):
-            common.goto('generalisation', mode='audit')
-        st.markdown(f'<div class="cs-muted">Scored weekends in the lock: {esc(", ".join(vm.scored_events))}.</div>', unsafe_allow_html=True)
+        st.html(cards.card_html('Ghost Strategy', '<h2>Compare a different stop</h2><p>Start with a prepared Monza strategy and compare its modelled tyre-time result with the recorded race.</p>', extra_class='start-card'))
+        if st.button('Compare Monza strategies', width='stretch'):
+            common.goto('ghost', ev='Monza', drv='NOR', mode='audit', ilap=24, rep='MEDIUM', lap=None)
+        st.caption('Modelled comparison · traffic and rivals are not simulated.')
+    st.markdown('### Madrid · frozen forecast')
+    st.caption('Issued before the race. Race results have not been used.')
+    cols = st.columns(3)
+    for col, comp in zip(cols, ctx.lock.compounds_for('Madrid')):
+        f = ctx.lock.forecast_for('Madrid', comp)
+        with col:
+            cards.kpi_card(comp.title(), f'{f.prediction:+.3f}', f'90% band {f.band90[0]:+.3f} to {f.band90[1]:+.3f} · ' + ('issued' if f.issued else 'withheld; fallback applies'), 'live' if f.issued else 'decision', unit='s/lap')
+    with cols[-1]:
+        if st.button('View Madrid forecast', width='stretch'):
+            common.goto('prerace', ev='Madrid', drv=None, lap=None)
+    with st.expander('How well does the model perform?'):
+        st.html(live_scorecard_html())
         st.html(ghost_scorecard_html())
-    st.markdown('<div class="cs-muted" style="margin-top:16px">Defensible sentence: Orb v1 can be tested across any available driver, circuit and supported weather regime, and it abstains when the selected conditions fall outside the evidence.</div>', unsafe_allow_html=True)
+        if st.button('Open validation'):
+            common.goto('validation')
     shell.ready_marker('landing')

@@ -1,0 +1,12 @@
+China: too few clean practice laps, skipped
+weekends: 13 | completed 11 | live ['Madrid']
+{
+"naive": 0.16267078585895134,
+"clean": 0.045398693822790964,
+"clearstint": 0.022578579345158285,
+"push_adjusted": 0.034650396668385985
+} {"naive": 0.1371372633798251, "clearstint": 0.02273090763948737} {"slope": 0.7653025986667082, "r": 0.7806457826398171, "n": 29}
+
+LIVE Madrid:
+  SOFT   n= 46 naive +0.512 clean +0.070 -> +0.068 s/lap [-0.114,+0.255] | cleaned Friday curve × season transfer factor
+  MEDIUM n=112 naive +0.153 clean -0.199 -> +0.028 s/lap [-0.013,+0.088] | low-degradation fallback: median race degradation of the 13 withheld cases this season

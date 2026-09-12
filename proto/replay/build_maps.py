@@ -59,11 +59,15 @@ def main(argv=None) -> int:
     ap.add_argument('--frames-drivers', default='', help='comma list of drivers to build FIXTURE/Workstream-2 frames for')
     ap.add_argument('--intervention', type=int, default=None, help='FIXTURE intervention lap (default: ~40 percent of the race)')
     ap.add_argument('--to', default='HARD', help='FIXTURE replacement compound')
+    ap.add_argument('--geometry-only', action='store_true', help='build canonical track and pit lane only; no trajectory or scenario claims')
+    ap.add_argument('--offline', action='store_true', help='read cached responses only; never fetch missing data')
     ap.add_argument('--max-samples', type=int, default=64)
     a = ap.parse_args(argv)
     t0 = time.time()
     out_dir = Path(a.out) / a.event
-    src = sources.from_fastf1(a.year, a.event, a.cache)
+    if a.geometry_only and out_dir.exists() and any(p.name not in {'track.npz', 'pitlane.npz'} for p in out_dir.glob('*.npz')):
+        ap.error('geometry-only output contains existing trajectory/frame assets; use a clean output directory')
+    src = sources.from_fastf1(a.year, a.event, a.cache, offline=a.offline)
     print(f'loaded {src.event_id}: {len(src.drivers)} drivers, {src.n_laps} laps, {time.time() - t0:.1f} s')
     try:
         track = geometry.build_track(src)
@@ -75,6 +79,21 @@ def main(argv=None) -> int:
     track = geometry.attach_pit_flags(track, pitlane)
     h_track = track.save(out_dir); h_pit = pitlane.save(out_dir)
     print(f'track L={track.L:.1f} m, {track.n_points} pts, residual rms {track.meta["quality"]["residual_rms_m"]} m; pit lane {pitlane.source} {pitlane.length:.0f} m, transit {pitlane.transit_time:.1f} s ({pitlane.meta.get("n_stops", 0)} stops)')
+    if a.geometry_only:
+        meta = dict(track.meta, status='ok',
+                    capabilities=dict(canonical_geometry=True, driver_trajectories=False, scenario_replay=False),
+                    limitation='Canonical geometry only. No driver trajectories or counterfactual replay are supplied.',
+                    pitlane=dict(source=pitlane.source, length_m=round(pitlane.length, 1),
+                                 entry_s=round(pitlane.entry_s, 1), exit_s=round(pitlane.exit_s, 1),
+                                 transit_s=round(pitlane.transit_time, 1), s_line=round(pitlane.s_line, 1), meta=pitlane.meta),
+                    drivers={}, frames=[], identity_check=None,
+                    files=dict(track=dict(file='track.npz', sha256=h_track, bytes=(out_dir / 'track.npz').stat().st_size),
+                               pitlane=dict(file='pitlane.npz', sha256=h_pit, bytes=(out_dir / 'pitlane.npz').stat().st_size)),
+                    build=dict(generated_at=time.strftime('%Y-%m-%dT%H:%M:%S'), seconds=round(time.time() - t0, 1),
+                               source=src.meta, tool='replay/build_maps.py', geometry_only=True))
+        rio.save_json(out_dir / 'meta.json', meta)
+        print(f'wrote canonical geometry only: {out_dir}')
+        return 0
     cuts = trajectory.race_clock_cuts(src)
     drivers = src.drivers if a.drivers.upper() == 'ALL' else [d.strip().upper() for d in a.drivers.split(',') if d.strip()]
     driver_meta = {}

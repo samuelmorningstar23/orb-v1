@@ -1,0 +1,401 @@
+{
+ "checkpoint": "C6",
+ "decision": "GO",
+ "proposed": "GO",
+ "note": "release candidate: offline run, release gate 326/326, five-minute rehearsal 303 s 12/12, fresh-clone pipeline under network deny, README and 109 pinned requirements; product blockers from the 01:42 browser audit repaired and verified in-browser; import boundary and presentation offline notice fixed",
+ "at": "2026-09-13T02:22:17",
+ "git_commit": "d2d0e73",
+ "git_branch": "main",
+ "git_dirty_paths": 243,
+ "decided_by": "lead",
+ "all_green": true,
+ "decision_overrides_checks": false,
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.12,
+   "timed_out": false,
+   "log": "checkpoints/C6/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 114.58,
+   "timed_out": false,
+   "counts": {
+    "passed": 582,
+    "skipped": 1,
+    "xfailed": 1
+   },
+   "test_dirs": [
+    "contract",
+    "counterfactual",
+    "evaluation",
+    "live",
+    "red_team",
+    "release",
+    "replay",
+    "screenshots",
+    "ui"
+   ],
+   "log": "checkpoints/C6/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "241 changed paths, 3 flagged: README.md, proto/README.md, proto/requirements.txt",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 241,
+    "flagged": 3,
+    "unowned": 0,
+    "lead_only": 3,
+    "outside_proto": 0,
+    "by_owner": {
+     "3": 38,
+     "4": 45,
+     "6": 100,
+     "7": 20,
+     "9": 33,
+     "lead": 3,
+     "lead/notes": 2
+    }
+   },
+   "flagged": [
+    "README.md",
+    "proto/README.md",
+    "proto/requirements.txt"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python evaluation/red_team/consistency_probe.py",
+   "returncode": 0,
+   "duration_s": 44.85,
+   "timed_out": false,
+   "log": "checkpoints/C6/logs/lock_dashboard_consistency.txt"
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ],
+ "artifact_hashes": {
+  "out/lock.json": "6e0d69d64ca7da64",
+  "out/lock_v2.json": "233f4e8c356758a1",
+  "evaluation/holdout/sealed_holdout_manifest.json": "37b85e762b2e03c0",
+  "evaluation/holdout/sealed_holdout_manifest.sha256": "2f636dda347557ea",
+  "fixtures/lock_v2_fixture.json": "57825e9ff6ad7a04",
+  "schemas/lock_v2_minimal.py": "f2cf5dea71eff700",
+  "ui/tokens.py": "714224d37e4d978c",
+  "theme/base.css": "f0b55603d5ed6e7b"
+ },
+ "hash_changes_since_last_green": {
+  "changed": [],
+  "added": [],
+  "removed": []
+ },
+ "previous_green": {
+  "checkpoint": "C5",
+  "git_commit": "230870b",
+  "at": "2026-09-13T00:44:41",
+  "decision": "GO"
+ },
+ "active_workstreams": [
+  3,
+  6,
+  7
+ ],
+ "missing_heartbeats": [],
+ "stale_heartbeats": [
+  1,
+  2,
+  3,
+  4,
+  6,
+  7,
+  8,
+  9
+ ],
+ "heartbeats": [
+  {
+   "workstream": 1,
+   "status": "GREEN",
+   "effective": "AMBER (stale 592 min)",
+   "age_min": 592.2,
+   "stale": true,
+   "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
+   "tests_passed": 109,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    7
+   ],
+   "completed": [
+    "schemas/lock_v2.py + lock_v2.schema.json (48 models, extra=forbid, cross-block hash checks)",
+    "shared/lockio.py (atomic write, canonical_json, forecast_hash, sidecar refs)",
+    "validators/adapt_v1.py -> out/lock_v2.json + out/lock_v2_sidecars/ (forecast_hash sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a)",
+    "validators/validate_lock.py (exit 0/1/2/3; sidecar sha256 verified)",
+    "fixtures: lock_v2_fixture.json, sidecars/, mini_race/, golden_race.json, make_fixtures.py, seed_v1_snapshot.json",
+    "schemas/README.md",
+    "lead change applied: TrafficMode = clean_air|paired_replay|frozen_field; safety_car_schedule = 'historical_fixed'|'observed_fixed'|[periods]; schema + fixture regenerated",
+    "tests/contract: 109 passed",
+    "lead change 2: StateRegime += accelerating_wear, anomaly; SCHEMA_VERSION 2.1.0; schema + fixture regenerated"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:30:03",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_1.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 2,
+   "status": "GREEN",
+   "effective": "AMBER (stale 582 min)",
+   "age_min": 582.3,
+   "stale": true,
+   "task": "0.3 PreRaceCurveProvider (provider A); 0.4 counterfactual core (fixed_context, tyre_only); 0.9 RaceEventSource (replay, recorded-live, live stub)",
+   "tests_passed": 53,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    3,
+    7
+   ],
+   "completed": [
+    "counterfactual/provider.py: TyreCurveProvider + ProviderA reproducing lock.json exactly; reference_curve_post_race fenced (assert_pre_race)",
+    "counterfactual/racedata.py, pitmodel.py, engine.py, run.py: decomposition, standardised pit event, SC rules, whole-curve sampling, schema-valid summary, support guard, CLI + lattice",
+    "events/: RaceEvent, ReplayEventSource, RecordedLiveEventSource, LiveEventSource stub, record()",
+    "lead follow-up applied: traffic_mode 'paired_replay' (fixed_context) / 'clean_air' (tyre_only); safety_car_schedule = observed period list in both modes; mirrored engine.* fields dropped; default-curve decision recorded in counterfactual/README.md ('leave-one-driver-out Sunday reference' for Historical Audit, pre-race forecast only for Scenario Explorer)",
+    "out/counterfactual regenerated (4 Monza scenarios + 2 lattices); validators/validate_lock.py --strict accepts a lock carrying them (sidecars verified)",
+    "tests/counterfactual: 53 passed"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:40:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_2.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 3,
+   "status": "GREEN",
+   "effective": "AMBER (stale 48 min)",
+   "age_min": 48.1,
+   "stale": true,
+   "task": "C6 timed five-minute rehearsal and independent numeric evidence",
+   "tests_passed": 5,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "7",
+    "lead"
+   ],
+   "completed": [
+    "Implemented evaluation/rehearsal_runner.py and tests/evaluation/test_rehearsal_runner.py. Root navigation and pumped Playwright waits; strict semantic DOM/widget/Plotly/runtime matching; exact-origin network guard; one feedback event with exact CAS restoration; source-exact Race Twin payload and observed HUD interpolation evidence.",
+    "Final command: ../.venv/bin/python evaluation/rehearsal_runner.py --server-proto /Users/samuelmorningstar/Trackshift/proto --out /private/tmp/orb-c6-workstream3/proto/evaluation/rehearsal --allow-feedback. Exit 0; 302.511 seconds, 12 stable checkpoints, 4823 matched numeric records, zero mismatches/unclassified/load/console/network/external errors. Started 2026-09-12T19:57:30.918645+00:00, ended 20:02:33.432910+00:00.",
+    "One feedback event at lap 31 was consumed at laps 31, 32 and 53. Replay progressed 1 to 17 and 32 to 53. Exact original empty feedback log restored; SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855. Exclusive feedback lease released.",
+    "../.venv/bin/python -m pytest tests/evaluation/test_rehearsal_runner.py -q: 5 passed in 0.20s after final runner run.",
+    "First definitive run FAILED after 184.004 seconds: incorrect Frames.to_dict and 10 real deep-navigation 404s, replay event starvation. Exact executed source and evidence preserved in evaluation/rehearsal_failures/20260912T193948Z; feedback restored. Fixed harness only, no product changes.",
+    "../.venv/bin/python /private/tmp/c6_workstream3_focused.py: replay 32 to 53 with zero raw errors, then failed Twin text fusion; recorded as partial focused check. ../.venv/bin/python /private/tmp/c6_workstream3_twin_probe.py: PASS, 62 observed HUD updates / 1240 source-matched numbers, zero raw errors, after text boundary and authored halo quantile reference fixes."
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T20:04:09.720516+00:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_3.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 4,
+   "status": "GREEN",
+   "effective": "AMBER (stale 574 min)",
+   "age_min": 574.3,
+   "stale": true,
+   "task": "0.5 track geometry, trajectory, time warp, browser player, Plotly fallback",
+   "tests_passed": 30,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    6
+   ],
+   "completed": [
+    "replay/sources.py (PositionSource from FastF1 cache or fixtures/mini_race; distinct-points quality gate)",
+    "replay/geometry.py (canonical 10 m path, sectors, pit flags, recorded/schematic pit lane, QualityRefusal + meta)",
+    "replay/trajectory.py (race clock with red-flag cuts, projection with S/F guard, 1 Hz S(t), stops, per-driver refusal)",
+    "replay/timewarp.py (Workstream 2 laps table loader, FIXTURE generator, ghost schedule follow/reference/pit pair, whole-curve quantiles, 1 Hz frames)",
+    "replay/io.py + build_maps.py + perf_harness.py",
+    "app_v2/components/race_twin: player.html + player.py (race_twin_player), plotly_fallback.py extended (race_twin_animation, track/pitlane on race_twin_map), README.md",
+    "out/maps/Monza (22 drivers; frames for the 4 Workstream 2 scenarios NOR x2 / VER x2 labelled workstream2 + PIA FIXTURE; 1.83 MB; sha256 sidecars), out/maps/Hungary refused (meta.json)",
+    "tests/replay: 30 passed",
+    "PERF.md: 119-122 FPS at 1x-10x headless Chromium, 0 console errors, 0 external requests, identity overlay 0.11 m"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:48:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_4.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 6,
+   "status": "GREEN",
+   "effective": "AMBER (stale 59 min)",
+   "age_min": 59.4,
+   "stale": true,
+   "task": "C6 release UI acceptance and independent README refutation",
+   "tests_passed": 20,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    7,
+    "lead"
+   ],
+   "completed": [
+    "Exact-origin HTTP/WebSocket guard, complete route matrix and offline notices enforced.",
+    "All eight navigation destinations activated with real Tab/Enter at both resolutions.",
+    "Initial 324-check filtered acceptance invalidated by independent review; preserved as c6_release_report_initial_filtered.json.",
+    "Root bootstrap plus real internal navigation prevents deep-base probes; no console filtering remains; global raw error evidence mandatory.",
+    "Definitive raw-zero release PASS 326/326: 38 cells, zero raw console/HTTP/probe/external errors, no overflow; cold worst 1192 ms, click 211\u2013272 ms, keyboard 102\u2013255 ms.",
+    "20 fail-closed gate unit tests passed; no product edits or golden updates.",
+    "Independent README refuter passed: 109 exact pins, 8 jury questions, 6 references, 4 Madrid hashes, 69 actual clone cache hashes, actual clone lock equality except generated_at; pipeline not run by refuter."
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-13T01:22:50.146139+05:30",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_6.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 7,
+   "status": "GREEN",
+   "effective": "AMBER (stale 48 min)",
+   "age_min": 48.2,
+   "stale": true,
+   "task": "C6 red-team release/rehearsal gates, README claims, dynamic-feedback provenance",
+   "tests_passed": 16,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "README claim sources/presentation/freshness added; direct frozen README headline/date/digest checks PASS on current main README",
+    "C6 consolidated gate retains complete C5 browser matrix; requires release report, >=300s rehearsal with numeric provenance/feedback restoration/RaceTwin proof, direct README evidence; non-PASS gives HOLD",
+    "Explicit-feedback LiveSession prefix reference hook added; obsolete live sidecar and generic feedback references excluded; every accepted numeric match stores source/value; strict unknown-integer rejection",
+    "Independent final release refutation PASS38 matrix cases +11 hostile-origin probes; repaired326-check report has zero raw console/network errors and empty per-route probes; source/report hashes captured",
+    "Rehearsal preparatory source refutation found network-origin/WS gap, missingTwinroute and absentstep errorfields; Workstream3 confirmed all fixed before execution",
+    "Detected initial filtered release report retained72 HTTP404 probes; invalidated raw-zero acceptance, preserved failed refutation, Workstream6 repaired root/internal navigation and raw-session logging",
+    "Initial184s rehearsal rejected despite716 matched numbers: serialization exception and raw404 errors; failed report preserved; awaiting corrected >=300s run",
+    "Definitive rehearsal independently PASS:302.511 seconds,12 steps,4823 precision records,62 independently interpolated animation samples, zero raw errors, exact one-event feedback restoration",
+    "Numeric browser probe now uses root-query bootstrap plus internal navigation, exact-origin HTTP/WS guard and blocking raw console/network errors; DOM extraction and runtime hooks unchanged"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T20:04:04.355390+00:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_7.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 8,
+   "status": "GREEN",
+   "effective": "AMBER (stale 592 min)",
+   "age_min": 592.3,
+   "stale": true,
+   "task": "live intelligence: 0.8 replay estimator, 0.10 feedback adapter, 0.12 action engine, prefix evaluation, view-model adapter",
+   "tests_passed": 31,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    3,
+    7
+   ],
+   "completed": [
+    "live/lapfeed.py: online-safe race access (rows <= k, rival laps <= own cutoff), FutureDataError",
+    "live/priors.py: forecast-only lock reader (deny list on obs/err), support status",
+    "live/clock.py: data_cutoff timestamps (FastF1 StartDate + session time)",
+    "live/estimator.py: linear-Gaussian (intercept, slope) filter with fixed regime rules; widening status x2, rain x4, temp x2, feed x2, out-of-support x2 (additive-equivalent, capped at 4x prior, floored); batch conditioning == sequential filter to 1e-9",
+    "live/feedback.py: DriverFeedbackAdapter, documented regime-shift table R1-R8, never seconds, reversible when disabled",
+    "decision/optimizer.py: StrategyOptimizer re-run per lap (pit now / pit in window / extend / stay out / two-stop), sampled gains vs the pre-race plan, rejoin from observed lap-time ordering, change_reason naming the observation, hysteresis",
+    "live/session.py + live/replay_run.py: out/live/<event>_<driver>/ states.jsonl, recommendations.jsonl, estimator_trace.jsonl, live_predictor.json (validated LivePredictor), summary.json, .sha256 sidecars; Monza/Austria/Barcelona NOR written",
+    "live/viewmodel.py: build_live / build_live_vm with exactly Workstream 6's LiveVM keys + orb_live (one-line wiring)",
+    "live/prefix_eval.py: 3 races, 66 drivers, 3563 laps vs prior-only baseline; out/live/prefix_eval.json + PREFIX_EVAL.md",
+    "tests/live: 31 passed (future-lap raise, widening x2/x4/x2/x2/x2, cap, floor, pit reset, feedback reversibility, batch==replay synthetic+real, schema validation, optimizer ordering, view-model keys); tests/contract still 108 passed"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:30:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_8.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 9,
+   "status": "GREEN",
+   "effective": "AMBER (stale 582 min)",
+   "age_min": 582.5,
+   "stale": true,
+   "task": "build_control_system (task 0.16)",
+   "tests_passed": 83,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "read ROADMAP_v5 s6/s14, starter, C0, last_green",
+    "build_control.py: status/checkpoint/decide/sign/checks/stop-the-line/clear-stop/freeze/unfreeze/rollback/heartbeat/summary/active-workstreams",
+    "release/ownership_audit.py; ownership map per lead decisions 14:55 and 15:05 (out/ subtrees, tests/ per workstream, lead-only globs)",
+    "release/rollback.sh; drill PASSED, recorded in checkpoints/rollback_drill.md",
+    "release/run_checkpoint.sh; C1 REHEARSAL artifact set under checkpoints/rehearsal/C1",
+    "release/build_control_app.py hidden route on 8599 (HTTP 200 smoke)",
+    "release/README.md incl. ownership map",
+    "tests/release/test_build_control.py: 83 passed",
+    "SUMMARY.md cadence"
+   ],
+   "in_progress": [
+    "30-min heartbeat and SUMMARY.md cadence",
+    "real C1 at the 16:05 lead commit; queue left OPEN until then"
+   ],
+   "commit": null,
+   "updated_at": "2026-09-12T16:39:50",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_9.json",
+   "missing": false,
+   "unreadable": false
+  }
+ ],
+ "stop_the_line": null,
+ "merge_queue_before": {
+  "state": "FROZEN",
+  "reason": "checkpoint C6 in progress (run_checkpoint.sh)",
+  "since": "2026-09-13T02:19:38",
+  "by": "workstream 9"
+ },
+ "rehearsal": false,
+ "directory": "checkpoints/C6",
+ "decided_at": "2026-09-13T02:22:47",
+ "decision_note": "offline run, release gate 326/326, five-minute rehearsal 303 s with 12/12 steps and 0 external requests, fresh-clone pipeline under network deny reproducing the lock, README and 109 pinned requirements; the 01:42 browser-audit blockers repaired and re-verified in-browser; import-boundary and presentation offline-notice faults fixed; suite 551 passed, 1 skipped, 1 xfailed; WARN is three lead-only README/requirements files"
+}

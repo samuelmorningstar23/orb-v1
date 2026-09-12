@@ -1,0 +1,559 @@
+{
+ "event": "Netherlands",
+ "event_id": "2026_Netherlands",
+ "year": 2026,
+ "session": "R",
+ "n_laps": 72,
+ "grid_m_nominal": 10.0,
+ "quality": {
+  "status": "ok",
+  "min_distinct_per_lap": 100,
+  "drivers_passed": [
+   "ALB",
+   "ALO",
+   "ANT",
+   "BEA",
+   "BOR",
+   "BOT",
+   "COL",
+   "GAS",
+   "HAM",
+   "HUL",
+   "LAW",
+   "LEC",
+   "LIN",
+   "NOR",
+   "OCO",
+   "PER",
+   "PIA",
+   "RUS",
+   "SAI",
+   "STR",
+   "TSU",
+   "VER"
+  ],
+  "drivers_refused": [],
+  "per_driver": {
+   "ALB": {
+    "median": 300,
+    "min": 282,
+    "ok": true
+   },
+   "ALO": {
+    "median": 297,
+    "min": 37,
+    "ok": true
+   },
+   "ANT": {
+    "median": 289,
+    "min": 270,
+    "ok": true
+   },
+   "BEA": {
+    "median": 475,
+    "min": 367,
+    "ok": true
+   },
+   "BOR": {
+    "median": 299,
+    "min": 280,
+    "ok": true
+   },
+   "BOT": {
+    "median": 302,
+    "min": 284,
+    "ok": true
+   },
+   "COL": {
+    "median": 299,
+    "min": 281,
+    "ok": true
+   },
+   "GAS": {
+    "median": 297,
+    "min": 278,
+    "ok": true
+   },
+   "HAM": {
+    "median": 290,
+    "min": 268,
+    "ok": true
+   },
+   "HUL": {
+    "median": 294,
+    "min": 276,
+    "ok": true
+   },
+   "LAW": {
+    "median": 292,
+    "min": 274,
+    "ok": true
+   },
+   "LEC": {
+    "median": 289,
+    "min": 269,
+    "ok": true
+   },
+   "LIN": {
+    "median": 296,
+    "min": 118,
+    "ok": true
+   },
+   "NOR": {
+    "median": 288,
+    "min": 270,
+    "ok": true
+   },
+   "OCO": {
+    "median": 298,
+    "min": 107,
+    "ok": true
+   },
+   "PER": {
+    "median": 301,
+    "min": 286,
+    "ok": true
+   },
+   "PIA": {
+    "median": 291,
+    "min": 270,
+    "ok": true
+   },
+   "RUS": {
+    "median": 289,
+    "min": 274,
+    "ok": true
+   },
+   "SAI": {
+    "median": 301,
+    "min": 284,
+    "ok": true
+   },
+   "STR": {
+    "median": 300,
+    "min": 282,
+    "ok": true
+   },
+   "TSU": {
+    "median": 296,
+    "min": 279,
+    "ok": true
+   },
+   "VER": {
+    "median": 311,
+    "min": 311,
+    "ok": true
+   }
+  },
+  "n_clean_laps": 1090,
+  "n_pooled_points": 319864,
+  "seed_lap": {
+   "driver": "PIA",
+   "lap": 21,
+   "n_points": 302,
+   "lap_time": 76.351
+  },
+  "residual_rms_m": 0.849,
+  "share_within_5m": 1.0,
+  "start_line_median_abs_dev_m": 3.14,
+  "n_start_samples": 1090,
+  "closure": "closed by construction (consensus bins along a closed seed)",
+  "grid_m": 10.0045
+ },
+ "L": 4191.901,
+ "n_points": 419,
+ "grid_m": 10.0045,
+ "sector1_end_s": 1602.39,
+ "sector2_end_s": 3032.95,
+ "sector_source": {
+  "s1": "positions at sector session times",
+  "s2": "positions at sector session times"
+ },
+ "sector_fractions": [
+  0.3823,
+  0.7235
+ ],
+ "units": "metres, feed frame (FastF1 X/Y / 10)",
+ "pit_entry_s": 4154.78,
+ "pit_exit_s": 513.49,
+ "pit_entry_index": 415,
+ "pit_exit_index": 51,
+ "pitlane_source": "recorded",
+ "status": "ok",
+ "capabilities": {
+  "canonical_geometry": true,
+  "driver_trajectories": false,
+  "scenario_replay": false
+ },
+ "limitation": "Canonical geometry only. No driver trajectories or counterfactual replay are supplied.",
+ "pitlane": {
+  "source": "recorded",
+  "length_m": 582.4,
+  "entry_s": 4154.8,
+  "exit_s": 513.5,
+  "transit_s": 27.0,
+  "s_line": 77.7,
+  "meta": {
+   "source": "recorded",
+   "n_stops": 44,
+   "n_excursions_seen": 68,
+   "median_transit_s": 26.91,
+   "transit_iqr_s": [
+    26.41,
+    27.66
+   ],
+   "entry_s": 4154.78,
+   "exit_s": 513.49,
+   "stops": [
+    {
+     "driver": "ALB",
+     "lap_in": 26,
+     "duration_s": 26.48,
+     "span_m": 555.2,
+     "n_points": 97
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 49,
+     "duration_s": 26.0,
+     "span_m": 560.6,
+     "n_points": 99
+    },
+    {
+     "driver": "ALO",
+     "lap_in": 34,
+     "duration_s": 26.3,
+     "span_m": 534.7,
+     "n_points": 101
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 21,
+     "duration_s": 27.52,
+     "span_m": 549.7,
+     "n_points": 111
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 40,
+     "duration_s": 26.32,
+     "span_m": 546.5,
+     "n_points": 101
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 56,
+     "duration_s": 27.96,
+     "span_m": 551.5,
+     "n_points": 107
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 11,
+     "duration_s": 26.74,
+     "span_m": 544.1,
+     "n_points": 98
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 34,
+     "duration_s": 25.94,
+     "span_m": 547.8,
+     "n_points": 98
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 53,
+     "duration_s": 28.3,
+     "span_m": 531.7,
+     "n_points": 106
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 28,
+     "duration_s": 29.4,
+     "span_m": 546.7,
+     "n_points": 115
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 51,
+     "duration_s": 29.36,
+     "span_m": 552.7,
+     "n_points": 113
+    },
+    {
+     "driver": "COL",
+     "lap_in": 8,
+     "duration_s": 20.68,
+     "span_m": 557.1,
+     "n_points": 84
+    },
+    {
+     "driver": "COL",
+     "lap_in": 21,
+     "duration_s": 28.18,
+     "span_m": 549.5,
+     "n_points": 116
+    },
+    {
+     "driver": "COL",
+     "lap_in": 45,
+     "duration_s": 26.86,
+     "span_m": 549.2,
+     "n_points": 105
+    },
+    {
+     "driver": "GAS",
+     "lap_in": 18,
+     "duration_s": 26.96,
+     "span_m": 554.9,
+     "n_points": 106
+    },
+    {
+     "driver": "GAS",
+     "lap_in": 46,
+     "duration_s": 26.82,
+     "span_m": 564.8,
+     "n_points": 98
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 25,
+     "duration_s": 27.12,
+     "span_m": 562.8,
+     "n_points": 103
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 55,
+     "duration_s": 27.68,
+     "span_m": 544.1,
+     "n_points": 108
+    },
+    {
+     "driver": "HUL",
+     "lap_in": 19,
+     "duration_s": 25.98,
+     "span_m": 563.8,
+     "n_points": 100
+    },
+    {
+     "driver": "HUL",
+     "lap_in": 48,
+     "duration_s": 26.56,
+     "span_m": 543.4,
+     "n_points": 104
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 21,
+     "duration_s": 22.94,
+     "span_m": 403.9,
+     "n_points": 91
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 47,
+     "duration_s": 26.5,
+     "span_m": 545.3,
+     "n_points": 100
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 21,
+     "duration_s": 29.02,
+     "span_m": 552.7,
+     "n_points": 115
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 43,
+     "duration_s": 27.34,
+     "span_m": 527.9,
+     "n_points": 98
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 55,
+     "duration_s": 28.18,
+     "span_m": 560.8,
+     "n_points": 105
+    },
+    {
+     "driver": "LIN",
+     "lap_in": 5,
+     "duration_s": 20.84,
+     "span_m": 546.0,
+     "n_points": 80
+    },
+    {
+     "driver": "LIN",
+     "lap_in": 36,
+     "duration_s": 27.28,
+     "span_m": 554.2,
+     "n_points": 110
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 21,
+     "duration_s": 27.1,
+     "span_m": 556.4,
+     "n_points": 110
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 47,
+     "duration_s": 26.48,
+     "span_m": 560.4,
+     "n_points": 94
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 16,
+     "duration_s": 27.9,
+     "span_m": 549.6,
+     "n_points": 102
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 36,
+     "duration_s": 26.82,
+     "span_m": 532.6,
+     "n_points": 107
+    },
+    {
+     "driver": "PER",
+     "lap_in": 29,
+     "duration_s": 27.5,
+     "span_m": 546.4,
+     "n_points": 104
+    },
+    {
+     "driver": "PER",
+     "lap_in": 52,
+     "duration_s": 27.66,
+     "span_m": 553.3,
+     "n_points": 106
+    },
+    {
+     "driver": "PIA",
+     "lap_in": 18,
+     "duration_s": 29.12,
+     "span_m": 557.8,
+     "n_points": 113
+    },
+    {
+     "driver": "PIA",
+     "lap_in": 44,
+     "duration_s": 27.14,
+     "span_m": 553.4,
+     "n_points": 111
+    },
+    {
+     "driver": "PIA",
+     "lap_in": 55,
+     "duration_s": 20.74,
+     "span_m": 369.5,
+     "n_points": 76
+    },
+    {
+     "driver": "RUS",
+     "lap_in": 17,
+     "duration_s": 26.68,
+     "span_m": 554.0,
+     "n_points": 97
+    },
+    {
+     "driver": "RUS",
+     "lap_in": 40,
+     "duration_s": 26.44,
+     "span_m": 557.8,
+     "n_points": 97
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 30,
+     "duration_s": 27.04,
+     "span_m": 562.7,
+     "n_points": 105
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 65,
+     "duration_s": 28.22,
+     "span_m": 548.8,
+     "n_points": 101
+    }
+   ],
+   "offpath_threshold_m": 4.0
+  }
+ },
+ "drivers": {},
+ "frames": [],
+ "identity_check": null,
+ "files": {
+  "track": {
+   "file": "track.npz",
+   "sha256": "bed3cfc16cd2409916fac1692e782498cb833c03e3fe0796e3408273de8c51a9",
+   "bytes": 7258
+  },
+  "pitlane": {
+   "file": "pitlane.npz",
+   "sha256": "2e74f0c996034b780d0d25abf1bd80bb7f990a7a5b129e296ca575b7c25a499f",
+   "bytes": 4944
+  }
+ },
+ "build": {
+  "generated_at": "2026-09-13T01:50:11",
+  "seconds": 3.2,
+  "source": {
+   "source": "fastf1",
+   "fastf1_version": "3.8.3",
+   "event_name": "Dutch Grand Prix",
+   "date": "2026-08-23 13:00:00",
+   "cache_dir": "/private/tmp/orb-map-cache",
+   "position_units": "metres (feed 1/10 m divided by 10)",
+   "driver_numbers": {
+    "NOR": "1",
+    "GAS": "10",
+    "PER": "11",
+    "ANT": "12",
+    "ALO": "14",
+    "LEC": "16",
+    "STR": "18",
+    "TSU": "22",
+    "ALB": "23",
+    "HUL": "27",
+    "VER": "3",
+    "LAW": "30",
+    "OCO": "31",
+    "LIN": "41",
+    "COL": "43",
+    "HAM": "44",
+    "BOR": "5",
+    "SAI": "55",
+    "RUS": "63",
+    "BOT": "77",
+    "PIA": "81",
+    "BEA": "87"
+   },
+   "offline": true,
+   "cached_source_sha256": {
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/_extended_timing_data.ff1pkl": "38277c6f4cbd7e4a95f0e18ac9a333a47782bfe0a264449d229aaaba0c223336",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/car_data.ff1pkl": "57ccf154e9d4cbea5ffc3eb8604542ed898bf815dbe651497b7322dd47b1e360",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/driver_info.ff1pkl": "a1b82f7db36e3d93b3e836b2d0331a8269cc9353cb18612e11a7fb90e401be70",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/lap_count.ff1pkl": "a75313908c1e28051079fa4311c1f475fbdbda83451f073841f54974b18db617",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/position_data.ff1pkl": "238ec9e870e54e8a14649da612926b16ac70fbc7c7e402bc8a79b4074c6d8e2b",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/race_control_messages.ff1pkl": "4be36d53c8f08799cdf13b378d944ebbc1dec3f2a2f39102a8a0fe27315a32c7",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/session_info.ff1pkl": "1eaad10020ff086c3ce8029e556886e25fc782ac0aed1ea92f2f878cf410abfc",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/session_status_data.ff1pkl": "79d6088109b93c602eda5475dcf06d3893e2ca85b975a221a2db605d34124255",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/timing_app_data.ff1pkl": "5cedf58130777e0de201c2d1929b0ceeb87354453c3ab0404f2eb2430e652154",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/track_status_data.ff1pkl": "5d59f4be0e32b0b7d66ac99cf373cba5992eb6c2f8c129edb136259a6e24f3c3",
+    "2026/2026-08-23_Dutch_Grand_Prix/2026-08-23_Race/weather_data.ff1pkl": "9b878dd56a88b5c9c62f57cd7cbfe52ca6924937e7d6fd3e84bd0252f1b0cfc5"
+   }
+  },
+  "tool": "replay/build_maps.py",
+  "geometry_only": true
+ }
+}

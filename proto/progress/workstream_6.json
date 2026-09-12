@@ -1,27 +1,26 @@
 {
   "workstream": 6,
-  "task": "C5 shared scorecard evidence on Validation and Generalisation, n plus weekend-bootstrap bands",
+  "task": "C6 release UI acceptance and independent README refutation",
   "status": "GREEN",
   "commit": null,
   "completed": [
-    "Shared scorecard_evidence renderer displays evaluator estimates/CI/eligible n/independent weekends; no UI recomputation",
-    "Generalisation grouped cell tables; Validation duplicates without weekend bands removed after Workstream3 independent refutation",
-    "Sealed card restricted to approved aggregate MAEs, coverage and counts; extra calibration/by-compound metrics removed",
-    "Final UI suite:63 passed in9.81s on final regenerated artifacts",
-    "Final screenshots gate:11 passed in92.07s,19routes at1440x900 and1920x1080, worst985ms, switches145-180ms,0console errors/0external/nooverflow,maxgoldendiff0.00694%",
-    "Golden update limited to landing/generalisation/validation at both resolutions (6PNG plusreport); other golden bytes unchanged",
-    "Independent deck/Madrid refuter finalPASS after lead fixed proof-table calibration and slide5card overflow:9protected hashes, Qafter21:30, full4digests on bothMadrid slides, source forecasts/bands/n/gates/plans,all20mentor proof-table cells equal lockv2; reviewed latest changed figures/Madrid/proof/slide5"
+    "Exact-origin HTTP/WebSocket guard, complete route matrix and offline notices enforced.",
+    "All eight navigation destinations activated with real Tab/Enter at both resolutions.",
+    "Initial 324-check filtered acceptance invalidated by independent review; preserved as c6_release_report_initial_filtered.json.",
+    "Root bootstrap plus real internal navigation prevents deep-base probes; no console filtering remains; global raw error evidence mandatory.",
+    "Definitive raw-zero release PASS 326/326: 38 cells, zero raw console/HTTP/probe/external errors, no overflow; cold worst 1192 ms, click 211\u2013272 ms, keyboard 102\u2013255 ms.",
+    "20 fail-closed gate unit tests passed; no product edits or golden updates.",
+    "Independent README refuter passed: 109 exact pins, 8 jury questions, 6 references, 4 Madrid hashes, 69 actual clone cache hashes, actual clone lock equality except generated_at; pipeline not run by refuter."
   ],
   "in_progress": [],
   "blockers": [],
-  "tests_passed": 74,
+  "tests_passed": 20,
   "tests_failed": 0,
   "eta_minutes": 0,
   "needs_review_from": [
-    3,
     7,
     "lead"
   ],
-  "notes": "DONE; all own file claims RELEASED to lead. Source/test allowlist: app_v2/pages/{generalisation,validation}.py; app_v2/ui/scorecard_evidence.py; app_v2/PERF.md; tests/ui/{test_pages,test_scorecard_evidence}.py; tests/screenshots/golden/{landing,generalisation,validation}_{1440x900,1920x1080}.png and report.json; progress/workstream_6.json. Copied validation inputs and environment symlinks are not this workstream deliverables. Final gate raw report /private/tmp/orb-c5-workstream6-final-report.json. Golden-update report retains a606ms timing observation; actual later full screenshot test passed600ms gate without changes. No commits; no main dashboard/feedback log modifications; no per-race holdout opened; frozen files untouched. Isolated8506 server session65610 remains running for lead review. Deck read-only verifier /private/tmp/orb-c5-deck-refuter/verify.py.",
-  "updated_at": "2026-09-12T23:54:51.600190+05:30"
+  "notes": "All own claims RELEASED. Source allowlist: tests/screenshots/{capture.py,network_guard.py,release_gate.py,test_release_gate.py,c6_release_report.json,c6_release_report_initial_filtered.json}; app_v2/PERF.md; progress/workstream_6.json. Commands: ../.venv/bin/python -m pytest tests/screenshots/test_release_gate.py -q -p no:cacheprovider -> 20 passed in 0.03 s; ../.venv/bin/python tests/screenshots/release_gate.py --base http://localhost:8502 --out /private/tmp/orb-c6-ui-raw-zero-capture --report tests/screenshots/c6_release_report.json -> PASS 326 checks; ../.venv/bin/python /private/tmp/orb-c6-readme-refuter.py -> PASS. Report SHA256 8a6843409139310119b5ad0d94053b745275252d4f8f65722c1b8b040683ba85. Initial filtered evidence retained, not valid raw-zero acceptance. No product/golden/frozen/model/feedback changes; no forbidden commands or per-race holdout reads. Main8502 released for Workstream3 rehearsal; no product replay defect proven.",
+  "updated_at": "2026-09-13T01:22:50.146139+05:30"
 }

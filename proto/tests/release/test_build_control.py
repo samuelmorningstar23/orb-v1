@@ -291,8 +291,12 @@ def test_ownership_audit_with_nested_proto_and_paths_outside(tmp_path):
     rep = oa.audit(proto)
     by = {c['path']: c for c in rep['changed']}
     assert by['proto/live/x.py']['owner'] == 8 and not by['proto/live/x.py']['flagged']
-    assert by['README.md']['category'] == 'outside_proto' and by['README.md']['flagged']
-    assert rep['summary']['outside_proto'] == 1
+    assert by['README.md']['category'] == 'lead_only' and by['README.md']['owner'] == 'lead' and by['README.md']['flagged']
+    (tmp_path / 'unassigned.txt').write_text('unowned root file')
+    other = {c['path']: c for c in oa.audit(proto)['changed']}
+    assert other['unassigned.txt']['category'] == 'outside_proto' and other['unassigned.txt']['owner'] is None and other['unassigned.txt']['flagged']
+    assert rep['summary']['outside_proto'] == 0
+    assert oa.audit(proto)['summary']['outside_proto'] == 1
 
 
 def test_ownership_audit_outside_git(tmp_path):

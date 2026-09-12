@@ -1,0 +1,43 @@
+== Orb v1 checkpoint C6 (AUTO) started 2026-09-13T02:19:38 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
+git: main @ d2d0e73, 239 uncommitted paths
+merge queue FROZEN (checkpoint C6 in progress (run_checkpoint.sh))
+== checkpoint C6 (AUTO) at 2026-09-13T02:19:38 == merge queue FROZEN
+[1/5] schema_validation ... PASS (0.12s)
+[2/5] pytest ... PASS (114.58s)
+[3/5] ownership_audit ... WARN - 241 changed paths, 3 flagged: README.md, proto/README.md, proto/requirements.txt
+[4/5] lock_dashboard_consistency ... PASS (44.85s)
+[5/5] sealed_holdout_integrity ... PASS
+checks: {'PASS': 4, 'WARN': 1}  green=True  hashes changed since last green: none
+heartbeats: missing none, stale [1, 2, 3, 4, 6, 7, 8, 9]
+C6 recorded: PENDING at commit d2d0e73; merge queue FROZEN (C6 pending lead decision (checks green; proposed GO))
+next: python build_control.py decide C6 GO|GO_WITH_REASSIGNMENT|ROLLBACK|CUT_FROM_DEMO|HOLD 'note'
+== artifacts in checkpoints/C6 ==
+   COMMANDS.md
+   artifact_hashes.json
+   browser_probe.txt
+   checkpoint.json
+   checkpoint.md
+   claim_audit.txt
+   failed_rehearsal_1
+   fresh_clone_report.json
+   fresh_install.txt
+   fresh_pipeline.txt
+   identity_checks.txt
+   initial_release_raw_error_refutation.json
+   initial_release_report_filtered.json
+   leakage_audit.txt
+   logs
+   network_denial_proof.txt
+   ownership_audit.json
+   protected_fingerprints.json
+   readme_refutation.txt
+   recovery
+   red_team_build.txt
+   red_team_report.json
+   rehearsal_refutation.txt
+   release_refutation.txt
+   review_tools
+   run_checkpoint.txt
+   test_report.json
+== merge queue: FROZEN - C6 pending lead decision (checks green; proposed GO) ==
+== checkpoint C6 finished 2026-09-13T02:22:17 exit 3 ==

@@ -122,3 +122,24 @@ hr { border-color: var(--border); }
 .cs-cell.pending { border-style: dashed; } .cs-cell.pending .val { color: var(--text2); font-size: 0.86rem; font-weight: 500; }
 .present [data-testid="stSidebar"] { display: none; }
 @media (max-width: 1500px) { .cs-card.kpi .cs-kpi-value { font-size: 1.6rem; } .cs-decision .headline { font-size: 1.3rem; } }
+
+/* User-facing recovery: readable controls and values at ordinary laptop widths. */
+.block-container { padding-left: 2rem; padding-right: 2rem; max-width: 1700px; }
+.cs-header { position: static; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+.cs-card.kpi .cs-kpi-value { overflow: visible; text-overflow: clip; white-space: normal; overflow-wrap: normal; font-size: clamp(1.35rem, 1.8vw, 2rem); }
+.cs-card.kpi { min-height: 120px; justify-content: flex-start; }
+.cs-card.kpi .cs-kpi-sub { line-height: 1.5; }
+.cs-decision .grid .v { overflow-wrap: normal; }
+.cs-kv { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 8px 16px; }
+.cs-kv .v, .cs-kv .k { overflow-wrap: break-word; }
+.stButton > button { min-height: 42px; padding: 8px 14px; }
+.stButton > button p { word-break: normal !important; overflow-wrap: normal !important; }
+.start-card { min-height: 190px; padding: 24px; }
+.start-card p { color: var(--text2); font-size: 0.95rem; line-height: 1.6; }
+.cs-decision.compact { padding: 20px; }
+.cs-decision.compact .headline { font-size: 1.4rem; line-height: 1.35; }
+.cs-decision.compact .grid { grid-template-columns: 1fr; gap: 12px; }
+[data-testid="stExpander"] { margin-top: 12px; }
+@media (max-width: 1100px) { .block-container { padding-left: 1rem; padding-right: 1rem; } .cs-kv { grid-template-columns: 1fr; } }
+
+.cs-header .cs-offline { margin-left: auto; color: var(--text-secondary, #98A3B3); font-size: 0.78rem; letter-spacing: 0.01em; }

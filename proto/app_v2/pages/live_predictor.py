@@ -24,7 +24,7 @@ def _rejoin_text(r: dict | None, d) -> str:
     return d.rejoin_context
 
 
-def decision_html(d, vm) -> str:
+def decision_html(d, vm, compact: bool = False) -> str:
     orb = getattr(vm, 'orb_live', None)
     top = (orb or {}).get('recommendations', [None])[0] if orb else None
     changed = 'changed' if (d.action == 'REVIEW' or d.changed_since_last_update or d.status not in ('HOLD PLAN',)) else ''
@@ -45,8 +45,13 @@ def decision_html(d, vm) -> str:
     grid = [('expected gain', gain), ('probability of gain', prob), ('downside q10', down), ('rejoin traffic', _rejoin_text(top, d))]
     g = ''.join(f'<div><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div></div>' for k, v in grid)
     rs = ''.join(f'<li>{esc(r)}</li>' for r in reasons) or '<li>no change</li>'
-    status = d.status + (' · changed this lap' if d.changed_since_last_update else '')
+    status = ('Recommended strategy' if d.status == 'HOLD PLAN' else d.status.replace('_', ' ').title()) + (' · updated this lap' if d.changed_since_last_update else '')
+    if compact:
+        grid = [('Modelled gain vs pre-race plan', gain.split(' vs pre-race plan')[0]), ('80% outcome range', f"{top['expected_gain_q10']:+.1f} to {top['expected_gain_q90']:+.1f} s" if top else down), ('Probability of gain', prob)]
+        g = ''.join(f'<div><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div></div>' for k, v in grid)
     tyre = badges.compound_html(d.target_compound) if d.target_compound else ''
+    if compact:
+        return (f'<div class="cs-card cs-decision compact {changed}" role="region" aria-label="decision"><div class="status">{esc(status)}</div><div class="headline">{esc(headline)}</div>{tyre}<div class="grid">{g}</div><div class="cs-muted">Modelled tyre-time gain; rivals are not simulated.</div></div>')
     return (f'<div class="cs-card cs-decision {changed}" role="region" aria-label="decision"><div class="status">{esc(status)}</div><div class="headline">{esc(headline)}</div>{tyre}'
             f'<div class="grid">{g}</div><div class="cs-card-title">why this changed</div><ul>{rs}</ul><div class="cs-src">{esc(src)}</div></div>')
 
@@ -101,15 +106,17 @@ def state_panel_html(vm, src) -> str:
 def forecast_only(ctx, lock, ev) -> None:
     sup = VM.SS.support_for(lock, ev, None, ctx.compound)
     common.header(ctx, 'live', n_laps=lock.n_laps(ev), support=sup.overall_support_status, latency='no feed')
-    empty_states.missing_feed(ev)
+    empty_states.empty('NO RACE FEED', f'{ev} has a pre-race forecast, but no recorded race to replay yet.')
+    if st.button('Start Monza replay', type='primary'):
+        common.goto('live', ev='Monza', drv='NOR', lap=1, mode='live')
     comps = lock.compounds_for(ev)
     if comps:
-        cards.section('Pre-race forecast for this weekend (lock)', 'The prior the live posterior starts from once a feed exists.')
+        cards.section('Tyre degradation forecast', 'Expected pace lost per additional lap of tyre age. The band shows uncertainty.')
         cols = st.columns(len(comps))
         for col, c in zip(cols, comps):
             f = lock.forecast_for(ev, c)
             with col:
-                cards.kpi_card(f'{c} FORECAST', spl(f.prediction), f'90% band {spl(f.band90[0])} to {spl(f.band90[1])} · ' + ('issued' if f.issued else 'withheld → fallback'), 'live' if f.issued else 'decision', f.source, 's/lap')
+                cards.kpi_card(f'{c} FORECAST', spl(f.prediction), f'90% band {spl(f.band90[0])} to {spl(f.band90[1])} · ' + ('issued' if f.issued else 'withheld → fallback'), 'live' if f.issued else 'decision', '', 's/lap')
     shell.ready_marker('live')
 
 
@@ -139,65 +146,80 @@ def render() -> None:
         common.header(ctx, 'live', lap=vm.lap, n_laps=vm.n_laps, support=LB.support_status(vm), latency=LB.latency_text(vm, replay_latency))
         if vm.live_source == 'PLACEHOLDER':
             banners.placeholder_banner('live package not importable: posterior and decision are the labelled placeholders (' + (LB.IMPORT_ERROR or 'unknown') + ')')
-        # ---- playback controls -------------------------------------------------------------------------------------
-        c1, c2, c3, c4, c5 = st.columns([0.9, 0.9, 2.3, 5.2, 0.9])
-        if c1.button('Start replay' if not src.playing else 'Playing', type='primary', width='stretch', disabled=src.playing, key='play'):
+        st.markdown(f'## {driver} · live tyre prediction')
+        st.caption('Replay a recorded race. The estimate uses only laps reached so far.')
+        # Controls occupy two rows so all actions fit on a laptop.
+        c1, c2, c3, c4 = st.columns([1.4, 1.1, 1.1, 3.4])
+        if c1.button(('Restart replay' if src.cursor.at_end else 'Start replay') if not src.playing else 'Playing', type='primary', width='stretch', disabled=src.playing, key='play'):
+            if src.cursor.at_end:
+                src.seek(src.cursor.first_lap)
             src.start(); st.rerun(scope='app')
         if c2.button('Pause', width='stretch', disabled=not src.playing, key='pause'):
             src.pause(); st.rerun(scope='app')
-        speed = c3.segmented_control('Speed', options=list(ES.SPEEDS), format_func=lambda s: f'{s}x', default=int(src.speed) if int(src.speed) in ES.SPEEDS else 1, key='speed_ctl')
+        if c3.button('Step +1', width='stretch', disabled=src.cursor.at_end or src.playing, key='step'):
+            src.seek(src.cursor.lap + 1); st.session_state['lap'] = src.cursor.lap; st.rerun(scope='fragment')
+        speed = c4.segmented_control('Speed', options=list(ES.SPEEDS), format_func=lambda s: f'{s}x', default=int(src.speed) if int(src.speed) in ES.SPEEDS else 1, key='speed_ctl')
         if speed and float(speed) != src.speed:
             src.set_speed(float(speed)); st.session_state['speed'] = speed
-        lap = c4.slider('Lap scrubber', src.cursor.first_lap, src.cursor.last_lap, value=src.cursor.lap, key=None)
+        lap = st.slider('Lap scrubber', src.cursor.first_lap, src.cursor.last_lap, value=src.cursor.lap, key=None)
         if lap != src.cursor.lap:
             was = src.playing; src.pause(); src.seek(int(lap)); st.session_state['lap'] = int(lap)
             st.rerun(scope='app' if was else 'fragment')
-        if c5.button('Step +1', width='stretch', disabled=src.cursor.at_end or src.playing, key='step'):
-            src.seek(src.cursor.lap + 1); st.session_state['lap'] = src.cursor.lap; st.rerun(scope='fragment')
         query_state.mirror()
-        # ---- KPI strip -------------------------------------------------------------------------------------------
-        if vm.kpis:
-            cards.kpi_strip(vm.kpis)
-        # ---- 2:1 hero ---------------------------------------------------------------------------------------------
-        left, right = st.columns([2, 1], gap='medium')
+        state = vm.state
+        ts = (orb or {}).get('tyre_state') or {}
+        quality = str(ts.get('quality_status', vm.feed.get('status', '')))
+        if quality not in ('OK', ''):
+            banners.note_banner(f'{quality}: feed quality is reduced; interpret the estimate with caution.')
+        support = LB.support_status(vm)
+        if 'OUT OF SUPPORT' in support:
+            empty_states.out_of_support(support, 'These conditions are outside the supported data.')
+        if state and state.kept_laps == 0:
+            banners.note_banner('Waiting for clean laps. The estimate is still the pre-race prior; strategy recommendations are provisional.')
+        a, b, c = st.columns(3)
+        with a:
+            k = next((k for k in vm.kpis if k.label == 'LIVE DEGRADATION'), None)
+            if k:
+                cards.kpi_card('Tyre degradation', k.value, f'Forecast {vm.prior.slope:+.3f} s/lap' if vm.prior.slope is not None else 'No prior available', 'live', unit=getattr(k, 'unit', 's/lap'))
+        with b:
+            proj = (orb or {}).get('projection') or (state.project() if state else [])
+            if src.cursor.at_end:
+                cards.kpi_card('Replay complete', 'Finished', 'Restart or scrub back to explore an earlier lap.')
+            elif proj:
+                nxt = proj[0]
+                cards.kpi_card('Next lap · pace loss', f"{nxt['loss']:+.2f}", f"90% band {nxt['lo']:+.2f} to {nxt['hi']:+.2f} s · vs a fresh tyre", 'live', unit='s')
+        with c:
+            k = next((k for k in vm.kpis if k.label == 'USEFUL LIFE'), None)
+            if k:
+                cards.kpi_card('Estimated useful life', k.value, f"80% range {ts.get('useful_laps_q10', 0):.0f} to {ts.get('useful_laps_q90', 0):.0f} laps" if ts else k.sub, 'neutral', unit=getattr(k, 'unit', ''))
+        left, right = st.columns([2.1, 1.2], gap='medium')
         with left:
             st.plotly_chart(charts.forecast_vs_live(vm, presentation, estimator_label=label, projection=(orb or {}).get('projection')), width='stretch', config={'displayModeBar': False}, key='live_chart')
-            chips = [badges.badge_html(f'estimator: {label}', 'live' if orb else 'placeholder'), badges.badge_html(f'prior: {vm.prior.source}', 'neutral')]
+            compound = state.compound if state else vm.prior.compound
+            st.caption(f'{compound.title()} tyres · age {state.tyre_age if state else "—"} laps · {state.kept_laps if state else 0} clean laps. Pace loss relative to a fresh tyre, fuel corrected.')
+        with right:
+            if src.cursor.at_end:
+                st.html(cards.card_html('Race complete', '<p>No further pit decision is needed.</p>'))
+            else:
+                st.html(decision_html(vm.decision, vm, compact=True))
+            if st.button('Add driver feedback', width='stretch'):
+                src.pause(); common.goto('feedback', lap=vm.lap)
+        with st.expander('Why this recommendation?'):
+            st.html(decision_html(vm.decision, vm))
+            st.html(cards.card_html('Other strategies', alternatives_html(vm.decision, orb)))
+            st.html(cards.card_html('Recommendation history', history_html(vm.history)))
+        with st.expander('Driver reports'):
+            st.html(feedback_html(vm))
+        with st.expander('Model, uncertainty & feed details'):
+            st.caption(f'Estimation method: {label}. Prior: {vm.prior.source}.')
             if orb:
-                chips.append(badges.badge_html(f"regime {orb['regime'].lower().replace('_', ' ')}", 'critical' if orb['regime'] in ('CLIFF', 'ACCELERATING_WEAR', 'ANOMALY') else 'neutral'))
-                for w in orb.get('widening') or []:
-                    chips.append(badges.badge_html(f"widened: {w['rule']} x{w['applied']:.2f}", 'decision'))
-                chips.append(badges.badge_html(f"data cutoff {orb.get('data_cutoff', '—')} · no future data", 'neutral'))
-            elif vm.state and vm.state.widened:
-                chips.append(badges.badge_html(f'band widened after {vm.state.widen_reason}', 'decision'))
+                st.caption(f"Data cutoff {orb.get('data_cutoff', '—')} · no future data. Regime: {orb['regime']}.")
             note = LB.support_note(vm)
             if note:
-                chips.append(badges.badge_html(f"support: 7.1 says {LB.support_status(vm)} · lock chips say {vm.support.overall_support_status} (both shown)", 'decision', note))
-            chips.append(badges.compound_html(vm.state.compound if vm.state else vm.prior.compound, f'{(vm.state.compound if vm.state else vm.prior.compound).title()} · age {vm.state.tyre_age if vm.state else "—"}'))
-            st.html('<div class="cs-chips">' + ''.join(chips) + '</div>')
-            if orb and orb.get('changes'):
-                st.html(cards.card_html('what this lap changed', '<div class="cs-list">' + ''.join(f'<div>{esc(c)}</div>' for c in orb['changes'][-3:]) + '</div>'))
-        with right:
-            st.html(decision_html(vm.decision, vm))
-            st.html(cards.card_html('alternatives (ranked)' if orb else 'alternatives (lock)', alternatives_html(vm.decision, orb)))
-        # ---- lower rail --------------------------------------------------------------------------------------------
-        r1, r2, r3, r4 = st.columns(4, gap='small')
-        with r1:
-            st.html(cards.card_html('driver-feedback timeline' + (' · regime shift, telemetry corroboration' if orb else ''), feedback_html(vm)))
-        with r2:
-            st.plotly_chart(charts.temperature_history(vm.temp_history_lock, vm.temp_series, presentation), width='stretch', config={'displayModeBar': False}, key='temp_chart')
-        with r3:
-            if not presentation:
-                st.html(cards.card_html('live tyre state (7.1) · feed quality' if orb else 'feed quality', state_panel_html(vm, src)))
-            else:
-                ts = (orb or {}).get('tyre_state') or {}
-                st.html(cards.card_html('feed', cards.kv_html([('quality', ts.get('quality_status', vm.feed['status'])), ('sensor mode', ts.get('sensor_mode', VM.SENSOR_MODE)), ('latency', LB.latency_text(vm, replay_latency))])))
-        with r4:
-            st.html(cards.card_html('recommendation history · what changed', history_html(vm.history)))
-        if orb and not presentation:
-            top = (orb.get('recommendations') or [None])[0]
-            if top:
-                st.html(cards.card_html('7.2 live_recommendation record (rank 1)', cards.kv_html(LB.recommendation_rows(top), stack=False)))
+                st.caption(note)
+            st.html(state_panel_html(vm, src))
+            if orb and (orb.get('recommendations') or []):
+                st.html(cards.kv_html(LB.recommendation_rows(orb['recommendations'][0]), stack=True))
 
     hero()
     shell.ready_marker('live')

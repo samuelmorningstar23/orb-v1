@@ -33,10 +33,15 @@ def render() -> None:
     support = LB.support_status(vm) if vm else VM.SS.support_for(lock, ev, driver, ctx.compound).overall_support_status
     common.header(ctx, 'feedback', lap=lap_now, n_laps=lock.n_laps(ev), support=support, latency=LB.latency_text(vm, 'replay') if vm else 'no feed')
     st.markdown(f'## Driver feedback · {ev} · {driver} · lap {lap_now}')
-    banners.note_banner('Feedback is a timestamped observation with a confidence, entered or confirmed by the engineer. It shifts regime probabilities; it never adds seconds to a curve (live/feedback.py invariant slope_shift = 0). It can be disabled with the result reverting.')
+    st.caption('Record what the driver feels. The estimate incorporates the report from the lap you select.')
+    if src is None:
+        empty_states.empty('No active replay', 'Choose a recorded race before adding driver feedback.')
+        if st.button('Start Monza replay', type='primary'):
+            common.goto('live', ev='Monza', drv='NOR', lap=1, mode='live')
+        shell.ready_marker('feedback'); return
     left, right = st.columns([3, 2], gap='large')
     with left:
-        cards.section('Structured entry', f'Appends to {FS.log_path().name}; timestamp is automatic; the estimator consumes the report on the lap it names.')
+        cards.section('Driver report')
         with st.form('feedback_form', clear_on_submit=True):
             c1, c2, c3 = st.columns(3)
             lap = c1.number_input('Lap', min_value=1, max_value=int(lock.n_laps(ev) or 80), value=lap_now, step=1)
@@ -57,37 +62,33 @@ def render() -> None:
             FS.append(evt)
             alerts.alert('live', 'feedback logged', f'lap {lap} · {symptom} {axle} {phase} · severity {severity}/5 · {trend} · confidence {conf:.2f}' + (' · the estimator sees it from that lap of the replay' if int(lap) <= lap_now else f' · replay is at lap {lap_now}: it takes effect when the replay reaches lap {lap}'))
             st.rerun()
-        cards.section('Latest feedback (log)')
-        rows = [[f['timestamp'][-8:], f['event'], f['driver'], f['lap'], f['symptom'], f['axle'], f['corner_phase'], f'{f["severity"]}/5', f['trend'], f'{f["driver_confidence"]:.2f}', f['source'], 'yes' if f['engineer_confirmed'] else 'no', f['raw_message']] for f in FS.latest(12)]
-        if rows:
-            st.html(cards.table_html(['time', 'event', 'driver', 'lap', 'symptom', 'axle', 'phase', 'severity', 'trend', 'conf.', 'source', 'confirmed', 'raw'], rows, numeric_cols=(3,)))
-        else:
-            st.html('<div class="cs-muted">no feedback logged yet</div>')
-        cards.section("Estimator's reading of each report (live/feedback.py)", 'Rule applied, regime shift, process-noise multiplier, and whether the following laps confirmed or weakened it.')
         log = (orb or {}).get('feedback_log') or []
-        if log:
-            st.html(cards.table_html(['lap', 'report', 'rule', 'regime shift', 'noise x', 'telemetry support', 'laps since', 'note'],
-                                     [[e['lap'], f"{e['symptom']} {e['axle']} {e['corner_phase']} {e['severity']}/5", e.get('rule', '—'), _shift(e.get('regime_shift')), f"{e.get('noise_multiplier', 1):.2f}", e.get('telemetry_support', 'pending'), e.get('laps_since', 0), e.get('note', '')] for e in log], numeric_cols=(0, 4, 6)))
-        elif orb:
-            st.html('<div class="cs-muted">no report has reached the estimator yet for this session at this lap (reports apply from the lap they name; the replay is at lap ' + str(lap_now) + ')</div>')
-        else:
-            empty_states.pending('estimator reading', 'the live package (not importable)' if not LB.AVAILABLE else 'a race feed for this weekend')
+        with st.expander('Report history & interpretation'):
+            cards.section('Latest feedback (log)')
+            rows = [[f['timestamp'][-8:], f['event'], f['driver'], f['lap'], f['symptom'], f['axle'], f['corner_phase'], f'{f["severity"]}/5', f['trend'], f'{f["driver_confidence"]:.2f}', f['source'], 'yes' if f['engineer_confirmed'] else 'no', f['raw_message']] for f in FS.latest(12)]
+            if rows:
+                st.html(cards.table_html(['time', 'event', 'driver', 'lap', 'symptom', 'axle', 'phase', 'severity', 'trend', 'conf.', 'source', 'confirmed', 'raw'], rows, numeric_cols=(3,)))
+            else:
+                st.html('<div class="cs-muted">no feedback logged yet</div>')
+            cards.section("Estimator's reading of each report (live/feedback.py)", 'Rule applied, regime shift, process-noise multiplier, and whether the following laps confirmed or weakened it.')
+            if log:
+                st.html(cards.table_html(['lap', 'report', 'rule', 'regime shift', 'noise x', 'telemetry support', 'laps since', 'note'],
+                                         [[e['lap'], f"{e['symptom']} {e['axle']} {e['corner_phase']} {e['severity']}/5", e.get('rule', '—'), _shift(e.get('regime_shift')), f"{e.get('noise_multiplier', 1):.2f}", e.get('telemetry_support', 'pending'), e.get('laps_since', 0), e.get('note', '')] for e in log], numeric_cols=(0, 4, 6)))
+            elif orb:
+                st.html('<div class="cs-muted">no report has reached the estimator yet for this session at this lap (reports apply from the lap they name; the replay is at lap ' + str(lap_now) + ')</div>')
+            else:
+                empty_states.pending('estimator reading', 'the live package (not importable)' if not LB.AVAILABLE else 'a race feed for this weekend')
     with right:
-        cards.section('Effect on posterior and recommendation')
+        cards.section('Current prediction')
         if orb:
-            ts = orb['tyre_state']; top = (orb.get('recommendations') or [None])[0]
-            st.html(cards.kv_html([('regime now', orb['regime']), ('regime probabilities', _shift(orb.get('regime_probs')) if orb.get('regime_probs') else 'none active'), ('posterior slope', f"{orb['slope']:+.4f} ± {orb['slope_sd']:.4f} s/lap"),
-                                   ('useful laps q10/q50/q90', f"{ts['useful_laps_q10']:.0f} / {ts['useful_laps_q50']:.0f} / {ts['useful_laps_q90']:.0f}"), ('cliff 3 laps', f"{100 * ts['cliff_probability_3_laps']:.0f}% · {LB.CLIFF_LABEL}"),
-                                   ('top action', orb.get('top_headline', '—')), ('change reason', (top or {}).get('change_reason') or 'no change this lap'), ('widening this lap', ', '.join(f"{w['rule']} x{w['applied']:.2f}" for w in orb.get('widening') or []) or 'none'), ('estimator', orb['estimator_label'])], stack=True))
-        else:
-            st.html(cards.card_html('', '<div class="cs-muted">PLACEHOLDER · the live package is not importable, so a severity 4 or 5 report only moves the decision card to REVIEW with the report named as the reason.</div>'))
-        cards.section('Whether telemetry supports it', 'live/feedback.py marks each report pending, confirmed, weakened or not applicable from the laps that follow it.')
-        if log:
-            st.html('<div class="cs-chips">' + ''.join(badges.badge_html(f"L{e['lap']} {e['symptom']}: {e.get('telemetry_support', 'pending')}", {'confirmed': 'live', 'weakened': 'critical'}.get(e.get('telemetry_support'), 'neutral')) for e in log) + '</div>')
-        else:
-            st.html(badges.badge_html('no report in the estimator window', 'neutral'))
-        cards.section('Calibration history', 'Pending: how often reports were confirmed by the following laps, per driver (needs recorded feedback across races).')
-        st.html(badges.badge_html('calibration history · pending', 'placeholder'))
-        n = len(FS.for_session(ev, driver))
-        st.html(cards.kv_html([('reports this session', n), ('log path', str(FS.log_path().relative_to(FS.P.PROTO_ROOT))), ('enabled', 'yes' if FS.enabled() else 'no (directory not writable)'), ('consumed by', 'live/session.py (same file)' if LB.AVAILABLE else 'nobody yet')]))
+            ts = orb['tyre_state']
+            cards.kpi_card('Tyre degradation', f"{orb['slope']:+.3f}", f"90% range {orb['slope']-1.645*orb['slope_sd']:+.3f} to {orb['slope']+1.645*orb['slope_sd']:+.3f}", 'live', unit='s/lap')
+            st.html(cards.card_html('Recommended strategy', f'<p>{esc(orb.get("top_headline", "—"))}</p>'))
+            st.caption('Reports adjust the inferred tyre state; they are not direct tyre measurements.')
+        if st.button('Return to prediction', type='primary', width='stretch'):
+            common.goto('live', lap=lap_now)
+        with st.expander('Feedback model details'):
+            st.caption('Reports affect regime probabilities and uncertainty. They never directly add seconds to the tyre curve.')
+            if orb:
+                st.html(cards.kv_html([('regime', orb['regime']), ('regime probabilities', _shift(orb.get('regime_probs'))), ('estimator', orb['estimator_label']), ('reports this session', len(FS.for_session(ev, driver)))], stack=True))
     shell.ready_marker('feedback')

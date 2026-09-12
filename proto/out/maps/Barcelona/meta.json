@@ -1,0 +1,559 @@
+{
+ "event": "Barcelona",
+ "event_id": "2026_Barcelona",
+ "year": 2026,
+ "session": "R",
+ "n_laps": 66,
+ "grid_m_nominal": 10.0,
+ "quality": {
+  "status": "ok",
+  "min_distinct_per_lap": 100,
+  "drivers_passed": [
+   "ALB",
+   "ALO",
+   "ANT",
+   "BEA",
+   "BOR",
+   "BOT",
+   "COL",
+   "GAS",
+   "HAD",
+   "HAM",
+   "HUL",
+   "LAW",
+   "LEC",
+   "LIN",
+   "NOR",
+   "OCO",
+   "PER",
+   "PIA",
+   "RUS",
+   "SAI",
+   "STR",
+   "VER"
+  ],
+  "drivers_refused": [],
+  "per_driver": {
+   "ALB": {
+    "median": 325,
+    "min": 307,
+    "ok": true
+   },
+   "ALO": {
+    "median": 327,
+    "min": 230,
+    "ok": true
+   },
+   "ANT": {
+    "median": 312,
+    "min": 153,
+    "ok": true
+   },
+   "BEA": {
+    "median": 323,
+    "min": 306,
+    "ok": true
+   },
+   "BOR": {
+    "median": 322,
+    "min": 304,
+    "ok": true
+   },
+   "BOT": {
+    "median": 332,
+    "min": 316,
+    "ok": true
+   },
+   "COL": {
+    "median": 321,
+    "min": 302,
+    "ok": true
+   },
+   "GAS": {
+    "median": 321,
+    "min": 298,
+    "ok": true
+   },
+   "HAD": {
+    "median": 318,
+    "min": 299,
+    "ok": true
+   },
+   "HAM": {
+    "median": 311,
+    "min": 293,
+    "ok": true
+   },
+   "HUL": {
+    "median": 320,
+    "min": 296,
+    "ok": true
+   },
+   "LAW": {
+    "median": 321,
+    "min": 305,
+    "ok": true
+   },
+   "LEC": {
+    "median": 313,
+    "min": 301,
+    "ok": true
+   },
+   "LIN": {
+    "median": 321,
+    "min": 308,
+    "ok": true
+   },
+   "NOR": {
+    "median": 313,
+    "min": 295,
+    "ok": true
+   },
+   "OCO": {
+    "median": 325,
+    "min": 302,
+    "ok": true
+   },
+   "PER": {
+    "median": 326,
+    "min": 304,
+    "ok": true
+   },
+   "PIA": {
+    "median": 316,
+    "min": 300,
+    "ok": true
+   },
+   "RUS": {
+    "median": 313,
+    "min": 298,
+    "ok": true
+   },
+   "SAI": {
+    "median": 324,
+    "min": 307,
+    "ok": true
+   },
+   "STR": {
+    "median": 327,
+    "min": 320,
+    "ok": true
+   },
+   "VER": {
+    "median": 312,
+    "min": 299,
+    "ok": true
+   }
+  },
+  "n_clean_laps": 1029,
+  "n_pooled_points": 327255,
+  "seed_lap": {
+   "driver": "VER",
+   "lap": 35,
+   "n_points": 328,
+   "lap_time": 81.774
+  },
+  "residual_rms_m": 0.631,
+  "share_within_5m": 1.0,
+  "start_line_median_abs_dev_m": 1.89,
+  "n_start_samples": 1029,
+  "closure": "closed by construction (consensus bins along a closed seed)",
+  "grid_m": 9.9905
+ },
+ "L": 4595.616,
+ "n_points": 460,
+ "grid_m": 9.9905,
+ "sector1_end_s": 1600.34,
+ "sector2_end_s": 3346.69,
+ "sector_source": {
+  "s1": "positions at sector session times",
+  "s2": "positions at sector session times"
+ },
+ "sector_fractions": [
+  0.3482,
+  0.7282
+ ],
+ "units": "metres, feed frame (FastF1 X/Y / 10)",
+ "pit_entry_s": 4284.43,
+ "pit_exit_s": 517.24,
+ "pit_entry_index": 429,
+ "pit_exit_index": 52,
+ "pitlane_source": "recorded",
+ "status": "ok",
+ "capabilities": {
+  "canonical_geometry": true,
+  "driver_trajectories": false,
+  "scenario_replay": false
+ },
+ "limitation": "Canonical geometry only. No driver trajectories or counterfactual replay are supplied.",
+ "pitlane": {
+  "source": "recorded",
+  "length_m": 866.3,
+  "entry_s": 4284.4,
+  "exit_s": 517.2,
+  "transit_s": 33.0,
+  "s_line": 326.1,
+  "meta": {
+   "source": "recorded",
+   "n_stops": 47,
+   "n_excursions_seen": 53,
+   "median_transit_s": 32.9,
+   "transit_iqr_s": [
+    32.24,
+    33.88
+   ],
+   "entry_s": 4284.43,
+   "exit_s": 517.24,
+   "stops": [
+    {
+     "driver": "ALB",
+     "lap_in": 13,
+     "duration_s": 34.74,
+     "span_m": 848.6,
+     "n_points": 123
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 29,
+     "duration_s": 32.16,
+     "span_m": 848.1,
+     "n_points": 117
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 50,
+     "duration_s": 32.58,
+     "span_m": 816.5,
+     "n_points": 129
+    },
+    {
+     "driver": "ALO",
+     "lap_in": 21,
+     "duration_s": 32.34,
+     "span_m": 819.8,
+     "n_points": 123
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 14,
+     "duration_s": 32.58,
+     "span_m": 844.4,
+     "n_points": 125
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 37,
+     "duration_s": 32.26,
+     "span_m": 829.3,
+     "n_points": 125
+    },
+    {
+     "driver": "BEA",
+     "lap_in": 18,
+     "duration_s": 33.48,
+     "span_m": 819.5,
+     "n_points": 131
+    },
+    {
+     "driver": "BEA",
+     "lap_in": 39,
+     "duration_s": 34.2,
+     "span_m": 824.3,
+     "n_points": 133
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 15,
+     "duration_s": 33.28,
+     "span_m": 803.4,
+     "n_points": 124
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 33,
+     "duration_s": 32.18,
+     "span_m": 821.0,
+     "n_points": 127
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 53,
+     "duration_s": 36.36,
+     "span_m": 847.4,
+     "n_points": 140
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 14,
+     "duration_s": 34.3,
+     "span_m": 834.7,
+     "n_points": 130
+    },
+    {
+     "driver": "COL",
+     "lap_in": 12,
+     "duration_s": 32.98,
+     "span_m": 836.0,
+     "n_points": 132
+    },
+    {
+     "driver": "COL",
+     "lap_in": 34,
+     "duration_s": 32.52,
+     "span_m": 845.3,
+     "n_points": 129
+    },
+    {
+     "driver": "GAS",
+     "lap_in": 14,
+     "duration_s": 32.38,
+     "span_m": 820.6,
+     "n_points": 125
+    },
+    {
+     "driver": "GAS",
+     "lap_in": 40,
+     "duration_s": 34.06,
+     "span_m": 840.2,
+     "n_points": 133
+    },
+    {
+     "driver": "HAD",
+     "lap_in": 15,
+     "duration_s": 32.22,
+     "span_m": 819.9,
+     "n_points": 124
+    },
+    {
+     "driver": "HAD",
+     "lap_in": 32,
+     "duration_s": 32.08,
+     "span_m": 822.2,
+     "n_points": 120
+    },
+    {
+     "driver": "HAD",
+     "lap_in": 58,
+     "duration_s": 31.9,
+     "span_m": 831.2,
+     "n_points": 125
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 11,
+     "duration_s": 32.76,
+     "span_m": 830.4,
+     "n_points": 126
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 27,
+     "duration_s": 32.9,
+     "span_m": 855.4,
+     "n_points": 124
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 41,
+     "duration_s": 33.16,
+     "span_m": 840.6,
+     "n_points": 127
+    },
+    {
+     "driver": "HUL",
+     "lap_in": 13,
+     "duration_s": 33.56,
+     "span_m": 848.8,
+     "n_points": 125
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 11,
+     "duration_s": 36.08,
+     "span_m": 833.0,
+     "n_points": 129
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 35,
+     "duration_s": 33.3,
+     "span_m": 831.5,
+     "n_points": 117
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 16,
+     "duration_s": 32.02,
+     "span_m": 817.0,
+     "n_points": 122
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 39,
+     "duration_s": 32.04,
+     "span_m": 814.9,
+     "n_points": 126
+    },
+    {
+     "driver": "LIN",
+     "lap_in": 22,
+     "duration_s": 32.56,
+     "span_m": 834.1,
+     "n_points": 121
+    },
+    {
+     "driver": "LIN",
+     "lap_in": 37,
+     "duration_s": 34.66,
+     "span_m": 897.5,
+     "n_points": 133
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 13,
+     "duration_s": 32.12,
+     "span_m": 839.1,
+     "n_points": 121
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 35,
+     "duration_s": 32.08,
+     "span_m": 821.7,
+     "n_points": 126
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 13,
+     "duration_s": 33.7,
+     "span_m": 824.3,
+     "n_points": 123
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 34,
+     "duration_s": 36.92,
+     "span_m": 828.3,
+     "n_points": 140
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 58,
+     "duration_s": 33.0,
+     "span_m": 822.7,
+     "n_points": 124
+    },
+    {
+     "driver": "PER",
+     "lap_in": 12,
+     "duration_s": 35.36,
+     "span_m": 825.5,
+     "n_points": 137
+    },
+    {
+     "driver": "PER",
+     "lap_in": 31,
+     "duration_s": 34.92,
+     "span_m": 842.2,
+     "n_points": 131
+    },
+    {
+     "driver": "PER",
+     "lap_in": 39,
+     "duration_s": 35.58,
+     "span_m": 846.8,
+     "n_points": 134
+    },
+    {
+     "driver": "PIA",
+     "lap_in": 14,
+     "duration_s": 32.86,
+     "span_m": 872.0,
+     "n_points": 126
+    },
+    {
+     "driver": "PIA",
+     "lap_in": 36,
+     "duration_s": 32.92,
+     "span_m": 839.8,
+     "n_points": 128
+    },
+    {
+     "driver": "RUS",
+     "lap_in": 12,
+     "duration_s": 32.2,
+     "span_m": 822.1,
+     "n_points": 125
+    }
+   ],
+   "offpath_threshold_m": 4.0
+  }
+ },
+ "drivers": {},
+ "frames": [],
+ "identity_check": null,
+ "files": {
+  "track": {
+   "file": "track.npz",
+   "sha256": "1478bef4a087fabae3bd7d8b2ac726612af2d1c421eb390395b6b5530ed614e0",
+   "bytes": 7719
+  },
+  "pitlane": {
+   "file": "pitlane.npz",
+   "sha256": "92946ad4d24711f5be991a45f8c7ed4a88de3163c22e7de1a9c52630cd21bdd9",
+   "bytes": 5656
+  }
+ },
+ "build": {
+  "generated_at": "2026-09-13T01:50:01",
+  "seconds": 2.8,
+  "source": {
+   "source": "fastf1",
+   "fastf1_version": "3.8.3",
+   "event_name": "Barcelona Grand Prix",
+   "date": "2026-06-14 13:00:00",
+   "cache_dir": "/private/tmp/orb-map-cache",
+   "position_units": "metres (feed 1/10 m divided by 10)",
+   "driver_numbers": {
+    "NOR": "1",
+    "GAS": "10",
+    "PER": "11",
+    "ANT": "12",
+    "ALO": "14",
+    "LEC": "16",
+    "STR": "18",
+    "ALB": "23",
+    "HUL": "27",
+    "VER": "3",
+    "LAW": "30",
+    "OCO": "31",
+    "LIN": "41",
+    "COL": "43",
+    "HAM": "44",
+    "BOR": "5",
+    "SAI": "55",
+    "HAD": "6",
+    "RUS": "63",
+    "BOT": "77",
+    "PIA": "81",
+    "BEA": "87"
+   },
+   "offline": true,
+   "cached_source_sha256": {
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/_extended_timing_data.ff1pkl": "0ec400b88ac44fc6dcb3cc95e5072b47a53233a020956d9213321186ae6ddab3",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/car_data.ff1pkl": "eb3c921538ddfc382d9c81e6c52abeca8e3cd9cee3d489d9fe0fdd16f59b391c",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/driver_info.ff1pkl": "fe26b0816459510e1ce3aa52269b64439be5a5fad5a7a9a0fcad4917715fd4b2",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/lap_count.ff1pkl": "be5313f21a863a7cb0d758f5cf78b4fb1e89bd3d045e8624bb8e10b44b49546b",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/position_data.ff1pkl": "52230ced4b35ecadb7036609bc2a588c42081e56d99e9d7f76b177a7b4b81df8",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/race_control_messages.ff1pkl": "3f68acf6d3b7f2e543a0ab67193b5152711205db4e74ae018bc00e41b02488ca",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/session_info.ff1pkl": "fb3301e1e86758e0bfbe409e08e6fb4694ecea72f13665c7bc5209b57b288f83",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/session_status_data.ff1pkl": "1a9cc77edc3344c7e9fe8720b9653c71bb020ac5708ef4bf911cc0c695160398",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/timing_app_data.ff1pkl": "426821b8cf8ac126dc862a94995fef47ec8fddab2d0bc55817a70c4a10e60dfc",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/track_status_data.ff1pkl": "190eb283075996e36e4c438d712003d2a0ac720abe49a338d64befa9112b4538",
+    "2026/2026-06-14_Barcelona_Grand_Prix/2026-06-14_Race/weather_data.ff1pkl": "fe8e67d1766cb336e843e7479fbaec821a51e974064d0de89c6a458af716db92"
+   }
+  },
+  "tool": "replay/build_maps.py",
+  "geometry_only": true
+ }
+}

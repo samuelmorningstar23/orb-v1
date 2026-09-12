@@ -1,0 +1,60 @@
+
+==================================== ERRORS ====================================
+_________________ ERROR collecting tests/replay/test_assets.py _________________
+ImportError while importing test module '/Users/samuelmorningstar/Trackshift/proto/tests/replay/test_assets.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/replay/test_assets.py:4: in <module>
+    from conftest import MAPS, geometry, timewarp, trajectory
+E   ImportError: cannot import name 'MAPS' from 'conftest' (/Users/samuelmorningstar/Trackshift/proto/tests/live/conftest.py)
+________________ ERROR collecting tests/replay/test_geometry.py ________________
+ImportError while importing test module '/Users/samuelmorningstar/Trackshift/proto/tests/replay/test_geometry.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/replay/test_geometry.py:4: in <module>
+    from conftest import MINI, geometry, sources
+E   ImportError: cannot import name 'MINI' from 'conftest' (/Users/samuelmorningstar/Trackshift/proto/tests/live/conftest.py)
+_________________ ERROR collecting tests/replay/test_player.py _________________
+ImportError while importing test module '/Users/samuelmorningstar/Trackshift/proto/tests/replay/test_player.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/replay/test_player.py:4: in <module>
+    from conftest import MAPS
+E   ImportError: cannot import name 'MAPS' from 'conftest' (/Users/samuelmorningstar/Trackshift/proto/tests/live/conftest.py)
+________________ ERROR collecting tests/replay/test_timewarp.py ________________
+ImportError while importing test module '/Users/samuelmorningstar/Trackshift/proto/tests/replay/test_timewarp.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/replay/test_timewarp.py:4: in <module>
+    from conftest import PROTO, geometry, timewarp
+E   ImportError: cannot import name 'geometry' from 'conftest' (/Users/samuelmorningstar/Trackshift/proto/tests/live/conftest.py)
+_______________ ERROR collecting tests/replay/test_trajectory.py _______________
+ImportError while importing test module '/Users/samuelmorningstar/Trackshift/proto/tests/replay/test_trajectory.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/replay/test_trajectory.py:4: in <module>
+    from conftest import geometry, sources, trajectory
+E   ImportError: cannot import name 'geometry' from 'conftest' (/Users/samuelmorningstar/Trackshift/proto/tests/live/conftest.py)
+=========================== short test summary info ============================
+ERROR tests/replay/test_assets.py
+ERROR tests/replay/test_geometry.py
+ERROR tests/replay/test_player.py
+ERROR tests/replay/test_timewarp.py
+ERROR tests/replay/test_trajectory.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 5 errors during collection !!!!!!!!!!!!!!!!!!!!
+5 errors in 0.50s

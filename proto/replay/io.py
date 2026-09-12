@@ -108,7 +108,11 @@ def load_json(path: str | os.PathLike, verify_hash: bool = True) -> Any:
 
 
 def event_dir(event: str, root: str | os.PathLike | None = None) -> Path:
-    return Path(root) / event if root else MAPS_DIR / event
+    base = Path(root) if root else MAPS_DIR
+    # The feature/lock name is Zandvoort; the cached session is named Netherlands.
+    if event == 'Zandvoort' and not (base / event).exists():
+        event = 'Netherlands'
+    return base / event
 
 
 __all__ = ['MAPS_DIR', 'PROTO_ROOT', 'sidecar_path', 'write_sidecar', 'verify', 'save_npz', 'load_npz', 'save_json', 'load_json', 'event_dir']

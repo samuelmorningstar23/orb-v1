@@ -1,0 +1,475 @@
+{
+ "event": "Australia",
+ "event_id": "2026_Australia",
+ "year": 2026,
+ "session": "R",
+ "n_laps": 58,
+ "grid_m_nominal": 10.0,
+ "quality": {
+  "status": "ok",
+  "min_distinct_per_lap": 100,
+  "drivers_passed": [
+   "ALB",
+   "ALO",
+   "ANT",
+   "BEA",
+   "BOR",
+   "BOT",
+   "COL",
+   "GAS",
+   "HAD",
+   "HAM",
+   "LAW",
+   "LEC",
+   "LIN",
+   "NOR",
+   "OCO",
+   "PER",
+   "RUS",
+   "SAI",
+   "STR",
+   "VER"
+  ],
+  "drivers_refused": [],
+  "per_driver": {
+   "ALB": {
+    "median": 327,
+    "min": 306,
+    "ok": true
+   },
+   "ALO": {
+    "median": 332,
+    "min": 320,
+    "ok": true
+   },
+   "ANT": {
+    "median": 315,
+    "min": 304,
+    "ok": true
+   },
+   "BEA": {
+    "median": 323,
+    "min": 306,
+    "ok": true
+   },
+   "BOR": {
+    "median": 324,
+    "min": 304,
+    "ok": true
+   },
+   "BOT": {
+    "median": 339,
+    "min": 316,
+    "ok": true
+   },
+   "COL": {
+    "median": 328,
+    "min": 308,
+    "ok": true
+   },
+   "GAS": {
+    "median": 322,
+    "min": 295,
+    "ok": true
+   },
+   "HAD": {
+    "median": 325,
+    "min": 248,
+    "ok": true
+   },
+   "HAM": {
+    "median": 318,
+    "min": 300,
+    "ok": true
+   },
+   "LAW": {
+    "median": 326,
+    "min": 303,
+    "ok": true
+   },
+   "LEC": {
+    "median": 319,
+    "min": 301,
+    "ok": true
+   },
+   "LIN": {
+    "median": 323,
+    "min": 309,
+    "ok": true
+   },
+   "NOR": {
+    "median": 318,
+    "min": 301,
+    "ok": true
+   },
+   "OCO": {
+    "median": 324,
+    "min": 310,
+    "ok": true
+   },
+   "PER": {
+    "median": 335,
+    "min": 316,
+    "ok": true
+   },
+   "RUS": {
+    "median": 317,
+    "min": 289,
+    "ok": true
+   },
+   "SAI": {
+    "median": 329,
+    "min": 312,
+    "ok": true
+   },
+   "STR": {
+    "median": 336,
+    "min": 318,
+    "ok": true
+   },
+   "VER": {
+    "median": 319,
+    "min": 298,
+    "ok": true
+   }
+  },
+  "n_clean_laps": 834,
+  "n_pooled_points": 268616,
+  "seed_lap": {
+   "driver": "HAM",
+   "lap": 22,
+   "n_points": 331,
+   "lap_time": 83.509
+  },
+  "residual_rms_m": 0.662,
+  "share_within_5m": 1.0,
+  "start_line_median_abs_dev_m": 3.25,
+  "n_start_samples": 834,
+  "closure": "closed by construction (consensus bins along a closed seed)",
+  "grid_m": 9.9921
+ },
+ "L": 5225.876,
+ "n_points": 523,
+ "grid_m": 9.9921,
+ "sector1_end_s": 1737.43,
+ "sector2_end_s": 3147.69,
+ "sector_source": {
+  "s1": "positions at sector session times",
+  "s2": "positions at sector session times"
+ },
+ "sector_fractions": [
+  0.3325,
+  0.6023
+ ],
+ "units": "metres, feed frame (FastF1 X/Y / 10)",
+ "pit_entry_s": 4717.97,
+ "pit_exit_s": 227.4,
+ "pit_entry_index": 472,
+ "pit_exit_index": 23,
+ "pitlane_source": "recorded",
+ "status": "ok",
+ "capabilities": {
+  "canonical_geometry": true,
+  "driver_trajectories": false,
+  "scenario_replay": false
+ },
+ "limitation": "Canonical geometry only. No driver trajectories or counterfactual replay are supplied.",
+ "pitlane": {
+  "source": "recorded",
+  "length_m": 734.7,
+  "entry_s": 4718.0,
+  "exit_s": 227.4,
+  "transit_s": 31.5,
+  "s_line": 502.2,
+  "meta": {
+   "source": "recorded",
+   "n_stops": 30,
+   "n_excursions_seen": 33,
+   "median_transit_s": 31.39,
+   "transit_iqr_s": [
+    30.37,
+    34.2
+   ],
+   "entry_s": 4717.97,
+   "exit_s": 227.4,
+   "stops": [
+    {
+     "driver": "ALB",
+     "lap_in": 12,
+     "duration_s": 30.4,
+     "span_m": 832.0,
+     "n_points": 115
+    },
+    {
+     "driver": "ALB",
+     "lap_in": 33,
+     "duration_s": 29.06,
+     "span_m": 724.7,
+     "n_points": 121
+    },
+    {
+     "driver": "ALO",
+     "lap_in": 11,
+     "duration_s": 37.3,
+     "span_m": 723.4,
+     "n_points": 144
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 12,
+     "duration_s": 33.16,
+     "span_m": 766.3,
+     "n_points": 123
+    },
+    {
+     "driver": "BEA",
+     "lap_in": 18,
+     "duration_s": 31.46,
+     "span_m": 814.2,
+     "n_points": 118
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 18,
+     "duration_s": 30.36,
+     "span_m": 732.7,
+     "n_points": 114
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 33,
+     "duration_s": 33.76,
+     "span_m": 719.7,
+     "n_points": 126
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 12,
+     "duration_s": 49.76,
+     "span_m": 720.8,
+     "n_points": 193
+    },
+    {
+     "driver": "COL",
+     "lap_in": 9,
+     "duration_s": 38.76,
+     "span_m": 740.3,
+     "n_points": 152
+    },
+    {
+     "driver": "COL",
+     "lap_in": 46,
+     "duration_s": 31.46,
+     "span_m": 839.4,
+     "n_points": 111
+    },
+    {
+     "driver": "GAS",
+     "lap_in": 11,
+     "duration_s": 30.5,
+     "span_m": 756.3,
+     "n_points": 119
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 28,
+     "duration_s": 28.24,
+     "span_m": 706.5,
+     "n_points": 113
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 11,
+     "duration_s": 31.64,
+     "span_m": 747.2,
+     "n_points": 124
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 33,
+     "duration_s": 30.14,
+     "span_m": 734.0,
+     "n_points": 122
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 25,
+     "duration_s": 28.88,
+     "span_m": 767.2,
+     "n_points": 107
+    },
+    {
+     "driver": "LIN",
+     "lap_in": 18,
+     "duration_s": 30.68,
+     "span_m": 733.7,
+     "n_points": 114
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 11,
+     "duration_s": 31.34,
+     "span_m": 751.5,
+     "n_points": 124
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 34,
+     "duration_s": 28.18,
+     "span_m": 740.9,
+     "n_points": 107
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 11,
+     "duration_s": 30.5,
+     "span_m": 751.3,
+     "n_points": 119
+    },
+    {
+     "driver": "PER",
+     "lap_in": 18,
+     "duration_s": 34.26,
+     "span_m": 729.5,
+     "n_points": 137
+    },
+    {
+     "driver": "PER",
+     "lap_in": 43,
+     "duration_s": 30.78,
+     "span_m": 722.4,
+     "n_points": 113
+    },
+    {
+     "driver": "RUS",
+     "lap_in": 12,
+     "duration_s": 28.84,
+     "span_m": 724.1,
+     "n_points": 107
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 11,
+     "duration_s": 30.76,
+     "span_m": 725.0,
+     "n_points": 123
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 33,
+     "duration_s": 38.0,
+     "span_m": 717.8,
+     "n_points": 153
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 45,
+     "duration_s": 45.36,
+     "span_m": 746.3,
+     "n_points": 178
+    },
+    {
+     "driver": "STR",
+     "lap_in": 11,
+     "duration_s": 49.82,
+     "span_m": 758.8,
+     "n_points": 192
+    },
+    {
+     "driver": "STR",
+     "lap_in": 26,
+     "duration_s": 44.7,
+     "span_m": 722.1,
+     "n_points": 164
+    },
+    {
+     "driver": "STR",
+     "lap_in": 39,
+     "duration_s": 34.02,
+     "span_m": 722.8,
+     "n_points": 133
+    },
+    {
+     "driver": "VER",
+     "lap_in": 18,
+     "duration_s": 31.44,
+     "span_m": 747.0,
+     "n_points": 116
+    },
+    {
+     "driver": "VER",
+     "lap_in": 41,
+     "duration_s": 28.74,
+     "span_m": 726.6,
+     "n_points": 111
+    }
+   ],
+   "offpath_threshold_m": 4.0
+  }
+ },
+ "drivers": {},
+ "frames": [],
+ "identity_check": null,
+ "files": {
+  "track": {
+   "file": "track.npz",
+   "sha256": "f3fef3cce7afa4b8425f5b2bd3851623cb8c1f5a3350594939a2f4bd1a6a4104",
+   "bytes": 8383
+  },
+  "pitlane": {
+   "file": "pitlane.npz",
+   "sha256": "b72b886e7df8cf51702b2f956007d1f04d38de79e92dbba62e8968ad09bf8098",
+   "bytes": 5156
+  }
+ },
+ "build": {
+  "generated_at": "2026-09-13T01:50:03",
+  "seconds": 2.3,
+  "source": {
+   "source": "fastf1",
+   "fastf1_version": "3.8.3",
+   "event_name": "Australian Grand Prix",
+   "date": "2026-03-08 04:00:00",
+   "cache_dir": "/private/tmp/orb-map-cache",
+   "position_units": "metres (feed 1/10 m divided by 10)",
+   "driver_numbers": {
+    "NOR": "1",
+    "GAS": "10",
+    "PER": "11",
+    "ANT": "12",
+    "ALO": "14",
+    "LEC": "16",
+    "STR": "18",
+    "ALB": "23",
+    "VER": "3",
+    "LAW": "30",
+    "OCO": "31",
+    "LIN": "41",
+    "COL": "43",
+    "HAM": "44",
+    "BOR": "5",
+    "SAI": "55",
+    "HAD": "6",
+    "RUS": "63",
+    "BOT": "77",
+    "BEA": "87"
+   },
+   "offline": true,
+   "cached_source_sha256": {
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/_extended_timing_data.ff1pkl": "8c78e2f32418126b59a1c37fffc7071763a845e65bf015d8742b016ad83ed39a",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/car_data.ff1pkl": "712e811d3f31bbc611211479a12de5b48d8c700f8040f05e7f24f702d6d2edbe",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/driver_info.ff1pkl": "cc41993dc717887aecbd593199b6918d5912b62442a2914e33cca75cd756ca29",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/lap_count.ff1pkl": "271db6bd54c308a85775e8a3ef64282c96eee34ef1d91fa4f3ff5ba33f787da7",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/position_data.ff1pkl": "b8bf3dbfd94f4e73d99098a928d2be88a68946ee98d336f77896a63d8375d256",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/race_control_messages.ff1pkl": "2e543a66797951f9fd00d526a58a79cdf387ff836ed38a5d6c242cdcf32ea131",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/session_info.ff1pkl": "6a609ee79ab20ee69825a0dcf58ab114538d9a574d3ca5cf7201bbbdb2525647",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/session_status_data.ff1pkl": "4f421e83639794c9146a5ecd451186e4b80b97e2681a0b23041ea15808379e88",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/timing_app_data.ff1pkl": "811be39ec86e831a53bc455aebed45eeaff1a418b0e0b0ce301042130ce5ebc2",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/track_status_data.ff1pkl": "c608770400b9274f183cdcb833cc128e91d4b7da5e7ef91787151119f8dbaf86",
+    "2026/2026-03-08_Australian_Grand_Prix/2026-03-08_Race/weather_data.ff1pkl": "7ecba1911a9d5d95c849f2caf098bfddffdc4a253da64bd8e5fb80d901fcc461"
+   }
+  },
+  "tool": "replay/build_maps.py",
+  "geometry_only": true
+ }
+}

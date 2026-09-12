@@ -30,7 +30,7 @@ PAGES = {
     'validation': st.Page(validation.render, title='Validation', url_path='validation'),
 }
 st.session_state['_pages'] = PAGES
-nav = st.navigation(list(PAGES.values()), position='top')
+nav = st.navigation([PAGES[k] for k in ('landing', 'prerace', 'live', 'ghost', 'feedback', 'decision', 'validation', 'generalisation')], position='top')
 ctx = common.bootstrap()            # lock, query params, sidebar (engineering controls + presentation toggle)
 shell.inject_css(ctx.presentation)
 nav.run()

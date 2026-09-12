@@ -1,0 +1,9 @@
+{
+  "initial": "ORB V1\n|\nLIVE PREDICTOR\n\u00b7\nMonza 2026\n\u00b7\nRace (replay)\n\u00b7\nLap 32/53\n\u00b7\nForecast 66e320\n\u00b7\nPUBLIC PROXY\n\u00b7\nNEAR TRAINING SUPPORT\n\u00b7\nFeed latency 3.0 s (7.1 source_latency)",
+  "final": "ORB V1\n|\nLIVE PREDICTOR\n\u00b7\nMonza 2026\n\u00b7\nRace (replay)\n\u00b7\nLap 53/53\n\u00b7\nForecast 66e320\n\u00b7\nPUBLIC PROXY\n\u00b7\nNEAR TRAINING SUPPORT\n\u00b7\nFeed latency 3.0 s (7.1 source_latency)",
+  "error": "RuntimeError('RaceTwin displayed number has no source/runtime reference: [{\"widget\": \"Race Twin HUD and controls\", \"kind\": \"browser:race_twin_HUD\", \"value\": 5338.0, \"decimals\": 0, \"unit_context\": \":44\\\\nghost \\\\u22120\", \"column\": \"\", \"shown\": \"LAP 24 \\\\u00b7 TYRE-ONLY\\\\nLAP 24 / 5338:44\\\\nghost \\\\u22120.0 s2\"}, {\"widget\": \"Race Twin HUD and controls\", \"kind\": \"browser:race_twin_HUD\", \"value\": 90.0, \"decimals\": 0, \"unit_context\": \"% of counter\", \"column\": \"\", \"shown\": \"\\\\u00b7 age 21 \\\\u00b7 lap 24\\\\nhalo: 10\\\\u201390 % of counterfactual\"}]')",
+  "passed": false,
+  "console_errors": [],
+  "network_failures": [],
+  "external_requests": []
+}

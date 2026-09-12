@@ -22,7 +22,7 @@ def action_card(rank: int, r: dict, source: str) -> str:
         ('target set', f"{ts.get('set_id')} ({ts.get('status')})" if ts else '—'), ('expected gain', f"{r['expected_gain_median']:+.1f} s (q10 {r['expected_gain_q10']:+.1f}, q90 {r['expected_gain_q90']:+.1f})"),
         ('probability of gain', f"{100 * r['probability_of_gain']:.0f}%"), ('rejoin traffic', rejoin)])
     reasons = ''.join(f'<li>{esc(x)}</li>' for x in (r.get('reasons') or [])[:3])
-    return f'<div class="cs-card cs-decision" style="border-left-color:var(--{"decision" if rank == 1 else "border"})"><div class="status">action {rank}{" · changed" if r.get("changed_since_last_update") else ""}</div><div class="headline" style="font-size:1.2rem">{esc(title)}</div>{tyre}<div class="grid">{grid}</div><ul>{reasons}</ul><div class="cs-src">{esc(source)}</div></div>'
+    return f'<div class="cs-card cs-decision" style="border-left-color:var(--{"decision" if rank == 1 else "border"})"><div class="status">action {rank}{" · changed" if r.get("changed_since_last_update") else ""}</div><div class="headline" style="font-size:1.2rem">{esc(title)}</div>{tyre}<div class="grid">{grid}</div><details><summary>Why this action?</summary><ul>{reasons}</ul><div class="cs-src">{esc(source)}</div></details></div>'
 
 
 def placeholder_card(rank: int, a: dict | None, ev: str) -> str:
@@ -56,13 +56,13 @@ def render() -> None:
     st.markdown(f'## Decision board · {ev} · {driver} · lap {vm.lap}')
     if orb:
         b = orb.get('baseline') or {}
-        banners.note_banner(f"{orb['estimator_label']} · ranked by decision/optimizer.py re-run from lap {vm.lap} · gains measured against the pre-race plan {b.get('plan', '—')} ({b.get('schedule', '—')}, {b.get('stops_remaining', '—')} stops remaining) · rival strategy responses are not simulated · no recommendation changes silently")
+        st.caption(f"Modelled tyre-time gain against pre-race plan {b.get('plan', '—')}. Rival strategy responses are not simulated.")
     else:
         banners.placeholder_banner('ranked actions are the lock plan and its lock alternatives; probability, downside and rejoin arrive with the live package (not importable here).')
     d = vm.decision
     c1, c2, c3 = st.columns(3, gap='medium')
     with c1:
-        st.html(decision_html(d, vm))
+        st.html(decision_html(d, vm, compact=True))
     recs = (orb or {}).get('recommendations') or []
     src_label = f"7.2 live_recommendation · decision/optimizer.py · {(orb or {}).get('model_version', '')}"
     for col, rank in ((c2, 2), (c3, 3)):
@@ -75,24 +75,25 @@ def render() -> None:
             else:
                 alts = d.alternatives + [None, None]
                 st.html(placeholder_card(rank, alts[rank - 2], ev))
-    left, right = st.columns([3, 2], gap='large')
-    with left:
-        cards.section('Why the recommendation changed', 'Laps on which the top action changed, with the observation that moved the call.')
-        st.html(cards.card_html('', history_html(vm.history)))
-        if recs:
-            cards.section('Constraints on every action (7.2)')
-            st.html('<div class="cs-list">' + ''.join(f'<div>{esc(c)}</div>' for c in (recs[0].get('constraints') or [])) + '</div>')
-    with right:
-        cards.section('Live state feeding the board')
-        s = vm.state
-        rows = [('compound / age', f'{s.compound} / {s.tyre_age}' if s else '—'), ('posterior slope', f'{s.post_slope:+.3f} ± {s.post_sd:.3f} s/lap' if s and s.post_slope is not None else '—'),
-                ('prior slope', f'{vm.prior.slope:+.3f} s/lap ({vm.prior.source})' if vm.prior.slope is not None else '—'), ('trend vs forecast', f'{s.trend_vs_prior:+.2f}x' if s and s.trend_vs_prior is not None else '—'),
-                ('clean laps in stint', s.kept_laps if s else '—'), ('driver reports', len(vm.feedback)), ('support (7.1 live_tyre_state)' if orb else 'support', LB.support_status(vm)), ('support (lock-metadata chips)', vm.support.overall_support_status), ('estimator', LB.estimator_label_short(vm))]
-        note = LB.support_note(vm)
-        if note:
-            rows.append(('support note', note))
-        if orb:
-            ts = orb['tyre_state']
-            rows += [('regime', orb['regime']), ('useful laps q10/q50/q90', f"{ts['useful_laps_q10']:.0f} / {ts['useful_laps_q50']:.0f} / {ts['useful_laps_q90']:.0f}"), ('cliff 3 / 5 laps', f"{100 * ts['cliff_probability_3_laps']:.0f}% / {100 * ts['cliff_probability_5_laps']:.0f}% · {LB.CLIFF_LABEL}"), ('data cutoff', orb.get('data_cutoff', '—'))]
-        st.html(cards.kv_html(rows, stack=True))
+    with st.expander('Decision history, constraints & model details'):
+        left, right = st.columns([3, 2], gap='large')
+        with left:
+            cards.section('Why the recommendation changed', 'Laps on which the top action changed, with the observation that moved the call.')
+            st.html(cards.card_html('', history_html(vm.history)))
+            if recs:
+                cards.section('Constraints on every action (7.2)')
+                st.html('<div class="cs-list">' + ''.join(f'<div>{esc(c)}</div>' for c in (recs[0].get('constraints') or [])) + '</div>')
+        with right:
+            cards.section('Live state feeding the board')
+            s = vm.state
+            rows = [('compound / age', f'{s.compound} / {s.tyre_age}' if s else '—'), ('posterior slope', f'{s.post_slope:+.3f} ± {s.post_sd:.3f} s/lap' if s and s.post_slope is not None else '—'),
+                    ('prior slope', f'{vm.prior.slope:+.3f} s/lap ({vm.prior.source})' if vm.prior.slope is not None else '—'), ('trend vs forecast', f'{s.trend_vs_prior:+.2f}x' if s and s.trend_vs_prior is not None else '—'),
+                    ('clean laps in stint', s.kept_laps if s else '—'), ('driver reports', len(vm.feedback)), ('support (7.1 live_tyre_state)' if orb else 'support', LB.support_status(vm)), ('support (lock-metadata chips)', vm.support.overall_support_status), ('estimator', LB.estimator_label_short(vm))]
+            note = LB.support_note(vm)
+            if note:
+                rows.append(('support note', note))
+            if orb:
+                ts = orb['tyre_state']
+                rows += [('regime', orb['regime']), ('useful laps q10/q50/q90', f"{ts['useful_laps_q10']:.0f} / {ts['useful_laps_q50']:.0f} / {ts['useful_laps_q90']:.0f}"), ('cliff 3 / 5 laps', f"{100 * ts['cliff_probability_3_laps']:.0f}% / {100 * ts['cliff_probability_5_laps']:.0f}% · {LB.CLIFF_LABEL}"), ('data cutoff', orb.get('data_cutoff', '—'))]
+            st.html(cards.kv_html(rows, stack=True))
     shell.ready_marker('decision')

@@ -1,0 +1,27 @@
+...............................................................F........ [ 80%]
+.................                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_support_mismatch_is_visible_not_hidden __________________
+
+    def test_support_mismatch_is_visible_not_hidden():
+        from app_v2.services import live_bridge as LB, lock_repository as LR, replay_service as RS
+        if not LB.AVAILABLE:
+            pytest.skip('live package not importable')
+        lock = LR.load_lock(); vm = LB.build(lock, 'Monza', 'NOR', RS.ReplayCursor('Monza', 'NOR', 53).seek(30), 'x')
+        note = LB.support_note(vm); ts = vm.orb_live['tyre_state']['support_status']; chip = vm.support.overall_support_status
+        assert (note == '') == (ts == chip)
+        if note:
+            assert ts in note and chip in note
+>           assert note in _text(_run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
+E           AssertionError: assert 'support status differs by source: 7.1 live_tyre_state says NEAR TRAINING SUPPORT; the lock-metadata chips say IN SUPP...ath (Workstream 8 rates a fallback prior as near support), the chips rate the weekend from lock metadata and feature files.' in ' ORB LIVE PREDICTOR Monza 2026 Lap 30/53 Recorded replay Tyre degradation +0.017 s/lap Forecast +0.030 s/lap Next lap...dth: 1100px) { .block-container { padding-left: 1rem; padding-right: 1rem; } .cs-kv { grid-template-columns: 1fr; } } '
+E            +  where ' ORB LIVE PREDICTOR Monza 2026 Lap 30/53 Recorded replay Tyre degradation +0.017 s/lap Forecast +0.030 s/lap Next lap...dth: 1100px) { .block-container { padding-left: 1rem; padding-right: 1rem; } .cs-kv { grid-template-columns: 1fr; } } ' = _text(AppTest(\n    _script_path='/var/folders/jq/lm1fq9x932vbm3lxnz1zsvx00000gn/T/tmpcsd3ij7m/6a59cda61dd0bf8872f5ef8c76a44b...k(\n            type='event',\n            children={\n                0: UnknownElement()\n            }\n        )\n    }\n))
+E            +    where AppTest(\n    _script_path='/var/folders/jq/lm1fq9x932vbm3lxnz1zsvx00000gn/T/tmpcsd3ij7m/6a59cda61dd0bf8872f5ef8c76a44b...k(\n            type='event',\n            children={\n                0: UnknownElement()\n            }\n        )\n    }\n) = _run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'})
+
+tests/ui/test_pages.py:419: AssertionError
+----------------------------- Captured stderr call -----------------------------
+2026-09-13 01:54:10.709 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+------------------------------ Captured log call -------------------------------
+WARNING  streamlit.runtime.scriptrunner_utils.script_run_context:script_run_context.py:479 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+=========================== short test summary info ============================
+FAILED tests/ui/test_pages.py::test_support_mismatch_is_visible_not_hidden - ...
+1 failed, 88 passed in 10.47s

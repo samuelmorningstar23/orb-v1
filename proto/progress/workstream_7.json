@@ -1,23 +1,27 @@
 {
   "workstream": 7,
-  "task": "C5 red-team tooling and independent Workstream3 evaluation refutation complete; final integrated probes owned by lead",
+  "task": "C6 red-team release/rehearsal gates, README claims, dynamic-feedback provenance",
   "status": "GREEN",
   "commit": null,
   "completed": [
-    "Public consistency-probe evidence allowlist; never loads post-freeze per-race holdout file",
-    "Actual DOM browser audit across15 existing+19 screenshot routes at1440x900 and1920x1080; complete68-check matrix required by C5 report",
-    "Mentor PPTX and ChallengeDay PDF both audited as presentation surfaces; pypdf extraction tested on real10-page PDF; missing/empty extraction fails loudly",
-    "C5 report checkpoint CLI configurable and browser matrix gate mandatory for C5",
-    "Independent Workstream3 refutation PASS:17 live clustered bands,29 lock rows,121risk cells x6metrics,3 independent risk gate cells x6metrics,13 rolling rounds and360 temporal-pool guards; exact input hashes recorded in c5_scorecard_refutation.json"
+    "README claim sources/presentation/freshness added; direct frozen README headline/date/digest checks PASS on current main README",
+    "C6 consolidated gate retains complete C5 browser matrix; requires release report, >=300s rehearsal with numeric provenance/feedback restoration/RaceTwin proof, direct README evidence; non-PASS gives HOLD",
+    "Explicit-feedback LiveSession prefix reference hook added; obsolete live sidecar and generic feedback references excluded; every accepted numeric match stores source/value; strict unknown-integer rejection",
+    "Independent final release refutation PASS38 matrix cases +11 hostile-origin probes; repaired326-check report has zero raw console/network errors and empty per-route probes; source/report hashes captured",
+    "Rehearsal preparatory source refutation found network-origin/WS gap, missingTwinroute and absentstep errorfields; Workstream3 confirmed all fixed before execution",
+    "Detected initial filtered release report retained72 HTTP404 probes; invalidated raw-zero acceptance, preserved failed refutation, Workstream6 repaired root/internal navigation and raw-session logging",
+    "Initial184s rehearsal rejected despite716 matched numbers: serialization exception and raw404 errors; failed report preserved; awaiting corrected >=300s run",
+    "Definitive rehearsal independently PASS:302.511 seconds,12 steps,4823 precision records,62 independently interpolated animation samples, zero raw errors, exact one-event feedback restoration",
+    "Numeric browser probe now uses root-query bootstrap plus internal navigation, exact-origin HTTP/WS guard and blocking raw console/network errors; DOM extraction and runtime hooks unchanged"
   ],
   "in_progress": [],
   "blockers": [],
-  "tests_passed": 8,
+  "tests_passed": 16,
   "tests_failed": 0,
   "eta_minutes": 0,
   "needs_review_from": [
     "lead"
   ],
-  "notes": "All Workstream7 source/test/progress claims released for lead integration; no commits. Exact tests: ../.venv/bin/python -m pytest tests/red_team/test_c5_audit_boundaries.py -q -p no:cacheprovider =>8passed. Preparatory safe AppTest: ../.venv/bin/python -m evaluation.red_team.consistency_probe --out /private/tmp/orb-c5-workstream7-preparatory-probe.json =>15routes1692numbers0mismatches0loadfailures. Preparatory browser Validation via browser_consistency.run(base=http://localhost:8507,routes=[validation],out=None) =>2casesx2viewports1108numbers0mismatches0loadfailures before final source/artifacts. Isolated8507 stopped. Source syntax compile passed. Final independent command: ../.venv/bin/python evaluation/red_team/refute_c5_scorecards.py --source /private/tmp/orb-c5-workstream3/proto --out /private/tmp/orb-c5-workstream7/proto/evaluation/red_team/c5_scorecard_refutation.json =>6checksPASS, generated2026-09-12T18:17:45UTC, input fingerprints stable through run. Final integrated claim audit/browser probe/report are NOT represented as run by Workstream7; lead runs them after final rebuilds. Diagnostic failures resolved: sandbox bind required escalation; direct fresh-session deep links required first loading landing; missing fitz replaced with installed pypdf. A main-doc audit extraction diagnostic found every_withheld_rises survivor on ChallengeDay page9line9 (wrapped negation); reported to lead, who owns document fix. Protected per-race file never read; no protected/model/forecast files edited.",
-  "updated_at": "2026-09-12T23:48:42.499922"
+  "notes": "Working tree /private/tmp/orb-c6-workstream7 at d2d0e73. Source/test hook files released to lead for integration; finalprogress report pending rehearsal. Window00:55:23IST13Sep; deadline05:25:23IST. Commands: ../.venv/bin/python -m pytest tests/red_team/test_c6_evidence.py -q -p no:cacheprovider =>15passed0.53s; ../.venv/bin/python -m evaluation.red_team.refute_c6_release --source /private/tmp/orb-c6-workstream6/proto --out evaluation/red_team/c6_release_refutation.json =>PASS. Direct mainREADME readme_summary =>PASS6facts; initial validator used total sealed weekends rather than eligible forecast weekends, corrected source field and rechecked (no source-data changes). No report generation beyond independent refutation; no browser/fullrehearsal duplicate; no protected-file edits or per-race reveal reads. Final release report SHA2568a6843409139310119b5ad0d94053b745275252d4f8f65722c1b8b040683ba85. Session.n_laps typed provenance prevents generic rounded-value matches for race-length label. Broader isolated command ../.venv/bin/python -m pytest tests/red_team -q -p no:cacheprovider =>76passed1xfailed1failed in2.74s; freshness failure tests/red_team/test_claim_gate.py:94 is inherited C5 claim map timestamp older than worktree document-copy mtimes. Main final claim audit remains mandatory; no map regenerated here. Final commands: ../.venv/bin/python -m pytest tests/red_team/test_c6_evidence.py -q -p no:cacheprovider =>16passed0.72s; ../.venv/bin/python -m py_compile evaluation/red_team/browser_consistency.py evaluation/red_team/refute_c6_rehearsal.py =>exit0; ../.venv/bin/python -m evaluation.red_team.refute_c6_rehearsal --source /private/tmp/orb-c6-workstream3/proto/evaluation/rehearsal --out evaluation/red_team/c6_rehearsal_refutation.json =>PASS report SHA60bcfcc4a1884424429be11ab0924a4dc63a60e411b9897aeedaefb9498264d8. Claims released: evaluation/red_team/,tests/red_team/,progress/workstream_7.json; none held. Lead owns final main audits, checkpoint, commit, queue state; not run or claimed here.",
+  "updated_at": "2026-09-12T20:04:04.355390+00:00"
 }

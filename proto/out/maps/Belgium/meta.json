@@ -1,0 +1,475 @@
+{
+ "event": "Belgium",
+ "event_id": "2026_Belgium",
+ "year": 2026,
+ "session": "R",
+ "n_laps": 44,
+ "grid_m_nominal": 10.0,
+ "quality": {
+  "status": "ok",
+  "min_distinct_per_lap": 100,
+  "drivers_passed": [
+   "ALB",
+   "ALO",
+   "ANT",
+   "BEA",
+   "BOR",
+   "BOT",
+   "COL",
+   "GAS",
+   "HAD",
+   "HAM",
+   "HUL",
+   "LAW",
+   "LEC",
+   "LIN",
+   "NOR",
+   "OCO",
+   "PER",
+   "PIA",
+   "RUS",
+   "SAI",
+   "STR",
+   "VER"
+  ],
+  "drivers_refused": [],
+  "per_driver": {
+   "ALB": {
+    "median": 430,
+    "min": 411,
+    "ok": true
+   },
+   "ALO": {
+    "median": 443,
+    "min": 419,
+    "ok": true
+   },
+   "ANT": {
+    "median": 420,
+    "min": 400,
+    "ok": true
+   },
+   "BEA": {
+    "median": 429,
+    "min": 405,
+    "ok": true
+   },
+   "BOR": {
+    "median": 427,
+    "min": 406,
+    "ok": true
+   },
+   "BOT": {
+    "median": 439,
+    "min": 415,
+    "ok": true
+   },
+   "COL": {
+    "median": 428,
+    "min": 409,
+    "ok": true
+   },
+   "GAS": {
+    "median": 428,
+    "min": 401,
+    "ok": true
+   },
+   "HAD": {
+    "median": 423,
+    "min": 403,
+    "ok": true
+   },
+   "HAM": {
+    "median": 423,
+    "min": 401,
+    "ok": true
+   },
+   "HUL": {
+    "median": 429,
+    "min": 408,
+    "ok": true
+   },
+   "LAW": {
+    "median": 429,
+    "min": 407,
+    "ok": true
+   },
+   "LEC": {
+    "median": 422,
+    "min": 398,
+    "ok": true
+   },
+   "LIN": {
+    "median": 426,
+    "min": 406,
+    "ok": true
+   },
+   "NOR": {
+    "median": 423,
+    "min": 404,
+    "ok": true
+   },
+   "OCO": {
+    "median": 431,
+    "min": 412,
+    "ok": true
+   },
+   "PER": {
+    "median": 442,
+    "min": 427,
+    "ok": true
+   },
+   "PIA": {
+    "median": 423,
+    "min": 400,
+    "ok": true
+   },
+   "RUS": {
+    "median": 139,
+    "min": 139,
+    "ok": true
+   },
+   "SAI": {
+    "median": 428,
+    "min": 410,
+    "ok": true
+   },
+   "STR": {
+    "median": 445,
+    "min": 422,
+    "ok": true
+   },
+   "VER": {
+    "median": 421,
+    "min": 401,
+    "ok": true
+   }
+  },
+  "n_clean_laps": 682,
+  "n_pooled_points": 290019,
+  "seed_lap": {
+   "driver": "HAM",
+   "lap": 44,
+   "n_points": 442,
+   "lap_time": 110.619
+  },
+  "residual_rms_m": 0.592,
+  "share_within_5m": 1.0,
+  "start_line_median_abs_dev_m": 2.98,
+  "n_start_samples": 682,
+  "closure": "closed by construction (consensus bins along a closed seed)",
+  "grid_m": 10.0028
+ },
+ "L": 6931.915,
+ "n_points": 693,
+ "grid_m": 10.0028,
+ "sector1_end_s": 2244.68,
+ "sector2_end_s": 5028.43,
+ "sector_source": {
+  "s1": "positions at sector session times",
+  "s2": "positions at sector session times"
+ },
+ "sector_fractions": [
+  0.3238,
+  0.7254
+ ],
+ "units": "metres, feed frame (FastF1 X/Y / 10)",
+ "pit_entry_s": 6747.55,
+ "pit_exit_s": 477.13,
+ "pit_entry_index": 675,
+ "pit_exit_index": 48,
+ "pitlane_source": "recorded",
+ "status": "ok",
+ "capabilities": {
+  "canonical_geometry": true,
+  "driver_trajectories": false,
+  "scenario_replay": false
+ },
+ "limitation": "Canonical geometry only. No driver trajectories or counterfactual replay are supplied.",
+ "pitlane": {
+  "source": "recorded",
+  "length_m": 642.8,
+  "entry_s": 6747.5,
+  "exit_s": 477.1,
+  "transit_s": 36.0,
+  "s_line": 241.4,
+  "meta": {
+   "source": "recorded",
+   "n_stops": 28,
+   "n_excursions_seen": 30,
+   "median_transit_s": 35.57,
+   "transit_iqr_s": [
+    33.94,
+    38.57
+   ],
+   "entry_s": 6747.55,
+   "exit_s": 477.13,
+   "stops": [
+    {
+     "driver": "ALB",
+     "lap_in": 18,
+     "duration_s": 33.1,
+     "span_m": 664.3,
+     "n_points": 128
+    },
+    {
+     "driver": "ALO",
+     "lap_in": 19,
+     "duration_s": 34.04,
+     "span_m": 675.6,
+     "n_points": 128
+    },
+    {
+     "driver": "ALO",
+     "lap_in": 31,
+     "duration_s": 36.42,
+     "span_m": 661.6,
+     "n_points": 145
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 18,
+     "duration_s": 33.06,
+     "span_m": 665.8,
+     "n_points": 132
+    },
+    {
+     "driver": "BEA",
+     "lap_in": 1,
+     "duration_s": 38.4,
+     "span_m": 658.5,
+     "n_points": 144
+    },
+    {
+     "driver": "BEA",
+     "lap_in": 20,
+     "duration_s": 39.06,
+     "span_m": 668.2,
+     "n_points": 150
+    },
+    {
+     "driver": "BOR",
+     "lap_in": 20,
+     "duration_s": 32.84,
+     "span_m": 659.4,
+     "n_points": 125
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 1,
+     "duration_s": 42.18,
+     "span_m": 674.7,
+     "n_points": 165
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 32,
+     "duration_s": 36.12,
+     "span_m": 669.6,
+     "n_points": 140
+    },
+    {
+     "driver": "COL",
+     "lap_in": 15,
+     "duration_s": 34.34,
+     "span_m": 664.0,
+     "n_points": 130
+    },
+    {
+     "driver": "GAS",
+     "lap_in": 14,
+     "duration_s": 34.0,
+     "span_m": 670.7,
+     "n_points": 130
+    },
+    {
+     "driver": "HAD",
+     "lap_in": 1,
+     "duration_s": 35.82,
+     "span_m": 654.6,
+     "n_points": 134
+    },
+    {
+     "driver": "HAD",
+     "lap_in": 2,
+     "duration_s": 33.48,
+     "span_m": 659.4,
+     "n_points": 127
+    },
+    {
+     "driver": "HAD",
+     "lap_in": 20,
+     "duration_s": 35.24,
+     "span_m": 672.6,
+     "n_points": 133
+    },
+    {
+     "driver": "HAM",
+     "lap_in": 20,
+     "duration_s": 42.7,
+     "span_m": 654.6,
+     "n_points": 164
+    },
+    {
+     "driver": "HUL",
+     "lap_in": 20,
+     "duration_s": 36.34,
+     "span_m": 679.4,
+     "n_points": 138
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 15,
+     "duration_s": 33.92,
+     "span_m": 677.6,
+     "n_points": 131
+    },
+    {
+     "driver": "LEC",
+     "lap_in": 20,
+     "duration_s": 33.94,
+     "span_m": 661.3,
+     "n_points": 130
+    },
+    {
+     "driver": "LIN",
+     "lap_in": 16,
+     "duration_s": 35.32,
+     "span_m": 673.9,
+     "n_points": 141
+    },
+    {
+     "driver": "NOR",
+     "lap_in": 30,
+     "duration_s": 37.8,
+     "span_m": 646.8,
+     "n_points": 145
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 1,
+     "duration_s": 44.9,
+     "span_m": 657.8,
+     "n_points": 179
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 16,
+     "duration_s": 34.18,
+     "span_m": 662.7,
+     "n_points": 133
+    },
+    {
+     "driver": "PER",
+     "lap_in": 1,
+     "duration_s": 37.32,
+     "span_m": 657.6,
+     "n_points": 141
+    },
+    {
+     "driver": "PER",
+     "lap_in": 12,
+     "duration_s": 39.8,
+     "span_m": 663.0,
+     "n_points": 151
+    },
+    {
+     "driver": "PIA",
+     "lap_in": 20,
+     "duration_s": 33.6,
+     "span_m": 654.7,
+     "n_points": 131
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 14,
+     "duration_s": 44.86,
+     "span_m": 661.8,
+     "n_points": 181
+    },
+    {
+     "driver": "STR",
+     "lap_in": 17,
+     "duration_s": 42.28,
+     "span_m": 659.5,
+     "n_points": 153
+    },
+    {
+     "driver": "VER",
+     "lap_in": 17,
+     "duration_s": 33.32,
+     "span_m": 678.2,
+     "n_points": 122
+    }
+   ],
+   "offpath_threshold_m": 4.0
+  }
+ },
+ "drivers": {},
+ "frames": [],
+ "identity_check": null,
+ "files": {
+  "track": {
+   "file": "track.npz",
+   "sha256": "763a4c17d2fa60ccf99d8394b81a92f2697b48df6341b0d2bb2fe0af0bd44ed2",
+   "bytes": 10111
+  },
+  "pitlane": {
+   "file": "pitlane.npz",
+   "sha256": "00978186d237e27ce8484c9b93c9454bc2441cf1b20c91d39f8eed458bbfb3ef",
+   "bytes": 5020
+  }
+ },
+ "build": {
+  "generated_at": "2026-09-13T01:50:08",
+  "seconds": 2.4,
+  "source": {
+   "source": "fastf1",
+   "fastf1_version": "3.8.3",
+   "event_name": "Belgian Grand Prix",
+   "date": "2026-07-19 13:00:00",
+   "cache_dir": "/private/tmp/orb-map-cache",
+   "position_units": "metres (feed 1/10 m divided by 10)",
+   "driver_numbers": {
+    "ANT": "12",
+    "LEC": "16",
+    "VER": "3",
+    "HAM": "44",
+    "PIA": "81",
+    "HAD": "6",
+    "NOR": "1",
+    "BOR": "5",
+    "LIN": "41",
+    "COL": "43",
+    "GAS": "10",
+    "LAW": "30",
+    "HUL": "27",
+    "BEA": "87",
+    "ALB": "23",
+    "SAI": "55",
+    "OCO": "31",
+    "BOT": "77",
+    "ALO": "14",
+    "STR": "18",
+    "PER": "11",
+    "RUS": "63"
+   },
+   "offline": true,
+   "cached_source_sha256": {
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/_extended_timing_data.ff1pkl": "51921703486f83c397febe71b0c323264986c182efcf527a693c09d3a91201bf",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/car_data.ff1pkl": "0340fb3727e9b85de70ca6a3011ea939fe6a96dbe8fe17c9d053b81873ce899d",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/driver_info.ff1pkl": "0ded1c556ae7bf2c8791e34833eb7496ee14c9953cd8085735fb08f8e9e793d7",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/lap_count.ff1pkl": "84f4dad23507dae2f6304ca8fa73869fe7bda03135b72f82d1ff73a69787bf98",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/position_data.ff1pkl": "6661f9b2f025c35e5a7cc89fa226ab76a794851e6e7ca1ce14c19c3ea14b1200",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/race_control_messages.ff1pkl": "a5d66648eee9019a3157c5d1a658a63c2e0740c2855afe94aa27d938bec686c2",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/session_info.ff1pkl": "817183453683b934b58e043d768cc475a2a6edb8f154c484065a363462594f8a",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/session_status_data.ff1pkl": "c6046e9f3b17c7d8e6eb01e58f29f5ed3a426fec805d4907bc94b12aad35b4ac",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/timing_app_data.ff1pkl": "20d32a36e107e2c409013da7b1a5b821999061a896dffcd131be8a24828c2945",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/track_status_data.ff1pkl": "3430bff9f1f1f34fb64989fdd21f21782223c9a9239e9876571e23ed555a4487",
+    "2026/2026-07-19_Belgian_Grand_Prix/2026-07-19_Race/weather_data.ff1pkl": "586c2eff055dbcad1f731a1c61c15b2cc26fb1e4cf6a0905f1177780d3aea4ee"
+   }
+  },
+  "tool": "replay/build_maps.py",
+  "geometry_only": true
+ }
+}

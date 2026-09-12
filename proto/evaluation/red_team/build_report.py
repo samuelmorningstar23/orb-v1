@@ -280,7 +280,7 @@ def _unqualified_hits(c: dict) -> list[dict]:
     found = c.get('found_in') or []
     if not found or 'qualified' not in found[0]:
         return list(found)
-    return [f for f in found if not f.get('qualified') and f.get('kind') in ('deck', 'talk_track', 'THE_CASE')]
+    return [f for f in found if not f.get('qualified') and f.get('kind') in ('deck', 'talk_track', 'THE_CASE', 'README')]
 
 
 def wording_outstanding(claims: Optional[dict]) -> list[dict]:
@@ -378,10 +378,23 @@ def build(event: str = 'Madrid', rerun: Optional[set[str]] = None, skip_tests: b
         blocking=dict(status='PASS' if not blocking.get('issues') else 'FAIL', open=[i.get('id') for i in blocking.get('issues') or []], resolved=[r.get('id') for r in blocking.get('resolved') or []],
                       observations=[o.get('id') for o in blocking.get('observations_not_blocking') or []]),
     )
-    if checkpoint == 'C5':
+    if checkpoint in ('C5', 'C6'):
         checks['browser_consistency'] = _browser_summary(_report('browser_consistency_report.json'))
+    if checkpoint == 'C6':
+        from evaluation.red_team.c6_evidence import release_summary, rehearsal_summary, readme_summary
+        release_path = PROTO / 'tests/screenshots/c6_release_report.json'
+        rehearsal_path = PROTO / 'evaluation/rehearsal/c6_rehearsal_report.json'
+        checks['readme_evidence'] = readme_summary(PROTO)
+        checks['release_gate'] = release_summary(read_json(release_path) if release_path.exists() else None)
+        checks['five_minute_rehearsal'] = rehearsal_summary(read_json(rehearsal_path) if rehearsal_path.exists() else None)
+        if 'README.md' not in (inputs['claims'] or {}).get('sources', []):
+            checks['claim_audit'].update(status='FAIL', note='C6 requires README.md in the final claim audit')
+        if checks['claim_audit']['status'] != 'PASS':
+            checks['claim_audit']['status'] = 'FAIL'
     wording = wording_outstanding(inputs['claims'])
     dec, why = verdict(checks, blocking)
+    if checkpoint == 'C6' and any(c.get('status') != 'PASS' for c in checks.values()):
+        dec, why = 'HOLD', 'C6 requires complete green release, rehearsal and red-team evidence; no skips or failed-check override.'
     lock = read_json(LOCK_V1) if LOCK_V1.exists() else {}
     v2 = read_json(LOCK_V2) if LOCK_V2.exists() else {}
     counts = dict(checks=len(checks), pass_=sum(1 for v in checks.values() if v.get('status') == 'PASS'), warn=sum(1 for v in checks.values() if v.get('status') == 'WARN'),
@@ -433,6 +446,9 @@ def render_md(rep: dict) -> str:
             'forecast_file_audit': f"{v.get('file')} issued {v.get('issued_at')} sessions {v.get('sessions_used')} pointers {v.get('pointers_resolve')}; problems {v.get('problems')}",
             'hash_provenance': f"runtime readers agree {v.get('runtime_readers_agree')}; stale sidecars {v.get('stale_sidecars')}",
             'madrid_anchors': f"{v.get('reality')}; stale statements {[(s['document'], s['line'], s['time']) for s in v.get('stale', [])]}",
+            'readme_evidence': str(v.get('failures') or 'frozen README facts verified'),
+            'release_gate': str(v.get('failures') or 'complete release matrix PASS'),
+            'five_minute_rehearsal': f"{v.get('elapsed_s')}s, {v.get('steps')} samples, {v.get('numbers')} numbers; {v.get('failures')}",
             'blocking': f"open {v.get('open')} resolved {v.get('resolved')} observations {v.get('observations')}",
         }.get(k, '')
         L.append(f"| {k} | {v.get('status')} | {str(detail).replace('|', '/')[:600]} |")

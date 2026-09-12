@@ -1,0 +1,40 @@
+consistency probe: 15 routes, 3306 numbers, 0 mismatches, 0 placeholder values, 27 unhashed live values, 734 ambiguous matches, 0 unclassified small integers, 0 load failures -> exit 0
+  ok   landing/Monza                      numbers   52  mismatches  0  placeholders  0  unhashed   0  ambiguous  23
+  ok   pre_race/Monza                     numbers   40  mismatches  0  placeholders  0  unhashed   0  ambiguous  18
+  ok   pre_race/Madrid                    numbers   38  mismatches  0  placeholders  0  unhashed   0  ambiguous  11
+  ok   live_predictor/Monza-LIN-L30       numbers  105  mismatches  0  placeholders  0  unhashed  16  ambiguous  32
+  ok   live_predictor/Monza-NOR-L30       numbers  105  mismatches  0  placeholders  0  unhashed   0  ambiguous  33
+  ok   live_predictor/Madrid              numbers    9  mismatches  0  placeholders  0  unhashed   0  ambiguous   6
+  ok   live_predictor/Austria-NOR-L30     numbers  160  mismatches  0  placeholders  0  unhashed   0  ambiguous  56
+  ok   decision_board/Monza-LIN-L30       numbers   84  mismatches  0  placeholders  0  unhashed  11  ambiguous  25
+  ok   driver_feedback/Monza-LIN          numbers   11  mismatches  0  placeholders  0  unhashed   0  ambiguous   3
+  ok   ghost_strategy/Monza-NOR-audit     numbers   94  mismatches  0  placeholders  0  unhashed   0  ambiguous  35
+  ok   ghost_strategy/Monza-NOR-scenario  numbers   50  mismatches  0  placeholders  0  unhashed   0  ambiguous  18
+  ok   ghost_strategy/Austria-NOR-audit   numbers   65  mismatches  0  placeholders  0  unhashed   0  ambiguous  19
+  ok   ghost_strategy/Madrid-audit        numbers    1  mismatches  0  placeholders  0  unhashed   0  ambiguous   0
+  ok   generalisation                     numbers 1857  mismatches  0  placeholders  0  unhashed   0  ambiguous 323
+  ok   validation                         numbers  635  mismatches  0  placeholders  0  unhashed   0  ambiguous 132
+  note: out/sensitivity.json has no .sha256 sidecar and is not in the lock: its numbers are shown on the validation page as an unsigned asset
+  note: out/validation/*.json (Workstream 3 scorecards) have no .sha256 sidecar; the pages print the file sha256 next to the values, so they are matched as on-screen-hashed assets
+  note: Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED
+report: /Users/samuelmorningstar/Trackshift/proto/evaluation/red_team/consistency_probe_report.json
+
+--- stderr ---
+2026-09-13 02:21:33.443 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:34.434 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:35.121 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:35.882 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:37.756 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:39.653 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:39.907 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:42.964 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:44.388 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:44.765 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:44.891 Please replace `st.components.v1.html` with `st.iframe`.
+
+`st.components.v1.html` will be removed after 2026-06-01.
+2026-09-13 02:21:46.374 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:47.287 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:48.192 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:21:48.311 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-13 02:22:10.715 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.

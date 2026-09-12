@@ -20,8 +20,8 @@ def forecast_vs_live(vm, presentation: bool = False, estimator_label: str = 'PLA
     xs = _ages(max_age)
     lo, hi = prior.band90
     if prior.slope is not None and lo is not None and hi is not None:
-        fig.add_trace(go.Scatter(x=np.r_[xs, xs[::-1]], y=np.r_[lo * xs, (hi * xs)[::-1]], fill='toself', fillcolor=rgba(col, 0.12), line=dict(width=0), name='pre-race 90% band (lock)', hoverinfo='skip'))
-        fig.add_trace(go.Scatter(x=xs, y=prior.slope * xs, mode='lines', name=f'pre-race forecast {prior.slope:+.3f} s/lap (lock)', line=dict(color=col, width=1.5, dash='dash')))
+        fig.add_trace(go.Scatter(x=np.r_[xs, xs[::-1]], y=np.r_[lo * xs, (hi * xs)[::-1]], fill='toself', fillcolor=rgba(col, 0.12), line=dict(width=0), name='Forecast 90% band', showlegend=False, hoverinfo='skip'))
+        fig.add_trace(go.Scatter(x=xs, y=prior.slope * xs, mode='lines', name='Pre-race forecast', line=dict(color=col, width=1.5, dash='dash')))
     for t in vm.comparable:
         fig.add_trace(go.Scatter(x=t['ages'], y=t['losses'], mode='lines', name=f"{t['driver']} (comparable stint)", line=dict(color=COLORS['text_secondary'], width=1), opacity=0.25, showlegend=False, hoverinfo='skip'))
     y_lo, y_hi = -0.6, 2.0
@@ -37,15 +37,15 @@ def forecast_vs_live(vm, presentation: bool = False, estimator_label: str = 'PLA
         drop_x = [a for a, k in zip(st.all_ages, st.all_kept) if not k]; drop_y_raw = [l for l, k in zip(st.all_losses, st.all_kept) if not k]
         drop_y = [min(max(l, y_lo + 0.15), y_hi - 0.15) for l in drop_y_raw]
         drop_sym = ['triangle-up-open' if l > y_hi - 0.15 else ('triangle-down-open' if l < y_lo + 0.15 else 'circle-open') for l in drop_y_raw]
-        fig.add_trace(go.Scatter(x=drop_x, y=drop_y, mode='markers', name='live lap, excluded (flag / pit / traffic / >105%; triangles clipped)', marker=dict(color=COLORS['text_secondary'], size=7, symbol=drop_sym), hovertext=[f'{l:+.1f} s' for l in drop_y_raw]))
-        fig.add_trace(go.Scatter(x=kept_x, y=kept_y, mode='markers', name='live lap, corrected (fuel prior removed)', marker=dict(color=COLORS['text'], size=7, symbol='circle')))
+        fig.add_trace(go.Scatter(x=drop_x, y=drop_y, mode='markers', name='Excluded lap', showlegend=False, marker=dict(color=COLORS['text_secondary'], size=7, symbol=drop_sym), hovertext=[f'{l:+.1f} s' for l in drop_y_raw]))
+        fig.add_trace(go.Scatter(x=kept_x, y=kept_y, mode='markers', name='Observed pace', marker=dict(color=COLORS['text'], size=7, symbol='circle')))
         if st.post_slope is not None:
             px = _ages(st.tyre_age + 10, 30); plo, phi = st.band90
             if plo is not None:
-                fig.add_trace(go.Scatter(x=np.r_[px, px[::-1]], y=np.r_[plo * px, (phi * px)[::-1]], fill='toself', fillcolor=rgba(COLORS['live'], 0.16 if st.widened else 0.10), line=dict(width=0), name=f'posterior 90% band ({lab})' + (' · widened' if st.widened else ''), hoverinfo='skip'))
-            fig.add_trace(go.Scatter(x=px, y=st.post_slope * px, mode='lines', name=f'live posterior {st.post_slope:+.3f} s/lap ({lab})', line=dict(color=COLORS['live'], width=2.5)))
+                fig.add_trace(go.Scatter(x=np.r_[px, px[::-1]], y=np.r_[plo * px, (phi * px)[::-1]], fill='toself', fillcolor=rgba(COLORS['live'], 0.16 if st.widened else 0.10), line=dict(width=0), name='Estimate 90% band', showlegend=False, hoverinfo='skip'))
+            fig.add_trace(go.Scatter(x=px, y=st.post_slope * px, mode='lines', name='Updated prediction', line=dict(color=COLORS['live'], width=2.5)))
             proj = [dict(h=p['h'], age=p['age'], loss=p['loss'], lo=p['lo'], hi=p['hi']) for p in projection] if projection else st.project()
-            fig.add_trace(go.Scatter(x=[p['age'] for p in proj], y=[p['loss'] for p in proj], mode='markers+text', name='forward 1/3/5/10 laps', text=[f"+{p['h']}" for p in proj], textposition='top center', textfont=dict(size=10, color=COLORS['live']),
+            fig.add_trace(go.Scatter(x=[p['age'] for p in proj], y=[p['loss'] for p in proj], mode='markers+text', name='Next laps', text=[f"+{p['h']}" for p in proj], textposition='top center', textfont=dict(size=10, color=COLORS['live']),
                                      marker=dict(color=COLORS['live'], size=8, symbol='diamond'), error_y=dict(type='data', symmetric=False, array=[p['hi'] - p['loss'] for p in proj], arrayminus=[p['loss'] - p['lo'] for p in proj], color=rgba(COLORS['live'], 0.5), thickness=1)))
         fig.add_vline(x=st.tyre_age, line=dict(color=COLORS['text_secondary'], width=1, dash='dot'))
         fig.add_annotation(x=st.tyre_age, y=1, yref='paper', text=f'age {st.tyre_age} · lap {st.lap}', showarrow=False, font=dict(size=10, color=COLORS['text_secondary']), yanchor='bottom')
@@ -62,7 +62,7 @@ def forecast_vs_live(vm, presentation: bool = False, estimator_label: str = 'PLA
         if pair.split('-')[0] == comp[0]:
             fig.add_vline(x=x, line=dict(color=COLORS['decision'], width=1, dash='dash'))
             fig.add_annotation(x=x, y=0.5, yref='paper', text=f'crossover {pair} at age {x:.1f} (lock)', showarrow=False, textangle=-90, font=dict(size=9, color=COLORS['decision']), xanchor='right')
-    apply(fig, height=470 if presentation else 420, xaxis_title='Tyre age (laps)', yaxis_title='Pace loss vs fresh tyre (s), fuel prior removed', showlegend=not presentation, yaxis=dict(range=[y_lo, y_hi]),
+    apply(fig, height=470 if presentation else 420, xaxis_title='Tyre age (laps)', yaxis_title='Pace loss (s)', showlegend=not presentation, yaxis=dict(range=[y_lo, y_hi]),
           legend=dict(orientation='h', yanchor='bottom', y=1.0, x=0), margin=dict(l=48, r=16, t=50 if not presentation else 24, b=40))
     return fig
 

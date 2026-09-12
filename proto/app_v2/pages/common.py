@@ -30,7 +30,7 @@ def bootstrap() -> Ctx:
     q = query_state.sync(events)
     s = st.session_state
     with st.sidebar:
-        st.markdown('**ORB V1 · controls**')
+        st.markdown('**ORB · Tyre intelligence**')
         present = st.toggle('Presentation mode', value=bool(s.get('present', False)), help='Hides engineering controls and enlarges the decisive visuals.')
         if present != bool(s.get('present', False)):
             query_state.set_state(present=present)
@@ -40,7 +40,7 @@ def bootstrap() -> Ctx:
             return Ctx(None, '', None, None, present, s.get('mode', 'live'), q)
         race_files = set(A.available_race_events())
         ev = st.selectbox('Weekend', events, index=events.index(s['ev']) if s.get('ev') in events else 0,
-                          format_func=lambda e: f"{e}  ·  {'LIVE forecast' if lock.is_live_event(e) else 'scored'}{'' if e in race_files else '  ·  no race file'}")
+                          format_func=lambda e: f"{e} · {'forecast only' if e not in race_files else 'recorded race'}")
         if ev != s.get('ev'):
             query_state.set_state(ev=ev, lap=None, drv=None, cmp=None)
             st.rerun()
@@ -48,21 +48,24 @@ def bootstrap() -> Ctx:
         drv = None
         if drivers:
             default = s.get('drv') if s.get('drv') in drivers else app_state.default_driver(lock, ev)
-            drv = st.selectbox('Driver (replay / audit)', drivers, index=drivers.index(default) if default in drivers else 0)
+            drv = st.selectbox('Driver', drivers, index=drivers.index(default) if default in drivers else 0)
             if drv != s.get('drv'):
                 query_state.set_state(drv=drv, lap=None)
                 st.rerun()
         comps = lock.compounds_for(ev)
         cmp_default = s.get('cmp') if s.get('cmp') in comps else (comps[0] if comps else None)
-        cmp = st.selectbox('Forecast compound (pre-race view)', comps, index=comps.index(cmp_default) if cmp_default in comps else 0) if comps else None
+        cmp = cmp_default
         if cmp != s.get('cmp'):
             query_state.set_state(cmp=cmp)
-        st.divider()
-        st.caption(f"lock {lock.version} · {lock.generated_at}\n\nforecast hash {lock.forecast_hash[:12]} ({lock.forecast_hash_source})")
-        st.caption(f'lock file {lock.asset.short_hash} · {lock.asset.sidecar_status}')
-        if drv and ev in race_files:
-            a = A.race_csv_asset(ev); st.caption(f'race file {ev}_R.csv sha256 {a.short_hash} · {a.sidecar_status}')
-        st.caption('offline build: no CDN, API or font download')
+        st.caption('Recorded races replay locally. Madrid is a frozen pre-race forecast.')
+        with st.expander('Data & model details'):
+            st.caption(f"lock {lock.version} · {lock.generated_at}")
+            st.caption(f"forecast hash {lock.forecast_hash} ({lock.forecast_hash_source})")
+            st.caption(f'lock file {lock.asset.short_hash} · {lock.asset.sidecar_status}')
+            if drv and ev in race_files:
+                a = A.race_csv_asset(ev)
+                st.caption(f'race file {ev}_R.csv sha256 {a.short_hash} · {a.sidecar_status}')
+            st.caption('Public telemetry proxies; tyre pressures and temperatures are not measured. Runs offline; no CDN, API or font download.')
     return Ctx(lock, s.get('ev', ''), s.get('drv'), s.get('cmp'), present, s.get('mode', 'live'), q)
 
 
@@ -74,7 +77,7 @@ def context(mode: str) -> Ctx:
 
 def header(ctx: Ctx, mode: str, lap: Optional[int] = None, n_laps: Optional[int] = None, support: str = 'PENDING', latency: str = '—', session: Optional[str] = None) -> None:
     vm = VM.build_header(ctx.lock, mode, ctx.event, session or SESSION_LABEL.get(ctx.mode, 'Race'), lap, n_laps, support, latency)
-    shell.render_header(vm)
+    shell.render_header(vm, ctx.presentation)
 
 
 def require_lock(ctx: Ctx, mode: str) -> bool:
