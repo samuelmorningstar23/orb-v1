@@ -9,6 +9,7 @@ from app_v2.pages import common
 from app_v2.services import asset_repository as A
 from app_v2.services import event_service as ES
 from app_v2.services import live_bridge as LB
+from app_v2.services import replay_service as RS
 from app_v2.services import view_models as VM
 from app_v2.state import app_state, query_state
 from app_v2.ui import shell, cards, badges, charts, empty_states, banners
@@ -140,12 +141,16 @@ def render() -> None:
         st.session_state['lap'] = src.cursor.lap
         lat = src.latency_s()
         replay_latency = f'{lat:.1f} s (replay)' if lat is not None else 'replay idle'
-        vm = LB.build(lock, ev, driver, src.cursor, replay_latency)
-        orb = getattr(vm, 'orb_live', None)
-        label = LB.estimator_label_short(vm)
-        common.header(ctx, 'live', lap=vm.lap, n_laps=vm.n_laps, support=LB.support_status(vm), latency=LB.latency_text(vm, replay_latency))
-        if vm.live_source == 'PLACEHOLDER':
-            banners.placeholder_banner('live package not importable: posterior and decision are the labelled placeholders (' + (LB.IMPORT_ERROR or 'unknown') + ')')
+        unavailable = RS.prediction_unavailable_reason(src.cursor)
+        if unavailable:
+            common.header(ctx, 'live', lap=src.cursor.lap, n_laps=src.cursor.n_laps, support='MISSING TYRE DATA', latency=replay_latency)
+        else:
+            vm = LB.build(lock, ev, driver, src.cursor, replay_latency)
+            orb = getattr(vm, 'orb_live', None)
+            label = LB.estimator_label_short(vm)
+            common.header(ctx, 'live', lap=vm.lap, n_laps=vm.n_laps, support=LB.support_status(vm), latency=LB.latency_text(vm, replay_latency))
+            if vm.live_source == 'PLACEHOLDER':
+                banners.placeholder_banner('live package not importable: posterior and decision are the labelled placeholders (' + (LB.IMPORT_ERROR or 'unknown') + ')')
         st.markdown(f'## {driver} · live tyre prediction')
         st.caption('Replay a recorded race. The estimate uses only laps reached so far.')
         # Controls occupy two rows so all actions fit on a laptop.
@@ -166,6 +171,9 @@ def render() -> None:
             was = src.playing; src.pause(); src.seek(int(lap)); st.session_state['lap'] = int(lap)
             st.rerun(scope='app' if was else 'fragment')
         query_state.mirror()
+        if unavailable:
+            banners.note_banner(unavailable)
+            return
         state = vm.state
         ts = (orb or {}).get('tyre_state') or {}
         quality = str(ts.get('quality_status', vm.feed.get('status', '')))

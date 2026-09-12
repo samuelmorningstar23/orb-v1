@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13T02:22:17",
+ "generated_at": "2026-09-13T03:07:48",
  "exit_code": 0,
  "definition": "exit 0: every rendered number equals the lock, a hashed sidecar, a labelled fixture or a lock-derived quantity at the display precision of ui/tokens.py; placeholders (PLACEHOLDER / FIXTURE / pending) and UNHASHED live values (route driver without an out/live record) are allowed and listed; ambiguity = number of distinct reference values that would have matched (coincidence risk)",
  "lock": {

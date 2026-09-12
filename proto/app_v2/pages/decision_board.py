@@ -5,6 +5,7 @@ import streamlit as st
 from app_v2.pages import common
 from app_v2.services import asset_repository as A
 from app_v2.services import live_bridge as LB
+from app_v2.services import replay_service as RS
 from app_v2.services import view_models as VM
 from app_v2.state import app_state
 from app_v2.ui import shell, cards, badges, empty_states, banners
@@ -50,6 +51,13 @@ def render() -> None:
     if src is None:
         common.header(ctx, 'decision'); empty_states.missing_feed(ev); shell.ready_marker('decision'); return
     src.poll()
+    unavailable = RS.prediction_unavailable_reason(src.cursor)
+    if unavailable:
+        common.header(ctx, 'decision', lap=src.cursor.lap, n_laps=src.cursor.n_laps, support='MISSING TYRE DATA', latency='replay')
+        banners.note_banner(unavailable)
+        if st.button('Open replay', type='primary'):
+            common.goto('live', lap=src.cursor.lap)
+        shell.ready_marker('decision'); return
     vm = LB.build(lock, ev, driver, src.cursor, 'replay')
     orb = getattr(vm, 'orb_live', None)
     common.header(ctx, 'decision', lap=vm.lap, n_laps=vm.n_laps, support=LB.support_status(vm), latency=LB.latency_text(vm, 'replay'))

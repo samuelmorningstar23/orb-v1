@@ -7,6 +7,7 @@ from app_v2.pages import common
 from app_v2.services import asset_repository as A
 from app_v2.services import feedback_service as FS
 from app_v2.services import live_bridge as LB
+from app_v2.services import replay_service as RS
 from app_v2.services import view_models as VM
 from app_v2.state import app_state
 from app_v2.ui import shell, cards, badges, banners, alerts, empty_states
@@ -25,11 +26,14 @@ def render() -> None:
     st.session_state['mode'] = 'live'
     driver = ctx.driver or app_state.default_driver(lock, ev) or 'UNK'
     src = app_state.source_for(ev, driver, lock.n_laps(ev)) if A.race_csv_asset(ev).exists else None
-    vm = None
+    vm, unavailable = None, ''
     if src is not None:
-        src.poll(); vm = LB.build(lock, ev, driver, src.cursor, 'replay')
+        src.poll()
+        unavailable = RS.prediction_unavailable_reason(src.cursor)
+        if not unavailable:
+            vm = LB.build(lock, ev, driver, src.cursor, 'replay')
     orb = getattr(vm, 'orb_live', None) if vm else None
-    lap_now = int(vm.lap) if vm else int(st.session_state.get('lap') or 1)
+    lap_now = src.cursor.lap if src else int(st.session_state.get('lap') or 1)
     support = LB.support_status(vm) if vm else VM.SS.support_for(lock, ev, driver, ctx.compound).overall_support_status
     common.header(ctx, 'feedback', lap=lap_now, n_laps=lock.n_laps(ev), support=support, latency=LB.latency_text(vm, 'replay') if vm else 'no feed')
     st.markdown(f'## Driver feedback · {ev} · {driver} · lap {lap_now}')
@@ -39,6 +43,8 @@ def render() -> None:
         if st.button('Start Monza replay', type='primary'):
             common.goto('live', ev='Monza', drv='NOR', lap=1, mode='live')
         shell.ready_marker('feedback'); return
+    if unavailable:
+        banners.note_banner(unavailable)
     left, right = st.columns([3, 2], gap='large')
     with left:
         cards.section('Driver report')

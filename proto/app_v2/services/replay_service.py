@@ -191,6 +191,8 @@ def kept_mask(rows: pd.DataFrame, corr: Corrections) -> np.ndarray:
     base = (rows['green'] & rows['IsAccurate'] & ~rows['pit_in'] & ~rows['pit_out'] & ~rows['deleted']).to_numpy()
     traffic = rows['traffic'].to_numpy(dtype=float)
     base &= np.where(np.isfinite(traffic), traffic <= corr.traffic_max, False)
+    base &= np.isfinite(rows['TyreLife'].to_numpy(dtype=float))
+    base &= rows['Compound'].notna().to_numpy()
     lap_s = rows['lap_s'].to_numpy(dtype=float)
     best = np.minimum.accumulate(np.where(base, lap_s, np.inf))
     with np.errstate(invalid='ignore'):
@@ -207,17 +209,50 @@ def _ols(x: np.ndarray, y: np.ndarray) -> tuple[float, float, float]:
     return a, b, math.sqrt(s2 / sxx) if s2 > 0 else 1e-4
 
 
+def missing_tyre_fields(row: Optional[pd.Series]) -> list[str]:
+    """Missing current-lap metadata; never fill it from another lap or stint."""
+    missing = []
+    compound = row.get('Compound') if row is not None else None
+    age = row.get('TyreLife') if row is not None else None
+    if not isinstance(compound, str) or not compound.strip():
+        missing.append('tyre compound')
+    if age is None or not math.isfinite(float(age)) or float(age) < 0:
+        missing.append('tyre age')
+    return missing
+
+
+
+def prediction_unavailable_reason(cursor: ReplayCursor) -> str:
+    """The live estimator requires complete tyre metadata in the visible prefix."""
+    missing = missing_tyre_fields(cursor.lap_row())
+    if missing:
+        return ('Prediction unavailable: ' + ' and '.join(missing)
+                + ' missing from this recorded lap. Select another driver or scrub to a lap with tyre data.')
+    for _, row in cursor.visible().iterrows():
+        missing = missing_tyre_fields(row)
+        if missing:
+            return ('Prediction unavailable: ' + ' and '.join(missing)
+                    + f" missing from earlier lap {int(row['LapNumber'])}. Select another driver or rewind before that lap.")
+    return ''
+
+
 def stint_state(cursor: ReplayCursor, prior: Prior, corr: Corrections, lap: Optional[int] = None) -> Optional[StintState]:
     v = cursor.visible(lap)
     if v.empty:
         return None
-    last = v.iloc[-1]; stint = int(last['Stint'])
+    last = v.iloc[-1]
+    if missing_tyre_fields(last):
+        return None
+    stint = int(last['Stint'])
     s = v[v['Stint'] == stint]
     kept = kept_mask(s, corr)
     y = corrected_loss(s, corr); age = s['TyreLife'].to_numpy(dtype=float)
     events = []
     for _, r in s.iterrows():
-        if r['pit_out']: events.append(dict(lap=int(r['LapNumber']), kind='pit_exit', detail=f"new {r['Compound'].lower()}"))
+        if r['pit_out']:
+            compound = r['Compound']
+            detail = f'new {compound.lower()}' if isinstance(compound, str) and compound.strip() else 'tyre compound unavailable'
+            events.append(dict(lap=int(r['LapNumber']), kind='pit_exit', detail=detail))
         if r['pit_in']: events.append(dict(lap=int(r['LapNumber']), kind='pit_entry', detail='box'))
         if not r['green']: events.append(dict(lap=int(r['LapNumber']), kind='track_status', detail=f"status {r['TrackStatus']}"))
     xk, yk = age[kept], y[kept]
@@ -227,8 +262,9 @@ def stint_state(cursor: ReplayCursor, prior: Prior, corr: Corrections, lap: Opti
         # too few kept laps for a fit: anchor the fresh-tyre value on the best corrected lap so far under the prior slope
         if kept.sum() >= 1:
             a = float(np.min(yk - (prior.slope or 0.0) * xk))
-        elif len(y):
-            a = float(np.min(y - (prior.slope or 0.0) * age))
+        elif np.any(np.isfinite(y) & np.isfinite(age)):
+            finite = np.isfinite(y) & np.isfinite(age)
+            a = float(np.min(y[finite] - (prior.slope or 0.0) * age[finite]))
         else:
             a = None
     losses = (y - a) if a is not None else y * math.nan

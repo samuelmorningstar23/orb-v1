@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13T01:40:56",
+ "generated_at": "2026-09-13T03:08:55",
  "workstream": 7,
  "checkpoint_target": "C6",
  "lock": {
@@ -8,7 +8,7 @@
  },
  "verdict": {
   "decision": "GO",
-  "paragraph": "Red team verdict for C6: GO. Blocking list: 0 open, 1 resolved (RT-BLK-1 closed at the live_bridge boundary with guarding tests). Acceptance suite tests/red_team: 78 passed, 0 failed, 1 xfailed in 2.48 s. Consistency probe: PASS (3505 rendered numbers, 0 mismatches). Leakage audit PASS (5 of 5 checks pass); identity checks PASS {'passed': 41, 'failed': 0}. Hashed forecast out/forecast_Madrid_2026.json: PASS (issued 2026-09-12T21:33:14+05:30 from sessions ['FP1', 'FP2', 'FP3', 'Q']; pointers resolve {'lock_v2_forecast_hash': True, 'lock_sha256': True, 'lock_v2_sha256': True}). Forecast-hash provenance: PASS (runtime readers agree: True; stale sidecars: 0; content-only proof: the hash changes with the per-event data_cutoff stamp alone). Madrid anchors: PASS (0 stated times that did not happen as written). Wording flags outstanding: 0 (owners: [])."
+  "paragraph": "Red team verdict for C6: GO. Blocking list: 0 open, 1 resolved (RT-BLK-1 closed at the live_bridge boundary with guarding tests). Acceptance suite tests/red_team: 78 passed, 0 failed, 1 xfailed in 2.6 s. Consistency probe: PASS (3306 rendered numbers, 0 mismatches). Leakage audit PASS (5 of 5 checks pass); identity checks PASS {'passed': 41, 'failed': 0}. Hashed forecast out/forecast_Madrid_2026.json: PASS (issued 2026-09-12T21:33:14+05:30 from sessions ['FP1', 'FP2', 'FP3', 'Q']; pointers resolve {'lock_v2_forecast_hash': True, 'lock_sha256': True, 'lock_v2_sha256': True}). Forecast-hash provenance: PASS (runtime readers agree: True; stale sidecars: 0; content-only proof: the hash changes with the per-event data_cutoff stamp alone). Madrid anchors: PASS (0 stated times that did not happen as written). Wording flags outstanding: 0 (owners: [])."
  },
  "counts": {
   "checks": 13,
@@ -31,17 +31,17 @@
  "checks": {
   "consistency_probe": {
    "status": "PASS",
-   "generated_at": "2026-09-13T01:35:53",
+   "generated_at": "2026-09-13T03:07:48",
    "exit_code": 0,
    "counts": {
     "routes": 15,
     "load_failures": 0,
-    "numbers": 3505,
+    "numbers": 3306,
     "mismatches": 0,
     "placeholders": 0,
     "unclassified_integers": 0,
-    "unhashed_live_values": 26,
-    "ambiguous_matches": 785
+    "unhashed_live_values": 27,
+    "ambiguous_matches": 734
    },
    "failing_routes": [],
    "notes": [
@@ -78,7 +78,7 @@
   },
   "claim_audit": {
    "status": "PASS",
-   "generated_at": "2026-09-13T01:40:53",
+   "generated_at": "2026-09-13T03:08:52",
    "counts": {
     "wording_hits": 8,
     "reword": 0,
@@ -101,7 +101,7 @@
    "status": "PASS",
    "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python -m pytest tests/red_team -q -p no:cacheprovider",
    "returncode": 0,
-   "seconds": 2.48,
+   "seconds": 2.6,
    "counts": {
     "passed": 78,
     "failed": 0,
@@ -117,7 +117,7 @@
      "message": "Workstream 1 / lead: pre_race_forecast.events.*.data_cutoff is stamped with the lock generated_at, so the hash changes at every refresh with identical numbers (proven 21:03 vs 18:11); exclude data_cutoff from the hashed content or set it to the real session cutoff"
     }
    ],
-   "summary_line": "78 passed, 1 xfailed in 2.48s"
+   "summary_line": "78 passed, 1 xfailed in 2.60s"
   },
   "forecast_file_audit": {
    "status": "PASS",
@@ -367,16 +367,16 @@
   },
   "release_gate": {
    "status": "PASS",
-   "generated_at": "2026-09-13T01:20:07+0530",
+   "generated_at": "2026-09-13T02:11:56+0530",
    "expected_cases": 38,
    "failures": []
   },
   "five_minute_rehearsal": {
    "status": "PASS",
-   "generated_at": "2026-09-12T19:57:29.722591+00:00",
-   "elapsed_s": 302.51102354202885,
+   "generated_at": "2026-09-12T20:44:02.780431+00:00",
+   "elapsed_s": 303.1191338750068,
    "steps": 12,
-   "numbers": 4823,
+   "numbers": 4623,
    "failures": []
   }
  },
@@ -504,9 +504,9 @@
  "wording_flags_outstanding": [],
  "inputs": {
   "leakage": "2026-09-13T01:40:48",
-  "claims": "2026-09-13T01:40:53",
+  "claims": "2026-09-13T03:08:52",
   "identity": "2026-09-13T01:40:51",
-  "probe": "2026-09-13T01:35:53"
+  "probe": "2026-09-13T03:07:48"
  },
  "rerun": [
   "claims"
