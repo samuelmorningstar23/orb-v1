@@ -1,4 +1,4 @@
-"""ClearStint Challenge Day deck (PDF via matplotlib). Every number is read from out/lock.json / out/liquid.json."""
+"""Orb v1 Challenge Day deck (PDF via matplotlib). Every number is read from out/lock.json / out/liquid.json."""
 import json, os, textwrap, numpy as np, pandas as pd, datetime as dt
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
@@ -6,7 +6,7 @@ import matplotlib.image as mpimg
 import theme; from theme import DISPLAY, TEXT, BG, INK, MUTED, RED, GOLD, SLATE, PANEL, LINE
 L = json.load(open('out/lock.json')); V = pd.DataFrame(L['validation_rows']); val = L['validation']; S = L['strategy']
 LQ = json.load(open('out/liquid.json')) if os.path.exists('out/liquid.json') else {}
-W, H = 13.333, 7.5; TEAM = "Team FireBolt · Samuel Christ"; N = 10
+W, H = 13.333, 7.5; TEAM = "Team Orb v1 · Samuel Christ"; N = 10
 
 def new(rule=True):
     fig = plt.figure(figsize=(W, H)); fig.patch.set_facecolor(BG); ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, W); ax.set_ylim(0, H); ax.axis('off')
@@ -29,7 +29,7 @@ def img(ax, path, x, y, w=None, h=None):
     if w is None: w = h / ar
     if h is None: h = w * ar
     ax.imshow(im, extent=[x, x + w, y, y + h], aspect='auto'); return w, h
-def footer(ax, n): T(ax, W - 0.7, 0.35, f"ClearStint · {TEAM} · TrackShift 2026 · {n}/{N}", size=9, color=MUTED, ha='right', va='bottom')
+def footer(ax, n): T(ax, W - 0.7, 0.35, f"Orb v1 · {TEAM} · TrackShift 2026 · {n}/{N}", size=9, color=MUTED, ha='right', va='bottom')
 def table(ax, x, y, cols, rows, cw, size=11, head=MUTED, rowh=0.42):
     for j, h in enumerate(cols): T(ax, x + sum(cw[:j]), y, h, size=size - 1, weight='bold', color=head)
     for i, r in enumerate(rows):
@@ -39,11 +39,11 @@ def table(ax, x, y, cols, rows, cw, size=11, head=MUTED, rowh=0.42):
 figs = []
 # 1 title
 fig, ax = new(rule=False); figs.append(fig)
-T(ax, 0.7, H - 1.6, "ClearStint", size=72, weight='bold', family=DISPLAY)
+T(ax, 0.7, H - 1.6, "Orb v1", size=72, weight='bold', family=DISPLAY)
 T(ax, 0.7, H - 3.0, "Clean tyre-degradation curves from Friday, scored on Sunday.", size=22, color=INK)
 T(ax, 0.7, H - 3.8, "Friday lies twice. We correct the lie you can measure and learn the one you can't.", size=16, color=MUTED, wrap_in=9)
 T(ax, 0.7, 1.9, f"{TEAM}\nTrackShift 2026 · Tyre Degradation Intelligence · Plaksha University, 12–13 September 2026", size=12, color=MUTED)
-T(ax, 0.7, 0.9, "Built on disclosed pre-work from the idea round (estimator and 6-weekend validation, 5 Sep). Everything else on these slides was built at Plaksha.", size=10, color=MUTED, wrap_in=11)
+T(ax, 0.7, 0.9, "Submitted to the idea round as ClearStint, renamed Orb v1. Built on disclosed pre-work from that round (estimator and 6-weekend validation, 5 Sep); everything else on these slides was built at Plaksha.", size=10, color=MUTED, wrap_in=11)
 for i, c in enumerate([RED, GOLD, SLATE]): ax.plot([W - 2.6, W - 0.8], [1.3 + i * 0.8, 1.3 + i * 0.8 + (0.9 - 0.35 * i)], color=c, lw=6, solid_capstyle='round')
 
 # 2 the problem
@@ -60,7 +60,7 @@ bullets(ax, 6.9, H - 2.15, ["Lie one, measurable: fuel, track evolution, traffic
 footer(ax, 2)
 
 # 3 pipeline
-fig, ax = new(); figs.append(fig); title(ax, "What ClearStint does, in six steps"); sub(ax, "Same estimator on practice and race, so the practice-to-race ratio is a property of the data, not of the method")
+fig, ax = new(); figs.append(fig); title(ax, "What Orb v1 does, in six steps"); sub(ax, "Same estimator on practice and race, so the practice-to-race ratio is a property of the data, not of the method")
 steps = [("Ingest", "FastF1 + OpenF1: laps, 3.7 Hz telemetry, weather, race control. Telemetry quality checked lap by lap; degraded feeds refused."),
          ("Clean", "Stint fixed effects absorb driver, car and fuel load. Fuel prior 1.1 kg/lap; track evolution measured from every driver's push laps; traffic laps dropped via gap-to-car-ahead."),
          ("Gate", "A curve is issued only with 30+ clean long-run laps and a positive cleaned slope. Otherwise: withheld, with the reason."),
@@ -75,10 +75,10 @@ footer(ax, 3)
 fig, ax = new(); figs.append(fig); title(ax, "Friday transfers, once you learn how Sunday is managed"); sub(ax, f"{val['n_weekends']} weekends, {val['n_compound_weekends']} compound-weekends, every number leave-one-weekend-out; the held-out weekend never sees its own race")
 m = val['mae_issued']; a = val['mae_all_with_fallback']; cal = val['calibration']
 rows = [["Naive pooled fit", f"{a['naive']:.3f}", f"{cal['naive']['slope']:+.2f}", f"{cal['naive']['r']:+.2f}"], ["Cleaned Friday curve (issued)", f"{m['clean']:.3f}", f"{cal['clean']['slope']:+.2f}", f"{cal['clean']['r']:+.2f}"],
-        ["ClearStint (issued)", f"{m['clearstint']:.3f}", f"{cal['clearstint']['slope']:+.2f}", f"{cal['clearstint']['r']:+.2f}"], ["ClearStint, all cases incl. fallback", f"{a['clearstint']:.3f}", f"{cal['all_with_fallback']['slope']:+.2f}", f"{cal['all_with_fallback']['r']:+.2f}"]]
+        ["Orb v1 (issued)", f"{m['clearstint']:.3f}", f"{cal['clearstint']['slope']:+.2f}", f"{cal['clearstint']['r']:+.2f}"], ["Orb v1, all cases incl. fallback", f"{a['clearstint']:.3f}", f"{cal['all_with_fallback']['slope']:+.2f}", f"{cal['all_with_fallback']['r']:+.2f}"]]
 y = table(ax, 0.7, H - 1.7, ["", "MAE s/lap", "calib. slope", "r"], rows, [3.4, 1.05, 1.25, 0.6], size=10.5)
 bullets(ax, 0.7, y - 0.3, [f"Every compound answered: {val['n_issued']} issued, {val['n_withheld']} withheld and forecast as low degradation, right {val['n_withheld']} times out of {val['n_withheld']}.",
-                          f"ClearStint beats the naive fit on {val['wins_clearstint_over_naive']} of {val['n_compound_weekends']} cases; 90% interval on its error {val['ci90_mae_clearstint_all'][0]:.3f} to {val['ci90_mae_clearstint_all'][1]:.3f} s/lap.",
+                          f"Orb v1 beats the naive fit on {val['wins_clearstint_over_naive']} of {val['n_compound_weekends']} cases; 90% interval on its error {val['ci90_mae_clearstint_all'][0]:.3f} to {val['ci90_mae_clearstint_all'][1]:.3f} s/lap.",
                           "Transfer factors learned: medium ×%.2f, soft ×%.2f, hard ×%.2f. The medium is managed on Sunday; soft and hard transfer near one to one." % (val['by_compound']['MEDIUM']['k_median'], val['by_compound']['SOFT']['k_median'], val['by_compound']['HARD']['k_median'])], size=11, wrap_in=6.3)
 img(ax, 'out/fig_calibration.png', 7.7, 1.25, h=4.9)
 T(ax, 0.7, 0.75, "One public 2026 analysis concludes practice curves do not transfer. It tests stop-by-stop pit deltas, a target whose spread is about its mean. At the compound-weekend level, with the management factor learned, they do.", size=9, color=MUTED, wrap_in=12)
@@ -102,15 +102,15 @@ if 'Madrid' in L['live']:
         T(ax, x0 + 0.2, y0 - 0.55, f"{c['prediction']:+.3f} s/lap   band {c['band90'][0]:+.3f} to {c['band90'][1]:+.3f}", size=13, weight='bold')
         T(ax, x0 + 0.2, y0 - 1.0, (f"cleaned Friday slope {c['clean']:+.3f} ± {c['clean_se']:.3f} × factor {c['factor']:.2f} from {c['factor_from_n_weekends']} weekends" if c['issued'] else f"withheld: {c['gate']}. Energy rose {c['energy_trend']:+.2f} MJ per lap through the runs (drivers learning the track). Fallback = low-degradation median" + (f"; push-adjusted second opinion {c['second_opinion']['prediction']:+.3f}" if c.get('second_opinion') else '')), size=9.5, wrap_in=4.7, color=MUTED)
     st = S.get('Madrid', {}).get('views', {}); y0 = H - 1.7 - len(Lv['compounds']) * 2.25
-    if st: T(ax, x0, y0 - 0.05, f"Plan on the central curve: {st['ClearStint']['plan']} {'/'.join(map(str, st['ClearStint']['stints']))}; top of the band: {st['ClearStint, band high']['plan']}. Hard: 4 clean Friday laps, no curve. Pit loss 21 s, offsets from best clean laps.", size=9.5, wrap_in=5.0, color=INK)
+    if st: T(ax, x0, y0 - 0.05, f"Plan on the central curve: {st['Orb v1']['plan']} {'/'.join(map(str, st['Orb v1']['stints']))}; top of the band: {st['Orb v1, band high']['plan']}. Hard: 4 clean Friday laps, no curve. Pit loss 21 s, offsets from best clean laps.", size=9.5, wrap_in=5.0, color=INK)
     footer(ax, 6)
 
 # 7 decisions
-evs = [e for e in ['Hungary', 'Austria', 'Barcelona', 'Belgium', 'Monza', 'Zandvoort', 'Miami', 'Canada', 'Britain'] if e in S and 'cost_under_truth_vs_best_s' in S[e]['views'].get('ClearStint', {})]
-wins = sum(S[e]['views']['ClearStint']['cost_under_truth_vs_best_s'] < S[e]['views']['Naive fit']['cost_under_truth_vs_best_s'] for e in evs)
+evs = [e for e in ['Hungary', 'Austria', 'Barcelona', 'Belgium', 'Monza', 'Zandvoort', 'Miami', 'Canada', 'Britain'] if e in S and 'cost_under_truth_vs_best_s' in S[e]['views'].get('Orb v1', {})]
+wins = sum(S[e]['views']['Orb v1']['cost_under_truth_vs_best_s'] < S[e]['views']['Naive fit']['cost_under_truth_vs_best_s'] for e in evs)
 fig, ax = new(); figs.append(fig); title(ax, "The curve is only useful as a decision"); sub(ax, "One-stop vs two-stop and stint lengths chosen under each Friday view, then charged under the curves the race actually showed")
 img(ax, 'out/fig_strategy.png', 0.6, 1.6, h=4.1)
-bullets(ax, 8.2, H - 1.7, [f"ClearStint's plan beats the naive plan in {wins} of {len(evs)} replays.", f"Hungary: naive +{S['Hungary']['views']['Naive fit']['cost_under_truth_vs_best_s']:.0f} s, ClearStint +{S['Hungary']['views']['ClearStint']['cost_under_truth_vs_best_s']:.0f} s. Monza: +{S['Monza']['views']['Naive fit']['cost_under_truth_vs_best_s']:.0f} s vs {S['Monza']['views']['ClearStint']['cost_under_truth_vs_best_s']:.0f} s. Zandvoort: +{S['Zandvoort']['views']['Naive fit']['cost_under_truth_vs_best_s']:.0f} s vs +{S['Zandvoort']['views']['ClearStint']['cost_under_truth_vs_best_s']:.0f} s.",
+bullets(ax, 8.2, H - 1.7, [f"Orb v1's plan beats the naive plan in {wins} of {len(evs)} replays.", f"Hungary: naive +{S['Hungary']['views']['Naive fit']['cost_under_truth_vs_best_s']:.0f} s, Orb v1 +{S['Hungary']['views']['Orb v1']['cost_under_truth_vs_best_s']:.0f} s. Monza: +{S['Monza']['views']['Naive fit']['cost_under_truth_vs_best_s']:.0f} s vs {S['Monza']['views']['Orb v1']['cost_under_truth_vs_best_s']:.0f} s. Zandvoort: +{S['Zandvoort']['views']['Naive fit']['cost_under_truth_vs_best_s']:.0f} s vs +{S['Zandvoort']['views']['Orb v1']['cost_under_truth_vs_best_s']:.0f} s.",
                            "The miss is honest: at Barcelona the hard had 12 clean Friday laps, was withheld, and the low-degradation fallback was too optimistic for a compound that degraded at 0.10 s/lap.",
                            "Compound offsets from qualifying where drivers set paired laps, checked against a 0.2 to 1.0 s plausibility range; 21 s pit loss; linear curves; no safety car or weather. All stated in the tool."], size=10.5, wrap_in=4.5)
 footer(ax, 7)
@@ -157,6 +157,6 @@ bullets(ax, 9.15, H - 2.15, ["Linear curves; fuel prior assumed (a race-data est
                             "2025 same-track rounds as a prior for the factor: downloading.", "Sunday 18:30 IST: Madrid scored with the same estimator, result published."], size=10, wrap_in=3.15, gap=0.22)
 footer(ax, 10)
 
-with PdfPages('out/ClearStint_ChallengeDay.pdf') as pdf:
+with PdfPages('out/Orb_v1_ChallengeDay.pdf') as pdf:
     for i, f in enumerate(figs, 1): f.savefig(f'out/slide-{i:02d}.png', dpi=110, facecolor=f.get_facecolor()); pdf.savefig(f, facecolor=f.get_facecolor())
-print(f"deck: {len(figs)} slides -> out/ClearStint_ChallengeDay.pdf")
+print(f"deck: {len(figs)} slides -> out/Orb_v1_ChallengeDay.pdf")

@@ -1,4 +1,4 @@
-# ClearStint: the case
+# Orb v1: the case
 
 ## 1. The idea
 Friday lies twice. We remove the first lie with physics and telemetry, learn the second from earlier weekends, refuse when Friday has no signal, and score ourselves against the race. The push profile, measured from telemetry energy, explains about half of the Friday-to-Sunday gap; the learned management factor covers the rest.
@@ -7,7 +7,7 @@ Friday lies twice. We remove the first lie with physics and telemetry, learn the
 FastF1 data; per-lap features incl. an energy proxy and feed-quality checks; stint fixed-effects estimator identical on practice and race; pipeline to a single lock file; strategy replay; learned transfer factors with bootstrap and sensitivity; liquid-network ablation (ncps/PyTorch); Streamlit dashboard; documents generated from the lock.
 
 ## 3. Outcomes
-Naive 0.137 vs ClearStint 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live.
+Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live.
 
 ## 4. Why we win
 Technical depth: measured fifth confounder, learned and validated factor, validated abstention, fair ablation. Fit: the literal brief delivered. Demo: real data, live weekend. Scalability: any GP from free data; junior series and broadcasters. Presentation: one story, one file.

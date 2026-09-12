@@ -1,8 +1,8 @@
-# ClearStint Live Tyre Intelligence: roadmap v5
+# Orb v1 Live Tyre Intelligence: roadmap v5
 
 *Predict. Monitor. Decide. Prove.* Build contract, 12 Sep 15:20 IST.
 
-## 0. ClearStint
+## 0. Orb v1
 Pre-race prior -> live posterior every lap (telemetry, conditions, traffic, driver feedback, private sensors when available) -> useful life and cliff risk -> ranked pit/compound actions -> Race Twin proof. Six capabilities: all feasible; live telemetry in team mode; driver profile hardest (Phase 2).
 
 ## 1. Architecture

@@ -1,4 +1,4 @@
-"""ClearStint explained simply -> out/ClearStint_Explained_Simply.pdf"""
+"""Orb v1 explained simply -> out/Orb_v1_Explained_Simply.pdf"""
 import json, numpy as np, matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -19,9 +19,9 @@ x = np.arange(len(parts)); ax.bar(x, [p[1] for p in parts], color=[p[2] for p in
 ax.set_xticks(x); ax.set_xticklabels([p[0] for p in parts], fontsize=8.5); ax.set_ylabel('Change in lap time per lap\n(seconds; + slower, - faster)')
 ax.set_title('What a Friday lap time is made of (illustrative sizes)', loc='left', fontsize=12, weight='bold'); ax.grid(axis='y', alpha=0.3); fig.tight_layout(); fig.savefig('out/simple_fig2.png'); plt.close(fig)
 fig, ax = plt.subplots(1, 2, figsize=(7.2, 3.0), dpi=160)
-ax[0].bar(['Straight line', 'ClearStint'], [0.137, 0.023], color=['#9CA3AF', '#111827'], width=0.55); ax[0].set_title('Average error against the race\n(seconds per lap, lower is better)', fontsize=10, loc='left'); ax[0].set_ylim(0, 0.17); ax[0].grid(axis='y', alpha=0.3)
+ax[0].bar(['Straight line', 'Orb v1'], [0.137, 0.023], color=['#9CA3AF', '#111827'], width=0.55); ax[0].set_title('Average error against the race\n(seconds per lap, lower is better)', fontsize=10, loc='left'); ax[0].set_ylim(0, 0.17); ax[0].grid(axis='y', alpha=0.3)
 for i, v in enumerate([0.137, 0.023]): ax[0].text(i, v + 0.004, f'{v:.3f}', ha='center', fontsize=10)
-ax[1].bar(['Straight line', 'ClearStint'], [0.20, 0.78], color=['#9CA3AF', '#111827'], width=0.55); ax[1].set_title('How well predictions track the race\n(1.0 is perfect, 0 is no relation)', fontsize=10, loc='left'); ax[1].set_ylim(0, 1); ax[1].grid(axis='y', alpha=0.3)
+ax[1].bar(['Straight line', 'Orb v1'], [0.20, 0.78], color=['#9CA3AF', '#111827'], width=0.55); ax[1].set_title('How well predictions track the race\n(1.0 is perfect, 0 is no relation)', fontsize=10, loc='left'); ax[1].set_ylim(0, 1); ax[1].grid(axis='y', alpha=0.3)
 for i, v in enumerate([0.20, 0.78]): ax[1].text(i, v + 0.02, f'{v:.2f}', ha='center', fontsize=10)
 fig.suptitle('11 weekends, 29 tyre-and-weekend cases, each predicted without seeing its own race', fontsize=9.5, x=0.02, ha='left'); fig.tight_layout(); fig.savefig('out/simple_fig3.png'); plt.close(fig)
 # ---------- document ----------
@@ -41,13 +41,13 @@ def table(rows, widths):
 def fig_(path, w, cap):
     im = Image(path); r = im.imageHeight / im.imageWidth; im.drawWidth = w * cm; im.drawHeight = w * cm * r; return KeepTogether([im, Spacer(1, 2), P(cap, SM)])
 S = []
-S += [Spacer(1, 1.5 * cm), P('ClearStint, explained simply', ParagraphStyle('T', parent=ss['Title'], fontSize=28, leading=34, alignment=0)),
+S += [Spacer(1, 1.5 * cm), P('Orb v1, explained simply', ParagraphStyle('T', parent=ss['Title'], fontSize=28, leading=34, alignment=0)),
       P('What we are trying to do, where the idea and the tools come from, and how we know it works. Written for someone who has never looked at a lap chart.', ParagraphStyle('ST', parent=B, fontSize=13, leading=18, textColor=colors.HexColor('#374151'))),
-      Spacer(1, 10), P('Team FireBolt &middot; TrackShift 2026 &middot; 12 September 2026', SM), Spacer(1, 18),
+      Spacer(1, 10), P('Team Orb v1 &middot; TrackShift 2026 &middot; 12 September 2026', SM), Spacer(1, 18),
       P('The whole idea in five sentences', H2)]
 S += bullets(['A racing tyre gets a little slower every lap it is used. How much slower per lap is called <b>degradation</b>.',
               'Teams must know it <b>before</b> the race, to decide when to stop for new tyres. The only data before the race comes from Friday practice, and Friday laps are polluted by things that have nothing to do with the tyre.',
-              'ClearStint takes the free public timing data, removes the pollution lap by lap, and produces a clean degradation curve for each tyre type.',
+              'Orb v1 takes the free public timing data, removes the pollution lap by lap, and produces a clean degradation curve for each tyre type.',
               'Then it learns, from earlier race weekends, how much gentler drivers are with tyres on Sunday than on Friday, and corrects for that too.',
               'Every Sunday night it checks its own prediction against the real race and shows the score. When Friday cannot support an answer, it says so instead of guessing.'], BIG)
 S += [PageBreak(), P('1. The problem, with an ice cube', H1),
@@ -62,7 +62,7 @@ S += [fig_('out/simple_fig2.png', 15, 'Figure 1. A Friday lap time is a sum of p
       P('Now the number that started this project. At the 2026 Hungarian Grand Prix, if you draw a straight line through Friday\'s long-run laps for the medium tyre, it says the tyre gets 0.285 seconds slower every lap. The race showed 0.042. Seven times wrong. A plan built on the Friday line would have lost 74 seconds, more than a pit stop, against the best plan.')]
 S += [PageBreak(), P('2. What we wish to solve', H1),
       P('On Saturday night the race strategist asks three questions: how much slower will each tyre be after 20 laps, at what point does the harder tyre become the better one, and should we stop once or twice? A degradation curve is the answer to all three, and if the curve is wrong by a factor of seven, the whole plan is wrong.'),
-      P('Formula 1 teams have private sensors and forty engineers, so they get by. But Formula 2, Formula 3, F1 Academy, Indian F4 and the broadcasters who explain strategy on television have only the public timing data and, in the junior series, two engineers. They are our customer. ClearStint works for any Grand Prix weekend by name, from free data, on a laptop.'),
+      P('Formula 1 teams have private sensors and forty engineers, so they get by. But Formula 2, Formula 3, F1 Academy, Indian F4 and the broadcasters who explain strategy on television have only the public timing data and, in the junior series, two engineers. They are our customer. Orb v1 works for any Grand Prix weekend by name, from free data, on a laptop.'),
       P('There is a second problem hiding behind the first. Even a perfectly cleaned Friday curve is not Sunday\'s curve, because on Friday drivers attack the tyres to learn about them and on Sunday they nurse them to make them last. Nobody publishes how big that gap is. We measured it: across this season the medium tyre degrades in the race at only about half of its cleaned Friday rate, while soft and hard transfer roughly one to one. So Friday lies twice: once about what the tyre did, and once about what it will do on Sunday. We correct the lie we can measure and learn the one we cannot.')]
 S += [P('3. How we clean a lap, in words', H1),
       P('<b>Step 1. Throw away laps you cannot trust.</b> Laps with a pit stop in them, laps under yellow flags, laps that were deleted by the stewards, laps where the car was stuck behind someone for more than 30% of the distance, cool-down laps, and laps whose telemetry is broken. Every thrown-away lap is listed with its reason, so nobody can accuse us of hiding data.'),
@@ -76,7 +76,7 @@ S += [Spacer(1, 6), P('4. How we learn the Sunday lie', H1),
       P('We only apply a ratio when the earlier weekends agree with each other. For the medium tyre they do, about 0.45. For the hard tyre they do not, so we leave the cleaned Friday curve alone and say so. This is learned from data, and it is re-learned every Sunday night when a new race is added.')]
 S += [P('5. How we know it works', H1),
       P('The test is simple to describe. Take one weekend. Pretend we have not seen its race. Predict its Sunday from its Friday plus what the <i>other</i> weekends taught us. Then look at the real race and measure the miss. Do that for every weekend. We never let a weekend see its own answer.'),
-      fig_('out/simple_fig3.png', 15, 'Figure 3. The straight line through Friday laps misses the race by 0.137 seconds per lap on average; ClearStint misses by 0.023. ClearStint is closer on 28 of the 29 cases.'),
+      fig_('out/simple_fig3.png', 15, 'Figure 3. The straight line through Friday laps misses the race by 0.137 seconds per lap on average; Orb v1 misses by 0.023. Orb v1 is closer on 28 of the 29 cases.'),
       P('<b>Saying "I do not know" is part of the method.</b> On 13 of the 29 cases Friday did not contain a trustworthy curve: too few laps, or the cleaned line pointed the wrong way. Instead of forcing an answer we mark the tyre <i>withheld</i> and forecast "low degradation, about 0.03 seconds per lap", because that is what every previous withheld case turned out to be. All 13 were low-degradation races. That rule is scored like everything else.')]
 S += [P('6. The thing we discovered on the way', H1),
       P('Sometimes Friday appears to show the tyre getting <i>faster</i> with age, which is impossible. Why? Because the driver was ramping up: warming into the run, learning a new track, or nursing a hard tyre early and pushing later. Lap times fall faster than fuel alone explains, and a naive method reads that as negative wear.'),
@@ -136,6 +136,6 @@ S += [      P('10. Words you will hear, in one line each', H2),
              ['Withheld', 'No trustworthy curve; forecast low degradation instead.'], ['Transfer factor', 'How much Sunday shrinks the Friday number for a given compound.'], ['Leave-one-weekend-out', 'Testing by hiding each weekend\'s race in turn.'],
              ['Band', 'The error bar: where the true number probably lies.'], ['Crossover lap', 'The tyre age at which the harder tyre becomes the faster one.'], ['Push profile', 'How hard the driver was pushing, lap by lap, measured from energy.'],
              ['Lock file', 'The single results file everything reads from.'], ['Naive line', 'A straight line through Friday laps with no cleaning: the thing we beat.']], [3.6 * cm, 13.2 * cm])]
-doc = SimpleDocTemplate('out/ClearStint_Explained_Simply.pdf', pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.8 * cm, bottomMargin=1.8 * cm, title='ClearStint explained simply', author='Team FireBolt')
-def footer(c, d): c.saveState(); c.setFont('Helvetica', 8); c.setFillColor(colors.HexColor('#6B7280')); c.drawString(2 * cm, 1.1 * cm, 'ClearStint explained simply'); c.drawRightString(A4[0] - 2 * cm, 1.1 * cm, str(d.page)); c.restoreState()
+doc = SimpleDocTemplate('out/Orb_v1_Explained_Simply.pdf', pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.8 * cm, bottomMargin=1.8 * cm, title='Orb v1 explained simply', author='Team Orb v1')
+def footer(c, d): c.saveState(); c.setFont('Helvetica', 8); c.setFillColor(colors.HexColor('#6B7280')); c.drawString(2 * cm, 1.1 * cm, 'Orb v1 explained simply'); c.drawRightString(A4[0] - 2 * cm, 1.1 * cm, str(d.page)); c.restoreState()
 doc.build(S, onFirstPage=footer, onLaterPages=footer); print('built')

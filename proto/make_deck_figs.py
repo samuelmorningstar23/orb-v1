@@ -17,8 +17,8 @@ for c in ['SOFT', 'MEDIUM', 'HARD']:
     ax.scatter(s[s.issued].pred_clearstint, s[s.issued].obs, s=70, color=PAL[c], edgecolors=BG, lw=1, zorder=4)
     ax.scatter(s[~s.issued].pred_clearstint, s[~s.issued].obs, s=70, facecolors=BG, edgecolors=PAL[c], lw=1.6, marker='D', zorder=4)
 ax.set_xlabel('Predicted from Friday (s/lap per lap of tyre age)'); ax.set_ylabel('Observed in the race'); ax.set_xlim(-0.01, mx); ax.set_ylim(-0.01, mx)
-ax.legend(handles=[Line2D([], [], marker='o', color='w', markerfacecolor=MUTED, ms=8, label='ClearStint, issued'), Line2D([], [], marker='D', color='w', markerfacecolor=BG, markeredgecolor=MUTED, ms=7, label='ClearStint, low-degradation fallback'), Line2D([], [], marker='x', color=MUTED, ls='none', ms=7, label='Naive pooled fit')], loc='upper left', fontsize=8.5)
-cal = val['calibration']; ax.set_title(f"{val['n_weekends']} weekends, {val['n_compound_weekends']} compound-weekends, leave-one-weekend-out\nClearStint r = {cal['all_with_fallback']['r']:.2f}, slope {cal['all_with_fallback']['slope']:.2f}   ·   naive r = {cal['naive']['r']:.2f}", fontsize=9.5, loc='left')
+ax.legend(handles=[Line2D([], [], marker='o', color='w', markerfacecolor=MUTED, ms=8, label='Orb v1, issued'), Line2D([], [], marker='D', color='w', markerfacecolor=BG, markeredgecolor=MUTED, ms=7, label='Orb v1, low-degradation fallback'), Line2D([], [], marker='x', color=MUTED, ls='none', ms=7, label='Naive pooled fit')], loc='upper left', fontsize=8.5)
+cal = val['calibration']; ax.set_title(f"{val['n_weekends']} weekends, {val['n_compound_weekends']} compound-weekends, leave-one-weekend-out\nOrb v1 r = {cal['all_with_fallback']['r']:.2f}, slope {cal['all_with_fallback']['slope']:.2f}   ·   naive r = {cal['naive']['r']:.2f}", fontsize=9.5, loc='left')
 fig.tight_layout(); fig.savefig('out/fig_calibration.png', bbox_inches='tight')
 
 # 2. the fifth confounder: within-run energy trend, withheld vs issued
@@ -61,9 +61,9 @@ if LQ:
     fig.tight_layout(); fig.savefig('out/fig_liquid.png', bbox_inches='tight')
 
 # 6. strategy replay bars
-S = L['strategy']; evs = [e for e in ['Hungary', 'Austria', 'Barcelona', 'Belgium', 'Monza', 'Zandvoort', 'Miami', 'Canada', 'Britain'] if e in S and 'cost_under_truth_vs_best_s' in S[e]['views'].get('ClearStint', {})]
+S = L['strategy']; evs = [e for e in ['Hungary', 'Austria', 'Barcelona', 'Belgium', 'Monza', 'Zandvoort', 'Miami', 'Canada', 'Britain'] if e in S and 'cost_under_truth_vs_best_s' in S[e]['views'].get('Orb v1', {})]
 fig, ax = plt.subplots(figsize=(6.0, 3.4), dpi=DPI); x = np.arange(len(evs))
-for k, (name, col, off) in enumerate([('Naive fit', '#6B7280', -0.2), ('ClearStint', RED, 0.2)]):
+for k, (name, col, off) in enumerate([('Naive fit', '#6B7280', -0.2), ('Orb v1', RED, 0.2)]):
     ax.bar(x + off, [S[e]['views'][name]['cost_under_truth_vs_best_s'] for e in evs], width=0.38, color=col, label=name)
 ax.set_xticks(x); ax.set_xticklabels(evs, fontsize=8.5); ax.set_ylabel('Race time lost vs the best plan (s)'); ax.legend(fontsize=9)
 ax.set_title('Following each Friday view instead of the plan the race actually rewarded', fontsize=10, loc='left')

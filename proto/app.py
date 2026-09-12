@@ -1,10 +1,10 @@
-"""ClearStint dashboard. Reads out/lock.json (written by pipeline.py) and the per-lap feature CSVs. Nothing is computed here
+"""Orb v1 dashboard. Reads out/lock.json (written by pipeline.py) and the per-lap feature CSVs. Nothing is computed here
 that is not in the lock, except the per-lap points drawn behind the curves."""
 import os, json, numpy as np, pandas as pd, streamlit as st, plotly.graph_objects as go
 HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
 import model_v2 as M
 PAL = {'SOFT': '#E10600', 'MEDIUM': '#F2C230', 'HARD': '#8FB3D9'}; MUTED = '#9AA1AA'
-st.set_page_config(page_title='ClearStint', page_icon='🛞', layout='wide')
+st.set_page_config(page_title='Orb v1', page_icon='🛞', layout='wide')
 
 @st.cache_data
 def lock(mtime): return json.load(open('out/lock.json'))
@@ -21,7 +21,7 @@ def excluded(ev): return pd.read_csv(f'out/excluded_{ev}.csv')
 
 L = lock(os.path.getmtime('out/lock.json')); LQ = liquid(os.path.getmtime('out/liquid.json') if os.path.exists('out/liquid.json') else 0); V = pd.DataFrame(L['validation_rows']); live = L['live']; events = L['events']
 order = list(live) + [e for e in events if e not in live]
-st.title('ClearStint'); st.caption(f"Clean tyre-degradation curves from Friday, scored on Sunday. Lock generated {L['generated_at']}. Every number on this page comes from out/lock.json.")
+st.title('Orb v1'); st.caption(f"Clean tyre-degradation curves from Friday, scored on Sunday. Lock generated {L['generated_at']}. Every number on this page comes from out/lock.json.")
 VIEWS = ['Weekend', 'Strategy', 'Liquid model', 'Season validation', 'Excluded laps', 'Method & assumptions']
 qp = st.query_params; ev0 = qp.get('ev') if qp.get('ev') in order else order[0]; view0 = qp.get('view') if qp.get('view') in VIEWS else VIEWS[0]
 ev = st.sidebar.selectbox('Weekend', order, index=order.index(ev0), format_func=lambda e: f"{e}  ·  {'LIVE' if e in live else 'scored'}")
@@ -42,7 +42,7 @@ def curve_fig(pf, rows, title, rf=None):
         pred, b = row.get('prediction', row.get('pred_clearstint')), row.get('band90', [row.get('lo'), row.get('hi')])
         if pred is not None and np.isfinite(pred):
             if b and b[0] is not None and np.isfinite(b[0]): fig.add_trace(go.Scatter(x=np.r_[xs, xs[::-1]], y=np.r_[b[0] * xs, (b[1] * xs)[::-1]], fill='toself', fillcolor=col, opacity=0.12, line=dict(width=0), name=f'{c.title()} 90% band', hoverinfo='skip'))
-            fig.add_trace(go.Scatter(x=xs, y=pred * xs, mode='lines', name=f'{c.title()} ClearStint', line=dict(color=col, width=3)))
+            fig.add_trace(go.Scatter(x=xs, y=pred * xs, mode='lines', name=f'{c.title()} Orb v1', line=dict(color=col, width=3)))
         if rf is not None and np.isfinite(row.get('obs', np.nan)): fig.add_trace(go.Scatter(x=xs, y=row['obs'] * xs, mode='lines', name=f'{c.title()} race observed', line=dict(color='#ECEDEF', width=2), opacity=0.9))
     fig.update_layout(title=title, template='plotly_dark', paper_bgcolor='#0E1013', plot_bgcolor='#0E1013', height=460, xaxis_title='Tyre age (laps)', yaxis_title='Pace loss vs fresh tyre (s), fuel / evolution / traffic / driver removed', legend=dict(font=dict(size=10)), margin=dict(l=40, r=20, t=50, b=40))
     return fig
@@ -70,7 +70,7 @@ if view == 'Weekend':
     else:
         rows = V[V.event == ev].to_dict(orient='records')
         st.subheader(f'{ev}: Sunday scorecard')
-        T = pd.DataFrame(rows)[['compound', 'n_prac', 'naive', 'clean', 'pred_clearstint', 'lo', 'hi', 'obs', 'err_naive', 'err_cs', 'gate']].rename(columns={'n_prac': 'clean laps', 'pred_clearstint': 'ClearStint', 'lo': 'band lo', 'hi': 'band hi', 'obs': 'race observed', 'err_naive': 'naive error', 'err_cs': 'ClearStint error'})
+        T = pd.DataFrame(rows)[['compound', 'n_prac', 'naive', 'clean', 'pred_clearstint', 'lo', 'hi', 'obs', 'err_naive', 'err_cs', 'gate']].rename(columns={'n_prac': 'clean laps', 'pred_clearstint': 'Orb v1', 'lo': 'band lo', 'hi': 'band hi', 'obs': 'race observed', 'err_naive': 'naive error', 'err_cs': 'Orb v1 error'})
         st.dataframe(T.style.format({c: '{:+.3f}' for c in T.columns if c not in ('compound', 'clean laps', 'gate')}), use_container_width=True, hide_index=True)
         st.plotly_chart(curve_fig(pf, rows, f'{ev}: predicted from Friday (thick) vs observed in the race (white)', rf), use_container_width=True)
         if meta.get('race'): st.caption(f"Race: {meta['race']['n']} clean laps, {meta['race']['stints']} stints, telemetry {meta['race']['telemetry']}; energy price of lap time in the race {meta['race']['beta_race']:+.2f} s/MJ vs {meta['beta_practice_s_per_MJ']:+.2f} in practice.")
@@ -89,7 +89,7 @@ elif view == 'Strategy':
         st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
         t = next((v for v in S['views'].values() if 'best_under_truth' in v), None)
         if t: st.caption(f"Best plan under the race-observed curves: {t['best_under_truth']['plan']} with stints {' / '.join(map(str, t['best_under_truth']['stints']))}. Costs are the time lost by following each Friday view instead of that plan.")
-        if ev in live: st.info('Live weekend: the plan under the central ClearStint curve is the call; the band-low and band-high rows show how the decision moves across the 90% band. It will be scored after the race.')
+        if ev in live: st.info('Live weekend: the plan under the central Orb v1 curve is the call; the band-low and band-high rows show how the decision moves across the 90% band. It will be scored after the race.')
 
 elif view == 'Liquid model':
     st.subheader('Liquid tyre model: curve shape learned from every race lap')
@@ -118,9 +118,9 @@ elif view == 'Liquid model':
 elif view == 'Season validation':
     val = L['validation']; st.subheader(f"Leave-one-weekend-out over {val['n_weekends']} weekends, {val['n_compound_weekends']} compound-weekends: {val['n_issued']} issued, {val['n_withheld']} withheld")
     m = val['mae_issued']; a = val['mae_all_with_fallback']; cal = val['calibration']
-    ladder = pd.DataFrame([['Naive pooled fit', a['naive'], cal['naive']['slope'], cal['naive']['r']], ['Cleaned Friday curve (issued only)', m['clean'], cal['clean']['slope'], cal['clean']['r']], ['ClearStint (issued only)', m['clearstint'], cal['clearstint']['slope'], cal['clearstint']['r']], ['ClearStint, all cases incl. low-deg fallback', a['clearstint'], cal['all_with_fallback']['slope'], cal['all_with_fallback']['r']]], columns=['Predictor', 'MAE s/lap', 'Calibration slope', 'Pearson r'])
+    ladder = pd.DataFrame([['Naive pooled fit', a['naive'], cal['naive']['slope'], cal['naive']['r']], ['Cleaned Friday curve (issued only)', m['clean'], cal['clean']['slope'], cal['clean']['r']], ['Orb v1 (issued only)', m['clearstint'], cal['clearstint']['slope'], cal['clearstint']['r']], ['Orb v1, all cases incl. low-deg fallback', a['clearstint'], cal['all_with_fallback']['slope'], cal['all_with_fallback']['r']]], columns=['Predictor', 'MAE s/lap', 'Calibration slope', 'Pearson r'])
     st.dataframe(ladder.style.format({'MAE s/lap': '{:.3f}', 'Calibration slope': '{:+.2f}', 'Pearson r': '{:+.2f}'}), hide_index=True, use_container_width=True)
-    st.caption(f"90% bootstrap interval on ClearStint MAE: {val['ci90_mae_clearstint_all'][0]:.3f} to {val['ci90_mae_clearstint_all'][1]:.3f}. P(ClearStint beats the cleaned curve on issued cases) = {val['p_clearstint_beats_clean_issued']:.2f}. Wins over naive: {val['wins_clearstint_over_naive']} of {val['n_compound_weekends']}.")
+    st.caption(f"90% bootstrap interval on Orb v1 MAE: {val['ci90_mae_clearstint_all'][0]:.3f} to {val['ci90_mae_clearstint_all'][1]:.3f}. P(Orb v1 beats the cleaned curve on issued cases) = {val['p_clearstint_beats_clean_issued']:.2f}. Wins over naive: {val['wins_clearstint_over_naive']} of {val['n_compound_weekends']}.")
     fig = go.Figure(); mx = float(max(V.obs.max(), V.pred_clearstint.max())) + 0.02
     fig.add_trace(go.Scatter(x=[0, mx], y=[0, mx], mode='lines', line=dict(color=MUTED, dash='dot'), name='perfect'))
     for c, col in PAL.items():
@@ -130,7 +130,7 @@ elif view == 'Season validation':
     st.plotly_chart(fig, use_container_width=True)
     c1, c2 = st.columns(2)
     with c1:
-        st.markdown('**Transfer factors (race ÷ cleaned practice), median across weekends**'); bc = pd.DataFrame(val['by_compound']).T.rename(columns={'n': 'cases', 'k_median': 'factor', 'mae_naive': 'MAE naive', 'mae_clearstint': 'MAE ClearStint'}); bc['cases'] = bc['cases'].astype(int); st.dataframe(bc.style.format({'factor': '×{:.2f}', 'MAE naive': '{:.3f}', 'MAE ClearStint': '{:.3f}'}), use_container_width=True)
+        st.markdown('**Transfer factors (race ÷ cleaned practice), median across weekends**'); bc = pd.DataFrame(val['by_compound']).T.rename(columns={'n': 'cases', 'k_median': 'factor', 'mae_naive': 'MAE naive', 'mae_clearstint': 'MAE Orb v1'}); bc['cases'] = bc['cases'].astype(int); st.dataframe(bc.style.format({'factor': '×{:.2f}', 'MAE naive': '{:.3f}', 'MAE Orb v1': '{:.3f}'}), use_container_width=True)
     with c2:
         st.markdown('**Withheld cases and what the race did**'); st.dataframe(pd.DataFrame(val['withheld_cases']), hide_index=True, use_container_width=True)
     pdg = val['push_diagnostic']; st.markdown('**The fifth confounder: the driver’s push profile.** Within-run trend of tyre energy per lap (MJ per lap of age):')
@@ -156,4 +156,4 @@ else:
     if bc: st.markdown(f"**Band calibration (leave-one-weekend-out):** raw 90% bands covered the race value in {100*bc['raw_all']:.0f}% of cases; after conformal widening (half-widths × {bc['widening_factor_median']:.2f}, learned from other weekends' residuals) coverage is {100*bc['calibrated_all']:.0f}% overall, {100*bc['calibrated_issued']:.0f}% on issued and {100*bc['calibrated_fallback']:.0f}% on fallback cases, against a nominal 90%.")
     if os.path.exists('out/sensitivity.json'):
         sj = json.load(open('out/sensitivity.json')); st.markdown('**Sensitivity of the headline error to stated assumptions** (leave-one-weekend-out MAE, all cases):')
-        st.dataframe(pd.DataFrame([{'setting': k, 'cases': v['n'], 'issued': v['issued'], 'MAE ClearStint': v['mae'], 'MAE naive': v['mae_naive'], 'r': v['r']} for k, v in sj['runs'].items()]).style.format({'MAE ClearStint': '{:.4f}', 'MAE naive': '{:.3f}', 'r': '{:+.2f}'}), hide_index=True, use_container_width=True)
+        st.dataframe(pd.DataFrame([{'setting': k, 'cases': v['n'], 'issued': v['issued'], 'MAE Orb v1': v['mae'], 'MAE naive': v['mae_naive'], 'r': v['r']} for k, v in sj['runs'].items()]).style.format({'MAE Orb v1': '{:.4f}', 'MAE naive': '{:.3f}', 'r': '{:+.2f}'}), hide_index=True, use_container_width=True)

@@ -1,4 +1,4 @@
-"""ClearStint: the case. Idea, stack, outcomes, why we win -> out/ClearStint_The_Case.pdf and out/THE_CASE.md"""
+"""Orb v1: the case. Idea, stack, outcomes, why we win -> out/Orb_v1_The_Case.pdf and out/THE_CASE.md"""
 import json, re
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -23,10 +23,10 @@ def fig(path, w, cap):
 MD = []  # markdown mirror
 def md(t): MD.append(t)
 S = []
-S += [Spacer(1, 1.6 * cm), P('ClearStint: the case', ParagraphStyle('T', parent=ss['Title'], fontSize=28, leading=34, alignment=0)),
+S += [Spacer(1, 1.6 * cm), P('Orb v1: the case', ParagraphStyle('T', parent=ss['Title'], fontSize=28, leading=34, alignment=0)),
       P('The idea in depth, the technology stack and why each piece was chosen, the outcomes with every number from the locked results, the argument for winning mapped to the five judging criteria, the honest risks, and ten questions a jury will ask.', ParagraphStyle('ST', parent=B, fontSize=12, leading=16.5, textColor=colors.HexColor('#374151'))),
-      Spacer(1, 8), P(f'Team FireBolt &middot; Samuel Christ &middot; TrackShift 2026, Tyre Degradation Intelligence &middot; Plaksha University &middot; numbers from lock {L["generated_at"]} IST, {V["n_weekends"]} scored weekends, {V["n_compound_weekends"]} compound-weekends, all leave-one-weekend-out.', SM), PageBreak()]
-md('# ClearStint: the case\n')
+      Spacer(1, 8), P(f'Team Orb v1 &middot; Samuel Christ &middot; TrackShift 2026, Tyre Degradation Intelligence &middot; Plaksha University &middot; numbers from lock {L["generated_at"]} IST, {V["n_weekends"]} scored weekends, {V["n_compound_weekends"]} compound-weekends, all leave-one-weekend-out.', SM), PageBreak()]
+md('# Orb v1: the case\n')
 # ---------------- 1 idea ----------------
 S += [P('1. The idea', H1),
       P('<b>The question a strategist asks on Saturday night.</b> How much slower will each tyre compound be after twenty laps on Sunday, at what age does the harder tyre become the better one, and should we stop once or twice? Every one of those is a question about the degradation curve, seconds of lap time lost per lap of tyre age, per compound. Get it wrong by a factor of seven, which is what a straight line through Friday laps did at Hungary this year, and the plan loses more than a pit stop.'),
@@ -55,20 +55,20 @@ md('## 2. Stack\nFastF1 data; per-lap features incl. an energy proxy and feed-qu
 S += [P('3. Outcomes, with the numbers', H1),
       table([['Result', 'Number', 'Meaning'],
              ['Naive straight line, error against the race', f'{m["naive"]:.3f} s/lap', 'What a team gets by drawing a line through Friday laps'],
-             ['ClearStint, error against the race, all cases', f'{m["clearstint"]:.3f} s/lap', f'90% interval {V["ci90_mae_clearstint_all"][0]:.3f} to {V["ci90_mae_clearstint_all"][1]:.3f}; six times better'],
-             ['Correlation with the race', f'{cal["naive"]["r"]:.2f} naive, {cal["all_with_fallback"]["r"]:.2f} ClearStint', 'Calibration slope 0.77; the curve transfers once Sunday management is learned'],
-             ['Cases where ClearStint beats naive', f'{V["wins_clearstint_over_naive"]} of {V["n_compound_weekends"]}', 'Not a fluke of one weekend'],
+             ['Orb v1, error against the race, all cases', f'{m["clearstint"]:.3f} s/lap', f'90% interval {V["ci90_mae_clearstint_all"][0]:.3f} to {V["ci90_mae_clearstint_all"][1]:.3f}; six times better'],
+             ['Correlation with the race', f'{cal["naive"]["r"]:.2f} naive, {cal["all_with_fallback"]["r"]:.2f} Orb v1', 'Calibration slope 0.77; the curve transfers once Sunday management is learned'],
+             ['Cases where Orb v1 beats naive', f'{V["wins_clearstint_over_naive"]} of {V["n_compound_weekends"]}', 'Not a fluke of one weekend'],
              ['Issued vs withheld', f'{V["n_issued"]} issued, {V["n_withheld"]} withheld', 'Every withheld case was a low-degradation race; fallback error 0.028 vs 0.082 naive'],
-             ['Per compound, ClearStint error', f'soft {bc["SOFT"]["mae_clearstint"]:.3f}, medium {bc["MEDIUM"]["mae_clearstint"]:.3f}, hard {bc["HARD"]["mae_clearstint"]:.3f}', f'Transfer factors: soft x{bc["SOFT"]["k_median"]:.2f}, medium x{bc["MEDIUM"]["k_median"]:.2f}, hard not applied'],
+             ['Per compound, Orb v1 error', f'soft {bc["SOFT"]["mae_clearstint"]:.3f}, medium {bc["MEDIUM"]["mae_clearstint"]:.3f}, hard {bc["HARD"]["mae_clearstint"]:.3f}', f'Transfer factors: soft x{bc["SOFT"]["k_median"]:.2f}, medium x{bc["MEDIUM"]["k_median"]:.2f}, hard not applied'],
              ['Push profile explains the gap', 'median 52%, pooled 68% (8 cases)', 'The fifth confounder is measured, not assumed'],
              ['Sensitivity of the headline', '0.021 to 0.027 s/lap', 'Across fuel prior 0.9 to 1.3 kg/lap, 0.025 to 0.035 s/kg, traffic 20 to 40%, runs 4 to 7 laps'],
-             ['Strategy replay, ten races', 'naive costs 0 to 155 s; ClearStint 0 to 55 s', 'ClearStint beats naive on 7 of 8 conventional races; Barcelona is the miss'],
+             ['Strategy replay, ten races', 'naive costs 0 to 155 s; Orb v1 0 to 55 s', 'Orb v1 beats naive on 7 of 8 conventional races; Barcelona is the miss'],
              ['Liquid network, held-out', 'beats best baseline 10 of 31', 'Inputs +23%; network on top of the same inputs about 0'],
              ['Madrid, live', 'soft +0.098 (band -0.10 to +0.30); medium withheld, forecast +0.028', 'Issued from FP1 and FP2, refreshed after FP3 and qualifying, hashed before the race'],
              ['Data assets', '2026 complete (67 session files); 2023 to 2025: 229 of about 350 sessions on disk at 12:27 IST, finishing mid-afternoon', 'Three seasons of same-track history for the transfer-factor prior; three session-level failures only, all retried']], [5 * cm, 4.4 * cm, 7.4 * cm]),
       Spacer(1, 6), fig('out/simple_fig3.png', 13, 'The headline test: every weekend predicted without seeing its own race.'),
       P('What exists as software today: the pipeline and lock, the six-view dashboard, the strategy layer, the liquid-model test, the deck, the manuals, and the live Madrid forecast. What remains today is refreshes, the three-season prior, and rehearsal.')]
-md(f'## 3. Outcomes\nNaive {m["naive"]:.3f} vs ClearStint {m["clearstint"]:.3f} s/lap; r {cal["naive"]["r"]:.2f} -> {cal["all_with_fallback"]["r"]:.2f}; {V["wins_clearstint_over_naive"]}/{V["n_compound_weekends"]} wins; {V["n_withheld"]}/{V["n_withheld"]} withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live.\n')
+md(f'## 3. Outcomes\nNaive {m["naive"]:.3f} vs Orb v1 {m["clearstint"]:.3f} s/lap; r {cal["naive"]["r"]:.2f} -> {cal["all_with_fallback"]["r"]:.2f}; {V["wins_clearstint_over_naive"]}/{V["n_compound_weekends"]} wins; {V["n_withheld"]}/{V["n_withheld"]} withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live.\n')
 # ---------------- 4 why we win ----------------
 S += [PageBreak(), P('4. Why we win, criterion by criterion', H1),
       table([['Criterion', 'Weight', 'What we bring', 'What the field brings'],
@@ -139,6 +139,6 @@ QA = [
 S += [PageBreak(), P('8. Fourteen questions a jury will ask, with answers', H1)]
 for i, (q, a) in enumerate(QA, 1): S += [KeepTogether([P(f'<b>{i}. {q}</b>', B), P(a)])]
 md('## 8. Fourteen jury questions\n' + '\n'.join(f'**{i}. {q}**\n\n{a}\n' for i, (q, a) in enumerate(QA, 1)))
-doc = SimpleDocTemplate('out/ClearStint_The_Case.pdf', pagesize=A4, leftMargin=1.9 * cm, rightMargin=1.9 * cm, topMargin=1.7 * cm, bottomMargin=1.7 * cm, title='ClearStint: the case', author='Team FireBolt')
-def footer(c, d): c.saveState(); c.setFont('Helvetica', 7.5); c.setFillColor(colors.HexColor('#6B7280')); c.drawString(1.9 * cm, 1 * cm, f'ClearStint: the case · numbers from lock {L["generated_at"]}'); c.drawRightString(A4[0] - 1.9 * cm, 1 * cm, str(d.page)); c.restoreState()
+doc = SimpleDocTemplate('out/Orb_v1_The_Case.pdf', pagesize=A4, leftMargin=1.9 * cm, rightMargin=1.9 * cm, topMargin=1.7 * cm, bottomMargin=1.7 * cm, title='Orb v1: the case', author='Team Orb v1')
+def footer(c, d): c.saveState(); c.setFont('Helvetica', 7.5); c.setFillColor(colors.HexColor('#6B7280')); c.drawString(1.9 * cm, 1 * cm, f'Orb v1: the case · numbers from lock {L["generated_at"]}'); c.drawRightString(A4[0] - 1.9 * cm, 1 * cm, str(d.page)); c.restoreState()
 doc.build(S, onFirstPage=footer, onLaterPages=footer); open('out/THE_CASE.md', 'w').write('\n'.join(MD)); print('built')

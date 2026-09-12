@@ -1,4 +1,4 @@
-"""ClearStint pipeline. Every weekend in feat/ -> out/lock.json (single source of truth for dashboard and deck),
+"""Orb v1 pipeline. Every weekend in feat/ -> out/lock.json (single source of truth for dashboard and deck),
 out/results.csv (one row per compound-weekend) and out/excluded_<event>.csv (every dropped practice lap with its reason).
 
 Completed weekends (practice + race): scored leave-one-weekend-out. Live weekend (practice only): curves issued with
@@ -149,14 +149,14 @@ if __name__ == '__main__':
     for ev in V.event.unique():
         rows = V[V.event == ev]; sl = lambda col: {r.compound: float(r[col]) for _, r in rows.iterrows() if np.isfinite(r[col])}
         offs = metas[ev]['offsets']; n_laps = int(pd.read_csv(f'feat/{ev}_R.csv')['LapNumber'].max())
-        truth = sl('obs'); views = {'Naive fit': sl('naive'), 'Cleaned Friday curve': {**{c: v for c, v in sl('clean').items()}, **{r.compound: float(r.floor) for _, r in rows.iterrows() if not r.issued and np.isfinite(r.floor)}}, 'ClearStint': sl('pred_clearstint')}
+        truth = sl('obs'); views = {'Naive fit': sl('naive'), 'Cleaned Friday curve': {**{c: v for c, v in sl('clean').items()}, **{r.compound: float(r.floor) for _, r in rows.iterrows() if not r.issued and np.isfinite(r.floor)}}, 'Orb v1': sl('pred_clearstint')}
         strategy[ev] = dict(n_laps=n_laps, offsets=offs, offsets_source=metas[ev]['offsets_source'], pit_loss=S.PIT_LOSS, views=S.replay(views, offs, n_laps, truth))
     for ev, Lv in live.items():
         n_laps = S.RACE_LAPS.get(ev); 
         if not n_laps: continue
         offs = metas[ev]['offsets']
-        views = {'Naive fit': {c['compound']: c['naive'] for c in Lv['compounds'] if np.isfinite(c['naive'])}, 'ClearStint': {c['compound']: c['prediction'] for c in Lv['compounds']},
-                 'ClearStint, band low': {c['compound']: c['band90'][0] for c in Lv['compounds']}, 'ClearStint, band high': {c['compound']: c['band90'][1] for c in Lv['compounds']}}
+        views = {'Naive fit': {c['compound']: c['naive'] for c in Lv['compounds'] if np.isfinite(c['naive'])}, 'Orb v1': {c['compound']: c['prediction'] for c in Lv['compounds']},
+                 'Orb v1, band low': {c['compound']: c['band90'][0] for c in Lv['compounds']}, 'Orb v1, band high': {c['compound']: c['band90'][1] for c in Lv['compounds']}}
         strategy[ev] = dict(n_laps=n_laps, offsets=offs, offsets_source=metas[ev]['offsets_source'], pit_loss=S.PIT_LOSS, views=S.replay(views, offs, n_laps), note='two compounds in the data only; hard had 4 clean laps on Friday' if len(Lv['compounds']) < 3 else None)
     lock = dict(generated_at=dt.datetime.now().isoformat(timespec='seconds'), rules=dict(min_practice_laps=MIN_PRAC, min_slope=MIN_SLOPE, factor_rule='median of other weekends, applied only if >=3 exist and a majority sit within ±50% of it', fuel_prior_kg_per_lap=M.FUEL_KG_PER_LAP_PRACTICE, fuel_s_per_kg=M.FUEL_S_PER_KG, traffic_max=M.TRAFFIC_MAX, min_stint=M.MIN_STINT),
                 events={e: metas[e] for e in metas}, validation=validation, validation_rows=V.round(4).replace({np.nan: None}).to_dict(orient='records'), live=live, strategy=strategy)
