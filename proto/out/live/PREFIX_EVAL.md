@@ -1,4 +1,4 @@
-# Live-prefix evaluation (2026-09-12T16:27:48)
+# Live-prefix evaluation (2026-09-12T21:49:21)
 
 Estimator: linear-Gaussian with fixed regime rules (live_estimator_lg_v0.1). Feedback: disabled (no recorded feedback for these races). Only data through lap k is revealed to the estimator; realised laps are used to score only.
 

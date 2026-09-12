@@ -118,8 +118,18 @@ def number_claims(lock: dict) -> list[dict]:
     liquid = read_json(PROTO / 'out' / 'liquid.json') if (PROTO / 'out' / 'liquid.json').exists() else None
     claims: list[dict] = []
 
-    def add(cid, claim, pattern, evidence_path, value, verdict, note='', sources=('deck', 'talk_track', 'THE_CASE', 'ROADMAP_v5'), severity='MEDIUM'):
-        claims.append(dict(id=cid, claim=claim, pattern=pattern, evidence_path=evidence_path, evidence_value=value, verdict=verdict, note=note, search_in=list(sources), severity=severity))
+    def add(cid, claim, pattern, evidence_path, value, verdict, note='', sources=('deck', 'talk_track', 'THE_CASE', 'ROADMAP_v5'), severity='MEDIUM', qualified_by=(), disqualified_by=(),
+            counts_only_unqualified=False):
+        """`qualified_by`: regexes that must ALL appear in the same READER UNIT (one document line, or one slide) for an
+        occurrence to count as stated-with-its-qualification; `disqualified_by`: any match there cancels that.
+
+        `counts_only_unqualified=True` makes the claim a BARE-FORM guard: qualified occurrences are not counted as
+        occurrences of it at all (they are listed under `qualified_not_counted`, so the reclassification stays visible),
+        and the claim fires the moment the number is printed without its basis. A bare-form guard is paired with a
+        separate claim that states the qualified sentence and carries its own evidence path and verdict, so the audit
+        never has to record a flagged verdict against a sentence that the evidence does support (C4 rework)."""
+        claims.append(dict(id=cid, claim=claim, pattern=pattern, evidence_path=evidence_path, evidence_value=value, verdict=verdict, note=note, search_in=list(sources), severity=severity,
+                           qualified_by=list(qualified_by), disqualified_by=list(disqualified_by), counts_only_unqualified=bool(counts_only_unqualified)))
 
     mae_n, mae_c = v['mae_all_with_fallback']['naive'], v['mae_all_with_fallback']['clearstint']
     add('mae_naive_0.137', 'naive MAE 0.137 s/lap', r'0\.137', 'lock.validation.mae_all_with_fallback.naive', mae_n, 'verified' if _fmt(mae_n, 3) == 0.137 else 'mismatch')
@@ -242,10 +252,41 @@ def number_claims(lock: dict) -> list[dict]:
             return 1 - S.mean(x[4] for x in sub) / S.mean(x[2] for x in sub)
         wins = sum(1 for x in full if x[5] < min(x[2], x[3], x[4]))
         degenerate = [(x[0], x[1], x[4]) for x in full if x[4] < 1e-6]
-        add('liquid_23_pct_10_of_31', 'per-lap inputs cut the age-only error by 23%; the network beat the best baseline 10 of 31', r'23%|10 of 31', 'out/liquid.json by_compound mae_linear vs mae_linear_cov vs mae_liquid (31 complete cells)',
-            dict(reduction_mean_all=red(full, False), reduction_lapweighted_all=red(full, True), reduction_mean_no_hungary=red(no_h, False), reduction_lapweighted_no_hungary=red(no_h, True), liquid_beats_best=f'{wins} of {len(full)}', degenerate_cells=degenerate),
-            'unverifiable', note=f'the 23% reproduces only as the lap-weighted reduction with the three Hungary cells removed ({red(no_h, True):.0%}); with them it is {red(full, True):.0%} (lap-weighted) / {red(full, False):.0%} (mean); the network beats the best baseline in {wins} of {len(full)} cells. '
-                                  f'Hungary mae_linear_cov = {degenerate[0][2]:.1e} on held-out laps is a degenerate fit (the covariate baseline reproduces the target), which should be excluded and said so')
+        # Four claims, not one (C4 rework). The documents print the qualified sentence, which the evidence DOES support,
+        # so it gets its own claim and its own verified verdict; the bare number, the wrong count and the real count are
+        # separate claims. Before the split, one claim carried the bare canonical text ("23%; 10 of 31"), a verdict of
+        # `unverifiable`, and three occurrences in THE_CASE / talk_track / the deck that were excused as `qualified` -
+        # which read as a flagged claim standing in the presentation documents.
+        lw_noh, lw_all, mean_all, mean_noh = red(no_h, True), red(full, True), red(full, False), red(no_h, False)
+        ev_liquid = dict(reduction_mean_all=mean_all, reduction_lapweighted_all=lw_all, reduction_mean_no_hungary=mean_noh, reduction_lapweighted_no_hungary=lw_noh,
+                         liquid_beats_best=f'{wins} of {len(full)}', n_complete_cells=len(full), degenerate_cells=degenerate)
+        pct_noh, pct_all, count_str = f'{lw_noh:.0%}', f'{lw_all:.0%}', f'{wins} of {len(full)}'
+        basis = (rf'{re.escape(pct_noh)} lap-weighted', r'Hungary', re.escape(count_str))       # the basis the evidence requires, all of it on one line / slide
+        wrong_count = rf'\b10 of {len(full)}\b'          # the count an earlier draft printed; it must appear nowhere
+        # (a) the sentence the documents actually print, with its basis -- verified against out/liquid.json
+        add('liquid_reduction_lapweighted_ex_hungary',
+            f'per-lap inputs cut the age-only error by {pct_noh} lap-weighted with the three degenerate Hungary cells excluded ({pct_all} with them); '
+            f'the network beat the best baseline in {count_str} cells',
+            rf'{re.escape(pct_noh)} lap-weighted[^()]{{0,90}}Hungary[^()]{{0,40}}excluded,? {re.escape(pct_all)} with them',
+            'out/liquid.json by_compound mae_linear vs mae_linear_cov (31 complete cells), lap-weighted by n_heldout_laps, Hungary excluded', ev_liquid,
+            'verified' if (pct_noh == '23%' and pct_all == '31%' and len(degenerate) == 3 and all(d[0] == 'Hungary' for d in degenerate)) else 'mismatch',
+            note=f'reproduces exactly as printed: {pct_noh} lap-weighted over the {len(no_h)} non-Hungary cells, {pct_all} over all {len(full)}. '
+                 f'Basis sensitivity, disclosed because the printed basis is the most favourable one: unweighted it is {mean_noh:.0%} (ex Hungary) / {mean_all:.0%} (all). '
+                 f'The three Hungary cells are excluded because mae_linear_cov = {degenerate[0][2]:.1e} s/lap on held-out laps is a degenerate fit (the covariate baseline reproduces the target); '
+                 f'the sentence says so. The network itself beats the best baseline in only {count_str} cells, which the same sentence states.')
+        # (b) the bare number with no basis: counted ONLY where the basis is absent, so it fires the moment someone prints it alone
+        add('liquid_bare_reduction_pct_without_basis', f'the liquid ablation reduction stated as a bare "{pct_noh}" with no weighting, no excluded cells and no win count',
+            re.escape(pct_noh), 'none: the bare percentage has no evidence path (the lap-weighted ex-Hungary basis does)', ev_liquid, 'unverifiable', severity='HIGH',
+            note=f'{pct_noh} is only the lap-weighted reduction with the three degenerate Hungary cells removed; unweighted it is {mean_noh:.0%}, and with Hungary it is {pct_all} (lap-weighted) / {mean_all:.0%} (mean). '
+                 f'Stated bare it implies a single measured improvement that does not exist. Say it with the basis, as THE_CASE.md and the talk track do.',
+            qualified_by=basis, disqualified_by=(wrong_count,), counts_only_unqualified=True)
+        # (c) the wrong count that an earlier draft carried
+        add('liquid_beats_best_10_of_31', f'the network beat the best baseline 10 of {len(full)}', wrong_count, 'out/liquid.json: mae_liquid < min(mae_linear, mae_quadratic, mae_linear_cov) per cell', ev_liquid,
+            'mismatch' if wins != 10 else 'verified', severity='HIGH', note=f'the real count is {count_str}; "10 of {len(full)}" appears in no current document and must not return')
+        # (d) the real count
+        add('liquid_beats_best_9_of_31', f'the network beat the best baseline in only {count_str} cells', re.escape(count_str),
+            'out/liquid.json: mae_liquid < min(mae_linear, mae_quadratic, mae_linear_cov) per cell', ev_liquid,
+            'verified' if wins == 9 and len(full) == 31 else 'mismatch', note=f'{wins} of {len(full)} complete cells; the honest reading of the ablation and the one the documents print')
     # holdout
     man = read_json(PROTO / 'evaluation' / 'holdout' / 'sealed_holdout_manifest.json')
     add('holdout_6', 'sealed holdout: 6 weekends = clamp(round(0.18 x 41), 4, 6): Canada 2023, Bahrain 2024, Monza 2024, Saudi Arabia 2024, Zandvoort 2024, Qatar 2025', r'Canada 2023, Bahrain 2024',
@@ -259,24 +300,54 @@ def number_claims(lock: dict) -> list[dict]:
     # roadmap illustrative numbers
     add('roadmap_illustrative', 'roadmap section 8 / 10 readouts (0.081 vs 0.061, trend 1.33x, gain 3.8 s, 76%, 31% faster)', r'0\.081|3\.8 seconds|76%|31% faster', 'none: illustrative example readouts, not lock numbers', None, 'unverifiable', severity='LOW',
         note='the roadmap marks these as examples of the screen; they must not be spoken as results', sources=('ROADMAP_v5',))
-    add('madrid_timing', 'FP3 refresh 17:40, qualifying refresh 21:00 (deck) vs 17:30 / 20:45 (roadmap section 2) and hash before 21:45 (task 0.13)', r'17:40|21:00|17:30|20:45', 'ROADMAP_v5 section 2 anchors vs deck slide 10', None, 'mismatch', severity='LOW', note='two different anchor times are in circulation; pick one', sources=('deck', 'ROADMAP_v5'))
+    add('madrid_timing', 'Madrid anchors as they happened: FP3 refresh landed 18:11 IST (refresh_fp3.log); the qualifying refresh attempted 21:03 found the session not run yet (refresh_q.log) and was scheduled again for 21:32; '
+        'the hashed forecast was published 21:03:23 from the FP3 lock (out/forecast_Madrid_2026.json issued_at) and is re-published after the second refresh', r'17:40|21:00|17:30|20:45|05:04|refreshes pending', 'refresh_fp3.log, refresh_q.log, out/forecast_Madrid_2026.json', None, 'mismatch', severity='LOW', note='a stated time that did not happen: 17:40 (FP3; landed 18:11), 21:00 (qualifying; the 21:03 attempt found Q not run, second attempt 21:32), 05:04 / refreshes pending (stale status); say what happened or drop the time', sources=('deck', 'ROADMAP_v5'))
     add('rival_field_none_held_out', 'every number on our screens is measured and scored / the lock file every screen reads from and computes nothing itself', r'measured and scored|computes nothing itself', 'consistency_probe_report.json (46 unhashed live values reproduced in-process; FIXTURE / pending values on the Ghost page)', None, 'exceeds_evidence',
         note='the Live Predictor computes the posterior and ranked actions in-process (deterministic replay of the frozen prior and the hashed race file, but not lock numbers) and the Ghost page shows labelled FIXTURE / pending values: say "every number on screen traces to the lock, a hashed sidecar or a labelled placeholder"')
     return claims
 
 
+PRESENTATION_KINDS = ('deck', 'talk_track', 'THE_CASE')      # what is said on stage; ROADMAP_v5 is a build contract, not a claim surface
+BLOCKING_VERDICTS = ('mismatch', 'exceeds_evidence', 'unverifiable')
+
+
+def source_kind(src: str) -> str:
+    return 'deck' if '#slide-' in src else ('talk_track' if 'talk_track' in src else ('THE_CASE' if 'THE_CASE' in src else ('ROADMAP_v5' if 'ROADMAP' in src else 'code')))
+
+
 def locate(claims: list[dict], sources: list[tuple[str, list[tuple[int, str]]]]) -> None:
+    """Stamp each claim with where it occurs and whether each occurrence carries its basis.
+
+    The qualification scope is the READER UNIT: one line of a document (a sentence a reader takes whole) or one slide of
+    the deck. It used to be the whole document, which let a caveat anywhere in THE_CASE.md qualify a bare number twenty
+    lines away; the tighter scope is what the gate test already re-checked by re-reading the cited line (C4 rework)."""
     for c in claims:
-        where = []
+        counted, suppressed = [], []
+        quals, disquals = c.get('qualified_by') or [], c.get('disqualified_by') or []
+        only_unqualified = bool(c.get('counts_only_unqualified'))
         for src, lines in sources:
-            kind = 'deck' if '#slide-' in src else ('talk_track' if 'talk_track' in src else ('THE_CASE' if 'THE_CASE' in src else ('ROADMAP_v5' if 'ROADMAP' in src else 'code')))
+            kind = source_kind(src)
             if kind not in c['search_in']:
                 continue
+            slide_text = ' '.join(l for _, l in lines) if '#slide-' in src else None
             for no, line in lines:
-                if re.search(c['pattern'], line):
-                    where.append(dict(source=src, line=no, excerpt=line.strip()[:200]))
-        c['found_in'] = where[:12]
-        c['n_occurrences'] = len(where)
+                if not re.search(c['pattern'], line):
+                    continue
+                def _ok(text: str) -> bool:
+                    return bool(quals) and all(re.search(q, text, flags=re.I) for q in quals) and not any(re.search(d, text, flags=re.I) for d in disquals)
+                same_line = _ok(line)
+                qualified = same_line or (slide_text is not None and _ok(slide_text))
+                rec = dict(source=src, line=no, excerpt=line.strip()[:200], kind=kind, qualified=qualified, qualified_same_line=same_line)
+                (suppressed if (only_unqualified and qualified) else counted).append(rec)
+        c['found_in'] = counted[:12]
+        c['n_occurrences'] = len(counted)
+        c['n_occurrences_unqualified'] = sum(1 for w in counted if not w['qualified'])
+        c['n_presentation_occurrences'] = sum(1 for w in counted if w['kind'] in PRESENTATION_KINDS)       # the C4 criterion's quantity
+        c['n_presentation_unqualified'] = sum(1 for w in counted if not w['qualified'] and w['kind'] in PRESENTATION_KINDS)
+        c['n_presentation_qualified'] = sum(1 for w in counted if w['qualified'] and w['kind'] in PRESENTATION_KINDS)
+        # a bare-form guard does not count its qualified occurrences, but it records them, so the reclassification is auditable
+        c['qualified_not_counted'] = suppressed[:12]
+        c['n_qualified_not_counted'] = len(suppressed)
         c['owner'] = 'lead'
 
 
@@ -290,9 +361,18 @@ def run(extra_sources: Optional[list[tuple[str, str]]] = None, out: Path | str |
     verdicts = {}
     for c in claims:
         verdicts[c['verdict']] = verdicts.get(c['verdict'], 0) + 1
-    must_fix = [c for c in claims if c['verdict'] in ('mismatch', 'exceeds_evidence') and c['n_occurrences'] > 0]
+    # C4 acceptance, as written: NO claim whose verdict is mismatch / exceeds_evidence / unverifiable may occur at all in
+    # THE_CASE.md, talk_track.md or the pptx -- qualified or not. (C3 ignored `unverifiable` and counted ROADMAP_v5; the
+    # C4 rework dropped the earlier "unqualified only" relaxation: a sentence the evidence supports is now its own claim
+    # with its own verified verdict, so the gate never has to excuse a flagged one. `qualified_in_presentation` stays as
+    # a disclosure of every occurrence a bare-form guard did not count.)
+    must_fix = [c for c in claims if c['verdict'] in BLOCKING_VERDICTS and c['n_presentation_occurrences'] > 0]
+    qualified = [dict(id=c['id'], verdict=c['verdict'], n=c['n_presentation_qualified'] + sum(1 for w in c['qualified_not_counted'] if w['kind'] in PRESENTATION_KINDS),
+                      counted=c['n_presentation_qualified'], not_counted=sum(1 for w in c['qualified_not_counted'] if w['kind'] in PRESENTATION_KINDS), qualified_by=c['qualified_by'],
+                      where=[f"{w['source']}:{w['line']}" for w in (c['found_in'] + c['qualified_not_counted']) if w['qualified'] and w['kind'] in PRESENTATION_KINDS])
+                 for c in claims if (c['n_presentation_qualified'] + sum(1 for w in c['qualified_not_counted'] if w['kind'] in PRESENTATION_KINDS)) > 0]
     rep = dict(generated_at=now_iso(), sources=[s for s, _ in sources], wording_rules=[dict(rule=r, pattern=p, allowed_context=a, note=n) for r, p, a, n in WORDING_RULES],
-               summary=dict(wording_hits=len(wording), reword=n_reword, allowed_with_context=len(wording) - n_reword, number_claims=len(claims), verdicts=verdicts, must_reword_before_presentation=[c['id'] for c in must_fix]),
+               summary=dict(wording_hits=len(wording), reword=n_reword, allowed_with_context=len(wording) - n_reword, number_claims=len(claims), verdicts=verdicts, must_reword_before_presentation=[c['id'] for c in must_fix], qualified_in_presentation=qualified),
                wording_flags=wording, claims=claims)
     rep['exit_code'] = 0 if (n_reword == 0 and not must_fix) else 1
     if out:

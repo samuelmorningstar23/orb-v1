@@ -1,7 +1,7 @@
 {
  "scorecard": "Live Predictor",
- "generated_at": "2026-09-12T16:59:03",
- "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
+ "generated_at": "2026-09-12T21:53:14",
+ "git_sha": "cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
  "data_cutoff": "2026-09-06T15:00:00 (Monza race, the latest completed 2026 round on disk; Madrid is the live weekend)",
  "units": {
   "mae": "s",
@@ -12,7 +12,7 @@
  },
  "source": {
   "path": "out/live/prefix_eval.json",
-  "generated_at": "2026-09-12T16:27:48",
+  "generated_at": "2026-09-12T21:49:21",
   "estimator": "linear-Gaussian with fixed regime rules",
   "model_version": "live_estimator_lg_v0.1",
   "feedback": "disabled (no recorded feedback for these races)"
@@ -381,7 +381,31 @@
  "note": "all numbers from prefix evaluation where only data through lap k is revealed; re-pooled here with a race-grouped, laps-weighted bootstrap",
  "driver_feedback_ablation": {
   "status": "not run",
-  "reason": "no recorded driver-feedback events in app_v2/state/feedback_events.jsonl (defined experiment, not a pre-written result)",
-  "design": "for every (event, driver) with recorded feedback: replay with feedback disabled and enabled; report next-lap MAE, 3- and 5-lap cumulative MAE, coverage, accelerating-wear detection lead and false alerts per stint for both arms"
+  "n_events": 0,
+  "sources": [
+   {
+    "path": "app_v2/state/feedback_events.jsonl",
+    "exists": true,
+    "n_events": 0
+   },
+   {
+    "path": "out/live/Austria_NOR/driver_feedback.json",
+    "exists": true,
+    "n_events": 0
+   },
+   {
+    "path": "out/live/Barcelona_NOR/driver_feedback.json",
+    "exists": true,
+    "n_events": 0
+   },
+   {
+    "path": "out/live/Monza_NOR/driver_feedback.json",
+    "exists": true,
+    "n_events": 0
+   }
+  ],
+  "reason": "no recorded driver-feedback event exists in any source: app_v2/state/feedback_events.jsonl (0 events); out/live/Austria_NOR/driver_feedback.json (0 events); out/live/Barcelona_NOR/driver_feedback.json (0 events); out/live/Monza_NOR/driver_feedback.json (0 events)",
+  "statement": "Driver-feedback ablation NOT RUN: no driver-feedback event has been recorded (the UI log is empty and every replay run consumed 0 events). It is a defined experiment, not a pre-written result; it runs from python -m evaluation.scorecards as soon as events exist.",
+  "design": "for every (event, driver) pair with recorded feedback: replay the race prefix-by-prefix with feedback disabled (telemetry only) and enabled (telemetry + structured feedback through live.feedback.DriverFeedbackAdapter); report next-lap MAE, 3- and 5-lap cumulative MAE, 90 % coverage, accelerating-wear detection rate and lead, false alert episodes per stint and recommendation change rate for both arms"
  }
 }

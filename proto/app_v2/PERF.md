@@ -1,27 +1,74 @@
 # Orb v1 premium shell: performance and release-gate record
 
-Measured 12 Sep 2026 16:56 IST (C3, hero screens integrated end to end) with `tests/screenshots/capture.py`
-(Playwright 1.62, headless Chromium 151) against `streamlit run app_v2/streamlit_app.py --server.port 8502 --server.headless true`
-on the build laptop (macOS 25.5, Python 3.12, Streamlit 1.63, Plotly 7.0). Per-route table: `tests/screenshots/golden/report.json`.
+Measured 12 Sep 2026 21:38-21:46 IST (C4: Workstream 3 scorecards wired, sealed block revealed after the 21:37 freeze, pre-race
+scenario in the explorer, red-team wording applied) with `tests/screenshots/capture.py` (Playwright 1.62, headless Chromium 151)
+against `streamlit run app_v2/streamlit_app.py --server.port 8503 --server.headless true` on the build laptop (macOS 25.5,
+Python 3.12, Streamlit 1.63, Plotly 7.0). Port 8503 was a verification instance with identical code; the lead's 8502 process
+(started 16:54) does not reload edited modules and must be restarted to serve the C4 pages. Per-route table:
+`tests/screenshots/golden/report.json`; scripted pass: `tests/screenshots/golden/scripted_pass.json`. C3 figures in brackets.
 
-| Acceptance area (13.6) | Target | Measured (C3) | Status |
+| Acceptance area (13.6 / 0.17) | Target | Measured (C4) | Status |
 |---|---|---|---|
-| Cold load (navigation start to page marker, cached lock, CSV, Workstream 8 session, Workstream 2 tables, Workstream 4 assets) | < 2 s | worst 1021 ms (Live Predictor 1440x900, first Workstream 8 session build); typical 800-900 ms; Landing / offline / decision board 360-430 ms; 17 routes x 2 viewports | pass |
-| Route switch via top navigation (assets cached) | < 600 ms | 132-157 ms (Landing -> Live Predictor 157/136 ms; Live -> Validation 132/155 ms) | pass |
-| Live update without full-page flicker | fragment | the hero (KPI strip, chart, decision card, lower rail) is one `st.fragment(run_every=0.7 s)`; Workstream 8's session steps ~8 ms per lap; a 6 s replay run advanced Lap 5 -> 10 at 1x with 0 console errors | pass |
-| Offline | no CDN / API / font | every non-localhost request aborted and logged: 0 attempted; the Race Twin player is a self-contained HTML document in an iframe | pass |
-| Displays | 1440x900 and 1920x1080 | 34 golden PNGs at both sizes | pass |
+| Cold load (navigation start to page marker; cached lock, CSV, Workstream 8 session, Workstream 2 tables, Workstream 3 JSON, Workstream 4 assets) | < 2 s | worst 1103 ms (Live Predictor 1440x900, first Workstream 8 session build) [1021]; typical 860-950 ms; Landing 433-921 ms; 19 routes x 2 viewports | pass |
+| Route switch via top navigation (assets cached) | < 600 ms | 148-246 ms (Landing -> Live Predictor 158-173 ms; Live -> Validation 151-245 ms) [132-157] | pass |
+| Keyboard navigation across the top navigation | every route reachable, Enter activates | all 8 routes reached in 13 Tabs at both viewports; Enter on the focused link switches the route in 203-218 ms (marker attached) | pass |
+| Live update without full-page flicker | fragment | hero is one `st.fragment(run_every=0.7 s)`; 6 s run advanced Lap 5 -> 10 at 1x with 0 console errors (both viewports) | pass |
+| Scripted five-minute pass (0.17): Monza NOR replay lap 1 to the flag at 1x, then Ghost Strategy NOR lap 24 -> new MEDIUM, Validation, Generalisation via the top navigation | no console errors, no external requests | replay reached Lap 53/53 in 53.4 s (1 lap/s, samples every 5 s on schedule), page load 945 ms; Ghost switch 183 ms (player iframe present, audit banner, leave-one-driver-out reference, Workstream 3 hidden-stop/regret rows); Validation 164 ms (prefix eval, regret table); Generalisation 238 ms (sealed block, cells); 58.4 s of automation, about five minutes with the reading pauses; 0 console errors, 0 external requests, rejoin wording "not a position forecast" on screen | pass |
+| Offline | no CDN / API / font | every non-localhost request aborted and logged: 0 attempted over 38 route loads + 2 replay runs + the scripted pass; Workstream 4's player is a self-contained iframe document; risk-coverage curve served from the local PNG | pass |
+| Displays | 1440x900 and 1920x1080 | 38 golden PNGs (19 routes) at both sizes | pass |
 | Layout | no horizontal scroll, no clipped labels | `scrollWidth <= innerWidth` on every route at both sizes | pass |
-| Reliability | no console errors | 0 real console errors on 34 route loads and 2 replay runs. Streamlit's client probes `<path>/_stcore/host-config` and `/health` on a deep link and logs the 404 before falling back to root (64 probes); classified separately, never on in-app navigation. A "page not found" toast can appear on the very first deep link within ~5 s of a server start (cold-start race); it did not recur in the capture | pass (see notes) |
-| Race Twin >= 30 FPS | React/canvas player | Workstream 4's player reports 114-121 FPS in the HUD at 1440x900 (their replay/PERF.md: 119-122 FPS); Plotly fallback on refused (Hungary) or missing (Australia, Madrid) assets | pass |
-| Visual regression | goldens for all demo routes | 34 PNGs in `tests/screenshots/golden/`; `capture.py --compare` reports changed-pixel share; gate `pytest tests/screenshots` 8/8 | pass |
-| Accessibility | keyboard, focus, non-colour cues | Tab reaches the top navigation and controls; `*:focus-visible` outline; compounds carry glyph letters, support chips carry glyphs and words; the player has its own keyboard map (space, arrows, PgUp/PgDn, 1/2/5/0) | pass (manual) |
-| Failure modes | designed degraded states | NO LOCK, NO RACE FEED (Madrid), NO COMPLETED RACE TO AUDIT, POSITION FEED REFUSED (Hungary), POSITION DATA UNAVAILABLE (no maps), NO FRAMES FOR THIS SCENARIO, OUT OF SUPPORT (wet), pending panels when no full Workstream 2 scenario exists | pass |
-| Presentation mode | one toggle | sidebar toggle or `?present=1`: hides sidebar and engineering panels, enlarges KPI values, decision headline and the player | pass |
-| Determinism | same result every run | Workstream 8's session is stepped forward only and cached per (event, driver, feedback-log signature); Workstream 2's tables are hashed files; replay state and decision timeline are pure functions of the visible laps (tests) | pass |
+| Reliability | no console errors | 0 real console errors on 38 route loads, 2 replay runs and the scripted pass. Streamlit's client probes `<path>/_stcore/host-config` and `/health` on a deep link and logs the 404 before falling back to root (64 probes); classified separately, never on in-app navigation | pass |
+| Degraded / out-of-support states | designed empty states | NO RACE FEED (Madrid), POSITION DATA UNAVAILABLE (Australia), POSITION FEED REFUSED (Hungary: 1 of 22 drivers pass the 100-points-per-lap gate, feed degraded at source), DEGRADED 7.1 quality on the Hungary live path (26 position samples per lap, band widened), OUT OF SUPPORT (wet scenario, no model-implied delta shown), NO COMPLETED RACE TO AUDIT (Madrid ghost), pending panels where no Workstream 2 scenario exists; each route's designed text is asserted by the gate (`expected_text_missing` empty on 19 routes) | pass |
+| Presentation mode | one toggle, both hero routes | `?present=1` hides the sidebar (asserted: `sidebar_visible` false on presentation_live and presentation_ghost, true elsewhere) and engineering panels, enlarges KPI values, decision headline and the player | pass |
+| Race Twin >= 30 FPS | React/canvas player | Workstream 4's player (114-121 FPS in the HUD at 1440x900, their replay/PERF.md 119-122); Plotly fallback on refused (Hungary) or missing (Australia, Madrid) assets | pass |
+| Visual regression | goldens for all demo routes | 38 PNGs; goldens regenerated at C4 only for the 17 routes changed here plus the 2 new routes (prerace, offline_mode kept from C3: 1.5 % / 0.1 % drift from the 21:00 lock rebuild, within the 15 % gate); `capture.py --compare` diff share; gate `pytest tests/screenshots` 11/11 | pass |
+| Accessibility | keyboard, focus, non-colour cues | keyboard pass above; `*:focus-visible` outline; compounds carry glyph letters, support chips carry glyphs and words; the player has its own keyboard map (space, arrows, PgUp/PgDn, 1/2/5/0) | pass |
+| Determinism | same result every run | Workstream 8's session is stepped forward only and cached per (event, driver, feedback-log signature); Workstream 2 and Workstream 3 tables are hashed files read verbatim; the sealed block is revealed only by a `quotable: true` post-freeze evaluator run; replay state and decision timeline are pure functions of the visible laps (tests) | pass |
+| Shared state | tests never write product state | the capture and the scripted pass no longer write `app_v2/state/feedback_events.jsonl` (Workstream 3's scorecards read it); a fixture log can be attached to a screenshot server with `ORB_FEEDBACK_LOG=<file>` (app_v2/services/paths.py; live/session.py still reads its own path) | pass |
 
-Script-side cost (AppTest, no browser): `tests/ui` (41 tests, every page rendered at least twice, Workstream 8 sessions built for
-Monza/NOR, Barcelona/PIA) runs in about 4.5 s; Workstream 8's first session build for a driver costs 140-320 ms, then ~8 ms per lap.
+Script-side cost (AppTest, no browser): `tests/ui` (51 tests, every page rendered at least twice, Workstream 8 sessions built for
+Monza/NOR, Barcelona/PIA, Hungary/NOR) runs in about 7.5 s; Workstream 8's first session build for a driver costs 140-320 ms, then
+~8 ms per lap; Workstream 3's five JSON files (about 540 kB) parse once per process and are cached by (path, mtime).
 
-Re-run: `../.venv/bin/python tests/screenshots/capture.py --update` (goldens) or `--compare`, and
-`../.venv/bin/python -m pytest tests/screenshots -q` for the gate (skips when the server is not up).
+Re-run: `../.venv/bin/python tests/screenshots/capture.py --update [--routes a,b]` (goldens; a subset merges into report.json),
+`--compare`, `--scripted [--speed 1|2|5|10]` (writes golden/scripted_pass.json), and `../.venv/bin/python -m pytest tests/screenshots -q`
+for the gate (skips when the server is not up; `ORB_BASE` selects the server).
+
+## C4 acceptance pass on the post-freeze data (12 Sep 22:00-22:30 IST, server restarted on 8502 at 22:09 and 22:20)
+
+The goldens of 21:38-21:39 predate the lead's 21:49 `out/live` regeneration, the 21:52 second pre-race scenario and the 21:53
+scorecards, so every route was re-measured against the data on disk now. `capture.py --compare` was run twice before any
+rewrite: the two runs agreed to 3 decimals on every route (only `ghost_audit_fixed_context@1920x1080` moved, 0.000 % -> 0.001 %),
+so the listed diffs are content, not rendering noise. Goldens were then rewritten for the 10 routes with a content cause and
+for nothing else; after the rewrite every route compares at 0.000 % except the ghost-audit canvas (0.002-0.006 % jitter).
+
+| route (both viewports) | diff vs golden before | content cause | golden rewritten | diff after |
+|---|---|---|---|---|
+| scenario_explorer | 0.665 % / 1.546 % | the fidelity control now selects the pre-race scenario and the rail names it | yes | 0.000 % |
+| prerace | 1.454 % / 1.459 % | Madrid lock and frozen forecast of 21:33 (golden was from 16:56) | yes | 0.000 % |
+| landing | 0.000 % / 0.267 % | sealed MAE at the quoted precision; 21:53 scorecard sha and timestamp | yes | 0.000 % |
+| validation | 0.000 % / 0.179 % | identity table gained the two pre-race rows; 21:49 prefix-eval sha | yes | 0.000 % |
+| offline_mode | 0.137 % / 0.087 % | Madrid forecast hash 66e3201e (golden was from 16:56) | yes | 0.000 % |
+| presentation_ghost | 0.015 % / 0.184 % | audit rail lists both pre-race fidelities (`L24->M f, L24->M t`) | yes | 0.000 % |
+| out_of_support | 0.000 % / 0.025 % | same rail line | yes | 0.000 % |
+| ghost_audit | 0.016 % / 0.002 % | same rail line; Workstream 2 regeneration stamp 21:39 | yes | 0.006 % / 0.004 % (canvas jitter) |
+| ghost_audit_fixed_context | 0.016 % / 0.000-0.001 % | same | yes | 0.002 % |
+| generalisation | 0.008 % / 0.005 % | sealed block at the quoted precision (below the fold); 21:53 scorecard stamp | yes | 0.000 % |
+| live_stable, live_after_feedback, decision_change, decision_board, presentation_live, feedback, missing_position, degraded_feed, position_refused | 0.000 % / 0.000 % | none: the live path computes in-process from the 21:33 lock, which did not move | **no** | 0.000 % |
+
+19 of the 38 PNGs changed bytes (sha256 recorded before and after); the other 19 are byte-identical, `scripted_pass.json` was
+re-run at 22:24 and `report.json` merged. `diff_ratio` counts pixels differing by more than 24 levels, so 0.000 % means no
+visible pixel moved, not byte equality: `landing@1440x900` and `out_of_support@1440x900` reported 0.000 % yet their bytes
+changed by a few antialiased pixels when rewritten.
+
+Offline and reliability at both sizes after the rewrite: 0 external requests attempted over 38 route loads + 2 replay runs +
+the scripted pass, 0 console errors, no horizontal overflow (`scrollWidth == innerWidth` on all 38), worst cold load 1103 ms,
+route switches 145-163 ms. Race Twin on the Ghost route: player iframe present, 4926 frames for Monza/NOR from
+`out/maps/Monza` (`assets_status` ok, 575 track points), 0 console errors at 1440x900 and 1920x1080.
+
+New this pass: the Scenario Explorer's fidelity control picks between `out/counterfactual/pre_race/monza_nor_lap24_to_medium_new_fixed_context`
+(-14.2 s) and `..._tyre_only` (-16.6 s) and states which one it is showing; the sealed-holdout MAE is printed at 4 decimals so
+the dashboard and the lead's quotable headline read the same (0.0372 vs 0.1713 s/lap, 90 % coverage 100 %, 5 of 6 weekends,
+9 compound-weekends); a Race Twin frame set whose finish delta disagrees with its scenario's `summary.json` by more than 1 s is
+called out on the page (`monza_ver_lap20_to_hard_new_fixed_context`: frames -6.5 s, scenario +7.7 s — Workstream 4 must re-run
+`replay.build_maps`). `tests/ui` is 56 tests (5 added) in about 9 s; `tests/ui` + `tests/screenshots` 67 in 101 s.

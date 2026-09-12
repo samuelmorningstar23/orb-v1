@@ -1,8 +1,8 @@
 {
  "scorecard": "Ghost Strategy",
- "generated_at": "2026-09-12T16:59:03",
- "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
- "data_cutoff": "2026-09-06T15:00:00 (Monza race, the latest completed 2026 round on disk; Madrid is the live weekend); seasons 2023 to 2025 complete",
+ "generated_at": "2026-09-12T21:53:14",
+ "git_sha": "cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
+ "data_cutoff": "2026-09-06T15:00:00 (Monza race, the latest completed 2026 round on disk; Madrid is the live weekend); out/lock.json generated 2026-09-12T21:33:10 (prospective: Madrid, Monaco); seasons 2023 to 2025 complete",
  "units": {
   "degradation": "s/lap per lap of tyre age",
   "hidden_stop": "s (next lap) and s over h laps (cumulative)",
@@ -24,6 +24,29 @@
   "2024_Zandvoort",
   "2025_Qatar"
  ],
+ "lock": {
+  "path": "out/lock.json",
+  "generated_at": "2026-09-12T21:33:10",
+  "validation_n_weekends": 11,
+  "validation_n_compound_weekends": 29,
+  "scored_events": [
+   "Australia",
+   "Austria",
+   "Barcelona",
+   "Belgium",
+   "Britain",
+   "Canada",
+   "Hungary",
+   "Japan",
+   "Miami",
+   "Monza",
+   "Zandvoort"
+  ],
+  "prospective_events": [
+   "Madrid",
+   "Monaco"
+  ]
+ },
  "wording": {
   "reference": "race-derived pace-loss reference",
   "regret": "held-out strategy replay under a post-race reference model",
@@ -2039,16 +2062,484 @@
    "share_withheld": 0.43243243243243246,
    "mae_issued": 0.06629573699808133,
    "mae_fallback": 0.03322574380818562
+  },
+  "by_season": {
+   "2023": {
+    "split": "leave-one-weekend-out inside the season (pipeline.py rules; sealed weekends excluded from the pool)",
+    "forecast": {
+     "n_weekends": 17,
+     "n_compound_weekends": 40,
+     "n_issued": 20,
+     "n_withheld": 20,
+     "mae": {
+      "orb_v1": 0.054593730785020965,
+      "naive": 0.19430116270811953,
+      "clean_issued": 0.09384004895782261,
+      "orb_v1_issued": 0.08208877739538278,
+      "orb_v1_fallback": 0.027098684174659177,
+      "naive_issued": 0.1907350659739055
+     },
+     "band_coverage90": {
+      "all": 0.85,
+      "issued": 0.75,
+      "fallback": 0.95,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.5,
+      "share_withheld": 0.5,
+      "mae_issued": 0.08208877739538278,
+      "mae_fallback": 0.027098684174659177
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 9,
+       "mae_orb_v1": 0.08537081918245316,
+       "mae_naive": 0.23361406254133396
+      },
+      "MEDIUM": {
+       "n": 16,
+       "mae_orb_v1": 0.05412516222471737,
+       "mae_naive": 0.1740949793017282
+      },
+      "HARD": {
+       "n": 15,
+       "mae_orb_v1": 0.036627284210885507,
+       "mae_naive": 0.19226668510834163
+      }
+     },
+     "wins_orb_over_naive": 35,
+     "calibration": {
+      "slope": 0.19242790635373078,
+      "r": 0.3757758234190508,
+      "n": 40
+     },
+     "bootstrap": {
+      "mae_orb_v1": {
+       "estimate": 0.054593730785020965,
+       "ci90": [
+        0.037080787733065626,
+        0.07535400501625818
+       ],
+       "n_weekends": 17,
+       "n_rows": 40,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "mae_naive": {
+       "estimate": 0.19430116270811953,
+       "ci90": [
+        0.16480608837837865,
+        0.22163026561396185
+       ],
+       "n_weekends": 17,
+       "n_rows": 40,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "band_coverage90": {
+       "estimate": 0.85,
+       "ci90": [
+        0.775,
+        0.925
+       ],
+       "n_weekends": 17,
+       "n_rows": 40,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "p_orb_beats_naive": {
+       "p_bootstrap": 1.0,
+       "share_rows": 0.875,
+       "n_rows": 40,
+       "n_weekends": 17
+      }
+     }
+    }
+   },
+   "2024": {
+    "split": "leave-one-weekend-out inside the season (pipeline.py rules; sealed weekends excluded from the pool)",
+    "forecast": {
+     "n_weekends": 18,
+     "n_compound_weekends": 39,
+     "n_issued": 24,
+     "n_withheld": 15,
+     "mae": {
+      "orb_v1": 0.07595852585308029,
+      "naive": 0.16440588108092913,
+      "clean_issued": 0.11220702163426688,
+      "orb_v1_issued": 0.08839870248168234,
+      "orb_v1_fallback": 0.05605424324731703,
+      "naive_issued": 0.19896960469864944
+     },
+     "band_coverage90": {
+      "all": 0.8974358974358975,
+      "issued": 0.875,
+      "fallback": 0.9333333333333333,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.6153846153846154,
+      "share_withheld": 0.38461538461538464,
+      "mae_issued": 0.08839870248168234,
+      "mae_fallback": 0.05605424324731703
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 7,
+       "mae_orb_v1": 0.22318260384295582,
+       "mae_naive": 0.3176630196318695
+      },
+      "MEDIUM": {
+       "n": 17,
+       "mae_orb_v1": 0.04239973243440326,
+       "mae_naive": 0.15430736236272063
+      },
+      "HARD": {
+       "n": 15,
+       "mae_orb_v1": 0.0452872553323057,
+       "mae_naive": 0.10433087097112656
+      }
+     },
+     "wins_orb_over_naive": 27,
+     "calibration": {
+      "slope": 0.030319197230434854,
+      "r": 0.06772857571498393,
+      "n": 39
+     },
+     "bootstrap": {
+      "mae_orb_v1": {
+       "estimate": 0.07595852585308029,
+       "ci90": [
+        0.052627046977120166,
+        0.09900371146370936
+       ],
+       "n_weekends": 18,
+       "n_rows": 39,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "mae_naive": {
+       "estimate": 0.16440588108092913,
+       "ci90": [
+        0.1270014573067435,
+        0.20448259335421842
+       ],
+       "n_weekends": 18,
+       "n_rows": 39,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "band_coverage90": {
+       "estimate": 0.8974358974358975,
+       "ci90": [
+        0.825,
+        0.9714285714285714
+       ],
+       "n_weekends": 18,
+       "n_rows": 39,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "p_orb_beats_naive": {
+       "p_bootstrap": 1.0,
+       "share_rows": 0.6923076923076923,
+       "n_rows": 39,
+       "n_weekends": 18
+      }
+     }
+    }
+   },
+   "2025": {
+    "split": "leave-one-weekend-out inside the season (pipeline.py rules; sealed weekends excluded from the pool)",
+    "forecast": {
+     "n_weekends": 18,
+     "n_compound_weekends": 40,
+     "n_issued": 24,
+     "n_withheld": 16,
+     "mae": {
+      "orb_v1": 0.04724903625866518,
+      "naive": 0.16060671482029082,
+      "clean_issued": 0.0651822876698957,
+      "orb_v1_issued": 0.06017667628534449,
+      "orb_v1_fallback": 0.027857576218646204,
+      "naive_issued": 0.1911861106198092
+     },
+     "band_coverage90": {
+      "all": 0.85,
+      "issued": 0.9166666666666666,
+      "fallback": 0.75,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.6,
+      "share_withheld": 0.4,
+      "mae_issued": 0.06017667628534449,
+      "mae_fallback": 0.027857576218646204
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 8,
+       "mae_orb_v1": 0.0455503019365302,
+       "mae_naive": 0.2398833269675099
+      },
+      "MEDIUM": {
+       "n": 17,
+       "mae_orb_v1": 0.06811569834573768,
+       "mae_naive": 0.15335045565354943
+      },
+      "HARD": {
+       "n": 15,
+       "mae_orb_v1": 0.024506144198455,
+       "mae_naive": 0.12654961539741424
+      }
+     },
+     "wins_orb_over_naive": 35,
+     "calibration": {
+      "slope": 0.1620396228898118,
+      "r": 0.30946201592399103,
+      "n": 40
+     },
+     "bootstrap": {
+      "mae_orb_v1": {
+       "estimate": 0.04724903625866518,
+       "ci90": [
+        0.03341962239070939,
+        0.062140444200670004
+       ],
+       "n_weekends": 18,
+       "n_rows": 40,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "mae_naive": {
+       "estimate": 0.16060671482029082,
+       "ci90": [
+        0.13174313769481952,
+        0.1887757246283059
+       ],
+       "n_weekends": 18,
+       "n_rows": 40,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "band_coverage90": {
+       "estimate": 0.85,
+       "ci90": [
+        0.7631578947368421,
+        0.9285714285714286
+       ],
+       "n_weekends": 18,
+       "n_rows": 40,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "p_orb_beats_naive": {
+       "p_bootstrap": 1.0,
+       "share_rows": 0.875,
+       "n_rows": 40,
+       "n_weekends": 18
+      }
+     }
+    }
+   },
+   "2026": {
+    "split": "leave-one-weekend-out inside the season (pipeline.py rules; sealed weekends excluded from the pool)",
+    "forecast": {
+     "n_weekends": 11,
+     "n_compound_weekends": 29,
+     "n_issued": 16,
+     "n_withheld": 13,
+     "mae": {
+      "orb_v1": 0.02273090763948737,
+      "naive": 0.1371372633798251,
+      "clean_issued": 0.045398693822790964,
+      "orb_v1_issued": 0.022578579345158285,
+      "orb_v1_fallback": 0.022918388617123166,
+      "naive_issued": 0.16267078585895134
+     },
+     "band_coverage90": {
+      "all": 0.8620689655172413,
+      "issued": 1.0,
+      "fallback": 0.6923076923076923,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.5517241379310345,
+      "share_withheld": 0.4482758620689655,
+      "mae_issued": 0.022578579345158285,
+      "mae_fallback": 0.022918388617123166
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 9,
+       "mae_orb_v1": 0.0315792396733294,
+       "mae_naive": 0.22097530110927568
+      },
+      "MEDIUM": {
+       "n": 9,
+       "mae_orb_v1": 0.017375020483689798,
+       "mae_naive": 0.14801769703131212
+      },
+      "HARD": {
+       "n": 11,
+       "mae_orb_v1": 0.019873452739269187,
+       "mae_naive": 0.05964033224996701
+      }
+     },
+     "wins_orb_over_naive": 28,
+     "calibration": {
+      "slope": 0.7653025986667082,
+      "r": 0.7806457826398171,
+      "n": 29
+     },
+     "bootstrap": {
+      "mae_orb_v1": {
+       "estimate": 0.02273090763948737,
+       "ci90": [
+        0.017158505338845623,
+        0.02808454356176016
+       ],
+       "n_weekends": 11,
+       "n_rows": 29,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "mae_naive": {
+       "estimate": 0.1371372633798251,
+       "ci90": [
+        0.10536718405036774,
+        0.17418320692731437
+       ],
+       "n_weekends": 11,
+       "n_rows": 29,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "band_coverage90": {
+       "estimate": 0.8620689655172413,
+       "ci90": [
+        0.7241379310344828,
+        0.967741935483871
+       ],
+       "n_weekends": 11,
+       "n_rows": 29,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "p_orb_beats_naive": {
+       "p_bootstrap": 1.0,
+       "share_rows": 0.9655172413793104,
+       "n_rows": 29,
+       "n_weekends": 11
+      }
+     }
+    }
+   }
+  },
+  "lock_consistency_2026": {
+   "lock": {
+    "path": "out/lock.json",
+    "generated_at": "2026-09-12T21:33:10",
+    "validation_n_weekends": 11,
+    "validation_n_compound_weekends": 29,
+    "scored_events": [
+     "Australia",
+     "Austria",
+     "Barcelona",
+     "Belgium",
+     "Britain",
+     "Canada",
+     "Hungary",
+     "Japan",
+     "Miami",
+     "Monza",
+     "Zandvoort"
+    ],
+    "prospective_events": [
+     "Madrid",
+     "Monaco"
+    ]
+   },
+   "tolerance": 0.0005,
+   "all_match": true,
+   "n_compared": 11,
+   "metrics": {
+    "n_weekends": {
+     "scorecard": 11,
+     "lock": 11,
+     "match": true
+    },
+    "n_compound_weekends": {
+     "scorecard": 29,
+     "lock": 29,
+     "match": true
+    },
+    "n_issued": {
+     "scorecard": 16,
+     "lock": 16,
+     "match": true
+    },
+    "n_withheld": {
+     "scorecard": 13,
+     "lock": 13,
+     "match": true
+    },
+    "mae_naive_all": {
+     "scorecard": 0.1371372633798251,
+     "lock": 0.1371372633798251,
+     "abs_diff": 0.0,
+     "match": true
+    },
+    "mae_orb_v1_all": {
+     "scorecard": 0.02273090763948737,
+     "lock": 0.02273090763948737,
+     "abs_diff": 0.0,
+     "match": true
+    },
+    "mae_naive_issued": {
+     "scorecard": 0.16267078585895134,
+     "lock": 0.16267078585895134,
+     "abs_diff": 0.0,
+     "match": true
+    },
+    "mae_orb_v1_issued": {
+     "scorecard": 0.022578579345158285,
+     "lock": 0.022578579345158285,
+     "abs_diff": 0.0,
+     "match": true
+    },
+    "calibration_r_all": {
+     "scorecard": 0.7806457826398171,
+     "lock": 0.7806457826398171,
+     "abs_diff": 0.0,
+     "match": true
+    },
+    "wins_orb_over_naive": {
+     "scorecard": 28,
+     "lock": 28,
+     "match": true
+    },
+    "band_coverage90_all": {
+     "scorecard": 0.8620689655172413,
+     "lock": 0.8620689655172413,
+     "abs_diff": 0.0,
+     "match": true
+    }
+   },
+   "note": "the lock is pipeline.py's own leave-one-weekend-out validation over the completed 2026 weekends; the scorecard recomputes it with evaluation.forecast (pool = the other completed 2026 weekends; no 2026 weekend is sealed); the prospective weekend has no race file and enters neither"
   }
  },
  "sealed_holdout": {
-  "generated_at": "2026-09-12T16:55:42",
-  "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
+  "generated_at": "2026-09-12T21:37:55",
+  "git_sha": "cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
+  "dry_run_before_freeze": false,
+  "quotable": true,
   "reveal": {
-   "per_race_written": false,
-   "reason": "no freeze.json: model, feature list, gate threshold and provider are not frozen"
+   "per_race_written": true,
+   "reason": "frozen at commit cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e"
   },
-  "post_holdout_tuning": null,
+  "post_holdout_tuning": false,
   "n_weekends": 6,
   "aggregate": {
    "weekends": {
@@ -2913,7 +3404,7 @@
     }
    }
   },
-  "note": "aggregate over the sealed weekends only; per-race results stay sealed until freeze.json"
+  "note": "aggregate over the sealed weekends only; per-race results stay in holdout_per_race.json under the freeze"
  },
  "rolling_origin_2026": {
   "method": "rolling origin: factors, fallback floor and widening from the completed rounds before round k only; the first rounds carry factor 1.0 and no fallback (empty pool)",

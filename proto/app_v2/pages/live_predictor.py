@@ -18,9 +18,9 @@ FRAGMENT_PERIOD_S = 0.7
 
 
 def _rejoin_text(r: dict | None, d) -> str:
+    """Observed gap structure only; no projected rejoin position on the live path (red team wording rule)."""
     if r and (r.get('rejoin_context') or {}).get('position_now') is not None:
-        rj = r['rejoin_context']
-        return f"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · traffic {rj['traffic_density']}"
+        return LB.rejoin_text(r['rejoin_context'])
     return d.rejoin_context
 
 
@@ -170,6 +170,9 @@ def render() -> None:
                 chips.append(badges.badge_html(f"data cutoff {orb.get('data_cutoff', '—')} · no future data", 'neutral'))
             elif vm.state and vm.state.widened:
                 chips.append(badges.badge_html(f'band widened after {vm.state.widen_reason}', 'decision'))
+            note = LB.support_note(vm)
+            if note:
+                chips.append(badges.badge_html(f"support: 7.1 says {LB.support_status(vm)} · lock chips say {vm.support.overall_support_status} (both shown)", 'decision', note))
             chips.append(badges.compound_html(vm.state.compound if vm.state else vm.prior.compound, f'{(vm.state.compound if vm.state else vm.prior.compound).title()} · age {vm.state.tyre_age if vm.state else "—"}'))
             st.html('<div class="cs-chips">' + ''.join(chips) + '</div>')
             if orb and orb.get('changes'):

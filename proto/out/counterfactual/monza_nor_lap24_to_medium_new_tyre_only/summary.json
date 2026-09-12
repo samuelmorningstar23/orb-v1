@@ -6,12 +6,12 @@
   "driver_id": "NOR",
   "simulation_mode": "tyre_only",
   "availability_mode": "PUBLIC PROXY",
-  "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+  "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
   "model_hash": "sha256:85a8e73b6a2d6eb5a8be25ad03e50b1e3ca280b3fca3759d5c461261cc98405a",
   "split_id": "development_pool",
-  "data_cutoff": "2026-09-12T14:31:34",
-  "generated_at": "2026-09-12T16:26:23",
-  "git_sha": "ccae5d9",
+  "data_cutoff": "2026-09-12T21:33:10",
+  "generated_at": "2026-09-12T21:39:03",
+  "git_sha": "cdb1a45",
   "intervention": {
    "lap": 24,
    "from_compound": "HARD",
@@ -138,7 +138,7 @@
   "curve_source": "race_reference",
   "uses_post_race_reference": true,
   "uses_future_data_for_pre_race_quantities": false,
-  "pre_race_forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+  "pre_race_forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
   "curves": {
    "source": "race_reference",
    "by_compound": {
@@ -413,7 +413,7 @@
   },
   "n_laps": 53,
   "retired": false,
-  "timing_ms": 120.50024996278808,
+  "timing_ms": 138.05716700153425,
   "support": {
    "in_support": true,
    "stints_beyond_support": [],

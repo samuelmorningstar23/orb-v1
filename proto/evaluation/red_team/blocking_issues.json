@@ -1,23 +1,121 @@
 {
- "generated_at": "2026-09-12T16:45:00",
+ "generated_at": "2026-09-12T22:12:29",
  "workstream": 7,
- "definition": "ROADMAP_v5 section 14.3 stop-the-line conditions only",
- "issues": [
+ "definition": "ROADMAP_v5 section 14.3 stop-the-line conditions only; roadmap 0.13 acceptance: `issues` empty",
+ "issues": [],
+ "resolved": [
   {
    "id": "RT-BLK-1",
    "severity": "BLOCKING",
    "condition_14_3": "a live field contains future or post-race information",
-   "title": "LiveVM.forecast carries the race-derived reference (obs, err_cs, n_race) into the Live Predictor view model",
-   "files": [
-    "app_v2/services/lock_repository.py:158-166 (forecast_for returns observed/err/n_race from validation_rows)",
-    "app_v2/services/view_models.py:141 (build_live: forecast = lock.forecast_for(event, compound))",
-    "live/viewmodel.py:676 (build_live: forecast = lock.forecast_for(event, compound))"
+   "title": "LiveVM.forecast carried the race-derived reference (obs, err_cs, n_race) into the Live Predictor view model",
+   "filed_at": "2026-09-12T16:45:00",
+   "resolved_at": "2026-09-12T21:30:00",
+   "resolution": "closed at the page boundary (lead decision 20:58): every live page builds its view model through app_v2/services/live_bridge.build, whose _strip_post_race replaces forecast.observed / observed_se / err / n_race with None; the raw builders (app_v2/services/view_models.build_live, live/viewmodel.build_live_vm) still populate the fields but have no caller outside the bridge",
+   "evidence": [
+    "call sites (grep, 21:10 IST): app_v2/pages/live_predictor.py:136, decision_board.py:53, driver_feedback.py:30 call LB.build(...); no VM.build_live( / build_live_vm( call exists in app_v2 outside services/live_bridge.py; app_v2/state/app_state.py only calls VM.suggest_driver",
+    "reproduction (21:20 IST): LB.build(lock, 'Monza', 'NOR', ReplayCursor('Monza','NOR',53).seek(12)) -> forecast.observed None, observed_se None, err None, n_race None; the same build with _strip_post_race monkeypatched to identity -> observed 0.023, n_race 214 (so the scrub is the load-bearing step and the test asserting None is not vacuous)",
+    "no page or ui module dereferences forecast.observed / err / n_race / covered on the live path; the only readers are app_v2/pages/pre_race.py:35 (scored weekends, labelled 'race observed') and app_v2/pages/ghost_strategy.py:31-49 (historical audit, by design)",
+    "renders: consistency probe 21:06 (C3) rendered live_predictor / decision_board / driver_feedback for Monza LIN/NOR, Austria NOR and Madrid with 0 mismatches and no race-observed value on those routes"
    ],
-   "reproduction": "cd proto && ../.venv/bin/python -c \"import sys; sys.path.insert(0,'.'); from app_v2.services import lock_repository as LR, replay_service as RS, view_models as VM; lock=LR.load_lock(); c=RS.ReplayCursor('Monza','LIN',53).seek(30); vm=VM.build_live(lock,'Monza','LIN',c); print(vm.forecast.observed, vm.forecast.err, vm.forecast.n_race)\"  -> 0.023 0.0072 214 (post-race values in the live path; same for live.viewmodel.build_live_vm)",
-   "rendered": false,
-   "note": "Not rendered on the Live Predictor, decision board or feedback pages today (only forecast.source is shown), so no screen shows post-race data; the violation is the data boundary in code (Phase 0 acceptance test 4: 'Live cannot read post-race reference fields'). Fix is a scrub: the live path must receive a forecast-only projection (prediction, band90, issued, gate, basis, n_prac, source) with observed/observed_se/err/n_race set to None, e.g. a LockView.forecast_for(..., live=True) or dataclasses.replace(f, observed=None, observed_se=None, err=None, n_race=None) in build_live (both app_v2/services/view_models.py and live/viewmodel.py).",
-   "owner": ["workstream 6", "workstream 8"],
-   "recommended_decision": "GO_WITH_REASSIGNMENT: two-line fix in each view model plus a test asserting LiveVM.forecast.observed is None; no rollback needed"
+   "guarded_by": [
+    "tests/ui/test_pages.py::test_live_bridge_uses_workstream8_and_strips_post_race",
+    "tests/red_team/test_data_cutoff.py::test_forecast_reference_fields_are_none_on_the_live_path",
+    "tests/red_team/test_data_cutoff.py::test_unstripped_view_model_would_carry_the_reference (self-test: scrub disabled -> reference present)",
+    "tests/red_team/test_data_cutoff.py::test_only_the_bridge_builds_the_live_view_model (static: no raw builder call outside the bridge)",
+    "tests/red_team/test_data_cutoff.py::test_no_live_module_reads_reference_fields (static: live-path modules never dereference the fields)"
+   ],
+   "residual": "source-level scrub in view_models.build_live and live/viewmodel.build_live (workstreams 6 and 8) remains a nice-to-have: a future caller of the raw builders would bypass the bridge; the static test above fails loudly if one appears in app_v2",
+   "owner": [
+    "workstream 6",
+    "workstream 8"
+   ],
+   "decision": "GO (lead 20:58, confirmed by Workstream 7 re-verification 21:30)"
   }
- ]
+ ],
+ "observations_not_blocking": [
+  {
+   "id": "RT-OBS-1",
+   "severity": "LOW",
+   "title": "lock-metadata support chip on the live pages uses the whole-session race rain flag",
+   "detail": "app_v2/services/support_service.support_for reads lock events[ev].rain.R (a post-session flag) into vm.support.overall_support_status, rendered as 'lock chips say ...' on live_predictor.py:175 and decision_board.py:90; Workstream 8's 7.1 support_status (the primary chip) uses the per-lap rain of laps <= k. All demo replays (Monza, Austria, Barcelona) are dry (R False) so nothing renders differently today; a wet-race replay (Miami, Zandvoort) would show the race verdict before the rain fell",
+   "owner": [
+    "workstream 6"
+   ],
+   "suggested_fix": "on the live path derive the rain context from cursor.visible()['rain'] (laps <= k) or drop the lock chip on live routes"
+  },
+  {
+   "id": "RT-OBS-2",
+   "severity": "LOW",
+   "title": "the dashboard process on port 8502 predates the 22:01 reword of live/viewmodel.py and decision/optimizer.py",
+   "detail": "pid 86120 started 21:49:46; live/viewmodel.py was rewritten 22:01:33 and decision/optimizer.py 22:01:51 (red-team rule live_position_claim). Streamlit does not reload already-imported modules, so that process serves the pre-reword versions. Verified to make NO rendered difference: both live pages take app_v2/services/live_bridge.rejoin_text (unchanged since 21:16) whenever the 7.2 record has rejoin_context.position_now, and all three demo records (Monza, Austria, Barcelona NOR) have it populated, so the reworded live/viewmodel string is unreachable from the UI. No number differs: the consistency probe re-rendered all 15 routes in-process against the current tree with 0 mismatches.",
+   "owner": [
+    "lead"
+   ],
+   "suggested_fix": "restart the 8502 dashboard once more before the demo so the running process matches the tree: ../.venv/bin/streamlit run app_v2/streamlit_app.py --server.port 8502 --server.headless true --browser.gatherUsageStats false"
+  },
+  {
+   "id": "RT-OBS-3",
+   "severity": "LOW",
+   "title": "claim_audit now distinguishes a bare claim from the same number stated with its required qualification (reclassification logged, not silent)",
+   "detail": "At 21:42 liquid_23_pct_10_of_31 (verdict unverifiable) counted 3 occurrences in talk_track.md, THE_CASE.md and pptx slide 8. Re-reading those lines shows the lead had already corrected them to exactly what out/liquid.json supports: \"23% lap-weighted with the three degenerate Hungary cells excluded, 31% with them\" and \"9 of 31 cells\" (the old wrong count was 10 of 31). The regex 23%|10 of 31 cannot see the caveat, so the occurrence was a false positive. claim_audit.locate() now records per occurrence whether every qualified_by pattern is present in that source, and the gate blocks only UNQUALIFIED occurrences on the presentation surfaces - while newly blocking `unverifiable` verdicts there, which the C3 gate ignored entirely. Net effect is stricter, not looser. The claim verdict itself is unchanged (the BARE claim remains unverifiable).",
+   "owner": [
+    "workstream 7"
+   ],
+   "guarded_by": [
+    "tests/red_team/test_claim_gate.py::test_gate_still_blocks_the_bare_claim",
+    "tests/red_team/test_claim_gate.py::test_a_wrong_count_cancels_the_qualification",
+    "tests/red_team/test_claim_gate.py::test_a_partial_caveat_does_not_qualify",
+    "tests/red_team/test_claim_gate.py::test_a_claim_without_qualifiers_can_never_be_qualified",
+    "tests/red_team/test_claim_gate.py::test_every_reclassified_claim_really_carries_its_qualifiers (re-reads the cited line from disk)",
+    "tests/red_team/test_claim_gate.py::test_claim_map_is_not_older_than_the_documents_it_audited"
+   ],
+   "note": "summary.qualified_in_presentation in claim_evidence_map.json lists every reclassification with its file:line, so a human can audit the judgement."
+  },
+  {
+   "id": "RT-OBS-4",
+   "severity": "LOW",
+   "title": "live_position_claim still flags app_v2/services/live_bridge.py:99 - assessed as a false positive, rule deliberately left strict",
+   "detail": "The rule allows the match when \"frozen_field\" appears on the same line. The lead satisfied that at live/viewmodel.py:175 and decision/optimizer.py:117,134 with an end-of-line comment, but live_bridge.py:99 (parts = [f\"P{rj['position_now']} now\"]) carries its qualification in the function docstring (lines 93-94, \"No projected P-number is shown on the live path\") and in the appended label at line 106 (\" . observed gap structure, not a position forecast\"). Substantively the rendered value is the OBSERVED current position, which the rule's own note permits; the projected P-number is never rendered outside frozen-field mode. Widening allowed_context to the enclosing function would let a genuine future violation hide behind an unrelated frozen_field mention, so the rule was NOT relaxed and the flag stands as a known false positive.",
+   "owner": [
+    "workstream 6",
+    "lead"
+   ],
+   "suggested_fix": "either add the same end-of-line \"frozen_field mode\" marker the other three lines carry, or accept the flag and record it here (current state)."
+  }
+ ],
+ "c4_rerun": {
+  "at": "2026-09-12T22:12:29",
+  "workstream": 7,
+  "commit": "cdb1a45 (working tree, uncommitted)",
+  "scope": "re-ran all four probes against the tree as it stood after the 21:33 qualifying lock, the 21:37 freeze, the 21:39-21:54 scenario regeneration, the 21:49 out/live regeneration, the 21:53 scorecards and the 22:00:13 document rebuild",
+  "conditions_checked_14_3": [
+   {
+    "condition": "a live field carries future or post-race information",
+    "result": "PASS",
+    "evidence": "leakage_audit future_read_and_deny_list_spy: 100 feed calls at lap 50, 0 violations, 0 deny hits; target_driver_exclusion 7/7; tests/red_team/test_data_cutoff.py 8 passed (forecast.observed/observed_se/err/n_race are None through the bridge, and the scrub is proven load-bearing)"
+   },
+   {
+    "condition": "a document claim exceeds the lock",
+    "result": "PASS",
+    "evidence": "claim_audit summary.must_reword_before_presentation == [] under the C4 gate (which now also blocks `unverifiable` verdicts on the presentation surfaces); 0 unqualified flagged claims in THE_CASE.md, talk_track.md or the pptx"
+   },
+   {
+    "condition": "the dashboard disagrees with the lock",
+    "result": "PASS",
+    "evidence": "consistency_probe: 15 routes, 1691 numbers, 0 mismatches, 0 placeholder values, 0 load failures; localhost:8502 HTTP 200"
+   },
+   {
+    "condition": "the sealed holdout manifest was altered",
+    "result": "PASS",
+    "evidence": "sha256 of evaluation/holdout/sealed_holdout_manifest.json = 37b85e762b2e03c0 equals the recorded sealed_holdout_manifest.sha256; the file is unmodified against HEAD (git status clean for it); now pinned by tests/red_team/test_c4_artifact_provenance.py"
+   },
+   {
+    "condition": "forecast hashes differ between modes",
+    "result": "PASS",
+    "evidence": "leakage_audit one_forecast_hash 14/14 ok at sha256:66e3201e860b19ef (was FAIL at 21:42 on the stale out/live sidecars); an independent walk of every JSON under out/live and out/counterfactual found 24 forecast_hash fields, 0 stale"
+   }
+  ],
+  "rt_blk_1_recheck": "still closed at the page boundary: tests/red_team/test_data_cutoff.py::test_forecast_reference_fields_are_none_on_the_live_path and ::test_unstripped_view_model_would_carry_the_reference both pass at 22:0x, so the scrub in app_v2/services/live_bridge._strip_post_race is present and load-bearing. Residual unchanged: the raw builders still populate the fields (workstreams 6 and 8)."
+ }
 }

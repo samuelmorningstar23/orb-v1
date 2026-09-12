@@ -4,6 +4,12 @@ Layout (C2): one directory per scenario with summary.json (scenario block, engin
 (per-lap table: lap_delta, cumulative_delta with q10/q90, delta_tyre_mean, delta_pit_mean, pit_state, ...), lap_deltas.json
 and ghost_replay.json; plus lattice_<Event>_<mode>.csv with driver x lap x compound summaries. summary.json carries the
 sha256 of each asset; `verify_assets` checks the bytes on disk against it through services/asset_repository.
+
+Two curve sources, never mixed (Workstream 2 README, lead decision 12 Sep): `race_reference` scenarios (top-level directories,
+`engine.curves.source == 'race_reference'`, the leave-one-driver-out Sunday reference) feed the Historical Audit;
+`pre_race_forecast` scenarios (under out/counterfactual/pre_race/, `engine.curves.source == 'pre_race_forecast'`, provider A's
+frozen curve, no race data) feed the Scenario Explorer under the model-implied label. A scenario_id can exist in both; every
+lookup here is keyed on the curve source and `engine.curves.label` is rendered, never paraphrased.
 """
 from __future__ import annotations
 import json, os
@@ -25,6 +31,9 @@ CF_DIR = P.OUT_DIR / 'counterfactual'
 DEFAULT = dict(event='Monza', driver='NOR', lap=24, to_compound='MEDIUM', set_status='new', mode='tyre_only')
 MODES = ('tyre_only', 'fixed_context')
 REFERENCE_LABEL = 'leave-one-driver-out Sunday reference'
+RACE_REFERENCE, PRE_RACE = 'race_reference', 'pre_race_forecast'
+PRE_RACE_LABEL = 'model-implied, pre-race curve'          # the Scenario Explorer caption (lead, 12 Sep 21:10)
+PRE_RACE_SUBDIR = 'pre_race'
 
 
 def event_short(event_id: str) -> str:
@@ -93,7 +102,24 @@ class Scenario:
 
     @property
     def curve_source(self) -> str:
-        return (self.engine.get('curves') or {}).get('source', self.engine.get('curve_source', ''))
+        return (self.engine.get('curves') or {}).get('source', self.engine.get('curve_source', '')) or RACE_REFERENCE
+
+    @property
+    def curve_label(self) -> str:
+        """Workstream 2's own label for the curve source (rendered verbatim)."""
+        return (self.engine.get('curves') or {}).get('label') or (REFERENCE_LABEL if self.curve_source == RACE_REFERENCE else self.curve_source)
+
+    @property
+    def intended_page(self) -> str:
+        return (self.engine.get('curves') or {}).get('intended_page', '')
+
+    @property
+    def is_pre_race(self) -> bool:
+        return self.curve_source == PRE_RACE or not self.uses_post_race_reference
+
+    @property
+    def pre_race_forecast_hash(self) -> str:
+        return (self.engine.get('pre_race_forecast_hash') or '').replace('sha256:', '')
 
     @property
     def actual_plan(self) -> dict:
@@ -163,14 +189,22 @@ def _mtime(p: Path) -> float:
         return 0.0
 
 
-def list_scenarios(event: Optional[str] = None) -> list[Scenario]:
-    out = []
+def _scenario_dirs() -> list[Path]:
+    """Top-level scenario directories (race reference) plus out/counterfactual/pre_race/<scenario_id>/ (pre-race forecast)."""
     if not CF_DIR.exists():
-        return out
-    for d in sorted(CF_DIR.iterdir()):
+        return []
+    dirs = [d for d in sorted(CF_DIR.iterdir()) if d.is_dir() and (d / 'summary.json').exists()]
+    sub = CF_DIR / PRE_RACE_SUBDIR
+    if sub.is_dir():
+        dirs += [d for d in sorted(sub.iterdir()) if d.is_dir() and (d / 'summary.json').exists()]
+    return dirs
+
+
+def list_scenarios(event: Optional[str] = None, curve_source: Optional[str] = RACE_REFERENCE) -> list[Scenario]:
+    """Scenarios on disk. `curve_source` selects race_reference (audit, default), PRE_RACE (scenario explorer) or None for all."""
+    out = []
+    for d in _scenario_dirs():
         s = d / 'summary.json'
-        if not d.is_dir() or not s.exists():
-            continue
         try:
             summary = _read_summary(str(s), _mtime(s))
         except (json.JSONDecodeError, OSError):
@@ -180,19 +214,33 @@ def list_scenarios(event: Optional[str] = None) -> list[Scenario]:
         if event and ev != event:
             continue
         iv = sc.get('intervention') or {}
-        out.append(Scenario(sc.get('scenario_id', d.name), ev, sc.get('driver_id', ''), int(iv.get('lap', 0) or 0), str(iv.get('to_compound', '')).upper(), str(iv.get('set_status', 'new')), sc.get('simulation_mode', 'tyre_only'), str(d), summary))
+        item = Scenario(sc.get('scenario_id', d.name), ev, sc.get('driver_id', ''), int(iv.get('lap', 0) or 0), str(iv.get('to_compound', '')).upper(), str(iv.get('set_status', 'new')), sc.get('simulation_mode', 'tyre_only'), str(d), summary)
+        if curve_source is not None and item.curve_source != curve_source:
+            continue
+        out.append(item)
     return out
 
 
-def find_scenario(event: str, driver: str, lap: int, to_compound: str, set_status: str = 'new', mode: str = 'tyre_only') -> Optional[Scenario]:
-    for s in list_scenarios(event):
+def find_scenario(event: str, driver: str, lap: int, to_compound: str, set_status: str = 'new', mode: str = 'tyre_only', curve_source: str = RACE_REFERENCE) -> Optional[Scenario]:
+    for s in list_scenarios(event, curve_source):
         if s.driver == driver and s.lap == int(lap) and s.to_compound == to_compound.upper() and s.set_status == set_status and s.mode == mode:
             return s
     return None
 
 
-def scenarios_for(event: str, driver: Optional[str] = None) -> list[Scenario]:
-    return [s for s in list_scenarios(event) if driver is None or s.driver == driver]
+def find_pre_race_scenario(event: str, driver: str, lap: int, to_compound: str, set_status: str = 'new', mode: Optional[str] = None) -> Optional[Scenario]:
+    """The Scenario Explorer's counterfactual: pre-race forecast curve only. `mode=None` accepts either fidelity (fixed context first)."""
+    if mode is not None:
+        return find_scenario(event, driver, lap, to_compound, set_status, mode, PRE_RACE)
+    for m in ('fixed_context', 'tyre_only'):
+        s = find_scenario(event, driver, lap, to_compound, set_status, m, PRE_RACE)
+        if s is not None:
+            return s
+    return None
+
+
+def scenarios_for(event: str, driver: Optional[str] = None, curve_source: Optional[str] = RACE_REFERENCE) -> list[Scenario]:
+    return [s for s in list_scenarios(event, curve_source) if driver is None or s.driver == driver]
 
 
 def default_scenario(event: str) -> Optional[Scenario]:
@@ -278,9 +326,11 @@ def lattice_options(event: str, driver: str, mode: str = 'tyre_only') -> tuple[l
 
 
 def identity_status(event: Optional[str] = None) -> list[dict]:
+    """Every scenario on disk (both curve sources, labelled) with its identity and leakage test results."""
     out = []
-    for s in list_scenarios(event):
+    for s in list_scenarios(event, curve_source=None):
         v = s.validation
-        out.append(dict(scenario_id=s.scenario_id, event=s.event, driver=s.driver, mode=s.mode, identity_test=v.get('identity_test'), future_leakage_test=v.get('future_leakage_test'),
-                        target_driver_excluded=v.get('target_driver_excluded'), sealed_holdout=v.get('sealed_holdout'), identity_check_delta_s=s.engine.get('identity_check_delta_s'), generated_at=s.generated_at, git_sha=s.scenario.get('git_sha')))
+        out.append(dict(scenario_id=s.scenario_id, event=s.event, driver=s.driver, mode=s.mode, curve_source=s.curve_source, curve_label=s.curve_label, identity_test=v.get('identity_test'), future_leakage_test=v.get('future_leakage_test'),
+                        target_driver_excluded=v.get('target_driver_excluded'), sealed_holdout=v.get('sealed_holdout'), identity_check_delta_s=s.engine.get('identity_check_delta_s'), generated_at=s.generated_at, git_sha=s.scenario.get('git_sha'),
+                        uses_post_race_reference=s.uses_post_race_reference))
     return out

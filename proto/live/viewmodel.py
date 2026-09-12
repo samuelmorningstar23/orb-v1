@@ -169,7 +169,11 @@ def _decision(DS, lock, event: str, res: LapResult, n_laps: int):
     action = 'STAY OUT' if top['action'] == 'STAY_OUT' else 'PIT'
     w = top.get('pit_window')
     rj = top['rejoin_context']
-    rejoin = (f"P{rj['position_now']} now, rejoin ~P{rj['projected_rejoin_position']}, {rj['cars_within_pit_loss']} cars within pit loss, traffic {rj['traffic_density']} (observed gap structure)"
+    # Red team wording rule live_position_claim: outside frozen-field mode a projected rejoin P-number is a position
+    # claim the model cannot support, so the live path states the observed gap structure only (same rule as
+    # app_v2/services/live_bridge.rejoin_text). projected_rejoin_position stays in the 7.2 record, rendered only in frozen_field mode.
+    rejoin = (f"P{rj['position_now']} now, gap ahead {_gap_s(rj.get('gap_ahead_s'))}, behind {_gap_s(rj.get('gap_behind_s'))}, "   # observed position; no projected P outside frozen_field mode
+              f"{rj['cars_within_pit_loss']} cars within pit loss, traffic {rj['traffic_density']} · {NOT_POSITION_FORECAST}"
               if rj.get('position_now') is not None else rj.get('note', 'not available'))
     alts = [_alternative(a, st.compound, res.lap, n_laps, float(top['expected_gain_median'])) for a in res.ranked.actions[1:4]]
     d = DS.Decision(res.lap, action, _status(res), int(w[0]) if w else None, top.get('target_compound'), plan.plan if plan else None, 'decision/optimizer.py (live posterior + lock offsets, pit loss, forecast slopes)',
@@ -202,6 +206,13 @@ def _kpis(VM, res: LapResult):
         pit = VM.KPI('PIT WINDOW', f'lap {w[0]}' if w[0] == w[1] else f'laps {w[0]}-{w[1]}', f"{top['action'].replace('_', ' ').lower()} · gain {top['expected_gain_median']:+.1f} s (q10 {top['expected_gain_q10']:+.1f})", 'decision' if top['changed_since_last_update'] else 'live', 'decision/optimizer')
         tyre = VM.KPI('RECOMMENDED TYRE', f"new {top['target_compound'].lower()}", f"probability of gain {top['probability_of_gain']:.0%}", 'live', 'decision/optimizer')
     return [deg, useful, cliff, pit, tyre]
+
+
+NOT_POSITION_FORECAST = 'observed gap structure, not a position forecast'   # red-team wording rule live_position_claim
+
+
+def _gap_s(v) -> str:
+    return '—' if v is None else f'{float(v):.1f} s'
 
 
 def build_live(lock, event: str, driver: str, cursor, latency_text: str = '—') -> dict[str, Any]:

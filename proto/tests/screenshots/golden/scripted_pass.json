@@ -1,0 +1,90 @@
+{
+ "base": "http://localhost:8502",
+ "speed": 1,
+ "viewport": "1440x900",
+ "generated_at": "2026-09-12T22:24:51",
+ "steps": [
+  {
+   "step": "live_replay_monza_nor",
+   "load_ms": 981,
+   "replay_wall_s": 53.3,
+   "laps_reached": "53/53",
+   "samples_every_5s": [
+    [
+     1.0,
+     1
+    ],
+    [
+     6.0,
+     6
+    ],
+    [
+     11.1,
+     11
+    ],
+    [
+     16.1,
+     16
+    ],
+    [
+     21.1,
+     21
+    ],
+    [
+     26.1,
+     27
+    ],
+    [
+     31.2,
+     31
+    ],
+    [
+     36.2,
+     36
+    ],
+    [
+     41.2,
+     41
+    ],
+    [
+     46.3,
+     46
+    ],
+    [
+     51.3,
+     52
+    ]
+   ],
+   "final_header": "ORB V1 | LIVE PREDICTOR \u00b7 Monza 2026 \u00b7 Race (replay) \u00b7 Lap 53/53 \u00b7 Forecast 66e320 \u00b7 PUBLIC PROXY \u00b7 NEAR TRAINING SUPPORT \u00b7 Feed latency 3.0 s (7.1 source_laten",
+   "rejoin_wording_ok": true,
+   "console_errors": []
+  },
+  {
+   "step": "ghost_strategy_nor_lap24_medium",
+   "switch_ms": 278,
+   "player_iframes": 1,
+   "audit_banner": true,
+   "reference_label": true,
+   "workstream3_rows": true,
+   "header": "ORB V1 | GHOST STRATEGY \u00b7 Monza 2026 \u00b7 Race (post-race audit) \u00b7 Lap 24/53 \u00b7 Forecast 66e320 \u00b7 PUBLIC PROXY \u00b7 IN SUPPORT \u00b7 Feed latency n/a",
+   "console_errors": []
+  },
+  {
+   "step": "validation",
+   "switch_ms": 174,
+   "prefix_eval": true,
+   "regret_table": true,
+   "console_errors": []
+  },
+  {
+   "step": "generalisation",
+   "switch_ms": 246,
+   "sealed_gate_text": true,
+   "cells": true,
+   "console_errors": []
+  }
+ ],
+ "external_requests": [],
+ "feedback_fixture": "none (shared log never written)",
+ "total_wall_s": 58.5
+}

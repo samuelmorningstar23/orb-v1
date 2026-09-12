@@ -9,7 +9,7 @@ python -m evaluation.hidden_stop --seasons 2026 # hidden-stop-response on the de
 python -m evaluation.regret --seasons 2026      # strategy regret on the development pool -> regret_<season>.json
 python -m evaluation.risk_coverage              # abstention gate sweep -> risk_coverage.{csv,json,png}
 python -m evaluation.scorecards                 # Ghost Strategy + Live Predictor scorecards, rolling-origin 2026 -> ghost_scorecard.json, live_scorecard.json, SCORECARDS.md
-pytest proto/tests/evaluation -q                # 20 tests: reveal gate, tamper detection, leakage spy, synthetic truth recovery, oracle regret, grouped bootstrap
+pytest proto/tests/evaluation -q                # 59 tests: reveal gate (every flag combination), dry-run flag, CLI end to end, tamper detection, leakage spy, synthetic truth recovery, oracle regret, grouped bootstrap
 ```
 
 ## Files
@@ -20,7 +20,7 @@ pytest proto/tests/evaluation -q                # 20 tests: reveal gate, tamper 
 | `hidden_stop.py` | hidden-stop-response: for every real tyre change, predict the next 1, 3, 5 representative laps on the new tyre from laps before the stop plus the intervention; naive fresh-tyre baseline; by compound, circuit class, set status, stop regime, driver support. |
 | `regret.py` | strategy regret: Orb v1 / naive / observed / default plans against the hindsight oracle under the race-derived reference. Output label: **"held-out strategy replay under a post-race reference model"**. |
 | `risk_coverage.py` | abstention gate sweep (minimum laps 10 to 60, minimum slope 0 to 0.05): coverage vs error on issued cases and the fallback error; table and dark-theme PNG. |
-| `scorecards.py` | Ghost Strategy scorecard, Live Predictor scorecard (from Workstream 8's `out/live/prefix_eval.json`), rolling-origin 2026 series, driver-feedback ablation (runs only when feedback events exist). |
+| `scorecards.py` | Ghost Strategy scorecard (development pool, `by_season`, `lock_consistency_2026` against `out/lock.json`, sealed block only when `quotable`), Live Predictor scorecard (from Workstream 8's `out/live/prefix_eval.json`), rolling-origin 2026 series, driver-feedback ablation (runs only when feedback events exist in `app_v2/state/feedback_events.jsonl` or `out/live/*/driver_feedback.json`; otherwise says so plainly). |
 | `common.py` | `weekend_bootstrap` (resample weekends, never rows), `paired_probability`, JSON output via `shared.lockio`. |
 | `holdout/evaluator.py` | the sealed-holdout evaluator (below). `holdout/sealed_holdout_manifest.json` and `.sha256` are lead-only and frozen. |
 
@@ -121,12 +121,39 @@ forecast leave-one-out (point forecasts) and coverage = share issued, MAE issued
    `model_frozen`, `feature_list_frozen`, `gate_threshold_frozen`, `provider_frozen` all true and a `git_commit`;
    otherwise it prints `per-race results sealed` and exits 0.
 4. `post_holdout_tuning` is true in every output produced at a git commit that differs from the freeze commit.
+5. **Dry run before the freeze.** Every aggregate file carries two top-level flags, `dry_run_before_freeze` and `quotable`.
+   Without a valid freeze (`freeze.json` missing, any of the four flags not `true`, or no `git_commit`) the evaluator still
+   writes the aggregate but flags it `"dry_run_before_freeze": true, "quotable": false`, prints the warning to stderr and
+   stores it in the file (`warning`, `quotable_rule`, `freeze_status`). **No number from a dry run is quoted anywhere**: lead
+   decision of 12 Sep 2026 after the 16:55 aggregate was produced before the freeze (per-race results were withheld and the
+   model rules are unchanged since the seal, but that run and every pre-freeze re-run are not quotable). `scorecards.py`
+   copies the sealed block only when `quotable` is true; otherwise `ghost_scorecard.json` and `SCORECARDS.md` carry the
+   dry-run statement and withhold the numbers. Under a valid freeze the flags are `"dry_run_before_freeze": false,
+   "quotable": true` and `holdout_per_race.json` is written.
 
-freeze.json format (lead writes it, once):
+freeze.json format (lead writes it, once, at checkpoint C4; Workstream 3 never creates it):
 
 ```json
 {"model_frozen": true, "feature_list_frozen": true, "gate_threshold_frozen": true, "provider_frozen": true, "git_commit": "<sha>", "frozen_at": "<ISO time>"}
 ```
+
+### After the freeze: the exact command sequence (lead, checkpoint C4)
+
+1. Write `evaluation/holdout/freeze.json` (format above) with `git_commit` = the commit at which the model, feature list,
+   gate threshold and provider are frozen, and commit it. Then, from `proto/` **at that same commit**:
+
+```
+../.venv/bin/python -m evaluation.holdout.evaluator      # 1. sealed holdout under the freeze -> out/validation/holdout_aggregate.json
+                                                         #    ("quotable": true, "dry_run_before_freeze": false) and holdout_per_race.json
+../.venv/bin/python -m evaluation.scorecards             # 2. ghost_scorecard.json / live_scorecard.json / SCORECARDS.md copy the quotable
+                                                         #    sealed aggregate (until then they carry the dry-run statement, no numbers)
+../.venv/bin/python -m pytest tests/evaluation -q        # 3. freeze gate, dry-run flag, tamper detection, leakage and bootstrap tests
+```
+
+2. Check in `holdout_aggregate.json`: `git_sha` matches `freeze.git_commit` (otherwise `post_holdout_tuning` is true and the run
+   is reported as post-freeze tuning), `quotable: true`, `reveal.per_race_written: true`, `leakage_check.sealed_never_in_pool: true`.
+3. Quote the sealed result only from that run and only as **"sealed holdout, aggregate"**. The dry runs (16:55 and the
+   flagged re-run of 12 Sep evening) are superseded and never quoted.
 
 ## Wording rules (roadmap 9.2, enforced in the output labels)
 
@@ -142,5 +169,11 @@ freeze.json format (lead writes it, once):
 ## Outputs (`out/validation/`)
 
 `holdout_aggregate.json`, `hidden_stop_<season>.json`, `regret_<season>.json`, `risk_coverage.{csv,json,png}`,
-`ghost_scorecard.json`, `live_scorecard.json`, `SCORECARDS.md`. Each JSON block carries `generated_at`, `git_sha`,
-`data_cutoff` and `units`. No file under `out/validation/` contains a per-race sealed result unless `freeze.json` exists.
+`ghost_scorecard.json`, `live_scorecard.json`, `SCORECARDS.md`, and `REVIEWS_workstream3.md` (in `evaluation/`: Workstream 3's reviews of
+Workstream 2's counterfactual core and Workstream 8's live estimator, roadmap 14.4). Each JSON block carries `generated_at`, `git_sha`,
+`data_cutoff` and `units`. No file under `out/validation/` contains a per-race sealed result unless `freeze.json` exists;
+`holdout_aggregate.json` always states `dry_run_before_freeze` / `quotable`, and the scorecards quote the sealed block only
+when `quotable` is true. `ghost_scorecard.json` also carries `by_season` blocks and a `lock_consistency_2026` block that
+compares the 2026 leave-one-weekend-out numbers with `out/lock.json` (MAE naive / Orb v1 with fallback, calibration r,
+wins over naive, calibrated band coverage); `SCORECARDS.md` prints the comparison. The other outputs (`hidden_stop_2026`,
+`regret_2026`, `risk_coverage`) are computed from the feature files leave-one-weekend-out and do not read the lock.

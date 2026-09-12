@@ -118,12 +118,37 @@ def build_landing(lock: Optional[LockView]) -> LandingVM:
         StatusItem('driver feedback enabled', FS.enabled(), str(FS.log_path().relative_to(P.PROTO_ROOT))),
         StatusItem('available sets loaded', True, 'placeholder: inventory arrives with Phase 1'),
     ]
+    try:                                           # Workstream 8's live package (services/live_bridge imports view_models: import lazily)
+        from app_v2.services import live_bridge as LB
+        live.append(StatusItem('live estimator', LB.AVAILABLE, f'{LB.ESTIMATOR_LABEL} ({LB.MODEL_VERSION})' if LB.AVAILABLE else f'live package not importable: {LB.IMPORT_ERROR}'))
+    except Exception as e:  # pragma: no cover
+        live.append(StatusItem('live estimator', False, repr(e)))
     ghost_block, ghost_src = lock.ghost_block()
+    try:                                           # Workstream 2 scenarios on disk, both curve sources
+        from app_v2.services import counterfactual_repository as CF
+        n_ref = len(CF.list_scenarios(curve_source=CF.RACE_REFERENCE)); n_pre = len(CF.list_scenarios(curve_source=CF.PRE_RACE))
+        cf_ok, cf_detail = n_ref > 0, f'{n_ref} race-reference + {n_pre} pre-race-curve scenarios under out/counterfactual' + (' · lock_v2 ghost block present' if ghost_src == 'lock_v2' else '')
+    except Exception as e:  # pragma: no cover
+        cf_ok, cf_detail = ghost_src == 'lock_v2', repr(e)
+    try:                                           # Workstream 4 Race Twin assets
+        from app_v2.components import race_twin as RT
+        statuses = {ev: RT.assets_status(ev).get('status') for ev in scored}
+        ok_evs = [e for e, v in statuses.items() if v == 'ok']; refused = [e for e, v in statuses.items() if v == 'refused']
+        rt_ok, rt_detail = bool(ok_evs), f'Race Twin player assets: {", ".join(ok_evs) or "none"}' + (f' · refused (feed degraded at source): {", ".join(refused)}' if refused else '') + ' · Plotly fallback elsewhere'
+    except Exception as e:  # pragma: no cover
+        rt_ok, rt_detail = False, f'canonical centreline unavailable ({type(e).__name__}); Plotly fallback active'
+    try:                                           # Workstream 3 scorecards
+        from app_v2.services import validation_repository as VR
+        g, ga = VR.ghost_scorecard(); sb = VR.sealed_block()
+        ev_ok, ev_detail = g is not None, (f"ghost_scorecard.json {ga.short_hash} generated {g.get('generated_at', '')} · {sb['status_text']}" if g else 'out/validation/ghost_scorecard.json missing')
+    except Exception as e:  # pragma: no cover
+        ev_ok, ev_detail = False, repr(e)
     ghost = [
         StatusItem('scored weekends in lock', bool(scored), f'{len(scored)} completed weekends, {lock.validation.get("n_compound_weekends", 0)} compound-weekends'),
         StatusItem('forecast snapshot hashed', bool(lock.forecast_hash), f'{lock.forecast_hash[:6]} ({lock.forecast_hash_source})'),
-        StatusItem('counterfactual engine', ghost_src == 'lock_v2', 'lock_v2 ghost block present' if ghost_src == 'lock_v2' else f'{ghost_src}: Workstream 2 core pending'),
-        StatusItem('geometry / player', False, 'canonical centreline pending Workstream 4; Plotly fallback active'),
+        StatusItem('counterfactual engine', cf_ok, cf_detail),
+        StatusItem('geometry / player', rt_ok, rt_detail),
+        StatusItem('blind evaluation scorecards', ev_ok, ev_detail),
     ]
     return LandingVM(live, ghost, True, lock.forecast_hash[:6], live_events, scored, race_files)
 

@@ -11,10 +11,11 @@ from app_v2.pages import common
 from app_v2.services import asset_repository as A
 from app_v2.services import counterfactual_repository as CF
 from app_v2.services import replay_service as RS
+from app_v2.services import validation_repository as VR
 from app_v2.services import view_models as VM
 from app_v2.state import app_state, query_state
-from app_v2.ui import shell, cards, badges, charts, empty_states, banners
-from app_v2.ui.formatting import spl, esc, band
+from app_v2.ui import shell, cards, badges, charts, empty_states, banners, alerts
+from app_v2.ui.formatting import spl, esc, band, pct
 from app_v2.components import race_twin as RT
 
 MODES = {'audit': 'Historical audit', 'scenario': 'Scenario explorer'}
@@ -25,7 +26,7 @@ def _fmt(v, f='{:+.1f} s'):
     return '—' if v is None else f.format(v)
 
 
-def audit_evidence_html(sc: CF.Scenario | None, lattice: dict | None, vm, verified: dict) -> str:
+def audit_evidence_html(sc: CF.Scenario | None, lattice: dict | None, vm, verified: dict, hs: dict | None = None, rg: dict | None = None) -> str:
     fc = vm.forecast
     err = spl(fc.err) if fc.err is not None else '—'
     covered = '—' if fc.covered is None else ('covered' if fc.covered else 'outside band')
@@ -46,18 +47,101 @@ def audit_evidence_html(sc: CF.Scenario | None, lattice: dict | None, vm, verifi
     else:
         pairs = [('finish delta', 'no counterfactual for this combination (Workstream 2 has not run it)')]
     pairs += [('forecast error (frozen vs race reference)', f'{err} s/lap'), ('band coverage', covered), ('race-derived reference (lock)', f'{spl(fc.observed)} s/lap · {fc.n_race or "—"} laps'),
-              ('hidden-stop response (lock)', hidden), ('regret of the frozen plan (lock)', regret)]
+              ('best plan under the race-observed curves (lock)', hidden), ('frozen plan cost above that best (lock)', regret)]
+    pairs += workstream3_audit_pairs(vm.event, vm.driver, hs, rg)
     return cards.kv_html(pairs, stack=True)
 
 
-def scenario_evidence_html(vm, sc_row: dict) -> str:
+def _s1(v) -> str:
+    return '—' if v is None else f'{v:.1f} s'
+
+
+def workstream3_audit_pairs(event: str, driver: str, hs: dict | None, rg: dict | None) -> list[tuple[str, str]]:
+    """Workstream 3's held-out results for the selected weekend (development pool only): hidden-stop response and strategy regret.
+    Values are read verbatim from out/validation/hidden_stop_<season>.json and regret_<season>.json; labels are Workstream 3's."""
+    pairs = []
+    if hs is None:
+        pairs.append(('hidden-stop response (development pool)', 'not available for this weekend (not in the development pool, or hidden_stop file missing)'))
+    else:
+        mine = hs['cases']
+        if mine:
+            c = mine[0]
+            own = (f"{driver} in-lap L{c['in_lap']} {str(c['compound_old']).lower()} → new {str(c['compound_new']).lower()}" if c['set_status'] == 'new' else f"{driver} in-lap L{c['in_lap']} {str(c['compound_old']).lower()} → used {str(c['compound_new']).lower()}")
+            own += f" ({c['stop_regime'].replace('_', '/')}): next-lap error {_s1(c['err1'])} vs naive {_s1(c['err1_naive'])} · {'inside' if c['cov1'] else 'outside'} the 90% interval"
+            if c.get('err3') is not None:
+                own += f" · 3-lap {_s1(c['err3'])} vs naive {_s1(c['err3_naive'])}"
+            if c.get('err5') is not None:
+                own += f" · 5-lap {_s1(c['err5'])} vs naive {_s1(c['err5_naive'])}"
+            if len(mine) > 1:
+                own += f' · {len(mine) - 1} more stop(s) scored'
+        else:
+            skipped = ', '.join(f'{k} {v}' for k, v in hs['skipped'].items()) or 'none'
+            own = f'no scorable stop for {driver} this weekend (weekend skips: {skipped})'
+        sp = hs['season_pooled']
+        pairs.append((f'hidden-stop response, {event} (development pool)', f"{hs['n_cases']} stops scored · {own}"))
+        pairs.append((f'hidden-stop response, {VM.P.SEASON_OF_FEAT} pool', f"next-lap MAE {_s1(sp['next1_mae'])} vs naive {_s1(sp['next1_mae_naive'])} · 3-lap {_s1(sp['cum3_mae'])} vs {_s1(sp['cum3_mae_naive'])} · 5-lap {_s1(sp['cum5_mae'])} vs {_s1(sp['cum5_mae_naive'])} · next-lap coverage {pct(sp['next1_coverage90'])} · {sp['n_cases']} stops, {sp['n_weekends']} weekends"))
+    if rg is None:
+        pairs.append(('strategy regret', 'not available for this weekend (not in the development pool, or regret file missing)'))
+    else:
+        pl = rg['plans']; o = rg['oracle']
+        def plan_txt(name):
+            x = pl.get(name)
+            if not x:
+                return '—'
+            reg = 'unscorable' if x.get('regret') is None else f"+{x['regret']:.1f} s"
+            return f"{x['plan']} ({'/'.join(map(str, x['stints']))}) {reg}"
+        pairs.append((f'strategy regret, {event} · {rg["label"]}', f"Orb v1 {plan_txt('orb')} · naive {plan_txt('naive')} · observed field {plan_txt('observed')} · default {plan_txt('default')} · hindsight oracle {o['plan']} ({'/'.join(map(str, o['stints']))}) · pit loss {rg['pit_loss']:.0f} s"))
+        sp = rg['season_plans'].get('orb') or {}
+        pairs.append((f'strategy regret, {VM.P.SEASON_OF_FEAT} pool · {rg["label"]}', f"Orb v1 median +{sp.get('median', 0):.1f} s, mean +{sp.get('mean', 0):.1f} s over {sp.get('n', '—')} scorable weekends ({rg['season_n']} in the pool) · within 5 s {pct(sp.get('within5'))}"))
+    return pairs
+
+
+def scenario_evidence_html(vm, sc_row: dict, psc: CF.Scenario | None = None, verified: dict | None = None, fid_requested: str | None = None) -> str:
+    """Scenario Explorer rail: the pre-race forecast and, when Workstream 2 has run one, the pre-race-curve counterfactual under
+    its own label. Nothing here comes from the race-derived reference.
+
+    `fid_requested` is the Simulation-fidelity control's value; when Workstream 2 has no pre-race scenario at that fidelity the
+    other one is shown and the substitution is stated on the row (never silently)."""
     fa, fb = vm.forecast, vm.forecast_alt
     pairs = [('scenario', f"{sc_row['label']} · {sc_row['support']}"), ('weather support reason', sc_row['reason'] or '—'),
              (f'{fa.compound.lower()} pre-race forecast', f'{spl(fa.prediction)} s/lap · band {band(*fa.band90)}'),
-             (f'{fb.compound.lower()} pre-race forecast' if fb else 'replacement', f'{spl(fb.prediction)} s/lap · band {band(*fb.band90)}' if fb else '—'),
-             ('model-implied finish delta', 'pending: a pre-race-curve counterfactual run (curve_source = pre_race) is not in out/counterfactual yet'),
-             ('observed outcome', 'none exists for this combination'), ('claim scope', 'model-implied scenario; not evidence')]
+             (f'{fb.compound.lower()} pre-race forecast' if fb else 'replacement', f'{spl(fb.prediction)} s/lap · band {band(*fb.band90)}' if fb else '—')]
+    if psc is not None and sc_row['available']:
+        tag = f'Workstream 2 {psc.mode.replace("_", " ")} · {psc.generated_at[:16]} · {CF.PRE_RACE_LABEL}'
+        fid_txt = f'{FIDELITY[psc.mode]} ({psc.mode})' + (f' · no pre-race scenario built at {FIDELITY[fid_requested]} fidelity for this combination' if fid_requested and fid_requested != psc.mode else '')
+        pairs += [('simulation fidelity', fid_txt),
+                  ('model-implied finish delta (pre-race curve)', f'{_fmt(psc.finish_delta_s)} · {tag}'), ('80% interval (q10 to q90), model-implied', f'{_fmt(psc.q10)} to {_fmt(psc.q90)}'),
+                  ('probability of gain, model-implied', f'{100 * psc.probability_of_gain:.0f}%' if psc.probability_of_gain is not None else '—'),
+                  ('curve', f'{psc.curve_label} · curve_source {psc.curve_source} · forecast hash {psc.pre_race_forecast_hash[:6] or vm.forecast.source}'),
+                  ('race data used', f"none: uses_post_race_reference = {str(psc.uses_post_race_reference).lower()} · identity / leakage tests {psc.validation.get('identity_test', '—')} / {psc.validation.get('future_leakage_test', '—')}"),
+                  ('counterfactual plan', f"{psc.actual_plan.get('label', '—')} → {psc.cf_plan.get('label', '—')} (pit laps {', '.join(map(str, psc.cf_plan.get('pit_laps', [])))})"),
+                  ('assets (out/counterfactual/pre_race)', ' · '.join(f"{k} {v['short']} {v['status']}" for k, v in (verified or {}).items()) or '—'),
+                  ('claim scope', f"{psc.claim_scope} · model-implied scenario; not evidence")]
+    elif psc is not None:
+        pairs += [('model-implied finish delta (pre-race curve)', f"withheld: {sc_row['label']} is outside the dry support; the pre-race-curve counterfactual is shown for supported dry scenarios only"), ('claim scope', 'model-implied scenario; not evidence')]
+    else:
+        pairs += [('model-implied finish delta (pre-race curve)', 'pending: no pre-race-curve counterfactual (curve_source = pre_race_forecast) under out/counterfactual/pre_race for this combination (Workstream 2 CLI --curve pre_race_forecast)'), ('claim scope', 'model-implied scenario; not evidence')]
+    pairs.append(('observed outcome', 'none exists for this combination'))
     return cards.kv_html(pairs, stack=True)
+
+
+FRAME_DELTA_TOL_S = 1.0   # the player integrates the per-lap table, so a few tenths from the scenario median is normal; a second is not
+
+
+def frames_behind_scenario(frames, sc: CF.Scenario | None) -> str:
+    """'' when the Race Twin frame set matches the scenario on disk, else the sentence to show.
+
+    Workstream 4 builds out/maps/<event>/frames_<driver>_<scenario_id>.npz from Workstream 2's laps.csv. When a scenario is
+    regenerated and the frames are not, the animated ghost belongs to the superseded run: say so rather than let the
+    player and the evidence rail disagree silently (run `python -m replay.build_maps` to rebuild the frames)."""
+    if frames is None or sc is None or sc.finish_delta_s is None:
+        return ''
+    fd = (getattr(frames, 'meta', None) or {}).get('finish_delta_s')
+    if fd is None or abs(float(fd) - float(sc.finish_delta_s)) <= FRAME_DELTA_TOL_S:
+        return ''
+    return (f"The player's frames finish {float(fd):+.1f} s from the actual car; this scenario's summary.json (generated {sc.generated_at[:16]}) says "
+            f"{sc.finish_delta_s:+.1f} s. The frame set was built from a superseded run of {sc.scenario_id} and the animation is not the scenario in the "
+            f"evidence rail below. Read the rail, not the map, until Workstream 4 re-runs replay.build_maps for this event.")
 
 
 def _t_at_lap(frames, lap: int) -> float:
@@ -85,19 +169,31 @@ def render() -> None:
     default_sc = CF.default_scenario(ev)
     if default_sc is not None and default_sc.driver != driver:
         default_sc = next(iter(CF.scenarios_for(ev, driver)), None)
-    fidelity = s.get('fid') if s.get('fid') in CF.MODES else (default_sc.mode if default_sc else 'tyre_only')
     default_ilap = default_sc.lap if default_sc else (stints[0]['last_lap'] + 1 if len(stints) > 1 else n_laps // 2)
     ilap = int(s.get('ilap') or default_ilap); ilap = max(1, min(ilap, n_laps))
     actual_comp_at = next((x['compound'] for x in stints if x['first_lap'] <= ilap <= x['last_lap']), stints[-1]['compound'] if stints else 'MEDIUM')
     rep_default = default_sc.to_compound if (default_sc and default_sc.lap == ilap) else next((c for c in comps_lock if c != actual_comp_at), actual_comp_at)
     rep = s.get('rep') if s.get('rep') in comps_lock else rep_default
     set_status = s.get('setst') if s.get('setst') in ('new', 'used') else 'new'
+    fid_default = default_sc.mode if default_sc else 'tyre_only'                  # audit: the fidelity of the default race-reference scenario
+    if mode == 'scenario':                                                       # explorer: the fidelity Workstream 2 actually built a pre-race scenario at (fixed context first)
+        dps = CF.find_pre_race_scenario(ev, driver, ilap, rep, set_status)
+        fid_default = dps.mode if dps is not None else fid_default
+    fidelity = s.get('fid') if s.get('fid') in CF.MODES else fid_default
     scenario = s.get('scenario') or 'actual_historical'
     glap = int(s.get('glap') or ilap); glap = max(1, min(glap, n_laps))
-    sc = CF.find_scenario(ev, driver, ilap, rep, set_status, fidelity) if mode == 'audit' else None
+    sc = CF.find_scenario(ev, driver, ilap, rep, set_status, fidelity, CF.RACE_REFERENCE) if mode == 'audit' else None       # audit: race reference only
+    psc, fid_substituted = None, None                                                                                        # explorer: pre-race curve only, at the selected fidelity
+    if mode == 'scenario':
+        psc = CF.find_pre_race_scenario(ev, driver, ilap, rep, set_status, fidelity)
+        if psc is None:
+            psc = CF.find_pre_race_scenario(ev, driver, ilap, rep, set_status)     # that fidelity is not built: show the other one and say so
+            fid_substituted = fidelity if psc is not None else None
     lattice = CF.lattice_lookup(ev, driver, ilap, rep, set_status, fidelity) if (mode == 'audit' and sc is None) else None
-    verified = CF.verify_assets(sc) if sc else {}
-    laps = CF.load_laps(sc) if sc else None
+    verified = CF.verify_assets(sc) if sc else (CF.verify_assets(psc) if psc else {})
+    laps = CF.load_laps(sc) if sc else (CF.load_laps(psc) if psc else None)
+    hs = VR.hidden_stop_for(ev, driver) if mode == 'audit' else None
+    rg = VR.regret_for(ev) if mode == 'audit' else None
     # ---- state first, then the full-width frame ------------------------------------------------------------------
     vm = VM.build_ghost(lock, ev, driver, actual_comp_at, 'historical_audit' if mode == 'audit' else 'scenario_explorer', ilap, rep, scenario)
     sc_row = next((x for x in vm.scenarios if x['key'] == scenario), vm.scenarios[0])
@@ -107,7 +203,7 @@ def render() -> None:
         st.html(f'<div class="cs-banner-audit" role="note">HISTORICAL AUDIT · OBSERVED WEATHER · HELD-OUT SCORING · curve: {esc(CF.REFERENCE_LABEL)} (target driver excluded) · this page is evidence</div>')
     else:
         banners.scenario_banner()
-        banners.note_banner('Scenario Explorer uses the pre-race forecast only (lock, issued before the race). No race-derived curve and no observed outcome enter this mode.')
+        banners.note_banner('Scenario Explorer uses the pre-race forecast only (lock, issued before the race). No race-derived curve and no observed outcome enter this mode; the counterfactual shown here runs on the frozen pre-race curve (curve_source = pre_race_forecast) and is model-implied.')
     m1, m2 = st.columns([1.7, 3.3])
     with m1:
         new_mode = st.segmented_control('Mode', options=list(MODES), format_func=lambda m: MODES[m], default=mode, key='ghost_mode')
@@ -129,7 +225,7 @@ def render() -> None:
         new_set = st.selectbox('Set state', ['new', 'used'], index=0 if set_status == 'new' else 1, key='set_state_ctl', help='Workstream 2 scenarios exist for new sets; used-set scenarios are not built yet.')
         if new_set != set_status:
             s['setst'] = new_set; st.rerun()
-        new_fid = st.selectbox('Simulation fidelity', list(FIDELITY), index=list(FIDELITY).index(fidelity), format_func=lambda k: FIDELITY[k], key='fid_ctl', help='tyre-only: tyre time only; fixed context: traffic and SC schedule held as observed.')
+        new_fid = st.selectbox('Simulation fidelity', list(FIDELITY), index=list(FIDELITY).index(fidelity), format_func=lambda k: FIDELITY[k], key='fid_ctl', help='tyre-only: tyre time only; fixed context: traffic and SC schedule held as observed. Selects the audit scenario in Historical Audit and the pre-race-curve scenario in the Scenario Explorer; when Workstream 2 built only one fidelity for a combination, that one is shown and the rail says so.')
         if new_fid != fidelity:
             s['fid'] = new_fid; st.rerun()
         if mode == 'scenario':
@@ -137,8 +233,10 @@ def render() -> None:
             new_sc = st.selectbox('Weather scenario', sc_keys, index=sc_keys.index(scenario) if scenario in sc_keys else 0, format_func=lambda k: labels[k], key='scenario_ctl')
             if new_sc != scenario:
                 query_state.set_state(scenario=new_sc); st.rerun()
-        avail = CF.scenarios_for(ev, driver)
-        st.html(cards.kv_html([('scenarios built for driver', ', '.join(f'L{x.lap}→{x.to_compound[0]} {x.mode[:1]}' for x in avail) or 'none'), ('SC / VSC', ('fixed observed schedule: ' + ', '.join(f"{e['kind']} L{e['start_lap']}-{e['end_lap']}" for e in sc.safety_car_schedule)) if sc and sc.safety_car_schedule else 'observed schedule'), ('rivals', 'not simulated')]))
+        avail = CF.scenarios_for(ev, driver); avail_p = CF.scenarios_for(ev, driver, CF.PRE_RACE)
+        active = sc or psc
+        st.html(cards.kv_html([('scenarios built for driver (race reference)', ', '.join(f'L{x.lap}→{x.to_compound[0]} {x.mode[:1]}' for x in avail) or 'none'), ('scenarios built for driver (pre-race curve)', ', '.join(f'L{x.lap}→{x.to_compound[0]} {x.mode[:1]}' for x in avail_p) or 'none'),
+                               ('SC / VSC', ('fixed observed schedule: ' + ', '.join(f"{e['kind']} L{e['start_lap']}-{e['end_lap']}" for e in active.safety_car_schedule)) if active and active.safety_car_schedule else 'observed schedule'), ('rivals', 'not simulated')]))
     with centre:
         if mode == 'scenario' and not sc_row['available']:
             empty_states.out_of_support(sc_row['support'], f"{sc_row['label']}: {sc_row['reason']} · scenario unavailable")
@@ -159,6 +257,9 @@ def render() -> None:
             st.html('<div class="cs-chips">' + badges.compound_html(actual_comp_at, f'A · actual car, {actual_comp_at.lower()}') + badges.compound_html(rep, f'G · ghost car, {rep.lower()} from lap {ilap}') +
                     badges.badge_html(f"frames {meta.get('source')} · {meta.get('n_frames')} @ {meta.get('hz')} Hz · finish delta {meta.get('finish_delta_s', 0):+.1f} s", 'live' if meta.get('source') == 'workstream2' else 'fixture') +
                     badges.badge_html(f"track sidecar {status.get('sidecar', '—')} · pit lane {status.get('pitlane', {}).get('source', '—')}", 'neutral') + badges.badge_html('keyboard: click the map; space, arrows, PgUp/PgDn, 1/2/5/0', 'neutral') + '</div>')
+            stale = frames_behind_scenario(frames, sc)
+            if stale:
+                alerts.alert('critical', 'PLAYER FRAMES PREDATE THIS SCENARIO', stale)
         else:
             if status.get('status') == 'refused':
                 empty_states.out_of_support('POSITION FEED REFUSED', status.get('reason', ''))
@@ -167,7 +268,8 @@ def render() -> None:
             elif frames is None and mode == 'audit':
                 empty_states.empty('NO FRAMES FOR THIS SCENARIO', f'The track and pit lane are built for {ev}, but no frames exist for {driver} at lap {ilap} → {rep.lower()} ({FIDELITY[fidelity]}). The lap-scrubbed fallback draws the canonical path; run replay.build_maps after Workstream 2 adds the scenario.', '◌', 'decision')
             playing = bool(s.get('gplay', False))
-            replay_records = CF.load_ghost_replay(sc) if sc else []
+            replay_records = CF.load_ghost_replay(sc) if sc else (CF.load_ghost_replay(psc) if psc else [])
+            replay_chip = ('ghost position from Workstream 2 ghost_replay.json' + (f' · {CF.PRE_RACE_LABEL}' if (psc and not sc) else '')) if replay_records else 'no ghost replay for this combination'
 
             @st.fragment(run_every=0.6 if playing else None)
             def player() -> None:
@@ -190,32 +292,38 @@ def render() -> None:
                 df = RS.load_race(ev); mean_lap = None
                 if df is not None:
                     d = df[(df['Driver'] == driver) & df['green']]; mean_lap = float(d['lap_s'].median()) if len(d) else None
-                delta = CF.ghost_delta_at(replay_records, lap) if replay_records else (sc.finish_delta_s if sc else None)
+                delta = CF.ghost_delta_at(replay_records, lap) if replay_records else ((sc or psc).finish_delta_s if (sc or psc) else None)
                 st.plotly_chart(RT.race_twin_map(lap, n_laps, mean_lap, delta, actual_comp_at, rep, ilap, ctx.presentation, track=track, pitlane=pitlane), width='stretch', config={'displayModeBar': False}, key='twin_map')
                 st.html('<div class="cs-chips">' + badges.compound_html(actual_comp_at, f'A · actual car, {actual_comp_at.lower()}') + badges.compound_html(rep, f'G · ghost car, {rep.lower()} from lap {ilap}') +
-                        badges.badge_html('Plotly fallback' + (' on the canonical path' if track is not None else ' on a synthetic loop'), 'neutral') + (badges.badge_html('ghost position from Workstream 2 ghost_replay.json', 'live') if replay_records else badges.badge_html('no ghost replay for this combination', 'placeholder')) + '</div>')
+                        badges.badge_html('Plotly fallback' + (' on the canonical path' if track is not None else ' on a synthetic loop'), 'neutral') + badges.badge_html(replay_chip, ('decision' if (psc and not sc) else 'live') if replay_records else 'placeholder') + '</div>')
 
             player()
     with right:
         st.markdown('### evidence')
-        st.html(cards.card_html('', audit_evidence_html(sc, lattice, vm, verified) if mode == 'audit' else scenario_evidence_html(vm, sc_row)))
-        if sc and sc.warnings:
-            with st.expander(f'{len(sc.warnings)} engine warnings'):
-                st.html('<div class="cs-list">' + ''.join(f'<div>{esc(w)}</div>' for w in sc.warnings) + '</div>')
+        st.html(cards.card_html('', audit_evidence_html(sc, lattice, vm, verified, hs, rg) if mode == 'audit' else scenario_evidence_html(vm, sc_row, psc, verified, fid_substituted)))
+        if mode == 'audit' and (hs is not None or rg is not None):
+            st.html(f'<div class="cs-muted">Workstream 3 rows: {esc(VR.provenance(None, hs["asset"], "hidden_stop_" + str(VM.P.SEASON_OF_FEAT) + ".json") if hs else "hidden-stop file missing")} · {esc(VR.provenance(None, rg["asset"], "regret_" + str(VM.P.SEASON_OF_FEAT) + ".json") if rg else "regret file missing")} · development pool (leave-one-weekend-out), never a sealed weekend</div>')
+        active = sc or psc
+        if active and active.warnings:
+            with st.expander(f'{len(active.warnings)} engine warnings'):
+                st.html('<div class="cs-list">' + ''.join(f'<div>{esc(w)}</div>' for w in active.warnings) + '</div>')
     # ---- lower: three synchronised panels ------------------------------------------------------------------------
     p1, p2, p3 = st.columns(3, gap='small')
     lap_sel = int(s.get('glap') or ilap)
-    src_label = f'Workstream 2 {sc.mode.replace("_", " ")}' if sc else 'Workstream 2'
+    active = sc if mode == 'audit' else (psc if sc_row['available'] else None)
+    src_label = (f'Workstream 2 {active.mode.replace("_", " ")}' + (f' · {CF.PRE_RACE_LABEL}' if mode == 'scenario' else '')) if active else 'Workstream 2'
+    t_cum = None if mode == 'audit' else f'Cumulative race-time delta · {CF.PRE_RACE_LABEL} (Workstream 2 pre_race laps.csv)'
+    t_wf = None if mode == 'audit' else f'Lap decomposition · {CF.PRE_RACE_LABEL}'
     with p1:
-        if mode == 'audit' and laps is not None:
-            st.plotly_chart(charts.cumulative_delta_real(laps, lap_sel, src_label), width='stretch', config={'displayModeBar': False}, key='cum_delta')
+        if active is not None and laps is not None:
+            st.plotly_chart(charts.cumulative_delta_real(laps, lap_sel, src_label, title=t_cum), width='stretch', config={'displayModeBar': False}, key='cum_delta')
         else:
-            empty_states.pending('cumulative race-time delta', 'a full Workstream 2 scenario run for this combination' if mode == 'audit' else 'a pre-race-curve counterfactual run')
+            empty_states.pending('cumulative race-time delta', 'a full Workstream 2 scenario run for this combination' if mode == 'audit' else ('a supported dry scenario' if psc else 'a pre-race-curve counterfactual run (out/counterfactual/pre_race)'))
     with p2:
-        if mode == 'audit' and sc is not None:
-            st.plotly_chart(charts.waterfall_real(CF.decomposition(sc), src_label), width='stretch', config={'displayModeBar': False}, key='waterfall')
+        if active is not None:
+            st.plotly_chart(charts.waterfall_real(CF.decomposition(active), src_label, title=t_wf), width='stretch', config={'displayModeBar': False}, key='waterfall')
         else:
-            empty_states.pending('lap decomposition waterfall', 'a full Workstream 2 scenario run for this combination' if mode == 'audit' else 'a pre-race-curve counterfactual run')
+            empty_states.pending('lap decomposition waterfall', 'a full Workstream 2 scenario run for this combination' if mode == 'audit' else ('a supported dry scenario' if psc else 'a pre-race-curve counterfactual run (out/counterfactual/pre_race)'))
     with p3:
         st.plotly_chart(charts.ghost_curves_real(sc.curves if sc else {}, actual_comp_at, rep, vm.forecast, vm.forecast_alt, ilap, n_laps, audit=(mode == 'audit' and sc is not None), reference_label=CF.REFERENCE_LABEL), width='stretch', config={'displayModeBar': False}, key='ghost_curves')
     if mode == 'scenario':

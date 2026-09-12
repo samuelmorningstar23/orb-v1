@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T16:56:40",
+ "generated_at": "2026-09-12T22:16:02",
  "event": "Monza",
  "driver": "NOR",
  "checks": {
@@ -207,37 +207,37 @@
      "violations": [
       {
        "file": "live/viewmodel.py",
-       "line": 209,
+       "line": 220,
        "imports": "app_v2.services"
       },
       {
        "file": "live/viewmodel.py",
-       "line": 210,
+       "line": 221,
        "imports": "app_v2.services"
       },
       {
        "file": "live/viewmodel.py",
-       "line": 211,
+       "line": 222,
        "imports": "app_v2.services"
       },
       {
        "file": "live/viewmodel.py",
-       "line": 212,
+       "line": 223,
        "imports": "app_v2.services"
       },
       {
        "file": "live/viewmodel.py",
-       "line": 213,
+       "line": 224,
        "imports": "app_v2.services"
       },
       {
        "file": "live/viewmodel.py",
-       "line": 247,
+       "line": 258,
        "imports": "app_v2.services"
       },
       {
        "file": "live/viewmodel.py",
-       "line": 184,
+       "line": 188,
        "imports": "app_v2.theme.tokens"
       }
      ],
@@ -358,81 +358,81 @@
   },
   "one_forecast_hash": {
    "status": "PASS",
-   "lock_v2_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
-   "recomputed": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+   "lock_v2_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
+   "recomputed": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
    "sources": [
     {
      "source": "schemas.lock_v2.compute_forecast_hash(pre_race_forecast)",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true,
-     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+     "engine_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
     },
     {
      "source": "out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true,
-     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+     "engine_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
     },
     {
      "source": "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true,
-     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+     "engine_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
     },
     {
      "source": "out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/summary.json",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true,
-     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+     "engine_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
     },
     {
      "source": "out/live/Austria_NOR/summary.json",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "out/live/Barcelona_NOR/summary.json",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "out/live/Monza_NOR/summary.json",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "out/live/Austria_NOR/live_predictor.json prior.forecast_hash",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "out/live/Barcelona_NOR/live_predictor.json prior.forecast_hash",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "out/live/Monza_NOR/live_predictor.json prior.forecast_hash",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "counterfactual.provider.ProviderA().forecast_hash",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "app_v2 LockView.forecast_hash (lock_v2.shared.forecast_hash)",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     },
     {
      "source": "live.priors.load_priors(Monza).forecast_hash",
-     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
      "agrees": true
     }
    ],

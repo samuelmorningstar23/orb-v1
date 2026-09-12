@@ -1,27 +1,24 @@
 {
  "workstream": 3,
- "task": "blind evaluation: dry-run flag on pre-freeze aggregate, freeze-gate tests, reviews of Workstream 2/8, feedback ablation, scorecard refresh after lock rebuild",
+ "task": "blind evaluation: sealed-holdout evaluator (dry-run flag), freeze-gate tests, reviews of Workstream 2 / Workstream 8, feedback ablation, scorecards refreshed vs lock 21:03",
  "status": "GREEN",
  "commit": null,
  "completed": [
-  "evaluation/__init__.py, common.py (weekend bootstrap), forecast.py (season LOO forecaster with pool spy; reproduces lock.json LOO predictions/factors/floors exactly)",
-  "evaluation/hidden_stop.py (2026 dev pool run: 210 stops / 10 weekends)",
-  "evaluation/regret.py (2026 dev pool run)",
-  "evaluation/holdout/evaluator.py (manifest sha check, freeze gate, aggregate-only output)"
+  "evaluation/{common,forecast,hidden_stop,regret,risk_coverage}.py, holdout/evaluator.py: 2026 dev-pool runs, sealed evaluator (manifest sha check, freeze gate, aggregate only)",
+  "evaluator.py: dry_run_before_freeze / quotable flags + stderr warning; holdout_aggregate.json re-run 21:15 flagged dry run (not quotable, numbers unchanged vs 16:55)",
+  "README: flags documented + exact post-freeze sequence (freeze.json by lead at C4 -> evaluator -> scorecards -> pytest tests/evaluation)",
+  "tests/evaluation/test_eval_freeze_gate.py: 36 new tests (gate over every flag combination and git_commit variant, dry-run flag, CLI end to end on a synthetic sealed weekend, tamper: body / metadata / sidecar / rehash, manifest sha vs last-green checkpoint); suite 59 passed",
+  "scorecards.py: feedback sources (UI log + out/live/*/driver_feedback.json), by_season, lock_consistency_2026 (11/11 values equal the 21:03 lock: MAE naive 0.1371 / Orb v1 0.0227, r 0.7806, 28 of 29 wins, coverage 0.862), sealed block only when quotable; ghost/live scorecards + SCORECARDS.md rebuilt 21:27 / 21:29; ablation NOT RUN (0 recorded events)",
+  "REVIEWS_workstream3.md: Workstream 2 counterfactual ACCEPT WITH NOTES (53 passed; 4 scenarios reproduce exactly; identity exactly zero); Workstream 8 live ACCEPT WITH NOTES (31 passed; next-lap MAE beats prior-only in every race; cliff Brier worse than climatology, labelled rate proxy)"
  ],
- "in_progress": [
-  "evaluator dry_run_before_freeze/quotable flags + re-run",
-  "tests/evaluation freeze-gate tests",
-  "REVIEWS_workstream3.md (Workstream 2 counterfactual, Workstream 8 live)",
-  "feedback ablation check",
-  "scorecard refresh vs lock 21:03"
- ],
+ "in_progress": [],
  "blockers": [],
- "tests_passed": 23,
+ "tests_passed": 59,
  "tests_failed": 0,
- "eta_minutes": 120,
+ "eta_minutes": 0,
  "needs_review_from": [
   "lead"
  ],
- "updated_at": "2026-09-12T21:06:53"
+ "updated_at": "2026-09-12T21:30:55",
+ "notes": "Not mine: proto/evaluation/red_team/claim_evidence_map.json shows modified in git (Workstream 7's). The screenshot gate writes rows into app_v2/state/feedback_events.jsonl while running: keep scorecard builds and tests/live off that window (review N5)."
 }

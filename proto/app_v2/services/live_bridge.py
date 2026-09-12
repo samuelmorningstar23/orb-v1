@@ -21,6 +21,7 @@ except Exception as e:  # pragma: no cover - the placeholder path
     _LV = None; ESTIMATOR_LABEL, MODEL_VERSION = 'PLACEHOLDER', 'none'; AVAILABLE, IMPORT_ERROR = False, repr(e)
 
 CLIFF_LABEL = 'model-implied rate proxy (no cliff mechanism in the linear model)'
+NOT_POSITION_FORECAST = 'observed gap structure, not a position forecast'   # red-team wording rule live_position_claim (claim_evidence_map.json)
 PREFIX_EVAL = P.OUT_DIR / 'live' / 'prefix_eval.json'
 PREFIX_MD = P.OUT_DIR / 'live' / 'PREFIX_EVAL.md'
 POST_RACE_FIELDS = dict(observed=None, observed_se=None, err=None, n_race=None)
@@ -88,12 +89,38 @@ def tyre_state_rows(ts: dict) -> list[tuple[str, str]]:
             ('confidence_effect', str(ts.get('confidence_effect', '—')))]
 
 
-def recommendation_rows(r: dict) -> list[tuple[str, str]]:
-    """The 7.2 live_recommendation record, formatted."""
-    w = r.get('pit_window'); rj = r.get('rejoin_context') or {}; ts = r.get('target_set') or {}
+def rejoin_text(rj: Optional[dict]) -> str:
+    """Rejoin context as the observed gap structure only. No projected P-number is shown on the live path: outside
+    frozen-field mode a point rejoin position would be a position claim (red team, live_position_claim)."""
+    rj = rj or {}
+    if rj.get('position_now') is None:
+        return rj.get('note') or 'not available'
     g = lambda v: '—' if v is None else f'{v:.1f} s'
-    rejoin = (f"P{rj.get('position_now')} now → ~P{rj.get('projected_rejoin_position')}, gap ahead {g(rj.get('gap_ahead_s'))}, behind {g(rj.get('gap_behind_s'))}, {rj.get('cars_within_pit_loss')} cars within pit loss, traffic {rj.get('traffic_density')} ({(rj.get('basis') or '').replace('_', ' ')})"
-              if rj.get('position_now') is not None else rj.get('note', 'not available'))
+    parts = [f"P{rj['position_now']} now"]   # the observed position only; a projected rejoin P belongs to frozen_field mode   # the observed position only; a projected rejoin P-number is renderable only in frozen_field mode (red team: live_position_claim)
+    if 'gap_ahead_s' in rj or 'gap_behind_s' in rj:
+        parts.append(f"gap ahead {g(rj.get('gap_ahead_s'))}, behind {g(rj.get('gap_behind_s'))}")
+    if rj.get('cars_within_pit_loss') is not None:
+        parts.append(f"{rj['cars_within_pit_loss']} cars within pit loss")
+    if rj.get('traffic_density'):
+        parts.append(f"traffic {rj['traffic_density']}")
+    return ' · '.join(parts) + f' · {NOT_POSITION_FORECAST}'
+
+
+def support_note(vm) -> str:
+    """A visible sentence when the 7.1 support_status and the lock-metadata support chips disagree (surfaced, never hidden)."""
+    orb = getattr(vm, 'orb_live', None)
+    ts_status = ((orb or {}).get('tyre_state') or {}).get('support_status')
+    chip = getattr(getattr(vm, 'support', None), 'overall_support_status', None)
+    if not ts_status or not chip or ts_status == chip:
+        return ''
+    return (f'support status differs by source: 7.1 live_tyre_state says {ts_status}; the lock-metadata chips say {chip}. '
+            f'Both are shown; the 7.1 record governs the live path (Workstream 8 rates a fallback prior as near support), the chips rate the weekend from lock metadata and feature files.')
+
+
+def recommendation_rows(r: dict) -> list[tuple[str, str]]:
+    """The 7.2 live_recommendation record, formatted (rejoin: observed gap structure, no projected position)."""
+    w = r.get('pit_window'); rj = r.get('rejoin_context') or {}; ts = r.get('target_set') or {}
+    rejoin = rejoin_text(rj) + (f" ({(rj.get('basis') or '').replace('_', ' ')})" if rj.get('position_now') is not None and rj.get('basis') else '')
     return [('action', str(r.get('action', '—')).replace('_', ' ')), ('pit_window', f'laps {w[0]}-{w[1]}' if w and w[0] != w[1] else (f'lap {w[0]}' if w else '—')), ('target_compound', str(r.get('target_compound') or '—')),
             ('target_set', f"{ts.get('set_id')} ({ts.get('status')}, age {ts.get('age_laps')})" if ts else '—'), ('expected_gain median / q10 / q90', f"{r.get('expected_gain_median', 0):+.1f} / {r.get('expected_gain_q10', 0):+.1f} / {r.get('expected_gain_q90', 0):+.1f} s"),
             ('probability_of_gain', f"{100 * r.get('probability_of_gain', 0):.0f}%"), ('rejoin_context', rejoin), ('constraints', ' · '.join(r.get('constraints') or []) or '—'),

@@ -1,0 +1,2273 @@
+{
+ "generated_at": "2026-09-12T21:37:55",
+ "git_sha": "cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
+ "manifest": {
+  "path": "evaluation/holdout/sealed_holdout_manifest.json",
+  "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd",
+  "holdout_version": "gold-v1.1 (v0 superseded before any evaluation: added no-circuit-twice constraint)",
+  "holdout_count": 6,
+  "race_ids": [
+   "2023_Canada",
+   "2024_Bahrain",
+   "2024_Monza",
+   "2024_SaudiArabia",
+   "2024_Zandvoort",
+   "2025_Qatar"
+  ],
+  "selected_at": "2026-09-12T14:29:44"
+ },
+ "freeze": {
+  "model_frozen": true,
+  "feature_list_frozen": true,
+  "gate_threshold_frozen": true,
+  "provider_frozen": true,
+  "git_commit": "cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
+  "frozen_at": "2026-09-12T21:37:02+05:30",
+  "frozen_by": "lead (checkpoint C4)",
+  "seal_commit": "0e3c9c4",
+  "note": "Model rules frozen as sealed at C0 (commit 0e3c9c4). `git log 0e3c9c4..HEAD -- pipeline.py model_v2.py features.py strategy2.py` lists exactly one commit, 02f4c00 ('Naming final'), whose only change to these files is a display-label rename in pipeline.py (docstring 'ClearStint pipeline' -> 'Orb v1 pipeline'; strategy view labels 'ClearStint' / 'ClearStint, band low|high' -> 'Orb v1' / 'Orb v1, band low|high'). No estimator, feature, gate threshold (min_practice_laps, min_slope), factor rule, fuel/traffic prior or provider rule changed since the seal; model_v2.py, features.py and strategy2.py are byte-identical to 0e3c9c4. Provider frozen: provider_A_v2 (pre-race forecast curves from out/lock_v2.json). The 16:55 and 21:15 aggregates were dry runs before this freeze and are never quoted; only the evaluator run made under this freeze at commit cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e is quotable, always as 'sealed holdout, aggregate only'.",
+  "model_rule_commits_since_seal": [
+   "02f4c00 Naming final: Orb v1 as product and team name; documents, deck, lock and dashboard regenerated"
+  ]
+ },
+ "dry_run_before_freeze": false,
+ "quotable": true,
+ "quotable_rule": "quotable is true only for a run produced under a valid freeze.json (model_frozen, feature_list_frozen, gate_threshold_frozen, provider_frozen all true and a git_commit); a dry run before the freeze is never quoted anywhere",
+ "freeze_status": "frozen at commit cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
+ "reveal": {
+  "per_race_written": true,
+  "reason": "frozen at commit cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e"
+ },
+ "post_holdout_tuning": false,
+ "n_weekends": 6,
+ "data_cutoff": "seasons 2023 to 2025 complete; each sealed weekend is forecast from its own practice files and factors from the non-sealed weekends of its season",
+ "units": {
+  "degradation": "s/lap per lap of tyre age",
+  "hidden_stop": "s (next lap) and s over h laps (cumulative)",
+  "regret": "s over the race",
+  "coverage": "share inside the 90 % band"
+ },
+ "method": {
+  "forecast": "model_v2 stint fixed effects + per-compound slope on tyre age on cleaned practice; transfer factor, fallback floor and conformal widening from the season pool (pipeline.py rules); strict leave-out",
+  "reference": "race-derived pace-loss reference: model_v2.fit on the race, all drivers (post-race, scoring only)",
+  "hidden_stop": "evaluation/hidden_stop.py",
+  "regret": "held-out strategy replay under a post-race reference model",
+  "cells": "cells with fewer than 3 weekends are suppressed; no per-weekend value is written to the aggregate file"
+ },
+ "leakage_check": {
+  "pool_events_by_season": {
+   "2023": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "2024": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "2025": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ]
+  },
+  "spy_records": 2184,
+  "sealed_never_in_pool": true,
+  "leaks": [],
+  "sources_seen": [
+   "2023_AbuDhabi",
+   "2023_Australia",
+   "2023_Bahrain",
+   "2023_Barcelona",
+   "2023_Brazil",
+   "2023_Britain",
+   "2023_Hungary",
+   "2023_Japan",
+   "2023_Mexico",
+   "2023_Miami",
+   "2023_Monaco",
+   "2023_Monza",
+   "2023_Qatar",
+   "2023_SaudiArabia",
+   "2023_Singapore",
+   "2023_USA",
+   "2023_Zandvoort",
+   "2024_AbuDhabi",
+   "2024_Australia",
+   "2024_Austria",
+   "2024_Azerbaijan",
+   "2024_Barcelona",
+   "2024_Belgium",
+   "2024_Britain",
+   "2024_China",
+   "2024_Hungary",
+   "2024_Imola",
+   "2024_Japan",
+   "2024_LasVegas",
+   "2024_Mexico",
+   "2024_Miami",
+   "2024_Monaco",
+   "2024_Qatar",
+   "2024_Singapore",
+   "2024_USA"
+  ]
+ },
+ "per_race": {
+  "2023_Canada": {
+   "forecast": {
+    "season": 2023,
+    "event": "Canada",
+    "race_id": "2023_Canada",
+    "n_laps": 70,
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.6,
+     "HARD": 1.2
+    },
+    "offsets_source": {
+     "MEDIUM": "practice value +1.50 s implausible, nominal Pirelli-range step",
+     "HARD": "nominal Pirelli-range step"
+    },
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 33,
+      "naive": 0.0856685263157888,
+      "clean": 0.053282064827953945,
+      "clean_se": 0.05751892170999619,
+      "gate": "ok",
+      "issued": true,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 7,
+      "floor": 0.03548718232704218,
+      "prediction": 0.053282064827953945,
+      "band90_raw": [
+       -0.01318825869925612,
+       0.08935552138980882
+      ],
+      "band90": [
+       -0.06716010213017978,
+       0.11864605055011387
+      ],
+      "widen": 1.8119690196607805,
+      "basis": "cleaned Friday curve (weekends disagree on the factor)",
+      "push_adj": 0.002786649180379186,
+      "energy_trend": -0.08387043427444385
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 185,
+      "naive": 0.049730069862720286,
+      "clean": 0.007825000280705574,
+      "clean_se": 0.015467400762629561,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 8,
+      "floor": 0.03548718232704218,
+      "prediction": 0.03548718232704218,
+      "band90_raw": [
+       -0.0061228875102722026,
+       0.06669833305733978
+      ],
+      "band90": [
+       -0.03990897512409297,
+       0.0920408205183044
+      ],
+      "widen": 1.8119690196607805,
+      "basis": "low-degradation fallback: median race degradation of the 20 withheld cases in the pool",
+      "push_adj": 0.022129785555800374,
+      "energy_trend": 0.023759553968152117
+     }
+    },
+    "pool_events": [
+     "AbuDhabi",
+     "Australia",
+     "Bahrain",
+     "Barcelona",
+     "Brazil",
+     "Britain",
+     "Hungary",
+     "Japan",
+     "Mexico",
+     "Miami",
+     "Monaco",
+     "Monza",
+     "Qatar",
+     "SaudiArabia",
+     "Singapore",
+     "USA",
+     "Zandvoort"
+    ],
+    "pool_n": 17
+   },
+   "reference": {
+    "MEDIUM": {
+     "obs": 0.03872415435266165,
+     "obs_se": 0.004322239471373605,
+     "n_race": 105
+    },
+    "HARD": {
+     "obs": 0.02298560405424155,
+     "obs_se": 0.001919230796905435,
+     "n_race": 383
+    }
+   },
+   "forecast_rows": [
+    {
+     "race_id": "2023_Canada",
+     "season": 2023,
+     "event": "Canada",
+     "compound": "MEDIUM",
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "n_prac": 185,
+     "naive": 0.049730069862720286,
+     "clean": 0.007825000280705574,
+     "prediction": 0.03548718232704218,
+     "band90": [
+      -0.03990897512409297,
+      0.0920408205183044
+     ],
+     "obs": 0.03872415435266165,
+     "obs_se": 0.004322239471373605,
+     "n_race": 105,
+     "err": 0.0032369720256194695,
+     "err_naive": 0.01100591551005864,
+     "err_clean": null,
+     "covered": true,
+     "widen": 1.8119690196607805,
+     "factor": 1.0,
+     "factor_applied": false,
+     "pool_n": 17,
+     "circuit_class": "street",
+     "degradation_class": "low",
+     "temperature_regime": "mild",
+     "sc_or_vsc": true,
+     "weather_regime": "mild"
+    }
+   ],
+   "hidden_stop": {
+    "pooled": {
+     "n_cases": 2,
+     "n_weekends": 1,
+     "next1_mae": 0.255025600614168,
+     "next1_mae_naive": 0.8760000000000119,
+     "next1_n": 2,
+     "next1_coverage90": 1.0,
+     "cum3_mae": 0.6536460771698955,
+     "cum3_mae_naive": 1.6118000000000166,
+     "cum3_n": 1,
+     "cum3_coverage90": 1.0,
+     "cum5_mae": 1.0265127069183535,
+     "cum5_mae_naive": 2.446000000000012,
+     "cum5_n": 1,
+     "cum5_coverage90": 1.0
+    },
+    "by": {
+     "compound_new": {
+      "MEDIUM": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 0.11072817672959445,
+       "next1_mae_naive": 0.4656000000000091,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 0.6536460771698955,
+       "cum3_mae_naive": 1.6118000000000166,
+       "cum3_n": 1,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 1.0265127069183535,
+       "cum5_mae_naive": 2.446000000000012,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      },
+      "SOFT": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 0.3993230244987416,
+       "next1_mae_naive": 1.2864000000000146,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": null,
+       "cum3_mae_naive": null,
+       "cum3_n": 0,
+       "cum3_coverage90": null,
+       "cum5_mae": null,
+       "cum5_mae_naive": null,
+       "cum5_n": 0,
+       "cum5_coverage90": null
+      }
+     },
+     "circuit_class": {
+      "street": {
+       "n_cases": 2,
+       "n_weekends": 1,
+       "next1_mae": 0.255025600614168,
+       "next1_mae_naive": 0.8760000000000119,
+       "next1_n": 2,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 0.6536460771698955,
+       "cum3_mae_naive": 1.6118000000000166,
+       "cum3_n": 1,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 1.0265127069183535,
+       "cum5_mae_naive": 2.446000000000012,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "set_status": {
+      "new": {
+       "n_cases": 2,
+       "n_weekends": 1,
+       "next1_mae": 0.255025600614168,
+       "next1_mae_naive": 0.8760000000000119,
+       "next1_n": 2,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 0.6536460771698955,
+       "cum3_mae_naive": 1.6118000000000166,
+       "cum3_n": 1,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 1.0265127069183535,
+       "cum5_mae_naive": 2.446000000000012,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "stop_regime": {
+      "green": {
+       "n_cases": 2,
+       "n_weekends": 1,
+       "next1_mae": 0.255025600614168,
+       "next1_mae_naive": 0.8760000000000119,
+       "next1_n": 2,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 0.6536460771698955,
+       "cum3_mae_naive": 1.6118000000000166,
+       "cum3_n": 1,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 1.0265127069183535,
+       "cum5_mae_naive": 2.446000000000012,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "driver_support": {
+      "seen": {
+       "n_cases": 2,
+       "n_weekends": 1,
+       "next1_mae": 0.255025600614168,
+       "next1_mae_naive": 0.8760000000000119,
+       "next1_n": 2,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 0.6536460771698955,
+       "cum3_mae_naive": 1.6118000000000166,
+       "cum3_n": 1,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 1.0265127069183535,
+       "cum5_mae_naive": 2.446000000000012,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      }
+     }
+    }
+   },
+   "hidden_stop_skipped": {
+    "no pre-race forecast for a compound": 30,
+    "non-slick compound": 1
+   },
+   "regret": {
+    "race_id": "2023_Canada",
+    "season": 2023,
+    "event": "Canada",
+    "n_laps": 70,
+    "circuit_class": "street",
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.6,
+     "HARD": 1.2
+    },
+    "pit_loss": 21.0,
+    "scorable_compounds": [
+     "MEDIUM",
+     "HARD"
+    ],
+    "forecast_compounds": [
+     "SOFT",
+     "MEDIUM"
+    ],
+    "reference_slopes": {
+     "MEDIUM": 0.03872415435266165,
+     "HARD": 0.02298560405424155
+    },
+    "pre_race_slopes": {
+     "SOFT": 0.053282064827953945,
+     "MEDIUM": 0.03548718232704218
+    },
+    "label": "held-out strategy replay under a post-race reference model",
+    "plans": {
+     "orb": {
+      "plan": "S-S-M",
+      "seq": [
+       "SOFT",
+       "SOFT",
+       "MEDIUM"
+      ],
+      "stints": [
+       24,
+       26,
+       20
+      ],
+      "stops": 2,
+      "time": 96.13893249167688,
+      "unscorable": "uses a compound without a race-derived reference: ['SOFT', 'SOFT']"
+     },
+     "naive": {
+      "plan": "S-S-M",
+      "seq": [
+       "SOFT",
+       "SOFT",
+       "MEDIUM"
+      ],
+      "stints": [
+       22,
+       22,
+       26
+      ],
+      "stops": 2,
+      "time": 118.40352883760396,
+      "unscorable": "uses a compound without a race-derived reference: ['SOFT', 'SOFT']"
+     },
+     "observed": {
+      "plan": "M-H-H",
+      "seq": [
+       "MEDIUM",
+       "HARD",
+       "HARD"
+      ],
+      "stints": [
+       12,
+       24,
+       34
+      ],
+      "stops": 2,
+      "drivers": 8,
+      "drivers_classified": 17,
+      "cost_under_reference": 142.39259966805378,
+      "regret": 19.525878456907407
+     },
+     "default": {
+      "plan": "M-H",
+      "seq": [
+       "MEDIUM",
+       "HARD"
+      ],
+      "stints": [
+       35,
+       35
+      ],
+      "stops": 1,
+      "cost_under_reference": 122.87714779634902,
+      "regret": 0.010426585202651495
+     }
+    },
+    "oracle": {
+     "plan": "H-M",
+     "seq": [
+      "HARD",
+      "MEDIUM"
+     ],
+     "stints": [
+      34,
+      36
+     ],
+     "stops": 1,
+     "cost": 122.86672121114637
+    },
+    "regret_orb": null,
+    "regret_naive": null,
+    "regret_observed": 19.525878456907407,
+    "regret_default": 0.010426585202651495
+   },
+   "metadata": {
+    "circuit_class": "street",
+    "degradation_class": "low",
+    "event": "Canada",
+    "fp_laps": 968,
+    "n_fp": 3,
+    "race_laps": 1314,
+    "sc_or_vsc": true,
+    "season": 2023,
+    "telemetry_ok": 1.0,
+    "temperature_regime": "mild",
+    "track_temp": 30.8,
+    "wet": false
+   }
+  },
+  "2024_Bahrain": {
+   "forecast": {
+    "season": 2024,
+    "event": "Bahrain",
+    "race_id": "2024_Bahrain",
+    "n_laps": 57,
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.6,
+     "HARD": 1.2
+    },
+    "offsets_source": {
+     "MEDIUM": "practice value +2.34 s implausible, nominal Pirelli-range step",
+     "HARD": "nominal Pirelli-range step"
+    },
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 219,
+      "naive": 0.21150141112925008,
+      "clean": 0.15416323669906676,
+      "clean_se": 0.013212360645404143,
+      "gate": "ok",
+      "issued": true,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 6,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.15416323669906676,
+      "band90_raw": [
+       -0.0023787094387238356,
+       0.15649806483292
+      ],
+      "band90": [
+       -0.14722057273744485,
+       0.15865838585698538
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "cleaned Friday curve (weekends disagree on the factor)",
+      "push_adj": 0.17604135576963648,
+      "energy_trend": 0.04113554534827374
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 92,
+      "naive": 0.34485310491871296,
+      "clean": 0.07322986050812119,
+      "clean_se": 0.02602050445965995,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.6067359286188506,
+      "factor_applied": true,
+      "factor_from_n_weekends": 11,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.04443118741802381,
+      "band90_raw": [
+       0.016615306231817815,
+       0.07470003507193736
+      ],
+      "band90": [
+       -0.009121591511612633,
+       0.1027065624102325
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "cleaned Friday curve x season transfer factor",
+      "push_adj": 0.10210543813570894,
+      "energy_trend": 0.05429226475670195
+     }
+    },
+    "pool_events": [
+     "AbuDhabi",
+     "Australia",
+     "Austria",
+     "Azerbaijan",
+     "Barcelona",
+     "Belgium",
+     "Britain",
+     "China",
+     "Hungary",
+     "Imola",
+     "Japan",
+     "LasVegas",
+     "Mexico",
+     "Miami",
+     "Monaco",
+     "Qatar",
+     "Singapore",
+     "USA"
+    ],
+    "pool_n": 18
+   },
+   "reference": {
+    "SOFT": {
+     "obs": 0.10212166660926252,
+     "obs_se": 0.010835232838196571,
+     "n_race": 67
+    },
+    "HARD": {
+     "obs": 0.07494477577730752,
+     "obs_se": 0.00279734349443877,
+     "n_race": 564
+    }
+   },
+   "forecast_rows": [
+    {
+     "race_id": "2024_Bahrain",
+     "season": 2024,
+     "event": "Bahrain",
+     "compound": "SOFT",
+     "issued": true,
+     "gate": "ok",
+     "n_prac": 219,
+     "naive": 0.21150141112925008,
+     "clean": 0.15416323669906676,
+     "prediction": 0.15416323669906676,
+     "band90": [
+      -0.14722057273744485,
+      0.15865838585698538
+     ],
+     "obs": 0.10212166660926252,
+     "obs_se": 0.010835232838196571,
+     "n_race": 67,
+     "err": 0.05204157008980424,
+     "err_naive": 0.10937974451998757,
+     "err_clean": 0.05204157008980424,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 1.0,
+     "factor_applied": false,
+     "pool_n": 18,
+     "circuit_class": "permanent",
+     "degradation_class": "high",
+     "temperature_regime": "cool",
+     "sc_or_vsc": false,
+     "weather_regime": "cool"
+    }
+   ],
+   "hidden_stop": {
+    "pooled": {
+     "n_cases": 0,
+     "n_weekends": 0,
+     "next1_mae": null,
+     "next1_mae_naive": null,
+     "next1_n": 0,
+     "next1_coverage90": null,
+     "cum3_mae": null,
+     "cum3_mae_naive": null,
+     "cum3_n": 0,
+     "cum3_coverage90": null,
+     "cum5_mae": null,
+     "cum5_mae_naive": null,
+     "cum5_n": 0,
+     "cum5_coverage90": null
+    },
+    "by": {},
+    "n_cases": 0
+   },
+   "hidden_stop_skipped": {
+    "no pre-race forecast for a compound": 43
+   },
+   "regret": {
+    "race_id": "2024_Bahrain",
+    "season": 2024,
+    "event": "Bahrain",
+    "n_laps": 57,
+    "circuit_class": "permanent",
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.6,
+     "HARD": 1.2
+    },
+    "pit_loss": 21.0,
+    "scorable_compounds": [
+     "SOFT",
+     "HARD"
+    ],
+    "forecast_compounds": [
+     "SOFT",
+     "MEDIUM"
+    ],
+    "reference_slopes": {
+     "SOFT": 0.10212166660926252,
+     "HARD": 0.07494477577730752
+    },
+    "pre_race_slopes": {
+     "SOFT": 0.15416323669906676,
+     "MEDIUM": 0.04443118741802381
+    },
+    "label": "held-out strategy replay under a post-race reference model",
+    "plans": {
+     "orb": {
+      "plan": "S-M-M",
+      "seq": [
+       "SOFT",
+       "MEDIUM",
+       "MEDIUM"
+      ],
+      "stints": [
+       10,
+       24,
+       23
+      ],
+      "stops": 2,
+      "time": 104.27134197123038,
+      "unscorable": "uses a compound without a race-derived reference: ['MEDIUM', 'MEDIUM']"
+     },
+     "naive": {
+      "plan": "S-M-S",
+      "seq": [
+       "SOFT",
+       "MEDIUM",
+       "SOFT"
+      ],
+      "stints": [
+       22,
+       12,
+       23
+      ],
+      "stops": 2,
+      "time": 187.98278867103292,
+      "unscorable": "uses a compound without a race-derived reference: ['MEDIUM']"
+     },
+     "observed": {
+      "plan": "S-H-H",
+      "seq": [
+       "SOFT",
+       "HARD",
+       "HARD"
+      ],
+      "stints": [
+       12,
+       20,
+       25
+      ],
+      "stops": 2,
+      "drivers": 14,
+      "drivers_classified": 19,
+      "cost_under_reference": 144.060945036382,
+      "regret": 27.967407136360194
+     },
+     "default": {
+      "plan": "S-H",
+      "seq": [
+       "SOFT",
+       "HARD"
+      ],
+      "stints": [
+       28,
+       29
+      ],
+      "stops": 1,
+      "cost_under_reference": 129.86237410648934,
+      "regret": 13.768836206467526
+     }
+    },
+    "oracle": {
+     "plan": "S-H-S",
+     "seq": [
+      "SOFT",
+      "HARD",
+      "SOFT"
+     ],
+     "stints": [
+      22,
+      13,
+      22
+     ],
+     "stops": 2,
+     "cost": 116.09353790002181
+    },
+    "regret_orb": null,
+    "regret_naive": null,
+    "regret_observed": 27.967407136360194,
+    "regret_default": 13.768836206467526
+   },
+   "metadata": {
+    "circuit_class": "permanent",
+    "degradation_class": "high",
+    "event": "Bahrain",
+    "fp_laps": 1010,
+    "n_fp": 3,
+    "race_laps": 1127,
+    "sc_or_vsc": false,
+    "season": 2024,
+    "telemetry_ok": 1.0,
+    "temperature_regime": "cool",
+    "track_temp": 23.5,
+    "wet": false
+   }
+  },
+  "2024_Monza": {
+   "forecast": {
+    "season": 2024,
+    "event": "Monza",
+    "race_id": "2024_Monza",
+    "n_laps": 53,
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.9954999999999998,
+     "HARD": 1.2
+    },
+    "offsets_source": {
+     "MEDIUM": "practice (20 drivers)",
+     "HARD": "nominal Pirelli-range step"
+    },
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 15,
+      "naive": 0.5266807885906024,
+      "clean": 0.5590566866364824,
+      "clean_se": 0.10726737495574087,
+      "gate": "too few clean practice laps",
+      "issued": false,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 6,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.0077708596786162315,
+      "band90_raw": [
+       -0.03609607370036372,
+       0.0910737578356486
+      ],
+      "band90": [
+       -0.07668435386790189,
+       0.16815052406307052
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool",
+      "push_adj": 0.08819485098830321,
+      "energy_trend": -0.6845893771492553
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 169,
+      "naive": 0.17669297688484764,
+      "clean": 0.1048895057003989,
+      "clean_se": 0.023147013517566404,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.6067359286188506,
+      "factor_applied": true,
+      "factor_from_n_weekends": 11,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.06364023164350376,
+      "band90_raw": [
+       0.03709417532913588,
+       0.0976544092067246
+      ],
+      "band90": [
+       0.012532194628950818,
+       0.1291263372003495
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "cleaned Friday curve x season transfer factor",
+      "push_adj": 0.10979048189456364,
+      "energy_trend": 0.007125564202091274
+     }
+    },
+    "pool_events": [
+     "AbuDhabi",
+     "Australia",
+     "Austria",
+     "Azerbaijan",
+     "Barcelona",
+     "Belgium",
+     "Britain",
+     "China",
+     "Hungary",
+     "Imola",
+     "Japan",
+     "LasVegas",
+     "Mexico",
+     "Miami",
+     "Monaco",
+     "Qatar",
+     "Singapore",
+     "USA"
+    ],
+    "pool_n": 18
+   },
+   "reference": {
+    "MEDIUM": {
+     "obs": 0.03978884900577384,
+     "obs_se": 0.009490864929999152,
+     "n_race": 131
+    },
+    "HARD": {
+     "obs": 0.027087388914160966,
+     "obs_se": 0.0025103560513390797,
+     "n_race": 514
+    }
+   },
+   "forecast_rows": [
+    {
+     "race_id": "2024_Monza",
+     "season": 2024,
+     "event": "Monza",
+     "compound": "MEDIUM",
+     "issued": true,
+     "gate": "ok",
+     "n_prac": 169,
+     "naive": 0.17669297688484764,
+     "clean": 0.1048895057003989,
+     "prediction": 0.06364023164350376,
+     "band90": [
+      0.012532194628950818,
+      0.1291263372003495
+     ],
+     "obs": 0.03978884900577384,
+     "obs_se": 0.009490864929999152,
+     "n_race": 131,
+     "err": 0.023851382637729915,
+     "err_naive": 0.1369041278790738,
+     "err_clean": 0.06510065669462506,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "pool_n": 18,
+     "circuit_class": "permanent",
+     "degradation_class": "low",
+     "temperature_regime": "hot",
+     "sc_or_vsc": false,
+     "weather_regime": "hot"
+    }
+   ],
+   "hidden_stop": {
+    "pooled": {
+     "n_cases": 1,
+     "n_weekends": 1,
+     "next1_mae": 0.32924573208799757,
+     "next1_mae_naive": 1.0773867924528275,
+     "next1_n": 1,
+     "next1_coverage90": 1.0,
+     "cum3_mae": null,
+     "cum3_mae_naive": null,
+     "cum3_n": 0,
+     "cum3_coverage90": null,
+     "cum5_mae": null,
+     "cum5_mae_naive": null,
+     "cum5_n": 0,
+     "cum5_coverage90": null
+    },
+    "by": {
+     "compound_new": {
+      "SOFT": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 0.32924573208799757,
+       "next1_mae_naive": 1.0773867924528275,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": null,
+       "cum3_mae_naive": null,
+       "cum3_n": 0,
+       "cum3_coverage90": null,
+       "cum5_mae": null,
+       "cum5_mae_naive": null,
+       "cum5_n": 0,
+       "cum5_coverage90": null
+      }
+     },
+     "circuit_class": {
+      "permanent": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 0.32924573208799757,
+       "next1_mae_naive": 1.0773867924528275,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": null,
+       "cum3_mae_naive": null,
+       "cum3_n": 0,
+       "cum3_coverage90": null,
+       "cum5_mae": null,
+       "cum5_mae_naive": null,
+       "cum5_n": 0,
+       "cum5_coverage90": null
+      }
+     },
+     "set_status": {
+      "new": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 0.32924573208799757,
+       "next1_mae_naive": 1.0773867924528275,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": null,
+       "cum3_mae_naive": null,
+       "cum3_n": 0,
+       "cum3_coverage90": null,
+       "cum5_mae": null,
+       "cum5_mae_naive": null,
+       "cum5_n": 0,
+       "cum5_coverage90": null
+      }
+     },
+     "stop_regime": {
+      "green": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 0.32924573208799757,
+       "next1_mae_naive": 1.0773867924528275,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": null,
+       "cum3_mae_naive": null,
+       "cum3_n": 0,
+       "cum3_coverage90": null,
+       "cum5_mae": null,
+       "cum5_mae_naive": null,
+       "cum5_n": 0,
+       "cum5_coverage90": null
+      }
+     },
+     "driver_support": {
+      "seen": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 0.32924573208799757,
+       "next1_mae_naive": 1.0773867924528275,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": null,
+       "cum3_mae_naive": null,
+       "cum3_n": 0,
+       "cum3_coverage90": null,
+       "cum5_mae": null,
+       "cum5_mae_naive": null,
+       "cum5_n": 0,
+       "cum5_coverage90": null
+      }
+     }
+    }
+   },
+   "hidden_stop_skipped": {
+    "no pre-race forecast for a compound": 29
+   },
+   "regret": {
+    "race_id": "2024_Monza",
+    "season": 2024,
+    "event": "Monza",
+    "n_laps": 53,
+    "circuit_class": "permanent",
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.9954999999999998,
+     "HARD": 1.2
+    },
+    "pit_loss": 21.0,
+    "scorable_compounds": [
+     "MEDIUM",
+     "HARD"
+    ],
+    "forecast_compounds": [
+     "SOFT",
+     "MEDIUM"
+    ],
+    "reference_slopes": {
+     "MEDIUM": 0.03978884900577384,
+     "HARD": 0.027087388914160966
+    },
+    "pre_race_slopes": {
+     "SOFT": 0.0077708596786162315,
+     "MEDIUM": 0.06364023164350376
+    },
+    "label": "held-out strategy replay under a post-race reference model",
+    "plans": {
+     "orb": {
+      "plan": "S-M",
+      "seq": [
+       "SOFT",
+       "MEDIUM"
+      ],
+      "stints": [
+       47,
+       6
+      ],
+      "stops": 1,
+      "time": 37.07497458199269,
+      "unscorable": "uses a compound without a race-derived reference: ['SOFT']"
+     },
+     "naive": {
+      "plan": "M-M-S",
+      "seq": [
+       "MEDIUM",
+       "MEDIUM",
+       "SOFT"
+      ],
+      "stints": [
+       22,
+       22,
+       9
+      ],
+      "stops": 2,
+      "time": 198.90928179031002,
+      "unscorable": "uses a compound without a race-derived reference: ['SOFT']"
+     },
+     "observed": {
+      "plan": "M-H",
+      "seq": [
+       "MEDIUM",
+       "HARD"
+      ],
+      "stints": [
+       15,
+       38
+      ],
+      "stops": 1,
+      "drivers": 7,
+      "drivers_classified": 19,
+      "cost_under_reference": 106.37891706608613,
+      "regret": 2.967248186693965
+     },
+     "default": {
+      "plan": "M-H",
+      "seq": [
+       "MEDIUM",
+       "HARD"
+      ],
+      "stints": [
+       26,
+       27
+      ],
+      "stops": 1,
+      "cost_under_reference": 103.48791901057947,
+      "regret": 0.07625013118730806
+     }
+    },
+    "oracle": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      24,
+      29
+     ],
+     "stops": 1,
+     "cost": 103.41166887939217
+    },
+    "regret_orb": null,
+    "regret_naive": null,
+    "regret_observed": 2.967248186693965,
+    "regret_default": 0.07625013118730806
+   },
+   "metadata": {
+    "circuit_class": "permanent",
+    "degradation_class": "low",
+    "event": "Monza",
+    "fp_laps": 945,
+    "n_fp": 3,
+    "race_laps": 1008,
+    "sc_or_vsc": false,
+    "season": 2024,
+    "telemetry_ok": 1.0,
+    "temperature_regime": "hot",
+    "track_temp": 49.5,
+    "wet": false
+   }
+  },
+  "2024_SaudiArabia": {
+   "forecast": {
+    "season": 2024,
+    "event": "SaudiArabia",
+    "race_id": "2024_SaudiArabia",
+    "n_laps": 50,
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.9710000000000036,
+     "HARD": 1.2
+    },
+    "offsets_source": {
+     "MEDIUM": "practice (21 drivers)",
+     "HARD": "practice value +2.08 s implausible, nominal Pirelli-range step"
+    },
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 74,
+      "naive": 0.4073446902403578,
+      "clean": 0.0022993548746370607,
+      "clean_se": 0.03168621297431642,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 6,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.0077708596786162315,
+      "band90_raw": [
+       -0.03609607370036372,
+       0.0910737578356486
+      ],
+      "band90": [
+       -0.07668435386790189,
+       0.16815052406307052
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool",
+      "push_adj": 0.06136359429699212,
+      "energy_trend": 0.1186827524600645
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 171,
+      "naive": 0.27442799028068066,
+      "clean": 0.03418602767635548,
+      "clean_se": 0.018946270603055766,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.6067359286188506,
+      "factor_applied": true,
+      "factor_from_n_weekends": 11,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.02074189124800327,
+      "band90_raw": [
+       0.0012464728487636449,
+       0.04154829401666843
+      ],
+      "band90": [
+       -0.016791840819884156,
+       0.060799607929071686
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "cleaned Friday curve x season transfer factor",
+      "push_adj": 0.09549643596323776,
+      "energy_trend": 0.12319616880033137
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 83,
+      "naive": 0.15737197717218268,
+      "clean": -0.1540886071393075,
+      "clean_se": 0.027818633750746974,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 7,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.0077708596786162315,
+      "band90_raw": [
+       -0.03609607370036372,
+       0.0910737578356486
+      ],
+      "band90": [
+       -0.07668435386790189,
+       0.16815052406307052
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool",
+      "push_adj": 0.046947514581610506,
+      "energy_trend": 0.4039588167574379
+     }
+    },
+    "pool_events": [
+     "AbuDhabi",
+     "Australia",
+     "Austria",
+     "Azerbaijan",
+     "Barcelona",
+     "Belgium",
+     "Britain",
+     "China",
+     "Hungary",
+     "Imola",
+     "Japan",
+     "LasVegas",
+     "Mexico",
+     "Miami",
+     "Monaco",
+     "Qatar",
+     "Singapore",
+     "USA"
+    ],
+    "pool_n": 18
+   },
+   "reference": {
+    "SOFT": {
+     "obs": 0.05785384615382202,
+     "obs_se": 0.02589832466886554,
+     "n_race": 25
+    },
+    "MEDIUM": {
+     "obs": -0.013997613929056131,
+     "obs_se": 0.006213736769593378,
+     "n_race": 91
+    },
+    "HARD": {
+     "obs": -0.02069120488340559,
+     "obs_se": 0.0026651144607726077,
+     "n_race": 324
+    }
+   },
+   "forecast_rows": [
+    {
+     "race_id": "2024_SaudiArabia",
+     "season": 2024,
+     "event": "SaudiArabia",
+     "compound": "SOFT",
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "n_prac": 74,
+     "naive": 0.4073446902403578,
+     "clean": 0.0022993548746370607,
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07668435386790189,
+      0.16815052406307052
+     ],
+     "obs": 0.05785384615382202,
+     "obs_se": 0.02589832466886554,
+     "n_race": 25,
+     "err": 0.05008298647520579,
+     "err_naive": 0.3494908440865358,
+     "err_clean": null,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 1.0,
+     "factor_applied": false,
+     "pool_n": 18,
+     "circuit_class": "street",
+     "degradation_class": "low",
+     "temperature_regime": "mild",
+     "sc_or_vsc": true,
+     "weather_regime": "mild"
+    },
+    {
+     "race_id": "2024_SaudiArabia",
+     "season": 2024,
+     "event": "SaudiArabia",
+     "compound": "MEDIUM",
+     "issued": true,
+     "gate": "ok",
+     "n_prac": 171,
+     "naive": 0.27442799028068066,
+     "clean": 0.03418602767635548,
+     "prediction": 0.02074189124800327,
+     "band90": [
+      -0.016791840819884156,
+      0.060799607929071686
+     ],
+     "obs": -0.013997613929056131,
+     "obs_se": 0.006213736769593378,
+     "n_race": 91,
+     "err": 0.0347395051770594,
+     "err_naive": 0.2884256042097368,
+     "err_clean": 0.04818364160541161,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "pool_n": 18,
+     "circuit_class": "street",
+     "degradation_class": "low",
+     "temperature_regime": "mild",
+     "sc_or_vsc": true,
+     "weather_regime": "mild"
+    },
+    {
+     "race_id": "2024_SaudiArabia",
+     "season": 2024,
+     "event": "SaudiArabia",
+     "compound": "HARD",
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "n_prac": 83,
+     "naive": 0.15737197717218268,
+     "clean": -0.1540886071393075,
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07668435386790189,
+      0.16815052406307052
+     ],
+     "obs": -0.02069120488340559,
+     "obs_se": 0.0026651144607726077,
+     "n_race": 324,
+     "err": 0.02846206456202182,
+     "err_naive": 0.17806318205558827,
+     "err_clean": null,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 1.0,
+     "factor_applied": false,
+     "pool_n": 18,
+     "circuit_class": "street",
+     "degradation_class": "low",
+     "temperature_regime": "mild",
+     "sc_or_vsc": true,
+     "weather_regime": "mild"
+    }
+   ],
+   "hidden_stop": {
+    "pooled": {
+     "n_cases": 7,
+     "n_weekends": 1,
+     "next1_mae": 0.43603980069928283,
+     "next1_mae_naive": 0.4645142857142791,
+     "next1_n": 7,
+     "next1_coverage90": 1.0,
+     "cum3_mae": 1.4239310692532214,
+     "cum3_mae_naive": 1.2651333333333217,
+     "cum3_n": 6,
+     "cum3_coverage90": 1.0,
+     "cum5_mae": 3.184599337652383,
+     "cum5_mae_naive": 2.536499999999954,
+     "cum5_n": 4,
+     "cum5_coverage90": 1.0
+    },
+    "by": {
+     "compound_new": {
+      "HARD": {
+       "n_cases": 3,
+       "n_weekends": 1,
+       "next1_mae": 0.31175200129972797,
+       "next1_mae_naive": 0.49033333333332507,
+       "next1_n": 3,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 0.774613604659038,
+       "cum3_mae_naive": 1.747000000000007,
+       "cum3_n": 2,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 2.357133506371781,
+       "cum5_mae_naive": 5.31299999999996,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      },
+      "SOFT": {
+       "n_cases": 4,
+       "n_weekends": 1,
+       "next1_mae": 0.5292556502489489,
+       "next1_mae_naive": 0.4451499999999946,
+       "next1_n": 4,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 1.7485898015503132,
+       "cum3_mae_naive": 1.0241999999999791,
+       "cum3_n": 4,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 3.4604212814125836,
+       "cum5_mae_naive": 1.610999999999952,
+       "cum5_n": 3,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "circuit_class": {
+      "street": {
+       "n_cases": 7,
+       "n_weekends": 1,
+       "next1_mae": 0.43603980069928283,
+       "next1_mae_naive": 0.4645142857142791,
+       "next1_n": 7,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 1.4239310692532214,
+       "cum3_mae_naive": 1.2651333333333217,
+       "cum3_n": 6,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 3.184599337652383,
+       "cum5_mae_naive": 2.536499999999954,
+       "cum5_n": 4,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "set_status": {
+      "new": {
+       "n_cases": 5,
+       "n_weekends": 1,
+       "next1_mae": 0.5079586134201577,
+       "next1_mae_naive": 0.49507999999999014,
+       "next1_n": 5,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 1.5252095997307258,
+       "cum3_mae_naive": 1.5612999999999886,
+       "cum3_n": 4,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 3.2986062741266076,
+       "cum5_mae_naive": 3.283666666666619,
+       "cum5_n": 3,
+       "cum5_coverage90": 1.0
+      },
+      "used": {
+       "n_cases": 2,
+       "n_weekends": 1,
+       "next1_mae": 0.25624276889709563,
+       "next1_mae_naive": 0.38810000000000144,
+       "next1_n": 2,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 1.2213740082982127,
+       "cum3_mae_naive": 0.6727999999999881,
+       "cum3_n": 2,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 2.8425785282297085,
+       "cum5_mae_naive": 0.2949999999999591,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "stop_regime": {
+      "green": {
+       "n_cases": 5,
+       "n_weekends": 1,
+       "next1_mae": 0.5328615165825852,
+       "next1_mae_naive": 0.586919999999995,
+       "next1_n": 5,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 1.6965053461976936,
+       "cum3_mae_naive": 1.476359999999977,
+       "cum3_n": 5,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 3.184599337652383,
+       "cum5_mae_naive": 2.536499999999954,
+       "cum5_n": 4,
+       "cum5_coverage90": 1.0
+      },
+      "sc_vsc": {
+       "n_cases": 2,
+       "n_weekends": 1,
+       "next1_mae": 0.1939855109910269,
+       "next1_mae_naive": 0.15849999999998943,
+       "next1_n": 2,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 0.061059684530860636,
+       "cum3_mae_naive": 0.20900000000004582,
+       "cum3_n": 1,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": null,
+       "cum5_mae_naive": null,
+       "cum5_n": 0,
+       "cum5_coverage90": null
+      }
+     },
+     "driver_support": {
+      "seen": {
+       "n_cases": 7,
+       "n_weekends": 1,
+       "next1_mae": 0.43603980069928283,
+       "next1_mae_naive": 0.4645142857142791,
+       "next1_n": 7,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 1.4239310692532214,
+       "cum3_mae_naive": 1.2651333333333217,
+       "cum3_n": 6,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 3.184599337652383,
+       "cum5_mae_naive": 2.536499999999954,
+       "cum5_n": 4,
+       "cum5_coverage90": 1.0
+      }
+     }
+    }
+   },
+   "hidden_stop_skipped": {
+    "fewer than 3 clean pre-stop laps": 11,
+    "no representative lap within 8 laps after the stop": 1
+   },
+   "regret": {
+    "race_id": "2024_SaudiArabia",
+    "season": 2024,
+    "event": "SaudiArabia",
+    "n_laps": 50,
+    "circuit_class": "street",
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.9710000000000036,
+     "HARD": 1.2
+    },
+    "pit_loss": 21.0,
+    "scorable_compounds": [
+     "SOFT",
+     "MEDIUM",
+     "HARD"
+    ],
+    "forecast_compounds": [
+     "SOFT",
+     "MEDIUM",
+     "HARD"
+    ],
+    "reference_slopes": {
+     "SOFT": 0.05785384615382202,
+     "MEDIUM": -0.013997613929056131,
+     "HARD": -0.02069120488340559
+    },
+    "pre_race_slopes": {
+     "SOFT": 0.0077708596786162315,
+     "MEDIUM": 0.02074189124800327,
+     "HARD": 0.0077708596786162315
+    },
+    "label": "held-out strategy replay under a post-race reference model",
+    "plans": {
+     "orb": {
+      "plan": "S-M",
+      "seq": [
+       "SOFT",
+       "MEDIUM"
+      ],
+      "stints": [
+       44,
+       6
+      ],
+      "stops": 1,
+      "time": 34.954730798038156,
+      "cost_under_reference": 83.80735779977365,
+      "regret": 32.7260648203088
+     },
+     "naive": {
+      "plan": "S-H-H",
+      "seq": [
+       "SOFT",
+       "HARD",
+       "HARD"
+      ],
+      "stints": [
+       10,
+       20,
+       20
+      ],
+      "stops": 2,
+      "time": 178.50018837553642,
+      "cost_under_reference": 84.49165548742985,
+      "regret": 33.410362507965
+     },
+     "observed": {
+      "plan": "M-H",
+      "seq": [
+       "MEDIUM",
+       "HARD"
+      ],
+      "stints": [
+       7,
+       43
+      ],
+      "stops": 1,
+      "drivers": 13,
+      "drivers_classified": 18,
+      "cost_under_reference": 59.431186990284765,
+      "regret": 8.34989401081991
+     },
+     "default": {
+      "plan": "M-H",
+      "seq": [
+       "MEDIUM",
+       "HARD"
+      ],
+      "stints": [
+       25,
+       25
+      ],
+      "stops": 1,
+      "cost_under_reference": 64.00113388595003,
+      "regret": 12.91984090648517
+     }
+    },
+    "oracle": {
+     "plan": "S-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      6,
+      44
+     ],
+     "stops": 1,
+     "cost": 51.081292979464855
+    },
+    "regret_orb": 32.7260648203088,
+    "regret_naive": 33.410362507965,
+    "regret_observed": 8.34989401081991,
+    "regret_default": 12.91984090648517
+   },
+   "metadata": {
+    "circuit_class": "street",
+    "degradation_class": "low",
+    "event": "SaudiArabia",
+    "fp_laps": 1020,
+    "n_fp": 3,
+    "race_laps": 873,
+    "sc_or_vsc": true,
+    "season": 2024,
+    "telemetry_ok": 1.0,
+    "temperature_regime": "mild",
+    "track_temp": 31.5,
+    "wet": false
+   }
+  },
+  "2024_Zandvoort": {
+   "forecast": {
+    "season": 2024,
+    "event": "Zandvoort",
+    "race_id": "2024_Zandvoort",
+    "n_laps": 72,
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.6,
+     "HARD": 1.2654999999999959
+    },
+    "offsets_source": {
+     "MEDIUM": "practice value +1.44 s implausible, nominal Pirelli-range step",
+     "HARD": "practice (4 drivers)"
+    },
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 126,
+      "naive": 0.19628450711181375,
+      "clean": 0.136065934104721,
+      "clean_se": 0.02239400792094461,
+      "gate": "ok",
+      "issued": true,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 6,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.136065934104721,
+      "band90_raw": [
+       -0.0021572343514539246,
+       0.14254938602059844
+      ],
+      "band90": [
+       -0.13004948153626295,
+       0.14854825903369334
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "cleaned Friday curve (weekends disagree on the factor)",
+      "push_adj": 0.10332892263296856,
+      "energy_trend": -0.0601180158065789
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 84,
+      "naive": 0.21077141238536728,
+      "clean": 0.012498151065207273,
+      "clean_se": 0.029680499543471135,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 0.6067359286188506,
+      "factor_applied": true,
+      "factor_from_n_weekends": 11,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.0077708596786162315,
+      "band90_raw": [
+       -0.03609607370036372,
+       0.0910737578356486
+      ],
+      "band90": [
+       -0.07668435386790189,
+       0.16815052406307052
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool",
+      "push_adj": 0.09487353845593693,
+      "energy_trend": 0.15127357747684594
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 49,
+      "naive": 0.1858289742498376,
+      "clean": 0.07450049679813625,
+      "clean_se": 0.03081608725631723,
+      "gate": "ok",
+      "issued": true,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": 7,
+      "floor": 0.0077708596786162315,
+      "prediction": 0.07450049679813625,
+      "band90_raw": [
+       0.004475074739279622,
+       0.09390928547153886
+      ],
+      "band90": [
+       -0.06031658564008269,
+       0.11186744419630826
+      ],
+      "widen": 1.9252591198222935,
+      "basis": "cleaned Friday curve (weekends disagree on the factor)",
+      "push_adj": 0.10736443821722746,
+      "energy_trend": 0.06035110906217501
+     }
+    },
+    "pool_events": [
+     "AbuDhabi",
+     "Australia",
+     "Austria",
+     "Azerbaijan",
+     "Barcelona",
+     "Belgium",
+     "Britain",
+     "China",
+     "Hungary",
+     "Imola",
+     "Japan",
+     "LasVegas",
+     "Mexico",
+     "Miami",
+     "Monaco",
+     "Qatar",
+     "Singapore",
+     "USA"
+    ],
+    "pool_n": 18
+   },
+   "reference": {
+    "SOFT": {
+     "obs": 0.06317772031889803,
+     "obs_se": 0.009924184015749168,
+     "n_race": 67
+    },
+    "MEDIUM": {
+     "obs": 0.03229226200628635,
+     "obs_se": 0.005509948439454801,
+     "n_race": 202
+    },
+    "HARD": {
+     "obs": 0.029364983507306874,
+     "obs_se": 0.0015635261979819986,
+     "n_race": 563
+    }
+   },
+   "forecast_rows": [
+    {
+     "race_id": "2024_Zandvoort",
+     "season": 2024,
+     "event": "Zandvoort",
+     "compound": "SOFT",
+     "issued": true,
+     "gate": "ok",
+     "n_prac": 126,
+     "naive": 0.19628450711181375,
+     "clean": 0.136065934104721,
+     "prediction": 0.136065934104721,
+     "band90": [
+      -0.13004948153626295,
+      0.14854825903369334
+     ],
+     "obs": 0.06317772031889803,
+     "obs_se": 0.009924184015749168,
+     "n_race": 67,
+     "err": 0.07288821378582298,
+     "err_naive": 0.1331067867929157,
+     "err_clean": 0.07288821378582298,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 1.0,
+     "factor_applied": false,
+     "pool_n": 18,
+     "circuit_class": "permanent",
+     "degradation_class": "high",
+     "temperature_regime": "mild",
+     "sc_or_vsc": false,
+     "weather_regime": "mild"
+    },
+    {
+     "race_id": "2024_Zandvoort",
+     "season": 2024,
+     "event": "Zandvoort",
+     "compound": "MEDIUM",
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "n_prac": 84,
+     "naive": 0.21077141238536728,
+     "clean": 0.012498151065207273,
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07668435386790189,
+      0.16815052406307052
+     ],
+     "obs": 0.03229226200628635,
+     "obs_se": 0.005509948439454801,
+     "n_race": 202,
+     "err": 0.024521402327670118,
+     "err_naive": 0.17847915037908094,
+     "err_clean": null,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "pool_n": 18,
+     "circuit_class": "permanent",
+     "degradation_class": "high",
+     "temperature_regime": "mild",
+     "sc_or_vsc": false,
+     "weather_regime": "mild"
+    },
+    {
+     "race_id": "2024_Zandvoort",
+     "season": 2024,
+     "event": "Zandvoort",
+     "compound": "HARD",
+     "issued": true,
+     "gate": "ok",
+     "n_prac": 49,
+     "naive": 0.1858289742498376,
+     "clean": 0.07450049679813625,
+     "prediction": 0.07450049679813625,
+     "band90": [
+      -0.06031658564008269,
+      0.11186744419630826
+     ],
+     "obs": 0.029364983507306874,
+     "obs_se": 0.0015635261979819986,
+     "n_race": 563,
+     "err": 0.04513551329082938,
+     "err_naive": 0.15646399074253073,
+     "err_clean": 0.04513551329082938,
+     "covered": true,
+     "widen": 1.9252591198222935,
+     "factor": 1.0,
+     "factor_applied": false,
+     "pool_n": 18,
+     "circuit_class": "permanent",
+     "degradation_class": "high",
+     "temperature_regime": "mild",
+     "sc_or_vsc": false,
+     "weather_regime": "mild"
+    }
+   ],
+   "hidden_stop": {
+    "pooled": {
+     "n_cases": 21,
+     "n_weekends": 1,
+     "next1_mae": 1.666184347526008,
+     "next1_mae_naive": 1.6470190476190472,
+     "next1_n": 21,
+     "next1_coverage90": 0.8571428571428571,
+     "cum3_mae": 5.270773205964233,
+     "cum3_mae_naive": 4.682248333333338,
+     "cum3_n": 20,
+     "cum3_coverage90": 0.8,
+     "cum5_mae": 8.980156905130485,
+     "cum5_mae_naive": 7.905990740740742,
+     "cum5_n": 18,
+     "cum5_coverage90": 0.8333333333333334
+    },
+    "by": {
+     "compound_new": {
+      "HARD": {
+       "n_cases": 16,
+       "n_weekends": 1,
+       "next1_mae": 1.7861153139291837,
+       "next1_mae_naive": 1.9869333333333357,
+       "next1_n": 16,
+       "next1_coverage90": 0.8125,
+       "cum3_mae": 5.50388748298567,
+       "cum3_mae_naive": 5.965400000000007,
+       "cum3_n": 15,
+       "cum3_coverage90": 0.7333333333333333,
+       "cum5_mae": 9.419970978328006,
+       "cum5_mae_naive": 9.891738095238098,
+       "cum5_n": 14,
+       "cum5_coverage90": 0.7857142857142857
+      },
+      "MEDIUM": {
+       "n_cases": 2,
+       "n_weekends": 1,
+       "next1_mae": 1.0697400996525914,
+       "next1_mae_naive": 1.1869833333333233,
+       "next1_n": 2,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 5.119303526909981,
+       "cum3_mae_naive": 1.6197833333333023,
+       "cum3_n": 2,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 8.46347823952803,
+       "cum5_mae_naive": 0.6936666666666156,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      },
+      "SOFT": {
+       "n_cases": 3,
+       "n_weekends": 1,
+       "next1_mae": 1.4241820252913489,
+       "next1_mae_naive": 0.14083333333332368,
+       "next1_n": 3,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 4.20618160689322,
+       "cum3_mae_naive": 0.3081333333333494,
+       "cum3_n": 3,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 7.0999174520762125,
+       "cum5_mae_naive": 1.043277777777779,
+       "cum5_n": 3,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "circuit_class": {
+      "permanent": {
+       "n_cases": 21,
+       "n_weekends": 1,
+       "next1_mae": 1.666184347526008,
+       "next1_mae_naive": 1.6470190476190472,
+       "next1_n": 21,
+       "next1_coverage90": 0.8571428571428571,
+       "cum3_mae": 5.270773205964233,
+       "cum3_mae_naive": 4.682248333333338,
+       "cum3_n": 20,
+       "cum3_coverage90": 0.8,
+       "cum5_mae": 8.980156905130485,
+       "cum5_mae_naive": 7.905990740740742,
+       "cum5_n": 18,
+       "cum5_coverage90": 0.8333333333333334
+      }
+     },
+     "set_status": {
+      "new": {
+       "n_cases": 20,
+       "n_weekends": 1,
+       "next1_mae": 1.6805427359242457,
+       "next1_mae_naive": 1.7232533333333335,
+       "next1_n": 20,
+       "next1_coverage90": 0.85,
+       "cum3_mae": 5.341426956995528,
+       "cum3_mae_naive": 4.898866666666673,
+       "cum3_n": 19,
+       "cum3_coverage90": 0.7894736842105263,
+       "cum5_mae": 9.146278474642527,
+       "cum5_mae_naive": 8.2985,
+       "cum5_n": 17,
+       "cum5_coverage90": 0.8235294117647058
+      },
+      "used": {
+       "n_cases": 1,
+       "n_weekends": 1,
+       "next1_mae": 1.3790165795612523,
+       "next1_mae_naive": 0.12233333333331586,
+       "next1_n": 1,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 3.928351936369623,
+       "cum3_mae_naive": 0.5664999999999765,
+       "cum3_n": 1,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 6.156090223425778,
+       "cum5_mae_naive": 1.2333333333333059,
+       "cum5_n": 1,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "stop_regime": {
+      "green": {
+       "n_cases": 21,
+       "n_weekends": 1,
+       "next1_mae": 1.666184347526008,
+       "next1_mae_naive": 1.6470190476190472,
+       "next1_n": 21,
+       "next1_coverage90": 0.8571428571428571,
+       "cum3_mae": 5.270773205964233,
+       "cum3_mae_naive": 4.682248333333338,
+       "cum3_n": 20,
+       "cum3_coverage90": 0.8,
+       "cum5_mae": 8.980156905130485,
+       "cum5_mae_naive": 7.905990740740742,
+       "cum5_n": 18,
+       "cum5_coverage90": 0.8333333333333334
+      }
+     },
+     "driver_support": {
+      "seen": {
+       "n_cases": 21,
+       "n_weekends": 1,
+       "next1_mae": 1.666184347526008,
+       "next1_mae_naive": 1.6470190476190472,
+       "next1_n": 21,
+       "next1_coverage90": 0.8571428571428571,
+       "cum3_mae": 5.270773205964233,
+       "cum3_mae_naive": 4.682248333333338,
+       "cum3_n": 20,
+       "cum3_coverage90": 0.8,
+       "cum5_mae": 8.980156905130485,
+       "cum5_mae_naive": 7.905990740740742,
+       "cum5_n": 18,
+       "cum5_coverage90": 0.8333333333333334
+      }
+     }
+    }
+   },
+   "hidden_stop_skipped": {
+    "fewer than 3 clean pre-stop laps": 4,
+    "no representative lap within 8 laps after the stop": 1
+   },
+   "regret": {
+    "race_id": "2024_Zandvoort",
+    "season": 2024,
+    "event": "Zandvoort",
+    "n_laps": 72,
+    "circuit_class": "permanent",
+    "offsets": {
+     "SOFT": 0.0,
+     "MEDIUM": 0.6,
+     "HARD": 1.2654999999999959
+    },
+    "pit_loss": 21.0,
+    "scorable_compounds": [
+     "SOFT",
+     "MEDIUM",
+     "HARD"
+    ],
+    "forecast_compounds": [
+     "SOFT",
+     "MEDIUM",
+     "HARD"
+    ],
+    "reference_slopes": {
+     "SOFT": 0.06317772031889803,
+     "MEDIUM": 0.03229226200628635,
+     "HARD": 0.029364983507306874
+    },
+    "pre_race_slopes": {
+     "SOFT": 0.136065934104721,
+     "MEDIUM": 0.0077708596786162315,
+     "HARD": 0.07450049679813625
+    },
+    "label": "held-out strategy replay under a post-race reference model",
+    "plans": {
+     "orb": {
+      "plan": "S-M",
+      "seq": [
+       "SOFT",
+       "MEDIUM"
+      ],
+      "stints": [
+       8,
+       64
+      ],
+      "stops": 1,
+      "time": 80.46176175929172,
+      "cost_under_reference": 128.84230290455594,
+      "regret": 25.033617324317717
+     },
+     "naive": {
+      "plan": "S-S-M",
+      "seq": [
+       "SOFT",
+       "SOFT",
+       "MEDIUM"
+      ],
+      "stints": [
+       26,
+       26,
+       20
+      ],
+      "stops": 2,
+      "time": 236.05372059342037,
+      "cost_under_reference": 105.13213468518654,
+      "regret": 1.323449104948324
+     },
+     "observed": {
+      "plan": "M-H",
+      "seq": [
+       "MEDIUM",
+       "HARD"
+      ],
+      "stints": [
+       29,
+       43
+      ],
+      "stops": 1,
+      "drivers": 13,
+      "drivers_classified": 18,
+      "cost_under_reference": 134.6429083706467,
+      "regret": 30.834222790408475
+     },
+     "default": {
+      "plan": "M-H",
+      "seq": [
+       "MEDIUM",
+       "HARD"
+      ],
+      "stints": [
+       36,
+       36
+      ],
+      "stops": 1,
+      "cost_under_reference": 129.22172551205293,
+      "regret": 25.41303993181471
+     }
+    },
+    "oracle": {
+     "plan": "S-S-M",
+     "seq": [
+      "SOFT",
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      23,
+      23,
+      26
+     ],
+     "stops": 2,
+     "cost": 103.80868558023822
+    },
+    "regret_orb": 25.033617324317717,
+    "regret_naive": 1.323449104948324,
+    "regret_observed": 30.834222790408475,
+    "regret_default": 25.41303993181471
+   },
+   "metadata": {
+    "circuit_class": "permanent",
+    "degradation_class": "high",
+    "event": "Zandvoort",
+    "fp_laps": 776,
+    "n_fp": 3,
+    "race_laps": 1426,
+    "sc_or_vsc": false,
+    "season": 2024,
+    "telemetry_ok": 1.0,
+    "temperature_regime": "mild",
+    "track_temp": 31.3,
+    "wet": false
+   }
+  },
+  "2025_Qatar": {
+   "error": "no weekend table: fewer than 40 clean practice laps (weekend-level abstention by the pipeline rule)"
+  }
+ }
+}

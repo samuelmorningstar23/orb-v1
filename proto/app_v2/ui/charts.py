@@ -160,7 +160,7 @@ def calibration_scatter(rows) -> go.Figure:
 
 
 # ---- Ghost Strategy panels from Workstream 2's counterfactual outputs ------------------------------------------------------
-def cumulative_delta_real(laps, lap_sel: int, source_label: str) -> go.Figure:
+def cumulative_delta_real(laps, lap_sel: int, source_label: str, title: str | None = None) -> go.Figure:
     """Cumulative race-time delta (ghost minus actual) per lap with the q10/q90 band, from laps.csv."""
     fig = go.Figure(); x = laps['lap'].to_numpy()
     if 'cumulative_delta_q10' in laps and 'cumulative_delta_q90' in laps:
@@ -173,11 +173,11 @@ def cumulative_delta_real(laps, lap_sel: int, source_label: str) -> go.Figure:
     if len(row):
         fig.add_trace(go.Scatter(x=[lap_sel], y=[float(row['cumulative_delta'].iloc[0])], mode='markers', name='selected lap', marker=dict(color=COLORS['live'], size=10)))
     fig.add_hline(y=0, line=dict(color=COLORS['border'], width=1))
-    apply(fig, height=280, xaxis_title='Lap', yaxis_title='Ghost minus actual (s), negative = ghost ahead', title='Cumulative race-time delta (Workstream 2 laps.csv)')
+    apply(fig, height=280, xaxis_title='Lap', yaxis_title='Ghost minus actual (s), negative = ghost ahead', title=title or 'Cumulative race-time delta (Workstream 2 laps.csv)')
     return fig
 
 
-def waterfall_real(decomp: dict, source_label: str) -> go.Figure:
+def waterfall_real(decomp: dict, source_label: str, title: str | None = None) -> go.Figure:
     """Decomposition Y = B + T + P + I + e from the engine block (means over sampled curves)."""
     fig = go.Figure()
     vals = [decomp.get('baseline') or 0.0, decomp.get('tyre') or 0.0, decomp.get('pit') or 0.0, decomp.get('interaction') or 0.0]
@@ -186,7 +186,7 @@ def waterfall_real(decomp: dict, source_label: str) -> go.Figure:
     fig.add_trace(go.Waterfall(x=['baseline B (preserved)', 'tyre T', 'pit P', 'interaction + residual', 'total'], measure=['relative', 'relative', 'relative', 'relative', 'total'], y=vals + [total or 0.0], text=text, textposition='outside',
                                connector=dict(line=dict(color=COLORS['border'])), increasing=dict(marker=dict(color=COLORS['critical'])), decreasing=dict(marker=dict(color=COLORS['live'])), totals=dict(marker=dict(color=COLORS['decision']))))
     idc = decomp.get('identity_check_delta_s')
-    apply(fig, height=280, showlegend=False, yaxis_title='s', title=f'Lap decomposition ({source_label}) · identity check {idc:+.3f} s' if idc is not None else f'Lap decomposition ({source_label})')
+    apply(fig, height=280, showlegend=False, yaxis_title='s', title=title or (f'Lap decomposition ({source_label}) · identity check {idc:+.3f} s' if idc is not None else f'Lap decomposition ({source_label})'))
     return fig
 
 

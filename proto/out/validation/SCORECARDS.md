@@ -1,4 +1,4 @@
-# Orb v1 scorecards (2026-09-12T16:59:03, git b0b924cf1c70e8af5d35324a47d38a992883df13)
+# Orb v1 scorecards (2026-09-12T21:53:14, git cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e)
 
 Two scorecards, never merged (roadmap v5 9.0.1). Intervals: weekend-grouped bootstrap, 90 %.
 
@@ -36,9 +36,36 @@ Development pool: 64 weekends, 148 compound-weekends (84 issued, 64 withheld); s
 | driver_support=seen | — | — | — | — | 1.118 | 1.442 | — |
 | driver_support=unseen | — | — | — | — | 0.962 | 1.632 | — |
 
+### By season (development pool, leave-one-weekend-out inside the season)
+
+| season | weekends | compound-weekends (issued / withheld) | MAE Orb v1 | MAE naive | cov90 | wins over naive | calibration r |
+|---|---|---|---|---|---|---|---|
+| 2023 | 17 | 40 (20 / 20) | 0.0546 [0.0371, 0.0754] | 0.1943 [0.1648, 0.2216] | 85% [78%, 92%] | 35 of 40 | 0.38 |
+| 2024 | 18 | 39 (24 / 15) | 0.0760 [0.0526, 0.0990] | 0.1644 [0.1270, 0.2045] | 90% [82%, 97%] | 27 of 39 | 0.07 |
+| 2025 | 18 | 40 (24 / 16) | 0.0472 [0.0334, 0.0621] | 0.1606 [0.1317, 0.1888] | 85% [76%, 93%] | 35 of 40 | 0.31 |
+| 2026 | 11 | 29 (16 / 13) | 0.0227 [0.0172, 0.0281] | 0.1371 [0.1054, 0.1742] | 86% [72%, 97%] | 28 of 29 | 0.78 |
+
+### Lock consistency: 2026 leave-one-weekend-out vs out/lock.json (generated 2026-09-12T21:33:10)
+
+| metric | scorecard | lock | match |
+|---|---|---|---|
+| n_weekends | 11 | 11 | yes |
+| n_compound_weekends | 29 | 29 | yes |
+| n_issued | 16 | 16 | yes |
+| n_withheld | 13 | 13 | yes |
+| mae_naive_all | 0.1371 | 0.1371 | yes |
+| mae_orb_v1_all | 0.0227 | 0.0227 | yes |
+| mae_naive_issued | 0.1627 | 0.1627 | yes |
+| mae_orb_v1_issued | 0.0226 | 0.0226 | yes |
+| calibration_r_all | 0.7806 | 0.7806 | yes |
+| wins_orb_over_naive | 28 | 28 | yes |
+| band_coverage90_all | 0.8621 | 0.8621 | yes |
+
+All 11 compared values match: True (floats within 0.0005, counts exact). the lock is pipeline.py's own leave-one-weekend-out validation over the completed 2026 weekends; the scorecard recomputes it with evaluation.forecast (pool = the other completed 2026 weekends; no 2026 weekend is sealed); the prospective weekend has no race file and enters neither.
+
 ### Sealed holdout (aggregate only)
 
-6 sealed weekends, 9 compound-weekends; per-race results sealed (no freeze.json: model, feature list, gate threshold and provider are not frozen); post_holdout_tuning=None.
+6 sealed weekends, 9 compound-weekends; per-race results revealed (frozen at commit cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e); post_holdout_tuning=False.
 
 | metric | Orb v1 | naive |
 |---|---|---|
@@ -71,7 +98,7 @@ pooled over 11 rounds: MAE Orb v1 0.0315 vs naive 0.1371; from a pool of >= 3 ro
 
 ## Live Predictor scorecard
 
-Source: out/live/prefix_eval.json (linear-Gaussian with fixed regime rules, live_estimator_lg_v0.1, generated 2026-09-12T16:27:48); races Monza, Austria, Barcelona; race-grouped laps-weighted bootstrap.
+Source: out/live/prefix_eval.json (linear-Gaussian with fixed regime rules, live_estimator_lg_v0.1, generated 2026-09-12T21:49:21); races Monza, Austria, Barcelona; race-grouped laps-weighted bootstrap.
 
 | metric | estimator | prior-only baseline |
 |---|---|---|
@@ -84,4 +111,8 @@ Source: out/live/prefix_eval.json (linear-Gaussian with fixed regime rules, live
 | false alert episodes per stint | 0.08 [0.06, 0.09] | |
 | recommendation change rate | 9% [7%, 11%] | |
 
-Driver-feedback ablation: not run (no recorded driver-feedback events in app_v2/state/feedback_events.jsonl (defined experiment, not a pre-written result))
+**Driver-feedback ablation NOT RUN: no driver-feedback event has been recorded (the UI log is empty and every replay run consumed 0 events). It is a defined experiment, not a pre-written result; it runs from python -m evaluation.scorecards as soon as events exist.**
+
+Sources checked: `app_v2/state/feedback_events.jsonl` (0 events); `out/live/Austria_NOR/driver_feedback.json` (0 events); `out/live/Barcelona_NOR/driver_feedback.json` (0 events); `out/live/Monza_NOR/driver_feedback.json` (0 events).
+
+Design (runs automatically once events exist): for every (event, driver) pair with recorded feedback: replay the race prefix-by-prefix with feedback disabled (telemetry only) and enabled (telemetry + structured feedback through live.feedback.DriverFeedbackAdapter); report next-lap MAE, 3- and 5-lap cumulative MAE, 90 % coverage, accelerating-wear detection rate and lead, false alert episodes per stint and recommendation change rate for both arms.

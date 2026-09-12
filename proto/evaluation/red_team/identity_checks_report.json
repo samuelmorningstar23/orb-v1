@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T20:59:50",
+ "generated_at": "2026-09-12T22:16:25",
  "events": [
   "Monza",
   "Austria"
@@ -362,8 +362,9 @@
     "probability_of_gain": 0.0
    },
    "model_hash_unchanged": true,
-   "disk_generated_at": "2026-09-12T16:26:23",
-   "disk_git_sha": "ccae5d9"
+   "curve_source": "race_reference",
+   "disk_generated_at": "2026-09-12T21:39:03",
+   "disk_git_sha": "cdb1a45"
   },
   {
    "check": "on-disk scenario reproduces: monza_nor_lap24_to_medium_new_tyre_only",
@@ -376,8 +377,9 @@
     "probability_of_gain": 0.0
    },
    "model_hash_unchanged": true,
-   "disk_generated_at": "2026-09-12T16:26:23",
-   "disk_git_sha": "ccae5d9"
+   "curve_source": "race_reference",
+   "disk_generated_at": "2026-09-12T21:39:03",
+   "disk_git_sha": "cdb1a45"
   },
   {
    "check": "on-disk scenario reproduces: monza_ver_lap20_to_hard_new_fixed_context",
@@ -390,8 +392,9 @@
     "probability_of_gain": 0.0
    },
    "model_hash_unchanged": true,
-   "disk_generated_at": "2026-09-12T20:57:58",
-   "disk_git_sha": "b0b924c"
+   "curve_source": "race_reference",
+   "disk_generated_at": "2026-09-12T21:39:04",
+   "disk_git_sha": "cdb1a45"
   },
   {
    "check": "on-disk scenario reproduces: monza_ver_lap28_to_soft_new_fixed_context",
@@ -404,8 +407,39 @@
     "probability_of_gain": 0.0
    },
    "model_hash_unchanged": true,
-   "disk_generated_at": "2026-09-12T16:26:24",
-   "disk_git_sha": "ccae5d9"
+   "curve_source": "race_reference",
+   "disk_generated_at": "2026-09-12T21:39:04",
+   "disk_git_sha": "cdb1a45"
+  },
+  {
+   "check": "on-disk scenario reproduces: pre_race/monza_nor_lap24_to_medium_new_fixed_context",
+   "status": "PASS",
+   "max_abs_diff": 0.0,
+   "diffs": {
+    "elapsed_delta_median_s": 0.0,
+    "elapsed_delta_q10_s": 0.0,
+    "elapsed_delta_q90_s": 0.0,
+    "probability_of_gain": 0.0
+   },
+   "model_hash_unchanged": true,
+   "curve_source": "pre_race_forecast",
+   "disk_generated_at": "2026-09-12T21:39:05",
+   "disk_git_sha": "cdb1a45"
+  },
+  {
+   "check": "on-disk scenario reproduces: pre_race/monza_nor_lap24_to_medium_new_tyre_only",
+   "status": "PASS",
+   "max_abs_diff": 0.0,
+   "diffs": {
+    "elapsed_delta_median_s": 0.0,
+    "elapsed_delta_q10_s": 0.0,
+    "elapsed_delta_q90_s": 0.0,
+    "probability_of_gain": 0.0
+   },
+   "model_hash_unchanged": true,
+   "curve_source": "pre_race_forecast",
+   "disk_generated_at": "2026-09-12T21:52:59",
+   "disk_git_sha": "cdb1a45"
   },
   {
    "check": "provider A reproduces every lock curve",
@@ -536,7 +570,7 @@
   }
  ],
  "summary": {
-  "passed": 39,
+  "passed": 41,
   "failed": 0
  },
  "status": "PASS",

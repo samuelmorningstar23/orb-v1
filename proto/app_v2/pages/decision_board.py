@@ -17,7 +17,7 @@ def action_card(rank: int, r: dict, source: str) -> str:
     title = r['action'].replace('_', ' ') + (f" laps {w[0]}-{w[1]}" if w and w[0] != w[1] else (f" lap {w[0]}" if w else ''))
     tyre = badges.compound_html(r['target_compound']) if r.get('target_compound') else badges.badge_html('no compound change', 'neutral')
     ts = r.get('target_set') or {}
-    rejoin = f"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · {rj['traffic_density']}" if rj.get('position_now') is not None else rj.get('note', '—')
+    rejoin = LB.rejoin_text(rj) if rj.get('position_now') is not None else rj.get('note', '—')   # observed gap structure, never a projected P-number
     grid = ''.join(f'<div><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div></div>' for k, v in [
         ('target set', f"{ts.get('set_id')} ({ts.get('status')})" if ts else '—'), ('expected gain', f"{r['expected_gain_median']:+.1f} s (q10 {r['expected_gain_q10']:+.1f}, q90 {r['expected_gain_q90']:+.1f})"),
         ('probability of gain', f"{100 * r['probability_of_gain']:.0f}%"), ('rejoin traffic', rejoin)])
@@ -87,7 +87,10 @@ def render() -> None:
         s = vm.state
         rows = [('compound / age', f'{s.compound} / {s.tyre_age}' if s else '—'), ('posterior slope', f'{s.post_slope:+.3f} ± {s.post_sd:.3f} s/lap' if s and s.post_slope is not None else '—'),
                 ('prior slope', f'{vm.prior.slope:+.3f} s/lap ({vm.prior.source})' if vm.prior.slope is not None else '—'), ('trend vs forecast', f'{s.trend_vs_prior:+.2f}x' if s and s.trend_vs_prior is not None else '—'),
-                ('clean laps in stint', s.kept_laps if s else '—'), ('driver reports', len(vm.feedback)), ('support', LB.support_status(vm)), ('estimator', LB.estimator_label_short(vm))]
+                ('clean laps in stint', s.kept_laps if s else '—'), ('driver reports', len(vm.feedback)), ('support (7.1 live_tyre_state)' if orb else 'support', LB.support_status(vm)), ('support (lock-metadata chips)', vm.support.overall_support_status), ('estimator', LB.estimator_label_short(vm))]
+        note = LB.support_note(vm)
+        if note:
+            rows.append(('support note', note))
         if orb:
             ts = orb['tyre_state']
             rows += [('regime', orb['regime']), ('useful laps q10/q50/q90', f"{ts['useful_laps_q10']:.0f} / {ts['useful_laps_q50']:.0f} / {ts['useful_laps_q90']:.0f}"), ('cliff 3 / 5 laps', f"{100 * ts['cliff_probability_3_laps']:.0f}% / {100 * ts['cliff_probability_5_laps']:.0f}% · {LB.CLIFF_LABEL}"), ('data cutoff', orb.get('data_cutoff', '—'))]

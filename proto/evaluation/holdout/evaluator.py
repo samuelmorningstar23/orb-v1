@@ -18,6 +18,10 @@ Outputs (proto/out/validation/):
                              gate_threshold_frozen, provider_frozen all true and a git_commit; otherwise the evaluator prints
                              "per-race results sealed" and exits 0
 post_holdout_tuning is true in the output when a freeze exists and the current git commit differs from the freeze commit.
+Every aggregate file carries two top-level flags: dry_run_before_freeze and quotable. Without a valid freeze the run is a
+DRY RUN (dry_run_before_freeze=true, quotable=false, a warning is printed and stored in the file): no number from such a
+file may be quoted anywhere (lead decision, 12 Sep: the 16:55 aggregate was revealed before the freeze). Under a valid
+freeze the flags are dry_run_before_freeze=false, quotable=true.
 The manifest's sha256 must match sealed_holdout_manifest.sha256; on a mismatch the evaluator prints a stop-the-line
 message and exits 2 (writing release/STOP_THE_LINE.json is Workstream 9's). It never prints a per-race number.
 
@@ -48,6 +52,12 @@ MIN_CELL_WEEKENDS = 3
 CELL_KEYS = ('circuit_class', 'degradation_class', 'temperature_regime', 'sc_or_vsc')
 STOP_MESSAGE = ('STOP THE LINE: the sealed holdout manifest does not match its recorded sha256 (stop-the-line condition: sealed holdout opened or altered). '
                 'No evaluation was run. Workstream 9 records release/STOP_THE_LINE.json; the lead restores the sealed manifest from the last green commit.')
+DRY_RUN_WARNING = ('WARNING: sealed-holdout aggregate produced WITHOUT a valid freeze (evaluation/holdout/freeze.json): this is a DRY RUN BEFORE THE MODEL FREEZE '
+                   '(dry_run_before_freeze=true, quotable=false). Do not quote any number from this file in any document, scorecard or deck. '
+                   'After the lead writes freeze.json (checkpoint C4), re-run `python -m evaluation.holdout.evaluator` then `python -m evaluation.scorecards` '
+                   'and quote only that run, labelled "sealed holdout, aggregate".')
+QUOTABLE_RULE = ('quotable is true only for a run produced under a valid freeze.json (model_frozen, feature_list_frozen, gate_threshold_frozen, provider_frozen all true '
+                 'and a git_commit); a dry run before the freeze is never quoted anywhere')
 
 
 # ---------------------------------------------------------------- manifest and freeze
@@ -232,14 +242,23 @@ def _strip_extremes(agg: dict[str, Any]) -> dict[str, Any]:
     return out
 
 
+def dry_run_flags(freeze: Optional[dict[str, Any]]) -> dict[str, Any]:
+    """The two top-level flags every aggregate file carries. A run without a valid freeze (missing file, any of the four
+    flags not true, or no git_commit) is a dry run before the freeze and is not quotable; a valid freeze makes it quotable."""
+    allowed, reason = reveal_allowed(freeze)
+    return dict(dry_run_before_freeze=not allowed, quotable=allowed, quotable_rule=QUOTABLE_RULE, freeze_status=reason)
+
+
 def write_outputs(results: dict[str, Any], freeze: Optional[dict[str, Any]], out_dir: Path | str = OUT_DIR, current_sha: Optional[str] = None, manifest_meta: Optional[dict[str, Any]] = None,
                   quiet: bool = False) -> dict[str, Any]:
-    """Write holdout_aggregate.json always; holdout_per_race.json only when the freeze allows it. Returns the paths and the reveal decision."""
+    """Write holdout_aggregate.json always (flagged dry_run_before_freeze / quotable); holdout_per_race.json only when the freeze allows it.
+    Without a valid freeze the dry-run warning goes to stderr (unless quiet) and into the file. Returns the paths, the reveal decision and the flags."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     allowed, reason = reveal_allowed(freeze)
     tuned = post_holdout_tuning(freeze, current_sha)
-    header = dict(generated_at=now_iso(), git_sha=current_sha, manifest=manifest_meta or {}, freeze=freeze, reveal=dict(per_race_written=allowed, reason=reason),
+    flags = dry_run_flags(freeze)
+    header = dict(generated_at=now_iso(), git_sha=current_sha, manifest=manifest_meta or {}, freeze=freeze, **flags, reveal=dict(per_race_written=allowed, reason=reason),
                   post_holdout_tuning=tuned, n_weekends=results.get('n_weekends'),
                   data_cutoff='seasons 2023 to 2025 complete; each sealed weekend is forecast from its own practice files and factors from the non-sealed weekends of its season',
                   units=dict(degradation='s/lap per lap of tyre age', hidden_stop='s (next lap) and s over h laps (cumulative)', regret='s over the race', coverage='share inside the 90 % band'),
@@ -247,6 +266,10 @@ def write_outputs(results: dict[str, Any], freeze: Optional[dict[str, Any]], out
                               reference='race-derived pace-loss reference: model_v2.fit on the race, all drivers (post-race, scoring only)', hidden_stop='evaluation/hidden_stop.py', regret=REGRET_LABEL,
                               cells=f'cells with fewer than {MIN_CELL_WEEKENDS} weekends are suppressed; no per-weekend value is written to the aggregate file'),
                   leakage_check=results.get('leakage'))
+    if flags['dry_run_before_freeze']:
+        header['warning'] = DRY_RUN_WARNING
+        if not quiet:
+            print(DRY_RUN_WARNING, file=sys.stderr)
     agg_path = out_dir / 'holdout_aggregate.json'
     write_json(agg_path, dict(header, aggregate=results['aggregate']))
     paths = dict(aggregate=str(agg_path), per_race=None)
@@ -259,7 +282,7 @@ def write_outputs(results: dict[str, Any], freeze: Optional[dict[str, Any]], out
     else:
         if not quiet:
             print(f'per-race results sealed ({reason})')
-    return dict(paths=paths, reveal=allowed, reason=reason, post_holdout_tuning=tuned)
+    return dict(paths=paths, reveal=allowed, reason=reason, post_holdout_tuning=tuned, **{k: flags[k] for k in ('dry_run_before_freeze', 'quotable')})
 
 
 def print_aggregate(agg: dict[str, Any]) -> None:
@@ -319,7 +342,8 @@ def main(argv: Optional[list[str]] = None) -> int:
                 holdout_count=manifest.get('holdout_count'), race_ids=manifest.get('race_ids'), selected_at=manifest.get('selected_at'))
     w = write_outputs(results, freeze, a.out, sha, meta)
     print_aggregate(results['aggregate'])
-    print(f"wrote {w['paths']['aggregate']}" + (f" and {w['paths']['per_race']}" if w['paths']['per_race'] else ''))
+    tag = ' [DRY RUN BEFORE FREEZE: dry_run_before_freeze=true, quotable=false; not to be quoted anywhere]' if w['dry_run_before_freeze'] else ' [under freeze: quotable=true]'
+    print(f"wrote {w['paths']['aggregate']}" + (f" and {w['paths']['per_race']}" if w['paths']['per_race'] else '') + tag)
     return 0
 
 

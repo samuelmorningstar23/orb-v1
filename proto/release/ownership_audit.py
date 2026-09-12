@@ -20,7 +20,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-RULES_VERSION = 'roadmap_v5_s6 + workstream9 brief + lead decisions 12 Sep 2026 14:55 and 15:05 (out/ subtrees, tests/ per workstream, lead-only globs)'
+RULES_VERSION = 'roadmap_v5_s6 + workstream9 brief + lead decisions 12 Sep 2026 14:55, 15:05, 20:58 and 22:00 (out/ subtrees, tests/ per workstream, lead-only globs incl. generated documents and the published forecast)'
 # Directory rules end with '/'; file rules do not. Longest prefix wins (evaluation/red_team/ beats evaluation/).
 RULES = (
     ('schemas/', 1), ('fixtures/', 1), ('validators/', 1), ('shared/', 1), ('tests/contract/', 1),
@@ -36,7 +36,8 @@ RULES = (
 )
 LEAD_ONLY = {'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'out/results.csv', 'out/validation.csv', 'refresh.sh', 'cleanup_pass.sh'}
 # Globs match segment-wise ('*' never crosses '/'), so 'out/*.pdf' means direct children of out/ only.
-LEAD_ONLY_GLOBS = ('extract_*.py', 'build_*.py', 'refresh*.log', 'out/*.pptx', 'out/*.pdf', 'out/excluded_*.csv', 'deck_src/*')   # lead decision 12 Sep 20:58: deck source is lead-only
+LEAD_ONLY_GLOBS = ('extract_*.py', 'build_*.py', 'refresh*.log', 'out/*.pptx', 'out/*.pdf', 'out/excluded_*.csv', 'deck_src/*',   # lead decision 12 Sep 20:58: deck source is lead-only
+                   'out/THE_CASE.md', 'out/talk_track.md', 'out/ROADMAP.md', 'out/JURY_QUESTIONS.md', 'out/forecast_*.json', 'out/forecast_*.sha256')   # lead decision 12 Sep 22:00: outputs of the lead-only builders (build_case.py, build_manual.py, build_forecast.py)
 SEALED_PATTERNS = ('evaluation/holdout/sealed_holdout_manifest.*',)   # lead-only after sealing
 WORKSTREAM_NAMES = {1: 'contract and fixtures', 2: 'counterfactual core and events', 3: 'blind evaluation', 4: 'geometry and animation',
                5: 'frozen field', 6: 'dashboard', 7: 'red team', 8: 'live intelligence', 9: 'build control'}

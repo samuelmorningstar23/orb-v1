@@ -12,8 +12,13 @@ Ghost Strategy scorecard (out/validation/ghost_scorecard.json)
 Live Predictor scorecard (out/validation/live_scorecard.json)
     from Workstream 8's out/live/prefix_eval.json (next-lap and cumulative error, coverage, cliff Brier, alert lead time,
     false alerts per stint, recommendation stability), re-pooled with a race-grouped bootstrap (laps-weighted), plus the
-    driver-feedback ablation: run only when app_v2/state/feedback_events.jsonl carries events (defined experiment, not
-    a pre-written result).
+    driver-feedback ablation: run only when recorded feedback events exist, in app_v2/state/feedback_events.jsonl (the UI
+    log) or in Workstream 8's per-run logs out/live/<event>_<driver>/driver_feedback.json (defined experiment, not a
+    pre-written result; when no event exists the scorecard says so plainly).
+Ghost scorecard extras: by_season blocks and lock_consistency_2026, which recomputes the 2026 leave-one-weekend-out
+numbers and compares them with out/lock.json (MAE naive / Orb v1 with fallback, calibration r, wins over naive, calibrated
+band coverage, counts). The sealed block is copied from holdout_aggregate.json only when that file says quotable: true; a
+dry run before the freeze is reported as such and its numbers are withheld (lead decision, 12 Sep 2026).
 Every interval is a weekend-grouped bootstrap (evaluation.common.weekend_bootstrap); each block carries generated_at,
 git_sha, data_cutoff and units.
 
@@ -39,6 +44,9 @@ from counterfactual.racedata import load_race     # noqa: E402
 
 PREFIX_EVAL = PROTO / 'out' / 'live' / 'prefix_eval.json'
 FEEDBACK_LOG = PROTO / 'app_v2' / 'state' / 'feedback_events.jsonl'
+LIVE_OUT = PROTO / 'out' / 'live'
+LOCK_PATH = PROTO / 'out' / 'lock.json'
+LOCK_TOL = 5e-4
 DATA_CUTOFF_2026 = '2026-09-06T15:00:00 (Monza race, the latest completed 2026 round on disk; Madrid is the live weekend)'
 UNITS = dict(degradation='s/lap per lap of tyre age', hidden_stop='s (next lap) and s over h laps (cumulative)', regret='s over the race', coverage='share inside the 90 % band', probability='0 to 1')
 
@@ -74,7 +82,7 @@ def development_pool(seasons: Iterable[int], sealed: Iterable[str], quiet: bool 
             wx = weather_regime(F.metas[ev]['track_temp'].get('R'), F.metas[ev]['rain'].get('R', False))
             rows = score_forecast(fc, ref)
             for r in rows:
-                r.update(circuit_class=circuit_class(ev), weather_regime=wx)
+                r.update(circuit_class=circuit_class(ev), weather_regime=wx, season=int(season))
             fc_rows.extend(rows)
             cases, _ = stop_cases(race, fc, fc.race_id, seen_pool[ev])
             for c in cases:
@@ -102,7 +110,61 @@ def development_pool(seasons: Iterable[int], sealed: Iterable[str], quiet: bool 
             out['by_driver_support'][str(val)] = dict(hidden_stop=hs_aggregate([c for c in hs_cases if c.get('driver_support') == val], bootstrap=False)['pooled'],
                                                      note='the pre-race degradation curve has no driver term; support status applies to the hidden-stop cases (driver seen in a pool weekend race)')
     out['abstention_coverage'] = out['forecast'].get('abstention')
+    out['by_season'] = {}
+    if len(rows):
+        for season, d in rows.groupby('season'):
+            out['by_season'][str(int(season))] = dict(split='leave-one-weekend-out inside the season (pipeline.py rules; sealed weekends excluded from the pool)', forecast=_forecast_block(d, bootstrap=True))
+        if (rows['season'] == 2026).any():
+            out['lock_consistency_2026'] = lock_consistency(rows[rows['season'] == 2026])
     return out
+
+
+def _rel(p: Path) -> str:
+    return str(p.relative_to(PROTO)) if p.is_relative_to(PROTO) else str(p)
+
+
+def lock_meta(lock_path: Path = LOCK_PATH) -> dict[str, Any]:
+    if not lock_path.exists():
+        return dict(path=_rel(lock_path), status='missing')
+    lock = json.loads(lock_path.read_text(encoding='utf-8'))
+    v = lock.get('validation', {})
+    scored = sorted({r['event'] for r in lock.get('validation_rows', []) if r.get('obs') is not None})
+    events = sorted(lock.get('events', {}).keys()) if isinstance(lock.get('events'), dict) else []
+    return dict(path=_rel(lock_path), generated_at=lock.get('generated_at'), validation_n_weekends=v.get('n_weekends'), validation_n_compound_weekends=v.get('n_compound_weekends'),
+                scored_events=scored, prospective_events=[e for e in events if e not in scored])
+
+
+def lock_consistency(rows: pd.DataFrame, lock_path: Path = LOCK_PATH, tol: float = LOCK_TOL) -> dict[str, Any]:
+    """The 2026 leave-one-weekend-out numbers reported here must equal out/lock.json's validation block (same rules, same
+    pool): MAE naive / Orb v1 with fallback (all compound-weekends) and issued, calibration r, wins over naive, calibrated
+    90 % band coverage and the counts. Returns every pair with a match flag (counts exact, floats within tol)."""
+    if not lock_path.exists():
+        return dict(status='lock not found', path=_rel(lock_path))
+    lock = json.loads(lock_path.read_text(encoding='utf-8'))
+    v = lock.get('validation', {})
+    iss = rows[rows['issued']]
+    m = rows.dropna(subset=['prediction', 'obs'])
+    r = float(np.corrcoef(m['prediction'], m['obs'])[0, 1]) if len(m) >= 3 and m['prediction'].std() > 0 else None
+    sc = dict(n_weekends=int(rows['race_id'].nunique()), n_compound_weekends=int(len(rows)), n_issued=int(len(iss)), n_withheld=int(len(rows) - len(iss)),
+              mae_naive_all=mae(rows['err_naive']), mae_orb_v1_all=mae(rows['err']), mae_naive_issued=mae(iss['err_naive']), mae_orb_v1_issued=mae(iss['err']),
+              calibration_r_all=r, wins_orb_over_naive=int(((rows['err'] < rows['err_naive']) & rows['err'].notna()).sum()), band_coverage90_all=share(rows['covered']))
+    lk = dict(n_weekends=v.get('n_weekends'), n_compound_weekends=v.get('n_compound_weekends'), n_issued=v.get('n_issued'), n_withheld=v.get('n_withheld'),
+              mae_naive_all=v.get('mae_all_with_fallback', {}).get('naive'), mae_orb_v1_all=v.get('mae_all_with_fallback', {}).get('clearstint'),
+              mae_naive_issued=v.get('mae_issued', {}).get('naive'), mae_orb_v1_issued=v.get('mae_issued', {}).get('clearstint'),
+              calibration_r_all=v.get('calibration', {}).get('all_with_fallback', {}).get('r'), wins_orb_over_naive=v.get('wins_clearstint_over_naive'),
+              band_coverage90_all=v.get('band_coverage', {}).get('calibrated_all'))
+    comp: dict[str, Any] = {}
+    for k in sc:
+        a, b = sc[k], lk[k]
+        if a is None or b is None:
+            comp[k] = dict(scorecard=a, lock=b, match=None)
+        elif k.startswith('n_') or k.startswith('wins'):
+            comp[k] = dict(scorecard=int(a), lock=int(b), match=int(a) == int(b))
+        else:
+            comp[k] = dict(scorecard=float(a), lock=float(b), abs_diff=abs(float(a) - float(b)), match=abs(float(a) - float(b)) <= tol)
+    return dict(lock=lock_meta(lock_path), tolerance=tol, all_match=all(c['match'] for c in comp.values() if c['match'] is not None), n_compared=sum(1 for c in comp.values() if c['match'] is not None), metrics=comp,
+                note="the lock is pipeline.py's own leave-one-weekend-out validation over the completed 2026 weekends; the scorecard recomputes it with evaluation.forecast "
+                     "(pool = the other completed 2026 weekends; no 2026 weekend is sealed); the prospective weekend has no race file and enters neither")
 
 
 def rolling_origin_2026(quiet: bool = False) -> dict[str, Any]:
@@ -153,7 +215,7 @@ METRICS_LIVE = (('next1_mae', 'next1_n'), ('next1_mae_prior_only', 'next1_n'), (
                 ('cliff5_brier_climatology', 'cliff5_n'), ('recommendation_change_rate', 'lap_pairs'), ('aw_false_alert_episodes_per_stint', 'aw_false_stints'), ('aw_detection_rate', 'aw_true_stints'), ('aw_lead_laps_median', 'aw_true_stints'))
 
 
-def live_scorecard(prefix_path: Path = PREFIX_EVAL, feedback_log: Path = FEEDBACK_LOG, quiet: bool = False) -> dict[str, Any]:
+def live_scorecard(prefix_path: Path = PREFIX_EVAL, feedback_log: Path = FEEDBACK_LOG, live_out: Path = LIVE_OUT, quiet: bool = False) -> dict[str, Any]:
     if not prefix_path.exists():
         return dict(status='missing', note=f'{prefix_path} not found: run live/prefix_eval.py')
     pe = json.loads(prefix_path.read_text(encoding='utf-8'))
@@ -168,43 +230,81 @@ def live_scorecard(prefix_path: Path = PREFIX_EVAL, feedback_log: Path = FEEDBAC
             x = x[x[w] > 0]
             return float(np.average(x[m], weights=x[w])) if len(x) else None
         out['pooled'][metric] = weekend_bootstrap(races, stat)
-    out['driver_feedback_ablation'] = feedback_ablation(feedback_log, quiet=quiet)
+    out['driver_feedback_ablation'] = feedback_ablation(feedback_log, live_out, quiet=quiet)
     return out
 
 
-def feedback_ablation(feedback_log: Path = FEEDBACK_LOG, quiet: bool = False) -> dict[str, Any]:
-    """Telemetry only vs telemetry plus structured feedback, on the (event, driver) pairs that carry recorded feedback."""
-    events = []
+ABLATION_DESIGN = ('for every (event, driver) pair with recorded feedback: replay the race prefix-by-prefix with feedback disabled (telemetry only) and enabled '
+                   '(telemetry + structured feedback through live.feedback.DriverFeedbackAdapter); report next-lap MAE, 3- and 5-lap cumulative MAE, 90 % coverage, '
+                   'accelerating-wear detection rate and lead, false alert episodes per stint and recommendation change rate for both arms')
+ABLATION_METRICS = ('next1_mae', 'cum3_mae', 'cum5_mae', 'coverage90_next1', 'aw_detection_rate', 'aw_lead_laps_median', 'aw_false_alert_episodes_per_stint', 'recommendation_change_rate')
+
+
+def feedback_events(feedback_log: Path = FEEDBACK_LOG, live_out: Path = LIVE_OUT) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Every recorded driver-feedback event and where it came from: the UI log (rows carry event and driver) and Workstream 8's
+    per-run logs out/live/<event>_<driver>/driver_feedback.json (contract 7.3 events consumed by a replay; event and driver
+    from the directory name). Returns (events, sources), each source {path, exists, n_events}."""
+    events: list[dict[str, Any]] = []
+    sources: list[dict[str, Any]] = []
+    n = 0
     if feedback_log.exists():
         for line in feedback_log.read_text(encoding='utf-8').splitlines():
             line = line.strip()
-            if line:
-                try:
-                    events.append(json.loads(line))
-                except json.JSONDecodeError:
-                    pass
+            if not line:
+                continue
+            try:
+                e = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(e, dict) and e.get('event') and e.get('driver'):
+                events.append(e); n += 1
+    sources.append(dict(path=_rel(feedback_log), exists=feedback_log.exists(), n_events=n))
+    for f in (sorted(live_out.glob('*_*/driver_feedback.json')) if live_out.exists() else []):
+        ev, _, drv = f.parent.name.rpartition('_')
+        try:
+            rows = json.loads(f.read_text(encoding='utf-8'))
+        except json.JSONDecodeError:
+            rows = []
+        rows = [dict(r, event=r.get('event') or ev, driver=r.get('driver') or drv) for r in rows if isinstance(r, dict)] if isinstance(rows, list) else []
+        events.extend(rows)
+        sources.append(dict(path=_rel(f), exists=True, n_events=len(rows)))
+    return events, sources
+
+
+def feedback_ablation(feedback_log: Path = FEEDBACK_LOG, live_out: Path = LIVE_OUT, quiet: bool = False) -> dict[str, Any]:
+    """Telemetry only vs telemetry plus structured feedback, on the (event, driver) pairs that carry recorded feedback.
+    Runs only when at least one event exists in either source; otherwise states that plainly."""
+    events, sources = feedback_events(feedback_log, live_out)
+    src_txt = '; '.join(f"{s['path']} ({'missing' if not s['exists'] else str(s['n_events']) + ' events'})" for s in sources)
     if not events:
-        return dict(status='not run', reason=f'no recorded driver-feedback events in {feedback_log.relative_to(PROTO) if feedback_log.exists() else feedback_log} (defined experiment, not a pre-written result)',
-                    design='for every (event, driver) with recorded feedback: replay with feedback disabled and enabled; report next-lap MAE, 3- and 5-lap cumulative MAE, coverage, accelerating-wear detection lead and false alerts per stint for both arms')
+        return dict(status='not run', n_events=0, sources=sources, reason=f'no recorded driver-feedback event exists in any source: {src_txt}',
+                    statement='Driver-feedback ablation NOT RUN: no driver-feedback event has been recorded (the UI log is empty and every replay run consumed 0 events). '
+                              'It is a defined experiment, not a pre-written result; it runs from python -m evaluation.scorecards as soon as events exist.',
+                    design=ABLATION_DESIGN)
     try:
         from live.session import LiveSession
         from live.prefix_eval import evaluate_driver, aggregate as live_aggregate
     except Exception as e:
-        return dict(status='not run', reason=f'live package unavailable: {e}')
-    pairs = sorted({(e.get('event'), e.get('driver')) for e in events if e.get('event') and e.get('driver')})
+        return dict(status='not run', n_events=len(events), sources=sources, reason=f'live package unavailable: {e}', design=ABLATION_DESIGN)
+    pairs = sorted({(e['event'], e['driver']) for e in events})
     arms: dict[str, list] = dict(telemetry_only=[], with_feedback=[])
-    done = []
+    done, skipped = [], []
     for ev, drv in pairs:
+        evts = [e for e in events if e['event'] == ev and e['driver'] == drv]
         try:
-            arms['telemetry_only'].append(evaluate_driver(LiveSession.open(ev, drv, feedback_enabled=False)))
-            arms['with_feedback'].append(evaluate_driver(LiveSession.open(ev, drv, feedback_enabled=True)))
-            done.append(dict(event=ev, driver=drv))
+            arms['telemetry_only'].append(evaluate_driver(LiveSession.open(ev, drv, feedback_events=evts, feedback_enabled=False)))
+            arms['with_feedback'].append(evaluate_driver(LiveSession.open(ev, drv, feedback_events=evts, feedback_enabled=True)))
+            done.append(dict(event=ev, driver=drv, n_events=len(evts)))
         except Exception as e:
+            skipped.append(dict(event=ev, driver=drv, reason=str(e)))
             if not quiet:
                 print(f'feedback ablation {ev} {drv} skipped: {e}')
     if not done:
-        return dict(status='not run', reason='no (event, driver) pair with recorded feedback could be replayed')
-    return dict(status='run', pairs=done, n_events=len(events), telemetry_only=live_aggregate(arms['telemetry_only']), with_feedback=live_aggregate(arms['with_feedback']))
+        return dict(status='not run', n_events=len(events), sources=sources, reason='no (event, driver) pair with recorded feedback could be replayed', skipped=skipped, design=ABLATION_DESIGN)
+    t, w = live_aggregate(arms['telemetry_only']), live_aggregate(arms['with_feedback'])
+    comparison = {k: dict(telemetry_only=t.get(k), with_feedback=w.get(k), difference=(w[k] - t[k]) if isinstance(t.get(k), (int, float)) and isinstance(w.get(k), (int, float)) else None) for k in ABLATION_METRICS}
+    return dict(status='run', pairs=done, skipped=skipped, n_events=len(events), sources=sources, design=ABLATION_DESIGN, telemetry_only=t, with_feedback=w, comparison=comparison,
+                note='model-implied replay on recorded feedback; the pairs are the ones that carry feedback, not a random sample')
 
 
 # ---------------------------------------------------------------- assembly
@@ -219,9 +319,15 @@ def build(seasons: Iterable[int] = (2026, 2025, 2024, 2023), out_dir: Path = OUT
     p = out_dir / 'holdout_aggregate.json'
     if p.exists():
         h = json.loads(p.read_text(encoding='utf-8'))
-        sealed_agg = dict(generated_at=h.get('generated_at'), git_sha=h.get('git_sha'), reveal=h.get('reveal'), post_holdout_tuning=h.get('post_holdout_tuning'), n_weekends=h.get('n_weekends'), aggregate=h.get('aggregate'),
-                          note='aggregate over the sealed weekends only; per-race results stay sealed until freeze.json')
-    ghost = dict(scorecard='Ghost Strategy', generated_at=now_iso(), git_sha=sha, data_cutoff=DATA_CUTOFF_2026 + '; seasons 2023 to 2025 complete', units=UNITS, seasons=list(seasons), sealed_excluded=sealed,
+        quotable = h.get('quotable') is True                      # an aggregate file without the flag (pre 12 Sep evening) is treated as a dry run
+        sealed_agg = dict(generated_at=h.get('generated_at'), git_sha=h.get('git_sha'), dry_run_before_freeze=bool(h.get('dry_run_before_freeze', not quotable)), quotable=quotable,
+                          reveal=h.get('reveal'), post_holdout_tuning=h.get('post_holdout_tuning'), n_weekends=h.get('n_weekends'), aggregate=h.get('aggregate') if quotable else None,
+                          note=('aggregate over the sealed weekends only; per-race results stay in holdout_per_race.json under the freeze' if quotable else
+                                'DRY RUN BEFORE FREEZE: holdout_aggregate.json was produced without a valid evaluation/holdout/freeze.json (quotable: false). Its numbers are withheld '
+                                'from the scorecard and must not be quoted anywhere; after the lead writes freeze.json run python -m evaluation.holdout.evaluator then python -m evaluation.scorecards'))
+    lk = lock_meta()
+    ghost = dict(scorecard='Ghost Strategy', generated_at=now_iso(), git_sha=sha, data_cutoff=DATA_CUTOFF_2026 + f"; out/lock.json generated {lk.get('generated_at')} (prospective: {', '.join(lk.get('prospective_events') or []) or 'none'}); seasons 2023 to 2025 complete",
+                 units=UNITS, seasons=list(seasons), sealed_excluded=sealed, lock=lk,
                  wording=dict(reference='race-derived pace-loss reference', regret=REGRET_LABEL, counterfactual='model-implied', untouched='reserved for the sealed holdout and the prospective race'),
                  development_pool=dev, sealed_holdout=sealed_agg, rolling_origin_2026=rolling)
     live = dict(scorecard='Live Predictor', generated_at=now_iso(), git_sha=sha, data_cutoff=DATA_CUTOFF_2026, units=dict(mae='s', coverage='share inside the 90 % band', brier='0 to 1', lead='laps', rate='per stint / per lap pair'),
@@ -276,9 +382,23 @@ def render_md(ghost: dict[str, Any], live: dict[str, Any]) -> str:
     for val, cell in d.get('by_driver_support', {}).items():
         ch = cell['hidden_stop']
         L.append(f"| driver_support={val} | — | — | — | — | {ch.get('next1_mae', float('nan')):.3f} | {ch.get('next1_mae_naive', float('nan')):.3f} | — |")
+    bs = d.get('by_season', {})
+    if bs:
+        L += ['', '### By season (development pool, leave-one-weekend-out inside the season)', '', '| season | weekends | compound-weekends (issued / withheld) | MAE Orb v1 | MAE naive | cov90 | wins over naive | calibration r |', '|---|---|---|---|---|---|---|---|']
+        for season, cell in bs.items():
+            cf = cell['forecast']; cb = cf.get('bootstrap', {}); cr = cf.get('calibration', {}).get('r')
+            L.append(f"| {season} | {cf.get('n_weekends', 0)} | {cf.get('n_compound_weekends', 0)} ({cf.get('n_issued', 0)} / {cf.get('n_withheld', 0)}) | {_ci(cb.get('mae_orb_v1'))} | {_ci(cb.get('mae_naive'))} | "
+                     f"{_ci(cb.get('band_coverage90'), pct=True)} | {cf.get('wins_orb_over_naive')} of {cf.get('n_compound_weekends')} | {'—' if cr is None else f'{cr:.2f}'} |")
+    lc = d.get('lock_consistency_2026')
+    if lc and lc.get('metrics'):
+        L += ['', f"### Lock consistency: 2026 leave-one-weekend-out vs {lc['lock'].get('path')} (generated {lc['lock'].get('generated_at')})", '', '| metric | scorecard | lock | match |', '|---|---|---|---|']
+        fmt = lambda v: '—' if v is None else (f'{v}' if isinstance(v, int) else f'{v:.4f}')
+        for k, c in lc['metrics'].items():
+            L.append(f"| {k} | {fmt(c['scorecard'])} | {fmt(c['lock'])} | {'yes' if c['match'] else ('n/a' if c['match'] is None else 'NO')} |")
+        L += ['', f"All {lc['n_compared']} compared values match: {lc['all_match']} (floats within {lc['tolerance']}, counts exact). {lc['note']}."]
     s = ghost.get('sealed_holdout')
     L += ['', '### Sealed holdout (aggregate only)', '']
-    if s and s.get('aggregate'):
+    if s and s.get('quotable') and s.get('aggregate'):
         a = s['aggregate']; sf = a.get('forecast', {}); sb = sf.get('bootstrap', {}); sh = a.get('hidden_stop', {}).get('pooled', {}); sr = a.get('regret', {}).get('plans', {})
         L += [f"{s.get('n_weekends')} sealed weekends, {sf.get('n_compound_weekends', 0)} compound-weekends; per-race results {'revealed' if s.get('reveal', {}).get('per_race_written') else 'sealed'} ({s.get('reveal', {}).get('reason')}); post_holdout_tuning={s.get('post_holdout_tuning')}.", '',
               '| metric | Orb v1 | naive |', '|---|---|---|', f"| pre-race degradation MAE | {_ci(sb.get('mae_orb_v1'))} | {_ci(sb.get('mae_naive'))} |", f"| 90 % band coverage | {_ci(sb.get('band_coverage90'), pct=True)} | |"]
@@ -286,6 +406,10 @@ def render_md(ghost: dict[str, Any], live: dict[str, Any]) -> str:
             L.append(f"| hidden-stop next-lap / 3-lap / 5-lap MAE ({sh['n_cases']} stops) | {sh['next1_mae']:.3f} / {sh['cum3_mae']:.3f} / {sh['cum5_mae']:.3f} | {sh['next1_mae_naive']:.3f} / {sh['cum3_mae_naive']:.3f} / {sh['cum5_mae_naive']:.3f} |")
         for name, p in sr.items():
             L.append(f"| regret {name} | " + (f"n={p['n']}: median {p['median']:.1f} s, mean {p['mean']:.1f} s, within 5 s {p['share_within_5s']:.0%}" if p.get('n') and not p.get('suppressed') else f"n={p.get('n', 0)} suppressed") + ' | |')
+    elif s:
+        L.append(f"**DRY RUN BEFORE FREEZE, numbers withheld.** holdout_aggregate.json (generated {s.get('generated_at')}, git {s.get('git_sha')}, {s.get('n_weekends')} sealed weekends) was produced without a valid "
+                 f"evaluation/holdout/freeze.json (quotable: false); per-race results {'revealed' if (s.get('reveal') or {}).get('per_race_written') else 'sealed'}. Nothing from a pre-freeze run is quoted anywhere. "
+                 "After the lead writes freeze.json (C4): `python -m evaluation.holdout.evaluator`, then `python -m evaluation.scorecards`.")
     else:
         L.append('holdout_aggregate.json not found: run evaluation/holdout/evaluator.py')
     ro = ghost.get('rolling_origin_2026', {})
@@ -299,7 +423,16 @@ def render_md(ghost: dict[str, Any], live: dict[str, Any]) -> str:
               f"| cliff-5 Brier (model-implied rate proxy) | {_ci(P.get('cliff5_brier'), 3)} | climatology {_ci(P.get('cliff5_brier_climatology'), 3)} |", f"| accelerating-wear detection rate / lead (laps) | {_ci(P.get('aw_detection_rate'), pct=True)} / {_ci(P.get('aw_lead_laps_median'), 1)} | |",
               f"| false alert episodes per stint | {_ci(P.get('aw_false_alert_episodes_per_stint'), 2)} | |", f"| recommendation change rate | {_ci(P.get('recommendation_change_rate'), pct=True)} | |"]
         fa = live.get('driver_feedback_ablation', {})
-        L += ['', f"Driver-feedback ablation: {fa.get('status')} ({fa.get('reason', '')})" if fa.get('status') != 'run' else f"Driver-feedback ablation run on {len(fa.get('pairs', []))} pairs: next-lap MAE telemetry only {fa['telemetry_only'].get('next1_mae')}, with feedback {fa['with_feedback'].get('next1_mae')}"]
+        if fa.get('status') == 'run':
+            L += ['', f"### Driver-feedback ablation ({len(fa.get('pairs', []))} (event, driver) pairs, {fa.get('n_events')} recorded events)", '', '| metric | telemetry only | with feedback | difference |', '|---|---|---|---|']
+            g = lambda v: '—' if v is None else f'{v:.3f}'
+            for k, c in fa.get('comparison', {}).items():
+                L.append(f"| {k} | {g(c['telemetry_only'])} | {g(c['with_feedback'])} | {g(c['difference'])} |")
+            L += ['', f"Pairs: {', '.join(f'{p['event']} {p['driver']} ({p['n_events']} events)' for p in fa.get('pairs', []))}. {fa.get('note', '')}"]
+        else:
+            L += ['', f"**{fa.get('statement') or ('Driver-feedback ablation: ' + str(fa.get('status')) + ' (' + str(fa.get('reason', '')) + ')')}**", '',
+                  'Sources checked: ' + '; '.join(f"`{x['path']}` ({'missing' if not x['exists'] else str(x['n_events']) + ' events'})" for x in fa.get('sources', [])) + '.',
+                  '', f"Design (runs automatically once events exist): {fa.get('design', ABLATION_DESIGN)}."]
     else:
         L.append(f"prefix evaluation not available: {live.get('note')}")
     return '\n'.join(L) + '\n'

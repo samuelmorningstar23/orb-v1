@@ -1,0 +1,422 @@
+{
+ "checkpoint": "C4",
+ "decision": "GO",
+ "proposed": "GO",
+ "note": "Lead takeover: C4 decision engine, feedback and animation end to end. Active workstreams 3, 6, 7; others completed or unstarted by design. Post-freeze sealed holdout, aggregate only: MAE 0.0372 vs naive 0.1713 s/lap, coverage 1.00, 5 weekends / 9 compound-weekends. Frozen Madrid forecast preserved; scenarios and live sidecars aligned with post-qualifying lock; documents rebuilt by previous lead. Ordered probes rerun: 1692 numbers, 0 mismatches; claims empty; red team GO, 9/9 PASS; recorded leakage 5/5 and identity 41/41.",
+ "at": "2026-09-12T23:10:09",
+ "git_commit": "cdb1a45",
+ "git_branch": "main",
+ "git_dirty_paths": 151,
+ "decided_by": "lead",
+ "all_green": true,
+ "decision_overrides_checks": false,
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.11,
+   "timed_out": false,
+   "log": "checkpoints/C4/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 112.76,
+   "timed_out": false,
+   "counts": {
+    "passed": 484,
+    "skipped": 1,
+    "xfailed": 1
+   },
+   "test_dirs": [
+    "contract",
+    "counterfactual",
+    "evaluation",
+    "live",
+    "red_team",
+    "release",
+    "replay",
+    "screenshots",
+    "ui"
+   ],
+   "log": "checkpoints/C4/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "149 changed paths, 15 flagged: proto/build_case.py, proto/build_manual.py, proto/deck_src/build_deck.js, proto/out/JURY_QUESTIONS.md, proto/out/Orb_v1_ChallengeDay.pdf, proto/out/Orb_v1_Mentor_Briefing.pptx, proto/out/Orb_v1_Roadmap_and_Manual.pdf, proto/out/Orb_v1_The_Case.pdf, proto/out/ROADMAP.md, proto/out/THE_CASE.md, proto/out/forecast_Madrid_2026.json, proto/out/forecast_Madrid_2026.pdf, proto/out/forecast_Madrid_2026.sha256, proto/out/lock.json, proto/out/talk_track.md",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 149,
+    "flagged": 15,
+    "unowned": 0,
+    "lead_only": 15,
+    "outside_proto": 0,
+    "by_owner": {
+     "1": 2,
+     "2": 15,
+     "3": 12,
+     "6": 57,
+     "7": 21,
+     "8": 17,
+     "9": 6,
+     "lead": 15,
+     "lead/notes": 4
+    }
+   },
+   "flagged": [
+    "proto/build_case.py",
+    "proto/build_manual.py",
+    "proto/deck_src/build_deck.js",
+    "proto/out/JURY_QUESTIONS.md",
+    "proto/out/Orb_v1_ChallengeDay.pdf",
+    "proto/out/Orb_v1_Mentor_Briefing.pptx",
+    "proto/out/Orb_v1_Roadmap_and_Manual.pdf",
+    "proto/out/Orb_v1_The_Case.pdf",
+    "proto/out/ROADMAP.md",
+    "proto/out/THE_CASE.md",
+    "proto/out/forecast_Madrid_2026.json",
+    "proto/out/forecast_Madrid_2026.pdf",
+    "proto/out/forecast_Madrid_2026.sha256",
+    "proto/out/lock.json",
+    "proto/out/talk_track.md"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python evaluation/red_team/consistency_probe.py",
+   "returncode": 0,
+   "duration_s": 20.71,
+   "timed_out": false,
+   "log": "checkpoints/C4/logs/lock_dashboard_consistency.txt"
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ],
+ "artifact_hashes": {
+  "out/lock.json": "6e0d69d64ca7da64",
+  "out/lock_v2.json": "233f4e8c356758a1",
+  "evaluation/holdout/sealed_holdout_manifest.json": "37b85e762b2e03c0",
+  "evaluation/holdout/sealed_holdout_manifest.sha256": "2f636dda347557ea",
+  "fixtures/lock_v2_fixture.json": "57825e9ff6ad7a04",
+  "schemas/lock_v2_minimal.py": "f2cf5dea71eff700",
+  "ui/tokens.py": "714224d37e4d978c",
+  "theme/base.css": "f0b55603d5ed6e7b"
+ },
+ "hash_changes_since_last_green": {
+  "changed": [
+   "out/lock.json",
+   "out/lock_v2.json"
+  ],
+  "added": [],
+  "removed": []
+ },
+ "previous_green": {
+  "checkpoint": "C3",
+  "git_commit": "b0b924c",
+  "at": "2026-09-12T21:06:31",
+  "decision": "GO"
+ },
+ "active_workstreams": [
+  3,
+  6,
+  7
+ ],
+ "missing_heartbeats": [],
+ "stale_heartbeats": [
+  1,
+  2,
+  3,
+  4,
+  7,
+  8,
+  9
+ ],
+ "heartbeats": [
+  {
+   "workstream": 1,
+   "status": "GREEN",
+   "effective": "AMBER (stale 400 min)",
+   "age_min": 400.1,
+   "stale": true,
+   "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
+   "tests_passed": 109,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    7
+   ],
+   "completed": [
+    "schemas/lock_v2.py + lock_v2.schema.json (48 models, extra=forbid, cross-block hash checks)",
+    "shared/lockio.py (atomic write, canonical_json, forecast_hash, sidecar refs)",
+    "validators/adapt_v1.py -> out/lock_v2.json + out/lock_v2_sidecars/ (forecast_hash sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a)",
+    "validators/validate_lock.py (exit 0/1/2/3; sidecar sha256 verified)",
+    "fixtures: lock_v2_fixture.json, sidecars/, mini_race/, golden_race.json, make_fixtures.py, seed_v1_snapshot.json",
+    "schemas/README.md",
+    "lead change applied: TrafficMode = clean_air|paired_replay|frozen_field; safety_car_schedule = 'historical_fixed'|'observed_fixed'|[periods]; schema + fixture regenerated",
+    "tests/contract: 109 passed",
+    "lead change 2: StateRegime += accelerating_wear, anomaly; SCHEMA_VERSION 2.1.0; schema + fixture regenerated"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:30:03",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_1.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 2,
+   "status": "GREEN",
+   "effective": "AMBER (stale 390 min)",
+   "age_min": 390.1,
+   "stale": true,
+   "task": "0.3 PreRaceCurveProvider (provider A); 0.4 counterfactual core (fixed_context, tyre_only); 0.9 RaceEventSource (replay, recorded-live, live stub)",
+   "tests_passed": 53,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    3,
+    7
+   ],
+   "completed": [
+    "counterfactual/provider.py: TyreCurveProvider + ProviderA reproducing lock.json exactly; reference_curve_post_race fenced (assert_pre_race)",
+    "counterfactual/racedata.py, pitmodel.py, engine.py, run.py: decomposition, standardised pit event, SC rules, whole-curve sampling, schema-valid summary, support guard, CLI + lattice",
+    "events/: RaceEvent, ReplayEventSource, RecordedLiveEventSource, LiveEventSource stub, record()",
+    "lead follow-up applied: traffic_mode 'paired_replay' (fixed_context) / 'clean_air' (tyre_only); safety_car_schedule = observed period list in both modes; mirrored engine.* fields dropped; default-curve decision recorded in counterfactual/README.md ('leave-one-driver-out Sunday reference' for Historical Audit, pre-race forecast only for Scenario Explorer)",
+    "out/counterfactual regenerated (4 Monza scenarios + 2 lattices); validators/validate_lock.py --strict accepts a lock carrying them (sidecars verified)",
+    "tests/counterfactual: 53 passed"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:40:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_2.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 3,
+   "status": "GREEN",
+   "effective": "AMBER (stale 99 min)",
+   "age_min": 99.2,
+   "stale": true,
+   "task": "blind evaluation: sealed-holdout evaluator (dry-run flag), freeze-gate tests, reviews of Workstream 2 / Workstream 8, feedback ablation, scorecards refreshed vs lock 21:03",
+   "tests_passed": 59,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "evaluation/{common,forecast,hidden_stop,regret,risk_coverage}.py, holdout/evaluator.py: 2026 dev-pool runs, sealed evaluator (manifest sha check, freeze gate, aggregate only)",
+    "evaluator.py: dry_run_before_freeze / quotable flags + stderr warning; holdout_aggregate.json re-run 21:15 flagged dry run (not quotable, numbers unchanged vs 16:55)",
+    "README: flags documented + exact post-freeze sequence (freeze.json by lead at C4 -> evaluator -> scorecards -> pytest tests/evaluation)",
+    "tests/evaluation/test_eval_freeze_gate.py: 36 new tests (gate over every flag combination and git_commit variant, dry-run flag, CLI end to end on a synthetic sealed weekend, tamper: body / metadata / sidecar / rehash, manifest sha vs last-green checkpoint); suite 59 passed",
+    "scorecards.py: feedback sources (UI log + out/live/*/driver_feedback.json), by_season, lock_consistency_2026 (11/11 values equal the 21:03 lock: MAE naive 0.1371 / Orb v1 0.0227, r 0.7806, 28 of 29 wins, coverage 0.862), sealed block only when quotable; ghost/live scorecards + SCORECARDS.md rebuilt 21:27 / 21:29; ablation NOT RUN (0 recorded events)",
+    "REVIEWS_workstream3.md: Workstream 2 counterfactual ACCEPT WITH NOTES (53 passed; 4 scenarios reproduce exactly; identity exactly zero); Workstream 8 live ACCEPT WITH NOTES (31 passed; next-lap MAE beats prior-only in every race; cliff Brier worse than climatology, labelled rate proxy)"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T21:30:55",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_3.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 4,
+   "status": "GREEN",
+   "effective": "AMBER (stale 382 min)",
+   "age_min": 382.1,
+   "stale": true,
+   "task": "0.5 track geometry, trajectory, time warp, browser player, Plotly fallback",
+   "tests_passed": 30,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    6
+   ],
+   "completed": [
+    "replay/sources.py (PositionSource from FastF1 cache or fixtures/mini_race; distinct-points quality gate)",
+    "replay/geometry.py (canonical 10 m path, sectors, pit flags, recorded/schematic pit lane, QualityRefusal + meta)",
+    "replay/trajectory.py (race clock with red-flag cuts, projection with S/F guard, 1 Hz S(t), stops, per-driver refusal)",
+    "replay/timewarp.py (Workstream 2 laps table loader, FIXTURE generator, ghost schedule follow/reference/pit pair, whole-curve quantiles, 1 Hz frames)",
+    "replay/io.py + build_maps.py + perf_harness.py",
+    "app_v2/components/race_twin: player.html + player.py (race_twin_player), plotly_fallback.py extended (race_twin_animation, track/pitlane on race_twin_map), README.md",
+    "out/maps/Monza (22 drivers; frames for the 4 Workstream 2 scenarios NOR x2 / VER x2 labelled workstream2 + PIA FIXTURE; 1.83 MB; sha256 sidecars), out/maps/Hungary refused (meta.json)",
+    "tests/replay: 30 passed",
+    "PERF.md: 119-122 FPS at 1x-10x headless Chromium, 0 console errors, 0 external requests, identity overlay 0.11 m"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:48:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_4.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 6,
+   "status": "GREEN",
+   "effective": "GREEN",
+   "age_min": 39.6,
+   "stale": false,
+   "task": "C4 task 2 acceptance pass on the post-freeze data: sealed block / landing scorecards on the 21:37 aggregate and 21:53 scorecards, Ghost audit hidden-stop + regret, Scenario Explorer across both pre-race fidelities, red-team live_position_claim, reversible driver-feedback posterior, Race Twin offline at 1440x900 and 1920x1080, goldens only for routes the new data changed",
+   "tests_passed": 67,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    4,
+    8,
+    "lead"
+   ],
+   "completed": [
+    "AC1 PASS: sealed block renders the post-freeze aggregate (quotable true, freeze non-null, reveal record) labelled 'sealed holdout, aggregate only'. Generalisation prints 'MAE Orb v1 vs naive 0.0372 [0.0252, 0.0457] vs 0.1713 [0.0952, 0.2252] s/lap', 90% band coverage 100%, 6 sealed / 5 forecastable / 1 weekend-level abstention, compound-weekends 9 (5 issued, 4 withheld); landing prints the same MAE pair, coverage and counts. pages/generalisation.py + pages/landing.py now print the sealed MAE at 4 dp (SEALED_DP) so the dashboard equals the lead's quotable headline instead of rounding it to 0.037/0.171. Verified equal to out/validation/holdout_aggregate.json and to ghost_scorecard.json.sealed_holdout (identical dicts); no sealed race id and no per-race value anywhere on the page (holdout_per_race.json never opened: existence and 56683 bytes only).",
+    "AC1 gate PASS: pointed at a dry-run aggregate (quotable false) the same pages show 'sealed: 6 weekends, aggregate revealed after freeze' and none of its numbers (new test test_sealed_block_stays_gated_for_a_dry_run_aggregate).",
+    "AC2 PASS: Ghost audit rail renders Workstream 3's rows verbatim for the selected weekend - Monza/VER '6 stops scored - VER in-lap L28 medium -> new hard (sc/vsc): next-lap error 0.6 s vs naive 1.1 s - inside the 90% interval - 3-lap 2.0 vs 3.4 - 5-lap 3.8 vs 5.9', 2026 pool 'next-lap MAE 1.0 vs naive 1.4 ... 210 stops, 10 weekends', regret 'Orb v1 S-M (44/9) +0.0 s - naive M-H +47.1 s - observed field +66.3 s - default +42.8 s - hindsight oracle M-S (10/43) - pit loss 21 s' under the exact label 'held-out strategy replay under a post-race reference model' plus 'development pool (leave-one-weekend-out), never a sealed weekend'. Values match hidden_stop_2026.json / regret_2026.json (both unchanged since 16:49). Monza/NOR has no scorable stop and says so with the weekend's skip reasons.",
+    "AC3 FIXED: the explorer ignored the fidelity control and always showed fixed_context. pages/ghost_strategy.py now resolves the pre-race scenario at the selected fidelity (falling back to the built one and saying so on a new 'simulation fidelity' row), and defaults the control in scenario mode to the fidelity Workstream 2 actually built (fixed context first), so the default view still shows -14.2 s. fid=fixed_context -> -14.2 s / q10-q90 -60.7 to +40.9 / p 62%; fid=tyre_only -> -16.6 s / -65.9 to +41.5 / p 63%, each equal to its own summary.json (-14.21868917519702 / -16.647211706384688) and each labelled 'model-implied, pre-race curve'; the other fidelity never leaks into the rail.",
+    "AC4 PASS: no projected rejoin P-number on any live render (live_predictor and decision_board at Monza/NOR lap 30 and 44, Barcelona/PIA lap 35, Hungary/NOR lap 30): zero '~P', 'projected rejoin', 'P<n> ->' hits; every one carries 'observed gap structure, not a position forecast'. The live_position_claim regex has exactly one match in app_v2 (services/live_bridge.py:99, the observed position_now), now carrying the lead's frozen_field context comment, so evaluation.red_team.claim_audit.audit_wording returns allowed_with_context for it - and zero 'reword' verdicts for every rule over every source.",
+    "AC5 PASS (new test test_driver_feedback_shifts_posterior_and_is_reversible): at Monza/NOR lap 24 a rear-traction overheating severity-5 event at lap 22 moves the rendered 7.1 posterior from 'degradation_rate +0.015 s/lap' to '+0.014 s/lap' (confidence_effect sentence: slope posterior +0.0151 +- 0.0357 -> +0.0148 ...), and removing the event restores +0.015 exactly. All three log paths (app_v2.services.paths.FEEDBACK_LOG, live.session.FEEDBACK_LOG, live.viewmodel.FEEDBACK_LOG) are redirected to tmp_path and the test asserts app_v2/state/feedback_events.jsonl is byte-identical at the end (still 0 bytes, mtime 21:33).",
+    "AC6 PASS: Race Twin on the Ghost route at 1440x900 and 1920x1080 - 0 console errors, 0 external requests attempted, no horizontal overflow (scrollWidth == innerWidth), cold load 872-1010 ms, player iframe present, 4926 frames for Monza/NOR from out/maps/Monza (assets_status ok, 575 track points). Scripted pass re-run 22:24: replay to Lap 53/53, ghost switch 278 ms with the player iframe, 0 console errors, 0 external requests.",
+    "AC7 PASS: capture.py --compare run twice before any rewrite (identical to 3 dp, so the diffs are content not noise), then --update --routes for the 10 routes with a content cause (scenario_explorer 0.665/1.546%, prerace 1.454/1.459%, landing 0.000/0.267%, validation 0.000/0.179%, offline_mode 0.137/0.087%, presentation_ghost 0.015/0.184%, out_of_support 0.000/0.025%, ghost_audit 0.016/0.002%, ghost_audit_fixed_context 0.016/0.001%, generalisation 0.008/0.005%). The 9 unchanged routes (live_stable, live_after_feedback, decision_change, decision_board, presentation_live, feedback, missing_position, degraded_feed, position_refused) were left untouched and are byte-identical. 19 of 38 PNGs changed bytes; after the rewrite every route compares at 0.000% except the ghost-audit canvas jitter (0.002-0.006%).",
+    "Extra finding fixed in the UI: out/maps/Monza frames for monza_ver_lap20_to_hard_new_fixed_context predate the 21:39 scenario regeneration (frames finish delta -6.5 s vs scenario +7.7 s, the 13.5 s identity-check failure the lead logged). pages/ghost_strategy.frames_behind_scenario now prints 'PLAYER FRAMES PREDATE THIS SCENARIO' with both numbers on that combination and stays silent on the three consistent ones, so the animation is never read as the current scenario (new test). Not a golden route; no golden churn.",
+    "PERF.md: C4 acceptance section with the per-route diff table (before, cause, rewritten, after), the diff_ratio caveat (pixels differing by more than 24 levels, so 0.000% is not byte equality) and the new behaviour."
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T22:30:35",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_6.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 7,
+   "status": "GREEN",
+   "effective": "AMBER (stale 53 min)",
+   "age_min": 53.4,
+   "stale": true,
+   "task": "red team C4 re-run: four probes against the post-qualifying / post-freeze / post-rebuild tree, refreshed blocking list and verdict, tests/red_team acceptance suite",
+   "tests_passed": 53,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead",
+    "workstream 1",
+    "workstream 6"
+   ],
+   "completed": [
+    "all four probes re-run against the current tree, and re-run a SECOND time at 22:15-22:17 after Workstream 6 edited app_v2/pages/{landing,generalisation,ghost_strategy}.py at 22:05-22:06 (three probe routes) so no report predates its inputs: consistency_probe 15 routes / 1692 numbers / 0 mismatches / 0 placeholders / 0 load failures; leakage_audit PASS 5 of 5 (one_forecast_hash now ok at sha256:66e3201e - it was the single FAIL at 21:42 on the stale out/live sidecars); identity_checks 41 passed 0 failed; claim_audit 19 verified / 5 exceeds_evidence / 5 unverifiable / 5 mismatch with must_reword_before_presentation empty",
+    "independent hash sweep (not the audit's fixed path list): every JSON under out/live and out/counterfactual walked for any *forecast_hash field - 24 fields, 0 stale, including the two out/counterfactual/pre_race scenarios the audit does not enumerate. Nothing to report to workstreams 2 or 8",
+    "identity_checks.reproduce_on_disk now also globs out/counterfactual/pre_race/*/summary.json (curve_source pre_race_forecast): 39 -> 41 checks, all six on-disk scenarios reproduce at max|diff| 0.00e+00 with the model hash unchanged. The Scenario Explorer's -14.2 s / -16.6 s pre-race numbers were previously unverified by any reproduction check",
+    "claim audit run after the 22:00:13 document rebuild (waited for 3 min of mtime quiet on THE_CASE.md, talk_track.md, the pptx and the three builders): madrid_timing is now 0 occurrences (the lead's fix landed), and no flagged claim is stated unqualified in any presentation document",
+    "claim_audit gate made qualification-aware and STRICTER on the presentation surfaces: it now blocks `unverifiable` verdicts too (the C3 gate ignored them) but only where the claim appears WITHOUT the qualification its evidence requires; ROADMAP_v5 is no longer treated as a claim surface. Each occurrence records `qualified` / `qualified_same_line` / `kind`, and summary.qualified_in_presentation lists every reclassification with file:line so a human can audit it",
+    "tests/red_team: 39 -> 53 passed + 1 strict xfail in 2.1 s. New tests/red_team/test_c4_artifact_provenance.py (every on-disk sidecar carries the lock forecast hash, with a planted-stale-pointer self-test; the real sealed_holdout_manifest.json still matches its recorded .sha256 - previously only proven in tmp_path) and tests/red_team/test_claim_gate.py (gate empty; every reclassified occurrence re-read from disk to prove its qualifiers; bare claim, wrong count, partial caveat and no-qualifier cases all still block)",
+    "blocking_issues.json refreshed: issues still [], RT-BLK-1 kept in `resolved` with its evidence and 5 guarding tests plus a 22:12 re-verification, and a new c4_rerun block recording each roadmap 14.3 condition with the command-level evidence that cleared it",
+    "red_team_report.json/.md rebuilt from this run: C4 verdict GO (was GO_WITH_REASSIGNMENT at 21:42), 8 of 9 checks PASS, claim_audit WARN",
+    "whole tree ../.venv/bin/python -m pytest tests -q -p no:cacheprovider --ignore=tests/screenshots: 472 passed, 1 skipped, 1 xfailed in 21.4 s"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T22:16:43",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_7.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 8,
+   "status": "GREEN",
+   "effective": "AMBER (stale 400 min)",
+   "age_min": 400.1,
+   "stale": true,
+   "task": "live intelligence: 0.8 replay estimator, 0.10 feedback adapter, 0.12 action engine, prefix evaluation, view-model adapter",
+   "tests_passed": 31,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    3,
+    7
+   ],
+   "completed": [
+    "live/lapfeed.py: online-safe race access (rows <= k, rival laps <= own cutoff), FutureDataError",
+    "live/priors.py: forecast-only lock reader (deny list on obs/err), support status",
+    "live/clock.py: data_cutoff timestamps (FastF1 StartDate + session time)",
+    "live/estimator.py: linear-Gaussian (intercept, slope) filter with fixed regime rules; widening status x2, rain x4, temp x2, feed x2, out-of-support x2 (additive-equivalent, capped at 4x prior, floored); batch conditioning == sequential filter to 1e-9",
+    "live/feedback.py: DriverFeedbackAdapter, documented regime-shift table R1-R8, never seconds, reversible when disabled",
+    "decision/optimizer.py: StrategyOptimizer re-run per lap (pit now / pit in window / extend / stay out / two-stop), sampled gains vs the pre-race plan, rejoin from observed lap-time ordering, change_reason naming the observation, hysteresis",
+    "live/session.py + live/replay_run.py: out/live/<event>_<driver>/ states.jsonl, recommendations.jsonl, estimator_trace.jsonl, live_predictor.json (validated LivePredictor), summary.json, .sha256 sidecars; Monza/Austria/Barcelona NOR written",
+    "live/viewmodel.py: build_live / build_live_vm with exactly Workstream 6's LiveVM keys + orb_live (one-line wiring)",
+    "live/prefix_eval.py: 3 races, 66 drivers, 3563 laps vs prior-only baseline; out/live/prefix_eval.json + PREFIX_EVAL.md",
+    "tests/live: 31 passed (future-lap raise, widening x2/x4/x2/x2/x2, cap, floor, pit reset, feedback reversibility, batch==replay synthetic+real, schema validation, optimizer ordering, view-model keys); tests/contract still 108 passed"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:30:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_8.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 9,
+   "status": "GREEN",
+   "effective": "AMBER (stale 390 min)",
+   "age_min": 390.3,
+   "stale": true,
+   "task": "build_control_system (task 0.16)",
+   "tests_passed": 83,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "read ROADMAP_v5 s6/s14, starter, C0, last_green",
+    "build_control.py: status/checkpoint/decide/sign/checks/stop-the-line/clear-stop/freeze/unfreeze/rollback/heartbeat/summary/active-workstreams",
+    "release/ownership_audit.py; ownership map per lead decisions 14:55 and 15:05 (out/ subtrees, tests/ per workstream, lead-only globs)",
+    "release/rollback.sh; drill PASSED, recorded in checkpoints/rollback_drill.md",
+    "release/run_checkpoint.sh; C1 REHEARSAL artifact set under checkpoints/rehearsal/C1",
+    "release/build_control_app.py hidden route on 8599 (HTTP 200 smoke)",
+    "release/README.md incl. ownership map",
+    "tests/release/test_build_control.py: 83 passed",
+    "SUMMARY.md cadence"
+   ],
+   "in_progress": [
+    "30-min heartbeat and SUMMARY.md cadence",
+    "real C1 at the 16:05 lead commit; queue left OPEN until then"
+   ],
+   "commit": null,
+   "updated_at": "2026-09-12T16:39:50",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_9.json",
+   "missing": false,
+   "unreadable": false
+  }
+ ],
+ "stop_the_line": null,
+ "merge_queue_before": {
+  "state": "FROZEN",
+  "reason": "checkpoint C4 in progress (run_checkpoint.sh)",
+  "since": "2026-09-12T23:07:55",
+  "by": "workstream 9"
+ },
+ "rehearsal": false,
+ "directory": "checkpoints/C4",
+ "decided_at": "2026-09-12T23:10:35",
+ "decision_note": "Acting lead: reviewed checkpoint.md; schema, pytest (484 passed / 1 skipped / 1 xfailed including screenshots), consistency and sealed integrity PASS. Ownership WARN accepted as expected: 15 lead-only, 0 unowned. No failed checks or override. Active workstreams 3/6/7 reflect C4 contributors; stale historical heartbeats retained without impersonation. Red team 9/9 PASS, no required rewords; frozen artefacts unchanged."
+}

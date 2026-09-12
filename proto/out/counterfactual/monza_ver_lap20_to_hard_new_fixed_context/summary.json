@@ -6,12 +6,12 @@
   "driver_id": "VER",
   "simulation_mode": "fixed_context",
   "availability_mode": "PUBLIC PROXY",
-  "forecast_hash": "sha256:9123e2037901abc75738c639608d381c95cb13b1dacc5054a77903b2abac0b8d",
+  "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
   "model_hash": "sha256:3e343ce8fe14cd71298d8eeb6dabcab3863bc95c0652d86ef15ef3bcb38eb04d",
   "split_id": "development_pool",
-  "data_cutoff": "2026-09-12T18:11:47",
-  "generated_at": "2026-09-12T20:57:58",
-  "git_sha": "b0b924c",
+  "data_cutoff": "2026-09-12T21:33:10",
+  "generated_at": "2026-09-12T21:39:04",
+  "git_sha": "cdb1a45",
   "intervention": {
    "lap": 20,
    "from_compound": "MEDIUM",
@@ -144,7 +144,7 @@
   "curve_source": "race_reference",
   "uses_post_race_reference": true,
   "uses_future_data_for_pre_race_quantities": false,
-  "pre_race_forecast_hash": "sha256:9123e2037901abc75738c639608d381c95cb13b1dacc5054a77903b2abac0b8d",
+  "pre_race_forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
   "curves": {
    "source": "race_reference",
    "by_compound": {
@@ -424,7 +424,7 @@
   },
   "n_laps": 53,
   "retired": false,
-  "timing_ms": 127.93483398854733,
+  "timing_ms": 136.8432089802809,
   "support": {
    "in_support": true,
    "stints_beyond_support": [],

@@ -7,6 +7,7 @@ from app_v2.services import asset_repository as A
 from app_v2.services import counterfactual_repository as CF
 from app_v2.services import live_bridge as LB
 from app_v2.services import paths as P
+from app_v2.services import validation_repository as VR
 from app_v2.ui import shell, cards, badges, charts, banners, empty_states
 from app_v2.ui.formatting import esc, pct
 
@@ -68,11 +69,11 @@ def render() -> None:
         cards.section('Per compound (lock.validation.by_compound)')
         bcp = v.get('by_compound', {})
         st.html(cards.table_html(['Compound', 'cases', 'MAE naive', 'MAE Orb v1', 'transfer factor (median)'], [[badges.compound_html(c), d['n'], f"{d['mae_naive']:.3f}", f"{d['mae_clearstint']:.3f}", f"x{d['k_median']:.2f}"] for c, d in bcp.items()], numeric_cols=(1, 2, 3, 4)).replace('&lt;', '<').replace('&gt;', '>').replace('&quot;', '"'))
-        cards.section('Counterfactual identity and leakage tests (out/counterfactual)', 'Changing nothing must produce zero delta; the engine must not read future laps for pre-race quantities.')
+        cards.section('Counterfactual identity and leakage tests (out/counterfactual)', 'Changing nothing must produce zero delta; the engine must not read future laps for pre-race quantities. Both curve sources are listed and labelled; they are never mixed in one chart.')
         ids = CF.identity_status()
         if ids:
-            st.html(cards.table_html(['scenario', 'mode', 'identity test', 'identity delta (s)', 'future-leakage test', 'target driver excluded', 'sealed holdout', 'generated'],
-                                     [[i['scenario_id'], i['mode'], i['identity_test'], f"{i['identity_check_delta_s']:+.4f}" if i['identity_check_delta_s'] is not None else '—', i['future_leakage_test'], 'yes' if i['target_driver_excluded'] else 'no', 'yes' if i['sealed_holdout'] else 'no (development pool)', f"{i['generated_at'][:16]} {i.get('git_sha') or ''}"] for i in ids], numeric_cols=(3,)))
+            st.html(cards.table_html(['scenario', 'mode', 'curve', 'identity test', 'identity delta (s)', 'future-leakage test', 'target driver excluded', 'sealed holdout', 'generated'],
+                                     [[i['scenario_id'], i['mode'], i['curve_label'], i['identity_test'], f"{i['identity_check_delta_s']:+.4f}" if i['identity_check_delta_s'] is not None else '—', i['future_leakage_test'], 'yes' if i['target_driver_excluded'] else 'no', 'yes' if i['sealed_holdout'] else 'no (development pool)', f"{i['generated_at'][:16]} {i.get('git_sha') or ''}"] for i in ids], numeric_cols=(4,)))
         else:
             empty_states.pending('counterfactual identity tests', 'Workstream 2 scenario runs')
     with right:
@@ -86,8 +87,21 @@ def render() -> None:
             st.html(f'<div class="cs-muted">asset out/sensitivity.json sha256 {asset.short_hash} · {asset.sidecar_status}</div>')
         else:
             empty_states.pending('sensitivity table', 'out/sensitivity.json')
-        cards.section('Still pending', 'Strategy regret over the sealed sample, risk-coverage curve, public-only vs sensor-assisted ablation, profile repeatability (Phase 2).')
-        st.html('<div class="cs-chips">' + badges.badge_html('risk-coverage curve · pending', 'placeholder') + badges.badge_html('strategy regret (sealed) · pending Workstream 3', 'placeholder') + badges.badge_html('public-only vs sensor-assisted ablation · pending', 'placeholder') + '</div>')
+        cards.section('Strategy regret, development pool (regret_2026.json)', VR.REGRET_LABEL + '; never observed race time saved. Plan cost under the race-derived reference minus the hindsight oracle.')
+        rg = VR.regret_for(ctx.event) or VR.regret_for('Monza')
+        if rg:
+            names = {'orb': 'Orb v1 (pre-race slopes)', 'naive': 'naive practice slopes', 'observed': 'observed field plan', 'default': 'default M-H at half distance'}
+            st.html(cards.table_html(['plan', 'weekends', 'median regret', 'mean', 'p90', 'within 5 s'], [[names.get(k, k), v['n'], f"+{v['median']:.1f} s" if v['median'] is not None else '—', f"+{v['mean']:.1f} s" if v['mean'] is not None else '—', f"+{v['p90']:.1f} s" if v['p90'] is not None else '—', pct(v['within5'])] for k, v in rg['season_plans'].items()], numeric_cols=(1, 2, 3, 4, 5)))
+            st.html(f'<div class="cs-muted">{rg["season_n"]} weekends in the {P.SEASON_OF_FEAT} pool · {esc(rg["split"])} · {esc(VR.provenance(None, rg["asset"], f"regret_{P.SEASON_OF_FEAT}.json"))} · full development pool and cells on the Generalisation page</div>')
+        else:
+            empty_states.pending('strategy regret table', 'Workstream 3 (out/validation/regret_<season>.json)')
+        sb = VR.sealed_block(); lh = VR.live_headline(VR.live_scorecard()[0]); gates = VR.risk_gate_rows(VR.risk_coverage()[0])
+        cards.section('Also scored, elsewhere or pending')
+        chips = [badges.badge_html(f"sealed holdout · {sb['status_text']}", 'decision' if not sb['revealed'] else 'live'),
+                 badges.badge_html(f"risk-coverage sweep · production gate issues {pct(gates[0]['coverage'])} of compound-weekends (Generalisation page)" if gates else 'risk-coverage curve · pending Workstream 3', 'live' if gates else 'placeholder'),
+                 badges.badge_html(f"driver-feedback ablation · {(lh or {}).get('ablation', {}).get('status', 'pending')}" if lh else 'driver-feedback ablation · pending', 'placeholder'),
+                 badges.badge_html('public-only vs sensor-assisted ablation · pending (team adapter, Phase 1)', 'placeholder'), badges.badge_html('profile repeatability · Phase 2', 'placeholder')]
+        st.html('<div class="cs-chips">' + ''.join(chips) + '</div>')
         pdg = v.get('push_diagnostic', {})
         if pdg:
             cards.section('Push profile diagnostic (lock)')

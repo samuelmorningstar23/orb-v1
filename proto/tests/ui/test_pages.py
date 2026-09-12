@@ -268,3 +268,341 @@ def test_live_page_default_driver_and_feedback_reading():
     if LB.AVAILABLE:
         assert 'PLACEHOLDER' not in html, 'no placeholder labels on the live path once Workstream 8 is wired'
         assert 'linear-Gaussian with fixed regime rules' in html and LB.CLIFF_LABEL in html
+
+
+# ---- C4: Workstream 3 outputs, the sealed gate, the pre-race scenario, red-team wording, degraded states -------------------------
+def _html(at) -> str:
+    return ' '.join(getattr(el, 'value', '') or '' for el in at.get('html'))
+
+
+def test_sealed_block_gate(tmp_path, monkeypatch):
+    """holdout_aggregate.json numbers are shown only when `freeze` is non-null and a reveal record exists; then only aggregate.forecast."""
+    from app_v2.services import validation_repository as VR
+    agg = dict(freeze=None, reveal=dict(per_race_written=False, reason='no freeze.json'), n_weekends=6, manifest=dict(holdout_count=6),
+               aggregate=dict(forecast=dict(mae=dict(orb_v1=0.0372, naive=0.1713), band_coverage90=dict(all=1.0), calibration=dict(slope=0.48, r=0.72, n=9), n_weekends=5, n_compound_weekends=9), weekends=dict(sealed=6, forecast=5)))
+    stages = {}
+    frozen = dict(model_frozen=True, feature_list_frozen=True, gate_threshold_frozen=True, provider_frozen=True, git_commit='abc')
+    for name, freeze, reveal, quotable, dry in (('missing', None, None, None, None), ('dry_run', None, dict(per_race_written=False), False, True), ('pre_freeze_no_flag', None, dict(per_race_written=False), None, None),
+                                                ('quotable_but_no_freeze', None, dict(per_race_written=True), True, False), ('no_reveal_record', frozen, {}, True, False), ('revealed', frozen, dict(per_race_written=True), True, False)):
+        d = tmp_path / name; d.mkdir()
+        if name != 'missing':
+            (d / 'holdout_aggregate.json').write_text(json.dumps(dict(agg, freeze=freeze, reveal=reveal, quotable=quotable, dry_run_before_freeze=dry)))
+        monkeypatch.setattr(VR, 'VAL_DIR', d)
+        stages[name] = VR.sealed_block()
+    for name in ('missing', 'dry_run', 'pre_freeze_no_flag', 'quotable_but_no_freeze', 'no_reveal_record'):
+        sb = stages[name]
+        assert not sb['revealed'] and sb['forecast'] is None and sb['weekends'] is None, name
+        assert sb['status_text'] == 'sealed: 6 weekends, aggregate revealed after freeze', name
+    assert 'quotable: false' in stages['dry_run']['reason'] and stages['dry_run']['quotable'] is False and stages['dry_run']['dry_run_before_freeze'] is True
+    assert 'freeze: null' in stages['quotable_but_no_freeze']['reason']
+    sb = stages['revealed']
+    assert sb['revealed'] and sb['label'] == 'sealed holdout, aggregate only' and sb['status_text'] == sb['label']
+    assert sb['forecast']['mae']['orb_v1'] == 0.0372 and sb['weekends']['sealed'] == 6 and set(sb['forecast']) == {'mae', 'band_coverage90', 'calibration', 'n_weekends', 'n_compound_weekends'}
+
+
+def test_generalisation_page_withholds_pre_freeze_sealed_numbers():
+    from app_v2.services import validation_repository as VR
+    html = _html(_run('generalisation', {'ev': 'Monza', 'mode': 'audit'}))
+    sb = VR.sealed_block()
+    if sb['revealed']:
+        assert 'sealed holdout, aggregate only' in html
+    else:
+        assert 'sealed: 6 weekends, aggregate revealed after freeze' in html
+        agg, _ = VR.holdout_aggregate()
+        mae = (((agg or {}).get('aggregate') or {}).get('forecast') or {}).get('mae', {}).get('orb_v1')
+        if mae is not None:
+            assert f'{mae:.4f}' not in html and f'MAE Orb v1 vs naive' not in html, 'a pre-freeze sealed number leaked onto the page'
+    if VR.ghost_scorecard()[0] is not None:
+        assert VR.REGRET_LABEL in html and 'never merged' in html and 'ghost_scorecard · development pool' in html
+        hl = VR.dev_pool_headline(VR.ghost_scorecard()[0])
+        assert f"{hl['mae']:.3f}" in html and f"{hl['hidden_next1']:.1f}" in html
+    if VR.live_scorecard()[0] is not None:
+        assert 'model-implied rate proxy' in html and 'Live Predictor scorecard' in html
+
+
+def test_validation_repository_reads_verbatim():
+    from app_v2.services import validation_repository as VR
+    g, a = VR.ghost_scorecard()
+    if g is None:
+        pytest.skip('no Workstream 3 outputs under out/validation')
+    assert a.sha256 and len(a.sha256) == 64
+    hl = VR.dev_pool_headline(g)
+    assert hl['mae'] == g['development_pool']['forecast']['mae']['orb_v1'] and hl['regret_label'] == VR.REGRET_LABEL
+    cells = VR.dev_pool_cells(g)
+    assert cells[0]['kind'] == 'pooled' and {c['kind'] for c in cells} >= {'circuit', 'weather', 'driver'}
+    assert cells[0]['mae'] == hl['mae'] and all(c['source'].startswith('ghost_scorecard · development pool') for c in cells)
+    assert cells[0]['hidden_next1'] == g['development_pool']['hidden_stop']['pooled']['next1_mae']
+    seasons = VR.by_season_rows(g); lc = VR.lock_consistency(g)
+    if seasons:
+        assert {r['season'] for r in seasons} >= {'2026'} and seasons[-1]['mae'] == g['development_pool']['by_season'][seasons[-1]['season']]['forecast']['mae']['orb_v1']
+    if lc:
+        assert lc['all_match'] is True and lc['n_compared'] == len(lc['metrics'])
+    l, _ = VR.live_scorecard()
+    if l is not None:
+        assert VR.live_headline(l)['next1'] == l['pooled']['next1_mae']['estimate']
+    rows = VR.risk_gate_rows(VR.risk_coverage()[0])
+    if rows:
+        assert rows[0]['name'].startswith('production gate') and rows[0]['min_laps'] == 30
+    assert VR.is_sealed('Monza') is False and VR.hidden_stop_for('Bahrain', season=2024) is None and VR.regret_for('Bahrain', season=2024) is None
+
+
+def test_pre_race_scenario_discovery_keyed_by_curve_source(tmp_path, monkeypatch):
+    from app_v2.services import counterfactual_repository as CF
+
+    def mk(d: Path, source: str, uses_post: bool, median: float) -> None:
+        d.mkdir(parents=True)
+        (d / 'summary.json').write_text(json.dumps(dict(scenario=dict(scenario_id='x_nor_lap10_to_soft_new_tyre_only', event_id='2026_X', driver_id='NOR', intervention=dict(lap=10, to_compound='SOFT', set_status='new'),
+                                                                     simulation_mode='tyre_only', summary=dict(elapsed_delta_median_s=median), validation=dict(identity_test='pass'), assets={}),
+                                                        engine=dict(curves=dict(source=source, label='label of ' + source, intended_page='p'), uses_post_race_reference=uses_post, identity_check_delta_s=0.0))))
+    mk(tmp_path / 'x_nor_lap10_to_soft_new_tyre_only', 'race_reference', True, -1.0)
+    mk(tmp_path / 'pre_race' / 'x_nor_lap10_to_soft_new_tyre_only', 'pre_race_forecast', False, -9.0)
+    monkeypatch.setattr(CF, 'CF_DIR', tmp_path)
+    assert [s.curve_source for s in CF.list_scenarios('X')] == ['race_reference'], 'audit listing must not include the pre-race scenario'
+    assert CF.find_scenario('X', 'NOR', 10, 'SOFT').finish_delta_s == -1.0 and CF.default_scenario('X').finish_delta_s == -1.0
+    p = CF.find_pre_race_scenario('X', 'NOR', 10, 'SOFT')
+    assert p.finish_delta_s == -9.0 and p.is_pre_race and p.curve_label == 'label of pre_race_forecast' and str(p.path).endswith('pre_race/x_nor_lap10_to_soft_new_tyre_only')
+    ids = CF.identity_status('X')
+    assert len(ids) == 2 and {i['curve_source'] for i in ids} == {'race_reference', 'pre_race_forecast'}
+
+
+def test_scenario_explorer_uses_pre_race_curve_only():
+    from app_v2.services import counterfactual_repository as CF
+    psc = CF.find_pre_race_scenario('Monza', 'NOR', 24, 'MEDIUM'); sc = CF.find_scenario('Monza', 'NOR', 24, 'MEDIUM', 'new', 'fixed_context')
+    if psc is None or sc is None:
+        pytest.skip('pre-race or race-reference scenario for Monza NOR lap 24 -> MEDIUM not on disk')
+    assert psc.is_pre_race and not sc.is_pre_race and psc.path != sc.path and psc.uses_post_race_reference is False
+    assert CF.find_scenario('Monza', 'NOR', 24, 'MEDIUM', 'new', 'fixed_context', CF.RACE_REFERENCE).path == sc.path
+    html = _html(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'scenario', 'ilap': 24, 'rep': 'MEDIUM', 'scenario': 'hotter_dry'}))
+    assert CF.PRE_RACE_LABEL in html and psc.curve_label in html and f'{psc.finish_delta_s:+.1f} s' in html and 'MODEL-IMPLIED SCENARIO' in html
+    assert f'{sc.finish_delta_s:+.1f} s' not in html and CF.REFERENCE_LABEL not in html, 'the race-reference counterfactual must not appear in the Scenario Explorer'
+    html2 = _html(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'audit', 'ilap': 24, 'rep': 'MEDIUM', 'fid': 'fixed_context'}))
+    assert f'{sc.finish_delta_s:+.1f} s' in html2 and CF.REFERENCE_LABEL in html2
+    assert f'{psc.finish_delta_s:+.1f} s' not in html2 and CF.PRE_RACE_LABEL not in html2, 'the pre-race counterfactual must not appear in the Historical Audit'
+    html3 = _html(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'scenario', 'ilap': 24, 'rep': 'MEDIUM', 'scenario': 'wet'}))
+    assert f'{psc.finish_delta_s:+.1f} s' not in html3 and 'OUT OF SUPPORT' in html3, 'no model-implied delta outside the dry support'
+
+
+def test_ghost_audit_shows_workstream3_hidden_stop_and_regret_for_weekend():
+    from app_v2.services import validation_repository as VR
+    hs = VR.hidden_stop_for('Monza', 'VER'); rg = VR.regret_for('Monza')
+    if hs is None or rg is None:
+        pytest.skip('Workstream 3 hidden_stop / regret files not on disk')
+    assert hs['cases'] and hs['cases'][0]['driver'] == 'VER' and rg['label'] == VR.REGRET_LABEL
+    html = _html(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'VER', 'mode': 'audit', 'ilap': 28, 'rep': 'SOFT'}))
+    assert 'hidden-stop response, Monza (development pool)' in html and f'strategy regret, Monza · {VR.REGRET_LABEL}' in html
+    assert f"+{rg['plans']['orb']['regret']:.1f} s" in html and f"{hs['cases'][0]['err1']:.1f} s" in html and 'development pool (leave-one-weekend-out), never a sealed weekend' in html
+    html2 = _html(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'VER', 'mode': 'scenario', 'ilap': 28, 'rep': 'SOFT', 'scenario': 'hotter_dry'}))
+    assert 'hidden-stop response, Monza' not in html2 and 'strategy regret, Monza' not in html2, 'audit-only rows must stay out of the Scenario Explorer'
+
+
+def test_live_rejoin_wording_has_no_projected_position():
+    from app_v2.services import live_bridge as LB
+    t = LB.rejoin_text(dict(position_now=6, projected_rejoin_position=9, gap_ahead_s=8.4, gap_behind_s=5.7, cars_within_pit_loss=1, traffic_density='clear', basis='observed_gap_structure'))
+    assert '~P' not in t and 'P9' not in t and t.endswith(LB.NOT_POSITION_FORECAST) and t.startswith('P6 now') and 'gap ahead 8.4 s' in t
+    assert LB.rejoin_text(dict(position_now=None, note='n/a')) == 'n/a' and LB.rejoin_text(None) == 'not available'
+    for page, state in (('decision_board', {'ev': 'Barcelona', 'drv': 'PIA', 'lap': 35, 'mode': 'live'}), ('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'})):
+        html = _html(_run(page, state))
+        assert '→ ~P' not in html and '~P' not in html, f'{page}: projected rejoin position is a position claim (red team live_position_claim)'
+        if LB.AVAILABLE:
+            assert LB.NOT_POSITION_FORECAST in html
+
+
+def test_support_mismatch_is_visible_not_hidden():
+    from app_v2.services import live_bridge as LB, lock_repository as LR, replay_service as RS
+    if not LB.AVAILABLE:
+        pytest.skip('live package not importable')
+    lock = LR.load_lock(); vm = LB.build(lock, 'Monza', 'NOR', RS.ReplayCursor('Monza', 'NOR', 53).seek(30), 'x')
+    note = LB.support_note(vm); ts = vm.orb_live['tyre_state']['support_status']; chip = vm.support.overall_support_status
+    assert (note == '') == (ts == chip)
+    if note:
+        assert ts in note and chip in note
+        assert 'support: 7.1 says' in _html(_run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
+        assert 'support note' in _html(_run('decision_board', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
+
+
+def test_landing_scorecards_are_separate_and_gated():
+    from app_v2.services import validation_repository as VR
+    html = _html(_run('landing', {'ev': 'Monza', 'drv': 'LIN', 'mode': 'live'}))
+    sb = VR.sealed_block()
+    assert sb['status_text'] in html
+    if VR.ghost_scorecard()[0] is not None:
+        assert 'Ghost Strategy scorecard' in html and VR.REGRET_LABEL in html
+    if VR.live_scorecard()[0] is not None:
+        assert 'Live Predictor scorecard' in html and 'model-implied rate proxy' in html
+
+
+def test_degraded_feed_and_refused_position_states():
+    """Hungary 2026: the position feed is degraded at source (26 distinct points per lap). Live path shows the 7.1 quality; Ghost refuses the player."""
+    from app_v2.services import live_bridge as LB
+    html = _html(_run('live_predictor', {'ev': 'Hungary', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
+    if LB.AVAILABLE:
+        assert 'DEGRADED' in html
+    html2 = _html(_run('ghost_strategy', {'ev': 'Hungary', 'drv': 'NOR', 'mode': 'audit'}))
+    assert 'POSITION FEED REFUSED' in html2 and 'Plotly fallback' in html2
+
+
+# ---- C4 acceptance pass on the post-freeze data (12 Sep 22:0x) -------------------------------------------------------
+def _text(at) -> str:
+    """Rendered text of every st.html block, tags stripped (the values a viewer reads)."""
+    import re
+    return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', _html(at)))
+
+
+def test_sealed_block_renders_post_freeze_aggregate_verbatim():
+    """The post-freeze aggregate (quotable true) is shown on Generalisation and the landing scorecard, at the precision the
+    lead quotes it at, and every number equals out/validation/holdout_aggregate.json and ghost_scorecard.json.sealed_holdout."""
+    from app_v2.services import validation_repository as VR
+    agg, _ = VR.holdout_aggregate()
+    if agg is None:
+        pytest.skip('out/validation/holdout_aggregate.json not on disk')
+    sb = VR.sealed_block()
+    if not sb['revealed']:
+        pytest.skip(f"aggregate on disk is not quotable: {sb['reason']}")
+    fc = (agg['aggregate'] or {})['forecast']; bs = fc['bootstrap']
+    assert sb['forecast'] == fc and sb['weekends'] == agg['aggregate']['weekends'], 'sealed_block must expose aggregate.forecast verbatim'
+    g, _a = VR.ghost_scorecard()
+    if g is not None and g.get('sealed_holdout'):
+        assert g['sealed_holdout']['aggregate']['forecast'] == fc, 'Workstream 3 scorecard and holdout_aggregate disagree'
+        assert g['sealed_holdout']['quotable'] is True
+    mae, naive = fc['mae']['orb_v1'], fc['mae']['naive']
+    ci, ci_n = bs['mae_orb_v1']['ci90'], bs['mae_naive']['ci90']
+    gen = _text(_run('generalisation', {'ev': 'Monza', 'mode': 'audit'}))
+    assert 'sealed holdout, aggregate only' in gen and 'aggregate revealed after freeze' not in gen
+    assert f'MAE Orb v1 vs naive {mae:.4f} [{ci[0]:.4f}, {ci[1]:.4f}] vs {naive:.4f} [{ci_n[0]:.4f}, {ci_n[1]:.4f}] s/lap' in gen
+    assert f"{fc['n_weekends']} forecastable" in gen and f"{agg['aggregate']['weekends']['sealed']} sealed" in gen
+    assert f"compound-weekends {fc['n_compound_weekends']} ({fc['n_issued']} issued, {fc['n_withheld']} withheld)" in gen
+    assert f"90% band coverage {100 * fc['band_coverage90']['all']:.0f}%" in gen
+    assert 'per-race sealed results are never shown' in gen
+    land = _text(_run('landing', {'ev': 'Monza', 'drv': 'LIN', 'mode': 'live'}))
+    assert f"sealed holdout, aggregate only: MAE Orb v1 {mae:.4f} vs naive {naive:.4f} s/lap" in land
+    assert f"coverage {100 * fc['band_coverage90']['all']:.0f}% over {fc['n_weekends']} forecastable of {sb['n_weekends']} sealed weekends, {fc['n_compound_weekends']} compound-weekends" in land
+    per_race = PROTO / 'out' / 'validation' / 'holdout_per_race.json'       # never read, never rendered: existence only
+    for race_id in VR.sealed_ids():
+        assert race_id not in gen and race_id.split('_', 1)[1] + ' sealed' not in gen, f'{race_id}: a per-race sealed row leaked onto the page'
+    assert per_race.exists()
+
+
+def test_sealed_block_stays_gated_for_a_dry_run_aggregate(tmp_path, monkeypatch):
+    """The same page, pointed at a dry-run aggregate (quotable false), shows the pending sentence and none of its numbers."""
+    from app_v2.services import validation_repository as VR
+    agg, _ = VR.holdout_aggregate()
+    if agg is None:
+        pytest.skip('no aggregate on disk to turn into a dry run')
+    dry = dict(agg, quotable=False, dry_run_before_freeze=True, freeze=None, reveal=dict(per_race_written=False, reason='no freeze.json'))
+    d = tmp_path / 'val'; d.mkdir()
+    (d / 'holdout_aggregate.json').write_text(json.dumps(dry))
+    for name in ('ghost_scorecard.json', 'live_scorecard.json', 'risk_coverage.json', f'hidden_stop_{2026}.json', f'regret_{2026}.json'):
+        src = VR.VAL_DIR / name
+        if src.exists():
+            (d / name).write_text(src.read_text())
+    monkeypatch.setattr(VR, 'VAL_DIR', d)
+    VR._read_json.clear()
+    sb = VR.sealed_block()
+    assert not sb['revealed'] and sb['forecast'] is None and 'quotable: false' in sb['reason']
+    gen = _text(_run('generalisation', {'ev': 'Monza', 'mode': 'audit'}))
+    fc = agg['aggregate']['forecast']; mae, naive = fc['mae']['orb_v1'], fc['mae']['naive']
+    assert 'aggregate revealed after freeze' in gen and 'sealed holdout, aggregate only' not in gen.replace('aggregate only, after freeze', '')
+    assert 'MAE Orb v1 vs naive' not in gen and f'vs {naive:.4f}' not in gen and f'vs naive {naive:.4f}' not in gen, 'a dry-run sealed number leaked onto the page'
+    assert f"compound-weekends {fc['n_compound_weekends']} ({fc['n_issued']} issued" not in gen and 'per-race reveal refused' in gen
+    land = _text(_run('landing', {'ev': 'Monza', 'drv': 'LIN', 'mode': 'live'}))
+    assert 'aggregate revealed after freeze' in land and f'MAE Orb v1 {mae:.4f}' not in land and f'vs naive {naive:.4f}' not in land
+    VR._read_json.clear()
+
+
+def test_scenario_explorer_fidelity_control_selects_between_pre_race_scenarios():
+    """Two pre-race scenarios exist (fixed_context and tyre_only); the Simulation-fidelity control picks the one it names,
+    and each rendered number equals that scenario's own summary.json."""
+    from app_v2.services import counterfactual_repository as CF
+    built = {s.mode: s for s in CF.list_scenarios('Monza', CF.PRE_RACE) if s.driver == 'NOR' and s.lap == 24 and s.to_compound == 'MEDIUM'}
+    if len(built) < 2:
+        pytest.skip(f'only these pre-race fidelities are built: {sorted(built)}')
+    for fid, sc in built.items():
+        summary = json.loads((Path(sc.path) / 'summary.json').read_text())['scenario']['summary']
+        t = _text(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'scenario', 'ilap': 24, 'rep': 'MEDIUM', 'scenario': 'hotter_dry', 'fid': fid}))
+        assert f"simulation fidelity {fid.replace('_', '-') if fid == 'tyre_only' else 'fixed context'} ({fid})" in t
+        assert f"{summary['elapsed_delta_median_s']:+.1f} s · Workstream 2 {fid.replace('_', ' ')}" in t and CF.PRE_RACE_LABEL in t
+        assert f"{summary['elapsed_delta_q10_s']:+.1f} s to {summary['elapsed_delta_q90_s']:+.1f} s" in t
+        assert f"{100 * summary['probability_of_gain']:.0f}%" in t
+        other = next(s for m, s in built.items() if m != fid)
+        assert f"{other.finish_delta_s:+.1f} s · Workstream 2 {other.mode.replace('_', ' ')}" not in t, 'the other fidelity leaked into the rail'
+        assert 'no pre-race scenario built at' not in t
+    default_t = _text(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'scenario', 'ilap': 24, 'rep': 'MEDIUM', 'scenario': 'hotter_dry'}))
+    pref = CF.find_pre_race_scenario('Monza', 'NOR', 24, 'MEDIUM')
+    assert f'{pref.finish_delta_s:+.1f} s · Workstream 2 {pref.mode.replace("_", " ")}' in default_t, 'with no fid in the URL the explorer shows the preferred pre-race fidelity'
+
+
+def _posterior(at) -> tuple[str, str]:
+    """The rendered slope posterior on the Live Predictor: the 7.1 degradation_rate row and the confidence_effect sentence."""
+    import re
+    t = _text(at)
+    row = re.search(r'degradation_rate ([+-]\d+\.\d{3}) s/lap', t)
+    eff = re.search(r'slope posterior ([+-]\d+\.\d+) \+- (\d+\.\d+) s/lap', t)
+    assert row, 'no degradation_rate row rendered'
+    return row.group(1), (f'{eff.group(1)}+-{eff.group(2)}' if eff else '')
+
+
+def test_driver_feedback_shifts_posterior_and_is_reversible(tmp_path, monkeypatch):
+    """A driver-feedback event visibly moves the rendered posterior and removing it restores the previous value exactly.
+
+    The estimator reads live/session.FEEDBACK_LOG (Workstream 8 has not adopted ORB_FEEDBACK_LOG yet), so all three log paths are
+    redirected to a tmp file: the shared app_v2/state/feedback_events.jsonl is asserted byte-identical at the end of the test.
+    The UI has no undo control (the log is append-only), so the reverse direction is the event's removal from the log."""
+    from app_v2.services import feedback_service as FS, live_bridge as LB, paths as P
+    shared = P.STATE_DIR / 'feedback_events.jsonl'
+    before = shared.read_bytes() if shared.exists() else None
+    log = tmp_path / 'feedback_events.jsonl'
+    monkeypatch.setattr(P, 'FEEDBACK_LOG', log)
+    if LB.AVAILABLE:
+        from live import session as LS, viewmodel as LV
+        monkeypatch.setattr(LS, 'FEEDBACK_LOG', log); monkeypatch.setattr(LV, 'FEEDBACK_LOG', log)
+    else:
+        LV = None
+    state = {'ev': 'Monza', 'drv': 'NOR', 'lap': 24, 'mode': 'live'}
+
+    def render():
+        if LV is not None:
+            LV._cache.clear()
+        return _posterior(_run('live_predictor', state))
+
+    base = render()
+    FS.append(FS.make_event('Monza', 'NOR', 22, 'rear', 'traction', 'overheating', 5, 'worsening', 0.9, 'radio', 'rears are overheating', True))
+    assert FS.log_path() == log and log.exists() and len(FS.read_all()) == 1, 'the event must land in the redirected log'
+    after = render()
+    reverted = None
+    try:
+        if LB.AVAILABLE:
+            assert after != base, f'the feedback event did not move the rendered posterior ({base} -> {after})'
+            assert after[0] != base[0], f'degradation_rate unchanged: {base[0]} -> {after[0]}'
+        log.unlink()                                   # the reverse direction: the event is removed from the log
+        reverted = render()
+        assert reverted == base, f'removing the event did not restore the posterior ({base} -> {after} -> {reverted})'
+    finally:
+        now = shared.read_bytes() if shared.exists() else None
+        assert now == before, 'the test wrote to the shared driver-feedback log'
+    assert FS.read_all() == [] and reverted == base
+
+
+def test_race_twin_frames_that_predate_their_scenario_are_called_out():
+    """Workstream 4's frame sets are built from Workstream 2's laps.csv; a scenario regenerated afterwards leaves the animation stale.
+    The page must say so on the affected combination and stay silent on the consistent ones (the two golden ghost routes)."""
+    from app_v2.components import race_twin as RT
+    from app_v2.services import counterfactual_repository as CF
+    from app_v2.pages.ghost_strategy import frames_behind_scenario
+    seen = {}
+    for drv, lap, rep, fid in (('NOR', 24, 'MEDIUM', 'tyre_only'), ('NOR', 24, 'MEDIUM', 'fixed_context'), ('VER', 20, 'HARD', 'fixed_context'), ('VER', 28, 'SOFT', 'fixed_context')):
+        sc = CF.find_scenario('Monza', drv, lap, rep, 'new', fid)
+        if sc is None:
+            continue
+        frames, _t, _p = RT.load_assets('Monza', drv, scenario_id=sc.scenario_id)
+        seen[(drv, lap, rep, fid)] = (sc, frames, frames_behind_scenario(frames, sc))
+    if not seen:
+        pytest.skip('no Monza scenarios with Race Twin frames on disk')
+    assert frames_behind_scenario(None, None) == '' and all(isinstance(v[2], str) for v in seen.values())
+    for key, (sc, frames, msg) in seen.items():
+        fd = (getattr(frames, 'meta', None) or {}).get('finish_delta_s')
+        html = _text(_run('ghost_strategy', {'ev': 'Monza', 'drv': key[0], 'mode': 'audit', 'ilap': key[1], 'rep': key[2], 'fid': key[3]}))
+        if fd is not None and abs(float(fd) - float(sc.finish_delta_s)) > 1.0:
+            assert msg and 'PLAYER FRAMES PREDATE THIS SCENARIO' in html, f'{key}: stale frame set not surfaced'
+            assert f'{sc.finish_delta_s:+.1f} s' in html and f'{float(fd):+.1f} s' in html
+        else:
+            assert msg == '' and 'PLAYER FRAMES PREDATE THIS SCENARIO' not in html, f'{key}: false stale warning'

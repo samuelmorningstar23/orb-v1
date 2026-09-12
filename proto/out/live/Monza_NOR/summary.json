@@ -7,12 +7,12 @@
  "first_lap": 1,
  "last_lap": 53,
  "data_cutoff": "2026-09-06T16:51:34",
- "generated_at": "2026-09-12T16:27:29",
- "git_sha": "ccae5d9",
+ "generated_at": "2026-09-12T21:49:02",
+ "git_sha": "cdb1a45",
  "model_version": "live_estimator_lg_v0.1",
  "model_hash": "sha256:c80b853cad1c6ffe8ab99df3ed41cf46d0880ce50b27a058351821c73827e9e4",
  "estimator": "linear-Gaussian with fixed regime rules",
- "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+ "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
  "forecast_source": "lock_v2",
  "feedback_enabled": true,
  "feedback_events_consumed": 0,
@@ -92,7 +92,7 @@
   },
   "live_predictor": {
    "path": "out/live/Monza_NOR/live_predictor.json",
-   "sha256": "f3e06b9d214106a808c8d3e2d1709c45d2e5451cdd58017bd207658c84ec5bc4",
+   "sha256": "83b8ce8f12cae6e9defd85727610b1e76bb11254c77b6b52f52cc10c9e332250",
    "bytes": 4770
   }
  }

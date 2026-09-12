@@ -10,7 +10,7 @@ A stint carries its own fuel load, tyre set, engine mode and driver; a per-drive
 
 **3. How is track evolution identified separately from tyre age?**
 
-It is measured per session from every driver's push laps, laps within 1% of that driver's own best, against session time, driver-demeaned. Push laps happen at different times of the session on fresh tyres across drivers, so session time and tyre age are not collinear. At Madrid it was 0.6 s per hour on Friday.
+It is measured per session from every driver's push laps, laps within 1% of that driver's own best, against session time, driver-demeaned. Push laps happen at different times of the session on fresh tyres across drivers, so session time and tyre age are not collinear. At Madrid it was 0.6 to 0.8 s per hour on Friday (FP1 0.63, FP2 0.76 s per hour).
 
 **4. How do you detect traffic, and how sensitive is the result to that choice?**
 
@@ -26,7 +26,7 @@ It is small, which is why it is applied only under an agreement rule, at least t
 
 **7. What does withheld mean, and is it not a way to avoid being wrong?**
 
-It means Friday had fewer than 30 clean long-run laps or no positive cleaned slope. It is still a forecast: low degradation, the median race value of the other withheld cases, leave-one-out. That forecast has an error of 0.028 on 13 cases against 0.082 for the naive line, and all 13 races were at or below 0.100 s/lap. It is scored like everything else.
+It means Friday had fewer than 30 clean long-run laps or no positive cleaned slope. It is still a forecast: low degradation, the median race value of the other withheld cases, leave-one-out. That forecast has an error of 0.023 s/lap against 0.106 for the naive line over the 13 withheld cases; the withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band covered 9 of 13. It is scored like everything else.
 
 **8. Why does a cleaned practice curve come out negative on some compounds?**
 
@@ -46,7 +46,7 @@ The transfer factor and the fallback are parameters learned on training weekends
 
 **12. Tell us honestly what the liquid network did.**
 
-A closed-form continuous-time cell read each race stint lap by lap and predicted the cleaned trajectory, scored on held-out stints. Against age-only fits it wins almost everywhere. Against a linear model given the same per-lap inputs it beats the best baseline on 10 of 31 compound-weekends, and its median gain is about zero. The inputs were the discovery: energy, traffic and fuel cut the age-only error by 23%. The network stays as the curve-shape tool.
+A closed-form continuous-time cell read each race stint lap by lap and predicted the cleaned trajectory, scored on held-out stints. Against age-only fits it wins almost everywhere. Against a linear model given the same per-lap inputs it beats the best baseline in only 9 of 31 cells, and its median gain is about zero (+2% change in held-out error). The inputs were the discovery: energy, traffic and fuel cut the age-only error by about a quarter, lap-weighted, with the three degenerate Hungary cells excluded (31% with them). The network stays as the curve-shape tool.
 
 **13. How do you validate the uncertainty bands?**
 
@@ -74,7 +74,7 @@ Per compound: the slope, the 90% band, the basis in one sentence, or the withhel
 
 **19. How and when is the Madrid forecast scored?**
 
-The forecast was issued from FP1 and FP2 and is time-stamped; it is refreshed after FP3 and qualifying with the changes recorded. After Sunday's race, which starts 18:30 IST, after the event closes, the same estimator runs on the race laps and the scorecard is published. We commit to publishing it whether it is right or wrong.
+The forecast was issued from FP1 and FP2 and is time-stamped; FP3 refresh landed 18:11; qualifying refresh landed 21:33 with FP1, FP2, FP3 and Q in the lock (a 21:03 attempt found the session not yet run); hashed forecast published 21:33 IST (sha256 8e5489d5824a). After Sunday's race, which starts 18:30 IST, after the event closes, the same estimator runs on the race laps and the scorecard is published. We commit to publishing it whether it is right or wrong.
 
 **20. What would you need from a team to make this production-grade?**
 

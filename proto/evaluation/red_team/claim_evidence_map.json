@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T17:01:29",
+ "generated_at": "2026-09-12T23:07:37",
  "sources": [
   "out/talk_track.md",
   "out/THE_CASE.md",
@@ -34,6 +34,7 @@
   "app_v2/services/paths.py",
   "app_v2/services/replay_service.py",
   "app_v2/services/support_service.py",
+  "app_v2/services/validation_repository.py",
   "app_v2/services/view_models.py",
   "live/viewmodel.py",
   "decision/optimizer.py",
@@ -54,7 +55,8 @@
   "out/Orb_v1_Mentor_Briefing.pptx#slide-15",
   "out/Orb_v1_Mentor_Briefing.pptx#slide-16",
   "out/Orb_v1_Mentor_Briefing.pptx#slide-17",
-  "out/Orb_v1_Mentor_Briefing.pptx#slide-18"
+  "out/Orb_v1_Mentor_Briefing.pptx#slide-18",
+  "out/Orb_v1_Mentor_Briefing.pptx#slide-19"
  ],
  "wording_rules": [
   {
@@ -119,122 +121,42 @@
   }
  ],
  "summary": {
-  "wording_hits": 24,
-  "reword": 20,
-  "allowed_with_context": 4,
-  "number_claims": 34,
+  "wording_hits": 9,
+  "reword": 0,
+  "allowed_with_context": 9,
+  "number_claims": 37,
   "verdicts": {
    "verified": 21,
    "exceeds_evidence": 5,
    "unverifiable": 5,
-   "mismatch": 3
+   "mismatch": 6
   },
-  "must_reword_before_presentation": [
-   "withheld_13_of_13_low_deg",
-   "hungary_0.055_after_ratio",
-   "beats_naive_7_of_8",
-   "every_withheld_rises",
-   "beta_same_two_decimals",
-   "offsets_from_qualifying",
-   "madrid_timing",
-   "rival_field_none_held_out"
-  ]
+  "must_reword_before_presentation": [],
+  "qualified_in_presentation": []
  },
  "wording_flags": [
   {
-   "rule": "energy_price_constant",
-   "source": "out/talk_track.md",
-   "line": 9,
-   "excerpt": "5. **Fifth confounder.** \"Why do some Fridays show no degradation? Because the driver was ramping up. We measure energy through the tyre from the public 3.7 Hz traces; on every withheld compound it rises through the run.",
-   "verdict": "reword",
-   "note": "the lock push_diagnostic betas differ Friday vs Sunday (Austria -0.601 vs -0.590, Barcelona -0.578 vs -0.575): \"consistent scale\" is supportable, \"the same to two decimals\" is not",
-   "owner": "lead"
-  },
-  {
-   "rule": "ground_truth",
-   "source": "out/talk_track.md",
-   "line": 18,
-   "excerpt": "\"Tyre degradation from Friday practice, with the race as ground truth. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when Friday supports one, and learns per compo",
-   "verdict": "reword",
-   "note": "wording rule 9.2: race estimates are \"race-derived pace-loss references\", never ground truth",
-   "owner": "lead"
-  },
-  {
-   "rule": "novelty_unqualified",
-   "source": "out/talk_track.md",
-   "line": 24,
-   "excerpt": "- **How is this different from a regression on lap times?** Same estimator on practice and race, a gate that refuses, a factor learned across the season, a fallback that is validated, and a fifth confounder measured from",
-   "verdict": "reword",
-   "note": "novelty reads \"in the public methods we reviewed, we did not find ...\" (9.2)",
-   "owner": "lead"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "app_v2/pages/decision_board.py",
-   "line": 20,
-   "excerpt": "rejoin = f\"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · {rj['traffic_density']}\" if rj.get('position_now') is not None else rj.get('note', '—')",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 6"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "app_v2/pages/decision_board.py",
-   "line": 20,
-   "excerpt": "rejoin = f\"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · {rj['traffic_density']}\" if rj.get('position_now') is not None else rj.get('note', '—')",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 6"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "app_v2/pages/decision_board.py",
-   "line": 20,
-   "excerpt": "rejoin = f\"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · {rj['traffic_density']}\" if rj.get('position_now') is not None else rj.get('note', '—')",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 6"
-  },
-  {
    "rule": "any_weather",
    "source": "app_v2/pages/generalisation.py",
-   "line": 51,
-   "excerpt": "st.html('<div class=\"cs-chips\">' + badges.badge_html('never \"works under any weather\"', 'neutral') + badges.badge_html('abstains outside the evidence', 'live') + '</div>')",
+   "line": 167,
+   "excerpt": "st.html('<div class=\"cs-chips\">' + badges.badge_html('never \"works under any weather\"', 'neutral') + badges.badge_html('abstains outside the evidence', 'live') + badges.badge_html('sealed holdout: aggregate only, after f",
    "verdict": "allowed_with_context",
    "note": "never \"it works under any weather\" (roadmap 8)",
    "owner": "workstream 6"
   },
   {
-   "rule": "live_position_claim",
-   "source": "app_v2/pages/live_predictor.py",
-   "line": 23,
-   "excerpt": "return f\"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · traffic {rj['traffic_density']}\"",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 6"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "app_v2/pages/live_predictor.py",
-   "line": 23,
-   "excerpt": "return f\"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · traffic {rj['traffic_density']}\"",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 6"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "app_v2/pages/live_predictor.py",
-   "line": 23,
-   "excerpt": "return f\"P{rj['position_now']} → ~P{rj['projected_rejoin_position']} · {rj['cars_within_pit_loss']} cars within pit loss · traffic {rj['traffic_density']}\"",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
+   "rule": "observed_race_time_saved",
+   "source": "app_v2/pages/validation.py",
+   "line": 90,
+   "excerpt": "cards.section('Strategy regret, development pool (regret_2026.json)', VR.REGRET_LABEL + '; never observed race time saved. Plan cost under the race-derived reference minus the hindsight oracle.')",
+   "verdict": "allowed_with_context",
+   "note": "the regret table is a held-out strategy replay under a post-race reference model (evaluation/__init__.py wording)",
    "owner": "workstream 6"
   },
   {
    "rule": "tread",
    "source": "app_v2/services/live_bridge.py",
-   "line": 76,
+   "line": 77,
    "excerpt": "\"\"\"The 7.1 live_tyre_state record, formatted for a key/value panel (public mode: no tread, no wear percentages).\"\"\"",
    "verdict": "allowed_with_context",
    "note": "public mode never displays physical tread (roadmap 7); allowed only when describing private team data or a missing channel",
@@ -243,54 +165,27 @@
   {
    "rule": "live_position_claim",
    "source": "app_v2/services/live_bridge.py",
-   "line": 95,
-   "excerpt": "rejoin = (f\"P{rj.get('position_now')} now → ~P{rj.get('projected_rejoin_position')}, gap ahead {g(rj.get('gap_ahead_s'))}, behind {g(rj.get('gap_behind_s'))}, {rj.get('cars_within_pit_loss')} cars within pit loss, traffi",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 6"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "app_v2/services/live_bridge.py",
-   "line": 95,
-   "excerpt": "rejoin = (f\"P{rj.get('position_now')} now → ~P{rj.get('projected_rejoin_position')}, gap ahead {g(rj.get('gap_ahead_s'))}, behind {g(rj.get('gap_behind_s'))}, {rj.get('cars_within_pit_loss')} cars within pit loss, traffi",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 6"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "app_v2/services/live_bridge.py",
-   "line": 95,
-   "excerpt": "rejoin = (f\"P{rj.get('position_now')} now → ~P{rj.get('projected_rejoin_position')}, gap ahead {g(rj.get('gap_ahead_s'))}, behind {g(rj.get('gap_behind_s'))}, {rj.get('cars_within_pit_loss')} cars within pit loss, traffi",
-   "verdict": "reword",
+   "line": 99,
+   "excerpt": "parts = [f\"P{rj['position_now']} now\"]   # the observed position only; a projected rejoin P belongs to frozen_field mode   # the observed position only; a projected rejoin P-number is renderable only in frozen_field mode",
+   "verdict": "allowed_with_context",
    "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
    "owner": "workstream 6"
   },
   {
    "rule": "live_position_claim",
    "source": "live/viewmodel.py",
-   "line": 172,
-   "excerpt": "rejoin = (f\"P{rj['position_now']} now, rejoin ~P{rj['projected_rejoin_position']}, {rj['cars_within_pit_loss']} cars within pit loss, traffic {rj['traffic_density']} (observed gap structure)\"",
-   "verdict": "reword",
+   "line": 174,
+   "excerpt": "# app_v2/services/live_bridge.rejoin_text). projected_rejoin_position stays in the 7.2 record, rendered only in frozen_field mode.",
+   "verdict": "allowed_with_context",
    "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
    "owner": "workstream 8"
   },
   {
    "rule": "live_position_claim",
    "source": "live/viewmodel.py",
-   "line": 172,
-   "excerpt": "rejoin = (f\"P{rj['position_now']} now, rejoin ~P{rj['projected_rejoin_position']}, {rj['cars_within_pit_loss']} cars within pit loss, traffic {rj['traffic_density']} (observed gap structure)\"",
-   "verdict": "reword",
-   "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
-   "owner": "workstream 8"
-  },
-  {
-   "rule": "live_position_claim",
-   "source": "live/viewmodel.py",
-   "line": 172,
-   "excerpt": "rejoin = (f\"P{rj['position_now']} now, rejoin ~P{rj['projected_rejoin_position']}, {rj['cars_within_pit_loss']} cars within pit loss, traffic {rj['traffic_density']} (observed gap structure)\"",
-   "verdict": "reword",
+   "line": 175,
+   "excerpt": "rejoin = (f\"P{rj['position_now']} now, gap ahead {_gap_s(rj.get('gap_ahead_s'))}, behind {_gap_s(rj.get('gap_behind_s'))}, \"   # observed position; no projected P outside frozen_field mode",
+   "verdict": "allowed_with_context",
    "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
    "owner": "workstream 8"
   },
@@ -298,37 +193,19 @@
    "rule": "live_position_claim",
    "source": "decision/optimizer.py",
    "line": 117,
-   "excerpt": "return dict(basis='observed_gap_structure', position_now=None, projected_rejoin_position=None, gap_ahead_s=None, gap_behind_s=None, cars_within_pit_loss=None, traffic_density=None, note=NOT_AVAILABLE)",
-   "verdict": "reword",
+   "excerpt": "return dict(basis='observed_gap_structure', position_now=None, projected_rejoin_position=None,   # 7.2 data; rendered only in frozen_field mode",
+   "verdict": "allowed_with_context",
    "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
    "owner": "workstream 8"
   },
   {
    "rule": "live_position_claim",
    "source": "decision/optimizer.py",
-   "line": 133,
-   "excerpt": "return dict(basis='observed_gap_structure', position_now=int(pos), projected_rejoin_position=int(projected), gap_ahead_s=(round(float(gap_ahead), 3) if gap_ahead is not None else None),",
-   "verdict": "reword",
+   "line": 134,
+   "excerpt": "return dict(basis='observed_gap_structure', position_now=int(pos), projected_rejoin_position=int(projected),   # 7.2 data; rendered only in frozen_field mode (live pages show the gap structure)",
+   "verdict": "allowed_with_context",
    "note": "a point rejoin position on the Live Predictor / decision board is a position claim outside frozen-field mode; show the observed gap structure without a projected P-number, or label it \"not a position forecast\"",
    "owner": "workstream 8"
-  },
-  {
-   "rule": "every_number_measured",
-   "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-11",
-   "line": 6,
-   "excerpt": "cleaning, gate, learned transfer, bands, strategy enumeration; the lock file every screen reads from and computes nothing itself",
-   "verdict": "reword",
-   "note": "the live path computes the posterior and ranked actions in-process (deterministic replay, but not lock numbers) and the Ghost page shows FIXTURE / pending values: say \"every number on screen is traceable to the lock, a hashed sidecar or a labelled placeholder\"",
-   "owner": "lead"
-  },
-  {
-   "rule": "novelty_unqualified",
-   "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
-   "line": 10,
-   "excerpt": "Measured confounder. the push profile from telemetry energy, an input no published method uses; explains about half of the practice-to-race gap",
-   "verdict": "reword",
-   "note": "novelty reads \"in the public methods we reviewed, we did not find ...\" (9.2)",
-   "owner": "lead"
   },
   {
    "rule": "tread",
@@ -337,24 +214,6 @@
    "excerpt": "| Tread depth after runs | the only route to a physical wear number |",
    "verdict": "allowed_with_context",
    "note": "public mode never displays physical tread (roadmap 7); allowed only when describing private team data or a missing channel",
-   "owner": "lead"
-  },
-  {
-   "rule": "every_number_measured",
-   "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-17",
-   "line": 9,
-   "excerpt": "| Dr.Tyre, TrackShift AI | Pipelines with neon simulators and a Gemini voice engineer; constants or synthetic toggles | None held out | Every number on our screens is measured and scored |",
-   "verdict": "reword",
-   "note": "the live path computes the posterior and ranked actions in-process (deterministic replay, but not lock numbers) and the Ghost page shows FIXTURE / pending values: say \"every number on screen is traceable to the lock, a hashed sidecar or a labelled placeholder\"",
-   "owner": "lead"
-  },
-  {
-   "rule": "novelty_unqualified",
-   "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-17",
-   "line": 11,
-   "excerpt": "One line: nobody else delivers a Friday curve scored against Sunday across a season, says withheld when it should, removes the driver’s push, and forecasts a live weekend.",
-   "verdict": "allowed_with_context",
-   "note": "novelty reads \"in the public methods we reviewed, we did not find ...\" (9.2)",
    "owner": "lead"
   }
  ],
@@ -374,34 +233,58 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/talk_track.md",
      "line": 8,
-     "excerpt": "4. **Proof.** \"Eleven weekends, twenty-nine compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.2 to 0.78. Every compoun"
+     "excerpt": "4. **Proof.** \"11 weekends, 29 compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.20 to 0.78. Every compound answered: ",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/talk_track.md",
      "line": 18,
-     "excerpt": "\"Tyre degradation from Friday practice, with the race as ground truth. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when Friday supports one, "
+     "excerpt": "\"Tyre degradation from Friday practice, scored against a race-derived pace-loss reference. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when F",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/THE_CASE.md",
      "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 8,
-     "excerpt": "| Naive straight line | 29 | 0.137 | +0.06 | 0.20 |"
+     "excerpt": "| Naive straight line | 29 | 0.137 | +0.06 | 0.20 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 22,
-     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78"
+     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 5,
+   "n_occurrences_unqualified": 5,
+   "n_presentation_occurrences": 5,
+   "n_presentation_unqualified": 5,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -419,54 +302,98 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/talk_track.md",
      "line": 8,
-     "excerpt": "4. **Proof.** \"Eleven weekends, twenty-nine compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.2 to 0.78. Every compoun"
+     "excerpt": "4. **Proof.** \"11 weekends, 29 compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.20 to 0.78. Every compound answered: ",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/talk_track.md",
      "line": 18,
-     "excerpt": "\"Tyre degradation from Friday practice, with the race as ground truth. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when Friday supports one, "
+     "excerpt": "\"Tyre degradation from Friday practice, scored against a race-derived pace-loss reference. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when F",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/THE_CASE.md",
      "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
+     "line": 18,
+     "excerpt": "Withheld compounds degraded at a median 0.028 s/lap in the race; 11 of 13 below 0.06 s/lap; the fallback band covered 9 of 13; fallback error 0.023 against 0.106 naive",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 10,
-     "excerpt": "| Orb v1, issued | 16 | 0.023 | +0.76 | 0.82 |"
+     "excerpt": "| Orb v1, issued | 16 | 0.023 | +0.76 | 0.82 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 11,
-     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |"
+     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 22,
-     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78"
+     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
      "line": 6,
-     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.030 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |"
+     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.030 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
      "line": 7,
-     "excerpt": "| Fuel prior 0.9 or 1.3 kg/lap | 14 / 16 | 0.026 / 0.023 | 0.74 / 0.76 |"
+     "excerpt": "| Fuel prior 0.9 or 1.3 kg/lap | 14 / 16 | 0.026 / 0.023 | 0.74 / 0.76 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
      "line": 8,
-     "excerpt": "| Fuel cost 0.025 or 0.035 s/kg | 14 / 16 | 0.025 / 0.023 | 0.75 / 0.78 |"
+     "excerpt": "| Fuel cost 0.025 or 0.035 s/kg | 14 / 16 | 0.025 / 0.023 | 0.75 / 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
-   "n_occurrences": 9,
+   "n_occurrences": 10,
+   "n_occurrences_unqualified": 10,
+   "n_presentation_occurrences": 10,
+   "n_presentation_unqualified": 10,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -484,29 +411,50 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/talk_track.md",
      "line": 8,
-     "excerpt": "4. **Proof.** \"Eleven weekends, twenty-nine compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.2 to 0.78. Every compoun"
+     "excerpt": "4. **Proof.** \"11 weekends, 29 compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.20 to 0.78. Every compound answered: ",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/THE_CASE.md",
      "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 8,
-     "excerpt": "| Naive straight line | 29 | 0.137 | +0.06 | 0.20 |"
+     "excerpt": "| Naive straight line | 29 | 0.137 | +0.06 | 0.20 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 22,
-     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78"
+     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 4,
+   "n_occurrences_unqualified": 4,
+   "n_presentation_occurrences": 4,
+   "n_presentation_unqualified": 4,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -524,54 +472,90 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/talk_track.md",
      "line": 8,
-     "excerpt": "4. **Proof.** \"Eleven weekends, twenty-nine compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.2 to 0.78. Every compoun"
+     "excerpt": "4. **Proof.** \"11 weekends, 29 compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.20 to 0.78. Every compound answered: ",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/THE_CASE.md",
      "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 11,
-     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |"
+     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 22,
-     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78"
+     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
      "line": 6,
-     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.030 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |"
+     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.030 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
      "line": 8,
-     "excerpt": "| Fuel cost 0.025 or 0.035 s/kg | 14 / 16 | 0.025 / 0.023 | 0.75 / 0.78 |"
+     "excerpt": "| Fuel cost 0.025 or 0.035 s/kg | 14 / 16 | 0.025 / 0.023 | 0.75 / 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
      "line": 4,
-     "excerpt": "Learned transfer. the Sunday-to-Friday correction per compound is a parameter learned on training weekends and scored on held-out ones (leave-one-weekend-out, r 0.78)"
+     "excerpt": "Learned transfer. the Sunday-to-Friday correction per compound is a parameter learned on training weekends and scored on held-out ones (leave-one-weekend-out, r 0.78)",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-15",
      "line": 10,
-     "excerpt": "| Friday-to-Sunday transfer | Leave-one-weekend-out median-ratio estimator per compound with an agreement rule (scalar domain transfer) | Cross-validated medians | r 0.78, calibration slope 0.77 on 29"
+     "excerpt": "| Friday-to-Sunday transfer | Leave-one-weekend-out median-ratio estimator per compound with an agreement rule (scalar domain transfer) | Cross-validated medians | r 0.78, calibration slope 0.77 on 29",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-17",
      "line": 6,
-     "excerpt": "| PITWALL | Same cleaning idea, 12 events; concluded practice curves do not transfer; dropped tyre age; predicts the value of a fresh tyre | Leave-one-event-out on pit-stop deltas | We deliver the cur"
+     "excerpt": "| PITWALL | Same cleaning idea, 12 events; concluded practice curves do not transfer; dropped tyre age; predicts the value of a fresh tyre | Leave-one-event-out on pit-stop deltas | We deliver the cur",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 9,
+   "n_occurrences_unqualified": 9,
+   "n_presentation_occurrences": 9,
+   "n_presentation_unqualified": 9,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -589,19 +573,34 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 11,
-     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |"
+     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-15",
      "line": 10,
-     "excerpt": "| Friday-to-Sunday transfer | Leave-one-weekend-out median-ratio estimator per compound with an agreement rule (scalar domain transfer) | Cross-validated medians | r 0.78, calibration slope 0.77 on 29"
+     "excerpt": "| Friday-to-Sunday transfer | Leave-one-weekend-out median-ratio estimator per compound with an agreement rule (scalar domain transfer) | Cross-validated medians | r 0.78, calibration slope 0.77 on 29",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 2,
+   "n_occurrences_unqualified": 2,
+   "n_presentation_occurrences": 2,
+   "n_presentation_unqualified": 2,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -623,24 +622,42 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/THE_CASE.md",
      "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 12,
-     "excerpt": "28/29"
+     "excerpt": "28/29",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 22,
-     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78"
+     "excerpt": "Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 3,
+   "n_occurrences_unqualified": 3,
+   "n_presentation_occurrences": 3,
+   "n_presentation_unqualified": 3,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -661,24 +678,90 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/talk_track.md",
      "line": 8,
-     "excerpt": "4. **Proof.** \"Eleven weekends, twenty-nine compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.2 to 0.78. Every compoun"
+     "excerpt": "4. **Proof.** \"11 weekends, 29 compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.20 to 0.78. Every compound answered: ",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/talk_track.md",
+     "line": 9,
+     "excerpt": "5. **Fifth confounder.** \"Why do some Fridays show no degradation? Because the driver was ramping up. We measure energy through the tyre from the public 3.7 Hz traces; where the cleaned Friday slope p",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/talk_track.md",
+     "line": 18,
+     "excerpt": "\"Tyre degradation from Friday practice, scored against a race-derived pace-loss reference. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when F",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/THE_CASE.md",
+     "line": 4,
+     "excerpt": "Friday lies twice. We remove the first lie with physics and telemetry, learn the second from earlier weekends, refuse when Friday has no signal, and score ourselves against the race. The push profile,",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/THE_CASE.md",
      "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
+     "source": "out/THE_CASE.md",
+     "line": 26,
+     "excerpt": "Partly, yes, which is why the push-adjusted slope is a diagnostic and a second opinion, never the headline predictor. The as-driven estimator with the learned factor predicts the race better. The diag",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
+     "line": 12,
+     "excerpt": "The push profile explains about two-thirds of the pooled Friday-to-Sunday gap on the 16 issued cases (per-case shares vary widely)",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
      "line": 18,
-     "excerpt": "13 of 13 withheld cases were low-degradation races; fallback error 0.028 s/lap against 0.082 naive"
+     "excerpt": "Some Fridays show a tyre getting faster with age, which is inconsistent with wear. The energy the driver puts through the tyre, computed from the public speed and position traces, shows why: where the",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
+     "line": 10,
+     "excerpt": "Measured confounder. the push profile from telemetry energy, an input we did not find in the public methods we reviewed; explains about two-thirds of the pooled Friday-to-Sunday gap on the 16 issued c",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
-   "n_occurrences": 3,
+   "n_occurrences": 9,
+   "n_occurrences_unqualified": 9,
+   "n_presentation_occurrences": 9,
+   "n_presentation_unqualified": 9,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -699,14 +782,26 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
      "line": 13,
-     "excerpt": "0.016 to 0.030"
+     "excerpt": "0.016 to 0.030",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 1,
+   "n_occurrences_unqualified": 1,
+   "n_presentation_occurrences": 1,
+   "n_presentation_unqualified": 1,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -812,44 +907,17 @@
     "ROADMAP_v5"
    ],
    "severity": "HIGH",
-   "found_in": [
-    {
-     "source": "out/talk_track.md",
-     "line": 18,
-     "excerpt": "\"Tyre degradation from Friday practice, with the race as ground truth. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when Friday supports one, "
-    },
-    {
-     "source": "out/THE_CASE.md",
-     "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 18,
-     "excerpt": "13 of 13 withheld cases were low-degradation races; fallback error 0.028 s/lap against 0.082 naive"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 23,
-     "excerpt": "The same estimator runs on race laps, so for every past weekend we know how much Sunday shrank Friday, per compound. For a new weekend the median of the other weekends is applied only when they agree."
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 14,
-     "excerpt": "13/13"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
-     "line": 5,
-     "excerpt": "Selective prediction. the gate is a validated abstention rule with a fallback that has been right 13 of 13 times; next, a calibrated learned gate with a risk-coverage curve"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-15",
-     "line": 11,
-     "excerpt": "| Abstention | Threshold-based selective prediction; nonparametric leave-one-out fallback (median of withheld outcomes) | Rule + cross-validated median | 13 of 13; risk-coverage curve planned |"
-    }
-   ],
-   "n_occurrences": 7,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -874,14 +942,17 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
-   "found_in": [
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 18,
-     "excerpt": "13 of 13 withheld cases were low-degradation races; fallback error 0.028 s/lap against 0.082 naive"
-    }
-   ],
-   "n_occurrences": 1,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -899,29 +970,50 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
      "line": 4,
-     "excerpt": "0.285"
+     "excerpt": "0.285",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
      "line": 30,
-     "excerpt": "A practice lap time is not a tyre measurement. Hungary: the straight line says 0.285, the race showed 0.042, seven times wrong, and a plan built on that line loses 74 seconds against the best plan. Fi"
+     "excerpt": "A practice lap time is not a tyre measurement. Hungary: the straight line says 0.285, the race showed 0.042, seven times wrong, and a plan built on that line loses 74 seconds against the best plan. Fi",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
      "line": 8,
-     "excerpt": "0.285"
+     "excerpt": "0.285",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
      "line": 31,
-     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the"
+     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 4,
+   "n_occurrences_unqualified": 4,
+   "n_presentation_occurrences": 4,
+   "n_presentation_unqualified": 4,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -939,29 +1031,50 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
      "line": 5,
-     "excerpt": "0.042"
+     "excerpt": "0.042",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
      "line": 30,
-     "excerpt": "A practice lap time is not a tyre measurement. Hungary: the straight line says 0.285, the race showed 0.042, seven times wrong, and a plan built on that line loses 74 seconds against the best plan. Fi"
+     "excerpt": "A practice lap time is not a tyre measurement. Hungary: the straight line says 0.285, the race showed 0.042, seven times wrong, and a plan built on that line loses 74 seconds against the best plan. Fi",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
      "line": 23,
-     "excerpt": "0.042"
+     "excerpt": "0.042",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
      "line": 31,
-     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the"
+     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 4,
+   "n_occurrences_unqualified": 4,
+   "n_presentation_occurrences": 4,
+   "n_presentation_unqualified": 4,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -979,19 +1092,34 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
      "line": 13,
-     "excerpt": "0.122"
+     "excerpt": "0.122",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
      "line": 31,
-     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the"
+     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 2,
+   "n_occurrences_unqualified": 2,
+   "n_presentation_occurrences": 2,
+   "n_presentation_unqualified": 2,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1014,19 +1142,17 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
-   "found_in": [
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 18,
-     "excerpt": "0.055"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 31,
-     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the"
-    }
-   ],
-   "n_occurrences": 2,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1044,19 +1170,34 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
      "line": 7,
-     "excerpt": "+74 s"
+     "excerpt": "+74 s",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
      "line": 6,
-     "excerpt": "| Hungary | M-H-H | +74 s | S-M-M 16/26/28 | +24 s | S-S-M |"
+     "excerpt": "| Hungary | M-H-H | +74 s | S-M-M 16/26/28 | +24 s | S-S-M |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 2,
+   "n_occurrences_unqualified": 2,
+   "n_presentation_occurrences": 2,
+   "n_presentation_unqualified": 2,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1092,19 +1233,34 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
      "line": 7,
-     "excerpt": "×0.97"
+     "excerpt": "×0.97",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
      "line": 8,
-     "excerpt": "×0.45"
+     "excerpt": "×0.45",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 2,
+   "n_occurrences_unqualified": 2,
+   "n_presentation_occurrences": 2,
+   "n_presentation_unqualified": 2,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1125,14 +1281,26 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/THE_CASE.md",
      "line": 10,
-     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; 13/13 withheld were low-degradation races; push profile explains ~half the gap; sensitivity 0.021-0.027; Madrid live."
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 1,
+   "n_occurrences_unqualified": 1,
+   "n_presentation_occurrences": 1,
+   "n_presentation_unqualified": 1,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1191,14 +1359,26 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
      "line": 7,
-     "excerpt": "| Fuel prior 0.9 or 1.3 kg/lap | 14 / 16 | 0.026 / 0.023 | 0.74 / 0.76 |"
+     "excerpt": "| Fuel prior 0.9 or 1.3 kg/lap | 14 / 16 | 0.026 / 0.023 | 0.74 / 0.76 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 1,
+   "n_occurrences_unqualified": 1,
+   "n_presentation_occurrences": 1,
+   "n_presentation_unqualified": 1,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1207,14 +1387,14 @@
    "pattern": "0\\.098|\\+0\\.10 with|−0\\.10 to \\+0\\.30|-0\\.10 to \\+0\\.30",
    "evidence_path": "lock.live.Madrid.compounds[SOFT]",
    "evidence_value": {
-    "prediction": 0.09763911111705847,
+    "prediction": 0.06762490392631254,
     "band90": [
-     -0.09555284627831415,
-     0.3000899632831943
+     -0.11362148974220213,
+     0.25534560484232366
     ],
-    "n_prac": 41
+    "n_prac": 46
    },
-   "verdict": "verified",
+   "verdict": "mismatch",
    "note": "",
    "search_in": [
     "deck",
@@ -1223,24 +1403,17 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
-   "found_in": [
-    {
-     "source": "out/talk_track.md",
-     "line": 10,
-     "excerpt": "6. **Madrid live.** \"Issued this morning from FP1 and FP2, before qualifying: soft +0.10 with a wide band; medium withheld because drivers were learning a new track, forecast low degradation by two in"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 8,
-     "excerpt": "+0.098 s/lap"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 9,
-     "excerpt": "issued; 90% band −0.10 to +0.30; 41 clean laps"
-    }
-   ],
-   "n_occurrences": 3,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1250,7 +1423,7 @@
    "evidence_path": "lock.live.Madrid.compounds[MEDIUM] (prediction, second_opinion.prediction, energy_trend)",
    "evidence_value": {
     "prediction": 0.027577618966801054,
-    "second_opinion": 0.032655689056113775,
+    "second_opinion": 0.03336115262993496,
     "energy_trend": 0.4815170921473892,
     "issued": false
    },
@@ -1263,29 +1436,98 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
+    {
+     "source": "out/talk_track.md",
+     "line": 8,
+     "excerpt": "4. **Proof.** \"11 weekends, 29 compound-weekends, every number leave-one-weekend-out. Naive error 0.137 s/lap, Orb v1 0.023. Correlation with the race goes from 0.20 to 0.78. Every compound answered: ",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/talk_track.md",
+     "line": 18,
+     "excerpt": "\"Tyre degradation from Friday practice, scored against a race-derived pace-loss reference. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when F",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/THE_CASE.md",
+     "line": 10,
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
+    },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
      "line": 18,
-     "excerpt": "13 of 13 withheld cases were low-degradation races; fallback error 0.028 s/lap against 0.082 naive"
+     "excerpt": "Withheld compounds degraded at a median 0.028 s/lap in the race; 11 of 13 below 0.06 s/lap; the fallback band covered 9 of 13; fallback error 0.023 against 0.106 naive",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
+     "line": 23,
+     "excerpt": "The same estimator runs on race laps, so for every past weekend we know how much Sunday shrank Friday, per compound. For a new weekend the median of the other weekends is applied only when they agree.",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
      "line": 11,
-     "excerpt": "+0.028 s/lap"
+     "excerpt": "+0.028 s/lap",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
      "line": 12,
-     "excerpt": "withheld: no signal on Friday, drivers learning a new track (+0.48 MJ per lap through runs); low-degradation forecast, second opinion +0.033"
+     "excerpt": "withheld (no positive degradation signal in cleaned practice); 90% band −0.01 to +0.09; 112 clean laps; drivers learning a new track (+0.48 MJ per lap through runs); low-degradation forecast, second o",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 20,
-     "excerpt": "Madrid is the live test. Curves issued from FP1 and FP2 before qualifying: soft issued with a wide band; medium withheld because drivers were learning a brand-new circuit, energy rising 0.48 MJ per la"
+     "line": 21,
+     "excerpt": "Madrid is the live test. Curves issued from FP1 and FP2 this morning, refreshed after FP3 (landed 18:11) and after qualifying (landed 21:33, FP1, FP2, FP3 and Q in the lock): soft issued at +0.068 s/l",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
+     "line": 5,
+     "excerpt": "Selective prediction. the gate is a validated abstention rule with a scored fallback (withheld compounds degraded at a median 0.028 s/lap in the race, 11 of 13 below 0.06, band covered 9 of 13); next,",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-15",
+     "line": 11,
+     "excerpt": "| Abstention | Threshold-based selective prediction; nonparametric leave-one-out fallback (median of withheld outcomes) | Rule + cross-validated median | withheld compounds degraded at a median 0.028 ",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
-   "n_occurrences": 4,
+   "n_occurrences": 10,
+   "n_occurrences_unqualified": 10,
+   "n_presentation_occurrences": 10,
+   "n_presentation_unqualified": 10,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1296,12 +1538,12 @@
    "evidence_value": {
     "plan": "S-M",
     "stints": [
-     18,
-     38
+     22,
+     34
     ],
     "band_high": "S-M-M"
    },
-   "verdict": "verified",
+   "verdict": "mismatch",
    "note": "",
    "search_in": [
     "deck",
@@ -1310,14 +1552,17 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
-   "found_in": [
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 16,
-     "excerpt": "Plan on the central curve: one stop, soft then medium, 18 / 38 laps; the top of the band says two stops. FP3 refresh 17:40, qualifying refresh 21:00, then the hashed forecast is published. Race Sunday"
-    }
-   ],
-   "n_occurrences": 1,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1335,14 +1580,17 @@
     "ROADMAP_v5"
    ],
    "severity": "LOW",
-   "found_in": [
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 15,
-     "excerpt": "four clean laps on Friday"
-    }
-   ],
-   "n_occurrences": 1,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1427,14 +1675,26 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
      "line": 4,
-     "excerpt": "| Race | Naive plan | Cost | Orb v1 plan | Cost | Best plan |"
+     "excerpt": "| Race | Naive plan | Cost | Orb v1 plan | Cost | Best plan |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 1,
+   "n_occurrences_unqualified": 1,
+   "n_presentation_occurrences": 1,
+   "n_presentation_unqualified": 1,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1494,24 +1754,17 @@
     "ROADMAP_v5"
    ],
    "severity": "HIGH",
-   "found_in": [
-    {
-     "source": "out/talk_track.md",
-     "line": 11,
-     "excerpt": "7. **Decisions.** \"A curve only matters as a decision. Replayed on eight races: the naive plan costs 47 to 155 seconds against the best plan; Orb v1's costs 0 to 30, and beats naive in seven of eight."
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
-     "line": 14,
-     "excerpt": "Beats the naive plan on 7 of 8 conventional races"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
-     "line": 20,
-     "excerpt": "A curve only matters as a decision. Replayed on past races with the race-observed curves as truth: the naive plan costs up to 155 seconds against the best plan; ours between 0 and 55, beating naive on"
-    }
-   ],
-   "n_occurrences": 3,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1536,34 +1789,17 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
-   "found_in": [
-    {
-     "source": "out/THE_CASE.md",
-     "line": 4,
-     "excerpt": "Friday lies twice. We remove the first lie with physics and telemetry, learn the second from earlier weekends, refuse when Friday has no signal, and score ourselves against the race. The push profile,"
-    },
-    {
-     "source": "out/THE_CASE.md",
-     "line": 30,
-     "excerpt": "Partly, yes, which is why the push-adjusted slope is a diagnostic and a second opinion, never the headline predictor. The as-driven estimator with the learned factor predicts the race better. The diag"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
-     "line": 12,
-     "excerpt": "On issued cases the push profile explains a median 52% of the Friday-to-Sunday gap (68% pooled); the learned management factor covers the rest"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
-     "line": 18,
-     "excerpt": "Some Fridays show a tyre getting faster with age, which is inconsistent with wear. The energy the driver puts through the tyre, computed from the public speed and position traces, rises through every "
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
-     "line": 10,
-     "excerpt": "Measured confounder. the push profile from telemetry energy, an input no published method uses; explains about half of the practice-to-race gap"
-    }
-   ],
-   "n_occurrences": 5,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1592,19 +1828,26 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
-    {
-     "source": "out/talk_track.md",
-     "line": 10,
-     "excerpt": "6. **Madrid live.** \"Issued this morning from FP1 and FP2, before qualifying: soft +0.10 with a wide band; medium withheld because drivers were learning a new track, forecast low degradation by two in"
-    },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
      "line": 7,
-     "excerpt": "+0.10"
+     "excerpt": "+0.10",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
-   "n_occurrences": 2,
+   "n_occurrences": 1,
+   "n_occurrences_unqualified": 1,
+   "n_presentation_occurrences": 1,
+   "n_presentation_unqualified": 1,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1697,19 +1940,17 @@
     "ROADMAP_v5"
    ],
    "severity": "HIGH",
-   "found_in": [
-    {
-     "source": "out/talk_track.md",
-     "line": 9,
-     "excerpt": "5. **Fifth confounder.** \"Why do some Fridays show no degradation? Because the driver was ramping up. We measure energy through the tyre from the public 3.7 Hz traces; on every withheld compound it ri"
-    },
-    {
-     "source": "out/talk_track.md",
-     "line": 18,
-     "excerpt": "\"Tyre degradation from Friday practice, with the race as ground truth. The estimator strips fuel, track evolution, traffic and the driver from every lap, issues a curve only when Friday supports one, "
-    }
-   ],
-   "n_occurrences": 2,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1736,27 +1977,83 @@
     "ROADMAP_v5"
    ],
    "severity": "HIGH",
-   "found_in": [
-    {
-     "source": "out/talk_track.md",
-     "line": 9,
-     "excerpt": "5. **Fifth confounder.** \"Why do some Fridays show no degradation? Because the driver was ramping up. We measure energy through the tyre from the public 3.7 Hz traces; on every withheld compound it ri"
-    }
-   ],
-   "n_occurrences": 1,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
-   "id": "liquid_23_pct_10_of_31",
-   "claim": "per-lap inputs cut the age-only error by 23%; the network beat the best baseline 10 of 31",
-   "pattern": "23%|10 of 31",
-   "evidence_path": "out/liquid.json by_compound mae_linear vs mae_linear_cov vs mae_liquid (31 complete cells)",
+   "id": "liquid_reduction_lapweighted_ex_hungary",
+   "claim": "per-lap inputs cut the age-only error by 23% lap-weighted with the three degenerate Hungary cells excluded (31% with them); the network beat the best baseline in 9 of 31 cells",
+   "pattern": "23% lap-weighted[^()]{0,90}Hungary[^()]{0,40}excluded,? 31% with them",
+   "evidence_path": "out/liquid.json by_compound mae_linear vs mae_linear_cov (31 complete cells), lap-weighted by n_heldout_laps, Hungary excluded",
    "evidence_value": {
     "reduction_mean_all": 0.27443807637990814,
     "reduction_lapweighted_all": 0.31215060499760927,
     "reduction_mean_no_hungary": 0.18164118677656726,
     "reduction_lapweighted_no_hungary": 0.22932763017187818,
     "liquid_beats_best": "9 of 31",
+    "n_complete_cells": 31,
+    "degenerate_cells": [
+     [
+      "Hungary",
+      "SOFT",
+      2.7696431749353843e-13
+     ],
+     [
+      "Hungary",
+      "MEDIUM",
+      3.916792364699071e-13
+     ],
+     [
+      "Hungary",
+      "HARD",
+      2.334878923201355e-13
+     ]
+    ]
+   },
+   "verdict": "verified",
+   "note": "reproduces exactly as printed: 23% lap-weighted over the 28 non-Hungary cells, 31% over all 31. Basis sensitivity, disclosed because the printed basis is the most favourable one: unweighted it is 18% (ex Hungary) / 27% (all). The three Hungary cells are excluded because mae_linear_cov = 2.8e-13 s/lap on held-out laps is a degenerate fit (the covariate baseline reproduces the target); the sentence says so. The network itself beats the best baseline in only 9 of 31 cells, which the same sentence states.",
+   "search_in": [
+    "deck",
+    "talk_track",
+    "THE_CASE",
+    "ROADMAP_v5"
+   ],
+   "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
+   "owner": "lead"
+  },
+  {
+   "id": "liquid_bare_reduction_pct_without_basis",
+   "claim": "the liquid ablation reduction stated as a bare \"23%\" with no weighting, no excluded cells and no win count",
+   "pattern": "23%",
+   "evidence_path": "none: the bare percentage has no evidence path (the lap-weighted ex-Hungary basis does)",
+   "evidence_value": {
+    "reduction_mean_all": 0.27443807637990814,
+    "reduction_lapweighted_all": 0.31215060499760927,
+    "reduction_mean_no_hungary": 0.18164118677656726,
+    "reduction_lapweighted_no_hungary": 0.22932763017187818,
+    "liquid_beats_best": "9 of 31",
+    "n_complete_cells": 31,
     "degenerate_cells": [
      [
       "Hungary",
@@ -1776,7 +2073,117 @@
     ]
    },
    "verdict": "unverifiable",
-   "note": "the 23% reproduces only as the lap-weighted reduction with the three Hungary cells removed (23%); with them it is 31% (lap-weighted) / 27% (mean); the network beats the best baseline in 9 of 31 cells. Hungary mae_linear_cov = 2.8e-13 on held-out laps is a degenerate fit (the covariate baseline reproduces the target), which should be excluded and said so",
+   "note": "23% is only the lap-weighted reduction with the three degenerate Hungary cells removed; unweighted it is 18%, and with Hungary it is 31% (lap-weighted) / 27% (mean). Stated bare it implies a single measured improvement that does not exist. Say it with the basis, as THE_CASE.md and the talk track do.",
+   "search_in": [
+    "deck",
+    "talk_track",
+    "THE_CASE",
+    "ROADMAP_v5"
+   ],
+   "severity": "HIGH",
+   "qualified_by": [
+    "23% lap-weighted",
+    "Hungary",
+    "9\\ of\\ 31"
+   ],
+   "disqualified_by": [
+    "\\b10 of 31\\b"
+   ],
+   "counts_only_unqualified": true,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
+   "owner": "lead"
+  },
+  {
+   "id": "liquid_beats_best_10_of_31",
+   "claim": "the network beat the best baseline 10 of 31",
+   "pattern": "\\b10 of 31\\b",
+   "evidence_path": "out/liquid.json: mae_liquid < min(mae_linear, mae_quadratic, mae_linear_cov) per cell",
+   "evidence_value": {
+    "reduction_mean_all": 0.27443807637990814,
+    "reduction_lapweighted_all": 0.31215060499760927,
+    "reduction_mean_no_hungary": 0.18164118677656726,
+    "reduction_lapweighted_no_hungary": 0.22932763017187818,
+    "liquid_beats_best": "9 of 31",
+    "n_complete_cells": 31,
+    "degenerate_cells": [
+     [
+      "Hungary",
+      "SOFT",
+      2.7696431749353843e-13
+     ],
+     [
+      "Hungary",
+      "MEDIUM",
+      3.916792364699071e-13
+     ],
+     [
+      "Hungary",
+      "HARD",
+      2.334878923201355e-13
+     ]
+    ]
+   },
+   "verdict": "mismatch",
+   "note": "the real count is 9 of 31; \"10 of 31\" appears in no current document and must not return",
+   "search_in": [
+    "deck",
+    "talk_track",
+    "THE_CASE",
+    "ROADMAP_v5"
+   ],
+   "severity": "HIGH",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
+   "owner": "lead"
+  },
+  {
+   "id": "liquid_beats_best_9_of_31",
+   "claim": "the network beat the best baseline in only 9 of 31 cells",
+   "pattern": "9\\ of\\ 31",
+   "evidence_path": "out/liquid.json: mae_liquid < min(mae_linear, mae_quadratic, mae_linear_cov) per cell",
+   "evidence_value": {
+    "reduction_mean_all": 0.27443807637990814,
+    "reduction_lapweighted_all": 0.31215060499760927,
+    "reduction_mean_no_hungary": 0.18164118677656726,
+    "reduction_lapweighted_no_hungary": 0.22932763017187818,
+    "liquid_beats_best": "9 of 31",
+    "n_complete_cells": 31,
+    "degenerate_cells": [
+     [
+      "Hungary",
+      "SOFT",
+      2.7696431749353843e-13
+     ],
+     [
+      "Hungary",
+      "MEDIUM",
+      3.916792364699071e-13
+     ],
+     [
+      "Hungary",
+      "HARD",
+      2.334878923201355e-13
+     ]
+    ]
+   },
+   "verdict": "verified",
+   "note": "9 of 31 complete cells; the honest reading of the ablation and the one the documents print",
    "search_in": [
     "deck",
     "talk_track",
@@ -1784,19 +2191,42 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/talk_track.md",
      "line": 12,
-     "excerpt": "8. **Liquid model.** \"We tested a liquid neural network that reads each stint lap by lap. Given the same inputs, a straight line is about as good. The inputs were the discovery: energy, traffic and fu"
+     "excerpt": "8. **Liquid model.** \"We tested a liquid neural network that reads each stint lap by lap. Given the same inputs, a straight line is about as good: the network beat the best baseline in only 9 of 31 ce",
+     "kind": "talk_track",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/THE_CASE.md",
+     "line": 10,
+     "excerpt": "Naive 0.137 vs Orb v1 0.023 s/lap; r 0.20 -> 0.78; 28/29 wins; withheld compounds degraded at a median 0.028 s/lap in the race (range -0.009 to +0.100); 11 of 13 below 0.06 s/lap; the fallback band co",
+     "kind": "THE_CASE",
+     "qualified": false,
+     "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
      "line": 16,
-     "excerpt": "A continuous-time cell read each race stint lap by lap, scored on held-out stints. Per-lap inputs cut the age-only error by 23%; the network on top of the same inputs added nothing (beat the best base"
+     "excerpt": "A continuous-time cell read each race stint lap by lap, scored on held-out stints. Per-lap inputs cut the age-only error by about a quarter, lap-weighted, with the three degenerate Hungary cells exclu",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
-   "n_occurrences": 2,
+   "n_occurrences": 3,
+   "n_occurrences_unqualified": 3,
+   "n_presentation_occurrences": 3,
+   "n_presentation_unqualified": 3,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1825,14 +2255,26 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-12",
      "line": 9,
-     "excerpt": "count = clamp(round(0.18 × eligible), 4, 6) = 6 weekends, chosen by metadata only, hashed before any tuning: Canada 2023, Bahrain 2024, Monza 2024, Saudi Arabia 2024, Zandvoort 2024, Qatar 2025. Resul"
+     "excerpt": "count = clamp(round(0.18 × eligible), 4, 6) = 6 weekends, chosen by metadata only, hashed before any tuning: Canada 2023, Bahrain 2024, Monza 2024, Saudi Arabia 2024, Zandvoort 2024, Qatar 2025. Resul",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
     }
    ],
    "n_occurrences": 1,
+   "n_occurrences_unqualified": 1,
+   "n_presentation_occurrences": 1,
+   "n_presentation_unqualified": 1,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1886,8 +2328,8 @@
      "HARD": "practice (4 drivers)"
     },
     "Madrid": {
-     "MEDIUM": "practice (22 drivers)",
-     "HARD": "nominal Pirelli-range step"
+     "MEDIUM": "practice value +1.20 s implausible, nominal Pirelli-range step",
+     "HARD": "practice (3 drivers)"
     }
    },
    "verdict": "exceeds_evidence",
@@ -1899,34 +2341,17 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
-   "found_in": [
-    {
-     "source": "out/talk_track.md",
-     "line": 14,
-     "excerpt": "10. **Built when.** \"The estimator and the six-weekend validation were disclosed pre-work. Everything else on these slides, seven more weekends, the fallback, the push diagnostic, strategy with qualif"
-    },
-    {
-     "source": "out/talk_track.md",
-     "line": 22,
-     "excerpt": "- **What did you build today?** Seven new weekends including sprint format, the fallback rule, the push diagnostic, qualifying-based offsets, the liquid model and its ablation, the dashboard, the brie"
-    },
-    {
-     "source": "out/THE_CASE.md",
-     "line": 38,
-     "excerpt": "Three places, all closed. The transfer factor for a weekend is computed from other weekends only. The fallback value is the median of other weekends' withheld outcomes. Compound offsets come from that"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
-     "line": 3,
-     "excerpt": "Offsets from qualifying, 21 s pit loss, every one- and two-stop plan enumerated, costed under the race-derived curves"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-18",
-     "line": 18,
-     "excerpt": "The gate and validated fallback, the push diagnostic, qualifying offsets, replay scoring"
-    }
-   ],
-   "n_occurrences": 5,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1941,31 +2366,43 @@
     "ROADMAP_v5"
    ],
    "severity": "LOW",
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
    "found_in": [],
    "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
    "id": "madrid_timing",
-   "claim": "FP3 refresh 17:40, qualifying refresh 21:00 (deck) vs 17:30 / 20:45 (roadmap section 2) and hash before 21:45 (task 0.13)",
-   "pattern": "17:40|21:00|17:30|20:45",
-   "evidence_path": "ROADMAP_v5 section 2 anchors vs deck slide 10",
+   "claim": "Madrid anchors as they happened: FP3 refresh landed 18:11 IST (refresh_fp3.log); the qualifying refresh attempted 21:03 found the session not run yet (refresh_q.log) and was scheduled again for 21:32; the hashed forecast was published 21:03:23 from the FP3 lock (out/forecast_Madrid_2026.json issued_at) and is re-published after the second refresh",
+   "pattern": "17:40|21:00|17:30|20:45|05:04|refreshes pending",
+   "evidence_path": "refresh_fp3.log, refresh_q.log, out/forecast_Madrid_2026.json",
    "evidence_value": null,
    "verdict": "mismatch",
-   "note": "two different anchor times are in circulation; pick one",
+   "note": "a stated time that did not happen: 17:40 (FP3; landed 18:11), 21:00 (qualifying; the 21:03 attempt found Q not run, second attempt 21:32), 05:04 / refreshes pending (stale status); say what happened or drop the time",
    "search_in": [
     "deck",
     "ROADMAP_v5"
    ],
    "severity": "LOW",
-   "found_in": [
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 16,
-     "excerpt": "Plan on the central curve: one stop, soft then medium, 18 / 38 laps; the top of the band says two stops. FP3 refresh 17:40, qualifying refresh 21:00, then the hashed forecast is published. Race Sunday"
-    }
-   ],
-   "n_occurrences": 1,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   },
   {
@@ -1983,21 +2420,19 @@
     "ROADMAP_v5"
    ],
    "severity": "MEDIUM",
-   "found_in": [
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-11",
-     "line": 6,
-     "excerpt": "cleaning, gate, learned transfer, bands, strategy enumeration; the lock file every screen reads from and computes nothing itself"
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-17",
-     "line": 9,
-     "excerpt": "| Dr.Tyre, TrackShift AI | Pipelines with neon simulators and a Gemini voice engineer; constants or synthetic toggles | None held out | Every number on our screens is measured and scored |"
-    }
-   ],
-   "n_occurrences": 2,
+   "qualified_by": [],
+   "disqualified_by": [],
+   "counts_only_unqualified": false,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
+   "n_presentation_qualified": 0,
+   "qualified_not_counted": [],
+   "n_qualified_not_counted": 0,
    "owner": "lead"
   }
  ],
- "exit_code": 1
+ "exit_code": 0
 }

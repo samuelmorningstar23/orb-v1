@@ -368,6 +368,16 @@ def build_base_references(lock: dict, state_values: list[float]) -> ReferenceSet
         refs.add_json('asset:out/sensitivity.json' + ('' if signed else ' (unsigned)'), read_json(sens), 'out/sensitivity.json')
         if not signed:
             refs.notes.append('out/sensitivity.json has no .sha256 sidecar and is not in the lock: its numbers are shown on the validation page as an unsigned asset')
+    # Workstream 3's scorecards (out/validation/*.json): not in the lock; the pages print each file's sha256 next to the values
+    # (services/asset_repository), so they are hashed-on-screen assets. Listed as assets, matched last in provenance order.
+    for p in sorted(glob.glob(str(PROTO / 'out' / 'validation' / '*.json'))):
+        rel = str(Path(p).relative_to(PROTO))
+        signed = Path(p + '.sha256').exists()
+        try:
+            refs.add_json(f'asset:{rel}' + ('' if signed else ' (sha256 printed on the page, no sidecar)'), read_json(p), rel)
+        except Exception as e:      # pragma: no cover - a half-written file during a rebuild
+            refs.notes.append(f'{rel}: unreadable ({e!r})')
+    refs.notes.append('out/validation/*.json (Workstream 3 scorecards) have no .sha256 sidecar; the pages print the file sha256 next to the values, so they are matched as on-screen-hashed assets')
     fb = PROTO / 'app_v2' / 'state' / 'feedback_events.jsonl'
     if fb.exists():
         for rec in _jsonl(fb):
@@ -380,6 +390,8 @@ def build_base_references(lock: dict, state_values: list[float]) -> ReferenceSet
     refs.add(d, 105.0, 'lock lap rule: 105% of stint best')
     refs.add(d, 90.0, 'nominal band coverage 90%')
     refs.add(d, 2026.0, 'season')
+    for yr in (2023.0, 2024.0, 2025.0):
+        refs.add(d, yr, 'season on disk (2023 to 2026: deck / generalisation caption)')
     refs.add(d, float(len(glob.glob(str(PROTO / 'feat' / '*_R.csv')))), 'count of feat/*_R.csv')
     events_blk = lock.get('events', {})
     completed = [e for e, m in events_blk.items() if m.get('completed')]
@@ -487,7 +499,7 @@ def _live_refs(refs: ReferenceSet, event: str, driver: str, lap: int) -> None:
 
 def _counterfactual_refs(refs: ReferenceSet, event: str) -> None:
     import pandas as pd
-    for p in sorted(glob.glob(str(PROTO / 'out' / 'counterfactual' / '*' / 'summary.json'))):
+    for p in sorted(glob.glob(str(PROTO / 'out' / 'counterfactual' / '**' / 'summary.json'), recursive=True)):    # incl. pre_race/<scenario>/
         s = read_json(p)
         eid = (s.get('scenario') or {}).get('event_id', '')
         if eid.split('_', 1)[-1] != event:

@@ -1,0 +1,14 @@
+{
+ "model_frozen": true,
+ "feature_list_frozen": true,
+ "gate_threshold_frozen": true,
+ "provider_frozen": true,
+ "git_commit": "cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
+ "frozen_at": "2026-09-12T21:37:02+05:30",
+ "frozen_by": "lead (checkpoint C4)",
+ "seal_commit": "0e3c9c4",
+ "note": "Model rules frozen as sealed at C0 (commit 0e3c9c4). `git log 0e3c9c4..HEAD -- pipeline.py model_v2.py features.py strategy2.py` lists exactly one commit, 02f4c00 ('Naming final'), whose only change to these files is a display-label rename in pipeline.py (docstring 'ClearStint pipeline' -> 'Orb v1 pipeline'; strategy view labels 'ClearStint' / 'ClearStint, band low|high' -> 'Orb v1' / 'Orb v1, band low|high'). No estimator, feature, gate threshold (min_practice_laps, min_slope), factor rule, fuel/traffic prior or provider rule changed since the seal; model_v2.py, features.py and strategy2.py are byte-identical to 0e3c9c4. Provider frozen: provider_A_v2 (pre-race forecast curves from out/lock_v2.json). The 16:55 and 21:15 aggregates were dry runs before this freeze and are never quoted; only the evaluator run made under this freeze at commit cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e is quotable, always as 'sealed holdout, aggregate only'.",
+ "model_rule_commits_since_seal": [
+  "02f4c00 Naming final: Orb v1 as product and team name; documents, deck, lock and dashboard regenerated"
+ ]
+}

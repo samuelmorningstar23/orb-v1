@@ -10,7 +10,8 @@ For Monza and Austria 2026, two drivers each (NOR, VER):
     time accounting     sum(lap_delta) == cumulative_delta[-1] == engine.elapsed_delta_mean_s; cf_lap_time - actual == lap_delta;
                         tyre + pit == lap_delta; the summary quantiles are those of the sampled totals; q10 <= median <= q90
     conservation        a scenario adding one stop adds exactly one pit_entry, stationary, pit_exit, age_reset and warm_up
-    on-disk reproduce   the four Monza scenarios under out/counterfactual/ recompile to the same summary numbers (same seed)
+    on-disk reproduce   every scenario under out/counterfactual/ (race-context) and out/counterfactual/pre_race/
+                        (Scenario Explorer, curve_source='pre_race_forecast') recompiles to the same summary numbers (same seed)
     provider A          every lock curve (29 validation rows + Madrid) is reproduced exactly by ProviderA.predict_curve
 Pit-loss derivation: the 2026 season pool is recomputed from the feature files with a fresh cache and the transit loss, its sd,
 the in-lap share and the pool counts are compared with what out/counterfactual/*/summary.json and counterfactual/README.md report.
@@ -130,9 +131,13 @@ def counterfactual_checks(event: str, driver: str, engine) -> list[dict]:
 def reproduce_on_disk(engine) -> list[dict]:
     from counterfactual.engine import ScenarioSpec
     out = []
-    for p in sorted((PROTO / 'out' / 'counterfactual').glob('*/summary.json')):
+    cf_root = PROTO / 'out' / 'counterfactual'
+    # race-context scenarios sit directly under out/counterfactual/; the Scenario Explorer's pre-race
+    # scenarios (curve_source='pre_race_forecast') sit one level deeper under pre_race/ and are checked too.
+    for p in sorted(cf_root.glob('*/summary.json')) + sorted(cf_root.glob('pre_race/*/summary.json')):
         s = read_json(p)
         sc, eng = s['scenario'], s['engine']
+        rel = p.parent.relative_to(cf_root).as_posix()
         ev = sc['event_id'].split('_', 1)[-1]
         iv = sc['intervention']
         try:
@@ -141,10 +146,10 @@ def reproduce_on_disk(engine) -> list[dict]:
             r = engine.compile(spec)
             diffs = {k: abs(float(r.summary[k]) - float(sc['summary'][k])) for k in ('elapsed_delta_median_s', 'elapsed_delta_q10_s', 'elapsed_delta_q90_s', 'probability_of_gain')}
             same_hash = r.scenario['model_hash'] == sc['model_hash']
-            out.append(_check(f'on-disk scenario reproduces: {sc["scenario_id"]}', max(diffs.values()) < 1e-6 and same_hash, max_abs_diff=max(diffs.values()), diffs=diffs, model_hash_unchanged=same_hash,
-                              disk_generated_at=sc.get('generated_at'), disk_git_sha=sc.get('git_sha')))
+            out.append(_check(f'on-disk scenario reproduces: {rel}', max(diffs.values()) < 1e-6 and same_hash, max_abs_diff=max(diffs.values()), diffs=diffs, model_hash_unchanged=same_hash,
+                              curve_source=eng.get('curve_source', 'race_reference'), disk_generated_at=sc.get('generated_at'), disk_git_sha=sc.get('git_sha')))
         except Exception as e:
-            out.append(_check(f'on-disk scenario reproduces: {sc.get("scenario_id")}', False, error=f'{type(e).__name__}: {e}'))
+            out.append(_check(f'on-disk scenario reproduces: {rel}', False, error=f'{type(e).__name__}: {e}'))
     return out
 
 

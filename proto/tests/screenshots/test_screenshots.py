@@ -77,3 +77,25 @@ def test_visual_regression_within_tolerance(report):
     diffs = {f'{n}@{vp}': v.get('diff_vs_golden') for n, r in report['routes'].items() for vp, v in r.items()}
     bad = {k: d for k, d in diffs.items() if d is not None and d > TOL}
     assert not bad, f'changed pixels above {TOL:.0%}: {bad} (re-run capture.py --update after an intended change)'
+
+
+def test_keyboard_reaches_every_nav_link_and_enter_switches_route(report):
+    navs = {k: v for k, v in report['timings'].items() if k.startswith('keyboard_nav_')}
+    assert navs, 'keyboard navigation was not recorded'
+    for k, v in navs.items():
+        assert not v['missing'], (k, v)
+        assert v['enter_activates'], (k, v)
+
+
+def test_designed_degraded_states_render(report):
+    missing = {f'{n}@{vp}': v['expected_text_missing'] for n, r in report['routes'].items() for vp, v in r.items() if v.get('expected_text_missing')}
+    assert not missing, missing
+
+
+def test_presentation_mode_hides_sidebar_on_both_hero_routes(report):
+    for name in ('presentation_live', 'presentation_ghost'):
+        for vp, v in report['routes'].get(name, {}).items():
+            assert v.get('sidebar_visible') is False, (name, vp)
+    for name in ('live_stable', 'ghost_audit'):
+        for vp, v in report['routes'].get(name, {}).items():
+            assert v.get('sidebar_visible') is True, (name, vp, 'sidebar should be visible outside presentation mode')

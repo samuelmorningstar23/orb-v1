@@ -114,7 +114,8 @@ def continue_cost(offset: float, slope: np.ndarray | float, age: int, laps: int)
 
 def rejoin_context(comp: Optional[CompetitorContext]) -> dict[str, Any]:
     if comp is None or not comp.cars:
-        return dict(basis='observed_gap_structure', position_now=None, projected_rejoin_position=None, gap_ahead_s=None, gap_behind_s=None, cars_within_pit_loss=None, traffic_density=None, note=NOT_AVAILABLE)
+        return dict(basis='observed_gap_structure', position_now=None, projected_rejoin_position=None,   # 7.2 data; rendered only in frozen_field mode
+                    gap_ahead_s=None, gap_behind_s=None, cars_within_pit_loss=None, traffic_density=None, note=NOT_AVAILABLE)
     me = [c for c in comp.cars if c.driver == comp.driver]
     if not me:
         return dict(basis='observed_gap_structure', note=NOT_AVAILABLE)
@@ -130,7 +131,8 @@ def rejoin_context(comp: Optional[CompetitorContext]) -> dict[str, Any]:
     density = 'clear' if near == 0 else ('light' if near <= 2 else 'dense')
     projected = sum(1 for c in comp.cars if c.driver != comp.driver and c.est_t_end_k < t_me + comp.pit_loss) + 1
     n_proj = sum(1 for c in comp.cars if c.projected)
-    return dict(basis='observed_gap_structure', position_now=int(pos), projected_rejoin_position=int(projected), gap_ahead_s=(round(float(gap_ahead), 3) if gap_ahead is not None else None),
+    return dict(basis='observed_gap_structure', position_now=int(pos), projected_rejoin_position=int(projected),   # 7.2 data; rendered only in frozen_field mode (live pages show the gap structure)
+                gap_ahead_s=(round(float(gap_ahead), 3) if gap_ahead is not None else None),
                 gap_behind_s=(round(float(gap_behind), 3) if gap_behind is not None else None), cars_within_pit_loss=int(within), traffic_density=density,
                 note=f'observed lap-time ordering at lap {comp.lap} (t_min + lap_s from the race file; {n_proj} cars still on lap {comp.lap} projected from their last completed lap); rival strategy responses are not simulated')
 

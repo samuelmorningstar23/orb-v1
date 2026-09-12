@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T21:03:51",
+ "generated_at": "2026-09-12T21:33:10",
  "rules": {
   "min_practice_laps": 30,
   "min_slope": 0.02,
@@ -507,7 +507,8 @@
    "sessions": [
     "FP1",
     "FP2",
-    "FP3"
+    "FP3",
+    "Q"
    ],
    "format": "conventional",
    "completed": false,
@@ -524,12 +525,14 @@
    "track_temp": {
     "FP1": 49.849999999999994,
     "FP2": 51.0,
-    "FP3": 47.0
+    "FP3": 47.0,
+    "Q": 53.8
    },
    "rain": {
     "FP1": false,
     "FP2": false,
-    "FP3": false
+    "FP3": false,
+    "Q": false
    },
    "excluded_by_reason": {
     "short run (<5 clean laps)": 281,
@@ -2135,7 +2138,8 @@
     "sessions": [
      "FP1",
      "FP2",
-     "FP3"
+     "FP3",
+     "Q"
     ],
     "format": "conventional",
     "completed": false,
@@ -2152,12 +2156,14 @@
     "track_temp": {
      "FP1": 49.849999999999994,
      "FP2": 51.0,
-     "FP3": 47.0
+     "FP3": 47.0,
+     "Q": 53.8
     },
     "rain": {
      "FP1": false,
      "FP2": false,
-     "FP3": false
+     "FP3": false,
+     "Q": false
     },
     "excluded_by_reason": {
      "short run (<5 clean laps)": 281,

@@ -1,0 +1,491 @@
+{
+ "generated_at": "2026-09-12T23:07:39",
+ "workstream": 7,
+ "checkpoint_target": "C4",
+ "lock": {
+  "generated_at": "2026-09-12T21:33:10",
+  "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
+ },
+ "verdict": {
+  "decision": "GO",
+  "paragraph": "Red team verdict for C4: GO. Blocking list: 0 open, 1 resolved (RT-BLK-1 closed at the live_bridge boundary with guarding tests). Acceptance suite tests/red_team: 53 passed, 0 failed, 1 xfailed in 1.72 s. Consistency probe: PASS (1692 rendered numbers, 0 mismatches). Leakage audit PASS (5 of 5 checks pass); identity checks PASS {'passed': 41, 'failed': 0}. Hashed forecast out/forecast_Madrid_2026.json: PASS (issued 2026-09-12T21:33:14+05:30 from sessions ['FP1', 'FP2', 'FP3', 'Q']; pointers resolve {'lock_v2_forecast_hash': True, 'lock_sha256': True, 'lock_v2_sha256': True}). Forecast-hash provenance: PASS (runtime readers agree: True; stale sidecars: 0; content-only proof: the hash changes with the per-event data_cutoff stamp alone). Madrid anchors: PASS (0 stated times that did not happen as written). Wording flags outstanding: 0 (owners: [])."
+ },
+ "counts": {
+  "checks": 9,
+  "pass_": 9,
+  "warn": 0,
+  "fail": 0,
+  "skip": 0,
+  "blocking_open": 0,
+  "blocking_resolved": 1,
+  "wording_outstanding": 0,
+  "acceptance_tests": {
+   "passed": 53,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 1,
+   "xpassed": 0
+  }
+ },
+ "checks": {
+  "consistency_probe": {
+   "status": "PASS",
+   "generated_at": "2026-09-12T23:07:36",
+   "exit_code": 0,
+   "counts": {
+    "routes": 15,
+    "load_failures": 0,
+    "numbers": 1692,
+    "mismatches": 0,
+    "placeholders": 0,
+    "unclassified_integers": 0,
+    "unhashed_live_values": 26,
+    "ambiguous_matches": 589
+   },
+   "failing_routes": [],
+   "notes": [
+    "out/sensitivity.json has no .sha256 sidecar and is not in the lock: its numbers are shown on the validation page as an unsigned asset",
+    "out/validation/*.json (Workstream 3 scorecards) have no .sha256 sidecar; the pages print the file sha256 next to the values, so they are matched as on-screen-hashed assets",
+    "Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED"
+   ]
+  },
+  "leakage_audit": {
+   "status": "PASS",
+   "generated_at": "2026-09-12T22:16:02",
+   "per_check": {
+    "static_imports": "PASS",
+    "import_closure": "PASS",
+    "future_read_and_deny_list_spy": "PASS",
+    "target_driver_exclusion": "PASS",
+    "one_forecast_hash": "PASS"
+   },
+   "future_read": {
+    "laps": null,
+    "feed_calls": null,
+    "violations": null
+   },
+   "self_test_inject": null
+  },
+  "identity_checks": {
+   "status": "PASS",
+   "generated_at": "2026-09-12T22:16:25",
+   "counts": {
+    "passed": 41,
+    "failed": 0
+   },
+   "failing": []
+  },
+  "claim_audit": {
+   "status": "PASS",
+   "generated_at": "2026-09-12T23:07:37",
+   "counts": {
+    "wording_hits": 9,
+    "reword": 0,
+    "allowed_with_context": 9,
+    "number_claims": 37,
+    "verdicts": {
+     "verified": 21,
+     "exceeds_evidence": 5,
+     "unverifiable": 5,
+     "mismatch": 6
+    },
+    "must_reword_before_presentation": [],
+    "qualified_in_presentation": []
+   },
+   "survivors": [],
+   "qualified_in_presentation": [],
+   "note": "WARN, not FAIL: wording is a presentation gate (roadmap 9.2), not a 14.3 stop-the-line condition unless a claim exceeds the selected support, fidelity or sensor mode on a screen"
+  },
+  "acceptance_suite": {
+   "status": "PASS",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python -m pytest tests/red_team -q -p no:cacheprovider",
+   "returncode": 0,
+   "seconds": 1.72,
+   "counts": {
+    "passed": 53,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 1,
+    "xpassed": 0
+   },
+   "not_green": [
+    {
+     "test": "tests.red_team.test_forecast_hash::test_forecast_hash_is_content_only",
+     "status": "XFAIL (documented defect)",
+     "message": "Workstream 1 / lead: pre_race_forecast.events.*.data_cutoff is stamped with the lock generated_at, so the hash changes at every refresh with identical numbers (proven 21:03 vs 18:11); exclude data_cutoff from the hashed content or set it to the real session cutoff"
+    }
+   ],
+   "summary_line": "53 passed, 1 xfailed in 1.72s"
+  },
+  "forecast_file_audit": {
+   "status": "PASS",
+   "file": "out/forecast_Madrid_2026.json",
+   "issued_at": "2026-09-12T21:33:14+05:30",
+   "lock_generated_at": "2026-09-12T21:33:10",
+   "sessions_used": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q"
+   ],
+   "current_lock_generated_at": "2026-09-12T21:33:10",
+   "prospective": true,
+   "pointers_resolve": {
+    "lock_v2_forecast_hash": true,
+    "lock_sha256": true,
+    "lock_v2_sha256": true
+   },
+   "json_sha256": "8e5489d5824ae066945225457d0198531db8a8fc246cd6f65d82787f550626ce",
+   "problems": [],
+   "notes": [
+    "offsets and pit loss are pre-race inputs: MEDIUM: practice value +1.20 s implausible, nominal Pirelli-range step; HARD: practice (3 drivers); pit loss 21.0 s (stated standard)",
+    "clean practice laps 162 of 873 over ['FP1', 'FP2', 'FP3', 'Q']; rain in practice {'FP1': False, 'FP2': False, 'FP3': False, 'Q': False}"
+   ],
+   "compounds": [
+    {
+     "compound": "SOFT",
+     "prediction": 0.0676,
+     "band90": [
+      -0.1136,
+      0.2553
+     ],
+     "issued": true,
+     "clean_practice_laps": 46
+    },
+    {
+     "compound": "MEDIUM",
+     "prediction": 0.0276,
+     "band90": [
+      -0.0133,
+      0.088
+     ],
+     "issued": false,
+     "clean_practice_laps": 112
+    }
+   ],
+   "central_plan": {
+    "plan": "S-M",
+    "stints": [
+     22,
+     34
+    ],
+    "stops": 1,
+    "crossover_lap": {
+     "S-M": 14.982289076690481
+    },
+    "margin_over_next_family_s": 8.0
+   }
+  },
+  "hash_provenance": {
+   "status": "PASS",
+   "lock_v2_forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
+   "runtime_readers_agree": true,
+   "agree": [
+    "schemas.lock_v2.compute_forecast_hash(pre_race_forecast): 66e3201e",
+    "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json: 66e3201e",
+    "out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json: 66e3201e",
+    "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json: 66e3201e",
+    "out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/summary.json: 66e3201e",
+    "out/live/Austria_NOR/summary.json: 66e3201e",
+    "out/live/Barcelona_NOR/summary.json: 66e3201e",
+    "out/live/Monza_NOR/summary.json: 66e3201e",
+    "out/live/Austria_NOR/live_predictor.json prior.forecast_hash: 66e3201e",
+    "out/live/Barcelona_NOR/live_predictor.json prior.forecast_hash: 66e3201e",
+    "out/live/Monza_NOR/live_predictor.json prior.forecast_hash: 66e3201e",
+    "counterfactual.provider.ProviderA().forecast_hash: 66e3201e",
+    "app_v2 LockView.forecast_hash (lock_v2.shared.forecast_hash): 66e3201e",
+    "live.priors.load_priors(Monza).forecast_hash: 66e3201e"
+   ],
+   "stale_sidecars": [],
+   "content_only_proof": {
+    "hash_with_data_cutoff_reset": "sha256:c956f2b95fb05f487527e45a9990cacea4049d9ec950f593cd97eb98df0e3934",
+    "equals_lock": false,
+    "note": "if unequal, the hash depends on the per-event data_cutoff stamp (build time), not only on the forecast numbers"
+   },
+   "note": "runtime readers (live.priors, counterfactual.provider, LockView, recomputation) are what the screens render; stale entries are provenance pointers inside on-disk sidecars written under an earlier lock build"
+  },
+  "madrid_anchors": {
+   "status": "PASS",
+   "facts": {
+    "fp3_refresh_landed": "18:11",
+    "qualifying_refresh_attempts": [
+     "21:03",
+     "21:32"
+    ],
+    "qualifying_not_run_at": [
+     "21:03"
+    ],
+    "qualifying_imported_at": [
+     "21:32"
+    ],
+    "forecast_published_at": [
+     "21:32"
+    ],
+    "forecast_issued_at": "2026-09-12T21:33:14+05:30",
+    "forecast_sessions": [
+     "FP1",
+     "FP2",
+     "FP3",
+     "Q"
+    ],
+    "forecast_lock_generated_at": "2026-09-12T21:33:10"
+   },
+   "stated": [
+    {
+     "document": "out/talk_track.md",
+     "line": 10,
+     "time": "18:11",
+     "verdict": "consistent",
+     "context": "this morning from FP1 and FP2, refreshed after FP3 (landed 18:11) and after qualifying (landed 21:33, FP"
+    },
+    {
+     "document": "out/talk_track.md",
+     "line": 10,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "eshed after FP3 (landed 18:11) and after qualifying (landed 21:33, FP1, FP2, FP3 and Q in the lock): soft"
+    },
+    {
+     "document": "out/talk_track.md",
+     "line": 10,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "e top of the band says two stops. Hashed forecast published 21:33 IST (sha256 8e5489d5824a): on record be"
+    },
+    {
+     "document": "out/talk_track.md",
+     "line": 18,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "FP1 and FP2, refreshed after FP3 and qualifying, hashed at 21:33 IST, and will be scored after the race."
+    },
+    {
+     "document": "out/talk_track.md",
+     "line": 27,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "t is hashed before the race (sha256 8e5489d5824a, published 21:33 IST)."
+    },
+    {
+     "document": "out/THE_CASE.md",
+     "line": 10,
+     "time": "18:11",
+     "verdict": "consistent",
+     "context": "an laps on Friday (excluded-laps table); FP3 refresh landed 18:11; qualifying refresh landed 21:33 with F"
+    },
+    {
+     "document": "out/THE_CASE.md",
+     "line": 10,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "table); FP3 refresh landed 18:11; qualifying refresh landed 21:33 with FP1, FP2, FP3 and Q in the lock (a"
+    },
+    {
+     "document": "out/THE_CASE.md",
+     "line": 10,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "t found the session not yet run); hashed forecast published 21:33 IST (sha256 8e5489d5824a)."
+    },
+    {
+     "document": "out/THE_CASE.md",
+     "line": 54,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "t is hashed before the race (sha256 8e5489d5824a, published 21:33 IST)."
+    },
+    {
+     "document": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 1,
+     "time": "18:11",
+     "verdict": "consistent",
+     "context": "xcluded-laps table), too few for a curve FP3 refresh landed 18:11; qualifying refresh landed 21:33 (FP1,"
+    },
+    {
+     "document": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 1,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "a curve FP3 refresh landed 18:11; qualifying refresh landed 21:33 (FP1, FP2, FP3, Q in the lock); forecas"
+    },
+    {
+     "document": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 1,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "anded 21:33 (FP1, FP2, FP3, Q in the lock); forecast hashed 21:33 IST, sha256 8e5489d5824a; scored after"
+    },
+    {
+     "document": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 1,
+     "time": "18:11",
+     "verdict": "consistent",
+     "context": "from FP1 and FP2 this morning, refreshed after FP3 (landed 18:11) and after qualifying (landed 21:33, FP"
+    },
+    {
+     "document": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 1,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "eshed after FP3 (landed 18:11) and after qualifying (landed 21:33, FP1, FP2, FP3 and Q in the lock): soft"
+    },
+    {
+     "document": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 1,
+     "time": "21:33",
+     "verdict": "consistent",
+     "context": "s/lap) by two independent routes. Hashed forecast published 21:33 IST (sha256 8e5489d5824a), scored after"
+    }
+   ],
+   "stale": [],
+   "reality": "FP3 refresh landed 18:11 IST; qualifying refresh attempts ['21:03', '21:32'] (session not run yet at ['21:03'], imported at ['21:32']); hashed forecast published at ['21:32'] (current file issued 2026-09-12T21:33:14+05:30 from sessions ['FP1', 'FP2', 'FP3', 'Q'])"
+  },
+  "blocking": {
+   "status": "PASS",
+   "open": [],
+   "resolved": [
+    "RT-BLK-1"
+   ],
+   "observations": [
+    "RT-OBS-1",
+    "RT-OBS-2",
+    "RT-OBS-3",
+    "RT-OBS-4"
+   ]
+  }
+ },
+ "blocking": {
+  "generated_at": "2026-09-12T22:12:29",
+  "workstream": 7,
+  "definition": "ROADMAP_v5 section 14.3 stop-the-line conditions only; roadmap 0.13 acceptance: `issues` empty",
+  "issues": [],
+  "resolved": [
+   {
+    "id": "RT-BLK-1",
+    "severity": "BLOCKING",
+    "condition_14_3": "a live field contains future or post-race information",
+    "title": "LiveVM.forecast carried the race-derived reference (obs, err_cs, n_race) into the Live Predictor view model",
+    "filed_at": "2026-09-12T16:45:00",
+    "resolved_at": "2026-09-12T21:30:00",
+    "resolution": "closed at the page boundary (lead decision 20:58): every live page builds its view model through app_v2/services/live_bridge.build, whose _strip_post_race replaces forecast.observed / observed_se / err / n_race with None; the raw builders (app_v2/services/view_models.build_live, live/viewmodel.build_live_vm) still populate the fields but have no caller outside the bridge",
+    "evidence": [
+     "call sites (grep, 21:10 IST): app_v2/pages/live_predictor.py:136, decision_board.py:53, driver_feedback.py:30 call LB.build(...); no VM.build_live( / build_live_vm( call exists in app_v2 outside services/live_bridge.py; app_v2/state/app_state.py only calls VM.suggest_driver",
+     "reproduction (21:20 IST): LB.build(lock, 'Monza', 'NOR', ReplayCursor('Monza','NOR',53).seek(12)) -> forecast.observed None, observed_se None, err None, n_race None; the same build with _strip_post_race monkeypatched to identity -> observed 0.023, n_race 214 (so the scrub is the load-bearing step and the test asserting None is not vacuous)",
+     "no page or ui module dereferences forecast.observed / err / n_race / covered on the live path; the only readers are app_v2/pages/pre_race.py:35 (scored weekends, labelled 'race observed') and app_v2/pages/ghost_strategy.py:31-49 (historical audit, by design)",
+     "renders: consistency probe 21:06 (C3) rendered live_predictor / decision_board / driver_feedback for Monza LIN/NOR, Austria NOR and Madrid with 0 mismatches and no race-observed value on those routes"
+    ],
+    "guarded_by": [
+     "tests/ui/test_pages.py::test_live_bridge_uses_workstream8_and_strips_post_race",
+     "tests/red_team/test_data_cutoff.py::test_forecast_reference_fields_are_none_on_the_live_path",
+     "tests/red_team/test_data_cutoff.py::test_unstripped_view_model_would_carry_the_reference (self-test: scrub disabled -> reference present)",
+     "tests/red_team/test_data_cutoff.py::test_only_the_bridge_builds_the_live_view_model (static: no raw builder call outside the bridge)",
+     "tests/red_team/test_data_cutoff.py::test_no_live_module_reads_reference_fields (static: live-path modules never dereference the fields)"
+    ],
+    "residual": "source-level scrub in view_models.build_live and live/viewmodel.build_live (workstreams 6 and 8) remains a nice-to-have: a future caller of the raw builders would bypass the bridge; the static test above fails loudly if one appears in app_v2",
+    "owner": [
+     "workstream 6",
+     "workstream 8"
+    ],
+    "decision": "GO (lead 20:58, confirmed by Workstream 7 re-verification 21:30)"
+   }
+  ],
+  "observations_not_blocking": [
+   {
+    "id": "RT-OBS-1",
+    "severity": "LOW",
+    "title": "lock-metadata support chip on the live pages uses the whole-session race rain flag",
+    "detail": "app_v2/services/support_service.support_for reads lock events[ev].rain.R (a post-session flag) into vm.support.overall_support_status, rendered as 'lock chips say ...' on live_predictor.py:175 and decision_board.py:90; Workstream 8's 7.1 support_status (the primary chip) uses the per-lap rain of laps <= k. All demo replays (Monza, Austria, Barcelona) are dry (R False) so nothing renders differently today; a wet-race replay (Miami, Zandvoort) would show the race verdict before the rain fell",
+    "owner": [
+     "workstream 6"
+    ],
+    "suggested_fix": "on the live path derive the rain context from cursor.visible()['rain'] (laps <= k) or drop the lock chip on live routes"
+   },
+   {
+    "id": "RT-OBS-2",
+    "severity": "LOW",
+    "title": "the dashboard process on port 8502 predates the 22:01 reword of live/viewmodel.py and decision/optimizer.py",
+    "detail": "pid 86120 started 21:49:46; live/viewmodel.py was rewritten 22:01:33 and decision/optimizer.py 22:01:51 (red-team rule live_position_claim). Streamlit does not reload already-imported modules, so that process serves the pre-reword versions. Verified to make NO rendered difference: both live pages take app_v2/services/live_bridge.rejoin_text (unchanged since 21:16) whenever the 7.2 record has rejoin_context.position_now, and all three demo records (Monza, Austria, Barcelona NOR) have it populated, so the reworded live/viewmodel string is unreachable from the UI. No number differs: the consistency probe re-rendered all 15 routes in-process against the current tree with 0 mismatches.",
+    "owner": [
+     "lead"
+    ],
+    "suggested_fix": "restart the 8502 dashboard once more before the demo so the running process matches the tree: ../.venv/bin/streamlit run app_v2/streamlit_app.py --server.port 8502 --server.headless true --browser.gatherUsageStats false"
+   },
+   {
+    "id": "RT-OBS-3",
+    "severity": "LOW",
+    "title": "claim_audit now distinguishes a bare claim from the same number stated with its required qualification (reclassification logged, not silent)",
+    "detail": "At 21:42 liquid_23_pct_10_of_31 (verdict unverifiable) counted 3 occurrences in talk_track.md, THE_CASE.md and pptx slide 8. Re-reading those lines shows the lead had already corrected them to exactly what out/liquid.json supports: \"23% lap-weighted with the three degenerate Hungary cells excluded, 31% with them\" and \"9 of 31 cells\" (the old wrong count was 10 of 31). The regex 23%|10 of 31 cannot see the caveat, so the occurrence was a false positive. claim_audit.locate() now records per occurrence whether every qualified_by pattern is present in that source, and the gate blocks only UNQUALIFIED occurrences on the presentation surfaces - while newly blocking `unverifiable` verdicts there, which the C3 gate ignored entirely. Net effect is stricter, not looser. The claim verdict itself is unchanged (the BARE claim remains unverifiable).",
+    "owner": [
+     "workstream 7"
+    ],
+    "guarded_by": [
+     "tests/red_team/test_claim_gate.py::test_gate_still_blocks_the_bare_claim",
+     "tests/red_team/test_claim_gate.py::test_a_wrong_count_cancels_the_qualification",
+     "tests/red_team/test_claim_gate.py::test_a_partial_caveat_does_not_qualify",
+     "tests/red_team/test_claim_gate.py::test_a_claim_without_qualifiers_can_never_be_qualified",
+     "tests/red_team/test_claim_gate.py::test_every_reclassified_claim_really_carries_its_qualifiers (re-reads the cited line from disk)",
+     "tests/red_team/test_claim_gate.py::test_claim_map_is_not_older_than_the_documents_it_audited"
+    ],
+    "note": "summary.qualified_in_presentation in claim_evidence_map.json lists every reclassification with its file:line, so a human can audit the judgement."
+   },
+   {
+    "id": "RT-OBS-4",
+    "severity": "LOW",
+    "title": "live_position_claim still flags app_v2/services/live_bridge.py:99 - assessed as a false positive, rule deliberately left strict",
+    "detail": "The rule allows the match when \"frozen_field\" appears on the same line. The lead satisfied that at live/viewmodel.py:175 and decision/optimizer.py:117,134 with an end-of-line comment, but live_bridge.py:99 (parts = [f\"P{rj['position_now']} now\"]) carries its qualification in the function docstring (lines 93-94, \"No projected P-number is shown on the live path\") and in the appended label at line 106 (\" . observed gap structure, not a position forecast\"). Substantively the rendered value is the OBSERVED current position, which the rule's own note permits; the projected P-number is never rendered outside frozen-field mode. Widening allowed_context to the enclosing function would let a genuine future violation hide behind an unrelated frozen_field mention, so the rule was NOT relaxed and the flag stands as a known false positive.",
+    "owner": [
+     "workstream 6",
+     "lead"
+    ],
+    "suggested_fix": "either add the same end-of-line \"frozen_field mode\" marker the other three lines carry, or accept the flag and record it here (current state)."
+   }
+  ],
+  "c4_rerun": {
+   "at": "2026-09-12T22:12:29",
+   "workstream": 7,
+   "commit": "cdb1a45 (working tree, uncommitted)",
+   "scope": "re-ran all four probes against the tree as it stood after the 21:33 qualifying lock, the 21:37 freeze, the 21:39-21:54 scenario regeneration, the 21:49 out/live regeneration, the 21:53 scorecards and the 22:00:13 document rebuild",
+   "conditions_checked_14_3": [
+    {
+     "condition": "a live field carries future or post-race information",
+     "result": "PASS",
+     "evidence": "leakage_audit future_read_and_deny_list_spy: 100 feed calls at lap 50, 0 violations, 0 deny hits; target_driver_exclusion 7/7; tests/red_team/test_data_cutoff.py 8 passed (forecast.observed/observed_se/err/n_race are None through the bridge, and the scrub is proven load-bearing)"
+    },
+    {
+     "condition": "a document claim exceeds the lock",
+     "result": "PASS",
+     "evidence": "claim_audit summary.must_reword_before_presentation == [] under the C4 gate (which now also blocks `unverifiable` verdicts on the presentation surfaces); 0 unqualified flagged claims in THE_CASE.md, talk_track.md or the pptx"
+    },
+    {
+     "condition": "the dashboard disagrees with the lock",
+     "result": "PASS",
+     "evidence": "consistency_probe: 15 routes, 1691 numbers, 0 mismatches, 0 placeholder values, 0 load failures; localhost:8502 HTTP 200"
+    },
+    {
+     "condition": "the sealed holdout manifest was altered",
+     "result": "PASS",
+     "evidence": "sha256 of evaluation/holdout/sealed_holdout_manifest.json = 37b85e762b2e03c0 equals the recorded sealed_holdout_manifest.sha256; the file is unmodified against HEAD (git status clean for it); now pinned by tests/red_team/test_c4_artifact_provenance.py"
+    },
+    {
+     "condition": "forecast hashes differ between modes",
+     "result": "PASS",
+     "evidence": "leakage_audit one_forecast_hash 14/14 ok at sha256:66e3201e860b19ef (was FAIL at 21:42 on the stale out/live sidecars); an independent walk of every JSON under out/live and out/counterfactual found 24 forecast_hash fields, 0 stale"
+    }
+   ],
+   "rt_blk_1_recheck": "still closed at the page boundary: tests/red_team/test_data_cutoff.py::test_forecast_reference_fields_are_none_on_the_live_path and ::test_unstripped_view_model_would_carry_the_reference both pass at 22:0x, so the scrub in app_v2/services/live_bridge._strip_post_race is present and load-bearing. Residual unchanged: the raw builders still populate the fields (workstreams 6 and 8)."
+  }
+ },
+ "wording_flags_outstanding": [],
+ "inputs": {
+  "leakage": "2026-09-12T22:16:02",
+  "claims": "2026-09-12T23:07:37",
+  "identity": "2026-09-12T22:16:25",
+  "probe": "2026-09-12T23:07:36"
+ },
+ "rerun": [
+  "claims"
+ ],
+ "exit_code": 0
+}
