@@ -1,0 +1,99 @@
+{
+ "event": "Monza",
+ "driver": "NOR",
+ "event_id": "2026_Monza",
+ "n_laps": 53,
+ "laps_processed": 50,
+ "first_lap": 1,
+ "last_lap": 53,
+ "data_cutoff": "2026-09-06T16:51:34",
+ "generated_at": "2026-09-12T16:27:29",
+ "git_sha": "ccae5d9",
+ "model_version": "live_estimator_lg_v0.1",
+ "model_hash": "sha256:c80b853cad1c6ffe8ab99df3ed41cf46d0880ce50b27a058351821c73827e9e4",
+ "estimator": "linear-Gaussian with fixed regime rules",
+ "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+ "forecast_source": "lock_v2",
+ "feedback_enabled": true,
+ "feedback_events_consumed": 0,
+ "uses_future_data": false,
+ "uses_post_race_reference": false,
+ "sensor_mode": "PUBLIC PROXY",
+ "support_status": "NEAR TRAINING SUPPORT",
+ "stints": [
+  {
+   "stint": 1,
+   "compound": "MEDIUM",
+   "first_lap": 1,
+   "last_lap": 3,
+   "laps": 3
+  },
+  {
+   "stint": 2,
+   "compound": "HARD",
+   "first_lap": 7,
+   "last_lap": 53,
+   "laps": 47
+  }
+ ],
+ "regime_laps": {
+  "WARMUP": 2,
+  "NORMAL": 48
+ },
+ "laps_with_widening": 4,
+ "recommendation_changes": [
+  {
+   "lap": 7,
+   "to": "PIT_NOW laps 7-8 new soft",
+   "reason": "moved from PIT laps 5-11 new soft to PIT_NOW laps 7-8 new soft because pit reset: new hard (stint 2), prior slope +0.0303 +- 0.0354 s/lap per lap restored"
+  },
+  {
+   "lap": 34,
+   "to": "STAY OUT",
+   "reason": "moved from PIT_NOW lap 33 new soft to STAY OUT because clean lap 34 (age 31, 84.399 s corrected, residual -0.68 s) moved the slope +0.0034 -> -0.0104"
+  }
+ ],
+ "n_recommendation_changes": 2,
+ "final": {
+  "compound": "HARD",
+  "tyre_age": 50,
+  "regime": "NORMAL",
+  "slope": 0.0030213550979555446,
+  "slope_sd": 0.015388422732653024,
+  "prior_slope": 0.0303,
+  "trend_vs_pre_race": -0.9002853102984969,
+  "useful_laps": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "top_action": "STAY OUT"
+ },
+ "files": {
+  "states": {
+   "path": "out/live/Monza_NOR/states.jsonl",
+   "sha256": "2822bc808ae23b902ac78e864674023ca6de20e7cc1c968f032d1305389bfbc8",
+   "bytes": 64607
+  },
+  "recommendations": {
+   "path": "out/live/Monza_NOR/recommendations.jsonl",
+   "sha256": "dcb107faabb6921978c93548f967103f37790fb2de88e651aac3d7549809b41d",
+   "bytes": 386057
+  },
+  "estimator_trace": {
+   "path": "out/live/Monza_NOR/estimator_trace.jsonl",
+   "sha256": "49733d118d54e902d11ab73058a26057de812f78dfae45035df3b69cec18e2a8",
+   "bytes": 434956
+  },
+  "driver_feedback": {
+   "path": "out/live/Monza_NOR/driver_feedback.json",
+   "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+   "bytes": 3
+  },
+  "live_predictor": {
+   "path": "out/live/Monza_NOR/live_predictor.json",
+   "sha256": "f3e06b9d214106a808c8d3e2d1709c45d2e5451cdd58017bd207658c84ec5bc4",
+   "bytes": 4770
+  }
+ }
+}

@@ -1,12 +1,12 @@
 {
  "checkpoint": "C1",
- "decision": "GO_WITH_REASSIGNMENT",
+ "decision": "GO",
  "proposed": "GO",
- "note": "",
- "at": "2026-09-12T15:42:02",
- "git_commit": "02f4c00",
+ "note": "committed at ccae5d9; wave two starts",
+ "at": "2026-09-12T15:46:46",
+ "git_commit": "ccae5d9",
  "git_branch": "main",
- "git_dirty_paths": 139,
+ "git_dirty_paths": 3,
  "decided_by": "lead",
  "all_green": true,
  "decision_overrides_checks": false,
@@ -15,9 +15,9 @@
    "name": "schema_validation",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python validators/validate_lock.py out/lock_v2.json",
    "returncode": 0,
-   "duration_s": 0.1,
+   "duration_s": 0.11,
    "timed_out": false,
    "log": "checkpoints/C1/logs/schema_validation.txt"
   },
@@ -25,9 +25,9 @@
    "name": "pytest",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
    "returncode": 0,
-   "duration_s": 80.01,
+   "duration_s": 77.72,
    "timed_out": false,
    "counts": {
     "passed": 218
@@ -42,26 +42,20 @@
   },
   {
    "name": "ownership_audit",
-   "status": "WARN",
-   "note": "138 changed paths, 1 flagged: proto/out/Orb_v1_Mentor_Briefing.pptx",
+   "status": "PASS",
+   "note": "2 changed paths, 0 flagged",
    "command": "release/ownership_audit.py",
    "summary": {
-    "total": 138,
-    "flagged": 1,
-    "unowned": 1,
+    "total": 2,
+    "flagged": 0,
+    "unowned": 0,
     "lead_only": 0,
     "outside_proto": 0,
     "by_owner": {
-     "1": 30,
-     "4": 2,
-     "6": 79,
-     "9": 26,
-     "unowned": 1
+     "9": 2
     }
    },
-   "flagged": [
-    "proto/out/Orb_v1_Mentor_Briefing.pptx"
-   ]
+   "flagged": []
   },
   {
    "name": "lock_dashboard_consistency",
@@ -88,28 +82,29 @@
   "theme/base.css": "f0b55603d5ed6e7b"
  },
  "hash_changes_since_last_green": {
-  "changed": [
-   "fixtures/lock_v2_fixture.json"
-  ],
-  "added": [
-   "out/lock_v2.json",
-   "evaluation/holdout/sealed_holdout_manifest.sha256",
-   "schemas/lock_v2_minimal.py",
-   "theme/base.css"
-  ],
+  "changed": [],
+  "added": [],
   "removed": []
  },
  "previous_green": {
-  "checkpoint": "C0",
+  "checkpoint": "C1",
   "git_commit": "02f4c00",
-  "at": "2026-09-12T14:31:39"
+  "at": "2026-09-12T15:42:02",
+  "decision": "GO_WITH_REASSIGNMENT"
  },
  "active_workstreams": [
   1,
+  2,
+  4,
   6,
+  8,
   9
  ],
- "missing_heartbeats": [],
+ "missing_heartbeats": [
+  2,
+  4,
+  8
+ ],
  "stale_heartbeats": [
   9
  ],
@@ -118,7 +113,7 @@
    "workstream": 1,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": 29.4,
+   "age_min": 34.2,
    "stale": false,
    "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
    "tests_passed": 106,
@@ -145,10 +140,50 @@
    "unreadable": false
   },
   {
+   "workstream": 2,
+   "status": "?",
+   "effective": "MISSING (no heartbeat)",
+   "age_min": null,
+   "stale": true,
+   "task": "",
+   "tests_passed": 0,
+   "tests_failed": 0,
+   "eta_minutes": null,
+   "blockers": [],
+   "needs_review_from": [],
+   "completed": [],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": null,
+   "file": null,
+   "missing": true,
+   "unreadable": false
+  },
+  {
+   "workstream": 4,
+   "status": "?",
+   "effective": "MISSING (no heartbeat)",
+   "age_min": null,
+   "stale": true,
+   "task": "",
+   "tests_passed": 0,
+   "tests_failed": 0,
+   "eta_minutes": null,
+   "blockers": [],
+   "needs_review_from": [],
+   "completed": [],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": null,
+   "file": null,
+   "missing": true,
+   "unreadable": false
+  },
+  {
    "workstream": 6,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": 2.4,
+   "age_min": 7.2,
    "stale": false,
    "task": "0.14 design system + shell; 0.15 hero screens; 0.17 visual release gate",
    "tests_passed": 42,
@@ -176,10 +211,30 @@
    "unreadable": false
   },
   {
+   "workstream": 8,
+   "status": "?",
+   "effective": "MISSING (no heartbeat)",
+   "age_min": null,
+   "stale": true,
+   "task": "",
+   "tests_passed": 0,
+   "tests_failed": 0,
+   "eta_minutes": null,
+   "blockers": [],
+   "needs_review_from": [],
+   "completed": [],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": null,
+   "file": null,
+   "missing": true,
+   "unreadable": false
+  },
+  {
    "workstream": 9,
    "status": "GREEN",
-   "effective": "AMBER (stale 41 min)",
-   "age_min": 41.7,
+   "effective": "AMBER (stale 46 min)",
+   "age_min": 46.4,
    "stale": true,
    "task": "build_control_system (task 0.16)",
    "tests_passed": 70,
@@ -213,13 +268,11 @@
  ],
  "stop_the_line": null,
  "merge_queue_before": {
-  "state": "FROZEN",
-  "reason": "checkpoint C1 in progress (run_checkpoint.sh)",
-  "since": "2026-09-12T15:40:42",
+  "state": "OPEN",
+  "reason": "C1 GO_WITH_REASSIGNMENT",
+  "since": "2026-09-12T15:45:28",
   "by": "workstream 9"
  },
  "rehearsal": false,
- "directory": "checkpoints/C1",
- "decided_at": "2026-09-12T15:45:28",
- "decision_note": "Foundation integrated: contract, adapter and forecast hash, premium shell and hero screens, build control. Provider A reproduction moved to the C2 entry gate as Workstream 2's first deliverable. Ownership warning is the mentor deck in the lead-owned out/ folder."
+ "directory": "checkpoints/C1"
 }

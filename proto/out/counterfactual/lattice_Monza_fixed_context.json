@@ -1,0 +1,39 @@
+{
+ "timing": {
+  "event": "Monza",
+  "mode": "fixed_context",
+  "n_scenarios": 3024,
+  "n_errors": 3,
+  "precompute_ms": 44.95900002075359,
+  "total_ms": 1659.7245419980027,
+  "per_scenario_ms_median": 0.47797951265238225,
+  "per_scenario_ms_max": 66.31979101803154,
+  "errors": [
+   {
+    "driver": "LAW",
+    "lap": 2,
+    "to_compound": "SOFT",
+    "error": "intervention lap 2 lies before the end of an earlier stint (lap 2); pick replace_stop explicitly"
+   },
+   {
+    "driver": "LAW",
+    "lap": 2,
+    "to_compound": "MEDIUM",
+    "error": "intervention lap 2 lies before the end of an earlier stint (lap 2); pick replace_stop explicitly"
+   },
+   {
+    "driver": "LAW",
+    "lap": 2,
+    "to_compound": "HARD",
+    "error": "intervention lap 2 lies before the end of an earlier stint (lap 2); pick replace_stop explicitly"
+   }
+  ]
+ },
+ "csv": {
+  "path": "out/counterfactual/lattice_Monza_fixed_context.csv",
+  "sha256": "e7be8788223a0e7e46d414e94a797ef573d17b8259930bf0b4456e3bcb295404",
+  "bytes": 504011,
+  "format": "csv",
+  "description": "driver x intervention lap x compound summaries"
+ }
+}

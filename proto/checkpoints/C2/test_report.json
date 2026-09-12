@@ -1,0 +1,124 @@
+{
+ "checkpoint": "C2",
+ "at": "2026-09-12T16:36:03",
+ "git_commit": "ccae5d9",
+ "all_green": true,
+ "summary": {
+  "PASS": 3,
+  "WARN": 1,
+  "NOT_IMPLEMENTED": 1
+ },
+ "pytest": {
+  "passed": 335
+ },
+ "test_dirs": [
+  "contract",
+  "counterfactual",
+  "evaluation",
+  "live",
+  "red_team",
+  "release",
+  "replay",
+  "screenshots",
+  "ui"
+ ],
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.1,
+   "timed_out": false,
+   "stdout_tail": "  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified\n  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified\nOK out/lock_v2.json: schema 2.0.0, forecast sha256:e126256132b6ead8..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB",
+   "stderr_tail": "",
+   "log": "checkpoints/C2/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 83.69,
+   "timed_out": false,
+   "stdout_tail": "........................................................................ [ 21%]\n........................................................................ [ 42%]\n........................................................................ [ 64%]\n........................................................................ [ 85%]\n...............................................                          [100%]\n335 passed in 83.35s (0:01:23)",
+   "stderr_tail": "",
+   "counts": {
+    "passed": 335
+   },
+   "test_dirs": [
+    "contract",
+    "counterfactual",
+    "evaluation",
+    "live",
+    "red_team",
+    "release",
+    "replay",
+    "screenshots",
+    "ui"
+   ],
+   "log": "checkpoints/C2/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "201 changed paths, 20 flagged: proto/cleanup_pass.sh, proto/extract_seasons.py, proto/out/Orb_v1_Mentor_Briefing.pptx, proto/tests/counterfactual/conftest.py, proto/tests/counterfactual/test_cf_cli.py, proto/tests/counterfactual/test_cf_engine.py, proto/tests/counterfactual/test_cf_events.py, proto/tests/counterfactual/test_cf_provider.py, proto/tests/live/conftest.py, proto/tests/live/live_helpers.py, proto/tests/live/test_estimator.py, proto/tests/live/test_feedback.py, proto/tests/live/test_optimizer.py, proto/tests/live/test_replay.py, proto/tests/replay/conftest.py, proto/tests/replay/test_assets.py, proto/tests/replay",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 201,
+    "flagged": 20,
+    "unowned": 19,
+    "lead_only": 1,
+    "outside_proto": 0,
+    "by_owner": {
+     "1": 7,
+     "2": 32,
+     "3": 1,
+     "4": 77,
+     "7": 1,
+     "8": 52,
+     "9": 11,
+     "lead": 1,
+     "unowned": 19
+    }
+   },
+   "flagged": [
+    "proto/cleanup_pass.sh",
+    "proto/extract_seasons.py",
+    "proto/out/Orb_v1_Mentor_Briefing.pptx",
+    "proto/tests/counterfactual/conftest.py",
+    "proto/tests/counterfactual/test_cf_cli.py",
+    "proto/tests/counterfactual/test_cf_engine.py",
+    "proto/tests/counterfactual/test_cf_events.py",
+    "proto/tests/counterfactual/test_cf_provider.py",
+    "proto/tests/live/conftest.py",
+    "proto/tests/live/live_helpers.py",
+    "proto/tests/live/test_estimator.py",
+    "proto/tests/live/test_feedback.py",
+    "proto/tests/live/test_optimizer.py",
+    "proto/tests/live/test_replay.py",
+    "proto/tests/replay/conftest.py",
+    "proto/tests/replay/test_assets.py",
+    "proto/tests/replay/test_geometry.py",
+    "proto/tests/replay/test_player.py",
+    "proto/tests/replay/test_timewarp.py",
+    "proto/tests/replay/test_trajectory.py"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "NOT_IMPLEMENTED",
+   "note": "not implemented: Workstream 7 provides evaluation/red_team/consistency_probe.py (exit 0 = lock and dashboard agree)",
+   "command": null
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ]
+}

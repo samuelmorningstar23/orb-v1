@@ -645,11 +645,23 @@
      "type": "boolean"
     },
     "safety_car_schedule": {
-     "items": {
-      "$ref": "#/$defs/SafetyCarPeriod"
-     },
-     "title": "Safety Car Schedule",
-     "type": "array"
+     "anyOf": [
+      {
+       "enum": [
+        "historical_fixed",
+        "observed_fixed"
+       ],
+       "type": "string"
+      },
+      {
+       "items": {
+        "$ref": "#/$defs/SafetyCarPeriod"
+       },
+       "type": "array"
+      }
+     ],
+     "description": "'historical_fixed' / 'observed_fixed' (periods fixed as observed) or the observed SC/VSC periods themselves",
+     "title": "Safety Car Schedule"
     },
     "scenario_id": {
      "minLength": 1,
@@ -657,7 +669,7 @@
      "type": "string"
     },
     "schema_version": {
-     "default": "2.0.0",
+     "default": "2.1.0",
      "pattern": "^\\d+\\.\\d+\\.\\d+$",
      "title": "Schema Version",
      "type": "string"
@@ -689,9 +701,9 @@
     },
     "traffic_mode": {
      "enum": [
-      "none",
-      "observed_fixed",
-      "simulated"
+      "clean_air",
+      "paired_replay",
+      "frozen_field"
      ],
      "title": "Traffic Mode",
      "type": "string"
@@ -726,6 +738,7 @@
     "track_position_simulated",
     "rival_interactions_simulated",
     "traffic_mode",
+    "safety_car_schedule",
     "validation"
    ],
    "title": "CounterfactualScenario",
@@ -2218,11 +2231,13 @@
      "enum": [
       "warm_up",
       "normal",
+      "accelerating_wear",
       "overheating",
       "graining",
       "cliff",
       "damage_suspected",
       "cooling",
+      "anomaly",
       "unknown"
      ],
      "title": "State Regime",
@@ -2412,7 +2427,7 @@
      "type": "string"
     },
     "schema_version": {
-     "default": "2.0.0",
+     "default": "2.1.0",
      "pattern": "^\\d+\\.\\d+\\.\\d+$",
      "title": "Schema Version",
      "type": "string"
@@ -3754,7 +3769,7 @@
    "default": null
   },
   "schema_version": {
-   "default": "2.0.0",
+   "default": "2.1.0",
    "pattern": "^\\d+\\.\\d+\\.\\d+$",
    "title": "Schema Version",
    "type": "string"

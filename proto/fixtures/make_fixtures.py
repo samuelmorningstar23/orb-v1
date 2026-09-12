@@ -139,9 +139,9 @@ def build_lock() -> dict[str, Any]:
                     actual_plan=dict(label='M-H', stints=[dict(compound='MEDIUM', laps=19, set_status='new'), dict(compound='HARD', laps=34, set_status='new')], pit_laps=[19], n_laps=53),
                     counterfactual_plan=dict(label='M-H', stints=[dict(compound='MEDIUM', laps=23, set_status='new'), dict(compound='HARD', laps=30, set_status='new')], pit_laps=[23], n_laps=53),
                     summary=summary, assumptions=dict(rivals_follow_observed_trajectories=True, rival_strategy_response='none', safety_car_mode='fixed_observed_schedule', driver_baseline_preserved=True),
-                    claim_scope=CLAIM_SCOPE_BY_MODE['tyre_only'], track_position_simulated=False, rival_interactions_simulated=False, traffic_mode='observed_fixed', safety_car_schedule=[],
+                    claim_scope=CLAIM_SCOPE_BY_MODE['tyre_only'], track_position_simulated=False, rival_interactions_simulated=False, traffic_mode='paired_replay', safety_car_schedule='observed_fixed',
                     assets={'lap_deltas': deltas_ref}, validation=dict(identity_test='pass', future_leakage_test='pass', target_driver_excluded=True, sealed_holdout=False),
-                    warnings=['rivals keep their observed strategy', 'SC/VSC periods of the real race are not encoded in this fixture'])
+                    warnings=['rivals keep their observed strategy', 'SC/VSC periods are fixed as observed; the period list is not enumerated in this fixture'])
     ghost = dict(meta=meta('ghost_strategy: Monza 2026 historical audit fixture, NOR', post_race), mode='historical_audit', event='Monza', event_id='2026_Monza', driver='NOR',
                  weather_context='actual_historical', forecast_snapshot_hash=fh,
                  race_reference=dict(kind='race-derived pace-loss reference', by_compound={'SOFT': 0.0251, 'MEDIUM': 0.0281, 'HARD': 0.0228}, by_compound_se={'SOFT': 0.0139, 'MEDIUM': 0.0031, 'HARD': 0.0031},

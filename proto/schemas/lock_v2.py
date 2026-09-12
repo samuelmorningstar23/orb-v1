@@ -27,7 +27,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Annotated, Any, Literal, Optional
+from typing import Annotated, Any, Literal, Optional, Union
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, ValidationError, model_validator
 
@@ -36,14 +36,14 @@ if str(_PROTO) not in sys.path:               # lets `python schemas/lock_v2.py`
     sys.path.insert(0, str(_PROTO))
 from shared.lockio import check_relative_posix, forecast_hash as _forecast_hash  # noqa: E402
 
-SCHEMA_VERSION = '2.0.0'
+SCHEMA_VERSION = '2.1.0'   # 2.1.0: StateRegime += accelerating_wear, anomaly; TrafficMode / safety_car_schedule forms
 SCHEMA_JSON_PATH = Path(__file__).with_name('lock_v2.schema.json')
 
 # ---------------------------------------------------------------- vocabularies (import these; do not paraphrase them on screens)
 Compound = Literal['SOFT', 'MEDIUM', 'HARD', 'INTERMEDIATE', 'WET']
 SensorMode = Literal['PUBLIC PROXY', 'TEAM SENSOR']
 SupportStatus = Literal['IN SUPPORT', 'NEAR TRAINING SUPPORT', 'OUT OF SUPPORT, FORECAST WITHHELD']
-StateRegime = Literal['warm_up', 'normal', 'overheating', 'graining', 'cliff', 'damage_suspected', 'cooling', 'unknown']
+StateRegime = Literal['warm_up', 'normal', 'accelerating_wear', 'overheating', 'graining', 'cliff', 'damage_suspected', 'cooling', 'anomaly', 'unknown']
 QualityStatus = Literal['OK', 'DEGRADED', 'STALE', 'OFFLINE']
 GhostMode = Literal['historical_audit', 'scenario_explorer', 'generalisation_scorecard']
 WeatherContext = Literal['actual_historical', 'pre_race_snapshot', 'cooler_dry', 'baseline_dry', 'hotter_dry', 'damp']   # wet: no validated wet model
@@ -59,7 +59,8 @@ Symptom = Literal['understeer', 'oversteer', 'sliding', 'graining', 'overheating
 Trend = Literal['improving', 'stable', 'worsening', 'unknown']
 FeedbackSource = Literal['team_radio', 'engineer_entry', 'simulated', 'other']
 EventSource = Literal['replay', 'live', 'recorded_live']
-TrafficMode = Literal['none', 'observed_fixed', 'simulated']
+TrafficMode = Literal['clean_air', 'paired_replay', 'frozen_field']          # no traffic | observed traffic replayed as fixed context | traffic against a frozen field
+SafetyCarScheduleMode = Literal['historical_fixed', 'observed_fixed']       # SC/VSC periods fixed as observed, not enumerated; or give the period list
 SafetyCarMode = Literal['fixed_observed_schedule', 'none']
 ForecastStatus = Literal['prospective', 'leave_one_weekend_out']
 CircuitGeneralisation = Literal['seen', 'seen_circuit_new_season', 'never_seen']
@@ -809,7 +810,8 @@ class CounterfactualScenario(Strict):
     track_position_simulated: bool
     rival_interactions_simulated: bool
     traffic_mode: TrafficMode
-    safety_car_schedule: list[SafetyCarPeriod] = Field(default_factory=list)
+    safety_car_schedule: Union[SafetyCarScheduleMode, list[SafetyCarPeriod]] = Field(
+        description="'historical_fixed' / 'observed_fixed' (periods fixed as observed) or the observed SC/VSC periods themselves")
     assets: dict[str, SidecarRef] = Field(default_factory=dict)
     validation: CounterfactualValidation
     warnings: list[str] = Field(default_factory=list)
@@ -817,8 +819,8 @@ class CounterfactualScenario(Strict):
     @model_validator(mode='after')
     def _mode_bounds(self) -> 'CounterfactualScenario':
         m = self.simulation_mode
-        if m == 'tyre_only' and (self.track_position_simulated or self.rival_interactions_simulated or self.traffic_mode == 'simulated'):
-            raise ValueError('tyre_only scenarios cannot simulate track position, rival interactions or traffic')
+        if m == 'tyre_only' and (self.track_position_simulated or self.rival_interactions_simulated or self.traffic_mode == 'frozen_field'):
+            raise ValueError('tyre_only scenarios cannot simulate track position, rival interactions or frozen-field traffic')
         if m == 'fixed_context' and self.track_position_simulated:
             raise ValueError('fixed_context scenarios do not simulate track position')
         if self.summary.has_positions and not (m == 'frozen_field' and self.track_position_simulated):
@@ -829,8 +831,6 @@ class CounterfactualScenario(Strict):
             raise ValueError('actual and counterfactual plans must cover the same number of laps')
         if self.intervention.lap > self.actual_plan.n_laps:
             raise ValueError('intervention lap beyond race distance')
-        if self.assumptions.safety_car_mode == 'fixed_observed_schedule' and not self.safety_car_schedule and self.warnings == []:
-            pass   # an empty observed schedule is legitimate (no SC in the race)
         return self
 
 
@@ -991,7 +991,7 @@ __all__ = ['SCHEMA_VERSION', 'SCHEMA_JSON_PATH', 'LockV2', 'Meta', 'SidecarRef',
            'Intervention', 'Plan', 'Stint', 'Assumptions', 'SafetyCarPeriod', 'InputAvailability', 'Channel', 'DriverProfileBlock',
            'DriverProfileEntry', 'PopulationPrior', 'compute_forecast_hash', 'load_lock', 'json_schema', 'export_schema', 'format_errors', 'parse_ts', 'ts_le',
            'Compound', 'SensorMode', 'SupportStatus', 'StateRegime', 'QualityStatus', 'GhostMode', 'WeatherContext', 'SimulationMode', 'SplitId',
-           'Action', 'SetStatus', 'Axle', 'CornerPhase', 'Symptom', 'Trend', 'FeedbackSource', 'EventSource', 'CLAIM_SCOPE_BY_MODE',
+           'Action', 'SetStatus', 'Axle', 'CornerPhase', 'Symptom', 'Trend', 'FeedbackSource', 'EventSource', 'TrafficMode', 'SafetyCarScheduleMode', 'CLAIM_SCOPE_BY_MODE',
            'PUBLIC_DISPLAY_RULES', 'DEFAULT_UNITS', 'SUPPORT_WITHHELD']
 
 if __name__ == '__main__':

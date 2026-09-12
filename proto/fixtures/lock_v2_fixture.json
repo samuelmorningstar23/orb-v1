@@ -1,8 +1,8 @@
 {
- "schema_version": "2.0.0",
+ "schema_version": "2.1.0",
  "shared": {
   "meta": {
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "generated_at": "2026-09-12T15:30:00",
    "data_cutoff": "2026-09-12T14:31:34",
    "git_sha": "02f4c00",
@@ -99,7 +99,7 @@
  },
  "pre_race_forecast": {
   "meta": {
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "generated_at": "2026-09-12T15:30:00",
    "data_cutoff": "2026-09-12T14:31:34",
    "git_sha": "02f4c00",
@@ -413,7 +413,7 @@
  },
  "validation": {
   "meta": {
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "generated_at": "2026-09-12T15:30:00",
    "data_cutoff": "2026-09-12T14:31:34",
    "git_sha": "02f4c00",
@@ -705,7 +705,7 @@
  },
  "live_predictor": {
   "meta": {
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "generated_at": "2026-09-12T15:30:00",
    "data_cutoff": "2026-09-06T15:24:47",
    "git_sha": "02f4c00",
@@ -906,7 +906,7 @@
  },
  "ghost_strategy": {
   "meta": {
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "generated_at": "2026-09-12T15:30:00",
    "data_cutoff": "2026-09-06T16:27:01",
    "git_sha": "02f4c00",
@@ -987,7 +987,7 @@
  "counterfactuals": [
   {
    "scenario_id": "monza2026_nor_stop19_to_23_tyre_only",
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "event_id": "2026_Monza",
    "driver_id": "NOR",
    "simulation_mode": "tyre_only",
@@ -1062,8 +1062,8 @@
    "claim_scope": "Model-implied tyre-time delta only. Track position, traffic and rival strategy responses are not simulated.",
    "track_position_simulated": false,
    "rival_interactions_simulated": false,
-   "traffic_mode": "observed_fixed",
-   "safety_car_schedule": [],
+   "traffic_mode": "paired_replay",
+   "safety_car_schedule": "observed_fixed",
    "assets": {
     "lap_deltas": {
      "path": "fixtures/sidecars/cf_monza_nor_lap_deltas.json",
@@ -1081,13 +1081,13 @@
    },
    "warnings": [
     "rivals keep their observed strategy",
-    "SC/VSC periods of the real race are not encoded in this fixture"
+    "SC/VSC periods are fixed as observed; the period list is not enumerated in this fixture"
    ]
   }
  ],
  "input_availability": {
   "meta": {
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "generated_at": "2026-09-12T15:30:00",
    "data_cutoff": "2026-09-06T15:24:47",
    "git_sha": "02f4c00",
@@ -1428,7 +1428,7 @@
  },
  "driver_profile": {
   "meta": {
-   "schema_version": "2.0.0",
+   "schema_version": "2.1.0",
    "generated_at": "2026-09-12T15:30:00",
    "data_cutoff": "2026-09-12T14:31:34",
    "git_sha": "02f4c00",

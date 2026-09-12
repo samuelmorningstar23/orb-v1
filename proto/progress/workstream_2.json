@@ -1,0 +1,12 @@
+{"workstream": 2, "task": "0.3 PreRaceCurveProvider (provider A); 0.4 counterfactual core (fixed_context, tyre_only); 0.9 RaceEventSource (replay, recorded-live, live stub)", "status": "GREEN", "commit": null,
+ "completed": [
+  "counterfactual/provider.py: TyreCurveProvider + ProviderA reproducing lock.json exactly; reference_curve_post_race fenced (assert_pre_race)",
+  "counterfactual/racedata.py, pitmodel.py, engine.py, run.py: decomposition, standardised pit event, SC rules, whole-curve sampling, schema-valid summary, support guard, CLI + lattice",
+  "events/: RaceEvent, ReplayEventSource, RecordedLiveEventSource, LiveEventSource stub, record()",
+  "lead follow-up applied: traffic_mode 'paired_replay' (fixed_context) / 'clean_air' (tyre_only); safety_car_schedule = observed period list in both modes; mirrored engine.* fields dropped; default-curve decision recorded in counterfactual/README.md ('leave-one-driver-out Sunday reference' for Historical Audit, pre-race forecast only for Scenario Explorer)",
+  "out/counterfactual regenerated (4 Monza scenarios + 2 lattices); validators/validate_lock.py --strict accepts a lock carrying them (sidecars verified)",
+  "tests/counterfactual: 53 passed"],
+ "in_progress": [], "blockers": [],
+ "tests_passed": 53, "tests_failed": 0, "eta_minutes": 0, "needs_review_from": [3, 7],
+ "notes": "Monza has 2 green-flag stops only -> pit transit from the 2026 season pool (225 stops, median 21.98 s); measured Monza VSC ratio 0.93 vs default sc_factor 0.55 (reported, not used).",
+ "updated_at": "2026-09-12T16:40:00"}

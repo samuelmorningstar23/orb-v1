@@ -1,0 +1,23 @@
+== Orb v1 checkpoint C2 (AUTO) started 2026-09-12T16:34:39 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
+git: main @ ccae5d9, 199 uncommitted paths
+merge queue FROZEN (checkpoint C2 in progress (run_checkpoint.sh))
+== checkpoint C2 (AUTO) at 2026-09-12T16:34:40 == merge queue FROZEN
+[1/5] schema_validation ... PASS (0.1s)
+[2/5] pytest ... PASS (83.69s)
+[3/5] ownership_audit ... WARN - 201 changed paths, 20 flagged: proto/cleanup_pass.sh, proto/extract_seasons.py, proto/out/Orb_v1_Mentor_Briefing.pptx, proto/tests/counterfactual/conftest.py, proto/tests/counterfactual/test_cf_cli.py, proto/tests/counterfactual/test_cf_engine.py, proto/tests/counterfactual/test_cf_events.py, proto/tests/counterfactual/test_cf_provider.py, proto/tests/live/conftest.py, proto/tests/live/live_helpers.py, proto/tests/live/test_estimator.py, proto/tests/live/test_feedback.py, proto/tests/live/test_optimizer.py, proto/tests/live/test_replay.py, proto/tests/replay/conftest.py, proto/tests/replay/test_assets.py, proto/tests/replay
+[4/5] lock_dashboard_consistency ... NOT_IMPLEMENTED - not implemented: Workstream 7 provides evaluation/red_team/consistency_probe.py (exit 0 = lock and dashboard agree)
+[5/5] sealed_holdout_integrity ... PASS
+checks: {'PASS': 3, 'WARN': 1, 'NOT_IMPLEMENTED': 1}  green=True  hashes changed since last green: ['fixtures/lock_v2_fixture.json']
+heartbeats: missing none, stale [6, 9]
+C2 recorded: PENDING at commit ccae5d9; merge queue FROZEN (C2 pending lead decision (checks green; proposed GO))
+next: python build_control.py decide C2 GO|GO_WITH_REASSIGNMENT|ROLLBACK|CUT_FROM_DEMO|HOLD 'note'
+== artifacts in checkpoints/C2 ==
+   artifact_hashes.json
+   checkpoint.json
+   checkpoint.md
+   logs
+   ownership_audit.json
+   run_checkpoint.txt
+   test_report.json
+== merge queue: FROZEN - C2 pending lead decision (checks green; proposed GO) ==
+== checkpoint C2 finished 2026-09-12T16:36:03 exit 3 ==

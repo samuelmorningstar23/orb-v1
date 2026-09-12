@@ -1,0 +1,993 @@
+{
+ "event": "Monza",
+ "event_id": "2026_Monza",
+ "year": 2026,
+ "session": "R",
+ "n_laps": 53,
+ "grid_m_nominal": 10.0,
+ "quality": {
+  "status": "ok",
+  "min_distinct_per_lap": 100,
+  "drivers_passed": [
+   "ALB",
+   "ALO",
+   "ANT",
+   "BEA",
+   "BOR",
+   "BOT",
+   "COL",
+   "GAS",
+   "HAM",
+   "HUL",
+   "LAW",
+   "LEC",
+   "LIN",
+   "NOR",
+   "OCO",
+   "PER",
+   "PIA",
+   "RUS",
+   "SAI",
+   "STR",
+   "TSU",
+   "VER"
+  ],
+  "drivers_refused": [],
+  "per_driver": {
+   "ALB": {
+    "median": 321,
+    "min": 306,
+    "ok": true
+   },
+   "ALO": {
+    "median": 332,
+    "min": 314,
+    "ok": true
+   },
+   "ANT": {
+    "median": 320,
+    "min": 298,
+    "ok": true
+   },
+   "BEA": {
+    "median": 328,
+    "min": 312,
+    "ok": true
+   },
+   "BOR": {
+    "median": 327,
+    "min": 310,
+    "ok": true
+   },
+   "BOT": {
+    "median": 335,
+    "min": 319,
+    "ok": true
+   },
+   "COL": {
+    "median": 318,
+    "min": 297,
+    "ok": true
+   },
+   "GAS": {
+    "median": 319,
+    "min": 300,
+    "ok": true
+   },
+   "HAM": {
+    "median": 326,
+    "min": 310,
+    "ok": true
+   },
+   "HUL": {
+    "median": 324,
+    "min": 311,
+    "ok": true
+   },
+   "LAW": {
+    "median": 325,
+    "min": 310,
+    "ok": true
+   },
+   "LEC": {
+    "median": 437,
+    "min": 344,
+    "ok": true
+   },
+   "LIN": {
+    "median": 326,
+    "min": 306,
+    "ok": true
+   },
+   "NOR": {
+    "median": 323,
+    "min": 260,
+    "ok": true
+   },
+   "OCO": {
+    "median": 328,
+    "min": 311,
+    "ok": true
+   },
+   "PER": {
+    "median": 332,
+    "min": 319,
+    "ok": true
+   },
+   "PIA": {
+    "median": 323,
+    "min": 304,
+    "ok": true
+   },
+   "RUS": {
+    "median": 323,
+    "min": 297,
+    "ok": true
+   },
+   "SAI": {
+    "median": 324,
+    "min": 306,
+    "ok": true
+   },
+   "STR": {
+    "median": 334,
+    "min": 65,
+    "ok": true
+   },
+   "TSU": {
+    "median": 327,
+    "min": 309,
+    "ok": true
+   },
+   "VER": {
+    "median": 323,
+    "min": 297,
+    "ok": true
+   }
+  },
+  "n_clean_laps": 889,
+  "n_pooled_points": 287924,
+  "seed_lap": {
+   "driver": "LAW",
+   "lap": 35,
+   "n_points": 336,
+   "lap_time": 85.662
+  },
+  "residual_rms_m": 0.514,
+  "share_within_5m": 1.0,
+  "start_line_median_abs_dev_m": 3.13,
+  "n_start_samples": 889,
+  "closure": "closed by construction (consensus bins along a closed seed)",
+  "grid_m": 10.0011
+ },
+ "L": 5750.645,
+ "n_points": 575,
+ "grid_m": 10.0011,
+ "sector1_end_s": 1897.82,
+ "sector2_end_s": 3705.03,
+ "sector_source": {
+  "s1": "positions at sector session times",
+  "s2": "positions at sector session times"
+ },
+ "sector_fractions": [
+  0.33,
+  0.6443
+ ],
+ "units": "metres, feed frame (FastF1 X/Y / 10)",
+ "pit_entry_s": 5625.41,
+ "pit_exit_s": 625.29,
+ "pit_entry_index": 562,
+ "pit_exit_index": 63,
+ "pitlane_source": "recorded",
+ "status": "ok",
+ "pitlane": {
+  "source": "recorded",
+  "length_m": 760.2,
+  "entry_s": 5625.4,
+  "exit_s": 625.3,
+  "transit_s": 34.0,
+  "s_line": 133.4,
+  "meta": {
+   "source": "recorded",
+   "n_stops": 9,
+   "n_excursions_seen": 32,
+   "median_transit_s": 33.56,
+   "transit_iqr_s": [
+    31.92,
+    36.18
+   ],
+   "entry_s": 5625.41,
+   "exit_s": 625.29,
+   "stops": [
+    {
+     "driver": "ALB",
+     "lap_in": 46,
+     "duration_s": 33.56,
+     "span_m": 765.7,
+     "n_points": 129
+    },
+    {
+     "driver": "ANT",
+     "lap_in": 28,
+     "duration_s": 33.2,
+     "span_m": 760.2,
+     "n_points": 135
+    },
+    {
+     "driver": "BOT",
+     "lap_in": 27,
+     "duration_s": 42.66,
+     "span_m": 739.1,
+     "n_points": 165
+    },
+    {
+     "driver": "HUL",
+     "lap_in": 27,
+     "duration_s": 31.22,
+     "span_m": 747.3,
+     "n_points": 114
+    },
+    {
+     "driver": "LAW",
+     "lap_in": 12,
+     "duration_s": 38.38,
+     "span_m": 747.3,
+     "n_points": 143
+    },
+    {
+     "driver": "OCO",
+     "lap_in": 27,
+     "duration_s": 34.6,
+     "span_m": 752.6,
+     "n_points": 130
+    },
+    {
+     "driver": "PER",
+     "lap_in": 27,
+     "duration_s": 36.18,
+     "span_m": 763.2,
+     "n_points": 139
+    },
+    {
+     "driver": "SAI",
+     "lap_in": 27,
+     "duration_s": 31.92,
+     "span_m": 760.9,
+     "n_points": 118
+    },
+    {
+     "driver": "VER",
+     "lap_in": 28,
+     "duration_s": 31.88,
+     "span_m": 745.6,
+     "n_points": 131
+    }
+   ],
+   "offpath_threshold_m": 4.0
+  }
+ },
+ "race_clock_cuts_session_s": [
+  [
+   3773.131,
+   5544.927
+  ]
+ ],
+ "race_start_session_s": 3415.761,
+ "drivers": {
+  "ALB": {
+   "status": "ok",
+   "file": "ALB.npz",
+   "sha256": "72e1e2599374b36c71426356028fb3511f17826240b4b6330ebd77ca4d7d689f",
+   "bytes": 41511,
+   "n_frames": 4927,
+   "median_distinct_per_lap": 321,
+   "timing_residual_median_abs_m": 2.42,
+   "timing_residual_max_abs_m": 143.13,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 82.2,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 46,
+     "duration": 33.6,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 4
+  },
+  "ALO": {
+   "status": "ok",
+   "file": "ALO.npz",
+   "sha256": "c5f3983d482f5bcac8482d9de66fc64e008a807d0c9f175b98ac7b9bdf17cefb",
+   "bytes": 25641,
+   "n_frames": 2374,
+   "median_distinct_per_lap": 332,
+   "timing_residual_median_abs_m": 7.88,
+   "timing_residual_max_abs_m": 300.98,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 77.9,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 23,
+     "duration": 124.5,
+     "normal": false,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "ANT": {
+   "status": "ok",
+   "file": "ANT.npz",
+   "sha256": "49d6cf70fbf1b42a5c299412ec9a5a03f71ef46abde50838ad6f372072485e92",
+   "bytes": 41555,
+   "n_frames": 4907,
+   "median_distinct_per_lap": 320,
+   "timing_residual_median_abs_m": 2.43,
+   "timing_residual_max_abs_m": 147.51,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 82.8,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 28,
+     "duration": 33.2,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "BEA": {
+   "status": "ok",
+   "file": "BEA.npz",
+   "sha256": "9ef9ce705d798aedf679834c50762aa5948c3edfbb710a53755f4ffcdb4a2859",
+   "bytes": 40695,
+   "n_frames": 4986,
+   "median_distinct_per_lap": 328,
+   "timing_residual_median_abs_m": 6.08,
+   "timing_residual_max_abs_m": 215.22,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 83.2,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 1
+  },
+  "BOR": {
+   "status": "ok",
+   "file": "BOR.npz",
+   "sha256": "95c160622983bee45d4d8b30d216b72781d2bf586d4fdd7d3cbb13f48c467bda",
+   "bytes": 40279,
+   "n_frames": 4972,
+   "median_distinct_per_lap": 327,
+   "timing_residual_median_abs_m": 4.87,
+   "timing_residual_max_abs_m": 222.93,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 83.3,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "BOT": {
+   "status": "ok",
+   "file": "BOT.npz",
+   "sha256": "d6bd05fe127ab5a88445b73c9745c5773e66192c4053d25bce4a784e5ccb04e2",
+   "bytes": 41628,
+   "n_frames": 4920,
+   "median_distinct_per_lap": 335,
+   "timing_residual_median_abs_m": 4.33,
+   "timing_residual_max_abs_m": 176.23,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 81.7,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 27,
+     "duration": 42.7,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "COL": {
+   "status": "ok",
+   "file": "COL.npz",
+   "sha256": "4f8e986d68427bdf533750d366a09e5b5f823b912890ae164b8d26bef6a46f09",
+   "bytes": 40129,
+   "n_frames": 4954,
+   "median_distinct_per_lap": 318,
+   "timing_residual_median_abs_m": 3.74,
+   "timing_residual_max_abs_m": 244.45,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 84.9,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 2
+  },
+  "GAS": {
+   "status": "ok",
+   "file": "GAS.npz",
+   "sha256": "f0ae405c74b7a55dafb7a6924cde4114c9c9cafaf63ee31a8f9ce78c1ffa5d1b",
+   "bytes": 40168,
+   "n_frames": 4934,
+   "median_distinct_per_lap": 319,
+   "timing_residual_median_abs_m": 1.75,
+   "timing_residual_max_abs_m": 298.23,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 86.4,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 1
+  },
+  "HAM": {
+   "status": "ok",
+   "file": "HAM.npz",
+   "sha256": "6624efe1f313661dc75edfb6728dd074e58cf456a8023a905d3eb7f3670d2562",
+   "bytes": 40031,
+   "n_frames": 4932,
+   "median_distinct_per_lap": 326,
+   "timing_residual_median_abs_m": 1.82,
+   "timing_residual_max_abs_m": 271.55,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 85.2,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "HUL": {
+   "status": "ok",
+   "file": "HUL.npz",
+   "sha256": "3b10352ae7173382c7e689b3a855139e34cbd10b459333ed5662160316d7cb72",
+   "bytes": 41872,
+   "n_frames": 4973,
+   "median_distinct_per_lap": 324,
+   "timing_residual_median_abs_m": 2.2,
+   "timing_residual_max_abs_m": 208.54,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 83.4,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 27,
+     "duration": 31.2,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "LAW": {
+   "status": "ok",
+   "file": "LAW.npz",
+   "sha256": "fb4c518ed8b0c98d3d3ee89b332752c9e2e5f9dd31d5cb7d06840349ab2a6efe",
+   "bytes": 41802,
+   "n_frames": 4983,
+   "median_distinct_per_lap": 325,
+   "timing_residual_median_abs_m": 2.95,
+   "timing_residual_max_abs_m": 309.99,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 78.0,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 12,
+     "duration": 38.4,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "LEC": {
+   "status": "ok",
+   "file": "LEC.npz",
+   "sha256": "9596ac1e0d9728cdad6a4a7e4f70d2fa2861fadff53348b94ab15761dc3d15c2",
+   "bytes": 6875,
+   "n_frames": 359,
+   "median_distinct_per_lap": 437,
+   "timing_residual_median_abs_m": 147.01,
+   "timing_residual_max_abs_m": 280.45,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 2,
+     "duration": 0.0,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "LIN": {
+   "status": "ok",
+   "file": "LIN.npz",
+   "sha256": "2e36701d14209f2e801eb9da7bfd4ee30decc1cefb54e9f395dc36e2599e839c",
+   "bytes": 40337,
+   "n_frames": 4952,
+   "median_distinct_per_lap": 326,
+   "timing_residual_median_abs_m": 3.67,
+   "timing_residual_max_abs_m": 230.85,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 82.4,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "NOR": {
+   "status": "ok",
+   "file": "NOR.npz",
+   "sha256": "dde2f44bae27b6d0e946c90126533b807f660c155ce26105c32b9704207ded4e",
+   "bytes": 40075,
+   "n_frames": 4926,
+   "median_distinct_per_lap": 323,
+   "timing_residual_median_abs_m": 3.88,
+   "timing_residual_max_abs_m": 239.4,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 81.1,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "OCO": {
+   "status": "ok",
+   "file": "OCO.npz",
+   "sha256": "8df800f03edb4257e665048086658b27fef09fc6974642e24bf974dc68b78e28",
+   "bytes": 41577,
+   "n_frames": 4914,
+   "median_distinct_per_lap": 328,
+   "timing_residual_median_abs_m": 2.22,
+   "timing_residual_max_abs_m": 190.5,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 83.3,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 27,
+     "duration": 34.6,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "PER": {
+   "status": "ok",
+   "file": "PER.npz",
+   "sha256": "745921d813802a7cbbb516f7704537f526a179ddd28e7a864a09a75d25ac2956",
+   "bytes": 41741,
+   "n_frames": 4976,
+   "median_distinct_per_lap": 332,
+   "timing_residual_median_abs_m": 1.77,
+   "timing_residual_max_abs_m": 167.56,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 79.8,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 27,
+     "duration": 36.2,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "PIA": {
+   "status": "ok",
+   "file": "PIA.npz",
+   "sha256": "ee321e5d45fd6153d9e5c9e41983e92db79333da03a4d30ac42bb1299369e790",
+   "bytes": 39979,
+   "n_frames": 4926,
+   "median_distinct_per_lap": 323,
+   "timing_residual_median_abs_m": 3.66,
+   "timing_residual_max_abs_m": 255.26,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 80.9,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "RUS": {
+   "status": "ok",
+   "file": "RUS.npz",
+   "sha256": "958ee8b1194cc8cecafbe8506629ee8177bc51479e197486c55d73e0782d7f4f",
+   "bytes": 40051,
+   "n_frames": 4911,
+   "median_distinct_per_lap": 323,
+   "timing_residual_median_abs_m": 1.68,
+   "timing_residual_max_abs_m": 286.12,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 88.2,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "SAI": {
+   "status": "ok",
+   "file": "SAI.npz",
+   "sha256": "6c4dca82611d3eec73db87884b855f52bda91870c05e0074956374c72b2e8f22",
+   "bytes": 41785,
+   "n_frames": 4981,
+   "median_distinct_per_lap": 324,
+   "timing_residual_median_abs_m": 4.25,
+   "timing_residual_max_abs_m": 199.35,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 81.6,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 27,
+     "duration": 31.9,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 1
+  },
+  "STR": {
+   "status": "ok",
+   "file": "STR.npz",
+   "sha256": "dc0b16bc52a094a59e8b7fb515dfc81ba2c007af66ead0ce5825cf7bf6901c60",
+   "bytes": 25442,
+   "n_frames": 2798,
+   "median_distinct_per_lap": 334,
+   "timing_residual_median_abs_m": 5.76,
+   "timing_residual_max_abs_m": 155.38,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 82.5,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 1
+  },
+  "TSU": {
+   "status": "ok",
+   "file": "TSU.npz",
+   "sha256": "2305c48635e6972b5598075ce2bbba45b007c877d990a85065f7f4bf89984722",
+   "bytes": 40273,
+   "n_frames": 4964,
+   "median_distinct_per_lap": 327,
+   "timing_residual_median_abs_m": 2.96,
+   "timing_residual_max_abs_m": 183.62,
+   "n_stops": 1,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 78.3,
+     "normal": false,
+     "red_flag": true
+    }
+   ],
+   "n_reprojected": 0
+  },
+  "VER": {
+   "status": "ok",
+   "file": "VER.npz",
+   "sha256": "2b57464a626b22aa00fdbb313efb9b6770da26ce9c02ce3b066b1ed2bd37b55c",
+   "bytes": 41725,
+   "n_frames": 4922,
+   "median_distinct_per_lap": 323,
+   "timing_residual_median_abs_m": 7.45,
+   "timing_residual_max_abs_m": 259.36,
+   "n_stops": 2,
+   "stops": [
+    {
+     "lap_in": 3,
+     "duration": 86.9,
+     "normal": false,
+     "red_flag": true
+    },
+    {
+     "lap_in": 28,
+     "duration": 31.9,
+     "normal": true,
+     "red_flag": false
+    }
+   ],
+   "n_reprojected": 0
+  }
+ },
+ "frames": [
+  {
+   "driver": "NOR",
+   "scenario_id": "monza_nor_lap24_to_medium_new_fixed_context",
+   "source": "workstream2",
+   "mode": "fixed_context",
+   "label": "Workstream 2 fixed_context scenario from out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context (laps.csv, cumulative q10/q90)",
+   "file": "frames_NOR_monza_nor_lap24_to_medium_new_fixed_context.npz",
+   "sha256": "4a919ada91120475ca15cfa0a2d716ab148390a28cf854c5c8d6e1d4ee6ba1fe",
+   "bytes": 196309,
+   "n_frames": 4926,
+   "finish_delta_s": -5.737,
+   "table_cumulative_delta_s": -5.738,
+   "summary": {
+    "elapsed_delta_median_s": -5.63521516694667,
+    "elapsed_delta_q10_s": -15.239743414783275,
+    "elapsed_delta_q90_s": 3.7635978892556463,
+    "probability_of_gain": 0.784,
+    "oracle_regret_median_s": null,
+    "estimated_finish_position_median": null,
+    "estimated_finish_position_q10": null,
+    "estimated_finish_position_q90": null
+   },
+   "quantile_source": "per-lap q10 / q90 delta curves",
+   "warnings": [],
+   "cf_pit_laps": [
+    3,
+    24
+   ],
+   "actual_pit_laps": [
+    3
+   ],
+   "build_seconds": 0.02
+  },
+  {
+   "driver": "NOR",
+   "scenario_id": "monza_nor_lap24_to_medium_new_tyre_only",
+   "source": "workstream2",
+   "mode": "tyre_only",
+   "label": "Workstream 2 tyre_only scenario from out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only (laps.csv, cumulative q10/q90)",
+   "file": "frames_NOR_monza_nor_lap24_to_medium_new_tyre_only.npz",
+   "sha256": "025b096d1d77aa4a989771dc9e2a617cf791c19183b450e236a3203fcec320a2",
+   "bytes": 196939,
+   "n_frames": 4926,
+   "finish_delta_s": -7.675,
+   "table_cumulative_delta_s": -7.676,
+   "summary": {
+    "elapsed_delta_median_s": -7.795086200565001,
+    "elapsed_delta_q10_s": -17.57967713601514,
+    "elapsed_delta_q90_s": 2.163859854629774,
+    "probability_of_gain": 0.838,
+    "oracle_regret_median_s": null,
+    "estimated_finish_position_median": null,
+    "estimated_finish_position_q10": null,
+    "estimated_finish_position_q90": null
+   },
+   "quantile_source": "per-lap q10 / q90 delta curves",
+   "warnings": [],
+   "cf_pit_laps": [
+    3,
+    24
+   ],
+   "actual_pit_laps": [
+    3
+   ],
+   "build_seconds": 0.02
+  },
+  {
+   "driver": "VER",
+   "scenario_id": "monza_ver_lap20_to_hard_new_fixed_context",
+   "source": "workstream2",
+   "mode": "fixed_context",
+   "label": "Workstream 2 fixed_context scenario from out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context (laps.csv, cumulative q10/q90)",
+   "file": "frames_VER_monza_ver_lap20_to_hard_new_fixed_context.npz",
+   "sha256": "d4c35d48d72361ad1716b8f2534b807350a2f9980ad8aa857fb269afc07d801d",
+   "bytes": 196773,
+   "n_frames": 4922,
+   "finish_delta_s": -6.466,
+   "table_cumulative_delta_s": -6.467,
+   "summary": {
+    "elapsed_delta_median_s": -5.76387991643513,
+    "elapsed_delta_q10_s": -17.446269340067744,
+    "elapsed_delta_q90_s": 4.190829061542292,
+    "probability_of_gain": 0.77,
+    "oracle_regret_median_s": null,
+    "estimated_finish_position_median": null,
+    "estimated_finish_position_q10": null,
+    "estimated_finish_position_q90": null
+   },
+   "quantile_source": "per-lap q10 / q90 delta curves",
+   "warnings": [],
+   "cf_pit_laps": [
+    3,
+    20,
+    26
+   ],
+   "actual_pit_laps": [
+    3,
+    28
+   ],
+   "build_seconds": 0.02
+  },
+  {
+   "driver": "VER",
+   "scenario_id": "monza_ver_lap28_to_soft_new_fixed_context",
+   "source": "workstream2",
+   "mode": "fixed_context",
+   "label": "Workstream 2 fixed_context scenario from out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context (laps.csv, cumulative q10/q90)",
+   "file": "frames_VER_monza_ver_lap28_to_soft_new_fixed_context.npz",
+   "sha256": "067e7d3b794f7644ac87988c2eb86b7fbfa56a292715ee3f6da3c7a73ac98599",
+   "bytes": 195782,
+   "n_frames": 4922,
+   "finish_delta_s": -37.457,
+   "table_cumulative_delta_s": -37.458,
+   "summary": {
+    "elapsed_delta_median_s": -37.22113689863442,
+    "elapsed_delta_q10_s": -46.189720482718556,
+    "elapsed_delta_q90_s": -29.195242660084546,
+    "probability_of_gain": 1.0,
+    "oracle_regret_median_s": null,
+    "estimated_finish_position_median": null,
+    "estimated_finish_position_q10": null,
+    "estimated_finish_position_q90": null
+   },
+   "quantile_source": "per-lap q10 / q90 delta curves",
+   "warnings": [],
+   "cf_pit_laps": [
+    3,
+    28
+   ],
+   "actual_pit_laps": [
+    3,
+    28
+   ],
+   "build_seconds": 0.02
+  },
+  {
+   "driver": "PIA",
+   "scenario_id": "FIXTURE_Monza_PIA_stop23_HARD",
+   "source": "FIXTURE",
+   "mode": "fixture",
+   "label": "FIXTURE: synthetic per-lap deltas generated by replay.timewarp.fixture_laps (Workstream 2 counterfactual output not present)",
+   "file": "frames_PIA_FIXTURE_Monza_PIA_stop23_HARD.npz",
+   "sha256": "ccbd1b743939f3224efbfbfa130a6f793a6fdee5f30b45bc34c01227cda34179",
+   "bytes": 196274,
+   "n_frames": 4937,
+   "finish_delta_s": 10.401,
+   "quantile_source": "whole-curve sampling (64 of 200 samples): per-frame 90th / 10th percentile of ghost distance",
+   "warnings": [],
+   "cf_pit_laps": [
+    3,
+    23
+   ],
+   "actual_pit_laps": [
+    3
+   ],
+   "build_seconds": 0.1
+  }
+ ],
+ "identity_check": {
+  "driver": "ALB",
+  "max_abs_distance_m": 0.109,
+  "max_abs_time_s": 0.001,
+  "one_sample_m": 223.2,
+  "within_one_sample": true
+ },
+ "files": {
+  "track": {
+   "file": "track.npz",
+   "sha256": "c2981350830ca1b51f370c97568e3565b21d79b259dddc445e2cb588ae7bbef4",
+   "bytes": 8871
+  },
+  "pitlane": {
+   "file": "pitlane.npz",
+   "sha256": "4d9db3348c7e16d40ba388b8f85d51d5404fba4c76b4437aac03a490da8c590d",
+   "bytes": 4790
+  }
+ },
+ "build": {
+  "generated_at": "2026-09-12T16:31:53",
+  "seconds": 4.5,
+  "source": {
+   "source": "fastf1",
+   "fastf1_version": "3.8.3",
+   "event_name": "Italian Grand Prix",
+   "date": "2026-09-06 13:00:00",
+   "cache_dir": "/Users/samuelmorningstar/Trackshift/cache",
+   "position_units": "metres (feed 1/10 m divided by 10)",
+   "driver_numbers": {
+    "NOR": "1",
+    "GAS": "10",
+    "PER": "11",
+    "ANT": "12",
+    "ALO": "14",
+    "LEC": "16",
+    "STR": "18",
+    "TSU": "22",
+    "ALB": "23",
+    "HUL": "27",
+    "VER": "3",
+    "LAW": "30",
+    "OCO": "31",
+    "LIN": "41",
+    "COL": "43",
+    "HAM": "44",
+    "BOR": "5",
+    "SAI": "55",
+    "RUS": "63",
+    "BOT": "77",
+    "PIA": "81",
+    "BEA": "87"
+   }
+  },
+  "tool": "replay/build_maps.py"
+ }
+}

@@ -1,0 +1,147 @@
+{
+ "event": "Austria",
+ "driver": "NOR",
+ "event_id": "2026_Austria",
+ "n_laps": 71,
+ "laps_processed": 71,
+ "first_lap": 1,
+ "last_lap": 71,
+ "data_cutoff": "2026-06-28T16:27:09",
+ "generated_at": "2026-09-12T16:27:30",
+ "git_sha": "ccae5d9",
+ "model_version": "live_estimator_lg_v0.1",
+ "model_hash": "sha256:c80b853cad1c6ffe8ab99df3ed41cf46d0880ce50b27a058351821c73827e9e4",
+ "estimator": "linear-Gaussian with fixed regime rules",
+ "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+ "forecast_source": "lock_v2",
+ "feedback_enabled": true,
+ "feedback_events_consumed": 0,
+ "uses_future_data": false,
+ "uses_post_race_reference": false,
+ "sensor_mode": "PUBLIC PROXY",
+ "support_status": "IN SUPPORT",
+ "stints": [
+  {
+   "stint": 1,
+   "compound": "MEDIUM",
+   "first_lap": 1,
+   "last_lap": 21,
+   "laps": 21
+  },
+  {
+   "stint": 2,
+   "compound": "HARD",
+   "first_lap": 22,
+   "last_lap": 47,
+   "laps": 26
+  },
+  {
+   "stint": 3,
+   "compound": "HARD",
+   "first_lap": 48,
+   "last_lap": 71,
+   "laps": 24
+  }
+ ],
+ "regime_laps": {
+  "WARMUP": 6,
+  "NORMAL": 64,
+  "CLIFF": 1
+ },
+ "laps_with_widening": 4,
+ "recommendation_changes": [
+  {
+   "lap": 19,
+   "to": "PIT laps 24-29 new soft",
+   "reason": "moved from EXTEND laps 25-31 new medium to PIT laps 24-29 new soft because regime CLIFF"
+  },
+  {
+   "lap": 22,
+   "to": "PIT laps 27-32 new soft",
+   "reason": "moved from PIT laps 24-29 new soft to PIT laps 27-32 new soft because pit reset: new hard (stint 2), prior slope +0.0672 +- 0.0420 s/lap per lap restored"
+  },
+  {
+   "lap": 27,
+   "to": "EXTEND laps 42-48 new medium",
+   "reason": "moved from PIT laps 27-32 new soft to EXTEND laps 42-48 new medium because clean lap 27 (age 6, 70.442 s corrected, residual -0.53 s) moved the slope +0.0672 -> +0.0292"
+  },
+  {
+   "lap": 28,
+   "to": "STAY OUT",
+   "reason": "moved from EXTEND laps 42-48 new medium to STAY OUT because clean lap 28 (age 7, 70.267 s corrected, residual -0.36 s) moved the slope +0.0292 -> +0.0101"
+  },
+  {
+   "lap": 30,
+   "to": "EXTEND laps 45-51 new medium",
+   "reason": "moved from STAY OUT to EXTEND laps 45-51 new medium because clean lap 30 (age 9, 70.555 s corrected, residual +0.03 s) moved the slope +0.0149 -> +0.0163"
+  },
+  {
+   "lap": 31,
+   "to": "STAY OUT",
+   "reason": "moved from EXTEND laps 45-51 new medium to STAY OUT because clean lap 31 (age 10, 70.453 s corrected, residual -0.10 s) moved the slope +0.0163 -> +0.0124"
+  },
+  {
+   "lap": 37,
+   "to": "PIT laps 41-45 new medium",
+   "reason": "moved from STAY OUT to PIT laps 41-45 new medium because clean lap 37 (age 16, 71.310 s corrected, residual +0.69 s) moved the slope +0.0160 -> +0.0337"
+  },
+  {
+   "lap": 39,
+   "to": "PIT laps 39-45 new medium",
+   "reason": "moved from PIT laps 42-46 new medium to PIT laps 39-45 new medium because clean lap 39 (age 18, 71.253 s corrected, residual +0.41 s) moved the slope +0.0327 -> +0.0414"
+  },
+  {
+   "lap": 48,
+   "to": "PIT laps 49-53 new medium",
+   "reason": "moved from PIT_NOW lap 47 new medium to PIT laps 49-53 new medium because pit reset: new hard (stint 3), prior slope +0.0672 +- 0.0420 s/lap per lap restored"
+  },
+  {
+   "lap": 55,
+   "to": "STAY OUT",
+   "reason": "moved from PIT_NOW laps 54-55 new medium to STAY OUT because clean lap 55 (age 8, 70.149 s corrected, residual -0.31 s) moved the slope +0.0455 -> +0.0330"
+  }
+ ],
+ "n_recommendation_changes": 10,
+ "final": {
+  "compound": "HARD",
+  "tyre_age": 24,
+  "regime": "NORMAL",
+  "slope": 0.1048773145157485,
+  "slope_sd": 0.013087760138118246,
+  "prior_slope": 0.0672,
+  "trend_vs_pre_race": 0.5606743231510194,
+  "useful_laps": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "top_action": "STAY OUT"
+ },
+ "files": {
+  "states": {
+   "path": "out/live/Austria_NOR/states.jsonl",
+   "sha256": "22ad61f2948e5c1ae989c6db8c8d6a3727eaeaec0c166966f8f166317857d5f5",
+   "bytes": 92266
+  },
+  "recommendations": {
+   "path": "out/live/Austria_NOR/recommendations.jsonl",
+   "sha256": "b3118a68f881cd5a6a1b27d23fa38f7fafffc326674a5313045ad0dfa44ed374",
+   "bytes": 581878
+  },
+  "estimator_trace": {
+   "path": "out/live/Austria_NOR/estimator_trace.jsonl",
+   "sha256": "badee76891c2defc4f750affc97521f2b11db3f538bd006edfff96db842da98b",
+   "bytes": 419792
+  },
+  "driver_feedback": {
+   "path": "out/live/Austria_NOR/driver_feedback.json",
+   "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+   "bytes": 3
+  },
+  "live_predictor": {
+   "path": "out/live/Austria_NOR/live_predictor.json",
+   "sha256": "41120073fd289297fe5712f91ef780e3c6fd16fecdb49193e728ecce0a9584e5",
+   "bytes": 4726
+  }
+ }
+}

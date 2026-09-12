@@ -284,3 +284,51 @@ def test_json_schema_forbids_additional_properties_everywhere_but_extensions():
     assert open_defs == [], f'stable blocks must set additionalProperties false: {open_defs}'
     assert schema['$defs']['LivePredictor']['properties']['uses_future_data']['const'] is False
     assert schema['$defs']['GhostStrategy']['properties']['model_implied']['const'] is True
+
+
+def test_traffic_mode_vocabulary(fixture_lock):
+    cf = fixture_lock['counterfactuals'][0]
+    assert cf['traffic_mode'] == 'paired_replay'
+    for legacy in ('observed_fixed', 'none', 'simulated', 'clean-air'):
+        cf['traffic_mode'] = legacy
+        invalid(fixture_lock, 'traffic_mode')
+    cf['traffic_mode'] = 'clean_air'
+    LockV2.model_validate(fixture_lock)
+    cf['traffic_mode'] = 'frozen_field'
+    invalid(fixture_lock, 'tyre_only scenarios cannot simulate')
+    assert set(S.json_schema()['$defs']['CounterfactualScenario']['properties']['traffic_mode']['enum']) == {'clean_air', 'paired_replay', 'frozen_field'}
+
+
+def test_safety_car_schedule_accepts_literal_or_period_list(fixture_lock):
+    cf = fixture_lock['counterfactuals'][0]
+    for literal in ('historical_fixed', 'observed_fixed'):
+        cf['safety_car_schedule'] = literal
+        assert LockV2.model_validate(fixture_lock).counterfactuals[0].safety_car_schedule == literal
+    cf['safety_car_schedule'] = [{'kind': 'VSC', 'start_lap': 3, 'end_lap': 4}, {'kind': 'SC', 'start_lap': 30, 'end_lap': 33}]
+    periods = LockV2.model_validate(fixture_lock).counterfactuals[0].safety_car_schedule
+    assert [p.kind for p in periods] == ['VSC', 'SC']
+    cf['safety_car_schedule'] = []
+    LockV2.model_validate(fixture_lock)                       # an empty observed period list is legitimate (no SC in the race)
+    cf['safety_car_schedule'] = [{'kind': 'SC', 'start_lap': 10, 'end_lap': 9}]
+    invalid(fixture_lock, 'end_lap must be >= start_lap')
+    cf['safety_car_schedule'] = [{'kind': 'RED', 'start_lap': 10, 'end_lap': 11, 'cause': 'debris'}]
+    invalid(fixture_lock, 'Extra inputs are not permitted')
+    cf['safety_car_schedule'] = 'fixed'
+    invalid(fixture_lock, 'safety_car_schedule')
+    del cf['safety_car_schedule']
+    invalid(fixture_lock, 'safety_car_schedule', 'Field required')
+
+
+def test_state_regime_vocabulary_and_minor_version_compatibility(fixture_lock):
+    assert S.SCHEMA_VERSION == '2.1.0'
+    post = fixture_lock['live_predictor']['posterior']
+    for regime in ('accelerating_wear', 'anomaly', 'normal', 'overheating', 'cliff', 'unknown'):
+        post['state_regime'] = regime
+        assert LockV2.model_validate(fixture_lock).live_predictor.posterior.state_regime == regime
+    post['state_regime'] = 'wearing_fast'
+    invalid(fixture_lock, 'state_regime')
+    post['state_regime'] = 'normal'
+    fixture_lock['live_predictor']['meta']['schema_version'] = '2.0.0'          # a block written under 2.0.x still validates: minor bumps are additive
+    fixture_lock['schema_version'] = '2.0.0'
+    LockV2.model_validate(fixture_lock)
+    assert set(S.json_schema()['$defs']['LiveTyreState']['properties']['state_regime']['enum']) >= {'accelerating_wear', 'anomaly', 'warm_up', 'cooling'}

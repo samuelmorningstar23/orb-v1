@@ -38,8 +38,10 @@ Timestamps are ISO-8601 strings; within a block use either all-naive or all-awar
 * Ghost: `model_implied` and `live_estimator_disabled` are `true`; non-actual weather is `evidence_grade: model_implied_scenario`;
   `OUT OF SUPPORT, FORECAST WITHHELD` needs an `abstention_reason` and carries no counterfactual; `ghost_strategy.counterfactual`
   must equal the referenced scenario in `counterfactuals[]` (map equals numbers).
-* Counterfactuals: `tyre_only` cannot simulate track position, rivals or traffic; finish positions only in `frozen_field` and only
-  as q10/median/q90; `rival_strategy_response` is `none`; plans must sum to `n_laps` with `pit_laps` at the stint ends.
+* Counterfactuals: `traffic_mode` is `clean_air` | `paired_replay` | `frozen_field`; `tyre_only` cannot simulate track position,
+  rivals or frozen-field traffic; finish positions only in `frozen_field` and only as q10/median/q90; `rival_strategy_response`
+  is `none`; `safety_car_schedule` is either the literal `historical_fixed` / `observed_fixed` (periods fixed as observed) or the
+  observed period list `[{kind: SC|VSC|RED, start_lap, end_lap}]`; plans must sum to `n_laps` with `pit_laps` at the stint ends.
 
 ## Sidecar policy
 

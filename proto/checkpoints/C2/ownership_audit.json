@@ -1,0 +1,1657 @@
+{
+ "at": "2026-09-12T16:36:03",
+ "proto_root": "/Users/samuelmorningstar/Trackshift/proto",
+ "rules_version": "roadmap_v5_s6 + workstream9 brief + lead decisions 12 Sep 2026 14:55 (out/ subtrees, conftest, race_twin, sealed manifest lead-only)",
+ "changed": [
+  {
+   "path": "proto/app_v2/components/race_twin/README.md",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: app_v2/components/race_twin/)"
+  },
+  {
+   "path": "proto/app_v2/components/race_twin/__init__.py",
+   "git_status": "M",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: app_v2/components/race_twin/)"
+  },
+  {
+   "path": "proto/app_v2/components/race_twin/player.html",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: app_v2/components/race_twin/)"
+  },
+  {
+   "path": "proto/app_v2/components/race_twin/player.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: app_v2/components/race_twin/)"
+  },
+  {
+   "path": "proto/app_v2/components/race_twin/plotly_fallback.py",
+   "git_status": "M",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: app_v2/components/race_twin/)"
+  },
+  {
+   "path": "proto/checkpoints/C1/checkpoint.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C1/checkpoint.md",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C1/last_green.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C1/logs/pytest.txt",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C1/ownership_audit.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C1/test_report.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/logs/pytest.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/logs/schema_validation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/run_checkpoint.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/last_green.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/cleanup_pass.sh",
+   "git_status": "M",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/counterfactual/README.md",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: counterfactual/)"
+  },
+  {
+   "path": "proto/counterfactual/__init__.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: counterfactual/)"
+  },
+  {
+   "path": "proto/counterfactual/engine.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: counterfactual/)"
+  },
+  {
+   "path": "proto/counterfactual/pitmodel.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: counterfactual/)"
+  },
+  {
+   "path": "proto/counterfactual/provider.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: counterfactual/)"
+  },
+  {
+   "path": "proto/counterfactual/racedata.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: counterfactual/)"
+  },
+  {
+   "path": "proto/counterfactual/run.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: counterfactual/)"
+  },
+  {
+   "path": "proto/decision/__init__.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: decision/)"
+  },
+  {
+   "path": "proto/decision/optimizer.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: decision/)"
+  },
+  {
+   "path": "proto/events/__init__.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: events/)"
+  },
+  {
+   "path": "proto/events/model.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: events/)"
+  },
+  {
+   "path": "proto/events/sources.py",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: events/)"
+  },
+  {
+   "path": "proto/extract_seasons.py",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/fixtures/lock_v2_fixture.json",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: fixtures/)"
+  },
+  {
+   "path": "proto/fixtures/make_fixtures.py",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: fixtures/)"
+  },
+  {
+   "path": "proto/live/__init__.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/clock.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/estimator.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/feedback.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/lapfeed.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/prefix_eval.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/priors.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/replay_run.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/session.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/live/viewmodel.py",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: live/)"
+  },
+  {
+   "path": "proto/out/Orb_v1_Mentor_Briefing.pptx",
+   "git_status": "M",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/out/counterfactual/_pit_pool_cache.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/lattice_Monza_fixed_context.csv",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/lattice_Monza_fixed_context.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/lattice_Monza_tyre_only.csv",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/lattice_Monza_tyre_only.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/ghost_replay.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/lap_deltas.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/laps.csv",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/ghost_replay.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/lap_deltas.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/laps.csv",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/ghost_replay.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/lap_deltas.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/laps.csv",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/ghost_replay.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/lap_deltas.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/laps.csv",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/summary.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/driver_feedback.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/driver_feedback.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/estimator_trace.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/estimator_trace.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/live_predictor.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/live_predictor.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/recommendations.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/recommendations.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/states.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/states.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/summary.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Austria_NOR/summary.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/driver_feedback.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/driver_feedback.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/estimator_trace.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/estimator_trace.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/live_predictor.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/live_predictor.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/recommendations.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/recommendations.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/states.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/states.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/summary.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Barcelona_NOR/summary.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/driver_feedback.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/driver_feedback.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/estimator_trace.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/estimator_trace.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/live_predictor.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/live_predictor.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/recommendations.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/recommendations.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/states.jsonl",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/states.jsonl.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/summary.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/Monza_NOR/summary.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/PREFIX_EVAL.md",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/prefix_eval.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/live/prefix_eval.json.sha256",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 8 (live intelligence: out/live/)"
+  },
+  {
+   "path": "proto/out/maps/Hungary/meta.json",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Hungary/meta.json.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/ALB.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/ALB.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/ALO.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/ALO.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/ANT.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/ANT.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/BEA.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/BEA.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/BOR.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/BOR.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/BOT.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/BOT.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/COL.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/COL.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/GAS.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/GAS.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/HAM.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/HAM.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/HUL.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/HUL.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/LAW.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/LAW.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/LEC.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/LEC.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/LIN.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/LIN.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/NOR.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/NOR.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/OCO.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/OCO.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/PER.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/PER.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/PIA.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/PIA.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/RUS.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/RUS.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/SAI.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/SAI.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/STR.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/STR.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/TSU.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/TSU.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/VER.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/VER.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_NOR_monza_nor_lap24_to_medium_new_fixed_context.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_NOR_monza_nor_lap24_to_medium_new_fixed_context.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_NOR_monza_nor_lap24_to_medium_new_tyre_only.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_NOR_monza_nor_lap24_to_medium_new_tyre_only.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_PIA_FIXTURE_Monza_PIA_stop23_HARD.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_PIA_FIXTURE_Monza_PIA_stop23_HARD.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_VER_monza_ver_lap20_to_hard_new_fixed_context.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_VER_monza_ver_lap20_to_hard_new_fixed_context.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_VER_monza_ver_lap28_to_soft_new_fixed_context.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/frames_VER_monza_ver_lap28_to_soft_new_fixed_context.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/meta.json",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/meta.json.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/pitlane.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/pitlane.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/track.npz",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/out/maps/Monza/track.npz.sha256",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: out/maps/)"
+  },
+  {
+   "path": "proto/progress/workstream_1.json",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 1 (contract and fixtures)"
+  },
+  {
+   "path": "proto/progress/workstream_2.json",
+   "git_status": "??",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 2 (counterfactual core and events)"
+  },
+  {
+   "path": "proto/progress/workstream_3.json",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 3 (blind evaluation)"
+  },
+  {
+   "path": "proto/progress/workstream_4.json",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 4 (geometry and animation)"
+  },
+  {
+   "path": "proto/progress/workstream_7.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 7 (red team)"
+  },
+  {
+   "path": "proto/progress/workstream_8.json",
+   "git_status": "??",
+   "owner": 8,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 8 (live intelligence)"
+  },
+  {
+   "path": "proto/release/merge_queue.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/replay/PERF.md",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/__init__.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/build_maps.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/geometry.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/io.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/perf_harness.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/sources.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/timewarp.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/replay/trajectory.py",
+   "git_status": "??",
+   "owner": 4,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 4 (geometry and animation: replay/)"
+  },
+  {
+   "path": "proto/schemas/README.md",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: schemas/)"
+  },
+  {
+   "path": "proto/schemas/lock_v2.py",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: schemas/)"
+  },
+  {
+   "path": "proto/schemas/lock_v2.schema.json",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: schemas/)"
+  },
+  {
+   "path": "proto/tests/contract/test_schema.py",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: tests/contract/)"
+  },
+  {
+   "path": "proto/tests/counterfactual/conftest.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/counterfactual/test_cf_cli.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/counterfactual/test_cf_engine.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/counterfactual/test_cf_events.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/counterfactual/test_cf_provider.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/live/conftest.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/live/live_helpers.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/live/test_estimator.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/live/test_feedback.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/live/test_optimizer.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/live/test_replay.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/replay/conftest.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/replay/test_assets.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/replay/test_geometry.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/replay/test_player.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/replay/test_timewarp.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/tests/replay/test_trajectory.py",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  }
+ ],
+ "repo_root": "/Users/samuelmorningstar/Trackshift",
+ "git_commit": "ccae5d9",
+ "summary": {
+  "total": 201,
+  "flagged": 20,
+  "unowned": 19,
+  "lead_only": 1,
+  "outside_proto": 0,
+  "by_owner": {
+   "1": 7,
+   "2": 32,
+   "3": 1,
+   "4": 77,
+   "7": 1,
+   "8": 52,
+   "9": 11,
+   "lead": 1,
+   "unowned": 19
+  }
+ },
+ "flagged_paths": [
+  "proto/cleanup_pass.sh",
+  "proto/extract_seasons.py",
+  "proto/out/Orb_v1_Mentor_Briefing.pptx",
+  "proto/tests/counterfactual/conftest.py",
+  "proto/tests/counterfactual/test_cf_cli.py",
+  "proto/tests/counterfactual/test_cf_engine.py",
+  "proto/tests/counterfactual/test_cf_events.py",
+  "proto/tests/counterfactual/test_cf_provider.py",
+  "proto/tests/live/conftest.py",
+  "proto/tests/live/live_helpers.py",
+  "proto/tests/live/test_estimator.py",
+  "proto/tests/live/test_feedback.py",
+  "proto/tests/live/test_optimizer.py",
+  "proto/tests/live/test_replay.py",
+  "proto/tests/replay/conftest.py",
+  "proto/tests/replay/test_assets.py",
+  "proto/tests/replay/test_geometry.py",
+  "proto/tests/replay/test_player.py",
+  "proto/tests/replay/test_timewarp.py",
+  "proto/tests/replay/test_trajectory.py"
+ ]
+}

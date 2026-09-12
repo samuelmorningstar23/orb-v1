@@ -1,0 +1,141 @@
+{
+ "meta": {
+  "schema_version": "2.0.0",
+  "generated_at": "2026-09-12T16:27:31",
+  "data_cutoff": "2026-06-14T16:32:52",
+  "git_sha": "ccae5d9",
+  "model_version": "live_estimator_lg_v0.1",
+  "model_hash": "sha256:c80b853cad1c6ffe8ab99df3ed41cf46d0880ce50b27a058351821c73827e9e4",
+  "provenance": "live/replay_run.py: linear-Gaussian with fixed regime rules; Barcelona NOR replay through lap 66 from feat/Barcelona_R.csv and the frozen forecast (lock_v2)",
+  "units": {
+   "pace_loss": "s/lap",
+   "degradation_rate": "s/lap per lap",
+   "time": "s",
+   "laps": "lap",
+   "temperature": "degC",
+   "probability": "fraction 0-1",
+   "index": "fraction 0-1",
+   "latency": "s",
+   "energy": "MJ"
+  }
+ },
+ "event_id": "2026_Barcelona",
+ "driver": "NOR",
+ "session": "R",
+ "source": "replay",
+ "data_cutoff": "2026-06-14T16:32:52",
+ "lap": 66,
+ "n_laps": 66,
+ "uses_future_data": false,
+ "uses_post_race_reference": false,
+ "feedback_enabled": true,
+ "prior": {
+  "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+  "event_id": "2026_Barcelona",
+  "driver": "NOR",
+  "compound": "HARD",
+  "degradation_rate": 0.0255,
+  "band90": [
+   -0.0098,
+   0.0623
+  ],
+  "useful_laps_q10": null,
+  "useful_laps_q50": null,
+  "useful_laps_q90": null,
+  "planned_plan": "S-H",
+  "planned_pit_window": [
+   10,
+   14
+  ],
+  "basis": "pre-race forecast for Barcelona HARD (low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)), frozen before the race; source lock_v2.pre_race_forecast"
+ },
+ "posterior": {
+  "lap": 66,
+  "timestamp": "2026-06-14T16:32:52",
+  "compound": "HARD",
+  "tyre_age": 31,
+  "state_regime": "normal",
+  "corrected_pace_loss": 3.0234422696943994,
+  "degradation_rate": 0.09894089832996841,
+  "thermal_stress_index": 0.8708006946188526,
+  "performance_wear_index": 1.0,
+  "useful_laps_q10": 0.0,
+  "useful_laps_q50": 0.0,
+  "useful_laps_q90": 0.0,
+  "cliff_probability_3_laps": 0.99975,
+  "cliff_probability_5_laps": 0.99975,
+  "trend_vs_pre_race": 2.8800352286262125,
+  "confidence": 0.3481087270730684,
+  "sensor_mode": "PUBLIC PROXY",
+  "support_status": "NEAR TRAINING SUPPORT",
+  "sensor_availability": {
+   "lap_time": true,
+   "sector_times": true,
+   "car_telemetry": true,
+   "position_xy": true,
+   "weather": true,
+   "team_radio": true,
+   "tyre_pressure": false,
+   "tyre_surface_temp": false,
+   "tyre_carcass_temp": false,
+   "tread_depth": false
+  },
+  "source_latency": 3.0,
+  "missing_channels": [
+   "tread_depth",
+   "tyre_carcass_temp",
+   "tyre_pressure",
+   "tyre_surface_temp"
+  ],
+  "quality_status": "OK",
+  "confidence_effect": "linear-Gaussian with fixed regime rules; regime ACCELERATING_WEAR; PUBLIC PROXY: no tyre pressures or temperatures are observed, thermal_stress_index and performance_wear_index are demand-based proxies; slope posterior +0.0989 +- 0.0143 s/lap per lap from 18 clean laps (prior +0.0255 +- 0.0219); widening this lap: none",
+  "team_sensor": null
+ },
+ "recommendations": [
+  {
+   "rank": 1,
+   "lap": 66,
+   "issued_at": "2026-06-14T16:32:52",
+   "action": "STAY_OUT",
+   "pit_window": null,
+   "target_compound": null,
+   "target_set": null,
+   "expected_gain_median": 0.0,
+   "expected_gain_q10": 0.0,
+   "expected_gain_q90": 0.0,
+   "probability_of_gain": 0.5,
+   "rejoin_context": {
+    "basis": "observed_gap_structure",
+    "position_now": 4,
+    "projected_rejoin_position": 5,
+    "gap_ahead_s": 4.158,
+    "gap_behind_s": 16.728,
+    "cars_within_pit_loss": 1,
+    "traffic_density": "clear",
+    "note": "observed lap-time ordering at lap 66 (t_min + lap_s from the race file; 19 cars still on lap 66 projected from their last completed lap); rival strategy responses are not simulated"
+   },
+   "reasons": [
+    "stay out to the flag",
+    "posterior degradation +0.0989 s/lap per lap (+288% vs the pre-race forecast +0.0255) from 18 clean laps on hard age 31; regime ACCELERATING_WEAR",
+    "useful life q10/q50/q90 0/0/0 laps; cliff probability 100% within 3 laps",
+    "gains are measured against the pre-race plan's remaining schedule: stay out to the flag (plan S-H)"
+   ],
+   "constraints": [
+    "available sets: soft (new), medium (new), hard (new) [inventory placeholder: one new set of each dry compound with a lock offset (Phase 1 adds the live tyre-set feed)]",
+    "minimum stint 6 laps",
+    "two dry compounds already used: no further stop is mandatory"
+   ],
+   "changed_since_last_update": false,
+   "change_reason": null
+  }
+ ],
+ "driver_feedback": [],
+ "state_history": {
+  "path": "out/live/Barcelona_NOR/states.jsonl",
+  "sha256": "e410a66a529bd45f93ae4ecbb6615af9dd8095a748201504e7ffb90ef5406f43",
+  "bytes": 86861,
+  "format": "jsonl",
+  "description": "per-lap LiveTyreState records (online-safe)"
+ },
+ "recommendation_history": null
+}

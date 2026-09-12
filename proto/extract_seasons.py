@@ -14,7 +14,8 @@ signal.signal(signal.SIGALRM, _alarm)
 from fastf1.req import RateLimitExceededError
 from features import session_features
 logging.getLogger('fastf1').setLevel(logging.CRITICAL)
-ap = argparse.ArgumentParser(); ap.add_argument('--years', default='2025,2024,2023'); ap.add_argument('--cache', default='~/Trackshift/cache2'); ap.add_argument('--sleep', type=int, default=900); ap.add_argument('--worker', type=int, default=0); ap.add_argument('--nworkers', type=int, default=1); a = ap.parse_args()
+ap = argparse.ArgumentParser(); ap.add_argument('--years', default='2025,2024,2023'); ap.add_argument('--cache', default='~/Trackshift/cache2'); ap.add_argument('--sleep', type=int, default=900); ap.add_argument('--worker', type=int, default=0); ap.add_argument('--nworkers', type=int, default=1); ap.add_argument('--skip', default=''); a = ap.parse_args()
+SKIP = {x for x in a.skip.split(',') if x}   # event names whose missing sessions are known-bad at the archive
 CACHE = os.path.expanduser(a.cache); os.makedirs(CACHE, exist_ok=True); fastf1.Cache.enable_cache(CACHE)
 LOC2NAME = {'Melbourne': 'Australia', 'Shanghai': 'China', 'Suzuka': 'Japan', 'Sakhir': 'Bahrain', 'Jeddah': 'SaudiArabia', 'Miami': 'Miami', 'Imola': 'Imola', 'Monaco': 'Monaco', 'Monte Carlo': 'Monaco',
             'Montréal': 'Canada', 'Montreal': 'Canada', 'Barcelona': 'Barcelona', 'Catalunya': 'Barcelona', 'Spielberg': 'Austria', 'Silverstone': 'Britain', 'Spa-Francorchamps': 'Belgium', 'Spa': 'Belgium',
@@ -66,6 +67,7 @@ for _, year, ev, row, be in mine:
             if pd.notna(sdate) and pd.Timestamp(sdate) + pd.Timedelta(hours=2) > now: continue
             out = f'{out_dir}/{ev}_{sn}.csv'
             if os.path.exists(out): continue
+            if ev in SKIP: print(f'  {year} {ev} {sn}: skipped (archive known-bad)', flush=True); continue
             t = time.time()
             try:
                 signal.alarm(1200)

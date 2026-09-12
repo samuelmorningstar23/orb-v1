@@ -1,0 +1,39 @@
+{
+ "timing": {
+  "event": "Monza",
+  "mode": "tyre_only",
+  "n_scenarios": 3024,
+  "n_errors": 3,
+  "precompute_ms": 44.15429197251797,
+  "total_ms": 1601.9725420046598,
+  "per_scenario_ms_median": 0.4693330265581608,
+  "per_scenario_ms_max": 65.21408399567008,
+  "errors": [
+   {
+    "driver": "LAW",
+    "lap": 2,
+    "to_compound": "SOFT",
+    "error": "intervention lap 2 lies before the end of an earlier stint (lap 2); pick replace_stop explicitly"
+   },
+   {
+    "driver": "LAW",
+    "lap": 2,
+    "to_compound": "MEDIUM",
+    "error": "intervention lap 2 lies before the end of an earlier stint (lap 2); pick replace_stop explicitly"
+   },
+   {
+    "driver": "LAW",
+    "lap": 2,
+    "to_compound": "HARD",
+    "error": "intervention lap 2 lies before the end of an earlier stint (lap 2); pick replace_stop explicitly"
+   }
+  ]
+ },
+ "csv": {
+  "path": "out/counterfactual/lattice_Monza_tyre_only.csv",
+  "sha256": "53d80117eebc84dfcbecdb026c4bc56cdc161005417b335309a9217c1d0c2a34",
+  "bytes": 479910,
+  "format": "csv",
+  "description": "driver x intervention lap x compound summaries"
+ }
+}

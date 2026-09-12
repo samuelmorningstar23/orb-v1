@@ -1,0 +1,160 @@
+{
+ "event": "Hungary",
+ "event_id": "2026_Hungary",
+ "year": 2026,
+ "session": "R",
+ "n_laps": 70,
+ "grid_m_nominal": 10.0,
+ "quality": {
+  "status": "refused",
+  "min_distinct_per_lap": 100,
+  "drivers_passed": [
+   "BOT"
+  ],
+  "drivers_refused": [
+   "ALB",
+   "ALO",
+   "ANT",
+   "BEA",
+   "BOR",
+   "COL",
+   "GAS",
+   "HAD",
+   "HAM",
+   "HUL",
+   "LAW",
+   "LEC",
+   "LIN",
+   "NOR",
+   "OCO",
+   "PER",
+   "PIA",
+   "RUS",
+   "SAI",
+   "STR",
+   "VER"
+  ],
+  "per_driver": {
+   "ALB": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "ALO": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "ANT": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "BEA": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "BOR": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "BOT": {
+    "median": 341,
+    "min": 325,
+    "ok": true
+   },
+   "COL": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "GAS": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "HAD": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "HAM": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "HUL": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "LAW": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "LEC": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "LIN": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "NOR": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "OCO": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "PER": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "PIA": {
+    "median": 26,
+    "min": 8,
+    "ok": false
+   },
+   "RUS": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "SAI": {
+    "median": 26,
+    "min": 23,
+    "ok": false
+   },
+   "STR": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   },
+   "VER": {
+    "median": 26,
+    "min": 24,
+    "ok": false
+   }
+  },
+  "reason": "2026_Hungary: 1 of 22 drivers pass the position-feed gate (median distinct points per lap >= 100); need 3. Medians: [26, 26, 26]...[26, 26, 341]. Refused: the feed is degraded at source.",
+  "refusal_details": [
+   "ALB: median 26 distinct position points per lap < 100 (feed degraded at source)",
+   "ALO: median 26 distinct position points per lap < 100 (feed degraded at source)",
+   "ANT: median 26 distinct position points per lap < 100 (feed degraded at source)",
+   "BEA: median 26 distinct position points per lap < 100 (feed degraded at source)",
+   "BOR: median 26 distinct position points per lap < 100 (feed degraded at source)"
+  ]
+ },
+ "status": "refused",
+ "reason": "2026_Hungary: 1 of 22 drivers pass the position-feed gate (median distinct points per lap >= 100); need 3. Medians: [26, 26, 26]...[26, 26, 341]. Refused: the feed is degraded at source."
+}

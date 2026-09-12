@@ -1,11 +1,10 @@
 {
  "checkpoint": "C1",
- "at": "2026-09-12T15:42:02",
- "git_commit": "02f4c00",
+ "at": "2026-09-12T15:46:46",
+ "git_commit": "ccae5d9",
  "all_green": true,
  "summary": {
-  "PASS": 3,
-  "WARN": 1,
+  "PASS": 4,
   "NOT_IMPLEMENTED": 1
  },
  "pytest": {
@@ -22,9 +21,9 @@
    "name": "schema_validation",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python validators/validate_lock.py out/lock_v2.json",
    "returncode": 0,
-   "duration_s": 0.1,
+   "duration_s": 0.11,
    "timed_out": false,
    "stdout_tail": "  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified\n  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified\nOK out/lock_v2.json: schema 2.0.0, forecast sha256:e126256132b6ead8..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB",
    "stderr_tail": "",
@@ -34,11 +33,11 @@
    "name": "pytest",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
    "returncode": 0,
-   "duration_s": 80.01,
+   "duration_s": 77.72,
    "timed_out": false,
-   "stdout_tail": "........................................................................ [ 33%]\n........................................................................ [ 66%]\n........................................................................ [ 99%]\n..                                                                       [100%]\n218 passed in 79.74s (0:01:19)",
+   "stdout_tail": "........................................................................ [ 33%]\n........................................................................ [ 66%]\n........................................................................ [ 99%]\n..                                                                       [100%]\n218 passed in 77.50s (0:01:17)",
    "stderr_tail": "",
    "counts": {
     "passed": 218
@@ -53,26 +52,20 @@
   },
   {
    "name": "ownership_audit",
-   "status": "WARN",
-   "note": "138 changed paths, 1 flagged: proto/out/Orb_v1_Mentor_Briefing.pptx",
+   "status": "PASS",
+   "note": "2 changed paths, 0 flagged",
    "command": "release/ownership_audit.py",
    "summary": {
-    "total": 138,
-    "flagged": 1,
-    "unowned": 1,
+    "total": 2,
+    "flagged": 0,
+    "unowned": 0,
     "lead_only": 0,
     "outside_proto": 0,
     "by_owner": {
-     "1": 30,
-     "4": 2,
-     "6": 79,
-     "9": 26,
-     "unowned": 1
+     "9": 2
     }
    },
-   "flagged": [
-    "proto/out/Orb_v1_Mentor_Briefing.pptx"
-   ]
+   "flagged": []
   },
   {
    "name": "lock_dashboard_consistency",

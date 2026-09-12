@@ -1,0 +1,133 @@
+{
+ "event": "Barcelona",
+ "driver": "NOR",
+ "event_id": "2026_Barcelona",
+ "n_laps": 66,
+ "laps_processed": 66,
+ "first_lap": 1,
+ "last_lap": 66,
+ "data_cutoff": "2026-06-14T16:32:52",
+ "generated_at": "2026-09-12T16:27:31",
+ "git_sha": "ccae5d9",
+ "model_version": "live_estimator_lg_v0.1",
+ "model_hash": "sha256:c80b853cad1c6ffe8ab99df3ed41cf46d0880ce50b27a058351821c73827e9e4",
+ "estimator": "linear-Gaussian with fixed regime rules",
+ "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+ "forecast_source": "lock_v2",
+ "feedback_enabled": true,
+ "feedback_events_consumed": 0,
+ "uses_future_data": false,
+ "uses_post_race_reference": false,
+ "sensor_mode": "PUBLIC PROXY",
+ "support_status": "NEAR TRAINING SUPPORT",
+ "stints": [
+  {
+   "stint": 1,
+   "compound": "MEDIUM",
+   "first_lap": 1,
+   "last_lap": 13,
+   "laps": 13
+  },
+  {
+   "stint": 2,
+   "compound": "HARD",
+   "first_lap": 14,
+   "last_lap": 35,
+   "laps": 22
+  },
+  {
+   "stint": 3,
+   "compound": "HARD",
+   "first_lap": 36,
+   "last_lap": 66,
+   "laps": 31
+  }
+ ],
+ "regime_laps": {
+  "WARMUP": 6,
+  "NORMAL": 36,
+  "ACCELERATING_WEAR": 23,
+  "CLIFF": 1
+ },
+ "laps_with_widening": 7,
+ "recommendation_changes": [
+  {
+   "lap": 5,
+   "to": "PIT laps 9-13 new hard",
+   "reason": "moved from EXTEND laps 13-14 new hard to PIT laps 9-13 new hard because clean lap 5 (age 5, 81.314 s corrected, residual +0.40 s) moved the slope +0.1461 -> +0.1517"
+  },
+  {
+   "lap": 14,
+   "to": "STAY OUT",
+   "reason": "moved from PIT_NOW laps 13-16 new hard to STAY OUT because pit reset: new hard (stint 2), prior slope +0.0255 +- 0.0219 s/lap per lap restored"
+  },
+  {
+   "lap": 24,
+   "to": "EXTEND laps 36-43 new hard",
+   "reason": "moved from STAY OUT to EXTEND laps 36-43 new hard because clean lap 24 (age 11, 81.076 s corrected, residual +0.29 s) moved the slope +0.0307 -> +0.0343"
+  },
+  {
+   "lap": 35,
+   "to": "PIT_NOW laps 35-36 new soft",
+   "reason": "moved from EXTEND lap 43 new hard to PIT_NOW laps 35-36 new soft because the live degradation posterior +0.0793 s/lap per lap sits above the pre-race band [-0.0098, +0.0623] after 20 clean laps (band exceedance)"
+  },
+  {
+   "lap": 36,
+   "to": "STAY OUT",
+   "reason": "moved from PIT_NOW laps 35-36 new soft to STAY OUT because pit reset: new hard (stint 3), prior slope +0.0255 +- 0.0219 s/lap per lap restored"
+  },
+  {
+   "lap": 56,
+   "to": "PIT_NOW lap 56 new soft",
+   "reason": "moved from STAY OUT to PIT_NOW lap 56 new soft because the live degradation posterior +0.0813 s/lap per lap sits above the pre-race band [-0.0098, +0.0623] after 12 clean laps (band exceedance)"
+  },
+  {
+   "lap": 61,
+   "to": "STAY OUT",
+   "reason": "moved from PIT_NOW lap 60 new soft to STAY OUT because the live degradation posterior +0.1147 s/lap per lap sits above the pre-race band [-0.0098, +0.0623] after 17 clean laps (band exceedance)"
+  }
+ ],
+ "n_recommendation_changes": 7,
+ "final": {
+  "compound": "HARD",
+  "tyre_age": 31,
+  "regime": "ACCELERATING_WEAR",
+  "slope": 0.09894089832996841,
+  "slope_sd": 0.014287399197077139,
+  "prior_slope": 0.0255,
+  "trend_vs_pre_race": 2.8800352286262125,
+  "useful_laps": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "top_action": "STAY OUT"
+ },
+ "files": {
+  "states": {
+   "path": "out/live/Barcelona_NOR/states.jsonl",
+   "sha256": "e410a66a529bd45f93ae4ecbb6615af9dd8095a748201504e7ffb90ef5406f43",
+   "bytes": 86861
+  },
+  "recommendations": {
+   "path": "out/live/Barcelona_NOR/recommendations.jsonl",
+   "sha256": "1521e1634073863aa0d495e6a781b23e1e5efa7e6ff4d6e9d7b961da96db1c96",
+   "bytes": 526913
+  },
+  "estimator_trace": {
+   "path": "out/live/Barcelona_NOR/estimator_trace.jsonl",
+   "sha256": "e4c0de8ab182c9836d226748c32a56111bb4e955e56d643c25bf5a842e558d93",
+   "bytes": 401313
+  },
+  "driver_feedback": {
+   "path": "out/live/Barcelona_NOR/driver_feedback.json",
+   "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+   "bytes": 3
+  },
+  "live_predictor": {
+   "path": "out/live/Barcelona_NOR/live_predictor.json",
+   "sha256": "f18165a2f3e1d257d3856354a532156a56ce5f8ed9d89e2177bd74fde5d1426b",
+   "bytes": 4837
+  }
+ }
+}
