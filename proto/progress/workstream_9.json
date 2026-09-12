@@ -6,24 +6,24 @@
  "completed": [
   "read ROADMAP_v5 s6/s14, starter, C0, last_green",
   "build_control.py: status/checkpoint/decide/sign/checks/stop-the-line/clear-stop/freeze/unfreeze/rollback/heartbeat/summary/active-workstreams",
-  "release/ownership_audit.py; ownership map updated per lead decisions 14:55 (out/ subtrees, conftest, race_twin, sealed manifest lead-only)",
+  "release/ownership_audit.py; ownership map per lead decisions 14:55 and 15:05 (out/ subtrees, tests/ per workstream, lead-only globs)",
   "release/rollback.sh; drill PASSED, recorded in checkpoints/rollback_drill.md",
   "release/run_checkpoint.sh; C1 REHEARSAL artifact set under checkpoints/rehearsal/C1",
   "release/build_control_app.py hidden route on 8599 (HTTP 200 smoke)",
   "release/README.md incl. ownership map",
-  "tests/release/test_build_control.py: 70 passed",
-  "SUMMARY.md cadence started"
+  "tests/release/test_build_control.py: 83 passed",
+  "SUMMARY.md cadence"
  ],
  "in_progress": [
   "30-min heartbeat and SUMMARY.md cadence",
   "real C1 at the 16:05 lead commit; queue left OPEN until then"
  ],
  "blockers": [],
- "tests_passed": 70,
+ "tests_passed": 83,
  "tests_failed": 0,
  "eta_minutes": 0,
  "needs_review_from": [
   "lead"
  ],
- "updated_at": "2026-09-12T15:00:20"
+ "updated_at": "2026-09-12T16:39:50"
 }

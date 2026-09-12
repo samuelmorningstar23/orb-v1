@@ -1,0 +1,387 @@
+{
+ "scorecard": "Live Predictor",
+ "generated_at": "2026-09-12T16:59:03",
+ "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
+ "data_cutoff": "2026-09-06T15:00:00 (Monza race, the latest completed 2026 round on disk; Madrid is the live weekend)",
+ "units": {
+  "mae": "s",
+  "coverage": "share inside the 90 % band",
+  "brier": "0 to 1",
+  "lead": "laps",
+  "rate": "per stint / per lap pair"
+ },
+ "source": {
+  "path": "out/live/prefix_eval.json",
+  "generated_at": "2026-09-12T16:27:48",
+  "estimator": "linear-Gaussian with fixed regime rules",
+  "model_version": "live_estimator_lg_v0.1",
+  "feedback": "disabled (no recorded feedback for these races)"
+ },
+ "races": [
+  "Monza",
+  "Austria",
+  "Barcelona"
+ ],
+ "per_race": {
+  "Monza": {
+   "next1_mae": 0.29741248753661126,
+   "next1_mae_prior_only": 0.3363941420624787,
+   "next1_n": 491,
+   "next3_mae": 0.34131933333217745,
+   "next3_mae_prior_only": 0.3651935038195147,
+   "next3_n": 456,
+   "next5_mae": 0.35784722418281645,
+   "next5_mae_prior_only": 0.37164280141998196,
+   "next5_n": 420,
+   "cum3_mae": 0.7077140040196548,
+   "cum3_mae_prior_only": 0.8019661648944675,
+   "cum3_n": 338,
+   "cum5_mae": 1.1119338091457514,
+   "cum5_mae_prior_only": 1.2026348663918751,
+   "cum5_n": 246,
+   "coverage90_next1": 0.924643584521385,
+   "coverage90_next1_prior_only": 0.9694501018329938,
+   "coverage90_next3": 0.9232456140350878,
+   "coverage90_next3_prior_only": 0.9649122807017544,
+   "cliff3_n": 600,
+   "cliff3_events": 25,
+   "cliff3_brier": 0.09343802645833334,
+   "cliff3_mean_probability": 0.16234333333333334,
+   "cliff3_brier_climatology": 0.03993055555555557,
+   "cliff5_n": 630,
+   "cliff5_events": 35,
+   "cliff5_brier": 0.10108274424603175,
+   "cliff5_mean_probability": 0.1682611111111111,
+   "cliff5_brier_climatology": 0.052469135802469126,
+   "aw_stints_scored": 21,
+   "aw_true_stints": 2,
+   "aw_false_stints": 19,
+   "aw_detected": 2,
+   "aw_detection_rate": 1.0,
+   "aw_lead_laps_median": 5.5,
+   "aw_false_alert_episodes_per_stint": 0.05263157894736842,
+   "aw_false_stints_with_alert": 0.05263157894736842,
+   "recommendation_change_rate": 0.0577319587628866,
+   "recommendation_changes": 56,
+   "lap_pairs": 970,
+   "drivers": 22,
+   "laps": 992
+  },
+  "Austria": {
+   "next1_mae": 0.3599534264966325,
+   "next1_mae_prior_only": 0.3743367044402742,
+   "next1_n": 757,
+   "next3_mae": 0.44378866402609746,
+   "next3_mae_prior_only": 0.42659883687118266,
+   "next3_n": 672,
+   "next5_mae": 0.5279378011552176,
+   "next5_mae_prior_only": 0.46290798912013426,
+   "next5_n": 595,
+   "cum3_mae": 0.9715474267172276,
+   "cum3_mae_prior_only": 0.9470275978522544,
+   "cum3_n": 533,
+   "cum5_mae": 1.7345982760479421,
+   "cum5_mae_prior_only": 1.475876126648737,
+   "cum5_n": 381,
+   "coverage90_next1": 0.9035667107001321,
+   "coverage90_next1_prior_only": 0.952443857331572,
+   "coverage90_next3": 0.8809523809523809,
+   "coverage90_next3_prior_only": 0.9479166666666666,
+   "cliff3_n": 885,
+   "cliff3_events": 98,
+   "cliff3_brier": 0.12840943552259887,
+   "cliff3_mean_probability": 0.07796355932203389,
+   "cliff3_brier_climatology": 0.09847234191962717,
+   "cliff5_n": 919,
+   "cliff5_events": 157,
+   "cliff5_brier": 0.17503364574265506,
+   "cliff5_mean_probability": 0.0794942872687704,
+   "cliff5_brier_climatology": 0.1416522903615014,
+   "aw_stints_scored": 49,
+   "aw_true_stints": 5,
+   "aw_false_stints": 44,
+   "aw_detected": 1,
+   "aw_detection_rate": 0.2,
+   "aw_lead_laps_median": 7.0,
+   "aw_false_alert_episodes_per_stint": 0.09090909090909091,
+   "aw_false_stints_with_alert": 0.06818181818181818,
+   "recommendation_change_rate": 0.11018237082066869,
+   "recommendation_changes": 145,
+   "lap_pairs": 1316,
+   "drivers": 22,
+   "laps": 1338
+  },
+  "Barcelona": {
+   "next1_mae": 0.4658360160346441,
+   "next1_mae_prior_only": 0.5548375282520586,
+   "next1_n": 642,
+   "next3_mae": 0.6059289632238494,
+   "next3_mae_prior_only": 0.6680461036578591,
+   "next3_n": 555,
+   "next5_mae": 0.7503847046890925,
+   "next5_mae_prior_only": 0.778695108674114,
+   "next5_n": 475,
+   "cum3_mae": 1.3899078328266277,
+   "cum3_mae_prior_only": 1.5748117063841045,
+   "cum3_n": 444,
+   "cum5_mae": 2.549787498225685,
+   "cum5_mae_prior_only": 2.6452137476461766,
+   "cum5_n": 316,
+   "coverage90_next1": 0.8489096573208723,
+   "coverage90_next1_prior_only": 0.822429906542056,
+   "coverage90_next3": 0.781981981981982,
+   "coverage90_next3_prior_only": 0.7387387387387387,
+   "cliff3_n": 746,
+   "cliff3_events": 103,
+   "cliff3_brier": 0.26277743372989276,
+   "cliff3_mean_probability": 0.3120934986595174,
+   "cliff3_brier_climatology": 0.11900646162913556,
+   "cliff5_n": 788,
+   "cliff5_events": 154,
+   "cliff5_brier": 0.2936844582011421,
+   "cliff5_mean_probability": 0.32305107868020305,
+   "cliff5_brier_climatology": 0.15723801180138627,
+   "aw_stints_scored": 42,
+   "aw_true_stints": 26,
+   "aw_false_stints": 16,
+   "aw_detected": 23,
+   "aw_detection_rate": 0.8846153846153846,
+   "aw_lead_laps_median": 9.0,
+   "aw_false_alert_episodes_per_stint": 0.0625,
+   "aw_false_stints_with_alert": 0.0625,
+   "recommendation_change_rate": 0.10156895127993394,
+   "recommendation_changes": 123,
+   "lap_pairs": 1211,
+   "drivers": 22,
+   "laps": 1233
+  }
+ },
+ "pooled_as_reported": {
+  "next1_mae": 0.37967248546702026,
+  "next1_mae_prior_only": 0.4257926466411567,
+  "next1_n": 1890,
+  "next3_mae": 0.46949386382308184,
+  "next3_mae_prior_only": 0.4895830324713282,
+  "next3_n": 1683,
+  "next5_mae": 0.5509070876318499,
+  "next5_mae_prior_only": 0.5378526219752191,
+  "next5_n": 1490,
+  "cum3_mae": 1.0449894977748657,
+  "cum3_mae_prior_only": 1.1217084950753795,
+  "cum3_n": 1315,
+  "cum5_mae": 1.8453345807671653,
+  "cum5_mae_prior_only": 1.7964417026953998,
+  "cum5_n": 943,
+  "coverage90_next1": 0.8904761904761904,
+  "coverage90_next1_prior_only": 0.9126984126984127,
+  "coverage90_next3": 0.8597742127153892,
+  "coverage90_next3_prior_only": 0.8835412953060012,
+  "cliff3_n": 2231,
+  "cliff3_events": 226,
+  "cliff3_brier": 0.16393416937471988,
+  "cliff3_mean_probability": 0.17894464365755267,
+  "cliff3_brier_climatology": 0.09103820277452247,
+  "cliff5_n": 2337,
+  "cliff5_events": 346,
+  "cliff5_brier": 0.19510543533376123,
+  "cliff5_mean_probability": 0.18554728284124947,
+  "cliff5_brier_climatology": 0.12613335105717788,
+  "aw_stints_scored": 112,
+  "aw_true_stints": 33,
+  "aw_false_stints": 79,
+  "aw_detected": 26,
+  "aw_detection_rate": 0.7878787878787878,
+  "aw_lead_laps_median": 8.5,
+  "aw_false_alert_episodes_per_stint": 0.0759493670886076,
+  "aw_false_stints_with_alert": 0.06329113924050633,
+  "recommendation_change_rate": 0.09265084358021161,
+  "recommendation_changes": 324,
+  "lap_pairs": 3497,
+  "drivers": 66,
+  "laps": 3563
+ },
+ "pooled": {
+  "next1_mae": {
+   "estimate": 0.37967248546702026,
+   "ci90": [
+    0.324637036583613,
+    0.4265645215318147
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "next1_mae_prior_only": {
+   "estimate": 0.42579264664115674,
+   "ci90": [
+    0.35291082965304293,
+    0.4944117802976452
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "cum3_mae": {
+   "estimate": 1.0449894977748657,
+   "ci90": [
+    0.8240276634884772,
+    1.2329858789516732
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "cum3_mae_prior_only": {
+   "estimate": 1.1217084950753795,
+   "ci90": [
+    0.8659179794242445,
+    1.3617433597091475
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "cum5_mae": {
+   "estimate": 1.8453345807671657,
+   "ci90": [
+    1.3836808445291817,
+    2.24318622117759
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "cum5_mae_prior_only": {
+   "estimate": 1.7964417026953998,
+   "ci90": [
+    1.3218844885658318,
+    2.2410287763608028
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "coverage90_next1": {
+   "estimate": 0.8904761904761904,
+   "ci90": [
+    0.8691817736403724,
+    0.9154686601495112
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "coverage90_next1_prior_only": {
+   "estimate": 0.9126984126984127,
+   "ci90": [
+    0.8630985915492958,
+    0.9620471535365153
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "coverage90_next3": {
+   "estimate": 0.8597742127153892,
+   "ci90": [
+    0.819304152637486,
+    0.9053030303030303
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "cliff3_brier": {
+   "estimate": 0.16393416937471988,
+   "ci90": [
+    0.10828200584532376,
+    0.2142097260994264
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "cliff5_brier": {
+   "estimate": 0.1951054353337612,
+   "ci90": [
+    0.13227176603373106,
+    0.2499810126503006
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "cliff5_brier_climatology": {
+   "estimate": 0.12286588091453476,
+   "ci90": [
+    0.09008240750497057,
+    0.15149721901451085
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "recommendation_change_rate": {
+   "estimate": 0.09265084358021161,
+   "ci90": [
+    0.07457949857188194,
+    0.10746812386156648
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "aw_false_alert_episodes_per_stint": {
+   "estimate": 0.0759493670886076,
+   "ci90": [
+    0.05555555555555555,
+    0.08653846153846154
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "aw_detection_rate": {
+   "estimate": 0.7878787878787878,
+   "ci90": [
+    0.3333333333333333,
+    0.9
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  },
+  "aw_lead_laps_median": {
+   "estimate": 8.484848484848484,
+   "ci90": [
+    6.333333333333333,
+    8.87037037037037
+   ],
+   "n_weekends": 3,
+   "n_rows": 3,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+  }
+ },
+ "note": "all numbers from prefix evaluation where only data through lap k is revealed; re-pooled here with a race-grouped, laps-weighted bootstrap",
+ "driver_feedback_ablation": {
+  "status": "not run",
+  "reason": "no recorded driver-feedback events in app_v2/state/feedback_events.jsonl (defined experiment, not a pre-written result)",
+  "design": "for every (event, driver) with recorded feedback: replay with feedback disabled and enabled; report next-lap MAE, 3- and 5-lap cumulative MAE, coverage, accelerating-wear detection lead and false alerts per stint for both arms"
+ }
+}

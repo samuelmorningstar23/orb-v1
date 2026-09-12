@@ -35,7 +35,7 @@ def render() -> None:
                 body += f'<div class="cs-muted">race observed {spl(f.observed)} · error {spl(f.err)} · {"covered" if f.covered else "outside band"}</div>'
             cards.card('', body)
     if forecasts:
-        st.plotly_chart(charts.pre_race_curves(forecasts, lock.n_laps(ev)), use_container_width=True, config={'displayModeBar': False})
+        st.plotly_chart(charts.pre_race_curves(forecasts, lock.n_laps(ev)), width='stretch', config={'displayModeBar': False})
     left, right = st.columns([3, 2], gap='large')
     with left:
         cards.section('Strategy tree (lock)', 'Linear degradation, pit loss and compound offsets from the lock; no traffic, safety car or weather.')

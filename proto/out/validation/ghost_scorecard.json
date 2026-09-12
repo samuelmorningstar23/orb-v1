@@ -1,0 +1,3423 @@
+{
+ "scorecard": "Ghost Strategy",
+ "generated_at": "2026-09-12T16:59:03",
+ "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
+ "data_cutoff": "2026-09-06T15:00:00 (Monza race, the latest completed 2026 round on disk; Madrid is the live weekend); seasons 2023 to 2025 complete",
+ "units": {
+  "degradation": "s/lap per lap of tyre age",
+  "hidden_stop": "s (next lap) and s over h laps (cumulative)",
+  "regret": "s over the race",
+  "coverage": "share inside the 90 % band",
+  "probability": "0 to 1"
+ },
+ "seasons": [
+  2026,
+  2025,
+  2024,
+  2023
+ ],
+ "sealed_excluded": [
+  "2023_Canada",
+  "2024_Bahrain",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Zandvoort",
+  "2025_Qatar"
+ ],
+ "wording": {
+  "reference": "race-derived pace-loss reference",
+  "regret": "held-out strategy replay under a post-race reference model",
+  "counterfactual": "model-implied",
+  "untouched": "reserved for the sealed holdout and the prospective race"
+ },
+ "development_pool": {
+  "split": "development pool: leave-one-weekend-out inside each season; sealed weekends excluded from every pool",
+  "weekends": [
+   {
+    "race_id": "2026_Australia",
+    "season": 2026,
+    "event": "Australia",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Austria",
+    "season": 2026,
+    "event": "Austria",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Barcelona",
+    "season": 2026,
+    "event": "Barcelona",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Belgium",
+    "season": 2026,
+    "event": "Belgium",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Britain",
+    "season": 2026,
+    "event": "Britain",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Canada",
+    "season": 2026,
+    "event": "Canada",
+    "circuit_class": "street",
+    "weather_regime": "cool",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Hungary",
+    "season": 2026,
+    "event": "Hungary",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Japan",
+    "season": 2026,
+    "event": "Japan",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Miami",
+    "season": 2026,
+    "event": "Miami",
+    "circuit_class": "street",
+    "weather_regime": "wet_affected",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Monza",
+    "season": 2026,
+    "event": "Monza",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2026_Zandvoort",
+    "season": 2026,
+    "event": "Zandvoort",
+    "circuit_class": "permanent",
+    "weather_regime": "wet_affected",
+    "pool_n": 10
+   },
+   {
+    "race_id": "2025_AbuDhabi",
+    "season": 2025,
+    "event": "AbuDhabi",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Austria",
+    "season": 2025,
+    "event": "Austria",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Bahrain",
+    "season": 2025,
+    "event": "Bahrain",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Barcelona",
+    "season": 2025,
+    "event": "Barcelona",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Belgium",
+    "season": 2025,
+    "event": "Belgium",
+    "circuit_class": "permanent",
+    "weather_regime": "wet_affected",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Brazil",
+    "season": 2025,
+    "event": "Brazil",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Canada",
+    "season": 2025,
+    "event": "Canada",
+    "circuit_class": "street",
+    "weather_regime": "wet_affected",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_China",
+    "season": 2025,
+    "event": "China",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Hungary",
+    "season": 2025,
+    "event": "Hungary",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Imola",
+    "season": 2025,
+    "event": "Imola",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Japan",
+    "season": 2025,
+    "event": "Japan",
+    "circuit_class": "permanent",
+    "weather_regime": "cool",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Mexico",
+    "season": 2025,
+    "event": "Mexico",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Miami",
+    "season": 2025,
+    "event": "Miami",
+    "circuit_class": "street",
+    "weather_regime": "wet_affected",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Monaco",
+    "season": 2025,
+    "event": "Monaco",
+    "circuit_class": "street",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_SaudiArabia",
+    "season": 2025,
+    "event": "SaudiArabia",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Singapore",
+    "season": 2025,
+    "event": "Singapore",
+    "circuit_class": "street",
+    "weather_regime": "wet_affected",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_USA",
+    "season": 2025,
+    "event": "USA",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2025_Zandvoort",
+    "season": 2025,
+    "event": "Zandvoort",
+    "circuit_class": "permanent",
+    "weather_regime": "cool",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_AbuDhabi",
+    "season": 2024,
+    "event": "AbuDhabi",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Australia",
+    "season": 2024,
+    "event": "Australia",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Austria",
+    "season": 2024,
+    "event": "Austria",
+    "circuit_class": "permanent",
+    "weather_regime": "wet_affected",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Azerbaijan",
+    "season": 2024,
+    "event": "Azerbaijan",
+    "circuit_class": "street",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Barcelona",
+    "season": 2024,
+    "event": "Barcelona",
+    "circuit_class": "permanent",
+    "weather_regime": "wet_affected",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Belgium",
+    "season": 2024,
+    "event": "Belgium",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Britain",
+    "season": 2024,
+    "event": "Britain",
+    "circuit_class": "permanent",
+    "weather_regime": "wet_affected",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_China",
+    "season": 2024,
+    "event": "China",
+    "circuit_class": "permanent",
+    "weather_regime": "cool",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Hungary",
+    "season": 2024,
+    "event": "Hungary",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Imola",
+    "season": 2024,
+    "event": "Imola",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Japan",
+    "season": 2024,
+    "event": "Japan",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_LasVegas",
+    "season": 2024,
+    "event": "LasVegas",
+    "circuit_class": "street",
+    "weather_regime": "cool",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Mexico",
+    "season": 2024,
+    "event": "Mexico",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Miami",
+    "season": 2024,
+    "event": "Miami",
+    "circuit_class": "street",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Monaco",
+    "season": 2024,
+    "event": "Monaco",
+    "circuit_class": "street",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Qatar",
+    "season": 2024,
+    "event": "Qatar",
+    "circuit_class": "permanent",
+    "weather_regime": "cool",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_Singapore",
+    "season": 2024,
+    "event": "Singapore",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2024_USA",
+    "season": 2024,
+    "event": "USA",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 17
+   },
+   {
+    "race_id": "2023_AbuDhabi",
+    "season": 2023,
+    "event": "AbuDhabi",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Australia",
+    "season": 2023,
+    "event": "Australia",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Bahrain",
+    "season": 2023,
+    "event": "Bahrain",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Barcelona",
+    "season": 2023,
+    "event": "Barcelona",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Brazil",
+    "season": 2023,
+    "event": "Brazil",
+    "circuit_class": "permanent",
+    "weather_regime": "wet_affected",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Britain",
+    "season": 2023,
+    "event": "Britain",
+    "circuit_class": "permanent",
+    "weather_regime": "cool",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Hungary",
+    "season": 2023,
+    "event": "Hungary",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Japan",
+    "season": 2023,
+    "event": "Japan",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Mexico",
+    "season": 2023,
+    "event": "Mexico",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Miami",
+    "season": 2023,
+    "event": "Miami",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Monaco",
+    "season": 2023,
+    "event": "Monaco",
+    "circuit_class": "street",
+    "weather_regime": "wet_affected",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Monza",
+    "season": 2023,
+    "event": "Monza",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Qatar",
+    "season": 2023,
+    "event": "Qatar",
+    "circuit_class": "permanent",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_SaudiArabia",
+    "season": 2023,
+    "event": "SaudiArabia",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Singapore",
+    "season": 2023,
+    "event": "Singapore",
+    "circuit_class": "street",
+    "weather_regime": "mild",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_USA",
+    "season": 2023,
+    "event": "USA",
+    "circuit_class": "permanent",
+    "weather_regime": "hot",
+    "pool_n": 16
+   },
+   {
+    "race_id": "2023_Zandvoort",
+    "season": 2023,
+    "event": "Zandvoort",
+    "circuit_class": "permanent",
+    "weather_regime": "wet_affected",
+    "pool_n": 16
+   }
+  ],
+  "forecast": {
+   "n_weekends": 64,
+   "n_compound_weekends": 148,
+   "n_issued": 84,
+   "n_withheld": 64,
+   "mae": {
+    "orb_v1": 0.05199519940245075,
+    "naive": 0.1661157101439701,
+    "clean_issued": 0.08167289885263106,
+    "orb_v1_issued": 0.06629573699808133,
+    "orb_v1_fallback": 0.03322574380818562,
+    "naive_issued": 0.1878710840579088
+   },
+   "band_coverage90": {
+    "all": 0.8648648648648649,
+    "issued": 0.8809523809523809,
+    "fallback": 0.84375,
+    "nominal": 0.9
+   },
+   "abstention": {
+    "share_issued": 0.5675675675675675,
+    "share_withheld": 0.43243243243243246,
+    "mae_issued": 0.06629573699808133,
+    "mae_fallback": 0.03322574380818562
+   },
+   "by_compound": {
+    "SOFT": {
+     "n": 33,
+     "mae_orb_v1": 0.09027973248772653,
+     "mae_naive": 0.24951551593995916
+    },
+    "MEDIUM": {
+     "n": 59,
+     "mae_orb_v1": 0.04917186615612003,
+     "mae_naive": 0.15843833641332294
+    },
+    "HARD": {
+     "n": 56,
+     "mae_orb_v1": 0.032409254218868824,
+     "mae_naive": 0.12505805762326563
+    }
+   },
+   "wins_orb_over_naive": 125,
+   "calibration": {
+    "slope": 0.1451369729831905,
+    "r": 0.2708143492355169,
+    "n": 148
+   },
+   "bootstrap": {
+    "mae_orb_v1": {
+     "estimate": 0.05199519940245075,
+     "ci90": [
+      0.0425306098029892,
+      0.06262947882054877
+     ],
+     "n_weekends": 64,
+     "n_rows": 148,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "mae_naive": {
+     "estimate": 0.1661157101439701,
+     "ci90": [
+      0.14916544553119315,
+      0.1837154144633518
+     ],
+     "n_weekends": 64,
+     "n_rows": 148,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "band_coverage90": {
+     "estimate": 0.8648648648648649,
+     "ci90": [
+      0.8206808134394341,
+      0.9078947368421053
+     ],
+     "n_weekends": 64,
+     "n_rows": 148,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive": {
+     "p_bootstrap": 1.0,
+     "share_rows": 0.8445945945945946,
+     "n_rows": 148,
+     "n_weekends": 64
+    }
+   }
+  },
+  "hidden_stop": {
+   "pooled": {
+    "n_cases": 984,
+    "n_weekends": 56,
+    "next1_mae": 1.1177495228559737,
+    "next1_mae_naive": 1.4417989521841317,
+    "next1_n": 984,
+    "next1_coverage90": 0.8058943089430894,
+    "cum3_mae": 3.05296806733088,
+    "cum3_mae_naive": 3.960089902481516,
+    "cum3_n": 835,
+    "cum3_coverage90": 0.7868263473053893,
+    "cum5_mae": 4.826832444954905,
+    "cum5_mae_naive": 6.457144449057265,
+    "cum5_n": 665,
+    "cum5_coverage90": 0.7819548872180451
+   },
+   "bootstrap": {
+    "next1_mae": {
+     "estimate": 1.1177495228559737,
+     "ci90": [
+      0.9821216830017225,
+      1.280867826127585
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "next1_mae_naive": {
+     "estimate": 1.4417989521841317,
+     "ci90": [
+      1.3480498746436802,
+      1.5348574871692264
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "next1_coverage90": {
+     "estimate": 0.8058943089430894,
+     "ci90": [
+      0.7614215686274509,
+      0.8509147086697915
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive_next1": {
+     "p_bootstrap": 0.9995,
+     "share_rows": 0.7520325203252033,
+     "n_rows": 984,
+     "n_weekends": 56
+    },
+    "cum3_mae": {
+     "estimate": 3.05296806733088,
+     "ci90": [
+      2.7092412402017536,
+      3.4339770940617615
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum3_mae_naive": {
+     "estimate": 3.960089902481516,
+     "ci90": [
+      3.7181508861742447,
+      4.198322070865245
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum3_coverage90": {
+     "estimate": 0.7868263473053893,
+     "ci90": [
+      0.7341084228035687,
+      0.8386392923893072
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive_cum3": {
+     "p_bootstrap": 1.0,
+     "share_rows": 0.7508982035928143,
+     "n_rows": 835,
+     "n_weekends": 55
+    },
+    "cum5_mae": {
+     "estimate": 4.826832444954905,
+     "ci90": [
+      4.246605868477435,
+      5.421952118231259
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum5_mae_naive": {
+     "estimate": 6.457144449057265,
+     "ci90": [
+      6.014738879185558,
+      6.877094012673677
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum5_coverage90": {
+     "estimate": 0.7819548872180451,
+     "ci90": [
+      0.7209933811120609,
+      0.841776196060986
+     ],
+     "n_weekends": 56,
+     "n_rows": 984,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive_cum5": {
+     "p_bootstrap": 1.0,
+     "share_rows": 0.762406015037594,
+     "n_rows": 665,
+     "n_weekends": 49
+    }
+   },
+   "by": {
+    "compound_new": {
+     "HARD": {
+      "n_cases": 532,
+      "n_weekends": 49,
+      "next1_mae": 1.131360093456216,
+      "next1_mae_naive": 1.6827725651656524,
+      "next1_n": 532,
+      "next1_coverage90": 0.7800751879699248,
+      "cum3_mae": 3.1650213858364538,
+      "cum3_mae_naive": 4.7715387818762425,
+      "cum3_n": 461,
+      "cum3_coverage90": 0.7527114967462039,
+      "cum5_mae": 5.162443845471711,
+      "cum5_mae_naive": 7.984177642576715,
+      "cum5_n": 368,
+      "cum5_coverage90": 0.7336956521739131
+     },
+     "MEDIUM": {
+      "n_cases": 284,
+      "n_weekends": 51,
+      "next1_mae": 0.9991972102922009,
+      "next1_mae_naive": 1.165786430592513,
+      "next1_n": 284,
+      "next1_coverage90": 0.8450704225352113,
+      "cum3_mae": 2.7363647428945517,
+      "cum3_mae_naive": 3.1043516663840633,
+      "cum3_n": 248,
+      "cum3_coverage90": 0.8145161290322581,
+      "cum5_mae": 4.278357014284713,
+      "cum5_mae_naive": 4.7639436598162295,
+      "cum5_n": 198,
+      "cum5_coverage90": 0.8232323232323232
+     },
+     "SOFT": {
+      "n_cases": 168,
+      "n_weekends": 39,
+      "next1_mae": 1.2750592443368223,
+      "next1_mae_naive": 1.1453084404332434,
+      "next1_n": 168,
+      "next1_coverage90": 0.8214285714285714,
+      "cum3_mae": 3.266150961212943,
+      "cum3_mae_naive": 2.6755275941577015,
+      "cum3_n": 126,
+      "cum3_coverage90": 0.8571428571428571,
+      "cum5_mae": 4.676258100333828,
+      "cum5_mae_naive": 4.167301429406425,
+      "cum5_n": 99,
+      "cum5_coverage90": 0.8787878787878788
+     }
+    },
+    "circuit_class": {
+     "permanent": {
+      "n_cases": 773,
+      "n_weekends": 39,
+      "next1_mae": 1.0574042489412203,
+      "next1_mae_naive": 1.4830371549785875,
+      "next1_n": 773,
+      "next1_coverage90": 0.8059508408796895,
+      "cum3_mae": 2.947109016221851,
+      "cum3_mae_naive": 4.07507491411921,
+      "cum3_n": 667,
+      "cum3_coverage90": 0.7811094452773614,
+      "cum5_mae": 4.704987202769368,
+      "cum5_mae_naive": 6.600738374466911,
+      "cum5_n": 536,
+      "cum5_coverage90": 0.7835820895522388
+     },
+     "street": {
+      "n_cases": 211,
+      "n_weekends": 17,
+      "next1_mae": 1.338824862837511,
+      "next1_mae_naive": 1.2907225030840637,
+      "next1_n": 211,
+      "next1_coverage90": 0.8056872037914692,
+      "cum3_mae": 3.4732537047697014,
+      "cum3_mae_naive": 3.5035720288961456,
+      "cum3_n": 168,
+      "cum3_coverage90": 0.8095238095238095,
+      "cum5_mae": 5.333104148919615,
+      "cum5_mae_naive": 5.8605061233241615,
+      "cum5_n": 129,
+      "cum5_coverage90": 0.7751937984496124
+     }
+    },
+    "set_status": {
+     "new": {
+      "n_cases": 768,
+      "n_weekends": 54,
+      "next1_mae": 1.1585256493188383,
+      "next1_mae_naive": 1.5185834426120508,
+      "next1_n": 768,
+      "next1_coverage90": 0.7955729166666666,
+      "cum3_mae": 3.176381337600994,
+      "cum3_mae_naive": 4.209336596470744,
+      "cum3_n": 658,
+      "cum3_coverage90": 0.770516717325228,
+      "cum5_mae": 4.98585735746306,
+      "cum5_mae_naive": 6.872785548027891,
+      "cum5_n": 521,
+      "cum5_coverage90": 0.763915547024952
+     },
+     "used": {
+      "n_cases": 216,
+      "n_weekends": 52,
+      "next1_mae": 0.9727677398768996,
+      "next1_mae_naive": 1.1687874306626416,
+      "next1_n": 216,
+      "next1_coverage90": 0.8425925925925926,
+      "cum3_mae": 2.594177491976443,
+      "cum3_mae_naive": 3.0335117971430288,
+      "cum3_n": 177,
+      "cum3_coverage90": 0.847457627118644,
+      "cum5_mae": 4.251471476783034,
+      "cum5_mae_naive": 4.953331861809372,
+      "cum5_n": 144,
+      "cum5_coverage90": 0.8472222222222222
+     }
+    },
+    "stop_regime": {
+     "green": {
+      "n_cases": 868,
+      "n_weekends": 56,
+      "next1_mae": 1.1491442044792572,
+      "next1_mae_naive": 1.4901766404173016,
+      "next1_n": 868,
+      "next1_coverage90": 0.8110599078341014,
+      "cum3_mae": 3.124112562916436,
+      "cum3_mae_naive": 4.06466936650502,
+      "cum3_n": 753,
+      "cum3_coverage90": 0.7915006640106241,
+      "cum5_mae": 4.928950240667995,
+      "cum5_mae_naive": 6.636979979969146,
+      "cum5_n": 610,
+      "cum5_coverage90": 0.780327868852459
+     },
+     "sc_vsc": {
+      "n_cases": 116,
+      "n_weekends": 20,
+      "next1_mae": 0.8828306982955411,
+      "next1_mae_naive": 1.0798003885083434,
+      "next1_n": 116,
+      "next1_coverage90": 0.7672413793103449,
+      "cum3_mae": 2.3996533700635174,
+      "cum3_mae_naive": 2.9997443365095737,
+      "cum3_n": 82,
+      "cum3_coverage90": 0.7439024390243902,
+      "cum5_mae": 3.69425325613699,
+      "cum5_mae_naive": 4.462604924398211,
+      "cum5_n": 55,
+      "cum5_coverage90": 0.8
+     }
+    },
+    "driver_support": {
+     "seen": {
+      "n_cases": 983,
+      "n_weekends": 56,
+      "next1_mae": 1.1179082913106613,
+      "next1_mae_naive": 1.4416050548821826,
+      "next1_n": 983,
+      "next1_coverage90": 0.8056968463886063,
+      "cum3_mae": 3.0530123924246886,
+      "cum3_mae_naive": 3.958875142172741,
+      "cum3_n": 834,
+      "cum3_coverage90": 0.7865707434052758,
+      "cum5_mae": 4.828435742563133,
+      "cum5_mae_naive": 6.456483522022713,
+      "cum5_n": 664,
+      "cum5_coverage90": 0.7816265060240963
+     },
+     "unseen": {
+      "n_cases": 1,
+      "n_weekends": 1,
+      "next1_mae": 0.9616801318982056,
+      "next1_mae_naive": 1.632400000000004,
+      "next1_n": 1,
+      "next1_coverage90": 1.0,
+      "cum3_mae": 3.0160009390946243,
+      "cum3_mae_naive": 4.97320000000002,
+      "cum3_n": 1,
+      "cum3_coverage90": 1.0,
+      "cum5_mae": 3.762242833091051,
+      "cum5_mae_naive": 6.896000000000043,
+      "cum5_n": 1,
+      "cum5_coverage90": 1.0
+     }
+    }
+   }
+  },
+  "regret": {
+   "label": "held-out strategy replay under a post-race reference model",
+   "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+   "n_weekends": 64,
+   "plans": {
+    "orb": {
+     "n": 40,
+     "mean": 33.675332497090395,
+     "median": 20.717061903695296,
+     "p10": 2.272929823344063,
+     "p90": 94.16738328794827,
+     "min": 0.000851514734243608,
+     "max": 147.6042442785596,
+     "worst_decile_mean": 125.45697071397231,
+     "share_within_2s": 0.1,
+     "share_within_5s": 0.25,
+     "share_within_10s": 0.375,
+     "ci90_mean": {
+      "estimate": 33.675332497090395,
+      "ci90": [
+       24.023946418007696,
+       44.431544240533086
+      ],
+      "n_weekends": 40,
+      "n_rows": 40,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "ci90_median": {
+      "estimate": 20.717061903695296,
+      "ci90": [
+       9.995667533680098,
+       29.574790582093605
+      ],
+      "n_weekends": 40,
+      "n_rows": 40,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     }
+    },
+    "naive": {
+     "n": 43,
+     "mean": 40.3680961656806,
+     "median": 22.873781006792584,
+     "p10": 2.3393179368984516,
+     "p90": 108.24642569205848,
+     "min": 0.0,
+     "max": 155.02562816262457,
+     "worst_decile_mean": 134.44754058078365,
+     "share_within_2s": 0.11627906976744186,
+     "share_within_5s": 0.11627906976744186,
+     "share_within_10s": 0.20930232558139536,
+     "ci90_mean": {
+      "estimate": 40.3680961656806,
+      "ci90": [
+       30.36126907012734,
+       51.12143161127789
+      ],
+      "n_weekends": 43,
+      "n_rows": 43,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "ci90_median": {
+      "estimate": 22.873781006792584,
+      "ci90": [
+       16.38017060857885,
+       32.99797753718747
+      ],
+      "n_weekends": 43,
+      "n_rows": 43,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     }
+    },
+    "observed": {
+     "n": 58,
+     "mean": 36.01240264362867,
+     "median": 27.570909032083954,
+     "p10": 1.7270245805545472,
+     "p90": 76.75737969286084,
+     "min": 0.19129567003400894,
+     "max": 126.88100818265343,
+     "worst_decile_mean": 98.33684575801146,
+     "share_within_2s": 0.1206896551724138,
+     "share_within_5s": 0.13793103448275862,
+     "share_within_10s": 0.22413793103448276,
+     "ci90_mean": {
+      "estimate": 36.01240264362867,
+      "ci90": [
+       29.66726725521782,
+       42.72375433541818
+      ],
+      "n_weekends": 58,
+      "n_rows": 58,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "ci90_median": {
+      "estimate": 27.570909032083954,
+      "ci90": [
+       20.31808458619806,
+       40.24972071879562
+      ],
+      "n_weekends": 58,
+      "n_rows": 58,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     }
+    },
+    "default": {
+     "n": 64,
+     "mean": 33.773666099023906,
+     "median": 22.563193951374075,
+     "p10": 3.200474750893585,
+     "p90": 80.90985212197663,
+     "min": 0.036644492858115996,
+     "max": 115.37239565710169,
+     "worst_decile_mean": 99.46379403427571,
+     "share_within_2s": 0.078125,
+     "share_within_5s": 0.171875,
+     "share_within_10s": 0.25,
+     "ci90_mean": {
+      "estimate": 33.773666099023906,
+      "ci90": [
+       27.49205559520179,
+       40.09880933038462
+      ],
+      "n_weekends": 64,
+      "n_rows": 64,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "ci90_median": {
+      "estimate": 22.563193951374075,
+      "ci90": [
+       15.34471012680379,
+       36.832369514866
+      ],
+      "n_weekends": 64,
+      "n_rows": 64,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     }
+    }
+   },
+   "p_orb_beats_naive": {
+    "p_bootstrap": 0.8785,
+    "share_rows": 0.5769230769230769,
+    "n_rows": 39,
+    "n_weekends": 39
+   },
+   "p_orb_beats_observed": {
+    "p_bootstrap": 0.9655,
+    "share_rows": 0.6111111111111112,
+    "n_rows": 36,
+    "n_weekends": 36
+   },
+   "p_orb_beats_default": {
+    "p_bootstrap": 0.8995,
+    "share_rows": 0.625,
+    "n_rows": 40,
+    "n_weekends": 40
+   }
+  },
+  "by_circuit_class": {
+   "permanent": {
+    "forecast": {
+     "n_weekends": 45,
+     "n_compound_weekends": 105,
+     "n_issued": 69,
+     "n_withheld": 36,
+     "mae": {
+      "orb_v1": 0.05365530630237672,
+      "naive": 0.16109340003641717,
+      "clean_issued": 0.0828768829415808,
+      "orb_v1_issued": 0.06403368775827907,
+      "orb_v1_fallback": 0.033763408511897235,
+      "naive_issued": 0.18452670204069116
+     },
+     "band_coverage90": {
+      "all": 0.8666666666666667,
+      "issued": 0.8695652173913043,
+      "fallback": 0.8611111111111112,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.6571428571428571,
+      "share_withheld": 0.34285714285714286,
+      "mae_issued": 0.06403368775827907,
+      "mae_fallback": 0.033763408511897235
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 25,
+       "mae_orb_v1": 0.09272531797278452,
+       "mae_naive": 0.2290232576375328
+      },
+      "MEDIUM": {
+       "n": 41,
+       "mae_orb_v1": 0.048317300090147924,
+       "mae_naive": 0.1549967554829545
+      },
+      "HARD": {
+       "n": 39,
+       "mae_orb_v1": 0.03422217714702251,
+       "mae_naive": 0.12395791251498327
+      }
+     },
+     "wins_orb_over_naive": 86,
+     "calibration": {
+      "slope": 0.18401536204323107,
+      "r": 0.3426642420499002,
+      "n": 105
+     }
+    },
+    "hidden_stop": {
+     "n_cases": 773,
+     "n_weekends": 39,
+     "next1_mae": 1.0574042489412203,
+     "next1_mae_naive": 1.4830371549785875,
+     "next1_n": 773,
+     "next1_coverage90": 0.8059508408796895,
+     "cum3_mae": 2.947109016221851,
+     "cum3_mae_naive": 4.07507491411921,
+     "cum3_n": 667,
+     "cum3_coverage90": 0.7811094452773614,
+     "cum5_mae": 4.704987202769368,
+     "cum5_mae_naive": 6.600738374466911,
+     "cum5_n": 536,
+     "cum5_coverage90": 0.7835820895522388
+    },
+    "regret": {
+     "label": "held-out strategy replay under a post-race reference model",
+     "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+     "n_weekends": 45,
+     "plans": {
+      "orb": {
+       "n": 30,
+       "mean": 30.91827750200311,
+       "median": 20.717061903695296,
+       "p10": 2.087593862318579,
+       "p90": 77.71506333771413,
+       "min": 0.000851514734243608,
+       "max": 134.59201580058215,
+       "worst_decile_mean": 110.44143375304027,
+       "share_within_2s": 0.1,
+       "share_within_5s": 0.23333333333333334,
+       "share_within_10s": 0.3333333333333333
+      },
+      "naive": {
+       "n": 30,
+       "mean": 33.26940758870369,
+       "median": 20.263636077747563,
+       "p10": 0.6019134490798808,
+       "p90": 75.00219909577287,
+       "min": 0.0,
+       "max": 155.02562816262457,
+       "worst_decile_mean": 124.2423228335411,
+       "share_within_2s": 0.16666666666666666,
+       "share_within_5s": 0.16666666666666666,
+       "share_within_10s": 0.26666666666666666
+      },
+      "observed": {
+       "n": 42,
+       "mean": 34.506301680439385,
+       "median": 25.80862420010127,
+       "p10": 2.43848513066421,
+       "p90": 72.03759043865604,
+       "min": 0.6060428492788361,
+       "max": 126.88100818265343,
+       "worst_decile_mean": 90.41388775287457,
+       "share_within_2s": 0.09523809523809523,
+       "share_within_5s": 0.11904761904761904,
+       "share_within_10s": 0.23809523809523808
+      },
+      "default": {
+       "n": 45,
+       "mean": 31.91474770217964,
+       "median": 22.250216302612344,
+       "p10": 3.2101759111698245,
+       "p90": 77.84179797109502,
+       "min": 0.17436724843690854,
+       "max": 107.70320449287419,
+       "worst_decile_mean": 93.67032844192286,
+       "share_within_2s": 0.06666666666666667,
+       "share_within_5s": 0.17777777777777778,
+       "share_within_10s": 0.2222222222222222
+      }
+     },
+     "p_orb_beats_naive": {
+      "p_bootstrap": 0.661,
+      "share_rows": 0.5344827586206896,
+      "n_rows": 29,
+      "n_weekends": 29
+     },
+     "p_orb_beats_observed": {
+      "p_bootstrap": 0.913,
+      "share_rows": 0.6481481481481481,
+      "n_rows": 27,
+      "n_weekends": 27
+     },
+     "p_orb_beats_default": {
+      "p_bootstrap": 0.896,
+      "share_rows": 0.6333333333333333,
+      "n_rows": 30,
+      "n_weekends": 30
+     }
+    }
+   },
+   "street": {
+    "forecast": {
+     "n_weekends": 19,
+     "n_compound_weekends": 43,
+     "n_issued": 15,
+     "n_withheld": 28,
+     "mae": {
+      "orb_v1": 0.04794144999565478,
+      "naive": 0.17837949063915756,
+      "clean_issued": 0.0761345720434623,
+      "orb_v1_issued": 0.07670116350117179,
+      "orb_v1_fallback": 0.032534460617699254,
+      "naive_issued": 0.20325524133710982
+     },
+     "band_coverage90": {
+      "all": 0.8604651162790697,
+      "issued": 0.9333333333333333,
+      "fallback": 0.8214285714285714,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.3488372093023256,
+      "share_withheld": 0.6511627906976745,
+      "mae_issued": 0.07670116350117179,
+      "mae_fallback": 0.032534460617699254
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 8,
+       "mae_orb_v1": 0.08263727784692029,
+       "mae_naive": 0.31355382313504143
+      },
+      "MEDIUM": {
+       "n": 18,
+       "mae_orb_v1": 0.051118377750834304,
+       "mae_naive": 0.1662774929769398
+      },
+      "HARD": {
+       "n": 17,
+       "mae_orb_v1": 0.028250195736633895,
+       "mae_naive": 0.12758191993050155
+      }
+     },
+     "wins_orb_over_naive": 39,
+     "calibration": {
+      "slope": -0.07357323586698941,
+      "r": -0.14824145053521087,
+      "n": 43
+     }
+    },
+    "hidden_stop": {
+     "n_cases": 211,
+     "n_weekends": 17,
+     "next1_mae": 1.338824862837511,
+     "next1_mae_naive": 1.2907225030840637,
+     "next1_n": 211,
+     "next1_coverage90": 0.8056872037914692,
+     "cum3_mae": 3.4732537047697014,
+     "cum3_mae_naive": 3.5035720288961456,
+     "cum3_n": 168,
+     "cum3_coverage90": 0.8095238095238095,
+     "cum5_mae": 5.333104148919615,
+     "cum5_mae_naive": 5.8605061233241615,
+     "cum5_n": 129,
+     "cum5_coverage90": 0.7751937984496124
+    },
+    "regret": {
+     "label": "held-out strategy replay under a post-race reference model",
+     "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+     "n_weekends": 19,
+     "plans": {
+      "orb": {
+       "n": 10,
+       "mean": 41.94649748235222,
+       "median": 16.059759287185045,
+       "p10": 2.493490998723965,
+       "p90": 119.17575209910011,
+       "min": 1.8996233149557185,
+       "max": 147.6042442785596,
+       "worst_decile_mean": 147.6042442785596,
+       "share_within_2s": 0.1,
+       "share_within_5s": 0.3,
+       "share_within_10s": 0.5
+      },
+      "naive": {
+       "n": 13,
+       "mean": 56.74968518947345,
+       "median": 33.731009154860985,
+       "p10": 12.826946106565476,
+       "p90": 126.38206915238358,
+       "min": 9.659016529064687,
+       "max": 138.68005172873393,
+       "worst_decile_mean": 134.0107868558074,
+       "share_within_2s": 0.0,
+       "share_within_5s": 0.0,
+       "share_within_10s": 0.07692307692307693
+      },
+      "observed": {
+       "n": 16,
+       "mean": 39.96591767200055,
+       "median": 28.227042110823387,
+       "p10": 0.87043043224201,
+       "p90": 85.29130688257477,
+       "min": 0.19129567003400894,
+       "max": 116.01703074582684,
+       "worst_decile_mean": 102.70671297863171,
+       "share_within_2s": 0.1875,
+       "share_within_5s": 0.1875,
+       "share_within_10s": 0.1875
+      },
+      "default": {
+       "n": 19,
+       "mean": 38.176367565234024,
+       "median": 22.876171600135805,
+       "p10": 3.296473396451393,
+       "p90": 81.21657227152464,
+       "min": 0.036644492858115996,
+       "max": 115.37239565710169,
+       "worst_decile_mean": 113.94745801515778,
+       "share_within_2s": 0.10526315789473684,
+       "share_within_5s": 0.15789473684210525,
+       "share_within_10s": 0.3157894736842105
+      }
+     },
+     "p_orb_beats_naive": {
+      "p_bootstrap": 0.9595,
+      "share_rows": 0.7,
+      "n_rows": 10,
+      "n_weekends": 10
+     },
+     "p_orb_beats_observed": {
+      "p_bootstrap": 0.9095,
+      "share_rows": 0.5,
+      "n_rows": 9,
+      "n_weekends": 9
+     },
+     "p_orb_beats_default": {
+      "p_bootstrap": 0.7185,
+      "share_rows": 0.6,
+      "n_rows": 10,
+      "n_weekends": 10
+     }
+    }
+   }
+  },
+  "by_weather_regime": {
+   "cool": {
+    "forecast": {
+     "n_weekends": 7,
+     "n_compound_weekends": 17,
+     "n_issued": 8,
+     "n_withheld": 9,
+     "mae": {
+      "orb_v1": 0.060444667461832045,
+      "naive": 0.1466020700119945,
+      "clean_issued": 0.10558401943816095,
+      "orb_v1_issued": 0.06087699275678641,
+      "orb_v1_fallback": 0.060060378310761484,
+      "naive_issued": 0.21225680808460343
+     },
+     "band_coverage90": {
+      "all": 0.8235294117647058,
+      "issued": 1.0,
+      "fallback": 0.6666666666666666,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.47058823529411764,
+      "share_withheld": 0.5294117647058824,
+      "mae_issued": 0.06087699275678641,
+      "mae_fallback": 0.060060378310761484
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 5,
+       "mae_orb_v1": 0.09746747284333376,
+       "mae_naive": 0.1972119933381219
+      },
+      "MEDIUM": {
+       "n": 6,
+       "mae_orb_v1": 0.044422815033044266,
+       "mae_naive": 0.10315354827742873
+      },
+      "HARD": {
+       "n": 6,
+       "mae_orb_v1": 0.0456141820727017,
+       "mae_naive": 0.14787565564145408
+      }
+     },
+     "wins_orb_over_naive": 12,
+     "calibration": {
+      "slope": 0.19778128771878795,
+      "r": 0.20186210360698834,
+      "n": 17
+     }
+    },
+    "hidden_stop": {
+     "n_cases": 53,
+     "n_weekends": 6,
+     "next1_mae": 0.9953758676875907,
+     "next1_mae_naive": 1.473104338932242,
+     "next1_n": 53,
+     "next1_coverage90": 0.7924528301886793,
+     "cum3_mae": 3.6589792541060304,
+     "cum3_mae_naive": 4.568581991540823,
+     "cum3_n": 35,
+     "cum3_coverage90": 0.6,
+     "cum5_mae": 6.03796868502638,
+     "cum5_mae_naive": 7.329916415229204,
+     "cum5_n": 25,
+     "cum5_coverage90": 0.52
+    },
+    "regret": {
+     "label": "held-out strategy replay under a post-race reference model",
+     "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+     "n_weekends": 7,
+     "plans": {
+      "orb": {
+       "n": 6,
+       "mean": 37.03938051032379,
+       "median": 21.971942432347316,
+       "p10": 5.204919333118074,
+       "p90": 83.941279765506,
+       "min": 0.04626370470086982,
+       "max": 134.59201580058215,
+       "worst_decile_mean": 134.59201580058215,
+       "share_within_2s": 0.16666666666666666,
+       "share_within_5s": 0.16666666666666666,
+       "share_within_10s": 0.16666666666666666
+      },
+      "naive": {
+       "n": 6,
+       "mean": 29.13113669649088,
+       "median": 23.436168842951272,
+       "p10": 8.2469288130793,
+       "p90": 55.710312433442056,
+       "min": 0.6512797507362791,
+       "max": 78.42264732969664,
+       "worst_decile_mean": 78.42264732969664,
+       "share_within_2s": 0.16666666666666666,
+       "share_within_5s": 0.16666666666666666,
+       "share_within_10s": 0.16666666666666666
+      },
+      "observed": {
+       "n": 7,
+       "mean": 32.95618190995192,
+       "median": 28.925465183976243,
+       "p10": 8.898318570597059,
+       "p90": 58.959539207104605,
+       "min": 0.9089189288129589,
+       "max": 76.47413349124159,
+       "worst_decile_mean": 76.47413349124159,
+       "share_within_2s": 0.14285714285714285,
+       "share_within_5s": 0.14285714285714285,
+       "share_within_10s": 0.14285714285714285
+      },
+      "default": {
+       "n": 7,
+       "mean": 37.10588409695999,
+       "median": 40.325316660743916,
+       "p10": 10.714281753530585,
+       "p90": 56.02317243826986,
+       "min": 9.783927283494108,
+       "max": 70.05469577590836,
+       "worst_decile_mean": 70.05469577590836,
+       "share_within_2s": 0.0,
+       "share_within_5s": 0.0,
+       "share_within_10s": 0.14285714285714285
+      }
+     },
+     "p_orb_beats_naive": {
+      "p_bootstrap": 0.367,
+      "share_rows": 0.6666666666666666,
+      "n_rows": 6,
+      "n_weekends": 6
+     },
+     "p_orb_beats_observed": {
+      "p_bootstrap": 0.509,
+      "share_rows": 0.6666666666666666,
+      "n_rows": 6,
+      "n_weekends": 6
+     },
+     "p_orb_beats_default": {
+      "p_bootstrap": 0.681,
+      "share_rows": 0.8333333333333334,
+      "n_rows": 6,
+      "n_weekends": 6
+     }
+    }
+   },
+   "hot": {
+    "forecast": {
+     "n_weekends": 22,
+     "n_compound_weekends": 50,
+     "n_issued": 34,
+     "n_withheld": 16,
+     "mae": {
+      "orb_v1": 0.056267506263371354,
+      "naive": 0.15470915861779302,
+      "clean_issued": 0.09104876860878858,
+      "orb_v1_issued": 0.06903115072795807,
+      "orb_v1_fallback": 0.029144761776124566,
+      "naive_issued": 0.17499801170479293
+     },
+     "band_coverage90": {
+      "all": 0.86,
+      "issued": 0.8529411764705882,
+      "fallback": 0.875,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.68,
+      "share_withheld": 0.32,
+      "mae_issued": 0.06903115072795807,
+      "mae_fallback": 0.029144761776124566
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 10,
+       "mae_orb_v1": 0.09761941895469409,
+       "mae_naive": 0.25346451443130313
+      },
+      "MEDIUM": {
+       "n": 20,
+       "mae_orb_v1": 0.05885462306194962,
+       "mae_naive": 0.1652505745016798
+      },
+      "HARD": {
+       "n": 20,
+       "mae_orb_v1": 0.03300443311913172,
+       "mae_naive": 0.09479006482715119
+      }
+     },
+     "wins_orb_over_naive": 41,
+     "calibration": {
+      "slope": 0.1500989712114642,
+      "r": 0.33493358689484964,
+      "n": 50
+     }
+    },
+    "hidden_stop": {
+     "n_cases": 397,
+     "n_weekends": 20,
+     "next1_mae": 1.1262273223605628,
+     "next1_mae_naive": 1.4847603323185843,
+     "next1_n": 397,
+     "next1_coverage90": 0.8085642317380353,
+     "cum3_mae": 3.029276772872062,
+     "cum3_mae_naive": 4.0290091350338235,
+     "cum3_n": 349,
+     "cum3_coverage90": 0.8051575931232091,
+     "cum5_mae": 4.7369610501426305,
+     "cum5_mae_naive": 6.60443086570956,
+     "cum5_n": 283,
+     "cum5_coverage90": 0.7879858657243817
+    },
+    "regret": {
+     "label": "held-out strategy replay under a post-race reference model",
+     "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+     "n_weekends": 22,
+     "plans": {
+      "orb": {
+       "n": 13,
+       "mean": 22.482112757656907,
+       "median": 15.04075069724901,
+       "p10": 1.982580316819795,
+       "p90": 55.82861970238014,
+       "min": 0.000851514734243608,
+       "max": 58.31867411778731,
+       "worst_decile_mean": 57.14243173486774,
+       "share_within_2s": 0.15384615384615385,
+       "share_within_5s": 0.3076923076923077,
+       "share_within_10s": 0.38461538461538464
+      },
+      "naive": {
+       "n": 12,
+       "mean": 32.66926154724686,
+       "median": 33.52683029244343,
+       "p10": 9.341817769268223,
+       "p90": 59.01830037333781,
+       "min": 0.12234613769243197,
+       "max": 74.10743264655716,
+       "worst_decile_mean": 66.92127619079714,
+       "share_within_2s": 0.08333333333333333,
+       "share_within_5s": 0.08333333333333333,
+       "share_within_10s": 0.25
+      },
+      "observed": {
+       "n": 21,
+       "mean": 39.828396003287175,
+       "median": 28.03464112958595,
+       "p10": 6.368772026140704,
+       "p90": 77.4182874966391,
+       "min": 0.34994690298570674,
+       "max": 126.88100818265343,
+       "worst_decile_mean": 101.14047667903078,
+       "share_within_2s": 0.047619047619047616,
+       "share_within_5s": 0.09523809523809523,
+       "share_within_10s": 0.19047619047619047
+      },
+      "default": {
+       "n": 22,
+       "mean": 39.40332880696418,
+       "median": 30.79051271979057,
+       "p10": 4.4110226072510175,
+       "p90": 89.6594168901332,
+       "min": 2.64480462266917,
+       "max": 112.52252037321387,
+       "worst_decile_mean": 101.55829631333468,
+       "share_within_2s": 0.0,
+       "share_within_5s": 0.13636363636363635,
+       "share_within_10s": 0.18181818181818182
+      }
+     },
+     "p_orb_beats_naive": {
+      "p_bootstrap": 0.9205,
+      "share_rows": 0.625,
+      "n_rows": 12,
+      "n_weekends": 12
+     },
+     "p_orb_beats_observed": {
+      "p_bootstrap": 0.9785,
+      "share_rows": 0.6153846153846154,
+      "n_rows": 13,
+      "n_weekends": 13
+     },
+     "p_orb_beats_default": {
+      "p_bootstrap": 0.954,
+      "share_rows": 0.6923076923076923,
+      "n_rows": 13,
+      "n_weekends": 13
+     }
+    }
+   },
+   "mild": {
+    "forecast": {
+     "n_weekends": 23,
+     "n_compound_weekends": 51,
+     "n_issued": 26,
+     "n_withheld": 25,
+     "mae": {
+      "orb_v1": 0.047311458446566375,
+      "naive": 0.18420973988585335,
+      "clean_issued": 0.06730913858518237,
+      "orb_v1_issued": 0.06457302708783721,
+      "orb_v1_fallback": 0.029359427059644713,
+      "naive_issued": 0.19339165703962052
+     },
+     "band_coverage90": {
+      "all": 0.9019607843137255,
+      "issued": 0.8846153846153846,
+      "fallback": 0.92,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.5098039215686274,
+      "share_withheld": 0.49019607843137253,
+      "mae_issued": 0.06457302708783721,
+      "mae_fallback": 0.029359427059644713
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 11,
+       "mae_orb_v1": 0.10018267091626835,
+       "mae_naive": 0.25942519683799686
+      },
+      "MEDIUM": {
+       "n": 21,
+       "mae_orb_v1": 0.03503372961297485,
+       "mae_naive": 0.16807687389164674
+      },
+      "HARD": {
+       "n": 19,
+       "mae_orb_v1": 0.030271930464392728,
+       "mae_naive": 0.15849501143347214
+      }
+     },
+     "wins_orb_over_naive": 45,
+     "calibration": {
+      "slope": 0.14355051216109274,
+      "r": 0.26841723663011224,
+      "n": 51
+     }
+    },
+    "hidden_stop": {
+     "n_cases": 336,
+     "n_weekends": 20,
+     "next1_mae": 1.032105023971264,
+     "next1_mae_naive": 1.4106551649787318,
+     "next1_n": 336,
+     "next1_coverage90": 0.7678571428571429,
+     "cum3_mae": 2.9673146163991397,
+     "cum3_mae_naive": 3.942551780508717,
+     "cum3_n": 278,
+     "cum3_coverage90": 0.7338129496402878,
+     "cum5_mae": 5.007177117487235,
+     "cum5_mae_naive": 6.492903547070042,
+     "cum5_n": 217,
+     "cum5_coverage90": 0.7327188940092166
+    },
+    "regret": {
+     "label": "held-out strategy replay under a post-race reference model",
+     "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+     "n_weekends": 23,
+     "plans": {
+      "orb": {
+       "n": 12,
+       "mean": 39.71365808041866,
+       "median": 26.705411600538476,
+       "p10": 2.61408349314562,
+       "p90": 91.57495010720513,
+       "min": 0.030969253117206108,
+       "max": 116.01703074582684,
+       "worst_decile_mean": 104.56736208672243,
+       "share_within_2s": 0.08333333333333333,
+       "share_within_5s": 0.25,
+       "share_within_10s": 0.3333333333333333
+      },
+      "naive": {
+       "n": 15,
+       "mean": 31.657200434088384,
+       "median": 19.90276705448987,
+       "p10": 3.588476476733826,
+       "p90": 76.7670421842464,
+       "min": 0.1576167341722936,
+       "max": 129.34152198288086,
+       "worst_decile_mean": 106.19830956079753,
+       "share_within_2s": 0.13333333333333333,
+       "share_within_5s": 0.13333333333333333,
+       "share_within_10s": 0.2
+      },
+      "observed": {
+       "n": 22,
+       "mean": 28.573978105826097,
+       "median": 20.022251151523456,
+       "p10": 1.6944250595660322,
+       "p90": 59.2240596009478,
+       "min": 0.6060428492788361,
+       "max": 116.01703074582684,
+       "worst_decile_mean": 81.40842011466145,
+       "share_within_2s": 0.18181818181818182,
+       "share_within_5s": 0.18181818181818182,
+       "share_within_10s": 0.2727272727272727
+      },
+      "default": {
+       "n": 23,
+       "mean": 23.240534726590635,
+       "median": 13.953889175531557,
+       "p10": 0.7555833912673849,
+       "p90": 47.02433889135466,
+       "min": 0.036644492858115996,
+       "max": 115.37239565710169,
+       "worst_decile_mean": 82.28741177779949,
+       "share_within_2s": 0.17391304347826086,
+       "share_within_5s": 0.30434782608695654,
+       "share_within_10s": 0.391304347826087
+      }
+     },
+     "p_orb_beats_naive": {
+      "p_bootstrap": 0.3025,
+      "share_rows": 0.5,
+      "n_rows": 12,
+      "n_weekends": 12
+     },
+     "p_orb_beats_observed": {
+      "p_bootstrap": 0.515,
+      "share_rows": 0.5833333333333334,
+      "n_rows": 12,
+      "n_weekends": 12
+     },
+     "p_orb_beats_default": {
+      "p_bootstrap": 0.4245,
+      "share_rows": 0.5,
+      "n_rows": 12,
+      "n_weekends": 12
+     }
+    }
+   },
+   "wet_affected": {
+    "forecast": {
+     "n_weekends": 12,
+     "n_compound_weekends": 30,
+     "n_issued": 16,
+     "n_withheld": 14,
+     "mae": {
+      "orb_v1": 0.04804901569227047,
+      "naive": 0.1654245082011834,
+      "clean_issued": 0.0731347257626355,
+      "orb_v1_issued": 0.06599175854688742,
+      "orb_v1_fallback": 0.02754302385842252,
+      "naive_issued": 0.1940625696996512
+     },
+     "band_coverage90": {
+      "all": 0.8333333333333334,
+      "issued": 0.875,
+      "fallback": 0.7857142857142857,
+      "nominal": 0.9
+     },
+     "abstention": {
+      "share_issued": 0.5333333333333333,
+      "share_withheld": 0.4666666666666667,
+      "mae_issued": 0.06599175854688742,
+      "mae_fallback": 0.02754302385842252
+     },
+     "by_compound": {
+      "SOFT": {
+       "n": 7,
+       "mae_orb_v1": 0.05909860546463055,
+       "mae_naive": 0.2656613928281493
+      },
+      "MEDIUM": {
+       "n": 12,
+       "mae_orb_v1": 0.06015020249177936,
+       "mae_naive": 0.15785955974694177
+      },
+      "HARD": {
+       "n": 11,
+       "mae_orb_v1": 0.02781616387403162,
+       "mae_naive": 0.10989007084319592
+      }
+     },
+     "wins_orb_over_naive": 27,
+     "calibration": {
+      "slope": 0.12124924318549701,
+      "r": 0.24164472576881282,
+      "n": 30
+     }
+    },
+    "hidden_stop": {
+     "n_cases": 198,
+     "n_weekends": 10,
+     "next1_mae": 1.278843810461352,
+     "next1_mae_naive": 1.4001295536487122,
+     "next1_n": 198,
+     "next1_coverage90": 0.8686868686868687,
+     "cum3_mae": 3.115797718128689,
+     "cum3_mae_naive": 3.7261336171093014,
+     "cum3_n": 173,
+     "cum3_coverage90": 0.8728323699421965,
+     "cum5_mae": 4.512692479173271,
+     "cum5_mae_naive": 5.948136739516755,
+     "cum5_n": 140,
+     "cum5_coverage90": 0.8928571428571429
+    },
+    "regret": {
+     "label": "held-out strategy replay under a post-race reference model",
+     "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+     "n_weekends": 12,
+     "plans": {
+      "orb": {
+       "n": 9,
+       "mean": 39.549517111901,
+       "median": 9.671529181962683,
+       "p10": 2.5215809458864187,
+       "p90": 112.41252248044846,
+       "min": 2.369999541750346,
+       "max": 147.6042442785596,
+       "worst_decile_mean": 147.6042442785596,
+       "share_within_2s": 0.0,
+       "share_within_5s": 0.2222222222222222,
+       "share_within_10s": 0.5555555555555556
+      },
+      "naive": {
+       "n": 10,
+       "mean": 69.41521698670323,
+       "median": 56.15306952517178,
+       "p10": 7.449623380057709,
+       "p90": 140.314609372123,
+       "min": 0.0,
+       "max": 155.02562816262457,
+       "worst_decile_mean": 155.02562816262457,
+       "share_within_2s": 0.1,
+       "share_within_5s": 0.1,
+       "share_within_10s": 0.2
+      },
+      "observed": {
+       "n": 8,
+       "mean": 49.12528069544931,
+       "median": 57.93411443233009,
+       "p10": 6.29153849797294,
+       "p90": 83.64927155103004,
+       "min": 0.19129567003400894,
+       "max": 89.3963952114366,
+       "worst_decile_mean": 89.3963952114366,
+       "share_within_2s": 0.125,
+       "share_within_5s": 0.125,
+       "share_within_10s": 0.25
+      },
+      "default": {
+       "n": 12,
+       "mean": 41.6973257661678,
+       "median": 34.348345621908926,
+       "p10": 8.065016616565584,
+       "p90": 73.0198669714597,
+       "min": 0.5145554683242608,
+       "max": 107.70320449287419,
+       "worst_decile_mean": 90.54664486948829,
+       "share_within_2s": 0.08333333333333333,
+       "share_within_5s": 0.08333333333333333,
+       "share_within_10s": 0.16666666666666666
+      }
+     },
+     "p_orb_beats_naive": {
+      "p_bootstrap": 0.9765,
+      "share_rows": 0.5555555555555556,
+      "n_rows": 9,
+      "n_weekends": 9
+     },
+     "p_orb_beats_observed": {
+      "p_bootstrap": 0.987,
+      "share_rows": 0.6,
+      "n_rows": 5,
+      "n_weekends": 5
+     },
+     "p_orb_beats_default": {
+      "p_bootstrap": 0.79,
+      "share_rows": 0.5555555555555556,
+      "n_rows": 9,
+      "n_weekends": 9
+     }
+    }
+   }
+  },
+  "by_driver_support": {
+   "seen": {
+    "hidden_stop": {
+     "n_cases": 983,
+     "n_weekends": 56,
+     "next1_mae": 1.1179082913106613,
+     "next1_mae_naive": 1.4416050548821826,
+     "next1_n": 983,
+     "next1_coverage90": 0.8056968463886063,
+     "cum3_mae": 3.0530123924246886,
+     "cum3_mae_naive": 3.958875142172741,
+     "cum3_n": 834,
+     "cum3_coverage90": 0.7865707434052758,
+     "cum5_mae": 4.828435742563133,
+     "cum5_mae_naive": 6.456483522022713,
+     "cum5_n": 664,
+     "cum5_coverage90": 0.7816265060240963
+    },
+    "note": "the pre-race degradation curve has no driver term; support status applies to the hidden-stop cases (driver seen in a pool weekend race)"
+   },
+   "unseen": {
+    "hidden_stop": {
+     "n_cases": 1,
+     "n_weekends": 1,
+     "next1_mae": 0.9616801318982056,
+     "next1_mae_naive": 1.632400000000004,
+     "next1_n": 1,
+     "next1_coverage90": 1.0,
+     "cum3_mae": 3.0160009390946243,
+     "cum3_mae_naive": 4.97320000000002,
+     "cum3_n": 1,
+     "cum3_coverage90": 1.0,
+     "cum5_mae": 3.762242833091051,
+     "cum5_mae_naive": 6.896000000000043,
+     "cum5_n": 1,
+     "cum5_coverage90": 1.0
+    },
+    "note": "the pre-race degradation curve has no driver term; support status applies to the hidden-stop cases (driver seen in a pool weekend race)"
+   }
+  },
+  "abstention_coverage": {
+   "share_issued": 0.5675675675675675,
+   "share_withheld": 0.43243243243243246,
+   "mae_issued": 0.06629573699808133,
+   "mae_fallback": 0.03322574380818562
+  }
+ },
+ "sealed_holdout": {
+  "generated_at": "2026-09-12T16:55:42",
+  "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
+  "reveal": {
+   "per_race_written": false,
+   "reason": "no freeze.json: model, feature list, gate threshold and provider are not frozen"
+  },
+  "post_holdout_tuning": null,
+  "n_weekends": 6,
+  "aggregate": {
+   "weekends": {
+    "sealed": 6,
+    "forecast": 5,
+    "weekend_level_abstention": 1,
+    "abstention_rule": "no forecast when the weekend has fewer than 40 clean practice laps (pipeline.py); such a weekend cannot be scored on any test"
+   },
+   "forecast": {
+    "n_weekends": 5,
+    "n_compound_weekends": 9,
+    "n_issued": 5,
+    "n_withheld": 4,
+    "n_no_forecast": 0,
+    "mae": {
+     "orb_v1": 0.03721773448575146,
+     "naive": 0.17125770513061203,
+     "clean_issued": 0.05666991909329866,
+     "orb_v1_issued": 0.04573123699624918,
+     "orb_v1_fallback": 0.026575856347629295,
+     "naive_issued": 0.16485605082884888
+    },
+    "band_coverage90": {
+     "all": 1.0,
+     "issued": 1.0,
+     "fallback": 1.0,
+     "nominal": 0.9
+    },
+    "abstention": {
+     "share_issued": 0.5555555555555556,
+     "share_withheld": 0.4444444444444444
+    },
+    "by_compound": {
+     "SOFT": {
+      "n": 3,
+      "mae_orb_v1": 0.05833759011694434,
+      "mae_naive": 0.19732579179981302
+     },
+     "MEDIUM": {
+      "n": 4,
+      "mae_orb_v1": 0.021587315542019724,
+      "mae_naive": 0.15370369949448753
+     },
+     "HARD": {
+      "n": 2,
+      "mae_orb_v1": 0.0367987889264256,
+      "mae_naive": 0.1672635863990595
+     }
+    },
+    "wins_orb_over_naive": 9,
+    "calibration": {
+     "slope": 0.4837791690015671,
+     "r": 0.7183273427669115,
+     "n": 9
+    },
+    "bootstrap": {
+     "mae_orb_v1": {
+      "estimate": 0.03721773448575146,
+      "ci90": [
+       0.025150558404573246,
+       0.04567799592750368
+      ],
+      "n_weekends": 5,
+      "n_rows": 9,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "mae_naive": {
+      "estimate": 0.17125770513061203,
+      "ci90": [
+       0.09520985538981902,
+       0.2251534411138591
+      ],
+      "n_weekends": 5,
+      "n_rows": 9,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "band_coverage90": {
+      "estimate": 1.0,
+      "ci90": [
+       1.0,
+       1.0
+      ],
+      "n_weekends": 5,
+      "n_rows": 9,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "p_orb_beats_naive": {
+      "p_bootstrap": 1.0,
+      "share_rows": 1.0,
+      "n_rows": 9,
+      "n_weekends": 5
+     }
+    }
+   },
+   "hidden_stop": {
+    "pooled": {
+     "n_cases": 31,
+     "n_weekends": 4,
+     "next1_mae": 1.254240220524435,
+     "next1_mae_naive": 1.311883444917832,
+     "next1_n": 31,
+     "next1_coverage90": 0.9032258064516129,
+     "cum3_mae": 4.244914689332366,
+     "cum3_mae_naive": 3.809169135802471,
+     "cum3_n": 27,
+     "cum3_coverage90": 0.8518518518518519,
+     "cum5_mae": 7.626423232603332,
+     "cum5_mae_naive": 6.734775362318834,
+     "cum5_n": 23,
+     "cum5_coverage90": 0.8695652173913043
+    },
+    "bootstrap": {
+     "next1_mae": {
+      "estimate": 1.254240220524435,
+      "ci90": [
+       0.29955767949846573,
+       1.6054144104606438
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "next1_mae_naive": {
+      "estimate": 1.311883444917832,
+      "ci90": [
+       0.5489756936736917,
+       1.6211266723842188
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "next1_coverage90": {
+      "estimate": 0.9032258064516129,
+      "ci90": [
+       0.8636363636363636,
+       1.0
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "p_orb_beats_naive_next1": {
+      "p_bootstrap": 0.9445,
+      "share_rows": 0.5483870967741935,
+      "n_rows": 31,
+      "n_weekends": 4
+     },
+     "cum3_mae": {
+      "estimate": 4.244914689332366,
+      "ci90": [
+       0.6536460771698955,
+       5.270773205964233
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 1991,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "cum3_mae_naive": {
+      "estimate": 3.809169135802471,
+      "ci90": [
+       1.2651333333333217,
+       4.682248333333337
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 1991,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "cum3_coverage90": {
+      "estimate": 0.8518518518518519,
+      "ci90": [
+       0.8,
+       1.0
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 1991,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "p_orb_beats_naive_cum3": {
+      "p_bootstrap": 0.1515,
+      "share_rows": 0.2222222222222222,
+      "n_rows": 27,
+      "n_weekends": 3
+     },
+     "cum5_mae": {
+      "estimate": 7.626423232603332,
+      "ci90": [
+       1.0265127069183535,
+       8.980156905130483
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 1991,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "cum5_mae_naive": {
+      "estimate": 6.734775362318834,
+      "ci90": [
+       2.446000000000012,
+       7.905990740740742
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 1991,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "cum5_coverage90": {
+      "estimate": 0.8695652173913043,
+      "ci90": [
+       0.8333333333333334,
+       1.0
+      ],
+      "n_weekends": 4,
+      "n_rows": 31,
+      "n_boot": 1991,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "p_orb_beats_naive_cum5": {
+      "p_bootstrap": 0.1515,
+      "share_rows": 0.21739130434782608,
+      "n_rows": 23,
+      "n_weekends": 3
+     }
+    },
+    "by": {
+     "compound_new": {
+      "HARD": {
+       "suppressed": "fewer than 3 weekends in the cell",
+       "n_cases": 19
+      },
+      "MEDIUM": {
+       "suppressed": "fewer than 3 weekends in the cell",
+       "n_cases": 3
+      },
+      "SOFT": {
+       "n_cases": 9,
+       "n_weekends": 4,
+       "next1_mae": 0.7909041592729535,
+       "next1_mae_naive": 0.507431865828088,
+       "next1_n": 9,
+       "next1_coverage90": 1.0,
+       "cum3_mae": 2.801843432411559,
+       "cum3_mae_naive": 0.7173142857142807,
+       "cum3_n": 7,
+       "cum3_coverage90": 1.0,
+       "cum5_mae": 5.280169366744398,
+       "cum5_mae_naive": 1.3271388888888656,
+       "cum5_n": 6,
+       "cum5_coverage90": 1.0
+      }
+     },
+     "circuit_class": {
+      "permanent": {
+       "suppressed": "fewer than 3 weekends in the cell",
+       "n_cases": 22
+      },
+      "street": {
+       "suppressed": "fewer than 3 weekends in the cell",
+       "n_cases": 9
+      }
+     },
+     "set_status": {
+      "new": {
+       "n_cases": 28,
+       "n_weekends": 4,
+       "next1_mae": 1.3210694542465014,
+       "next1_mae_naive": 1.420351909254267,
+       "next1_n": 28,
+       "next1_coverage90": 0.8928571428571429,
+       "cum3_mae": 4.51006652745866,
+       "cum3_mae_naive": 4.205644444444448,
+       "cum3_n": 24,
+       "cum3_coverage90": 0.8333333333333334,
+       "cum5_mae": 7.924241218962912,
+       "cum5_mae_naive": 7.3034047619047575,
+       "cum5_n": 21,
+       "cum5_coverage90": 0.8571428571428571
+      },
+      "used": {
+       "suppressed": "fewer than 3 weekends in the cell",
+       "n_cases": 3
+      }
+     },
+     "stop_regime": {
+      "green": {
+       "n_cases": 29,
+       "n_weekends": 4,
+       "next1_mae": 1.3273612349750148,
+       "next1_mae_naive": 1.391427130774235,
+       "next1_n": 29,
+       "next1_coverage90": 0.896551724137931,
+       "cum3_mae": 4.40583218951704,
+       "cum3_mae_naive": 3.947637179487179,
+       "cum3_n": 26,
+       "cum3_coverage90": 0.8461538461538461,
+       "cum5_mae": 7.626423232603332,
+       "cum5_mae_naive": 6.734775362318834,
+       "cum5_n": 23,
+       "cum5_coverage90": 0.8695652173913043
+      },
+      "sc_vsc": {
+       "suppressed": "fewer than 3 weekends in the cell",
+       "n_cases": 2
+      }
+     },
+     "driver_support": {
+      "seen": {
+       "n_cases": 31,
+       "n_weekends": 4,
+       "next1_mae": 1.254240220524435,
+       "next1_mae_naive": 1.311883444917832,
+       "next1_n": 31,
+       "next1_coverage90": 0.9032258064516129,
+       "cum3_mae": 4.244914689332366,
+       "cum3_mae_naive": 3.809169135802471,
+       "cum3_n": 27,
+       "cum3_coverage90": 0.8518518518518519,
+       "cum5_mae": 7.626423232603332,
+       "cum5_mae_naive": 6.734775362318834,
+       "cum5_n": 23,
+       "cum5_coverage90": 0.8695652173913043
+      }
+     }
+    }
+   },
+   "hidden_stop_skipped": {
+    "no pre-race forecast for a compound": 102,
+    "non-slick compound": 1,
+    "fewer than 3 clean pre-stop laps": 15,
+    "no representative lap within 8 laps after the stop": 2
+   },
+   "regret": {
+    "label": "held-out strategy replay under a post-race reference model",
+    "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+    "n_weekends": 5,
+    "plans": {
+     "orb": {
+      "n": 2,
+      "suppressed": "fewer than 3 weekends with a scorable orb plan"
+     },
+     "naive": {
+      "n": 2,
+      "suppressed": "fewer than 3 weekends with a scorable naive plan"
+     },
+     "observed": {
+      "n": 5,
+      "mean": 17.92893011623799,
+      "median": 19.525878456907407,
+      "p10": 5.120306516344343,
+      "p90": 29.68749652878916,
+      "worst_decile_mean": 30.834222790408475,
+      "share_within_2s": 0.0,
+      "share_within_5s": 0.2,
+      "share_within_10s": 0.4,
+      "ci90_mean": {
+       "estimate": 17.92893011623799,
+       "ci90": [
+        10.095180004576813,
+        25.737521926198394
+       ],
+       "n_weekends": 5,
+       "n_rows": 5,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "ci90_median": {
+       "estimate": 19.525878456907407,
+       "ci90": [
+        2.967248186693965,
+        30.834222790408475
+       ],
+       "n_weekends": 5,
+       "n_rows": 5,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      }
+     },
+     "default": {
+      "n": 5,
+      "mean": 10.437678752231474,
+      "median": 12.91984090648517,
+      "p10": 0.036756003596514125,
+      "p90": 20.75535844167584,
+      "worst_decile_mean": 25.41303993181471,
+      "share_within_2s": 0.4,
+      "share_within_5s": 0.4,
+      "share_within_10s": 0.4,
+      "ci90_mean": {
+       "estimate": 10.437678752231474,
+       "ci90": [
+        5.103455728262148,
+        18.00367651742286
+       ],
+       "n_weekends": 5,
+       "n_rows": 5,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      },
+      "ci90_median": {
+       "estimate": 12.91984090648517,
+       "ci90": [
+        0.010426585202651495,
+        25.41303993181471
+       ],
+       "n_weekends": 5,
+       "n_rows": 5,
+       "n_boot": 2000,
+       "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+      }
+     }
+    },
+    "p_orb_beats_naive": {
+     "n_weekends": 2,
+     "suppressed": "fewer than 3 weekends with both plans scorable"
+    },
+    "p_orb_beats_observed": {
+     "n_weekends": 2,
+     "suppressed": "fewer than 3 weekends with both plans scorable"
+    },
+    "p_orb_beats_default": {
+     "n_weekends": 2,
+     "suppressed": "fewer than 3 weekends with both plans scorable"
+    }
+   },
+   "cells": {
+    "circuit_class": {
+     "permanent": {
+      "n_weekends": 3,
+      "forecast": {
+       "n_weekends": 3,
+       "n_compound_weekends": 5,
+       "n_issued": 4,
+       "n_withheld": 1,
+       "n_no_forecast": 0,
+       "mae": {
+        "orb_v1": 0.043687616426371326,
+        "naive": 0.14286676006271776,
+        "clean_issued": 0.058791488465270415,
+        "orb_v1_issued": 0.04847916995104663,
+        "orb_v1_fallback": 0.024521402327670118,
+        "naive_issued": 0.13396366248362696
+       },
+       "band_coverage90": {
+        "all": 1.0,
+        "issued": 1.0,
+        "fallback": 1.0,
+        "nominal": 0.9
+       },
+       "abstention": {
+        "share_issued": 0.8,
+        "share_withheld": 0.2
+       },
+       "by_compound": {
+        "SOFT": {
+         "n": 2,
+         "mae_orb_v1": 0.06246489193781361,
+         "mae_naive": 0.12124326565645163
+        },
+        "MEDIUM": {
+         "n": 2,
+         "mae_orb_v1": 0.024186392482700016,
+         "mae_naive": 0.15769163912907735
+        },
+        "HARD": {
+         "n": 1,
+         "mae_orb_v1": 0.04513551329082938,
+         "mae_naive": 0.15646399074253073
+        }
+       },
+       "wins_orb_over_naive": 5,
+       "calibration": {
+        "slope": 0.4348220182222828,
+        "r": 0.8452360463507358,
+        "n": 5
+       }
+      },
+      "regret": {
+       "label": "held-out strategy replay under a post-race reference model",
+       "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+       "n_weekends": 3,
+       "plans": {
+        "orb": {
+         "n": 1,
+         "suppressed": "fewer than 3 weekends with a scorable orb plan"
+        },
+        "naive": {
+         "n": 1,
+         "suppressed": "fewer than 3 weekends with a scorable naive plan"
+        },
+        "observed": {
+         "n": 3,
+         "mean": 20.589626037820878,
+         "median": 27.967407136360194,
+         "p10": 7.967279976627211,
+         "p90": 30.260859659598818,
+         "worst_decile_mean": 30.834222790408475,
+         "share_within_2s": 0.0,
+         "share_within_5s": 0.3333333333333333,
+         "share_within_10s": 0.3333333333333333
+        },
+        "default": {
+         "n": 3,
+         "mean": 13.08604208982318,
+         "median": 13.768836206467526,
+         "p10": 2.814767346243352,
+         "p90": 23.084199186745273,
+         "worst_decile_mean": 25.41303993181471,
+         "share_within_2s": 0.3333333333333333,
+         "share_within_5s": 0.3333333333333333,
+         "share_within_10s": 0.3333333333333333
+        }
+       },
+       "p_orb_beats_naive": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_observed": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_default": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       }
+      }
+     },
+     "street": {
+      "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+      "n_weekends": 2
+     }
+    },
+    "degradation_class": {
+     "high": {
+      "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+      "n_weekends": 2
+     },
+     "low": {
+      "n_weekends": 3,
+      "forecast": {
+       "n_weekends": 3,
+       "n_compound_weekends": 5,
+       "n_issued": 2,
+       "n_withheld": 3,
+       "n_no_forecast": 0,
+       "mae": {
+        "orb_v1": 0.02807458217552728,
+        "naive": 0.19277793474819865,
+        "clean_issued": 0.056642149150018334,
+        "orb_v1_issued": 0.029295443907394657,
+        "orb_v1_fallback": 0.027260674354282356,
+        "naive_issued": 0.2126648660444053
+       },
+       "band_coverage90": {
+        "all": 1.0,
+        "issued": 1.0,
+        "fallback": 1.0,
+        "nominal": 0.9
+       },
+       "abstention": {
+        "share_issued": 0.4,
+        "share_withheld": 0.6
+       },
+       "by_compound": {
+        "SOFT": {
+         "n": 1,
+         "mae_orb_v1": 0.05008298647520579,
+         "mae_naive": 0.3494908440865358
+        },
+        "MEDIUM": {
+         "n": 3,
+         "mae_orb_v1": 0.020609286613469596,
+         "mae_naive": 0.14544521586628975
+        },
+        "HARD": {
+         "n": 1,
+         "mae_orb_v1": 0.02846206456202182,
+         "mae_naive": 0.17806318205558827
+        }
+       },
+       "wins_orb_over_naive": 5,
+       "calibration": {
+        "slope": 0.5248823967589508,
+        "r": 0.34811049661094656,
+        "n": 5
+       }
+      },
+      "regret": {
+       "label": "held-out strategy replay under a post-race reference model",
+       "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+       "n_weekends": 3,
+       "plans": {
+        "orb": {
+         "n": 1,
+         "suppressed": "fewer than 3 weekends with a scorable orb plan"
+        },
+        "naive": {
+         "n": 1,
+         "suppressed": "fewer than 3 weekends with a scorable naive plan"
+        },
+        "observed": {
+         "n": 3,
+         "mean": 10.281006884807093,
+         "median": 8.34989401081991,
+         "p10": 4.043777351519154,
+         "p90": 17.29068156768991,
+         "worst_decile_mean": 19.525878456907407,
+         "share_within_2s": 0.0,
+         "share_within_5s": 0.3333333333333333,
+         "share_within_10s": 0.6666666666666666
+        },
+        "default": {
+         "n": 3,
+         "mean": 4.33550587429171,
+         "median": 0.07625013118730806,
+         "p10": 0.02359129439958281,
+         "p90": 10.3511227514256,
+         "worst_decile_mean": 12.91984090648517,
+         "share_within_2s": 0.6666666666666666,
+         "share_within_5s": 0.6666666666666666,
+         "share_within_10s": 0.6666666666666666
+        }
+       },
+       "p_orb_beats_naive": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_observed": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_default": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       }
+      }
+     }
+    },
+    "temperature_regime": {
+     "cool": {
+      "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+      "n_weekends": 1
+     },
+     "hot": {
+      "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+      "n_weekends": 1
+     },
+     "mild": {
+      "n_weekends": 3,
+      "forecast": {
+       "n_weekends": 3,
+       "n_compound_weekends": 7,
+       "n_issued": 3,
+       "n_withheld": 4,
+       "n_no_forecast": 0,
+       "mae": {
+        "orb_v1": 0.03700952252060414,
+        "naive": 0.18500506768234956,
+        "clean_issued": 0.05540245622735466,
+        "orb_v1_issued": 0.050921077417903915,
+        "orb_v1_fallback": 0.026575856347629295,
+        "naive_issued": 0.19266546058172773
+       },
+       "band_coverage90": {
+        "all": 1.0,
+        "issued": 1.0,
+        "fallback": 1.0,
+        "nominal": 0.9
+       },
+       "abstention": {
+        "share_issued": 0.42857142857142855,
+        "share_withheld": 0.5714285714285714
+       },
+       "by_compound": {
+        "SOFT": {
+         "n": 2,
+         "mae_orb_v1": 0.061485600130514385,
+         "mae_naive": 0.24129881543972576
+        },
+        "MEDIUM": {
+         "n": 3,
+         "mae_orb_v1": 0.020832626510116328,
+         "mae_naive": 0.15930355669962545
+        },
+        "HARD": {
+         "n": 2,
+         "mae_orb_v1": 0.0367987889264256,
+         "mae_naive": 0.1672635863990595
+        }
+       },
+       "wins_orb_over_naive": 7,
+       "calibration": {
+        "slope": 0.3356187309323565,
+        "r": 0.49534787015359755,
+        "n": 7
+       }
+      },
+      "regret": {
+       "label": "held-out strategy replay under a post-race reference model",
+       "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+       "n_weekends": 3,
+       "plans": {
+        "orb": {
+         "n": 2,
+         "suppressed": "fewer than 3 weekends with a scorable orb plan"
+        },
+        "naive": {
+         "n": 2,
+         "suppressed": "fewer than 3 weekends with a scorable naive plan"
+        },
+        "observed": {
+         "n": 3,
+         "mean": 19.569998419378596,
+         "median": 19.525878456907407,
+         "p10": 10.58509090003741,
+         "p90": 28.572553923708263,
+         "worst_decile_mean": 30.834222790408475,
+         "share_within_2s": 0.0,
+         "share_within_5s": 0.0,
+         "share_within_10s": 0.3333333333333333
+        },
+        "default": {
+         "n": 3,
+         "mean": 12.781102474500843,
+         "median": 12.91984090648517,
+         "p10": 2.5923094494591554,
+         "p90": 22.914400126748802,
+         "worst_decile_mean": 25.41303993181471,
+         "share_within_2s": 0.3333333333333333,
+         "share_within_5s": 0.3333333333333333,
+         "share_within_10s": 0.3333333333333333
+        }
+       },
+       "p_orb_beats_naive": {
+        "n_weekends": 2,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_observed": {
+        "n_weekends": 2,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_default": {
+        "n_weekends": 2,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       }
+      }
+     }
+    },
+    "sc_or_vsc": {
+     "False": {
+      "n_weekends": 3,
+      "forecast": {
+       "n_weekends": 3,
+       "n_compound_weekends": 5,
+       "n_issued": 4,
+       "n_withheld": 1,
+       "n_no_forecast": 0,
+       "mae": {
+        "orb_v1": 0.043687616426371326,
+        "naive": 0.14286676006271776,
+        "clean_issued": 0.058791488465270415,
+        "orb_v1_issued": 0.04847916995104663,
+        "orb_v1_fallback": 0.024521402327670118,
+        "naive_issued": 0.13396366248362696
+       },
+       "band_coverage90": {
+        "all": 1.0,
+        "issued": 1.0,
+        "fallback": 1.0,
+        "nominal": 0.9
+       },
+       "abstention": {
+        "share_issued": 0.8,
+        "share_withheld": 0.2
+       },
+       "by_compound": {
+        "SOFT": {
+         "n": 2,
+         "mae_orb_v1": 0.06246489193781361,
+         "mae_naive": 0.12124326565645163
+        },
+        "MEDIUM": {
+         "n": 2,
+         "mae_orb_v1": 0.024186392482700016,
+         "mae_naive": 0.15769163912907735
+        },
+        "HARD": {
+         "n": 1,
+         "mae_orb_v1": 0.04513551329082938,
+         "mae_naive": 0.15646399074253073
+        }
+       },
+       "wins_orb_over_naive": 5,
+       "calibration": {
+        "slope": 0.4348220182222828,
+        "r": 0.8452360463507358,
+        "n": 5
+       }
+      },
+      "regret": {
+       "label": "held-out strategy replay under a post-race reference model",
+       "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+       "n_weekends": 3,
+       "plans": {
+        "orb": {
+         "n": 1,
+         "suppressed": "fewer than 3 weekends with a scorable orb plan"
+        },
+        "naive": {
+         "n": 1,
+         "suppressed": "fewer than 3 weekends with a scorable naive plan"
+        },
+        "observed": {
+         "n": 3,
+         "mean": 20.589626037820878,
+         "median": 27.967407136360194,
+         "p10": 7.967279976627211,
+         "p90": 30.260859659598818,
+         "worst_decile_mean": 30.834222790408475,
+         "share_within_2s": 0.0,
+         "share_within_5s": 0.3333333333333333,
+         "share_within_10s": 0.3333333333333333
+        },
+        "default": {
+         "n": 3,
+         "mean": 13.08604208982318,
+         "median": 13.768836206467526,
+         "p10": 2.814767346243352,
+         "p90": 23.084199186745273,
+         "worst_decile_mean": 25.41303993181471,
+         "share_within_2s": 0.3333333333333333,
+         "share_within_5s": 0.3333333333333333,
+         "share_within_10s": 0.3333333333333333
+        }
+       },
+       "p_orb_beats_naive": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_observed": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       },
+       "p_orb_beats_default": {
+        "n_weekends": 1,
+        "suppressed": "fewer than 3 weekends with both plans scorable"
+       }
+      }
+     },
+     "True": {
+      "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+      "n_weekends": 2
+     }
+    }
+   }
+  },
+  "note": "aggregate over the sealed weekends only; per-race results stay sealed until freeze.json"
+ },
+ "rolling_origin_2026": {
+  "method": "rolling origin: factors, fallback floor and widening from the completed rounds before round k only; the first rounds carry factor 1.0 and no fallback (empty pool)",
+  "calendar": [
+   "Australia",
+   "Japan",
+   "Miami",
+   "Canada",
+   "Monaco",
+   "Barcelona",
+   "Austria",
+   "Britain",
+   "Belgium",
+   "Hungary",
+   "Zandvoort",
+   "Monza",
+   "Madrid"
+  ],
+  "series": [
+   {
+    "round": 1,
+    "event": "Australia",
+    "n_pool": 0,
+    "n_compounds": 3,
+    "n_issued": 1,
+    "n_no_forecast": 2,
+    "mae_orb_v1": 0.0406202820902137,
+    "mae_naive": 0.10081264942623835,
+    "band_coverage90": 1.0,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 0
+     },
+     "MEDIUM": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 0
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 0
+     }
+    }
+   },
+   {
+    "round": 2,
+    "event": "Japan",
+    "n_pool": 1,
+    "n_compounds": 2,
+    "n_issued": 1,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.00802057965273587,
+    "mae_naive": 0.15069857678713727,
+    "band_coverage90": 1.0,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     },
+     "MEDIUM": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 0
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 0
+     }
+    }
+   },
+   {
+    "round": 3,
+    "event": "Miami",
+    "n_pool": 2,
+    "n_compounds": 3,
+    "n_issued": 2,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.008243171542024351,
+    "mae_naive": 0.18813088088901997,
+    "band_coverage90": 0.6666666666666666,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     },
+     "MEDIUM": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 0
+     }
+    }
+   },
+   {
+    "round": 4,
+    "event": "Canada",
+    "n_pool": 3,
+    "n_compounds": 2,
+    "n_issued": 0,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.03017054636393754,
+    "mae_naive": 0.06768069545365792,
+    "band_coverage90": 0.0,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     }
+    }
+   },
+   {
+    "round": 5,
+    "event": "Monaco",
+    "n_pool": 4,
+    "note": "no scored race (live weekend or race unusable)"
+   },
+   {
+    "round": 6,
+    "event": "Barcelona",
+    "n_pool": 4,
+    "n_compounds": 3,
+    "n_issued": 2,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.0877269054482881,
+    "mae_naive": 0.14923839426239868,
+    "band_coverage90": 0.3333333333333333,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     },
+     "MEDIUM": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 2
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     }
+    }
+   },
+   {
+    "round": 7,
+    "event": "Austria",
+    "n_pool": 5,
+    "n_compounds": 3,
+    "n_issued": 3,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.0461335577057877,
+    "mae_naive": 0.14817391784543862,
+    "band_coverage90": 1.0,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 2
+     },
+     "MEDIUM": {
+      "k": 0.8199394403352046,
+      "applied": true,
+      "from_n": 3
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 1
+     }
+    }
+   },
+   {
+    "round": 8,
+    "event": "Britain",
+    "n_pool": 6,
+    "n_compounds": 1,
+    "n_issued": 0,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.01610716636058962,
+    "mae_naive": 0.024550909619842184,
+    "band_coverage90": 1.0,
+    "factors": {
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 2
+     }
+    }
+   },
+   {
+    "round": 9,
+    "event": "Belgium",
+    "n_pool": 7,
+    "n_compounds": 3,
+    "n_issued": 2,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.035109113700846004,
+    "mae_naive": 0.09339164871651488,
+    "band_coverage90": 1.0,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 3
+     },
+     "MEDIUM": {
+      "k": 0.6471714087062217,
+      "applied": true,
+      "from_n": 4
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 2
+     }
+    }
+   },
+   {
+    "round": 10,
+    "event": "Hungary",
+    "n_pool": 8,
+    "n_compounds": 3,
+    "n_issued": 3,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.04007512444692796,
+    "mae_naive": 0.297458824736332,
+    "band_coverage90": 1.0,
+    "factors": {
+     "SOFT": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 4
+     },
+     "MEDIUM": {
+      "k": 0.4744033770772387,
+      "applied": true,
+      "from_n": 5
+     },
+     "HARD": {
+      "k": 1.0,
+      "applied": false,
+      "from_n": 2
+     }
+    }
+   },
+   {
+    "round": 11,
+    "event": "Zandvoort",
+    "n_pool": 9,
+    "n_compounds": 3,
+    "n_issued": 1,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.018777142511780313,
+    "mae_naive": 0.07739948435416506,
+    "band_coverage90": 1.0,
+    "factors": {
+     "SOFT": {
+      "k": 0.9673403796626557,
+      "applied": true,
+      "from_n": 5
+     },
+     "MEDIUM": {
+      "k": 0.45182685386752625,
+      "applied": true,
+      "from_n": 6
+     },
+     "HARD": {
+      "k": 1.1703450083546054,
+      "applied": true,
+      "from_n": 3
+     }
+    }
+   },
+   {
+    "round": 12,
+    "event": "Monza",
+    "n_pool": 10,
+    "n_compounds": 3,
+    "n_issued": 1,
+    "n_no_forecast": 0,
+    "mae_orb_v1": 0.0033471443158605077,
+    "mae_naive": 0.11728459440772408,
+    "band_coverage90": 1.0,
+    "factors": {
+     "SOFT": {
+      "k": 0.9631772854791862,
+      "applied": true,
+      "from_n": 6
+     },
+     "MEDIUM": {
+      "k": 0.45182685386752625,
+      "applied": true,
+      "from_n": 6
+     },
+     "HARD": {
+      "k": 1.1703450083546054,
+      "applied": true,
+      "from_n": 3
+     }
+    }
+   },
+   {
+    "round": 13,
+    "event": "Madrid",
+    "n_pool": 11,
+    "note": "no scored race (live weekend or race unusable)"
+   }
+  ],
+  "pooled": {
+   "n_weekends": 11,
+   "n_compound_weekends": 29,
+   "n_issued": 16,
+   "n_withheld": 13,
+   "mae": {
+    "orb_v1": 0.03153133998143315,
+    "naive": 0.1371372633798251,
+    "clean_issued": 0.04539869382279096,
+    "orb_v1_issued": 0.03623479147473735,
+    "orb_v1_fallback": 0.024689955991172487,
+    "naive_issued": 0.16267078585895134
+   },
+   "band_coverage90": {
+    "all": 0.8076923076923077,
+    "issued": 0.9375,
+    "fallback": 0.6,
+    "nominal": 0.9
+   },
+   "abstention": {
+    "share_issued": 0.5517241379310345,
+    "share_withheld": 0.4482758620689655,
+    "mae_issued": 0.03623479147473735,
+    "mae_fallback": 0.024689955991172487
+   },
+   "by_compound": {
+    "SOFT": {
+     "n": 9,
+     "mae_orb_v1": 0.03110782364705518,
+     "mae_naive": 0.2209753011092757
+    },
+    "MEDIUM": {
+     "n": 9,
+     "mae_orb_v1": 0.04512087959861461,
+     "mae_naive": 0.14801769703131215
+    },
+    "HARD": {
+     "n": 11,
+     "mae_orb_v1": 0.02104087298862814,
+     "mae_naive": 0.05964033224996701
+    }
+   },
+   "wins_orb_over_naive": 25,
+   "calibration": {
+    "slope": 0.5124914109399972,
+    "r": 0.7212097747300272,
+    "n": 27
+   },
+   "bootstrap": {
+    "mae_orb_v1": {
+     "estimate": 0.03153133998143315,
+     "ci90": [
+      0.01900676378018421,
+      0.0447530524156505
+     ],
+     "n_weekends": 11,
+     "n_rows": 29,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "mae_naive": {
+     "estimate": 0.1371372633798251,
+     "ci90": [
+      0.10536718405036774,
+      0.17418320692731437
+     ],
+     "n_weekends": 11,
+     "n_rows": 29,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "band_coverage90": {
+     "estimate": 0.8076923076923077,
+     "ci90": [
+      0.636026936026936,
+      0.9629629629629629
+     ],
+     "n_weekends": 11,
+     "n_rows": 29,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive": {
+     "p_bootstrap": 1.0,
+     "share_rows": 0.9259259259259259,
+     "n_rows": 27,
+     "n_weekends": 11
+    }
+   }
+  },
+  "pooled_from_round_4": {
+   "n_weekends": 8,
+   "n_compound_weekends": 21,
+   "n_issued": 12,
+   "n_withheld": 9,
+   "mae": {
+    "orb_v1": 0.036664534451282677,
+    "naive": 0.1337501377854704,
+    "clean_issued": 0.05503603771951578,
+    "orb_v1_issued": 0.042817501255444285,
+    "orb_v1_fallback": 0.02846057871240055,
+    "naive_issued": 0.18958160286114892
+   },
+   "band_coverage90": {
+    "all": 0.8095238095238095,
+    "issued": 0.9166666666666666,
+    "fallback": 0.6666666666666666,
+    "nominal": 0.9
+   },
+   "abstention": {
+    "share_issued": 0.5714285714285714,
+    "share_withheld": 0.42857142857142855,
+    "mae_issued": 0.042817501255444285,
+    "mae_fallback": 0.02846057871240055
+   },
+   "by_compound": {
+    "SOFT": {
+     "n": 7,
+     "mae_orb_v1": 0.03336820552753373,
+     "mae_naive": 0.21378574199022335
+    },
+    "MEDIUM": {
+     "n": 6,
+     "mae_orb_v1": 0.05728290319222456,
+     "mae_naive": 0.1460930578803906
+    },
+    "HARD": {
+     "n": 8,
+     "mae_orb_v1": 0.02408504570385662,
+     "mae_naive": 0.05446179403512136
+    }
+   },
+   "wins_orb_over_naive": 20,
+   "calibration": {
+    "slope": 0.5105696199733859,
+    "r": 0.7164857928295848,
+    "n": 21
+   },
+   "bootstrap": {
+    "mae_orb_v1": {
+     "estimate": 0.036664534451282677,
+     "ci90": [
+      0.02171732915925815,
+      0.052261315238797644
+     ],
+     "n_weekends": 8,
+     "n_rows": 21,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "mae_naive": {
+     "estimate": 0.1337501377854704,
+     "ci90": [
+      0.09405048977033792,
+      0.18149439554214505
+     ],
+     "n_weekends": 8,
+     "n_rows": 21,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "band_coverage90": {
+     "estimate": 0.8095238095238095,
+     "ci90": [
+      0.5789473684210527,
+      1.0
+     ],
+     "n_weekends": 8,
+     "n_rows": 21,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive": {
+     "p_bootstrap": 1.0,
+     "share_rows": 0.9523809523809523,
+     "n_rows": 21,
+     "n_weekends": 8
+    }
+   }
+  }
+ }
+}

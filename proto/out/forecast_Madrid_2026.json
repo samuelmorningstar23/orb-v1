@@ -1,0 +1,105 @@
+{
+ "product": "Orb v1 (team FireBolt)",
+ "event": "Madrid 2026",
+ "kind": "pre-race tyre-degradation forecast",
+ "issued_at": "2026-09-12T21:03:23+05:30",
+ "lock_generated_at": "2026-09-12T18:11:47",
+ "sessions_used": [
+  "FP1",
+  "FP2",
+  "FP3"
+ ],
+ "lock_v2_forecast_hash": "sha256:9123e2037901abc75738c639608d381c95cb13b1dacc5054a77903b2abac0b8d",
+ "lock_v2_sha256": "e51dbb85c508dde76bd9ae29c777f0bda4c9c5d517f6a50caf0229b42a0b1fec",
+ "lock_sha256": "b2316b060b1535cc8f0e2e6c4df4cb5911727a889068e0f7c80012c60660800a",
+ "rules": {
+  "min_practice_laps": 30,
+  "min_slope": 0.02,
+  "factor_rule": "median of other weekends, applied only if >=3 exist and a majority sit within ±50% of it",
+  "fuel_prior_kg_per_lap": 1.1,
+  "fuel_s_per_kg": 0.03,
+  "traffic_max": 0.3,
+  "min_stint": 5
+ },
+ "compounds": [
+  {
+   "compound": "SOFT",
+   "prediction_s_per_lap": 0.0676,
+   "band90": [
+    -0.1136,
+    0.2553
+   ],
+   "issued": true,
+   "gate": "ok",
+   "basis": "cleaned Friday curve × season transfer factor",
+   "clean_practice_laps": 46,
+   "second_opinion": null
+  },
+  {
+   "compound": "MEDIUM",
+   "prediction_s_per_lap": 0.0276,
+   "band90": [
+    -0.0133,
+    0.088
+   ],
+   "issued": false,
+   "gate": "no positive degradation signal in cleaned practice",
+   "basis": "low-degradation fallback: median race degradation of the 13 withheld cases this season",
+   "clean_practice_laps": 112,
+   "second_opinion": 0.0334
+  }
+ ],
+ "strategy": {
+  "race_laps": 56,
+  "pit_loss_s": 21.0,
+  "offsets_s": {
+   "SOFT": 0.0,
+   "MEDIUM": 0.6,
+   "HARD": 1.8129999999999882
+  },
+  "offsets_source": {
+   "MEDIUM": "practice value +1.20 s implausible, nominal Pirelli-range step",
+   "HARD": "practice (3 drivers)"
+  },
+  "central": {
+   "plan": "S-M",
+   "stints": [
+    22,
+    34
+   ],
+   "stops": 1,
+   "crossover_lap": {
+    "S-M": 14.982289076690481
+   },
+   "margin_over_next_family_s": 8.0
+  },
+  "band_low": {
+   "plan": "S-M",
+   "stints": [
+    50,
+    6
+   ]
+  },
+  "band_high": {
+   "plan": "S-M-M",
+   "stints": [
+    10,
+    22,
+    24
+   ]
+  },
+  "assumptions": [
+   "linear degradation curves",
+   "no safety car",
+   "no traffic",
+   "standard pit loss",
+   "fuel and evolution corrected per lock rules"
+  ],
+  "note": "two compounds in the data only; hard had 4 clean laps on Friday"
+ },
+ "scoring": {
+  "when": "after the race, same estimator on race laps, all drivers",
+  "reference": "race-derived pace-loss reference (not ground truth)",
+  "published": "whatever it says, with the miss"
+ }
+}

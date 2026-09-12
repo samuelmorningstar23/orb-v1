@@ -2,11 +2,11 @@
  "checkpoint": "C2",
  "decision": "GO",
  "proposed": "GO",
- "note": "",
- "at": "2026-09-12T16:36:03",
- "git_commit": "ccae5d9",
+ "note": "committed at b0b924c; Workstream 6 wiring next (C3 hero screens end to end)",
+ "at": "2026-09-12T16:37:49",
+ "git_commit": "b0b924c",
  "git_branch": "main",
- "git_dirty_paths": 202,
+ "git_dirty_paths": 3,
  "decided_by": "lead",
  "all_green": true,
  "decision_overrides_checks": false,
@@ -15,9 +15,9 @@
    "name": "schema_validation",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python validators/validate_lock.py out/lock_v2.json",
    "returncode": 0,
-   "duration_s": 0.1,
+   "duration_s": 0.11,
    "timed_out": false,
    "log": "checkpoints/C2/logs/schema_validation.txt"
   },
@@ -25,9 +25,9 @@
    "name": "pytest",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
    "returncode": 0,
-   "duration_s": 83.69,
+   "duration_s": 83.81,
    "timed_out": false,
    "counts": {
     "passed": 335
@@ -47,49 +47,20 @@
   },
   {
    "name": "ownership_audit",
-   "status": "WARN",
-   "note": "201 changed paths, 20 flagged: proto/cleanup_pass.sh, proto/extract_seasons.py, proto/out/Orb_v1_Mentor_Briefing.pptx, proto/tests/counterfactual/conftest.py, proto/tests/counterfactual/test_cf_cli.py, proto/tests/counterfactual/test_cf_engine.py, proto/tests/counterfactual/test_cf_events.py, proto/tests/counterfactual/test_cf_provider.py, proto/tests/live/conftest.py, proto/tests/live/live_helpers.py, proto/tests/live/test_estimator.py, proto/tests/live/test_feedback.py, proto/tests/live/test_optimizer.py, proto/tests/live/test_replay.py, proto/tests/replay/conftest.py, proto/tests/replay/test_assets.py, proto/tests/replay",
+   "status": "PASS",
+   "note": "2 changed paths, 0 flagged",
    "command": "release/ownership_audit.py",
    "summary": {
-    "total": 201,
-    "flagged": 20,
-    "unowned": 19,
-    "lead_only": 1,
+    "total": 2,
+    "flagged": 0,
+    "unowned": 0,
+    "lead_only": 0,
     "outside_proto": 0,
     "by_owner": {
-     "1": 7,
-     "2": 32,
-     "3": 1,
-     "4": 77,
-     "7": 1,
-     "8": 52,
-     "9": 11,
-     "lead": 1,
-     "unowned": 19
+     "9": 2
     }
    },
-   "flagged": [
-    "proto/cleanup_pass.sh",
-    "proto/extract_seasons.py",
-    "proto/out/Orb_v1_Mentor_Briefing.pptx",
-    "proto/tests/counterfactual/conftest.py",
-    "proto/tests/counterfactual/test_cf_cli.py",
-    "proto/tests/counterfactual/test_cf_engine.py",
-    "proto/tests/counterfactual/test_cf_events.py",
-    "proto/tests/counterfactual/test_cf_provider.py",
-    "proto/tests/live/conftest.py",
-    "proto/tests/live/live_helpers.py",
-    "proto/tests/live/test_estimator.py",
-    "proto/tests/live/test_feedback.py",
-    "proto/tests/live/test_optimizer.py",
-    "proto/tests/live/test_replay.py",
-    "proto/tests/replay/conftest.py",
-    "proto/tests/replay/test_assets.py",
-    "proto/tests/replay/test_geometry.py",
-    "proto/tests/replay/test_player.py",
-    "proto/tests/replay/test_timewarp.py",
-    "proto/tests/replay/test_trajectory.py"
-   ]
+   "flagged": []
   },
   {
    "name": "lock_dashboard_consistency",
@@ -116,27 +87,30 @@
   "theme/base.css": "f0b55603d5ed6e7b"
  },
  "hash_changes_since_last_green": {
-  "changed": [
-   "fixtures/lock_v2_fixture.json"
-  ],
+  "changed": [],
   "added": [],
   "removed": []
  },
  "previous_green": {
-  "checkpoint": "C1",
+  "checkpoint": "C2",
   "git_commit": "ccae5d9",
-  "at": "2026-09-12T15:46:46",
+  "at": "2026-09-12T16:36:03",
   "decision": "GO"
  },
  "active_workstreams": [
   1,
   2,
+  3,
   4,
+  5,
   6,
+  7,
   8,
   9
  ],
- "missing_heartbeats": [],
+ "missing_heartbeats": [
+  5
+ ],
  "stale_heartbeats": [
   6,
   9
@@ -146,7 +120,7 @@
    "workstream": 1,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": 6.0,
+   "age_min": 7.8,
    "stale": false,
    "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
    "tests_passed": 109,
@@ -178,7 +152,7 @@
    "workstream": 2,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": -4.0,
+   "age_min": -2.2,
    "stale": false,
    "task": "0.3 PreRaceCurveProvider (provider A); 0.4 counterfactual core (fixed_context, tyre_only); 0.9 RaceEventSource (replay, recorded-live, live stub)",
    "tests_passed": 53,
@@ -208,7 +182,7 @@
    "workstream": 3,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": -8.9,
+   "age_min": -7.2,
    "stale": false,
    "task": "blind evaluation: sealed-holdout evaluator, hidden-stop-response, strategy regret, scorecards, risk-coverage, tests",
    "tests_passed": 0,
@@ -234,7 +208,7 @@
    "workstream": 4,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": -11.9,
+   "age_min": -10.2,
    "stale": false,
    "task": "0.5 track geometry, trajectory, time warp, browser player, Plotly fallback",
    "tests_passed": 30,
@@ -263,10 +237,30 @@
    "unreadable": false
   },
   {
+   "workstream": 5,
+   "status": "?",
+   "effective": "MISSING (no heartbeat)",
+   "age_min": null,
+   "stale": true,
+   "task": "",
+   "tests_passed": 0,
+   "tests_failed": 0,
+   "eta_minutes": null,
+   "blockers": [],
+   "needs_review_from": [],
+   "completed": [],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": null,
+   "file": null,
+   "missing": true,
+   "unreadable": false
+  },
+  {
    "workstream": 6,
    "status": "GREEN",
-   "effective": "AMBER (stale 56 min)",
-   "age_min": 56.5,
+   "effective": "AMBER (stale 58 min)",
+   "age_min": 58.2,
    "stale": true,
    "task": "0.14 design system + shell; 0.15 hero screens; 0.17 visual release gate",
    "tests_passed": 42,
@@ -297,7 +291,7 @@
    "workstream": 7,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": 1.1,
+   "age_min": 2.8,
    "stale": false,
    "task": "red team: consistency probe, leakage audit, identity checks, claim audit, consolidated report",
    "tests_passed": 0,
@@ -324,7 +318,7 @@
    "workstream": 8,
    "status": "GREEN",
    "effective": "GREEN",
-   "age_min": 6.0,
+   "age_min": 7.8,
    "stale": false,
    "task": "live intelligence: 0.8 replay estimator, 0.10 feedback adapter, 0.12 action engine, prefix evaluation, view-model adapter",
    "tests_passed": 31,
@@ -357,8 +351,8 @@
   {
    "workstream": 9,
    "status": "GREEN",
-   "effective": "AMBER (stale 95 min)",
-   "age_min": 95.7,
+   "effective": "AMBER (stale 97 min)",
+   "age_min": 97.5,
    "stale": true,
    "task": "build_control_system (task 0.16)",
    "tests_passed": 70,
@@ -392,13 +386,11 @@
  ],
  "stop_the_line": null,
  "merge_queue_before": {
-  "state": "FROZEN",
-  "reason": "checkpoint C2 in progress (run_checkpoint.sh)",
-  "since": "2026-09-12T16:34:40",
+  "state": "OPEN",
+  "reason": "C2 GO",
+  "since": "2026-09-12T16:36:24",
   "by": "workstream 9"
  },
  "rehearsal": false,
- "directory": "checkpoints/C2",
- "decided_at": "2026-09-12T16:36:24",
- "decision_note": "Wave two integrated: counterfactual core and events, geometry and player, live estimator and decision engine; schema at 2.1.0. Ownership warnings are new test directories not yet in the map plus lead-owned extractor edits."
+ "directory": "checkpoints/C2"
 }

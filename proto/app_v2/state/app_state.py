@@ -29,7 +29,16 @@ def source_for(event: str, driver: str, n_laps: Optional[int]) -> Optional[ES.Re
 
 
 def default_driver(lockv: LR.LockView, event: str) -> Optional[str]:
+    """Demo default: the driver of Workstream 2's default counterfactual scenario (Monza NOR lap 24 -> new MEDIUM) when one
+    exists for the event, else the driver whose longest stint has the most kept laps."""
     key = f'_drv_default_{event}'
     if key not in st.session_state:
-        st.session_state[key] = VM.suggest_driver(lockv, event)
+        drv = None
+        try:
+            from app_v2.services import counterfactual_repository as CF
+            sc = CF.default_scenario(event)
+            drv = sc.driver if sc and sc.driver in RS.drivers_for(event) else None
+        except Exception:
+            drv = None
+        st.session_state[key] = drv or VM.suggest_driver(lockv, event)
     return st.session_state[key]

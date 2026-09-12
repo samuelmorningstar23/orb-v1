@@ -1,0 +1,1067 @@
+{
+ "at": "2026-09-12T21:06:22",
+ "proto_root": "/Users/samuelmorningstar/Trackshift/proto",
+ "rules_version": "roadmap_v5_s6 + workstream9 brief + lead decisions 12 Sep 2026 14:55 and 15:05 (out/ subtrees, tests/ per workstream, lead-only globs)",
+ "changed": [
+  {
+   "path": "scheduled_tasks.lock",
+   "git_status": "??",
+   "owner": null,
+   "category": "outside_proto",
+   "flagged": true,
+   "reason": "outside proto/; no workstream owns repository-root paths (lead to confirm)"
+  },
+  {
+   "path": ".gitignore",
+   "git_status": "M",
+   "owner": null,
+   "category": "outside_proto",
+   "flagged": true,
+   "reason": "outside proto/; no workstream owns repository-root paths (lead to confirm)"
+  },
+  {
+   "path": "WORKSTREAMS.md",
+   "git_status": "??",
+   "owner": "lead/notes",
+   "category": "coordination",
+   "flagged": false,
+   "reason": "coordination notes (lead decision 12 Sep 20:58)"
+  },
+  {
+   "path": "INSTRUCTIONS.md",
+   "git_status": "??",
+   "owner": "lead/notes",
+   "category": "coordination",
+   "flagged": false,
+   "reason": "coordination notes (lead decision 12 Sep 20:58)"
+  },
+  {
+   "path": "coordination/NOTES_A.md",
+   "git_status": "??",
+   "owner": "lead/notes",
+   "category": "coordination",
+   "flagged": false,
+   "reason": "coordination notes (lead decision 12 Sep 20:58)"
+  },
+  {
+   "path": "coordination/NOTES_B.md",
+   "git_status": "??",
+   "owner": "lead/notes",
+   "category": "coordination",
+   "flagged": false,
+   "reason": "coordination notes (lead decision 12 Sep 20:58)"
+  },
+  {
+   "path": "coordination/PROTOCOL.md",
+   "git_status": "??",
+   "owner": "lead/notes",
+   "category": "coordination",
+   "flagged": false,
+   "reason": "coordination notes (lead decision 12 Sep 20:58)"
+  },
+  {
+   "path": "proto/app_v2/PERF.md",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/decision_board.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/driver_feedback.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/ghost_strategy.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/landing.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/live_predictor.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/pre_race.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/validation.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/counterfactual_repository.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/live_bridge.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/state/app_state.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/ui/charts.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/build_control.py",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: build_control.py)"
+  },
+  {
+   "path": "proto/build_forecast.py",
+   "git_status": "??",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/checkpoints/C2/checkpoint.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/checkpoint.md",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/last_green.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/logs/pytest.txt",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/ownership_audit.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C2/test_report.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C3/logs/pytest.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C3/logs/schema_validation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C3/run_checkpoint.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/last_green.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/deck_src/README.md",
+   "git_status": "??",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/deck_src/build_deck.js",
+   "git_status": "??",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/deck_src/package.json",
+   "git_status": "??",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/evaluation/README.md",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/__init__.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/common.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/forecast.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/hidden_stop.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/holdout/__init__.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/holdout/evaluator.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/__init__.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/blocking_issues.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/claim_audit.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/claim_evidence_map.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/consistency_probe.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/consistency_probe_report.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/identity_checks.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/identity_checks_report.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/leakage_audit.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/leakage_audit_report.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/regret.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/risk_coverage.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/scorecards.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/out/Orb_v1_ChallengeDay.pdf",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/ghost_replay.json",
+   "git_status": "M",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/lap_deltas.json",
+   "git_status": "M",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/laps.csv",
+   "git_status": "M",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json",
+   "git_status": "M",
+   "owner": 2,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 2 (counterfactual core and events: out/counterfactual/)"
+  },
+  {
+   "path": "proto/out/excluded_Madrid.csv",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/forecast_Madrid_2026.json",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/out/forecast_Madrid_2026.pdf",
+   "git_status": "??",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/forecast_Madrid_2026.sha256",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/out/lock.json",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/lock_v2.json",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: out/lock_v2.json)"
+  },
+  {
+   "path": "proto/out/lock_v2_sidecars/validation_rows.json",
+   "git_status": "M",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: out/lock_v2_sidecars/)"
+  },
+  {
+   "path": "proto/out/results.csv",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/validation/SCORECARDS.md",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/ghost_scorecard.json",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/hidden_stop_2026.json",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/holdout_aggregate.json",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/live_scorecard.json",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/regret_2026.json",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/risk_coverage.csv",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/risk_coverage.json",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/risk_coverage.png",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/progress/SUMMARY.md",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: progress/)"
+  },
+  {
+   "path": "proto/progress/workstream_3.json",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 3 (blind evaluation)"
+  },
+  {
+   "path": "proto/progress/workstream_6.json",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 6 (dashboard)"
+  },
+  {
+   "path": "proto/progress/workstream_7.json",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 7 (red team)"
+  },
+  {
+   "path": "proto/progress/workstream_9.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 9 (build control)"
+  },
+  {
+   "path": "proto/refresh.sh",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/release/README.md",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/merge_queue.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/ownership_audit.py",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/tests/evaluation/conftest.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/evaluation/synth_eval.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/evaluation/test_eval_bootstrap.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/evaluation/test_eval_evaluator.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/evaluation/test_eval_hidden_stop.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/evaluation/test_eval_leakage.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/evaluation/test_eval_regret.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/release/test_build_control.py",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: tests/release/)"
+  },
+  {
+   "path": "proto/tests/screenshots/capture.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/decision_board_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/decision_board_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/decision_change_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/decision_change_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/feedback_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/feedback_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/generalisation_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/generalisation_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/ghost_audit_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/ghost_audit_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/ghost_audit_fixed_context_1440x900.png",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/ghost_audit_fixed_context_1920x1080.png",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/live_after_feedback_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/live_after_feedback_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/live_stable_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/live_stable_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/missing_position_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/missing_position_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/offline_mode_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/offline_mode_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/out_of_support_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/out_of_support_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/prerace_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/prerace_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/presentation_ghost_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/presentation_ghost_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/presentation_live_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/presentation_live_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/report.json",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/scenario_explorer_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/scenario_explorer_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/validation_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/validation_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/ui/test_pages.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/ui/)"
+  }
+ ],
+ "repo_root": "/Users/samuelmorningstar/Trackshift",
+ "git_commit": "b0b924c",
+ "summary": {
+  "total": 128,
+  "flagged": 14,
+  "unowned": 2,
+  "lead_only": 10,
+  "outside_proto": 2,
+  "by_owner": {
+   "1": 2,
+   "2": 4,
+   "3": 27,
+   "6": 48,
+   "7": 11,
+   "9": 17,
+   "lead": 10,
+   "lead/notes": 5,
+   "unowned": 4
+  }
+ },
+ "flagged_paths": [
+  "scheduled_tasks.lock",
+  ".gitignore",
+  "proto/build_forecast.py",
+  "proto/deck_src/README.md",
+  "proto/deck_src/build_deck.js",
+  "proto/deck_src/package.json",
+  "proto/out/Orb_v1_ChallengeDay.pdf",
+  "proto/out/excluded_Madrid.csv",
+  "proto/out/forecast_Madrid_2026.json",
+  "proto/out/forecast_Madrid_2026.pdf",
+  "proto/out/forecast_Madrid_2026.sha256",
+  "proto/out/lock.json",
+  "proto/out/results.csv",
+  "proto/refresh.sh"
+ ]
+}

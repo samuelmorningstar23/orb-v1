@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T14:31:34",
+ "generated_at": "2026-09-12T21:03:51",
  "rules": {
   "min_practice_laps": 30,
   "min_slope": 0.02,
@@ -506,47 +506,51 @@
    "event": "Madrid",
    "sessions": [
     "FP1",
-    "FP2"
+    "FP2",
+    "FP3"
    ],
    "format": "conventional",
    "completed": false,
-   "practice_laps_clean": 157,
-   "practice_runs": 39,
-   "practice_laps_total": 734,
+   "practice_laps_clean": 162,
+   "practice_runs": 41,
+   "practice_laps_total": 873,
    "evolution_s_per_min": {
     "FP1": -0.0105,
-    "FP2": -0.0127
+    "FP2": -0.0127,
+    "FP3": -0.0066
    },
-   "beta_practice_s_per_MJ": -0.5265489069904642,
-   "beta_practice_se": 0.03159636087251637,
+   "beta_practice_s_per_MJ": -0.5290079631557542,
+   "beta_practice_se": 0.03156866564699662,
    "track_temp": {
     "FP1": 49.849999999999994,
-    "FP2": 51.0
+    "FP2": 51.0,
+    "FP3": 47.0
    },
    "rain": {
     "FP1": false,
-    "FP2": false
+    "FP2": false,
+    "FP3": false
    },
    "excluded_by_reason": {
-    "short run (<5 clean laps)": 217,
-    "pit in/out lap": 140,
-    "cool-down / aborted (>105% of run best)": 100,
-    "lap deleted (track limits)": 55,
-    "traffic (>30% of lap within 60 m of a car)": 35,
-    "no gap-to-car-ahead data": 19,
-    "yellow / SC / VSC / red flag": 11
+    "short run (<5 clean laps)": 281,
+    "pit in/out lap": 173,
+    "cool-down / aborted (>105% of run best)": 105,
+    "lap deleted (track limits)": 65,
+    "traffic (>30% of lap within 60 m of a car)": 36,
+    "yellow / SC / VSC / red flag": 26,
+    "no gap-to-car-ahead data": 25
    },
    "race": null,
    "race_unusable": false,
    "tyres": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
    "offsets": {
     "SOFT": 0.0,
-    "MEDIUM": 0.6949999999999932,
-    "HARD": 1.2
+    "MEDIUM": 0.6,
+    "HARD": 1.8129999999999882
    },
    "offsets_source": {
-    "MEDIUM": "practice (22 drivers)",
-    "HARD": "nominal Pirelli-range step"
+    "MEDIUM": "practice value +1.20 s implausible, nominal Pirelli-range step",
+    "HARD": "practice (3 drivers)"
    }
   },
   "Miami": {
@@ -2130,83 +2134,87 @@
     "event": "Madrid",
     "sessions": [
      "FP1",
-     "FP2"
+     "FP2",
+     "FP3"
     ],
     "format": "conventional",
     "completed": false,
-    "practice_laps_clean": 157,
-    "practice_runs": 39,
-    "practice_laps_total": 734,
+    "practice_laps_clean": 162,
+    "practice_runs": 41,
+    "practice_laps_total": 873,
     "evolution_s_per_min": {
      "FP1": -0.0105,
-     "FP2": -0.0127
+     "FP2": -0.0127,
+     "FP3": -0.0066
     },
-    "beta_practice_s_per_MJ": -0.5265489069904642,
-    "beta_practice_se": 0.03159636087251637,
+    "beta_practice_s_per_MJ": -0.5290079631557542,
+    "beta_practice_se": 0.03156866564699662,
     "track_temp": {
      "FP1": 49.849999999999994,
-     "FP2": 51.0
+     "FP2": 51.0,
+     "FP3": 47.0
     },
     "rain": {
      "FP1": false,
-     "FP2": false
+     "FP2": false,
+     "FP3": false
     },
     "excluded_by_reason": {
-     "short run (<5 clean laps)": 217,
-     "pit in/out lap": 140,
-     "cool-down / aborted (>105% of run best)": 100,
-     "lap deleted (track limits)": 55,
-     "traffic (>30% of lap within 60 m of a car)": 35,
-     "no gap-to-car-ahead data": 19,
-     "yellow / SC / VSC / red flag": 11
+     "short run (<5 clean laps)": 281,
+     "pit in/out lap": 173,
+     "cool-down / aborted (>105% of run best)": 105,
+     "lap deleted (track limits)": 65,
+     "traffic (>30% of lap within 60 m of a car)": 36,
+     "yellow / SC / VSC / red flag": 26,
+     "no gap-to-car-ahead data": 25
     },
     "race": null,
     "race_unusable": false,
     "tyres": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
     "offsets": {
      "SOFT": 0.0,
-     "MEDIUM": 0.6949999999999932,
-     "HARD": 1.2
+     "MEDIUM": 0.6,
+     "HARD": 1.8129999999999882
     },
     "offsets_source": {
-     "MEDIUM": "practice (22 drivers)",
-     "HARD": "nominal Pirelli-range step"
+     "MEDIUM": "practice value +1.20 s implausible, nominal Pirelli-range step",
+     "HARD": "practice (3 drivers)"
     }
    },
    "compounds": [
     {
      "compound": "SOFT",
-     "n_prac": 41,
+     "n_prac": 46,
      "second_opinion": null,
-     "naive": 0.4794433604638165,
-     "clean": 0.10093563048728363,
-     "clean_se": 0.08678463181303231,
+     "naive": 0.5121386718750017,
+     "clean": 0.06990807511818707,
+     "clean_se": 0.08141831184013738,
      "gate": "ok",
      "issued": true,
      "factor": 0.9673403796626557,
      "factor_applied": true,
      "factor_from_n_weekends": 7,
-     "prediction": 0.09763911111705847,
+     "prediction": 0.06762490392631254,
      "band90": [
-      -0.09555284627831415,
-      0.3000899632831943
+      -0.11362148974220213,
+      0.25534560484232366
      ],
-     "energy_trend": 0.008356327501629702,
-     "push_adj": 0.105335645599527,
+     "energy_trend": 0.02085109498537282,
+     "push_adj": 0.08093847040609642,
      "basis": "cleaned Friday curve \u00d7 season transfer factor"
     },
     {
      "compound": "MEDIUM",
      "n_prac": 112,
      "second_opinion": {
-      "prediction": 0.032655689056113775,
+      "prediction": 0.03336115262993496,
       "factor": 0.5957916857091475,
       "factor_applied": true,
       "basis": "push-adjusted Friday curve (degradation at constant tyre energy) \u00d7 its own season factor"
      },
      "naive": 0.15318851442158327,
-     "clean": -0.19873171654803912,
-     "clean_se": 0.0441554421984582,
+     "clean": -0.19873171654805333,
+     "clean_se": 0.04396908773151788,
      "gate": "no positive degradation signal in cleaned practice",
      "issued": false,
      "factor": 0.45182685386752625,
@@ -2218,7 +2226,7 @@
       0.08796834182264004
      ],
      "energy_trend": 0.4815170921473892,
-     "push_adj": 0.05481058201952749,
+     "push_adj": 0.05599465959352301,
      "basis": "low-degradation fallback: median race degradation of the 13 withheld cases this season"
     }
    ]
@@ -4330,12 +4338,12 @@
    "n_laps": 56,
    "offsets": {
     "SOFT": 0.0,
-    "MEDIUM": 0.6949999999999932,
-    "HARD": 1.2
+    "MEDIUM": 0.6,
+    "HARD": 1.8129999999999882
    },
    "offsets_source": {
-    "MEDIUM": "practice (22 drivers)",
-    "HARD": "nominal Pirelli-range step"
+    "MEDIUM": "practice value +1.20 s implausible, nominal Pirelli-range step",
+    "HARD": "practice (3 drivers)"
    },
    "pit_loss": 21.0,
    "views": {
@@ -4348,7 +4356,7 @@
      ],
      "stops": 2,
      "crossover": {
-      "S-M": 2.1302365571913264
+      "S-M": 1.671541264271107
      },
      "alternatives": [
       {
@@ -4359,7 +4367,7 @@
         24,
         24
        ],
-       "time": 184.53306962964703,
+       "time": 181.15010084045002,
        "delta_to_best": 0.0
       },
       {
@@ -4370,7 +4378,7 @@
         8,
         24
        ],
-       "time": 184.53306962964703,
+       "time": 181.15010084045002,
        "delta_to_best": 0.0
       },
       {
@@ -4381,74 +4389,74 @@
         24,
         8
        ],
-       "time": 184.53306962964703,
+       "time": 181.15010084045002,
        "delta_to_best": 0.0
       },
       {
        "plan": "S-S-M",
        "stops": 2,
        "stints": [
+        10,
         12,
-        12,
-        32
+        34
        ],
-       "time": 219.9166998469511,
-       "delta_to_best": 35.38363021730407
+       "time": 221.66160944021726,
+       "delta_to_best": 40.51150859976724
       }
      ]
     },
     "Orb v1": {
      "plan": "S-M",
      "stints": [
-      18,
-      38
+      22,
+      34
      ],
      "stops": 1,
      "crossover": {
-      "S-M": 9.919857237831318
+      "S-M": 14.982289076690481
      },
      "alternatives": [
       {
        "plan": "S-M",
        "stops": 1,
        "stints": [
-        18,
-        38
+        22,
+        34
        ],
-       "time": 84.54130365541633,
+       "time": 74.9177839786037,
        "delta_to_best": 0.0
       },
       {
        "plan": "M-S",
        "stops": 1,
        "stints": [
-        38,
-        18
+        34,
+        22
        ],
-       "time": 84.54130365541633,
+       "time": 74.9177839786037,
        "delta_to_best": 0.0
       },
       {
        "plan": "S-S-M",
        "stops": 2,
        "stints": [
-        14,
-        14,
-        28
+        18,
+        18,
+        20
        ],
-       "time": 93.16072663510332,
-       "delta_to_best": 8.619422979686988
+       "time": 82.91901712582711,
+       "delta_to_best": 8.001233147223417
       },
       {
        "plan": "S-M-S",
        "stops": 2,
        "stints": [
-        14,
-        28,
-        14
+        18,
+        20,
+        18
        ],
-       "time": 93.16072663510332,
-       "delta_to_best": 8.619422979686988
+       "time": 82.91901712582711,
+       "delta_to_best": 8.001233147223417
       }
      ]
     },
@@ -4468,7 +4476,7 @@
         50,
         6
        ],
-       "time": -96.93867015878689,
+       "time": -120.546190575244,
        "delta_to_best": 0.0
       },
       {
@@ -4478,7 +4486,7 @@
         6,
         50
        ],
-       "time": -96.93867015878689,
+       "time": -120.546190575244,
        "delta_to_best": 0.0
       },
       {
@@ -4489,8 +4497,8 @@
         44,
         6
        ],
-       "time": -50.71271874131196,
-       "delta_to_best": 46.22595141747493
+       "time": -69.55011728330265,
+       "delta_to_best": 50.99607329194134
       },
       {
        "plan": "S-M-S",
@@ -4500,54 +4508,54 @@
         6,
         44
        ],
-       "time": -50.71271874131196,
-       "delta_to_best": 46.22595141747493
+       "time": -69.55011728330265,
+       "delta_to_best": 50.99607329194134
       }
      ]
     },
     "Orb v1, band high": {
      "plan": "S-M-M",
      "stints": [
-      8,
-      24,
+      10,
+      22,
       24
      ],
      "stops": 2,
      "crossover": {
-      "S-M": 3.2764222487769077
+      "S-M": 3.584716282100035
      },
      "alternatives": [
       {
        "plan": "S-M-M",
        "stops": 2,
        "stints": [
-        8,
-        24,
+        10,
+        22,
         24
        ],
-       "time": 138.9442437717787,
+       "time": 132.29050129424775,
        "delta_to_best": 0.0
       },
       {
        "plan": "M-S-M",
        "stops": 2,
        "stints": [
-        24,
-        8,
+        22,
+        10,
         24
        ],
-       "time": 138.9442437717787,
+       "time": 132.29050129424775,
        "delta_to_best": 0.0
       },
       {
        "plan": "M-M-S",
        "stops": 2,
        "stints": [
+        22,
         24,
-        24,
-        8
+        10
        ],
-       "time": 138.9442437717787,
+       "time": 132.29050129424775,
        "delta_to_best": 0.0
       },
       {
@@ -4558,8 +4566,8 @@
         12,
         32
        ],
-       "time": 157.50131875453204,
-       "delta_to_best": 18.557074982753335
+       "time": 147.48119883775644,
+       "delta_to_best": 15.19069754350869
       }
      ]
     }

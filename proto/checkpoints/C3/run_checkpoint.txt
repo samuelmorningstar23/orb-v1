@@ -1,0 +1,23 @@
+== Orb v1 checkpoint C3 (AUTO) started 2026-09-12T21:04:47 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
+git: main @ b0b924c, 126 uncommitted paths
+merge queue FROZEN (checkpoint C3 in progress (run_checkpoint.sh))
+== checkpoint C3 (AUTO) at 2026-09-12T21:04:48 == merge queue FROZEN
+[1/5] schema_validation ... PASS (0.11s)
+[2/5] pytest ... PASS (94.54s)
+[3/5] ownership_audit ... WARN - 128 changed paths, 14 flagged: scheduled_tasks.lock, .gitignore, proto/build_forecast.py, proto/deck_src/README.md, proto/deck_src/build_deck.js, proto/deck_src/package.json, proto/out/Orb_v1_ChallengeDay.pdf, proto/out/excluded_Madrid.csv, proto/out/forecast_Madrid_2026.json, proto/out/forecast_Madrid_2026.pdf, proto/out/forecast_Madrid_2026.sha256, proto/out/lock.json, proto/out/results.csv, proto/refresh.sh
+[4/5] lock_dashboard_consistency ... PASS (8.91s)
+[5/5] sealed_holdout_integrity ... PASS
+checks: {'PASS': 4, 'WARN': 1}  green=True  hashes changed since last green: ['out/lock.json', 'out/lock_v2.json']
+heartbeats: missing [5], stale [1, 2, 3, 4, 6, 7, 8, 9]
+C3 recorded: PENDING at commit b0b924c; merge queue FROZEN (C3 pending lead decision (checks green; proposed GO))
+next: python build_control.py decide C3 GO|GO_WITH_REASSIGNMENT|ROLLBACK|CUT_FROM_DEMO|HOLD 'note'
+== artifacts in checkpoints/C3 ==
+   artifact_hashes.json
+   checkpoint.json
+   checkpoint.md
+   logs
+   ownership_audit.json
+   run_checkpoint.txt
+   test_report.json
+== merge queue: FROZEN - C3 pending lead decision (checks green; proposed GO) ==
+== checkpoint C3 finished 2026-09-12T21:06:31 exit 3 ==

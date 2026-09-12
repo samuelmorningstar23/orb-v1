@@ -20,23 +20,24 @@ import subprocess
 import sys
 from pathlib import Path
 
-RULES_VERSION = 'roadmap_v5_s6 + workstream9 brief + lead decisions 12 Sep 2026 14:55 (out/ subtrees, conftest, race_twin, sealed manifest lead-only)'
+RULES_VERSION = 'roadmap_v5_s6 + workstream9 brief + lead decisions 12 Sep 2026 14:55 and 15:05 (out/ subtrees, tests/ per workstream, lead-only globs)'
 # Directory rules end with '/'; file rules do not. Longest prefix wins (evaluation/red_team/ beats evaluation/).
 RULES = (
     ('schemas/', 1), ('fixtures/', 1), ('validators/', 1), ('shared/', 1), ('tests/contract/', 1),
     ('tests/conftest.py', 1), ('out/lock_v2.json', 1), ('out/lock_v2_sidecars/', 1),          # lead decision: adapter output
-    ('counterfactual/', 2), ('events/', 2), ('out/counterfactual/', 2),
-    ('evaluation/', 3), ('out/validation/', 3),
-    ('replay/', 4), ('dashboard/components/', 4), ('out/maps/', 4), ('app_v2/components/race_twin/', 4),
+    ('counterfactual/', 2), ('events/', 2), ('out/counterfactual/', 2), ('tests/counterfactual/', 2),
+    ('evaluation/', 3), ('out/validation/', 3), ('tests/evaluation/', 3),
+    ('replay/', 4), ('dashboard/components/', 4), ('out/maps/', 4), ('app_v2/components/race_twin/', 4), ('tests/replay/', 4),
     ('interaction/', 5),
     ('app_v2/', 6), ('ui/', 6), ('theme/', 6), ('views/', 6), ('tests/ui/', 6), ('tests/screenshots/', 6),
-    ('evaluation/red_team/', 7),
-    ('live/', 8), ('decision/', 8), ('out/live/', 8),
+    ('evaluation/red_team/', 7), ('tests/red_team/', 7),
+    ('live/', 8), ('decision/', 8), ('out/live/', 8), ('tests/live/', 8),
     ('progress/', 9), ('checkpoints/', 9), ('release/', 9), ('tests/release/', 9), ('build_control.py', 9),
 )
-LEAD_ONLY = {'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'refresh.sh'}
-LEAD_ONLY_GLOBS = ('extract_*.py',)   # top level of proto/ only
-LEAD_ONLY_PATTERNS = ('evaluation/holdout/sealed_holdout_manifest.*',)   # lead-only after sealing (full relative path)
+LEAD_ONLY = {'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'out/results.csv', 'out/validation.csv', 'refresh.sh', 'cleanup_pass.sh'}
+# Globs match segment-wise ('*' never crosses '/'), so 'out/*.pdf' means direct children of out/ only.
+LEAD_ONLY_GLOBS = ('extract_*.py', 'build_*.py', 'refresh*.log', 'out/*.pptx', 'out/*.pdf', 'out/excluded_*.csv', 'deck_src/*')   # lead decision 12 Sep 20:58: deck source is lead-only
+SEALED_PATTERNS = ('evaluation/holdout/sealed_holdout_manifest.*',)   # lead-only after sealing
 WORKSTREAM_NAMES = {1: 'contract and fixtures', 2: 'counterfactual core and events', 3: 'blind evaluation', 4: 'geometry and animation',
                5: 'frozen field', 6: 'dashboard', 7: 'red team', 8: 'live intelligence', 9: 'build control'}
 
@@ -46,10 +47,15 @@ def classify(rel: str) -> dict:
     rel = rel.replace(os.sep, '/')
     while rel.startswith('./'):
         rel = rel[2:]
-    if rel in LEAD_ONLY or ('/' not in rel and any(fnmatch.fnmatch(rel, g) for g in LEAD_ONLY_GLOBS)):
+    if rel in LEAD_ONLY:
         return dict(owner='lead', category='lead_only', flagged=True, reason='lead-only file; only the lead edits it')
-    if any(fnmatch.fnmatch(rel, g) for g in LEAD_ONLY_PATTERNS):
+    for prefix, owner in RULES:                        # exact file rules beat lead-only globs (build_control.py vs build_*.py)
+        if not prefix.endswith('/') and rel == prefix:
+            return dict(owner=owner, category='workstream', flagged=False, reason=f'owned by workstream {owner} ({WORKSTREAM_NAMES[owner]}: {prefix})')
+    if any(_glob(rel, g) for g in SEALED_PATTERNS):
         return dict(owner='lead', category='lead_only', flagged=True, reason='sealed artifact; lead-only after sealing (stop-the-line condition 1 if changed)')
+    if any(_glob(rel, g) for g in LEAD_ONLY_GLOBS):
+        return dict(owner='lead', category='lead_only', flagged=True, reason='lead-only file; only the lead edits it')
     m = re.fullmatch(r'progress/workstream_(\d+)\.json', rel)     # every workstream writes its own heartbeat into progress/
     if m:
         n = int(m.group(1))
@@ -64,6 +70,12 @@ def classify(rel: str) -> dict:
     if best:
         return dict(owner=best[1], category='workstream', flagged=False, reason=f'owned by workstream {best[1]} ({WORKSTREAM_NAMES[best[1]]}: {best[0]})')
     return dict(owner=None, category='unowned', flagged=True, reason='no workstream owns this path (lead to confirm)')
+
+
+def _glob(rel: str, pattern: str) -> bool:
+    """Segment-wise glob: same number of '/' parts and every part fnmatch-es, so '*' never crosses a directory."""
+    a, b = rel.split('/'), pattern.split('/')
+    return len(a) == len(b) and all(fnmatch.fnmatch(x, y) for x, y in zip(a, b))
 
 
 def _git(args, cwd):
@@ -118,7 +130,9 @@ def audit(proto_root, repo_root=None, paths=None) -> dict:
             rel, inside = path[len(rel_proto) + 1:], True
         else:
             rel, inside = path, False
-        c = classify(rel) if inside else dict(owner=None, category='outside_proto', flagged=True, reason='outside proto/; no workstream owns repository-root paths (lead to confirm)')
+        c = classify(rel) if inside else (dict(owner='lead/notes', category='coordination', flagged=False, reason='coordination notes (lead decision 12 Sep 20:58)')
+                                          if rel.startswith('coordination/') or rel in ('WORKSTREAMS.md', 'INSTRUCTIONS.md')
+                                          else dict(owner=None, category='outside_proto', flagged=True, reason='outside proto/; no workstream owns repository-root paths (lead to confirm)'))
         rec['changed'].append(dict(path=path, git_status=code, **c))
     rec['summary'] = _summary(rec['changed'])
     rec['flagged_paths'] = [c['path'] for c in rec['changed'] if c['flagged']]

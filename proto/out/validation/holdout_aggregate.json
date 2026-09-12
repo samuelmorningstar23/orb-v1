@@ -1,0 +1,1006 @@
+{
+ "generated_at": "2026-09-12T16:55:42",
+ "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
+ "manifest": {
+  "path": "evaluation/holdout/sealed_holdout_manifest.json",
+  "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd",
+  "holdout_version": "gold-v1.1 (v0 superseded before any evaluation: added no-circuit-twice constraint)",
+  "holdout_count": 6,
+  "race_ids": [
+   "2023_Canada",
+   "2024_Bahrain",
+   "2024_Monza",
+   "2024_SaudiArabia",
+   "2024_Zandvoort",
+   "2025_Qatar"
+  ],
+  "selected_at": "2026-09-12T14:29:44"
+ },
+ "freeze": null,
+ "reveal": {
+  "per_race_written": false,
+  "reason": "no freeze.json: model, feature list, gate threshold and provider are not frozen"
+ },
+ "post_holdout_tuning": null,
+ "n_weekends": 6,
+ "data_cutoff": "seasons 2023 to 2025 complete; each sealed weekend is forecast from its own practice files and factors from the non-sealed weekends of its season",
+ "units": {
+  "degradation": "s/lap per lap of tyre age",
+  "hidden_stop": "s (next lap) and s over h laps (cumulative)",
+  "regret": "s over the race",
+  "coverage": "share inside the 90 % band"
+ },
+ "method": {
+  "forecast": "model_v2 stint fixed effects + per-compound slope on tyre age on cleaned practice; transfer factor, fallback floor and conformal widening from the season pool (pipeline.py rules); strict leave-out",
+  "reference": "race-derived pace-loss reference: model_v2.fit on the race, all drivers (post-race, scoring only)",
+  "hidden_stop": "evaluation/hidden_stop.py",
+  "regret": "held-out strategy replay under a post-race reference model",
+  "cells": "cells with fewer than 3 weekends are suppressed; no per-weekend value is written to the aggregate file"
+ },
+ "leakage_check": {
+  "pool_events_by_season": {
+   "2023": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "2024": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "2025": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ]
+  },
+  "spy_records": 2184,
+  "sealed_never_in_pool": true,
+  "leaks": [],
+  "sources_seen": [
+   "2023_AbuDhabi",
+   "2023_Australia",
+   "2023_Bahrain",
+   "2023_Barcelona",
+   "2023_Brazil",
+   "2023_Britain",
+   "2023_Hungary",
+   "2023_Japan",
+   "2023_Mexico",
+   "2023_Miami",
+   "2023_Monaco",
+   "2023_Monza",
+   "2023_Qatar",
+   "2023_SaudiArabia",
+   "2023_Singapore",
+   "2023_USA",
+   "2023_Zandvoort",
+   "2024_AbuDhabi",
+   "2024_Australia",
+   "2024_Austria",
+   "2024_Azerbaijan",
+   "2024_Barcelona",
+   "2024_Belgium",
+   "2024_Britain",
+   "2024_China",
+   "2024_Hungary",
+   "2024_Imola",
+   "2024_Japan",
+   "2024_LasVegas",
+   "2024_Mexico",
+   "2024_Miami",
+   "2024_Monaco",
+   "2024_Qatar",
+   "2024_Singapore",
+   "2024_USA"
+  ]
+ },
+ "aggregate": {
+  "weekends": {
+   "sealed": 6,
+   "forecast": 5,
+   "weekend_level_abstention": 1,
+   "abstention_rule": "no forecast when the weekend has fewer than 40 clean practice laps (pipeline.py); such a weekend cannot be scored on any test"
+  },
+  "forecast": {
+   "n_weekends": 5,
+   "n_compound_weekends": 9,
+   "n_issued": 5,
+   "n_withheld": 4,
+   "n_no_forecast": 0,
+   "mae": {
+    "orb_v1": 0.03721773448575146,
+    "naive": 0.17125770513061203,
+    "clean_issued": 0.05666991909329866,
+    "orb_v1_issued": 0.04573123699624918,
+    "orb_v1_fallback": 0.026575856347629295,
+    "naive_issued": 0.16485605082884888
+   },
+   "band_coverage90": {
+    "all": 1.0,
+    "issued": 1.0,
+    "fallback": 1.0,
+    "nominal": 0.9
+   },
+   "abstention": {
+    "share_issued": 0.5555555555555556,
+    "share_withheld": 0.4444444444444444
+   },
+   "by_compound": {
+    "SOFT": {
+     "n": 3,
+     "mae_orb_v1": 0.05833759011694434,
+     "mae_naive": 0.19732579179981302
+    },
+    "MEDIUM": {
+     "n": 4,
+     "mae_orb_v1": 0.021587315542019724,
+     "mae_naive": 0.15370369949448753
+    },
+    "HARD": {
+     "n": 2,
+     "mae_orb_v1": 0.0367987889264256,
+     "mae_naive": 0.1672635863990595
+    }
+   },
+   "wins_orb_over_naive": 9,
+   "calibration": {
+    "slope": 0.4837791690015671,
+    "r": 0.7183273427669115,
+    "n": 9
+   },
+   "bootstrap": {
+    "mae_orb_v1": {
+     "estimate": 0.03721773448575146,
+     "ci90": [
+      0.025150558404573246,
+      0.04567799592750368
+     ],
+     "n_weekends": 5,
+     "n_rows": 9,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "mae_naive": {
+     "estimate": 0.17125770513061203,
+     "ci90": [
+      0.09520985538981902,
+      0.2251534411138591
+     ],
+     "n_weekends": 5,
+     "n_rows": 9,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "band_coverage90": {
+     "estimate": 1.0,
+     "ci90": [
+      1.0,
+      1.0
+     ],
+     "n_weekends": 5,
+     "n_rows": 9,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive": {
+     "p_bootstrap": 1.0,
+     "share_rows": 1.0,
+     "n_rows": 9,
+     "n_weekends": 5
+    }
+   }
+  },
+  "hidden_stop": {
+   "pooled": {
+    "n_cases": 31,
+    "n_weekends": 4,
+    "next1_mae": 1.254240220524435,
+    "next1_mae_naive": 1.311883444917832,
+    "next1_n": 31,
+    "next1_coverage90": 0.9032258064516129,
+    "cum3_mae": 4.244914689332366,
+    "cum3_mae_naive": 3.809169135802471,
+    "cum3_n": 27,
+    "cum3_coverage90": 0.8518518518518519,
+    "cum5_mae": 7.626423232603332,
+    "cum5_mae_naive": 6.734775362318834,
+    "cum5_n": 23,
+    "cum5_coverage90": 0.8695652173913043
+   },
+   "bootstrap": {
+    "next1_mae": {
+     "estimate": 1.254240220524435,
+     "ci90": [
+      0.29955767949846573,
+      1.6054144104606438
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "next1_mae_naive": {
+     "estimate": 1.311883444917832,
+     "ci90": [
+      0.5489756936736917,
+      1.6211266723842188
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "next1_coverage90": {
+     "estimate": 0.9032258064516129,
+     "ci90": [
+      0.8636363636363636,
+      1.0
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive_next1": {
+     "p_bootstrap": 0.9445,
+     "share_rows": 0.5483870967741935,
+     "n_rows": 31,
+     "n_weekends": 4
+    },
+    "cum3_mae": {
+     "estimate": 4.244914689332366,
+     "ci90": [
+      0.6536460771698955,
+      5.270773205964233
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 1991,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum3_mae_naive": {
+     "estimate": 3.809169135802471,
+     "ci90": [
+      1.2651333333333217,
+      4.682248333333337
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 1991,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum3_coverage90": {
+     "estimate": 0.8518518518518519,
+     "ci90": [
+      0.8,
+      1.0
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 1991,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive_cum3": {
+     "p_bootstrap": 0.1515,
+     "share_rows": 0.2222222222222222,
+     "n_rows": 27,
+     "n_weekends": 3
+    },
+    "cum5_mae": {
+     "estimate": 7.626423232603332,
+     "ci90": [
+      1.0265127069183535,
+      8.980156905130483
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 1991,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum5_mae_naive": {
+     "estimate": 6.734775362318834,
+     "ci90": [
+      2.446000000000012,
+      7.905990740740742
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 1991,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "cum5_coverage90": {
+     "estimate": 0.8695652173913043,
+     "ci90": [
+      0.8333333333333334,
+      1.0
+     ],
+     "n_weekends": 4,
+     "n_rows": 31,
+     "n_boot": 1991,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "p_orb_beats_naive_cum5": {
+     "p_bootstrap": 0.1515,
+     "share_rows": 0.21739130434782608,
+     "n_rows": 23,
+     "n_weekends": 3
+    }
+   },
+   "by": {
+    "compound_new": {
+     "HARD": {
+      "suppressed": "fewer than 3 weekends in the cell",
+      "n_cases": 19
+     },
+     "MEDIUM": {
+      "suppressed": "fewer than 3 weekends in the cell",
+      "n_cases": 3
+     },
+     "SOFT": {
+      "n_cases": 9,
+      "n_weekends": 4,
+      "next1_mae": 0.7909041592729535,
+      "next1_mae_naive": 0.507431865828088,
+      "next1_n": 9,
+      "next1_coverage90": 1.0,
+      "cum3_mae": 2.801843432411559,
+      "cum3_mae_naive": 0.7173142857142807,
+      "cum3_n": 7,
+      "cum3_coverage90": 1.0,
+      "cum5_mae": 5.280169366744398,
+      "cum5_mae_naive": 1.3271388888888656,
+      "cum5_n": 6,
+      "cum5_coverage90": 1.0
+     }
+    },
+    "circuit_class": {
+     "permanent": {
+      "suppressed": "fewer than 3 weekends in the cell",
+      "n_cases": 22
+     },
+     "street": {
+      "suppressed": "fewer than 3 weekends in the cell",
+      "n_cases": 9
+     }
+    },
+    "set_status": {
+     "new": {
+      "n_cases": 28,
+      "n_weekends": 4,
+      "next1_mae": 1.3210694542465014,
+      "next1_mae_naive": 1.420351909254267,
+      "next1_n": 28,
+      "next1_coverage90": 0.8928571428571429,
+      "cum3_mae": 4.51006652745866,
+      "cum3_mae_naive": 4.205644444444448,
+      "cum3_n": 24,
+      "cum3_coverage90": 0.8333333333333334,
+      "cum5_mae": 7.924241218962912,
+      "cum5_mae_naive": 7.3034047619047575,
+      "cum5_n": 21,
+      "cum5_coverage90": 0.8571428571428571
+     },
+     "used": {
+      "suppressed": "fewer than 3 weekends in the cell",
+      "n_cases": 3
+     }
+    },
+    "stop_regime": {
+     "green": {
+      "n_cases": 29,
+      "n_weekends": 4,
+      "next1_mae": 1.3273612349750148,
+      "next1_mae_naive": 1.391427130774235,
+      "next1_n": 29,
+      "next1_coverage90": 0.896551724137931,
+      "cum3_mae": 4.40583218951704,
+      "cum3_mae_naive": 3.947637179487179,
+      "cum3_n": 26,
+      "cum3_coverage90": 0.8461538461538461,
+      "cum5_mae": 7.626423232603332,
+      "cum5_mae_naive": 6.734775362318834,
+      "cum5_n": 23,
+      "cum5_coverage90": 0.8695652173913043
+     },
+     "sc_vsc": {
+      "suppressed": "fewer than 3 weekends in the cell",
+      "n_cases": 2
+     }
+    },
+    "driver_support": {
+     "seen": {
+      "n_cases": 31,
+      "n_weekends": 4,
+      "next1_mae": 1.254240220524435,
+      "next1_mae_naive": 1.311883444917832,
+      "next1_n": 31,
+      "next1_coverage90": 0.9032258064516129,
+      "cum3_mae": 4.244914689332366,
+      "cum3_mae_naive": 3.809169135802471,
+      "cum3_n": 27,
+      "cum3_coverage90": 0.8518518518518519,
+      "cum5_mae": 7.626423232603332,
+      "cum5_mae_naive": 6.734775362318834,
+      "cum5_n": 23,
+      "cum5_coverage90": 0.8695652173913043
+     }
+    }
+   }
+  },
+  "hidden_stop_skipped": {
+   "no pre-race forecast for a compound": 102,
+   "non-slick compound": 1,
+   "fewer than 3 clean pre-stop laps": 15,
+   "no representative lap within 8 laps after the stop": 2
+  },
+  "regret": {
+   "label": "held-out strategy replay under a post-race reference model",
+   "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+   "n_weekends": 5,
+   "plans": {
+    "orb": {
+     "n": 2,
+     "suppressed": "fewer than 3 weekends with a scorable orb plan"
+    },
+    "naive": {
+     "n": 2,
+     "suppressed": "fewer than 3 weekends with a scorable naive plan"
+    },
+    "observed": {
+     "n": 5,
+     "mean": 17.92893011623799,
+     "median": 19.525878456907407,
+     "p10": 5.120306516344343,
+     "p90": 29.68749652878916,
+     "worst_decile_mean": 30.834222790408475,
+     "share_within_2s": 0.0,
+     "share_within_5s": 0.2,
+     "share_within_10s": 0.4,
+     "ci90_mean": {
+      "estimate": 17.92893011623799,
+      "ci90": [
+       10.095180004576813,
+       25.737521926198394
+      ],
+      "n_weekends": 5,
+      "n_rows": 5,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "ci90_median": {
+      "estimate": 19.525878456907407,
+      "ci90": [
+       2.967248186693965,
+       30.834222790408475
+      ],
+      "n_weekends": 5,
+      "n_rows": 5,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     }
+    },
+    "default": {
+     "n": 5,
+     "mean": 10.437678752231474,
+     "median": 12.91984090648517,
+     "p10": 0.036756003596514125,
+     "p90": 20.75535844167584,
+     "worst_decile_mean": 25.41303993181471,
+     "share_within_2s": 0.4,
+     "share_within_5s": 0.4,
+     "share_within_10s": 0.4,
+     "ci90_mean": {
+      "estimate": 10.437678752231474,
+      "ci90": [
+       5.103455728262148,
+       18.00367651742286
+      ],
+      "n_weekends": 5,
+      "n_rows": 5,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     },
+     "ci90_median": {
+      "estimate": 12.91984090648517,
+      "ci90": [
+       0.010426585202651495,
+       25.41303993181471
+      ],
+      "n_weekends": 5,
+      "n_rows": 5,
+      "n_boot": 2000,
+      "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+     }
+    }
+   },
+   "p_orb_beats_naive": {
+    "n_weekends": 2,
+    "suppressed": "fewer than 3 weekends with both plans scorable"
+   },
+   "p_orb_beats_observed": {
+    "n_weekends": 2,
+    "suppressed": "fewer than 3 weekends with both plans scorable"
+   },
+   "p_orb_beats_default": {
+    "n_weekends": 2,
+    "suppressed": "fewer than 3 weekends with both plans scorable"
+   }
+  },
+  "cells": {
+   "circuit_class": {
+    "permanent": {
+     "n_weekends": 3,
+     "forecast": {
+      "n_weekends": 3,
+      "n_compound_weekends": 5,
+      "n_issued": 4,
+      "n_withheld": 1,
+      "n_no_forecast": 0,
+      "mae": {
+       "orb_v1": 0.043687616426371326,
+       "naive": 0.14286676006271776,
+       "clean_issued": 0.058791488465270415,
+       "orb_v1_issued": 0.04847916995104663,
+       "orb_v1_fallback": 0.024521402327670118,
+       "naive_issued": 0.13396366248362696
+      },
+      "band_coverage90": {
+       "all": 1.0,
+       "issued": 1.0,
+       "fallback": 1.0,
+       "nominal": 0.9
+      },
+      "abstention": {
+       "share_issued": 0.8,
+       "share_withheld": 0.2
+      },
+      "by_compound": {
+       "SOFT": {
+        "n": 2,
+        "mae_orb_v1": 0.06246489193781361,
+        "mae_naive": 0.12124326565645163
+       },
+       "MEDIUM": {
+        "n": 2,
+        "mae_orb_v1": 0.024186392482700016,
+        "mae_naive": 0.15769163912907735
+       },
+       "HARD": {
+        "n": 1,
+        "mae_orb_v1": 0.04513551329082938,
+        "mae_naive": 0.15646399074253073
+       }
+      },
+      "wins_orb_over_naive": 5,
+      "calibration": {
+       "slope": 0.4348220182222828,
+       "r": 0.8452360463507358,
+       "n": 5
+      }
+     },
+     "regret": {
+      "label": "held-out strategy replay under a post-race reference model",
+      "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+      "n_weekends": 3,
+      "plans": {
+       "orb": {
+        "n": 1,
+        "suppressed": "fewer than 3 weekends with a scorable orb plan"
+       },
+       "naive": {
+        "n": 1,
+        "suppressed": "fewer than 3 weekends with a scorable naive plan"
+       },
+       "observed": {
+        "n": 3,
+        "mean": 20.589626037820878,
+        "median": 27.967407136360194,
+        "p10": 7.967279976627211,
+        "p90": 30.260859659598818,
+        "worst_decile_mean": 30.834222790408475,
+        "share_within_2s": 0.0,
+        "share_within_5s": 0.3333333333333333,
+        "share_within_10s": 0.3333333333333333
+       },
+       "default": {
+        "n": 3,
+        "mean": 13.08604208982318,
+        "median": 13.768836206467526,
+        "p10": 2.814767346243352,
+        "p90": 23.084199186745273,
+        "worst_decile_mean": 25.41303993181471,
+        "share_within_2s": 0.3333333333333333,
+        "share_within_5s": 0.3333333333333333,
+        "share_within_10s": 0.3333333333333333
+       }
+      },
+      "p_orb_beats_naive": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_observed": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_default": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      }
+     }
+    },
+    "street": {
+     "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+     "n_weekends": 2
+    }
+   },
+   "degradation_class": {
+    "high": {
+     "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+     "n_weekends": 2
+    },
+    "low": {
+     "n_weekends": 3,
+     "forecast": {
+      "n_weekends": 3,
+      "n_compound_weekends": 5,
+      "n_issued": 2,
+      "n_withheld": 3,
+      "n_no_forecast": 0,
+      "mae": {
+       "orb_v1": 0.02807458217552728,
+       "naive": 0.19277793474819865,
+       "clean_issued": 0.056642149150018334,
+       "orb_v1_issued": 0.029295443907394657,
+       "orb_v1_fallback": 0.027260674354282356,
+       "naive_issued": 0.2126648660444053
+      },
+      "band_coverage90": {
+       "all": 1.0,
+       "issued": 1.0,
+       "fallback": 1.0,
+       "nominal": 0.9
+      },
+      "abstention": {
+       "share_issued": 0.4,
+       "share_withheld": 0.6
+      },
+      "by_compound": {
+       "SOFT": {
+        "n": 1,
+        "mae_orb_v1": 0.05008298647520579,
+        "mae_naive": 0.3494908440865358
+       },
+       "MEDIUM": {
+        "n": 3,
+        "mae_orb_v1": 0.020609286613469596,
+        "mae_naive": 0.14544521586628975
+       },
+       "HARD": {
+        "n": 1,
+        "mae_orb_v1": 0.02846206456202182,
+        "mae_naive": 0.17806318205558827
+       }
+      },
+      "wins_orb_over_naive": 5,
+      "calibration": {
+       "slope": 0.5248823967589508,
+       "r": 0.34811049661094656,
+       "n": 5
+      }
+     },
+     "regret": {
+      "label": "held-out strategy replay under a post-race reference model",
+      "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+      "n_weekends": 3,
+      "plans": {
+       "orb": {
+        "n": 1,
+        "suppressed": "fewer than 3 weekends with a scorable orb plan"
+       },
+       "naive": {
+        "n": 1,
+        "suppressed": "fewer than 3 weekends with a scorable naive plan"
+       },
+       "observed": {
+        "n": 3,
+        "mean": 10.281006884807093,
+        "median": 8.34989401081991,
+        "p10": 4.043777351519154,
+        "p90": 17.29068156768991,
+        "worst_decile_mean": 19.525878456907407,
+        "share_within_2s": 0.0,
+        "share_within_5s": 0.3333333333333333,
+        "share_within_10s": 0.6666666666666666
+       },
+       "default": {
+        "n": 3,
+        "mean": 4.33550587429171,
+        "median": 0.07625013118730806,
+        "p10": 0.02359129439958281,
+        "p90": 10.3511227514256,
+        "worst_decile_mean": 12.91984090648517,
+        "share_within_2s": 0.6666666666666666,
+        "share_within_5s": 0.6666666666666666,
+        "share_within_10s": 0.6666666666666666
+       }
+      },
+      "p_orb_beats_naive": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_observed": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_default": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      }
+     }
+    }
+   },
+   "temperature_regime": {
+    "cool": {
+     "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+     "n_weekends": 1
+    },
+    "hot": {
+     "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+     "n_weekends": 1
+    },
+    "mild": {
+     "n_weekends": 3,
+     "forecast": {
+      "n_weekends": 3,
+      "n_compound_weekends": 7,
+      "n_issued": 3,
+      "n_withheld": 4,
+      "n_no_forecast": 0,
+      "mae": {
+       "orb_v1": 0.03700952252060414,
+       "naive": 0.18500506768234956,
+       "clean_issued": 0.05540245622735466,
+       "orb_v1_issued": 0.050921077417903915,
+       "orb_v1_fallback": 0.026575856347629295,
+       "naive_issued": 0.19266546058172773
+      },
+      "band_coverage90": {
+       "all": 1.0,
+       "issued": 1.0,
+       "fallback": 1.0,
+       "nominal": 0.9
+      },
+      "abstention": {
+       "share_issued": 0.42857142857142855,
+       "share_withheld": 0.5714285714285714
+      },
+      "by_compound": {
+       "SOFT": {
+        "n": 2,
+        "mae_orb_v1": 0.061485600130514385,
+        "mae_naive": 0.24129881543972576
+       },
+       "MEDIUM": {
+        "n": 3,
+        "mae_orb_v1": 0.020832626510116328,
+        "mae_naive": 0.15930355669962545
+       },
+       "HARD": {
+        "n": 2,
+        "mae_orb_v1": 0.0367987889264256,
+        "mae_naive": 0.1672635863990595
+       }
+      },
+      "wins_orb_over_naive": 7,
+      "calibration": {
+       "slope": 0.3356187309323565,
+       "r": 0.49534787015359755,
+       "n": 7
+      }
+     },
+     "regret": {
+      "label": "held-out strategy replay under a post-race reference model",
+      "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+      "n_weekends": 3,
+      "plans": {
+       "orb": {
+        "n": 2,
+        "suppressed": "fewer than 3 weekends with a scorable orb plan"
+       },
+       "naive": {
+        "n": 2,
+        "suppressed": "fewer than 3 weekends with a scorable naive plan"
+       },
+       "observed": {
+        "n": 3,
+        "mean": 19.569998419378596,
+        "median": 19.525878456907407,
+        "p10": 10.58509090003741,
+        "p90": 28.572553923708263,
+        "worst_decile_mean": 30.834222790408475,
+        "share_within_2s": 0.0,
+        "share_within_5s": 0.0,
+        "share_within_10s": 0.3333333333333333
+       },
+       "default": {
+        "n": 3,
+        "mean": 12.781102474500843,
+        "median": 12.91984090648517,
+        "p10": 2.5923094494591554,
+        "p90": 22.914400126748802,
+        "worst_decile_mean": 25.41303993181471,
+        "share_within_2s": 0.3333333333333333,
+        "share_within_5s": 0.3333333333333333,
+        "share_within_10s": 0.3333333333333333
+       }
+      },
+      "p_orb_beats_naive": {
+       "n_weekends": 2,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_observed": {
+       "n_weekends": 2,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_default": {
+       "n_weekends": 2,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      }
+     }
+    }
+   },
+   "sc_or_vsc": {
+    "False": {
+     "n_weekends": 3,
+     "forecast": {
+      "n_weekends": 3,
+      "n_compound_weekends": 5,
+      "n_issued": 4,
+      "n_withheld": 1,
+      "n_no_forecast": 0,
+      "mae": {
+       "orb_v1": 0.043687616426371326,
+       "naive": 0.14286676006271776,
+       "clean_issued": 0.058791488465270415,
+       "orb_v1_issued": 0.04847916995104663,
+       "orb_v1_fallback": 0.024521402327670118,
+       "naive_issued": 0.13396366248362696
+      },
+      "band_coverage90": {
+       "all": 1.0,
+       "issued": 1.0,
+       "fallback": 1.0,
+       "nominal": 0.9
+      },
+      "abstention": {
+       "share_issued": 0.8,
+       "share_withheld": 0.2
+      },
+      "by_compound": {
+       "SOFT": {
+        "n": 2,
+        "mae_orb_v1": 0.06246489193781361,
+        "mae_naive": 0.12124326565645163
+       },
+       "MEDIUM": {
+        "n": 2,
+        "mae_orb_v1": 0.024186392482700016,
+        "mae_naive": 0.15769163912907735
+       },
+       "HARD": {
+        "n": 1,
+        "mae_orb_v1": 0.04513551329082938,
+        "mae_naive": 0.15646399074253073
+       }
+      },
+      "wins_orb_over_naive": 5,
+      "calibration": {
+       "slope": 0.4348220182222828,
+       "r": 0.8452360463507358,
+       "n": 5
+      }
+     },
+     "regret": {
+      "label": "held-out strategy replay under a post-race reference model",
+      "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+      "n_weekends": 3,
+      "plans": {
+       "orb": {
+        "n": 1,
+        "suppressed": "fewer than 3 weekends with a scorable orb plan"
+       },
+       "naive": {
+        "n": 1,
+        "suppressed": "fewer than 3 weekends with a scorable naive plan"
+       },
+       "observed": {
+        "n": 3,
+        "mean": 20.589626037820878,
+        "median": 27.967407136360194,
+        "p10": 7.967279976627211,
+        "p90": 30.260859659598818,
+        "worst_decile_mean": 30.834222790408475,
+        "share_within_2s": 0.0,
+        "share_within_5s": 0.3333333333333333,
+        "share_within_10s": 0.3333333333333333
+       },
+       "default": {
+        "n": 3,
+        "mean": 13.08604208982318,
+        "median": 13.768836206467526,
+        "p10": 2.814767346243352,
+        "p90": 23.084199186745273,
+        "worst_decile_mean": 25.41303993181471,
+        "share_within_2s": 0.3333333333333333,
+        "share_within_5s": 0.3333333333333333,
+        "share_within_10s": 0.3333333333333333
+       }
+      },
+      "p_orb_beats_naive": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_observed": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      },
+      "p_orb_beats_default": {
+       "n_weekends": 1,
+       "suppressed": "fewer than 3 weekends with both plans scorable"
+      }
+     }
+    },
+    "True": {
+     "suppressed": "fewer than 3 weekends in the cell (would reveal per-race results)",
+     "n_weekends": 2
+    }
+   }
+  }
+ }
+}

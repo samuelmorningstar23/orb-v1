@@ -1,14 +1,14 @@
 {
- "schema_version": "2.0.0",
+ "schema_version": "2.1.0",
  "shared": {
   "meta": {
-   "schema_version": "2.0.0",
-   "generated_at": "2026-09-12T15:12:25",
-   "data_cutoff": "2026-09-12T14:31:34",
-   "git_sha": "02f4c00",
+   "schema_version": "2.1.0",
+   "generated_at": "2026-09-12T21:03:51",
+   "data_cutoff": "2026-09-12T21:03:51",
+   "git_sha": "b0b924c",
    "model_version": "provider_A_clearstint_v2",
    "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
-   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): shared",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T21:03:51): shared",
    "units": {
     "pace_loss": "s/lap",
     "degradation_rate": "s/lap per lap",
@@ -22,23 +22,24 @@
    }
   },
   "forecast_snapshot": {
-   "snapshot_id": "Madrid_FP1+FP2_e1262561",
+   "snapshot_id": "Madrid_FP1+FP2+FP3_3b5497c6",
    "kind": "prospective",
    "event": "Madrid",
    "event_id": "2026_Madrid",
    "season": 2026,
-   "issued_at": "2026-09-12T14:31:34",
+   "issued_at": "2026-09-12T21:03:51",
    "sessions_used": [
     "FP1",
-    "FP2"
+    "FP2",
+    "FP3"
    ],
    "race_laps": 56,
    "tyre_nomination": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
    "note": "issued from practice sessions only; the hash is frozen before the race and both modes must reference it"
   },
   "model_version": "provider_A_clearstint_v2",
-  "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
-  "training_cutoff": "2026-09-12T14:31:34",
+  "forecast_hash": "sha256:3b5497c6abc4ec177747e7311327a6b9e28e47f14c5c120e702a2a2760425db4",
+  "training_cutoff": "2026-09-12T21:03:51",
   "support_definition": {
    "definition": "Training support is the set of completed weekends scored leave-one-weekend-out by pipeline.py. A track is seen when it has practice and race files; weather is in range when practice was dry and track temperature lies inside the observed practice range; compound support covers the dry slick compounds fitted in training.",
    "tracks_seen": [
@@ -100,13 +101,13 @@
  },
  "pre_race_forecast": {
   "meta": {
-   "schema_version": "2.0.0",
-   "generated_at": "2026-09-12T15:12:25",
-   "data_cutoff": "2026-09-12T14:31:34",
-   "git_sha": "02f4c00",
+   "schema_version": "2.1.0",
+   "generated_at": "2026-09-12T21:03:51",
+   "data_cutoff": "2026-09-12T21:03:51",
+   "git_sha": "b0b924c",
    "model_version": "provider_A_clearstint_v2",
    "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
-   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): pre_race_forecast from live[] and validation_rows[] minus post-race columns",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T21:03:51): pre_race_forecast from live[] and validation_rows[] minus post-race columns",
    "units": {
     "pace_loss": "s/lap",
     "degradation_rate": "s/lap per lap",
@@ -125,7 +126,7 @@
     "event_id": "2026_Australia",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
@@ -279,7 +280,7 @@
     "event_id": "2026_Austria",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
@@ -437,7 +438,7 @@
     "event_id": "2026_Barcelona",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
@@ -597,7 +598,7 @@
     "event_id": "2026_Belgium",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
@@ -755,7 +756,7 @@
     "event_id": "2026_Britain",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "sprint",
     "sessions_used": [
      "FP1"
@@ -802,7 +803,7 @@
     "event_id": "2026_Canada",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "sprint",
     "sessions_used": [
      "FP1"
@@ -932,7 +933,7 @@
     "event_id": "2026_Hungary",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
@@ -1090,7 +1091,7 @@
     "event_id": "2026_Japan",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
@@ -1220,46 +1221,47 @@
     "event_id": "2026_Madrid",
     "season": 2026,
     "status": "prospective",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
-     "FP2"
+     "FP2",
+     "FP3"
     ],
     "race_laps": 56,
-    "practice_laps_clean": 157,
-    "practice_runs": 39,
-    "track_temp_practice_c": 50.42,
+    "practice_laps_clean": 162,
+    "practice_runs": 41,
+    "track_temp_practice_c": 49.28,
     "rain_in_practice": false,
     "tyre_nomination": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
     "compounds": {
      "SOFT": {
       "compound": "SOFT",
-      "n_prac": 41,
-      "naive": 0.4794433604638165,
-      "clean": 0.10093563048728363,
-      "clean_se": 0.08678463181303231,
+      "n_prac": 46,
+      "naive": 0.5121386718750017,
+      "clean": 0.06990807511818707,
+      "clean_se": 0.08141831184013738,
       "gate": "ok",
       "issued": true,
       "factor": 0.9673403796626557,
       "factor_applied": true,
       "factor_from_n_weekends": 7,
-      "prediction": 0.09763911111705847,
+      "prediction": 0.06762490392631254,
       "band90": [
-       -0.09555284627831415,
-       0.3000899632831943
+       -0.11362148974220213,
+       0.25534560484232366
       ],
       "basis": "cleaned Friday curve × season transfer factor",
-      "energy_trend": 0.008356327501629702,
-      "push_adj": 0.105335645599527,
+      "energy_trend": 0.02085109498537282,
+      "push_adj": 0.08093847040609642,
       "second_opinion": null
      },
      "MEDIUM": {
       "compound": "MEDIUM",
       "n_prac": 112,
       "naive": 0.15318851442158327,
-      "clean": -0.19873171654803912,
-      "clean_se": 0.0441554421984582,
+      "clean": -0.19873171654805333,
+      "clean_se": 0.04396908773151788,
       "gate": "no positive degradation signal in cleaned practice",
       "issued": false,
       "factor": 0.45182685386752625,
@@ -1272,9 +1274,9 @@
       ],
       "basis": "low-degradation fallback: median race degradation of the 13 withheld cases this season",
       "energy_trend": 0.4815170921473892,
-      "push_adj": 0.05481058201952749,
+      "push_adj": 0.05599465959352301,
       "second_opinion": {
-       "prediction": 0.032655689056113775,
+       "prediction": 0.03336115262993496,
        "factor": 0.5957916857091475,
        "factor_applied": true,
        "basis": "push-adjusted Friday curve (degradation at constant tyre energy) × its own season factor"
@@ -1284,67 +1286,67 @@
     "strategy": {
      "plan": "S-M",
      "stints": [
-      18,
-      38
+      22,
+      34
      ],
      "stops": 1,
      "n_laps": 56,
      "pit_loss_s": 21.0,
      "crossover": {
-      "S-M": 9.919857237831318
+      "S-M": 14.982289076690481
      },
      "alternatives": [
       {
        "plan": "S-M",
        "stops": 1,
        "stints": [
-        18,
-        38
+        22,
+        34
        ],
-       "time_s": 84.54130365541633,
+       "time_s": 74.9177839786037,
        "delta_to_best_s": 0.0
       },
       {
        "plan": "M-S",
        "stops": 1,
        "stints": [
-        38,
-        18
+        34,
+        22
        ],
-       "time_s": 84.54130365541633,
+       "time_s": 74.9177839786037,
        "delta_to_best_s": 0.0
       },
       {
        "plan": "S-S-M",
        "stops": 2,
        "stints": [
-        14,
-        14,
-        28
+        18,
+        18,
+        20
        ],
-       "time_s": 93.16072663510332,
-       "delta_to_best_s": 8.619422979686988
+       "time_s": 82.91901712582711,
+       "delta_to_best_s": 8.001233147223417
       },
       {
        "plan": "S-M-S",
        "stops": 2,
        "stints": [
-        14,
-        28,
-        14
+        18,
+        20,
+        18
        ],
-       "time_s": 93.16072663510332,
-       "delta_to_best_s": 8.619422979686988
+       "time_s": 82.91901712582711,
+       "delta_to_best_s": 8.001233147223417
       }
      ],
      "offsets_s": {
       "SOFT": 0.0,
-      "MEDIUM": 0.6949999999999932,
-      "HARD": 1.2
+      "MEDIUM": 0.6,
+      "HARD": 1.8129999999999882
      },
      "offsets_source": {
-      "MEDIUM": "practice (22 drivers)",
-      "HARD": "nominal Pirelli-range step"
+      "MEDIUM": "practice value +1.20 s implausible, nominal Pirelli-range step",
+      "HARD": "practice (3 drivers)"
      },
      "band_low_plan": "S-M",
      "band_high_plan": "S-M-M"
@@ -1356,7 +1358,7 @@
     "event_id": "2026_Miami",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "sprint",
     "sessions_used": [
      "FP1"
@@ -1505,7 +1507,7 @@
     "event_id": "2026_Monza",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "conventional",
     "sessions_used": [
      "FP1",
@@ -1659,7 +1661,7 @@
     "event_id": "2026_Zandvoort",
     "season": 2026,
     "status": "leave_one_weekend_out",
-    "data_cutoff": "2026-09-12T14:31:34",
+    "data_cutoff": "2026-09-12T21:03:51",
     "format": "sprint",
     "sessions_used": [
      "FP1"
@@ -1813,13 +1815,13 @@
  },
  "validation": {
   "meta": {
-   "schema_version": "2.0.0",
-   "generated_at": "2026-09-12T15:12:25",
-   "data_cutoff": "2026-09-12T14:31:34",
-   "git_sha": "02f4c00",
+   "schema_version": "2.1.0",
+   "generated_at": "2026-09-12T21:03:51",
+   "data_cutoff": "2026-09-12T21:03:51",
+   "git_sha": "b0b924c",
    "model_version": "provider_A_clearstint_v2",
    "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
-   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): validation copied verbatim",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T21:03:51): validation copied verbatim",
    "units": {
     "pace_loss": "s/lap",
     "degradation_rate": "s/lap per lap",
@@ -2090,7 +2092,7 @@
   "wins_clearstint_over_clean_issued": 9,
   "rows": {
    "path": "out/lock_v2_sidecars/validation_rows.json",
-   "sha256": "c9c31fa2bda0fc87b03d4bd0846a17a3829fd800b0e3eda931b1877487ca8c9b",
+   "sha256": "01cf7ee35dd6e40ccdaad6a1b1da56e7ce9610d24ab7a7a7642fa04961a8b28d",
    "bytes": 22514,
    "format": "json",
    "description": "one record per compound-weekend incl. observed race degradation (post-race)"
@@ -2108,13 +2110,13 @@
  "counterfactuals": [],
  "input_availability": {
   "meta": {
-   "schema_version": "2.0.0",
-   "generated_at": "2026-09-12T15:12:25",
-   "data_cutoff": "2026-09-12T14:31:34",
-   "git_sha": "02f4c00",
+   "schema_version": "2.1.0",
+   "generated_at": "2026-09-12T21:03:51",
+   "data_cutoff": "2026-09-12T21:03:51",
+   "git_sha": "b0b924c",
    "model_version": "provider_A_clearstint_v2",
    "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
-   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): input_availability: public feed table",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T21:03:51): input_availability: public feed table",
    "units": {
     "pace_loss": "s/lap",
     "degradation_rate": "s/lap per lap",
@@ -2159,7 +2161,7 @@
    "car_speed": {
     "source": "FastF1 car data",
     "unit": "km/h",
-    "sample_rate_hz": 7.51,
+    "sample_rate_hz": 7.52,
     "latency_s": 3.0,
     "available": true,
     "visibility": "public",
@@ -2172,7 +2174,7 @@
    "throttle": {
     "source": "FastF1 car data",
     "unit": "%",
-    "sample_rate_hz": 7.51,
+    "sample_rate_hz": 7.52,
     "latency_s": 3.0,
     "available": true,
     "visibility": "public",
@@ -2185,7 +2187,7 @@
    "brake": {
     "source": "FastF1 car data",
     "unit": "bool",
-    "sample_rate_hz": 7.51,
+    "sample_rate_hz": 7.52,
     "latency_s": 3.0,
     "available": true,
     "visibility": "public",
@@ -2198,7 +2200,7 @@
    "gear": {
     "source": "FastF1 car data",
     "unit": "gear",
-    "sample_rate_hz": 7.51,
+    "sample_rate_hz": 7.52,
     "latency_s": 3.0,
     "available": true,
     "visibility": "public",
@@ -2211,7 +2213,7 @@
    "drs": {
     "source": "FastF1 car data",
     "unit": "state",
-    "sample_rate_hz": 7.51,
+    "sample_rate_hz": 7.52,
     "latency_s": 3.0,
     "available": true,
     "visibility": "public",
@@ -2224,13 +2226,13 @@
    "position_xy": {
     "source": "FastF1 position data",
     "unit": "m",
-    "sample_rate_hz": 3.73,
+    "sample_rate_hz": 3.74,
     "latency_s": 3.0,
     "available": true,
     "visibility": "public",
     "online_safe": true,
-    "missingness": 0.0313,
-    "quality_score": 0.9687,
+    "missingness": 0.0355,
+    "quality_score": 0.9645,
     "ablation_value": null,
     "description": null
    },
@@ -2242,8 +2244,8 @@
     "available": true,
     "visibility": "public",
     "online_safe": true,
-    "missingness": 0.0313,
-    "quality_score": 0.9687,
+    "missingness": 0.0355,
+    "quality_score": 0.9645,
     "ablation_value": null,
     "description": "traffic proxy"
    },
@@ -2449,13 +2451,13 @@
  },
  "driver_profile": {
   "meta": {
-   "schema_version": "2.0.0",
-   "generated_at": "2026-09-12T15:12:25",
-   "data_cutoff": "2026-09-12T14:31:34",
-   "git_sha": "02f4c00",
+   "schema_version": "2.1.0",
+   "generated_at": "2026-09-12T21:03:51",
+   "data_cutoff": "2026-09-12T21:03:51",
+   "git_sha": "b0b924c",
    "model_version": "provider_A_clearstint_v2",
    "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
-   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): driver_profile stub",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T21:03:51): driver_profile stub",
    "units": {
     "pace_loss": "s/lap",
     "degradation_rate": "s/lap per lap",

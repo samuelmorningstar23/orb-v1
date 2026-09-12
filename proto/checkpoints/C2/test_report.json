@@ -1,11 +1,10 @@
 {
  "checkpoint": "C2",
- "at": "2026-09-12T16:36:03",
- "git_commit": "ccae5d9",
+ "at": "2026-09-12T16:37:49",
+ "git_commit": "b0b924c",
  "all_green": true,
  "summary": {
-  "PASS": 3,
-  "WARN": 1,
+  "PASS": 4,
   "NOT_IMPLEMENTED": 1
  },
  "pytest": {
@@ -27,9 +26,9 @@
    "name": "schema_validation",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python validators/validate_lock.py out/lock_v2.json",
    "returncode": 0,
-   "duration_s": 0.1,
+   "duration_s": 0.11,
    "timed_out": false,
    "stdout_tail": "  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified\n  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified\nOK out/lock_v2.json: schema 2.0.0, forecast sha256:e126256132b6ead8..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB",
    "stderr_tail": "",
@@ -39,11 +38,11 @@
    "name": "pytest",
    "status": "PASS",
    "note": "",
-   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "command": "/Users/samuelmorningstar/Trackshift/proto/../.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
    "returncode": 0,
-   "duration_s": 83.69,
+   "duration_s": 83.81,
    "timed_out": false,
-   "stdout_tail": "........................................................................ [ 21%]\n........................................................................ [ 42%]\n........................................................................ [ 64%]\n........................................................................ [ 85%]\n...............................................                          [100%]\n335 passed in 83.35s (0:01:23)",
+   "stdout_tail": "........................................................................ [ 21%]\n........................................................................ [ 42%]\n........................................................................ [ 64%]\n........................................................................ [ 85%]\n...............................................                          [100%]\n335 passed in 83.48s (0:01:23)",
    "stderr_tail": "",
    "counts": {
     "passed": 335
@@ -63,49 +62,20 @@
   },
   {
    "name": "ownership_audit",
-   "status": "WARN",
-   "note": "201 changed paths, 20 flagged: proto/cleanup_pass.sh, proto/extract_seasons.py, proto/out/Orb_v1_Mentor_Briefing.pptx, proto/tests/counterfactual/conftest.py, proto/tests/counterfactual/test_cf_cli.py, proto/tests/counterfactual/test_cf_engine.py, proto/tests/counterfactual/test_cf_events.py, proto/tests/counterfactual/test_cf_provider.py, proto/tests/live/conftest.py, proto/tests/live/live_helpers.py, proto/tests/live/test_estimator.py, proto/tests/live/test_feedback.py, proto/tests/live/test_optimizer.py, proto/tests/live/test_replay.py, proto/tests/replay/conftest.py, proto/tests/replay/test_assets.py, proto/tests/replay",
+   "status": "PASS",
+   "note": "2 changed paths, 0 flagged",
    "command": "release/ownership_audit.py",
    "summary": {
-    "total": 201,
-    "flagged": 20,
-    "unowned": 19,
-    "lead_only": 1,
+    "total": 2,
+    "flagged": 0,
+    "unowned": 0,
+    "lead_only": 0,
     "outside_proto": 0,
     "by_owner": {
-     "1": 7,
-     "2": 32,
-     "3": 1,
-     "4": 77,
-     "7": 1,
-     "8": 52,
-     "9": 11,
-     "lead": 1,
-     "unowned": 19
+     "9": 2
     }
    },
-   "flagged": [
-    "proto/cleanup_pass.sh",
-    "proto/extract_seasons.py",
-    "proto/out/Orb_v1_Mentor_Briefing.pptx",
-    "proto/tests/counterfactual/conftest.py",
-    "proto/tests/counterfactual/test_cf_cli.py",
-    "proto/tests/counterfactual/test_cf_engine.py",
-    "proto/tests/counterfactual/test_cf_events.py",
-    "proto/tests/counterfactual/test_cf_provider.py",
-    "proto/tests/live/conftest.py",
-    "proto/tests/live/live_helpers.py",
-    "proto/tests/live/test_estimator.py",
-    "proto/tests/live/test_feedback.py",
-    "proto/tests/live/test_optimizer.py",
-    "proto/tests/live/test_replay.py",
-    "proto/tests/replay/conftest.py",
-    "proto/tests/replay/test_assets.py",
-    "proto/tests/replay/test_geometry.py",
-    "proto/tests/replay/test_player.py",
-    "proto/tests/replay/test_timewarp.py",
-    "proto/tests/replay/test_trajectory.py"
-   ]
+   "flagged": []
   },
   {
    "name": "lock_dashboard_consistency",

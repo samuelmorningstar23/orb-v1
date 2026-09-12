@@ -1,0 +1,3606 @@
+{
+ "generated_at": "2026-09-12T21:06:31",
+ "exit_code": 0,
+ "definition": "exit 0: every rendered number equals the lock, a hashed sidecar, a labelled fixture or a lock-derived quantity at the display precision of ui/tokens.py; placeholders (PLACEHOLDER / FIXTURE / pending) and UNHASHED live values (route driver without an out/live record) are allowed and listed; ambiguity = number of distinct reference values that would have matched (coincidence risk)",
+ "lock": {
+  "v1": "out/lock.json",
+  "v2": "out/lock_v2.json"
+ },
+ "reference_kinds_max": {
+  "lock": 2353,
+  "lock_v2": 912,
+  "sidecar:lock_v2": 766,
+  "derived": 1963,
+  "asset:feat/Monza_R.csv (unsigned)": 2157,
+  "fixture": 838,
+  "asset:out/sensitivity.json (unsigned)": 49,
+  "state": 5,
+  "live_runtime:Monza_LIN (no hashed record)": 7156,
+  "live_runtime:Monza_LIN (no hashed record) (text)": 3537,
+  "sidecar:out/live/Monza_NOR": 6503,
+  "sidecar:out/live/Monza_NOR (text)": 3878,
+  "sidecar:out/live/Austria_NOR": 7280,
+  "sidecar:out/live/Austria_NOR (text)": 4520,
+  "asset:feat/Austria_R.csv (unsigned)": 2567,
+  "sidecar:out/counterfactual (Monza)": 4639,
+  "sidecar:out/counterfactual (Monza) (text)": 98,
+  "sidecar:out/maps/Monza": 403,
+  "sidecar:out/maps/Monza (text)": 33,
+  "sidecar:out/live/prefix_eval.json": 1014,
+  "sidecar:out/live/prefix_eval.json (text)": 17
+ },
+ "notes": [
+  "out/sensitivity.json has no .sha256 sidecar and is not in the lock: its numbers are shown on the validation page as an unsigned asset",
+  "Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED"
+ ],
+ "summary": {
+  "routes": 15,
+  "load_failures": 0,
+  "numbers": 1105,
+  "mismatches": 0,
+  "placeholders": 0,
+  "unclassified_integers": 0,
+  "unhashed_live_values": 22,
+  "ambiguous_matches": 332
+ },
+ "routes": [
+  {
+   "route": "landing/Monza",
+   "page": "landing",
+   "state": {
+    "ev": "Monza",
+    "drv": "LIN",
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 1,
+   "matched": {
+    "lock_v2": 1
+   },
+   "ambiguous": [],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "pre_race/Monza",
+   "page": "pre_race",
+   "state": {
+    "ev": "Monza",
+    "drv": "LIN",
+    "cmp": "SOFT",
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 79,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 77,
+    "derived": 1
+   },
+   "ambiguous": [
+    {
+     "widget": "SOFT",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "S · Soft issued +0.025 s/lap 90% band",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "SOFT",
+     "value": -0.037,
+     "decimals": 3,
+     "shown": "ssued +0.025 s/lap 90% band -0.037 to +0.095 · 98",
+     "reference": "lock.events.Australia.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.095,
+     "decimals": 3,
+     "shown": "25 s/lap 90% band -0.037 to +0.095 · 98 clean laps",
+     "reference": "lock.validation_rows[1].hi",
+     "kind": "lock",
+     "ambiguity": 7
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "season factor race observed +0.025 · error +0.000",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.0,
+     "decimals": 3,
+     "shown": "ace observed +0.025 · error +0.000 · covered",
+     "reference": "lock.events.Australia.offsets.SOFT",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "MEDIUM",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "Medium withheld → fallback +0.030 s/lap 90% band",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "MEDIUM",
+     "value": -0.023,
+     "decimals": 3,
+     "shown": "lback +0.030 s/lap 90% band -0.023 to +0.093 · 149",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "MEDIUM",
+     "value": 0.093,
+     "decimals": 3,
+     "shown": "30 s/lap 90% band -0.023 to +0.093 · 149 clean lap",
+     "reference": "lock.validation_rows[24].hi",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "MEDIUM",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "aned practice race observed +0.028 · error +0.003",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "MEDIUM",
+     "value": 0.003,
+     "decimals": 3,
+     "shown": "ace observed +0.028 · error +0.003 · covered",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "HARD",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "· Hard withheld → fallback +0.030 s/lap 90% band",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "HARD",
+     "value": -0.023,
+     "decimals": 3,
+     "shown": "lback +0.030 s/lap 90% band -0.023 to +0.093 · 83",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "HARD",
+     "value": 0.093,
+     "decimals": 3,
+     "shown": "30 s/lap 90% band -0.023 to +0.093 · 83 clean laps",
+     "reference": "lock.validation_rows[24].hi",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "HARD",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": "aned practice race observed +0.023 · error +0.007",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "HARD",
+     "value": 0.007,
+     "decimals": 3,
+     "shown": "ace observed +0.023 · error +0.007 · covered",
+     "reference": "lock.events.Australia.evolution_s_per_min.FP3",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "Soft 90% band | Soft +0.025 s/lap | Soft ra",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "s/lap | Soft race observed +0.025 | Medium 90% ba",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "| Medium 90% band | Medium +0.030 s/lap (fallback",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "ack) | Medium race observed +0.028 | Hard 90% band",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": ".028 | Hard 90% band | Hard +0.030 s/lap (fallback",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": "lback) | Hard race observed +0.023 | Tyre age (lap",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "Curve Best plan Stint lengths Stops Crossover age ...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "ay curve S-M 43 / 10 1 — 43 +0.0 s Orb v1 S-M 44 /",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "Curve Best plan Stint lengths Stops Crossover age ...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "s Orb v1 S-M 44 / 9 1 — 44 +0.0 s",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "Assumptions: pit loss 21 s; offsets soft +0.0, med...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "pit loss 21 s; offsets soft +0.0, medium +0.8, har",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "Assumptions: pit loss 21 s; offsets soft +0.0, med...",
+     "value": 0.8,
+     "decimals": 1,
+     "shown": "; offsets soft +0.0, medium +0.8, hard +1.3 (mediu",
+     "reference": "lock.events.Monza.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "Assumptions: pit loss 21 s; offsets soft +0.0, med...",
+     "value": 1.3,
+     "decimals": 1,
+     "shown": "oft +0.0, medium +0.8, hard +1.3 (medium practice",
+     "reference": "lock.events.Australia.offsets.HARD",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "Scenario Track temp Support Available Actual histo...",
+     "value": 50.4,
+     "decimals": 1,
+     "shown": "yes Cooler dry (-5 C track) 50.4 °C IN SUPPORT yes",
+     "reference": "lock.events.Barcelona.track_temp.R",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Scenario Track temp Support Available Actual histo...",
+     "value": 36.8,
+     "decimals": 1,
+     "shown": "aseline dry (season median) 36.8 °C IN SUPPORT yes",
+     "reference": "lock.events.Australia.track_temp.FP3",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "format conventional sessions FP1, FP2, FP3, Q, R c...",
+     "value": 51.7,
+     "decimals": 1,
+     "shown": "ns 68 track temperature FP1 51.7 · FP2 55.1 · FP3",
+     "reference": "lock.events.Monza.track_temp.FP1",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "format conventional sessions FP1, FP2, FP3, Q, R c...",
+     "value": -0.53,
+     "decimals": 2,
+     "shown": "— energy price of lap time -0.53 s/MJ",
+     "reference": "lock.events.Madrid.beta_practice_s_per_MJ",
+     "kind": "lock",
+     "ambiguity": 3
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "pre_race/Madrid",
+   "page": "pre_race",
+   "state": {
+    "ev": "Madrid",
+    "cmp": "SOFT",
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 63,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 60,
+    "derived": 2
+   },
+   "ambiguous": [
+    {
+     "widget": "SOFT",
+     "value": 0.068,
+     "decimals": 3,
+     "shown": "S · Soft issued +0.068 s/lap 90% band",
+     "reference": "lock.validation_rows[3].obs",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "SOFT",
+     "value": -0.114,
+     "decimals": 3,
+     "shown": "ssued +0.068 s/lap 90% band -0.114 to +0.255 · 46",
+     "reference": "lock.validation_rows[9].naive",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.255,
+     "decimals": 3,
+     "shown": "68 s/lap 90% band -0.114 to +0.255 · 46 clean laps",
+     "reference": "lock.live.Madrid.compounds[0].band90[1]",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "MEDIUM",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "Medium withheld → fallback +0.028 s/lap 90% band",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "MEDIUM",
+     "value": -0.013,
+     "decimals": 3,
+     "shown": "lback +0.028 s/lap 90% band -0.013 to +0.088 · 112",
+     "reference": "lock.events.Madrid.evolution_s_per_min.FP2",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "MEDIUM",
+     "value": 0.088,
+     "decimals": 3,
+     "shown": "28 s/lap 90% band -0.013 to +0.088 · 112 clean lap",
+     "reference": "lock.validation_rows[7].half",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.068,
+     "decimals": 3,
+     "shown": "Soft 90% band | Soft +0.068 s/lap | Medium",
+     "reference": "lock.validation_rows[3].obs",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "chart: Soft 90% band",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "| Medium 90% band | Medium +0.028 s/lap (fallback",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "Assumptions: pit loss 21 s; offsets soft +0.0, med...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "pit loss 21 s; offsets soft +0.0, medium +0.6, har",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "Assumptions: pit loss 21 s; offsets soft +0.0, med...",
+     "value": 0.6,
+     "decimals": 1,
+     "shown": "; offsets soft +0.0, medium +0.6, hard +1.8 (mediu",
+     "reference": "lock.events.Australia.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "Assumptions: pit loss 21 s; offsets soft +0.0, med...",
+     "value": 1.8,
+     "decimals": 1,
+     "shown": "oft +0.0, medium +0.6, hard +1.8 (medium practice",
+     "reference": "lock.events.Austria.offsets.HARD",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "Scenario Track temp Support Available Actual histo...",
+     "value": 36.8,
+     "decimals": 1,
+     "shown": "aseline dry (season median) 36.8 °C NEAR TRAINING",
+     "reference": "lock.events.Australia.track_temp.FP3",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "format conventional sessions FP1, FP2, FP3 clean l...",
+     "value": 51.0,
+     "decimals": 1,
+     "shown": "temperature FP1 49.8 · FP2 51.0 · FP3 47.0 °C rai",
+     "reference": "lock.events.Austria.practice_runs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "format conventional sessions FP1, FP2, FP3 clean l...",
+     "value": -0.53,
+     "decimals": 2,
+     "shown": "n) energy price of lap time -0.53 s/MJ",
+     "reference": "lock.events.Madrid.beta_practice_s_per_MJ",
+     "kind": "lock",
+     "ambiguity": 3
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "live_predictor/Monza-LIN-L30",
+   "page": "live_predictor",
+   "state": {
+    "ev": "Monza",
+    "drv": "LIN",
+    "lap": 30,
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 121,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 103,
+    "live_runtime:Monza_LIN (no hashed record)": 13,
+    "derived": 4
+   },
+   "ambiguous": [
+    {
+     "widget": "global frame",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "NING SUPPORT · Feed latency 3.0 s (7.1 source_late",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "global frame",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "PPORT · Feed latency 3.0 s (7.1 source_latency) lo",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "LIVE DEGRADATION",
+     "value": 0.035,
+     "decimals": 3,
+     "shown": "LIVE DEGRADATION +0.035 s/lap +15% vs f",
+     "reference": "lock.validation.mae_issued.push_adjusted",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "LIVE DEGRADATION",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": ".035 s/lap +15% vs forecast +0.030 · 19 clean laps",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 7
+    },
+    {
+     "widget": "PIT WINDOW",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "0 pit now · gain +34.6 s (  +11.4) decision/optimi",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: pre-race 90% band (lock)",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "(lock) | pre-race forecast +0.030 s/lap (lock) |",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 7
+    },
+    {
+     "widget": "chart: pre-race 90% band (lock)",
+     "value": 0.035,
+     "decimals": 3,
+     "shown": "ime rules) | live posterior +0.035 s/lap (linear-G",
+     "reference": "lock.validation.mae_issued.push_adjusted",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 85.525,
+     "decimals": 3,
+     "shown": "anged clean lap 30 (age 27, 85.525 s corrected, re",
+     "reference": "feat/Monza_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 53) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "what this lap changed",
+     "value": -0.33,
+     "decimals": 2,
+     "shown": "5.525 s corrected, residual -0.33 s) moved the slo",
+     "reference": "lock.events.Belgium.race.beta_race",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.0461,
+     "decimals": 4,
+     "shown": "al -0.33 s) moved the slope +0.0461 -> +0.0349",
+     "reference": "Monza_LIN:lap26:tyre_state.degradation_rate",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.0349,
+     "decimals": 4,
+     "shown": "moved the slope +0.0461 -> +0.0349",
+     "reference": "lock.validation_rows[2].pred_push",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "lity of gain 97% downside   +11.4 s rejoin traffic",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0349,
+     "decimals": 4,
+     "shown": "soft posterior degradation +0.0349 s/lap per lap",
+     "reference": "lock.validation_rows[2].pred_push",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "out to the flag (plan S-M) 7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 14.5,
+     "decimals": 1,
+     "shown": ") pit now lap 30 new medium +14.5 s · p 79% pit no",
+     "reference": "lock.strategy.Australia.views.Naive fit.cost_under_truth_vs_best_s",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "% pit now lap 30 new medium +11.4 s · p 76% pit no",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "76% pit now lap 30 new soft +11.4 s · p 76%",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: track temperature per session (lock)",
+     "value": 51.7,
+     "decimals": 1,
+     "shown": "rature per session (lock) | 51.7 | 55.1 | 51.8 | 5",
+     "reference": "lock.events.Monza.track_temp.FP1",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart: track temperature per session (lock)",
+     "value": 55.1,
+     "decimals": 1,
+     "shown": "per session (lock) | 51.7 | 55.1 | 51.8 | 53.8 | 5",
+     "reference": "lock.events.Monza.track_temp.FP2",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart: track temperature per session (lock)",
+     "value": 55.4,
+     "decimals": 1,
+     "shown": "51.7 | 55.1 | 51.8 | 53.8 | 55.4 | Track temperatu",
+     "reference": "lock.events.Monza.track_temp.R",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "live tyre state (7.1) · feed quality la",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.91,
+     "decimals": 2,
+     "shown": "/ 27 state_regime normal corrected_pace_loss +0.9",
+     "reference": "lock.validation_rows[18].z",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.035,
+     "decimals": 3,
+     "shown": "corrected_pace_loss +0.91 s degradation_rate +0.0",
+     "reference": "lock.validation.mae_issued.push_adjusted",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.94,
+     "decimals": 2,
+     "shown": "dation_rate +0.035 s/lap thermal_stress_index 0.94",
+     "reference": "lock.strategy.Barcelona.views.Cleaned Friday curve.alternatives[2].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 14
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.54,
+     "decimals": 2,
+     "shown": "rmal_stress_index 0.94 performance_wear_index 0.54",
+     "reference": "lock.validation_rows[15].naive",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.51,
+     "decimals": 2,
+     "shown": "ar model) trend_vs_pre_race +0.15x confidence 0.51",
+     "reference": "lock.live.Madrid.compounds[0].naive",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "sition_xy, weather, team_radio source_latency 3.0",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0349,
+     "decimals": 4,
+     "shown": "dex are demand-based proxies; slope posterior +0.0",
+     "reference": "lock.validation_rows[2].pred_push",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0174,
+     "decimals": 4,
+     "shown": "and-based proxies; slope posterior +0.0349 +- 0.01",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_clearstint",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0354,
+     "decimals": 4,
+     "shown": "per lap from 19 clean laps (prior +0.0303 +- 0.03",
+     "reference": "validation_rows[Australia,MEDIUM]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 5
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0354,
+     "decimals": 4,
+     "shown": "2), prior slope +0.0303 +- 0.0354 s/lap per lap r",
+     "reference": "validation_rows[Australia,MEDIUM]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 5
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "gain median /   /   +34.6 / +11.4 / +59.8 s probab",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 4.7,
+     "decimals": 1,
+     "shown": "xt P9 now → ~P14, gap ahead 4.7 s, behind 7.6 s, 5",
+     "reference": "lock.strategy.Australia.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 5
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [
+    {
+     "widget": "PIT WINDOW",
+     "value": 34.6,
+     "decimals": 1,
+     "shown": "INDOW lap 30 pit now · gain +34.6 s (  +11.4) deci",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_median",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "PIT WINDOW",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "0 pit now · gain +34.6 s (  +11.4) decision/optimi",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.0461,
+     "decimals": 4,
+     "shown": "al -0.33 s) moved the slope +0.0461 -> +0.0349",
+     "reference": "Monza_LIN:lap26:tyre_state.degradation_rate",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 34.6,
+     "decimals": 1,
+     "shown": "SOFT S · Soft expected gain +34.6 s vs pre-race pl",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_median",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "why this changed",
+     "value": 59.8,
+     "decimals": 1,
+     "shown": "+34.6 s vs pre-race plan (  +59.8) probability of",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q90",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "why this changed",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "lity of gain 97% downside   +11.4 s rejoin traffic",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 79.0,
+     "decimals": 0,
+     "shown": "p 30 new medium +14.5 s · p 79% pit now lap 30 new",
+     "reference": "Monza_LIN:lap1:actions[1].probability_of_gain",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 5
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "% pit now lap 30 new medium +11.4 s · p 76% pit no",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "76% pit now lap 30 new soft +11.4 s · p 76%",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 34.6,
+     "decimals": 1,
+     "shown": "xpected_gain median /   /   +34.6 / +11.4 / +59.8",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_median",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "gain median /   /   +34.6 / +11.4 / +59.8 s probab",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 59.8,
+     "decimals": 1,
+     "shown": "ian /   /   +34.6 / +11.4 / +59.8 s probability_of",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q90",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 7.6,
+     "decimals": 1,
+     "shown": "14, gap ahead 4.7 s, behind 7.6 s, 5 cars within p",
+     "reference": "Monza_LIN:lap30:actions[0].rejoin_context.gap_behind_s",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    }
+   ],
+   "mismatches": [],
+   "error": null,
+   "notes": [
+    "Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED"
+   ]
+  },
+  {
+   "route": "live_predictor/Monza-NOR-L30",
+   "page": "live_predictor",
+   "state": {
+    "ev": "Monza",
+    "drv": "NOR",
+    "lap": 30,
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 121,
+   "matched": {
+    "lock_v2": 4,
+    "lock": 103,
+    "sidecar:out/live/Monza_NOR": 8,
+    "derived": 6
+   },
+   "ambiguous": [
+    {
+     "widget": "global frame",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "NING SUPPORT · Feed latency 3.0 s (7.1 source_late",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "global frame",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "PPORT · Feed latency 3.0 s (7.1 source_latency) lo",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "LIVE DEGRADATION",
+     "value": 0.017,
+     "decimals": 3,
+     "shown": "LIVE DEGRADATION +0.017 s/lap -45% vs f",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_clearstint",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "LIVE DEGRADATION",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": ".017 s/lap -45% vs forecast +0.030 · 7 clean laps",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "PIT WINDOW",
+     "value": -18.1,
+     "decimals": 1,
+     "shown": "0 pit now · gain +18.9 s (  -18.1) decision/optimi",
+     "reference": "lock.strategy.Miami.views.Cleaned Friday curve.crossover.M-H",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: pre-race 90% band (lock)",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "(lock) | pre-race forecast +0.030 s/lap (lock) |",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "chart: pre-race 90% band (lock)",
+     "value": 0.017,
+     "decimals": 3,
+     "shown": "ime rules) | live posterior +0.017 s/lap (linear-G",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_clearstint",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 85.371,
+     "decimals": 3,
+     "shown": "anged clean lap 30 (age 27, 85.371 s corrected, re",
+     "reference": "feat/Monza_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 53) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 3
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.31,
+     "decimals": 2,
+     "shown": "5.371 s corrected, residual +0.31 s) moved the slo",
+     "reference": "lock.validation_rows[7].clean",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.0052,
+     "decimals": 4,
+     "shown": "al +0.31 s) moved the slope +0.0052 -> +0.0167",
+     "reference": "out/live/Monza_NOR/states.jsonl[22].degradation_rate",
+     "kind": "sidecar:out/live/Monza_NOR",
+     "ambiguity": 2
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.0167,
+     "decimals": 4,
+     "shown": "moved the slope +0.0052 -> +0.0167",
+     "reference": "lock_v2.input_availability.channels.track_temp.sample_rate_hz",
+     "kind": "lock_v2",
+     "ambiguity": 3
+    },
+    {
+     "widget": "why this changed",
+     "value": -18.1,
+     "decimals": 1,
+     "shown": "lity of gain 75% downside   -18.1 s rejoin traffic",
+     "reference": "lock.strategy.Miami.views.Cleaned Friday curve.crossover.M-H",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0167,
+     "decimals": 4,
+     "shown": "soft posterior degradation +0.0167 s/lap per lap",
+     "reference": "lock_v2.input_availability.channels.track_temp.sample_rate_hz",
+     "kind": "lock_v2",
+     "ambiguity": 3
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0303,
+     "decimals": 4,
+     "shown": "5% vs the pre-race forecast +0.0303) from 7 clean",
+     "reference": "lock.validation.withheld_cases[5].floor",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "out to the flag (plan S-M) 7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 6.0,
+     "decimals": 1,
+     "shown": "ked) extend lap 39 new soft +6.0 s · p 62% stay ou",
+     "reference": "lock.events.Belgium.excluded_by_reason.cool-down / aborted (>105% of run best)",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "oft +6.0 s · p 62% stay out +0.0 s · p 50% pit now",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": -1.8,
+     "decimals": 1,
+     "shown": "t now laps 30-31 new medium -1.8 s · p 48%",
+     "reference": "lock.events.Austria.offsets.HARD",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "chart: track temperature per session (lock)",
+     "value": 51.7,
+     "decimals": 1,
+     "shown": "rature per session (lock) | 51.7 | 55.1 | 51.8 | 5",
+     "reference": "lock.events.Monza.track_temp.FP1",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: track temperature per session (lock)",
+     "value": 55.1,
+     "decimals": 1,
+     "shown": "per session (lock) | 51.7 | 55.1 | 51.8 | 53.8 | 5",
+     "reference": "lock.events.Monza.track_temp.FP2",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: track temperature per session (lock)",
+     "value": 55.4,
+     "decimals": 1,
+     "shown": "51.7 | 55.1 | 51.8 | 53.8 | 55.4 | Track temperatu",
+     "reference": "lock.events.Monza.track_temp.R",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "live tyre state (7.1) · feed quality la",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.47,
+     "decimals": 2,
+     "shown": "/ 27 state_regime normal corrected_pace_loss +0.4",
+     "reference": "lock.validation_rows[4].ratio",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.017,
+     "decimals": 3,
+     "shown": "corrected_pace_loss +0.47 s degradation_rate +0.0",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_clearstint",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.94,
+     "decimals": 2,
+     "shown": "dation_rate +0.017 s/lap thermal_stress_index 0.94",
+     "reference": "lock.strategy.Barcelona.views.Cleaned Friday curve.alternatives[2].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 12
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.54,
+     "decimals": 2,
+     "shown": "rmal_stress_index 0.94 performance_wear_index 0.54",
+     "reference": "lock.validation_rows[15].naive",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.14,
+     "decimals": 2,
+     "shown": "ar model) trend_vs_pre_race -0.45x confidence 0.14",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 58
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "sition_xy, weather, team_radio source_latency 3.0",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0167,
+     "decimals": 4,
+     "shown": "dex are demand-based proxies; slope posterior +0.0",
+     "reference": "lock_v2.input_availability.channels.track_temp.sample_rate_hz",
+     "kind": "lock_v2",
+     "ambiguity": 3
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0303,
+     "decimals": 4,
+     "shown": "and-based proxies; slope posterior +0.0167 +- 0.03",
+     "reference": "lock.validation.withheld_cases[5].floor",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0303,
+     "decimals": 4,
+     "shown": "0.0303 s/lap per lap from 7 clean laps (prior +0.0",
+     "reference": "lock.validation.withheld_cases[5].floor",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0354,
+     "decimals": 4,
+     "shown": "p per lap from 7 clean laps (prior +0.0303 +- 0.03",
+     "reference": "validation_rows[Australia,MEDIUM]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 4
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0303,
+     "decimals": 4,
+     "shown": "hard (stint 2), prior slope +0.0303 +- 0.0354 s/la",
+     "reference": "lock.validation.withheld_cases[5].floor",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0354,
+     "decimals": 4,
+     "shown": "2), prior slope +0.0303 +- 0.0354 s/lap per lap r",
+     "reference": "validation_rows[Australia,MEDIUM]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 4
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": -18.1,
+     "decimals": 1,
+     "shown": "gain median /   /   +18.9 / -18.1 / +57.2 s probab",
+     "reference": "lock.strategy.Miami.views.Cleaned Friday curve.crossover.M-H",
+     "kind": "lock",
+     "ambiguity": 2
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "live_predictor/Madrid",
+   "page": "live_predictor",
+   "state": {
+    "ev": "Madrid",
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 9,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 8
+   },
+   "ambiguous": [
+    {
+     "widget": "SOFT FORECAST",
+     "value": 0.068,
+     "decimals": 3,
+     "shown": "SOFT FORECAST +0.068 s/lap 90% band",
+     "reference": "lock.validation_rows[3].obs",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "SOFT FORECAST",
+     "value": -0.114,
+     "decimals": 3,
+     "shown": "ECAST +0.068 s/lap 90% band -0.114 to +0.255 · iss",
+     "reference": "lock.validation_rows[9].naive",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "SOFT FORECAST",
+     "value": 0.255,
+     "decimals": 3,
+     "shown": "68 s/lap 90% band -0.114 to +0.255 · issued lock.l",
+     "reference": "lock.live.Madrid.compounds[0].band90[1]",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "MEDIUM FORECAST",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "MEDIUM FORECAST +0.028 s/lap 90% band",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "MEDIUM FORECAST",
+     "value": -0.013,
+     "decimals": 3,
+     "shown": "ECAST +0.028 s/lap 90% band -0.013 to +0.088 · wit",
+     "reference": "lock.events.Madrid.evolution_s_per_min.FP2",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "MEDIUM FORECAST",
+     "value": 0.088,
+     "decimals": 3,
+     "shown": "28 s/lap 90% band -0.013 to +0.088 · withheld → fa",
+     "reference": "lock.validation_rows[7].half",
+     "kind": "lock",
+     "ambiguity": 3
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "live_predictor/Austria-NOR-L30",
+   "page": "live_predictor",
+   "state": {
+    "ev": "Austria",
+    "drv": "NOR",
+    "lap": 30,
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 179,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 159,
+    "derived": 10,
+    "sidecar:out/live/Austria_NOR": 9
+   },
+   "ambiguous": [
+    {
+     "widget": "global frame",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "· IN SUPPORT · Feed latency 3.0 s (7.1 source_late",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "global frame",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "PPORT · Feed latency 3.0 s (7.1 source_latency) lo",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "LIVE DEGRADATION",
+     "value": 0.016,
+     "decimals": 3,
+     "shown": "LIVE DEGRADATION +0.016 s/lap -76% vs f",
+     "reference": "lock.validation.ci90_mae_clearstint_all[0]",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "LIVE DEGRADATION",
+     "value": 0.067,
+     "decimals": 3,
+     "shown": ".016 s/lap -76% vs forecast +0.067 · 5 clean laps",
+     "reference": "lock.validation_rows[3].err_cs",
+     "kind": "lock",
+     "ambiguity": 13
+    },
+    {
+     "widget": "PIT WINDOW",
+     "value": 0.6,
+     "decimals": 1,
+     "shown": "OW laps 45-51 extend · gain +0.6 s (  -8.0) decisi",
+     "reference": "lock.events.Australia.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 36
+    },
+    {
+     "widget": "PIT WINDOW",
+     "value": -8.0,
+     "decimals": 1,
+     "shown": "-51 extend · gain +0.6 s (  -8.0) decision/optimiz",
+     "reference": "lock.strategy.Australia.views.Naive fit.stints[2]",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "chart: pre-race 90% band (lock)",
+     "value": 0.067,
+     "decimals": 3,
+     "shown": "(lock) | pre-race forecast +0.067 s/lap (lock) |",
+     "reference": "lock.validation_rows[3].err_cs",
+     "kind": "lock",
+     "ambiguity": 13
+    },
+    {
+     "widget": "chart: pre-race 90% band (lock)",
+     "value": 0.016,
+     "decimals": 3,
+     "shown": "ime rules) | live posterior +0.016 s/lap (linear-G",
+     "reference": "lock.validation.ci90_mae_clearstint_all[0]",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 70.555,
+     "decimals": 3,
+     "shown": "hanged clean lap 30 (age 9, 70.555 s corrected, re",
+     "reference": "feat/Austria_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 71) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.03,
+     "decimals": 2,
+     "shown": "0.555 s corrected, residual +0.03 s) moved the slo",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 69
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.0149,
+     "decimals": 4,
+     "shown": "al +0.03 s) moved the slope +0.0149 -> +0.0163",
+     "reference": "lock.validation_rows[0].err_naive",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "what this lap changed",
+     "value": 0.0163,
+     "decimals": 4,
+     "shown": "moved the slope +0.0149 -> +0.0163",
+     "reference": "lock.validation_rows[2].err_cs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.6,
+     "decimals": 1,
+     "shown": "UM M · Medium expected gain +0.6 s vs pre-race pla",
+     "reference": "lock.events.Australia.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 36
+    },
+    {
+     "widget": "why this changed",
+     "value": -8.0,
+     "decimals": 1,
+     "shown": "lity of gain 54% downside   -8.0 s rejoin traffic",
+     "reference": "lock.strategy.Australia.views.Naive fit.stints[2]",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "why this changed",
+     "value": 70.555,
+     "decimals": 3,
+     "shown": "ecause clean lap 30 (age 9, 70.555 s corrected, re",
+     "reference": "feat/Austria_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 71) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.03,
+     "decimals": 2,
+     "shown": "0.555 s corrected, residual +0.03 s) moved the slo",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 69
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0149,
+     "decimals": 4,
+     "shown": "al +0.03 s) moved the slope +0.0149 -> +0.0163 ext",
+     "reference": "lock.validation_rows[0].err_naive",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0163,
+     "decimals": 4,
+     "shown": "moved the slope +0.0149 -> +0.0163 extend, pit la",
+     "reference": "lock.validation_rows[2].err_cs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0163,
+     "decimals": 4,
+     "shown": "edium posterior degradation +0.0163 s/lap per lap",
+     "reference": "lock.validation_rows[2].err_cs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0672,
+     "decimals": 4,
+     "shown": "6% vs the pre-race forecast +0.0672) from 5 clean",
+     "reference": "lock.validation_rows[5].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "p 44 -> MEDIUM (plan S-M-M) 7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": -0.8,
+     "decimals": 1,
+     "shown": "ernatives (ranked) stay out -0.8 s · p 49% extend",
+     "reference": "lock.events.Monza.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 34
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": -1.2,
+     "decimals": 1,
+     "shown": "extend laps 52-56 new soft -1.2 s · p 48% pit lap",
+     "reference": "lock.events.Barcelona.offsets.HARD",
+     "kind": "lock",
+     "ambiguity": 26
+    },
+    {
+     "widget": "alternatives (ranked)",
+     "value": -3.8,
+     "decimals": 1,
+     "shown": "p 48% pit lap 38 new medium -3.8 s · p 36%",
+     "reference": "out/live/Austria_NOR/recommendations.jsonl[12].actions[5].expected_gain_q90",
+     "kind": "sidecar:out/live/Austria_NOR",
+     "ambiguity": 4
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "live tyre state (7.1) · feed quality la",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.17,
+     "decimals": 2,
+     "shown": "D / 9 state_regime normal corrected_pace_loss +0.1",
+     "reference": "lock.validation_rows[1].naive",
+     "kind": "lock",
+     "ambiguity": 21
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.016,
+     "decimals": 3,
+     "shown": "corrected_pace_loss +0.17 s degradation_rate +0.0",
+     "reference": "lock.validation.ci90_mae_clearstint_all[0]",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.89,
+     "decimals": 2,
+     "shown": "dation_rate +0.016 s/lap thermal_stress_index 0.89",
+     "reference": "out/live/Austria_NOR/states.jsonl[0].thermal_stress_index",
+     "kind": "sidecar:out/live/Austria_NOR",
+     "ambiguity": 4
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.18,
+     "decimals": 2,
+     "shown": "rmal_stress_index 0.89 performance_wear_index 0.18",
+     "reference": "lock.validation_rows[2].naive",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0,
+     "decimals": 2,
+     "shown": "ar model) trend_vs_pre_race -0.76x confidence 0.00",
+     "reference": "lock.events.Australia.offsets.SOFT",
+     "kind": "lock",
+     "ambiguity": 31
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "sition_xy, weather, team_radio source_latency 3.0",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0163,
+     "decimals": 4,
+     "shown": "dex are demand-based proxies; slope posterior +0.0",
+     "reference": "lock.validation_rows[2].err_cs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0493,
+     "decimals": 4,
+     "shown": "and-based proxies; slope posterior +0.0163 +- 0.04",
+     "reference": "out/live/Austria_NOR/estimator_trace.jsonl[29].slope_sd",
+     "kind": "sidecar:out/live/Austria_NOR",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.0672,
+     "decimals": 4,
+     "shown": "0.0493 s/lap per lap from 5 clean laps (prior +0.0",
+     "reference": "lock.validation_rows[5].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "live tyre state (7.1) · feed quality",
+     "value": 0.042,
+     "decimals": 4,
+     "shown": "p per lap from 5 clean laps (prior +0.0672 +- 0.04",
+     "reference": "validation_rows[Austria,HARD]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0672,
+     "decimals": 4,
+     "shown": "hard (stint 2), prior slope +0.0672 +- 0.0420 s/la",
+     "reference": "lock.validation_rows[5].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.042,
+     "decimals": 4,
+     "shown": "2), prior slope +0.0672 +- 0.0420 s/lap per lap r",
+     "reference": "validation_rows[Austria,HARD]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 70.442,
+     "decimals": 3,
+     "shown": "ecause clean lap 27 (age 6, 70.442 s corrected, re",
+     "reference": "feat/Austria_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 71) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": -0.53,
+     "decimals": 2,
+     "shown": "0.442 s corrected, residual -0.53 s) moved the slo",
+     "reference": "lock.events.Madrid.beta_practice_s_per_MJ",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0672,
+     "decimals": 4,
+     "shown": "al -0.53 s) moved the slope +0.0672 -> +0.0292 lap",
+     "reference": "lock.validation_rows[5].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0292,
+     "decimals": 4,
+     "shown": "moved the slope +0.0672 -> +0.0292 lap 28 STAY OU",
+     "reference": "out/live/Austria_NOR/states.jsonl[26].degradation_rate",
+     "kind": "sidecar:out/live/Austria_NOR",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 70.267,
+     "decimals": 3,
+     "shown": "ecause clean lap 28 (age 7, 70.267 s corrected, re",
+     "reference": "feat/Austria_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 71) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": -0.36,
+     "decimals": 2,
+     "shown": "0.267 s corrected, residual -0.36 s) moved the slo",
+     "reference": "lock.events.Australia.race.beta_race",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0292,
+     "decimals": 4,
+     "shown": "al -0.36 s) moved the slope +0.0292 -> +0.0101 lap",
+     "reference": "out/live/Austria_NOR/states.jsonl[26].degradation_rate",
+     "kind": "sidecar:out/live/Austria_NOR",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0101,
+     "decimals": 4,
+     "shown": "moved the slope +0.0292 -> +0.0101 lap 30 PIT LAP",
+     "reference": "out/live/Austria_NOR/states.jsonl[27].degradation_rate",
+     "kind": "sidecar:out/live/Austria_NOR",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 70.555,
+     "decimals": 3,
+     "shown": "ecause clean lap 30 (age 9, 70.555 s corrected, re",
+     "reference": "feat/Austria_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 71) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.03,
+     "decimals": 2,
+     "shown": "0.555 s corrected, residual +0.03 s) moved the slo",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 69
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0149,
+     "decimals": 4,
+     "shown": "al +0.03 s) moved the slope +0.0149 -> +0.0163",
+     "reference": "lock.validation_rows[0].err_naive",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "recommendation history · what changed",
+     "value": 0.0163,
+     "decimals": 4,
+     "shown": "moved the slope +0.0149 -> +0.0163",
+     "reference": "lock.validation_rows[2].err_cs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 0.6,
+     "decimals": 1,
+     "shown": "xpected_gain median /   /   +0.6 / -8.0 / +9.3 s p",
+     "reference": "lock.events.Australia.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 36
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": -8.0,
+     "decimals": 1,
+     "shown": "_gain median /   /   +0.6 / -8.0 / +9.3 s probabil",
+     "reference": "lock.strategy.Australia.views.Naive fit.stints[2]",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 6.0,
+     "decimals": 1,
+     "shown": "xt P8 now → ~P12, gap ahead 6.0 s, behind 12.6 s,",
+     "reference": "lock.events.Belgium.excluded_by_reason.cool-down / aborted (>105% of run best)",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 12.6,
+     "decimals": 1,
+     "shown": "12, gap ahead 6.0 s, behind 12.6 s, 4 cars within",
+     "reference": "out/live/Austria_NOR/states.jsonl[10].useful_laps_q10",
+     "kind": "sidecar:out/live/Austria_NOR",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 70.555,
+     "decimals": 3,
+     "shown": "ecause clean lap 30 (age 9, 70.555 s corrected, re",
+     "reference": "feat/Austria_R.csv: lap_s - 0.03 x 70 x (1 - (lap - 1) / 71) (model_v2 race fuel correction)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 0.03,
+     "decimals": 2,
+     "shown": "0.555 s corrected, residual +0.03 s) moved the slo",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 69
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 0.0149,
+     "decimals": 4,
+     "shown": "al +0.03 s) moved the slope +0.0149 -> +0.0163",
+     "reference": "lock.validation_rows[0].err_naive",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "7.2 live_recommendation record (rank 1)",
+     "value": 0.0163,
+     "decimals": 4,
+     "shown": "moved the slope +0.0149 -> +0.0163",
+     "reference": "lock.validation_rows[2].err_cs",
+     "kind": "lock",
+     "ambiguity": 2
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "decision_board/Monza-LIN-L30",
+   "page": "decision_board",
+   "state": {
+    "ev": "Monza",
+    "drv": "LIN",
+    "lap": 30,
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 91,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 79,
+    "live_runtime:Monza_LIN (no hashed record)": 9,
+    "derived": 2
+   },
+   "ambiguous": [
+    {
+     "widget": "global frame",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "NING SUPPORT · Feed latency 3.0 s (7.1 source_late",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "global frame",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "PPORT · Feed latency 3.0 s (7.1 source_latency) lo",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "why this changed",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "lity of gain 97% downside   +11.4 s rejoin traffic",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 0.0349,
+     "decimals": 4,
+     "shown": "soft posterior degradation +0.0349 s/lap per lap",
+     "reference": "lock.validation_rows[2].pred_push",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "why this changed",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "out to the flag (plan S-M) 7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "action 2",
+     "value": 14.5,
+     "decimals": 1,
+     "shown": "M-new-1 (new) expected gain +14.5 s (  -8.3,   +37",
+     "reference": "lock.strategy.Australia.views.Naive fit.cost_under_truth_vs_best_s",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 2",
+     "value": -8.3,
+     "decimals": 1,
+     "shown": "w) expected gain +14.5 s (  -8.3,   +37.9) probabi",
+     "reference": "Monza_LIN:lap21:actions[3].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 2",
+     "value": 0.0349,
+     "decimals": 4,
+     "shown": "edium posterior degradation +0.0349 s/lap per lap",
+     "reference": "lock.validation_rows[2].pred_push",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 2",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "robability 8% within 3 laps 7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "action 3",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "M-new-1 (new) expected gain +11.4 s (  -9.7,   +33",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 3",
+     "value": -9.7,
+     "decimals": 1,
+     "shown": "w) expected gain +11.4 s (  -9.7,   +33.5) probabi",
+     "reference": "Monza_LIN:lap2:tyre_state.useful_laps_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 3",
+     "value": 0.0349,
+     "decimals": 4,
+     "shown": "soft posterior degradation +0.0349 s/lap per lap",
+     "reference": "lock.validation_rows[2].pred_push",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 3",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "robability 8% within 3 laps 7.2 live_recommendatio",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "L 1 PIT LAP 4, NEW SOFT · HOLD PLAN L 7 PIT LAP 7,...",
+     "value": 0.0354,
+     "decimals": 4,
+     "shown": "2), prior slope +0.0303 +- 0.0354 s/lap per lap r",
+     "reference": "validation_rows[Australia,MEDIUM]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 5
+    },
+    {
+     "widget": "### Constraints on every action (7.2)",
+     "value": 7.2,
+     "decimals": 1,
+     "shown": "onstraints on every action (7.2)",
+     "reference": "lock.strategy.Belgium.views.Orb v1.crossover.S-M",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "compound / age HARD / 27 posterior slope +0.035 ± ...",
+     "value": 0.035,
+     "decimals": 3,
+     "shown": "e HARD / 27 posterior slope +0.035 ± 0.017 s/lap p",
+     "reference": "lock.validation.mae_issued.push_adjusted",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "compound / age HARD / 27 posterior slope +0.035 ± ...",
+     "value": 0.017,
+     "decimals": 3,
+     "shown": "27 posterior slope +0.035 ± 0.017 s/lap prior slop",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_clearstint",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "compound / age HARD / 27 posterior slope +0.035 ± ...",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "5 ± 0.017 s/lap prior slope +0.030 s/lap (lock_v2.",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 7
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [
+    {
+     "widget": "why this changed",
+     "value": 34.6,
+     "decimals": 1,
+     "shown": "SOFT S · Soft expected gain +34.6 s vs pre-race pl",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_median",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "why this changed",
+     "value": 59.8,
+     "decimals": 1,
+     "shown": "+34.6 s vs pre-race plan (  +59.8) probability of",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q90",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "why this changed",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "lity of gain 97% downside   +11.4 s rejoin traffic",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 2",
+     "value": -8.3,
+     "decimals": 1,
+     "shown": "w) expected gain +14.5 s (  -8.3,   +37.9) probabi",
+     "reference": "Monza_LIN:lap21:actions[3].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 2",
+     "value": 37.9,
+     "decimals": 1,
+     "shown": "ted gain +14.5 s (  -8.3,   +37.9) probability of",
+     "reference": "Monza_LIN:lap30:actions[1].expected_gain_q90",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    },
+    {
+     "widget": "action 2",
+     "value": 79.0,
+     "decimals": 0,
+     "shown": "+37.9) probability of gain 79% rejoin traffic P9",
+     "reference": "Monza_LIN:lap1:actions[1].probability_of_gain",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 5
+    },
+    {
+     "widget": "action 3",
+     "value": 11.4,
+     "decimals": 1,
+     "shown": "M-new-1 (new) expected gain +11.4 s (  -9.7,   +33",
+     "reference": "Monza_LIN:lap30:actions[0].expected_gain_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 3",
+     "value": -9.7,
+     "decimals": 1,
+     "shown": "w) expected gain +11.4 s (  -9.7,   +33.5) probabi",
+     "reference": "Monza_LIN:lap2:tyre_state.useful_laps_q10",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "action 3",
+     "value": 33.5,
+     "decimals": 1,
+     "shown": "ted gain +11.4 s (  -9.7,   +33.5) probability of",
+     "reference": "Monza_LIN:lap30:actions[2].expected_gain_q90",
+     "kind": "live_runtime:Monza_LIN (no hashed record)",
+     "ambiguity": 1
+    }
+   ],
+   "mismatches": [],
+   "error": null,
+   "notes": [
+    "Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED"
+   ]
+  },
+  {
+   "route": "driver_feedback/Monza-LIN",
+   "page": "driver_feedback",
+   "state": {
+    "ev": "Monza",
+    "drv": "LIN",
+    "lap": 30,
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 17,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 16
+   },
+   "ambiguous": [
+    {
+     "widget": "global frame",
+     "value": 3.0,
+     "decimals": 1,
+     "shown": "NING SUPPORT · Feed latency 3.0 s (7.1 source_late",
+     "reference": "lock.events.Barcelona.excluded_by_reason.telemetry missing",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "global frame",
+     "value": 7.1,
+     "decimals": 1,
+     "shown": "PPORT · Feed latency 3.0 s (7.1 source_latency) lo",
+     "reference": "lock.strategy.Hungary.views.Naive fit.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "regime now NORMAL regime probabilities none active...",
+     "value": 0.0349,
+     "decimals": 4,
+     "shown": "none active posterior slope +0.0349 ± 0.0174 s/lap",
+     "reference": "lock.validation_rows[2].pred_push",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "regime now NORMAL regime probabilities none active...",
+     "value": 0.0174,
+     "decimals": 4,
+     "shown": "e posterior slope +0.0349 ± 0.0174 s/lap useful la",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_clearstint",
+     "kind": "lock",
+     "ambiguity": 4
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": [
+    "Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED"
+   ]
+  },
+  {
+   "route": "ghost_strategy/Monza-NOR-audit",
+   "page": "ghost_strategy",
+   "state": {
+    "ev": "Monza",
+    "drv": "NOR",
+    "mode": "audit"
+   },
+   "status": "ok",
+   "numbers": 69,
+   "matched": {
+    "lock_v2": 2,
+    "lock": 56,
+    "sidecar:out/maps/Monza": 1,
+    "sidecar:out/counterfactual (Monza)": 9,
+    "derived": 1
+   },
+   "ambiguous": [
+    {
+     "widget": "HARD",
+     "value": 1.0,
+     "decimals": 1,
+     "shown": "p 24 frames workstream2 · 4926 @ 1.0 Hz · finish delta",
+     "reference": "lock.events.Australia.excluded_by_reason.timing flagged inaccurate",
+     "kind": "lock",
+     "ambiguity": 42
+    },
+    {
+     "widget": "HARD",
+     "value": -7.7,
+     "decimals": 1,
+     "shown": "926 @ 1.0 Hz · finish delta -7.7 s track sidecar v",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json.engine.elapsed_delta_mean_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 5
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": -7.8,
+     "decimals": 1,
+     "shown": "finish delta (median) -7.8 s · Workstream 2 tyre",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json.scenario.summary.elapsed_delta_median_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 4
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": -17.6,
+     "decimals": 1,
+     "shown": "y · 2026-09-12T16:26 80% interval (  to  ) -17.6 s",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/lap_deltas.json.records[24].delta_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": 2.2,
+     "decimals": 1,
+     "shown": "-12T16:26 80% interval (  to  ) -17.6 s to +2.2 s",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/laps.csv:cumulative_delta",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 4
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "eave-one-driver-out Sunday reference: soft +0.025,",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "-out Sunday reference: soft +0.025, medium +0.028,",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "eference: soft +0.025, medium +0.028, hard +0.025",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": 0.007,
+     "decimals": 3,
+     "shown": "not simulated. forecast error (frozen vs race ref",
+     "reference": "lock.events.Australia.evolution_s_per_min.FP3",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": "s/lap band coverage covered race-derived reference",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "finish delta (median) -7.8 s · Workstream 2 tyre only ·...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "ponse (lock) S-M (43/10) regret of the frozen plan",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "pit transit loss: only 2 green-flag stop(s) measur...",
+     "value": 21.98,
+     "decimals": 2,
+     "shown": "25 stops used (median total 21.98 s) out-lap penal",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json.engine.pit_model.derivation.season_pool.median_total_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: +0.0 s",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "+0.0 s | -29.6 s | +21",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "chart: +0.0 s",
+     "value": -29.6,
+     "decimals": 1,
+     "shown": "+0.0 s | -29.6 s | +21.9 s | -0",
+     "reference": "lock.events.Japan.track_temp.Q",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart: +0.0 s",
+     "value": 21.9,
+     "decimals": 1,
+     "shown": "+0.0 s | -29.6 s | +21.9 s | -0.0 s | -7.",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json.engine.pit_delta_mean_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: +0.0 s",
+     "value": -0.0,
+     "decimals": 1,
+     "shown": "0.0 s | -29.6 s | +21.9 s | -0.0 s | -7.7 s | Lap",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "chart: +0.0 s",
+     "value": -7.7,
+     "decimals": 1,
+     "shown": "29.6 s | +21.9 s | -0.0 s | -7.7 s | Lap decomposi",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json.engine.elapsed_delta_mean_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 5
+    },
+    {
+     "widget": "chart: +0.0 s",
+     "value": 0.0,
+     "decimals": 3,
+     "shown": "tyre only) · identity check +0.000 s | s",
+     "reference": "lock.events.Australia.offsets.SOFT",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "nd | Hard pre-race forecast +0.030 (lock) | Hard l",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "driver-out Sunday reference +0.025 ± 0.003 (198 la",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.003,
+     "decimals": 3,
+     "shown": "t Sunday reference +0.025 ± 0.003 (198 laps) | Med",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "| Medium pre-race forecast +0.030 (lock) | Medium",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "driver-out Sunday reference +0.028 ± 0.003 (250 la",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.003,
+     "decimals": 3,
+     "shown": "t Sunday reference +0.028 ± 0.003 (250 laps) | Act",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 10
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "ghost_strategy/Monza-NOR-scenario",
+   "page": "ghost_strategy",
+   "state": {
+    "ev": "Monza",
+    "drv": "NOR",
+    "mode": "scenario",
+    "scenario": "hotter_dry"
+   },
+   "status": "ok",
+   "numbers": 43,
+   "matched": {
+    "lock_v2": 2,
+    "lock": 40,
+    "derived": 1
+   },
+   "ambiguous": [
+    {
+     "widget": "scenario Hotter dry (+5 C track) · NEAR TRAINING S...",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "55 C hard pre-race forecast +0.030 s/lap · band -0",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "scenario Hotter dry (+5 C track) · NEAR TRAINING S...",
+     "value": -0.023,
+     "decimals": 3,
+     "shown": "orecast +0.030 s/lap · band -0.023 to +0.093 mediu",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "scenario Hotter dry (+5 C track) · NEAR TRAINING S...",
+     "value": 0.093,
+     "decimals": 3,
+     "shown": ".030 s/lap · band -0.023 to +0.093 medium pre-race",
+     "reference": "lock.validation_rows[24].hi",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "scenario Hotter dry (+5 C track) · NEAR TRAINING S...",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "93 medium pre-race forecast +0.030 s/lap · band -0",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "scenario Hotter dry (+5 C track) · NEAR TRAINING S...",
+     "value": -0.023,
+     "decimals": 3,
+     "shown": "orecast +0.030 s/lap · band -0.023 to +0.093 model",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "scenario Hotter dry (+5 C track) · NEAR TRAINING S...",
+     "value": 0.093,
+     "decimals": 3,
+     "shown": ".030 s/lap · band -0.023 to +0.093 model-implied f",
+     "reference": "lock.validation_rows[24].hi",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "nd | Hard pre-race forecast +0.030 (lock) | Medium",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "| Medium pre-race forecast +0.030 (lock) | Tyre c",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "Scenario Track temp Support Reason Status Actual h...",
+     "value": 50.4,
+     "decimals": 1,
+     "shown": "ble Cooler dry (-5 C track) 50.4 °C IN SUPPORT — a",
+     "reference": "lock.events.Barcelona.track_temp.R",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Scenario Track temp Support Reason Status Actual h...",
+     "value": 36.8,
+     "decimals": 1,
+     "shown": "aseline dry (season median) 36.8 °C IN SUPPORT — a",
+     "reference": "lock.events.Australia.track_temp.FP3",
+     "kind": "lock",
+     "ambiguity": 2
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "ghost_strategy/Austria-NOR-audit",
+   "page": "ghost_strategy",
+   "state": {
+    "ev": "Austria",
+    "drv": "NOR",
+    "mode": "audit"
+   },
+   "status": "ok",
+   "numbers": 30,
+   "matched": {
+    "lock_v2": 2,
+    "lock": 26,
+    "derived": 2
+   },
+   "ambiguous": [
+    {
+     "widget": "finish delta no counterfactual for this combinatio...",
+     "value": 0.011,
+     "decimals": 3,
+     "shown": "(frozen vs race reference) +0.011 s/lap band cove",
+     "reference": "lock.events.Belgium.evolution_s_per_min.FP3",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "finish delta no counterfactual for this combinatio...",
+     "value": 0.079,
+     "decimals": 3,
+     "shown": "ce-derived reference (lock) +0.079 s/lap · 408 lap",
+     "reference": "lock.validation_rows[5].obs",
+     "kind": "lock",
+     "ambiguity": 15
+    },
+    {
+     "widget": "finish delta no counterfactual for this combinatio...",
+     "value": 25.7,
+     "decimals": 1,
+     "shown": "t of the frozen plan (lock) +25.7 s",
+     "reference": "lock.strategy.Austria.views.Orb v1.cost_under_truth_vs_best_s",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.067,
+     "decimals": 3,
+     "shown": "nd | Hard pre-race forecast +0.067 (lock) | Soft p",
+     "reference": "lock.validation_rows[3].err_cs",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "chart: Hard pre-race 90% band",
+     "value": 0.135,
+     "decimals": 3,
+     "shown": "nd | Soft pre-race forecast +0.135 (lock) | Tyre c",
+     "reference": "lock.validation_rows[1].z",
+     "kind": "lock",
+     "ambiguity": 10
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "ghost_strategy/Madrid-audit",
+   "page": "ghost_strategy",
+   "state": {
+    "ev": "Madrid",
+    "mode": "audit"
+   },
+   "status": "ok",
+   "numbers": 1,
+   "matched": {
+    "lock_v2": 1
+   },
+   "ambiguous": [],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "generalisation",
+   "page": "generalisation",
+   "state": {
+    "ev": "Monza",
+    "mode": "audit"
+   },
+   "status": "ok",
+   "numbers": 29,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 28
+   },
+   "ambiguous": [
+    {
+     "widget": "seen circuit, seen driver MAE 0.023 s/lap · naive ...",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": "en circuit, seen driver MAE 0.023 s/lap · naive 0.",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 13
+    },
+    {
+     "widget": "seen circuit, seen driver MAE 0.023 s/lap · naive ...",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "ver MAE 0.023 s/lap · naive 0.137 coverage 86% · n",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "weekends 11 compound-weekends 29 issued / withheld...",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": "/ 13 MAE Orb v1, all cases 0.023 s/lap (90% CI 0.",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 13
+    },
+    {
+     "widget": "weekends 11 compound-weekends 29 issued / withheld...",
+     "value": 0.016,
+     "decimals": 3,
+     "shown": "l cases 0.023 s/lap (90% CI 0.016 to 0.030) MAE na",
+     "reference": "lock.validation.ci90_mae_clearstint_all[0]",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "weekends 11 compound-weekends 29 issued / withheld...",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": ".023 s/lap (90% CI 0.016 to 0.030) MAE naive 0.137",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "weekends 11 compound-weekends 29 issued / withheld...",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "I 0.016 to 0.030) MAE naive 0.137 s/lap calibrated",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  },
+  {
+   "route": "validation",
+   "page": "validation",
+   "state": {
+    "ev": "Monza",
+    "mode": "live"
+   },
+   "status": "ok",
+   "numbers": 252,
+   "matched": {
+    "lock_v2": 1,
+    "lock": 196,
+    "sidecar:out/live/prefix_eval.json": 43,
+    "derived": 4,
+    "fixture": 1,
+    "asset:out/sensitivity.json (unsigned)": 6,
+    "asset:feat/Monza_R.csv (unsigned)": 1
+   },
+   "ambiguous": [
+    {
+     "widget": "MAE ORB V1",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": "MAE ORB V1 0.023 s/lap all cases",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 13
+    },
+    {
+     "widget": "MAE ORB V1",
+     "value": 0.016,
+     "decimals": 3,
+     "shown": "23 s/lap all cases · 90% CI 0.016 to 0.030 lock.va",
+     "reference": "lock.validation.ci90_mae_clearstint_all[0]",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "MAE ORB V1",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "all cases · 90% CI 0.016 to 0.030 lock.validation",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "MAE NAIVE",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "MAE NAIVE 0.137 s/lap wins Orb v",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "CALIBRATION SLOPE",
+     "value": 0.77,
+     "decimals": 2,
+     "shown": "CALIBRATION SLOPE +0.77 Pearson r +0.78",
+     "reference": "lock.validation.calibration.all_with_fallback.slope",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "CALIBRATION SLOPE",
+     "value": 0.78,
+     "decimals": 2,
+     "shown": "ATION SLOPE +0.77 Pearson r +0.78 · n 29 lock.vali",
+     "reference": "lock.validation.calibration.all_with_fallback.r",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.101,
+     "decimals": 3,
+     "shown": "1.112 / 1.203 92% / 97% 92% 0.101 vs 0.052 (35/630",
+     "reference": "lock.validation.withheld_cases[12].clean",
+     "kind": "lock",
+     "ambiguity": 14
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.052,
+     "decimals": 3,
+     "shown": ".203 92% / 97% 92% 0.101 vs 0.052 (35/630) 100% of",
+     "reference": "lock.validation_rows[2].obs_push",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.05,
+     "decimals": 2,
+     "shown": "5/630) 100% of 2 · 5.5 laps 0.05 6% Austria 22 133",
+     "reference": "lock.validation.mae_issued.clean",
+     "kind": "lock",
+     "ambiguity": 42
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.36,
+     "decimals": 3,
+     "shown": "aps 0.05 6% Austria 22 1338 0.360 / 0.374 0.972 /",
+     "reference": "out/live/prefix_eval.json.races.Austria.next1_mae",
+     "kind": "sidecar:out/live/prefix_eval.json",
+     "ambiguity": 2
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.947,
+     "decimals": 3,
+     "shown": "1338 0.360 / 0.374 0.972 / 0.947 1.735 / 1.476 90",
+     "reference": "lock.events.Miami.offsets.HARD",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.175,
+     "decimals": 3,
+     "shown": "1.735 / 1.476 90% / 95% 88% 0.175 vs 0.142 (157/91",
+     "reference": "lock.validation_rows[26].naive",
+     "kind": "lock",
+     "ambiguity": 7
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.142,
+     "decimals": 3,
+     "shown": ".476 90% / 95% 88% 0.175 vs 0.142 (157/919) 20% of",
+     "reference": "lock.validation_rows[17].hi",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.09,
+     "decimals": 2,
+     "shown": "57/919) 20% of 5 · 7.0 laps 0.09 11% Barcelona 22",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.max",
+     "kind": "lock",
+     "ambiguity": 44
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.555,
+     "decimals": 3,
+     "shown": "% Barcelona 22 1233 0.466 / 0.555 1.390 / 1.575 2.",
+     "reference": "lock.events.Zandvoort.race.beta_race",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.157,
+     "decimals": 3,
+     "shown": ".645 85% / 82% 78% 0.294 vs 0.157 (154/788) 88% of",
+     "reference": "lock.validation_rows[9].obs_push",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 9.0,
+     "decimals": 1,
+     "shown": "0.157 (154/788) 88% of 26 · 9.0 laps 0.06 10% pool",
+     "reference": "lock.validation.by_compound.SOFT.n",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.06,
+     "decimals": 2,
+     "shown": "4/788) 88% of 26 · 9.0 laps 0.06 10% pooled 66 356",
+     "reference": "lock.events.Canada.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 39
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.38,
+     "decimals": 3,
+     "shown": "aps 0.06 10% pooled 66 3563 0.380 / 0.426 1.045 /",
+     "reference": "out/live/prefix_eval.json.pooled.next1_mae",
+     "kind": "sidecar:out/live/prefix_eval.json",
+     "ambiguity": 2
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.195,
+     "decimals": 3,
+     "shown": "1.845 / 1.796 89% / 91% 86% 0.195 vs 0.126 (346/23",
+     "reference": "out/live/prefix_eval.json.pooled.cliff5_brier",
+     "kind": "sidecar:out/live/prefix_eval.json",
+     "ambiguity": 6
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.126,
+     "decimals": 3,
+     "shown": ".796 89% / 91% 86% 0.195 vs 0.126 (346/2337) 79% o",
+     "reference": "validation_rows[Austria,MEDIUM]: prior q90",
+     "kind": "derived",
+     "ambiguity": 7
+    },
+    {
+     "widget": "race drivers laps next-lap MAE (est / prior) 3-lap...",
+     "value": 0.08,
+     "decimals": 2,
+     "shown": "/2337) 79% of 33 · 8.5 laps 0.08 9%",
+     "reference": "lock.validation.withheld_cases[0].clean",
+     "kind": "lock",
+     "ambiguity": 39
+    },
+    {
+     "widget": "honest reading (out/live/PREFIX_EVAL.md)",
+     "value": 0.08,
+     "decimals": 2,
+     "shown": "before the stint ends, with 0.08 false episodes pe",
+     "reference": "lock.validation.withheld_cases[0].clean",
+     "kind": "lock",
+     "ambiguity": 39
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "earson r n Naive pooled fit 0.137 +0.07 +0.20 29 C",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.07,
+     "decimals": 2,
+     "shown": "r n Naive pooled fit 0.137 +0.07 +0.20 29 Cleaned",
+     "reference": "lock.validation.calibration.naive.slope",
+     "kind": "lock",
+     "ambiguity": 42
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.2,
+     "decimals": 2,
+     "shown": "aive pooled fit 0.137 +0.07 +0.20 29 Cleaned Frida",
+     "reference": "lock.validation.calibration.naive.r",
+     "kind": "lock",
+     "ambiguity": 30
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.045,
+     "decimals": 3,
+     "shown": "Friday curve (issued only) 0.045 +0.45 +0.67 16 O",
+     "reference": "lock.validation.mae_issued.clean",
+     "kind": "lock",
+     "ambiguity": 7
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.45,
+     "decimals": 2,
+     "shown": "y curve (issued only) 0.045 +0.45 +0.67 16 Orb v1",
+     "reference": "lock.validation.calibration.clean.slope",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.67,
+     "decimals": 2,
+     "shown": "e (issued only) 0.045 +0.45 +0.67 16 Orb v1 (issue",
+     "reference": "lock.events.Monaco.beta_practice_s_per_MJ",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": ".67 16 Orb v1 (issued only) 0.023 +0.76 +0.82 16 O",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 13
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.76,
+     "decimals": 2,
+     "shown": "Orb v1 (issued only) 0.023 +0.76 +0.82 16 Orb v1,",
+     "reference": "lock.validation.calibration.clearstint.slope",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.82,
+     "decimals": 2,
+     "shown": "1 (issued only) 0.023 +0.76 +0.82 16 Orb v1, all c",
+     "reference": "lock.validation.calibration.clearstint.r",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.023,
+     "decimals": 3,
+     "shown": "ases incl. low-deg fallback 0.023 +0.77 +0.78 29",
+     "reference": "lock.validation.mae_issued.clearstint",
+     "kind": "lock",
+     "ambiguity": 13
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.77,
+     "decimals": 2,
+     "shown": "ncl. low-deg fallback 0.023 +0.77 +0.78 29",
+     "reference": "lock.validation.calibration.all_with_fallback.slope",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Predictor MAE s/lap Calibration slope Pearson r n ...",
+     "value": 0.78,
+     "decimals": 2,
+     "shown": "ow-deg fallback 0.023 +0.77 +0.78 29",
+     "reference": "lock.validation.calibration.all_with_fallback.r",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.221,
+     "decimals": 3,
+     "shown": "factor (median) S · Soft 9 0.221 0.032 x 0.97 M ·",
+     "reference": "lock.validation.by_compound.SOFT.mae_naive",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.032,
+     "decimals": 3,
+     "shown": "r (median) S · Soft 9 0.221 0.032 x 0.97 M · Mediu",
+     "reference": "lock.events.Madrid.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.97,
+     "decimals": 2,
+     "shown": "n) S · Soft 9 0.221 0.032 x 0.97 M · Medium 9 0.14",
+     "reference": "lock.validation.by_compound.SOFT.k_median",
+     "kind": "lock",
+     "ambiguity": 7
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.148,
+     "decimals": 3,
+     "shown": "1 0.032 x 0.97 M · Medium 9 0.148 0.017 x 0.45 H ·",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_naive",
+     "kind": "lock",
+     "ambiguity": 9
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.017,
+     "decimals": 3,
+     "shown": "2 x 0.97 M · Medium 9 0.148 0.017 x 0.45 H · Hard",
+     "reference": "lock.validation.by_compound.MEDIUM.mae_clearstint",
+     "kind": "lock",
+     "ambiguity": 7
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.45,
+     "decimals": 2,
+     "shown": "M · Medium 9 0.148 0.017 x 0.45 H · Hard 11 0.060",
+     "reference": "lock.validation.calibration.clean.slope",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.06,
+     "decimals": 3,
+     "shown": "48 0.017 x 0.45 H · Hard 11 0.060 0.020 x 1.17",
+     "reference": "lock.events.Canada.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "SOFT",
+     "value": 0.02,
+     "decimals": 3,
+     "shown": "17 x 0.45 H · Hard 11 0.060 0.020 x 1.17",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "SOFT",
+     "value": 1.17,
+     "decimals": 2,
+     "shown": "5 H · Hard 11 0.060 0.020 x 1.17",
+     "reference": "lock.validation.by_compound.HARD.k_median",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.0276,
+     "decimals": 4,
+     "shown": "+deg signal -0.0755 +0.0223 0.0276 Australia H · H",
+     "reference": "lock.validation.withheld_cases[0].floor",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.0439,
+     "decimals": 4,
+     "shown": "Hard no +deg signal -0.0241 +0.0439 0.0276 Barcelo",
+     "reference": "lock.validation.withheld_cases[1].obs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.0276,
+     "decimals": 4,
+     "shown": "+deg signal -0.0241 +0.0439 0.0276 Barcelona H · H",
+     "reference": "lock.validation.withheld_cases[0].floor",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.1463,
+     "decimals": 4,
+     "shown": "H · Hard too few clean laps +0.1463 +0.0563 0.0255",
+     "reference": "lock.validation.withheld_cases[3].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": -0.0491,
+     "decimals": 4,
+     "shown": "ada H · Hard no +deg signal -0.0491 -0.0053 0.0303",
+     "reference": "lock.validation.withheld_cases[6].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": -0.074,
+     "decimals": 4,
+     "shown": "pan H · Hard no +deg signal -0.0740 +0.0234 0.0289",
+     "reference": "lock.validation.withheld_cases[7].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.0234,
+     "decimals": 4,
+     "shown": "Hard no +deg signal -0.0740 +0.0234 0.0289 Miami S",
+     "reference": "lock.validation.withheld_cases[7].obs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.0276,
+     "decimals": 4,
+     "shown": "dium no +deg signal -0.0611 +0.0276 0.0303 Monza H",
+     "reference": "lock.validation.withheld_cases[0].floor",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": -0.0327,
+     "decimals": 4,
+     "shown": "nza H · Hard no +deg signal -0.0327 +0.0230 0.0303",
+     "reference": "lock.validation.withheld_cases[10].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.0234,
+     "decimals": 4,
+     "shown": "+deg signal -0.0128 +0.0726 0.0234 Zandvoort H · H",
+     "reference": "lock.validation.withheld_cases[7].obs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": -0.1012,
+     "decimals": 4,
+     "shown": "ort H · Hard no +deg signal -0.1012 +0.0303 0.0234",
+     "reference": "lock.validation.withheld_cases[12].clean",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Event Compound Gate cleaned observed floor Austral...",
+     "value": 0.0234,
+     "decimals": 4,
+     "shown": "+deg signal -0.1012 +0.0303 0.0234",
+     "reference": "lock.validation.withheld_cases[7].obs",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.0227,
+     "decimals": 4,
+     "shown": "MAE naive r baseline 29 16 0.0227 0.137 +0.78 fue",
+     "reference": "lock.validation.mae_all_with_fallback.clearstint",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "ive r baseline 29 16 0.0227 0.137 +0.78 fuel 0.9 k",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.78,
+     "decimals": 2,
+     "shown": "baseline 29 16 0.0227 0.137 +0.78 fuel 0.9 kg/lap",
+     "reference": "lock.validation.calibration.all_with_fallback.r",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.9,
+     "decimals": 1,
+     "shown": "16 0.0227 0.137 +0.78 fuel 0.9 kg/lap 29 14 0.025",
+     "reference": "lock.events.Barcelona.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 18
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "uel 0.9 kg/lap 29 14 0.0257 0.137 +0.74 fuel 1.3 k",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.74,
+     "decimals": 2,
+     "shown": "9 kg/lap 29 14 0.0257 0.137 +0.74 fuel 1.3 kg/lap",
+     "reference": "lock.events.Miami.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 1.3,
+     "decimals": 1,
+     "shown": "14 0.0257 0.137 +0.74 fuel 1.3 kg/lap 29 16 0.023",
+     "reference": "lock.events.Australia.offsets.HARD",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.0233,
+     "decimals": 4,
+     "shown": "+0.74 fuel 1.3 kg/lap 29 16 0.0233 0.137 +0.76 0.0",
+     "reference": "validation_rows[Zandvoort,MEDIUM]: prior sd = band width / (2 x 1.6449)",
+     "kind": "derived",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "uel 1.3 kg/lap 29 16 0.0233 0.137 +0.76 0.025 s/kg",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.76,
+     "decimals": 2,
+     "shown": "3 kg/lap 29 16 0.0233 0.137 +0.76 0.025 s/kg 29 14",
+     "reference": "lock.validation.calibration.clearstint.slope",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "ap 29 16 0.0233 0.137 +0.76 0.025 s/kg 29 14 0.024",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 8
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.0245,
+     "decimals": 4,
+     "shown": ".137 +0.76 0.025 s/kg 29 14 0.0245 0.141 +0.75 0.0",
+     "reference": "lock.validation_rows[23].pred_clearstint",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.141,
+     "decimals": 3,
+     "shown": ".76 0.025 s/kg 29 14 0.0245 0.141 +0.75 0.035 s/kg",
+     "reference": "out/live/prefix_eval.json.per_stint_alerts.Austria[19].realised_slope",
+     "kind": "sidecar:out/live/prefix_eval.json",
+     "ambiguity": 7
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.75,
+     "decimals": 2,
+     "shown": "025 s/kg 29 14 0.0245 0.141 +0.75 0.035 s/kg 29 16",
+     "reference": "out/live/prefix_eval.json.races.Barcelona.next5_mae",
+     "kind": "sidecar:out/live/prefix_eval.json",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.035,
+     "decimals": 3,
+     "shown": "kg 29 14 0.0245 0.141 +0.75 0.035 s/kg 29 16 0.023",
+     "reference": "lock.validation.mae_issued.push_adjusted",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.134,
+     "decimals": 3,
+     "shown": ".75 0.035 s/kg 29 16 0.0232 0.134 +0.78 traffic ≤2",
+     "reference": "out/live/prefix_eval.json.per_stint_alerts.Barcelona[39].realised_slope",
+     "kind": "sidecar:out/live/prefix_eval.json",
+     "ambiguity": 8
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.78,
+     "decimals": 2,
+     "shown": "035 s/kg 29 16 0.0232 0.134 +0.78 traffic ≤20% 29",
+     "reference": "lock.validation.calibration.all_with_fallback.r",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.144,
+     "decimals": 3,
+     "shown": "8 traffic ≤20% 29 15 0.0274 0.144 +0.59 traffic ≤4",
+     "reference": "validation_rows[Zandvoort,SOFT]: prior q90",
+     "kind": "derived",
+     "ambiguity": 9
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.59,
+     "decimals": 2,
+     "shown": "fic ≤20% 29 15 0.0274 0.144 +0.59 traffic ≤40% 29",
+     "reference": "lock.events.Austria.race.beta_race",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.137,
+     "decimals": 3,
+     "shown": "9 traffic ≤40% 29 16 0.0210 0.137 +0.79 runs ≥4 la",
+     "reference": "lock.validation.mae_all_with_fallback.naive",
+     "kind": "lock",
+     "ambiguity": 10
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.79,
+     "decimals": 2,
+     "shown": "fic ≤40% 29 16 0.0210 0.137 +0.79 runs ≥4 laps 31",
+     "reference": "out/live/prefix_eval.json.pooled.aw_detection_rate",
+     "kind": "sidecar:out/live/prefix_eval.json",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.026,
+     "decimals": 4,
+     "shown": "37 +0.79 runs ≥4 laps 31 15 0.0260 0.146 +0.70 run",
+     "reference": "lock.validation_rows[21].pred_clearstint",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.146,
+     "decimals": 3,
+     "shown": "9 runs ≥4 laps 31 15 0.0260 0.146 +0.70 runs ≥7 la",
+     "reference": "lock.validation.withheld_cases[3].clean",
+     "kind": "lock",
+     "ambiguity": 12
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.154,
+     "decimals": 3,
+     "shown": "0 runs ≥7 laps 28 13 0.0273 0.154 +0.65",
+     "reference": "feat/Monza_R.csv:stale_share",
+     "kind": "asset:feat/Monza_R.csv (unsigned)",
+     "ambiguity": 7
+    },
+    {
+     "widget": "Setting cases issued MAE Orb v1 MAE naive r baseli...",
+     "value": 0.65,
+     "decimals": 2,
+     "shown": "≥7 laps 28 13 0.0273 0.154 +0.65",
+     "reference": "lock.events.Canada.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "energy trend, withheld median +0.101 (range -0.565...",
+     "value": 0.101,
+     "decimals": 3,
+     "shown": "ergy trend, withheld median +0.101 (range -0.565 t",
+     "reference": "lock.validation.withheld_cases[12].clean",
+     "kind": "lock",
+     "ambiguity": 14
+    },
+    {
+     "widget": "energy trend, withheld median +0.101 (range -0.565...",
+     "value": -0.565,
+     "decimals": 3,
+     "shown": "thheld median +0.101 (range -0.565 to +0.228) ener",
+     "reference": "lock.validation.push_diagnostic.energy_trend_withheld.min",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "energy trend, withheld median +0.101 (range -0.565...",
+     "value": 0.228,
+     "decimals": 3,
+     "shown": "ian +0.101 (range -0.565 to +0.228) energy trend,",
+     "reference": "lock.validation.push_diagnostic.energy_trend_withheld.max",
+     "kind": "lock",
+     "ambiguity": 4
+    },
+    {
+     "widget": "energy trend, withheld median +0.101 (range -0.565...",
+     "value": -0.003,
+     "decimals": 3,
+     "shown": "energy trend, issued median -0.003 (range -0.256 t",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 6
+    },
+    {
+     "widget": "energy trend, withheld median +0.101 (range -0.565...",
+     "value": -0.256,
+     "decimals": 3,
+     "shown": "issued median -0.003 (range -0.256 to +0.085)",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.min",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "energy trend, withheld median +0.101 (range -0.565...",
+     "value": 0.085,
+     "decimals": 3,
+     "shown": "ian -0.003 (range -0.256 to +0.085)",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.max",
+     "kind": "lock",
+     "ambiguity": 7
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": []
+  }
+ ]
+}

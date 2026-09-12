@@ -66,6 +66,9 @@ def test_effective_status_rules():
     assert bc.effective_status('RED', 100).startswith('RED (stale')
     assert bc.effective_status('GREEN', None) == 'RED (bad updated_at)'
     assert bc.effective_status('BLUE', 1).startswith('RED (bad status')
+    assert bc.effective_status('GREEN', -1.5) == 'GREEN'
+    assert bc.effective_status('GREEN', -9).startswith('GREEN (clock ahead 9')
+    assert bc.effective_status('AMBER', -30).startswith('AMBER (clock ahead')
 
 
 def test_age_minutes_handles_naive_and_aware_timestamps():
@@ -250,6 +253,11 @@ def test_parse_pytest_summary():
     ('app_v2/components/race_twin/player.js', 4, 'workstream', False), ('app_v2/components/other.py', 6, 'workstream', False), ('out/live/state.json', 8, 'workstream', False),
     ('evaluation/holdout/sealed_holdout_manifest.json', 'lead', 'lead_only', True), ('evaluation/holdout/sealed_holdout_manifest.sha256', 'lead', 'lead_only', True),
     ('evaluation/holdout/weekend_metadata.csv', 3, 'workstream', False), ('evaluation/holdout/superseded_manifest_v0.sha256', 3, 'workstream', False),
+    ('tests/counterfactual/test_c.py', 2, 'workstream', False), ('tests/replay/test_r.py', 4, 'workstream', False), ('tests/live/test_l.py', 8, 'workstream', False),
+    ('tests/evaluation/test_e.py', 3, 'workstream', False), ('tests/red_team/test_t.py', 7, 'workstream', False),
+    ('cleanup_pass.sh', 'lead', 'lead_only', True), ('refresh_2025.log', 'lead', 'lead_only', True), ('build_deck_v5.py', 'lead', 'lead_only', True),
+    ('out/deck.pptx', 'lead', 'lead_only', True), ('out/roadmap.pdf', 'lead', 'lead_only', True),
+    ('out/sub/x.pdf', None, 'unowned', True), ('sub/build_x.py', None, 'unowned', True), ('release/build_x.py', 9, 'workstream', False),
     ('out/ROADMAP_v5.md', None, 'unowned', True), ('out/other/x.json', None, 'unowned', True), ('random.py', None, 'unowned', True),
     ('dashboard/other.py', None, 'unowned', True), ('sub/extract_x.py', None, 'unowned', True), ('build_control.pyc', None, 'unowned', True),
 ])
@@ -302,6 +310,8 @@ def test_heartbeat_and_summary(root):
     text = p.read_text()
     assert p.name == 'SUMMARY.md' and '| 9 | GREEN |' in text
     assert 'Workstream 1: no heartbeat file' in text and 'Workstream 6: no heartbeat file' in text
+    write_hb(root, 1, hb(1, -12))
+    assert 'Workstream 1: updated_at is 12 min in the future (clock ahead)' in bc.write_summary(root).read_text()
 
 
 def test_cli_status_and_stop_commands(tmp_path):

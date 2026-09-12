@@ -6,12 +6,12 @@
   "driver_id": "NOR",
   "simulation_mode": "fixed_context",
   "availability_mode": "PUBLIC PROXY",
-  "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
-  "model_hash": "sha256:3e343ce8fe14cd71298d8eeb6dabcab3863bc95c0652d86ef15ef3bcb38eb04d",
+  "forecast_hash": "sha256:3b5497c6abc4ec177747e7311327a6b9e28e47f14c5c120e702a2a2760425db4",
+  "model_hash": "sha256:152fbd570ade21566ae4ee137130556fc70aa1aaeddab5895eb68bb9d52ec9bf",
   "split_id": "development_pool",
-  "data_cutoff": "2026-09-12T14:31:34",
-  "generated_at": "2026-09-12T16:26:23",
-  "git_sha": "ccae5d9",
+  "data_cutoff": "2026-09-12T21:03:51",
+  "generated_at": "2026-09-12T21:06:56",
+  "git_sha": "b0b924c",
   "intervention": {
    "lap": 24,
    "from_compound": "HARD",
@@ -64,10 +64,10 @@
    "n_laps": 53
   },
   "summary": {
-   "elapsed_delta_median_s": -5.63521516694667,
-   "elapsed_delta_q10_s": -15.239743414783275,
-   "elapsed_delta_q90_s": 3.7635978892556463,
-   "probability_of_gain": 0.784,
+   "elapsed_delta_median_s": -14.21868917519702,
+   "elapsed_delta_q10_s": -60.68468931144382,
+   "elapsed_delta_q90_s": 40.861665452444505,
+   "probability_of_gain": 0.62,
    "oracle_regret_median_s": null,
    "estimated_finish_position_median": null,
    "estimated_finish_position_q10": null,
@@ -98,22 +98,22 @@
   "assets": {
    "laps": {
     "path": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/laps.csv",
-    "sha256": "495472edf5b2837aac5d9d2b26863e233f0e32c49ca4f7bd0dbc878d4fb2717b",
-    "bytes": 11316,
+    "sha256": "46e385de5944832bd51a9d71598c2e756ba3f34a8e4b76d170738f66043e03dc",
+    "bytes": 11320,
     "format": "csv",
     "description": "per-lap counterfactual table (mandatory columns first)"
    },
    "lap_deltas": {
     "path": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/lap_deltas.json",
-    "sha256": "0042bd308291c9dcdfa1b8ab70e8da2db10dfd92c731637f95d2092cba9755df",
+    "sha256": "da4203bbb31973ed1493528dd00ff885e41b67bb384d83a5ad917a1af3c07f9c",
     "bytes": 2696,
     "description": "per-lap counterfactual minus actual lap time (s), model-implied, mean over sampled curves",
     "format": "json"
    },
    "ghost_replay": {
     "path": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/ghost_replay.json",
-    "sha256": "6d81f915048c91d3f1d0800b1d18d7bf1da77250fed6d38887c8b27d459d6add",
-    "bytes": 10124,
+    "sha256": "3ae0273d8f2893bd7c8c9ebcaaa4d3b9e7bfbfbe547d6e4371514522756c56b0",
+    "bytes": 10121,
     "description": "actual vs ghost elapsed time per lap for the Race Twin scrubber",
     "format": "json"
    }
@@ -135,51 +135,51 @@
   "engine_version": "counterfactual_engine_v1",
   "provider": "provider_A_v2",
   "mode": "fixed_context",
-  "curve_source": "race_reference",
-  "uses_post_race_reference": true,
+  "curve_source": "pre_race_forecast",
+  "uses_post_race_reference": false,
   "uses_future_data_for_pre_race_quantities": false,
-  "pre_race_forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+  "pre_race_forecast_hash": "sha256:3b5497c6abc4ec177747e7311327a6b9e28e47f14c5c120e702a2a2760425db4",
   "curves": {
-   "source": "race_reference",
+   "source": "pre_race_forecast",
    "by_compound": {
     "SOFT": {
-     "slope": 0.024605175100077332,
-     "sd": 0.01363314580419719,
-     "sd_from": "standard_error",
-     "n_laps": 32,
-     "lock_all_driver": {
-      "slope": 0.0246,
-      "se": 0.0137
-     }
+     "slope": 0.0245,
+     "sd": 0.040307537955750296,
+     "sd_from": "band90_width",
+     "band": [
+      -0.0372,
+      0.0954
+     ],
+     "issued": true,
+     "forecast_hash": "sha256:3b5497c6abc4ec177747e7311327a6b9e28e47f14c5c120e702a2a2760425db4"
     },
     "MEDIUM": {
-     "slope": 0.027577618966809863,
-     "sd": 0.002971425731175535,
-     "sd_from": "standard_error",
-     "n_laps": 250,
-     "lock_all_driver": {
-      "slope": 0.0276,
-      "se": 0.003
-     }
+     "slope": 0.0303,
+     "sd": 0.035352689775669376,
+     "sd_from": "band90_width",
+     "band": [
+      -0.0228,
+      0.0935
+     ],
+     "issued": false,
+     "forecast_hash": "sha256:3b5497c6abc4ec177747e7311327a6b9e28e47f14c5c120e702a2a2760425db4"
     },
     "HARD": {
-     "slope": 0.024840862454396984,
-     "sd": 0.003042494342838826,
-     "sd_from": "standard_error",
-     "n_laps": 198,
-     "lock_all_driver": {
-      "slope": 0.023,
-      "se": 0.003
-     }
+     "slope": 0.0303,
+     "sd": 0.035352689775669376,
+     "sd_from": "band90_width",
+     "band": [
+      -0.0228,
+      0.0935
+     ],
+     "issued": false,
+     "forecast_hash": "sha256:3b5497c6abc4ec177747e7311327a6b9e28e47f14c5c120e702a2a2760425db4"
     }
    },
-   "uses_post_race_reference": true,
+   "uses_post_race_reference": false,
    "target_driver_excluded": true,
-   "n_laps_used": 480,
-   "n_stints_used": 20,
-   "resid_sd": 0.4444075338008009,
-   "label": "leave-one-driver-out Sunday reference",
-   "intended_page": "historical_audit"
+   "label": "frozen pre-race forecast (provider A), model-implied; no race data",
+   "intended_page": "scenario_explorer"
   },
   "offsets": {
    "SOFT": 0.0,
@@ -356,10 +356,10 @@
   },
   "standardised_pit_event": true,
   "stop_replacement_delta_s": 0.0,
-  "elapsed_delta_mean_s": -5.737506602873637,
-  "elapsed_delta_sd_s": 7.329270569590432,
-  "tyre_delta_mean_s": -27.476153517087788,
-  "pit_delta_mean_s": 21.73864691421418,
+  "elapsed_delta_mean_s": -11.763996181818827,
+  "elapsed_delta_sd_s": 39.292488097159826,
+  "tyre_delta_mean_s": -33.50264309603296,
+  "pit_delta_mean_s": 21.738646914214186,
   "identity_check_delta_s": 0.0,
   "n_samples": 500,
   "seed": 2026,
@@ -380,9 +380,9 @@
    "warmup_HARD"
   ],
   "theta_mean": {
-   "slope_SOFT": 0.024605175100077332,
-   "slope_MEDIUM": 0.027577618966809863,
-   "slope_HARD": 0.024840862454396984,
+   "slope_SOFT": 0.0245,
+   "slope_MEDIUM": 0.0303,
+   "slope_HARD": 0.0303,
    "offset_SOFT": 0.0,
    "offset_MEDIUM": 0.8059999999999974,
    "offset_HARD": 1.343999999999994,
@@ -396,9 +396,9 @@
    "warmup_HARD": -0.08449242424242698
   },
   "theta_sample_mean": {
-   "slope_SOFT": 0.02445257665402698,
-   "slope_MEDIUM": 0.027414641536759595,
-   "slope_HARD": 0.024936516505723802,
+   "slope_SOFT": 0.024048829907307986,
+   "slope_MEDIUM": 0.028360967681422433,
+   "slope_HARD": 0.031411465666420224,
    "offset_SOFT": 0.0,
    "offset_MEDIUM": 0.8057045119751853,
    "offset_HARD": 1.3387722868479128,
@@ -413,7 +413,7 @@
   },
   "n_laps": 53,
   "retired": false,
-  "timing_ms": 122.36408301396295,
+  "timing_ms": 125.04233297659084,
   "support": {
    "in_support": true,
    "stints_beyond_support": [],

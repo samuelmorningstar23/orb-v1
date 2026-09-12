@@ -1,0 +1,3 @@
+  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified
+  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified
+OK out/lock_v2.json: schema 2.1.0, forecast sha256:3b5497c6abc4ec17..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB

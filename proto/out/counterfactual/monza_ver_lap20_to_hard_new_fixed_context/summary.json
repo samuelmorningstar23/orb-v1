@@ -6,12 +6,12 @@
   "driver_id": "VER",
   "simulation_mode": "fixed_context",
   "availability_mode": "PUBLIC PROXY",
-  "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+  "forecast_hash": "sha256:9123e2037901abc75738c639608d381c95cb13b1dacc5054a77903b2abac0b8d",
   "model_hash": "sha256:3e343ce8fe14cd71298d8eeb6dabcab3863bc95c0652d86ef15ef3bcb38eb04d",
   "split_id": "development_pool",
-  "data_cutoff": "2026-09-12T14:31:34",
-  "generated_at": "2026-09-12T16:26:24",
-  "git_sha": "ccae5d9",
+  "data_cutoff": "2026-09-12T18:11:47",
+  "generated_at": "2026-09-12T20:57:58",
+  "git_sha": "b0b924c",
   "intervention": {
    "lap": 20,
    "from_compound": "MEDIUM",
@@ -45,7 +45,7 @@
    "n_laps": 53
   },
   "counterfactual_plan": {
-   "label": "S-M-H-S",
+   "label": "S-M-H",
    "stints": [
     {
      "compound": "SOFT",
@@ -59,27 +59,21 @@
     },
     {
      "compound": "HARD",
-     "laps": 6,
-     "set_status": "new"
-    },
-    {
-     "compound": "SOFT",
-     "laps": 27,
+     "laps": 33,
      "set_status": "new"
     }
    ],
    "pit_laps": [
     3,
-    20,
-    26
+    20
    ],
    "n_laps": 53
   },
   "summary": {
-   "elapsed_delta_median_s": -5.76387991643513,
-   "elapsed_delta_q10_s": -17.446269340067744,
-   "elapsed_delta_q90_s": 4.190829061542292,
-   "probability_of_gain": 0.77,
+   "elapsed_delta_median_s": 7.7413011189959064,
+   "elapsed_delta_q10_s": 3.335876429150345,
+   "elapsed_delta_q90_s": 12.1364718700743,
+   "probability_of_gain": 0.01,
    "oracle_regret_median_s": null,
    "estimated_finish_position_median": null,
    "estimated_finish_position_q10": null,
@@ -110,22 +104,22 @@
   "assets": {
    "laps": {
     "path": "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/laps.csv",
-    "sha256": "938f0ac39bd64c999555b1c12b4cfca5374ffe60f84f2567c3527a120c59d1cd",
-    "bytes": 11362,
+    "sha256": "0f90b3f71ec71bd0b609947b292d14691a11fad41d700c85a9d7c8c187fc687e",
+    "bytes": 11216,
     "format": "csv",
     "description": "per-lap counterfactual table (mandatory columns first)"
    },
    "lap_deltas": {
     "path": "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/lap_deltas.json",
-    "sha256": "9651611cc6d57cc6609748744a1d09f5408716470d6b65640abaaeaf5b1949f7",
-    "bytes": 2794,
+    "sha256": "80ceb3887240a8a122f133973d1bbd665d4bdaa5d37299971d04451361f64709",
+    "bytes": 2799,
     "description": "per-lap counterfactual minus actual lap time (s), model-implied, mean over sampled curves",
     "format": "json"
    },
    "ghost_replay": {
     "path": "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/ghost_replay.json",
-    "sha256": "9c7b1f830a55934026b688a19b6fd8185fcac1f3f80a25261dc63ee5bb006037",
-    "bytes": 10422,
+    "sha256": "a1c52e52be251ba96bfaadd3497247a641a79792fcb286b0241452faf8c3d170",
+    "bytes": 10426,
     "description": "actual vs ghost elapsed time per lap for the Race Twin scrubber",
     "format": "json"
    }
@@ -140,9 +134,7 @@
    "pit transit loss: only 2 green-flag stop(s) measurable in Monza (< 4); season pool of 225 stops used (median total 21.98 s)",
    "out-lap penalty for SOFT: season_pool_compound (n=28) used, fewer than 3 green pit-out stints on SOFT in Monza",
    "out-lap penalty for MEDIUM: season_pool_compound (n=40) used, fewer than 3 green pit-out stints on MEDIUM in Monza",
-   "out-lap penalty for HARD: season_pool_compound (n=136) used, fewer than 3 green pit-out stints on HARD in Monza",
-   "thin reference: the SOFT slope rests on 32 race laps (SE 0.0134 s/lap per lap); the sampled band carries that uncertainty",
-   "OUT OF SUPPORT: counterfactual SOFT stint of 27 laps exceeds the longest SOFT stint driven in this race (25 laps); the linear reference has no cliff term, so this delta is extrapolated"
+   "out-lap penalty for HARD: season_pool_compound (n=136) used, fewer than 3 green pit-out stints on HARD in Monza"
   ]
  },
  "engine": {
@@ -152,7 +144,7 @@
   "curve_source": "race_reference",
   "uses_post_race_reference": true,
   "uses_future_data_for_pre_race_quantities": false,
-  "pre_race_forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+  "pre_race_forecast_hash": "sha256:9123e2037901abc75738c639608d381c95cb13b1dacc5054a77903b2abac0b8d",
   "curves": {
    "source": "race_reference",
    "by_compound": {
@@ -371,20 +363,14 @@
     "in_lap": 28,
     "to_compound": "HARD",
     "free": false
-   },
-   "second_stop_optimised": {
-    "pit_lap": 26,
-    "compound": "SOFT",
-    "model_time_s": 39.46269689776595,
-    "rule": "min over compound and lap of tyre time + standardised green stop, stints >= 6 laps"
    }
   },
   "standardised_pit_event": true,
   "stop_replacement_delta_s": -5.606512229192301,
-  "elapsed_delta_mean_s": -6.466591300391772,
-  "elapsed_delta_sd_s": 8.410536253974973,
-  "tyre_delta_mean_s": -31.395792059919813,
-  "pit_delta_mean_s": 24.929200759528012,
+  "elapsed_delta_mean_s": 7.709374655982532,
+  "elapsed_delta_sd_s": 3.379675769418572,
+  "tyre_delta_mean_s": 4.601653679765191,
+  "pit_delta_mean_s": 3.107720976217317,
   "identity_check_delta_s": 0.0,
   "n_samples": 500,
   "seed": 2026,
@@ -438,16 +424,10 @@
   },
   "n_laps": 53,
   "retired": false,
-  "timing_ms": 125.02837501233444,
+  "timing_ms": 127.93483398854733,
   "support": {
-   "in_support": false,
-   "stints_beyond_support": [
-    {
-     "compound": "SOFT",
-     "laps": 27,
-     "longest_observed": 25
-    }
-   ],
+   "in_support": true,
+   "stints_beyond_support": [],
    "longest_observed_stint_laps": {
     "MEDIUM": 51,
     "HARD": 50,
@@ -475,13 +455,6 @@
     "in_lap": 20,
     "out_lap": 21,
     "to_compound": "HARD",
-    "coincident_actual": null,
-    "free": false
-   },
-   {
-    "in_lap": 26,
-    "out_lap": 27,
-    "to_compound": "SOFT",
     "coincident_actual": null,
     "free": false
    }
@@ -631,36 +604,6 @@
     "kind": "warm_up",
     "lap": 22,
     "compound": "HARD",
-    "free": false
-   },
-   {
-    "kind": "pit_entry",
-    "lap": 26,
-    "compound": "SOFT",
-    "free": false
-   },
-   {
-    "kind": "stationary",
-    "lap": 27,
-    "compound": "SOFT",
-    "free": false
-   },
-   {
-    "kind": "pit_exit",
-    "lap": 27,
-    "compound": "SOFT",
-    "free": false
-   },
-   {
-    "kind": "age_reset",
-    "lap": 27,
-    "compound": "SOFT",
-    "free": false
-   },
-   {
-    "kind": "warm_up",
-    "lap": 28,
-    "compound": "SOFT",
     "free": false
    }
   ]

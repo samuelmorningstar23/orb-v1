@@ -1,6 +1,24 @@
-{"workstream": 6, "task": "0.14 design system + shell; 0.15 hero screens; 0.17 visual release gate", "status": "GREEN", "commit": null,
- "completed": ["app_v2 shell: st.navigation(position=top), sticky global frame from HeaderVM, presentation-mode toggle (+ ?present=1), query-param routing ?ev=&mode=&lap=&drv=&cmp=&ilap=&rep=&scenario=", "services: lock_repository (v1 base + lock_v2 overlay + labelled fixture), asset_repository (sha256, .sha256 sidecars, hash-named sidecars), replay_service (lap-k boundary asserted; lock-rule corrections; PLACEHOLDER posterior), event_service (RaceEventSource stub, 1x-10x, deterministic), feedback_service (jsonl), decision_service (labelled placeholder rules; pure timeline), support_service, view_models", "design system app_v2/ui: cards (KPI with unit), badges (glyph compounds, support chips), charts (plotly_theme from tokens), alerts, empty states, banners, formatting; theme/premium.css extends base.css", "pages: landing (two doors, status strip), pre-race plan, Live Predictor hero (single fragment, playback controls), decision board, driver feedback (form -> app_v2/state/feedback_events.jsonl), Ghost Strategy hero (audit + scenario explorer, Plotly Race Twin fallback), generalisation scorecard, validation", "tests/ui AppTest suite 34 passing; tests/screenshots gate 8 passing; 32 golden PNGs at 1440x900 and 1920x1080 (16 routes)", "PERF.md: worst cold load 893 ms, route switch 129-146 ms, 0 console errors, 0 external requests, no overflow"],
- "in_progress": [], "blockers": [],
- "tests_passed": 42, "tests_failed": 0, "eta_minutes": 0, "needs_review_from": [4, 8, 7],
- "notes": "Streamlit client logs benign 404 base-path probes on deep links only (classified separately). Race Twin React player, LiveTyreStateEstimator, StrategyOptimizer and counterfactual terms are labelled placeholders/pending.",
- "updated_at": "2026-09-12T15:39:36"}
+{
+ "workstream": 6,
+ "task": "C4-C6 dashboard: Generalisation Scorecard + landing scorecards wired to out/validation (sealed block gated on freeze), Ghost audit hidden-stop/regret, Scenario Explorer pre-race scenario, decision-board rejoin wording (red team), 0.17 release gate pass, residual notes",
+ "status": "GREEN",
+ "commit": null,
+ "completed": [
+  "C3 integration complete (heartbeat 16:59): 41 UI tests + 8 screenshot tests, 34 goldens"
+ ],
+ "in_progress": [
+  "reading Workstream 3 outputs, red-team wording flags, own pages; edits start after the C3 pytest run finishes"
+ ],
+ "blockers": [],
+ "tests_passed": 49,
+ "tests_failed": 0,
+ "eta_minutes": 150,
+ "needs_review_from": [
+  3,
+  7,
+  2,
+  8
+ ],
+ "notes": "Resumed 21:06 IST. No pre_race scenario in out/counterfactual/ yet (will re-check before finishing). holdout_aggregate.json freeze=null: sealed block stays 'sealed: 6 weekends, aggregate revealed after freeze'.",
+ "updated_at": "2026-09-12T21:07:13"
+}

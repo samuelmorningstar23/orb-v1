@@ -12,9 +12,9 @@ def _ages(max_age: float, n: int = 40) -> np.ndarray:
     return np.linspace(0, max(max_age, 5.0), n)
 
 
-def forecast_vs_live(vm, presentation: bool = False) -> go.Figure:
-    """Pre-race band, corrected live observations, placeholder posterior, forward projection, crossover, annotations."""
-    fig = go.Figure(); st = vm.state; prior = vm.prior; comp = st.compound if st else prior.compound
+def forecast_vs_live(vm, presentation: bool = False, estimator_label: str = 'PLACEHOLDER', projection: list | None = None) -> go.Figure:
+    """Pre-race band, corrected live observations, the live posterior (labelled with its estimator), forward projection, crossover, annotations."""
+    fig = go.Figure(); st = vm.state; prior = vm.prior; comp = st.compound if st else prior.compound; lab = estimator_label
     col = COMPOUNDS.get(comp, COLORS['text_secondary'])
     max_age = max([st.tyre_age + 10 if st else 20] + [a for t in vm.comparable for a in t['ages']] + [vm.crossover.get(k, 0) + 2 for k in vm.crossover])
     xs = _ages(max_age)
@@ -32,7 +32,8 @@ def forecast_vs_live(vm, presentation: bool = False) -> go.Figure:
         if kept_y:
             y_lo, y_hi = min(y_lo, min(kept_y) - 0.3), max(y_hi, max(kept_y) + 0.5)
         if st.post_slope is not None:
-            y_hi = max(y_hi, max(p['hi'] for p in st.project()) + 0.3)
+            _pr = projection or st.project()
+            y_hi = max(y_hi, max(p['hi'] for p in _pr) + 0.3) if _pr else y_hi
         drop_x = [a for a, k in zip(st.all_ages, st.all_kept) if not k]; drop_y_raw = [l for l, k in zip(st.all_losses, st.all_kept) if not k]
         drop_y = [min(max(l, y_lo + 0.15), y_hi - 0.15) for l in drop_y_raw]
         drop_sym = ['triangle-up-open' if l > y_hi - 0.15 else ('triangle-down-open' if l < y_lo + 0.15 else 'circle-open') for l in drop_y_raw]
@@ -41,9 +42,9 @@ def forecast_vs_live(vm, presentation: bool = False) -> go.Figure:
         if st.post_slope is not None:
             px = _ages(st.tyre_age + 10, 30); plo, phi = st.band90
             if plo is not None:
-                fig.add_trace(go.Scatter(x=np.r_[px, px[::-1]], y=np.r_[plo * px, (phi * px)[::-1]], fill='toself', fillcolor=rgba(COLORS['live'], 0.16 if st.widened else 0.10), line=dict(width=0), name='posterior 90% band (PLACEHOLDER)' + (' · widened' if st.widened else ''), hoverinfo='skip'))
-            fig.add_trace(go.Scatter(x=px, y=st.post_slope * px, mode='lines', name=f'live posterior {st.post_slope:+.3f} s/lap (PLACEHOLDER)', line=dict(color=COLORS['live'], width=2.5)))
-            proj = st.project()
+                fig.add_trace(go.Scatter(x=np.r_[px, px[::-1]], y=np.r_[plo * px, (phi * px)[::-1]], fill='toself', fillcolor=rgba(COLORS['live'], 0.16 if st.widened else 0.10), line=dict(width=0), name=f'posterior 90% band ({lab})' + (' · widened' if st.widened else ''), hoverinfo='skip'))
+            fig.add_trace(go.Scatter(x=px, y=st.post_slope * px, mode='lines', name=f'live posterior {st.post_slope:+.3f} s/lap ({lab})', line=dict(color=COLORS['live'], width=2.5)))
+            proj = [dict(h=p['h'], age=p['age'], loss=p['loss'], lo=p['lo'], hi=p['hi']) for p in projection] if projection else st.project()
             fig.add_trace(go.Scatter(x=[p['age'] for p in proj], y=[p['loss'] for p in proj], mode='markers+text', name='forward 1/3/5/10 laps', text=[f"+{p['h']}" for p in proj], textposition='top center', textfont=dict(size=10, color=COLORS['live']),
                                      marker=dict(color=COLORS['live'], size=8, symbol='diamond'), error_y=dict(type='data', symmetric=False, array=[p['hi'] - p['loss'] for p in proj], arrayminus=[p['loss'] - p['lo'] for p in proj], color=rgba(COLORS['live'], 0.5), thickness=1)))
         fig.add_vline(x=st.tyre_age, line=dict(color=COLORS['text_secondary'], width=1, dash='dot'))
@@ -155,4 +156,56 @@ def calibration_scatter(rows) -> go.Figure:
                                  marker=dict(color=col, size=11, symbol=['circle' if r['issued'] else 'diamond-open' for r in s]), hovertext=[f"{r['event']} {'issued' if r['issued'] else 'fallback'}" for r in s]))
         fig.add_trace(go.Scatter(x=[r['naive'] for r in s], y=[r['obs'] for r in s], mode='markers', name=f'{c.title()} naive', marker=dict(color=col, size=6, symbol='x', opacity=0.5)))
     apply(fig, height=420, xaxis_title='Predicted from Friday (s/lap per lap of age)', yaxis_title='Observed in the race')
+    return fig
+
+
+# ---- Ghost Strategy panels from Workstream 2's counterfactual outputs ------------------------------------------------------
+def cumulative_delta_real(laps, lap_sel: int, source_label: str) -> go.Figure:
+    """Cumulative race-time delta (ghost minus actual) per lap with the q10/q90 band, from laps.csv."""
+    fig = go.Figure(); x = laps['lap'].to_numpy()
+    if 'cumulative_delta_q10' in laps and 'cumulative_delta_q90' in laps:
+        fig.add_trace(go.Scatter(x=np.r_[x, x[::-1]], y=np.r_[laps['cumulative_delta_q10'].to_numpy(), laps['cumulative_delta_q90'].to_numpy()[::-1]], fill='toself', fillcolor=rgba(COLORS['decision'], 0.14), line=dict(width=0), name='q10 to q90 (whole-curve sampling)', hoverinfo='skip'))
+    fig.add_trace(go.Scatter(x=x, y=laps['cumulative_delta'].to_numpy(), mode='lines', name=f'cumulative delta, mean ({source_label})', line=dict(color=COLORS['decision'], width=2.5)))
+    pits = laps[laps['pit_state'].isin(['in_lap', 'out_lap'])] if 'pit_state' in laps else laps.iloc[0:0]
+    if len(pits):
+        fig.add_trace(go.Scatter(x=pits['lap'], y=pits['cumulative_delta'], mode='markers', name='ghost pit in / out laps', marker=dict(color=COLORS['text'], size=7, symbol='diamond')))
+    row = laps[laps['lap'] == lap_sel]
+    if len(row):
+        fig.add_trace(go.Scatter(x=[lap_sel], y=[float(row['cumulative_delta'].iloc[0])], mode='markers', name='selected lap', marker=dict(color=COLORS['live'], size=10)))
+    fig.add_hline(y=0, line=dict(color=COLORS['border'], width=1))
+    apply(fig, height=280, xaxis_title='Lap', yaxis_title='Ghost minus actual (s), negative = ghost ahead', title='Cumulative race-time delta (Workstream 2 laps.csv)')
+    return fig
+
+
+def waterfall_real(decomp: dict, source_label: str) -> go.Figure:
+    """Decomposition Y = B + T + P + I + e from the engine block (means over sampled curves)."""
+    fig = go.Figure()
+    vals = [decomp.get('baseline') or 0.0, decomp.get('tyre') or 0.0, decomp.get('pit') or 0.0, decomp.get('interaction') or 0.0]
+    total = decomp.get('total')
+    text = [f'{v:+.1f} s' for v in vals] + [f'{total:+.1f} s' if total is not None else '—']
+    fig.add_trace(go.Waterfall(x=['baseline B (preserved)', 'tyre T', 'pit P', 'interaction + residual', 'total'], measure=['relative', 'relative', 'relative', 'relative', 'total'], y=vals + [total or 0.0], text=text, textposition='outside',
+                               connector=dict(line=dict(color=COLORS['border'])), increasing=dict(marker=dict(color=COLORS['critical'])), decreasing=dict(marker=dict(color=COLORS['live'])), totals=dict(marker=dict(color=COLORS['decision']))))
+    idc = decomp.get('identity_check_delta_s')
+    apply(fig, height=280, showlegend=False, yaxis_title='s', title=f'Lap decomposition ({source_label}) · identity check {idc:+.3f} s' if idc is not None else f'Lap decomposition ({source_label})')
+    return fig
+
+
+def ghost_curves_real(curves: dict, actual: str, replacement: str, forecast_actual, forecast_alt, ilap: int, n_laps: int | None, audit: bool, reference_label: str) -> go.Figure:
+    """Audit: leave-one-driver-out Sunday reference curves (solid) with the frozen forecast (dashed). Scenario: frozen forecast only."""
+    fig = go.Figure(); xs = _ages(min(n_laps or 40, 45))
+    for comp, fc, width in ((actual, forecast_actual, 2), (replacement, forecast_alt, 2)):
+        if not comp:
+            continue
+        col = COMPOUNDS.get(comp, COLORS['text_secondary'])
+        if fc is not None and fc.prediction is not None:
+            lo, hi = fc.band90
+            if lo is not None and hi is not None:
+                fig.add_trace(go.Scatter(x=np.r_[xs, xs[::-1]], y=np.r_[lo * xs, (hi * xs)[::-1]], fill='toself', fillcolor=rgba(col, 0.08), line=dict(width=0), name=f'{comp.title()} pre-race 90% band', hoverinfo='skip'))
+            fig.add_trace(go.Scatter(x=xs, y=fc.prediction * xs, mode='lines', name=f'{comp.title()} pre-race forecast {fc.prediction:+.3f} (lock)', line=dict(color=col, width=width, dash='dash')))
+        c = curves.get(comp) if audit else None
+        if c and c.get('slope') is not None:
+            fig.add_trace(go.Scatter(x=xs, y=c['slope'] * xs, mode='lines', name=f'{comp.title()} {reference_label} {c["slope"]:+.3f} ± {c.get("sd", 0):.3f} ({c.get("n_laps", "—")} laps)', line=dict(color=col, width=3)))
+    fig.add_vline(x=ilap, line=dict(color=COLORS['decision'], width=1, dash='dash'))
+    fig.add_annotation(x=ilap, y=1, yref='paper', text=f'intervention lap {ilap}', showarrow=False, font=dict(size=10, color=COLORS['decision']), yanchor='bottom')
+    apply(fig, height=280, xaxis_title='Tyre age (laps)', yaxis_title='Pace loss vs fresh tyre (s)', title=('Actual vs counterfactual tyre curves · ' + reference_label) if audit else 'Tyre curves · pre-race forecast only (model-implied)')
     return fig

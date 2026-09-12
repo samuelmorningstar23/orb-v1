@@ -1,6 +1,27 @@
-{"workstream": 3, "task": "blind evaluation: sealed-holdout evaluator, hidden-stop-response, strategy regret, scorecards, risk-coverage, tests", "status": "GREEN", "commit": null,
- "completed": [],
- "in_progress": ["reading roadmap sections 3/7/9/14, manifest, counterfactual and live packages, model_v2/pipeline", "designing evaluation/ package layout"],
+{
+ "workstream": 3,
+ "task": "blind evaluation: dry-run flag on pre-freeze aggregate, freeze-gate tests, reviews of Workstream 2/8, feedback ablation, scorecard refresh after lock rebuild",
+ "status": "GREEN",
+ "commit": null,
+ "completed": [
+  "evaluation/__init__.py, common.py (weekend bootstrap), forecast.py (season LOO forecaster with pool spy; reproduces lock.json LOO predictions/factors/floors exactly)",
+  "evaluation/hidden_stop.py (2026 dev pool run: 210 stops / 10 weekends)",
+  "evaluation/regret.py (2026 dev pool run)",
+  "evaluation/holdout/evaluator.py (manifest sha check, freeze gate, aggregate-only output)"
+ ],
+ "in_progress": [
+  "evaluator dry_run_before_freeze/quotable flags + re-run",
+  "tests/evaluation freeze-gate tests",
+  "REVIEWS_workstream3.md (Workstream 2 counterfactual, Workstream 8 live)",
+  "feedback ablation check",
+  "scorecard refresh vs lock 21:03"
+ ],
  "blockers": [],
- "tests_passed": 0, "tests_failed": 0, "eta_minutes": 180, "needs_review_from": ["lead", 7],
- "updated_at": "2026-09-12T16:45:00"}
+ "tests_passed": 23,
+ "tests_failed": 0,
+ "eta_minutes": 120,
+ "needs_review_from": [
+  "lead"
+ ],
+ "updated_at": "2026-09-12T21:06:53"
+}

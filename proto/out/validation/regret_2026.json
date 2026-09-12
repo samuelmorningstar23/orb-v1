@@ -1,0 +1,1430 @@
+{
+ "generated_at": "2026-09-12T16:49:51",
+ "git_sha": "b0b924cf1c70e8af5d35324a47d38a992883df13",
+ "season": 2026,
+ "label": "held-out strategy replay under a post-race reference model",
+ "split": "development_pool (leave-one-weekend-out; sealed weekends excluded from every pool)",
+ "sealed_excluded": [],
+ "definitions": "Strategy regret: held-out strategy replay under a post-race reference model (roadmap v5 section 9).\n\nFor each held-out weekend four plans are costed under the race-derived pace-loss reference and compared with the\nhindsight oracle under the same reference:\n    Orb v1        strategy2.best_plans with the PRE-RACE Orb v1 slopes (issued x factor or the fallback), the weekend's\n                  compound offsets (qualifying / practice, SOFT = 0) and the lock pit loss (strategy2.PIT_LOSS = 21 s)\n    naive         the same optimiser with the naive practice slopes (raw lap time vs tyre age, no cleaning)\n    observed      the field's plan: the most common compound sequence among classified finishers (last lap >= n - 1,\n                  slick compounds only) with the median stint lengths of the drivers on that sequence, the last stint\n                  absorbing the rounding so the lengths sum to the race distance\n    default       a no-model plan: MEDIUM then HARD, one stop at half distance (when both are scorable, else the two\n                  hardest scorable compounds softer-first)\n    oracle        exhaustive one- and two-stop search (every stint length >= MIN_STINT, step 1, two distinct compounds)\n                  under the reference slopes: the best plan anyone could have chosen with hindsight\nCost of a plan = sum over stints of  offset[c] x L + s_ref[c] x L (L + 1) / 2  + stops x PIT_LOSS   (strategy2.stint_time)\nregret(plan)   = cost(plan) - cost(oracle)   [s over the race; >= 0 for any plan inside the oracle's search space]\nOption sets: Orb v1 and naive plan over the compounds they had a pre-race forecast (and an offset) for; the oracle,\nthe observed plan and the default plan over every compound with a race-derived reference and an offset (the race\nfit covers compounds that had no practice long run). A plan that uses a compound without a reference cannot be\ncosted and is 'unscorable' (reported, never silently dropped); Orb v1's regret therefore includes the cost of a\ncompound it could not forecast, and an observed plan outside the oracle's search space (stints below MIN_STINT,\nmore than two stops) can show a negative regret.\n\nReported over the weekends: median, mean, worst decile (90th percentile and the mean of the worst 10 %), share within\n2, 5 and 10 s, probability Orb v1 beats naive and beats the observed plan (weekend bootstrap on the mean difference and\nthe raw share of weekends), all with weekend-grouped bootstrap intervals. The reference slope is post-race material:\nthis is a \"held-out strategy replay under a post-race reference model\", never observed race time saved.\n\nCLI:  python -m evaluation.regret [--seasons 2026,2025,2024,2023] [--out out/validation]\n",
+ "aggregate": {
+  "label": "held-out strategy replay under a post-race reference model",
+  "units": "s over the race, plan cost under the race-derived reference minus the hindsight oracle",
+  "n_weekends": 11,
+  "plans": {
+   "orb": {
+    "n": 9,
+    "mean": 20.169962074452727,
+    "median": 23.692843400596573,
+    "p10": 1.8961699363471256,
+    "p90": 37.688103205165476,
+    "min": 0.000851514734243608,
+    "max": 55.278341104107994,
+    "worst_decile_mean": 55.278341104107994,
+    "share_within_2s": 0.1111111111111111,
+    "share_within_5s": 0.2222222222222222,
+    "share_within_10s": 0.3333333333333333,
+    "ci90_mean": {
+     "estimate": 20.169962074452727,
+     "ci90": [
+      11.25348599305379,
+      29.9774593132852
+     ],
+     "n_weekends": 9,
+     "n_rows": 9,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "ci90_median": {
+     "estimate": 23.692843400596573,
+     "ci90": [
+      5.71178568682754,
+      25.741936514400464
+     ],
+     "n_weekends": 9,
+     "n_rows": 9,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    }
+   },
+   "naive": {
+    "n": 10,
+    "mean": 56.02450751472666,
+    "median": 53.418614683145016,
+    "p10": 13.042571588691894,
+    "p90": 87.05760999626406,
+    "min": 0.12234613769243197,
+    "max": 155.02562816262457,
+    "worst_decile_mean": 155.02562816262457,
+    "share_within_2s": 0.1,
+    "share_within_5s": 0.1,
+    "share_within_10s": 0.1,
+    "ci90_mean": {
+     "estimate": 56.02450751472666,
+     "ci90": [
+      35.40963424643682,
+      79.90381902546721
+     ],
+     "n_weekends": 10,
+     "n_rows": 10,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "ci90_median": {
+     "estimate": 53.418614683145016,
+     "ci90": [
+      20.624505101005255,
+      78.42264732969664
+     ],
+     "n_weekends": 10,
+     "n_rows": 10,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    }
+   },
+   "observed": {
+    "n": 11,
+    "mean": 45.70447693715505,
+    "median": 59.12758104344226,
+    "p10": 6.368772026140704,
+    "p90": 72.17387523603887,
+    "min": 1.6889918060679463,
+    "max": 99.12213435779987,
+    "worst_decile_mean": 85.64800479691937,
+    "share_within_2s": 0.09090909090909091,
+    "share_within_5s": 0.09090909090909091,
+    "share_within_10s": 0.18181818181818182,
+    "ci90_mean": {
+     "estimate": 45.70447693715505,
+     "ci90": [
+      30.57712731578378,
+      60.68107528749574
+     ],
+     "n_weekends": 11,
+     "n_rows": 11,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "ci90_median": {
+     "estimate": 59.12758104344226,
+     "ci90": [
+      10.319805885397514,
+      64.63127801526153
+     ],
+     "n_weekends": 11,
+     "n_rows": 11,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    }
+   },
+   "default": {
+    "n": 11,
+    "mean": 43.2092108601237,
+    "median": 42.77758360047396,
+    "p10": 6.480587759646255,
+    "p90": 70.05469577590836,
+    "min": 0.17436724843690854,
+    "max": 90.2735066163153,
+    "worst_decile_mean": 80.16410119611183,
+    "share_within_2s": 0.09090909090909091,
+    "share_within_5s": 0.09090909090909091,
+    "share_within_10s": 0.18181818181818182,
+    "ci90_mean": {
+     "estimate": 43.2092108601237,
+     "ci90": [
+      28.78756298134169,
+      56.99247234724539
+     ],
+     "n_weekends": 11,
+     "n_rows": 11,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    },
+    "ci90_median": {
+     "estimate": 42.77758360047396,
+     "ci90": [
+      13.953889175531557,
+      68.40558089599631
+     ],
+     "n_weekends": 11,
+     "n_rows": 11,
+     "n_boot": 2000,
+     "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+    }
+   }
+  },
+  "p_orb_beats_naive": {
+   "p_bootstrap": 0.99,
+   "share_rows": 0.7777777777777778,
+   "n_rows": 9,
+   "n_weekends": 9
+  },
+  "p_orb_beats_observed": {
+   "p_bootstrap": 0.988,
+   "share_rows": 0.7222222222222222,
+   "n_rows": 9,
+   "n_weekends": 9
+  },
+  "p_orb_beats_default": {
+   "p_bootstrap": 0.996,
+   "share_rows": 0.7777777777777778,
+   "n_rows": 9,
+   "n_weekends": 9
+  }
+ },
+ "weekends": [
+  {
+   "race_id": "2026_Australia",
+   "season": 2026,
+   "event": "Australia",
+   "n_laps": 58,
+   "circuit_class": "street",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.346499999999999
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.06116481356133071,
+    "MEDIUM": 0.022326100957223982,
+    "HARD": 0.04386134249165252
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.019788026053792197,
+    "MEDIUM": 0.027577618966801054,
+    "HARD": 0.027577618966801054
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      47,
+      11
+     ],
+     "stops": 1,
+     "time": 51.74101624048648,
+     "cost_under_reference": 98.06743236035783,
+     "regret": 25.123551291829983
+    },
+    "naive": {
+     "plan": "S-S-M",
+     "seq": [
+      "SOFT",
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      24,
+      26,
+      8
+     ],
+     "stops": 2,
+     "time": 102.56519298307738,
+     "cost_under_reference": 87.42203326288634,
+     "regret": 14.4781521943585
+    },
+    "observed": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      15,
+      43
+     ],
+     "stops": 1,
+     "drivers": 8,
+     "drivers_classified": 13,
+     "cost_under_reference": 132.0714621119701,
+     "regret": 59.12758104344226
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      29,
+      29
+     ],
+     "stops": 1,
+     "cost_under_reference": 106.24003790026126,
+     "regret": 33.29615683173341
+    }
+   },
+   "oracle": {
+    "plan": "S-M",
+    "seq": [
+     "SOFT",
+     "MEDIUM"
+    ],
+    "stints": [
+     22,
+     36
+    ],
+    "stops": 1,
+    "cost": 72.94388106852784
+   },
+   "regret_orb": 25.123551291829983,
+   "regret_naive": 14.4781521943585,
+   "regret_observed": 59.12758104344226,
+   "regret_default": 33.29615683173341
+  },
+  {
+   "race_id": "2026_Austria",
+   "season": 2026,
+   "event": "Austria",
+   "n_laps": 71,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.7510000000000048
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.06765814784339952,
+    "MEDIUM": 0.0759061684076201,
+    "HARD": 0.07864838446770328
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.13479146787258428,
+    "MEDIUM": 0.06868152602259776,
+    "HARD": 0.06720102525859062
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-M-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM",
+      "MEDIUM"
+     ],
+     "stints": [
+      18,
+      26,
+      27
+     ],
+     "stops": 2,
+     "time": 146.9181734766857,
+     "cost_under_reference": 140.70514005037637,
+     "regret": 25.741936514400464
+    },
+    "naive": {
+     "plan": "M-M-H",
+     "seq": [
+      "MEDIUM",
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      26,
+      26,
+      19
+     ],
+     "stops": 2,
+     "time": 212.44993082551824,
+     "cost_under_reference": 174.69832327101304,
+     "regret": 59.73511973503713
+    },
+    "observed": {
+     "plan": "M-H-H",
+     "seq": [
+      "MEDIUM",
+      "HARD",
+      "HARD"
+     ],
+     "stints": [
+      19,
+      26,
+      26
+     ],
+     "stops": 2,
+     "drivers": 5,
+     "drivers_classified": 15,
+     "cost_under_reference": 214.08533789377577,
+     "regret": 99.12213435779987
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      35,
+      36
+     ],
+     "stops": 1,
+     "cost_under_reference": 205.2367101522912,
+     "regret": 90.2735066163153
+    }
+   },
+   "oracle": {
+    "plan": "S-S-M",
+    "seq": [
+     "SOFT",
+     "SOFT",
+     "MEDIUM"
+    ],
+    "stints": [
+     27,
+     27,
+     17
+    ],
+    "stops": 2,
+    "cost": 114.96320353597591
+   },
+   "regret_orb": 25.741936514400464,
+   "regret_naive": 59.73511973503713,
+   "regret_observed": 99.12213435779987,
+   "regret_default": 90.2735066163153
+  },
+  {
+   "race_id": "2026_Barcelona",
+   "season": 2026,
+   "event": "Barcelona",
+   "n_laps": 66,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.9154999999999944,
+    "HARD": 1.2
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.21272886483044284,
+    "MEDIUM": 0.13215226427199384,
+    "HARD": 0.1002709371702224
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.21184057796251227,
+    "MEDIUM": 0.14605342379809383,
+    "HARD": 0.025499862620246873
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-H",
+     "seq": [
+      "SOFT",
+      "HARD"
+     ],
+     "stints": [
+      12,
+      54
+     ],
+     "stops": 1,
+     "time": 140.19086107214258,
+     "cost_under_reference": 251.29519315455474,
+     "regret": 55.278341104107994
+    },
+    "naive": {
+     "plan": "S-H-H",
+     "seq": [
+      "SOFT",
+      "HARD",
+      "HARD"
+     ],
+     "stints": [
+      18,
+      24,
+      24
+     ],
+     "stops": 2,
+     "time": 275.71209386761745,
+     "cost_under_reference": 196.13919818813918,
+     "regret": 0.12234613769243197
+    },
+    "observed": {
+     "plan": "M-H-H",
+     "seq": [
+      "MEDIUM",
+      "HARD",
+      "HARD"
+     ],
+     "stints": [
+      14,
+      23,
+      29
+     ],
+     "stops": 2,
+     "drivers": 6,
+     "drivers_classified": 10,
+     "cost_under_reference": 202.38562407658745,
+     "regret": 6.368772026140704
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      33,
+      33
+     ],
+     "stops": 1,
+     "cost_under_reference": 221.20091600908313,
+     "regret": 25.184063958636386
+    }
+   },
+   "oracle": {
+    "plan": "S-H-H",
+    "seq": [
+     "SOFT",
+     "HARD",
+     "HARD"
+    ],
+    "stints": [
+     17,
+     24,
+     25
+    ],
+    "stops": 2,
+    "cost": 196.01685205044674
+   },
+   "regret_orb": 55.278341104107994,
+   "regret_naive": 0.12234613769243197,
+   "regret_observed": 6.368772026140704,
+   "regret_default": 25.184063958636386
+  },
+  {
+   "race_id": "2026_Belgium",
+   "season": 2026,
+   "event": "Belgium",
+   "n_laps": 44,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.2
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.18567753385639635,
+    "MEDIUM": 0.04979134696509391,
+    "HARD": 0.056348046702948566
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.15341391847489833,
+    "MEDIUM": 0.06981941010769284,
+    "HARD": 0.025499862620246873
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      18,
+      26
+     ],
+     "stops": 1,
+     "time": 83.88957090812212,
+     "cost_under_reference": 91.29248472376601,
+     "regret": 10.319805885397514
+    },
+    "naive": {
+     "plan": "S-S-M",
+     "seq": [
+      "SOFT",
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      18,
+      18,
+      8
+     ],
+     "stops": 2,
+     "time": 93.51918517245511,
+     "cost_under_reference": 112.09420506963093,
+     "regret": 31.121526231262436
+    },
+    "observed": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      18,
+      26
+     ],
+     "stops": 1,
+     "drivers": 11,
+     "drivers_classified": 18,
+     "cost_under_reference": 91.29248472376601,
+     "regret": 10.319805885397514
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      22,
+      22
+     ],
+     "stops": 1,
+     "cost_under_reference": 87.45326659801475,
+     "regret": 6.480587759646255
+    }
+   },
+   "oracle": {
+    "plan": "S-M",
+    "seq": [
+     "SOFT",
+     "MEDIUM"
+    ],
+    "stints": [
+     12,
+     32
+    ],
+    "stops": 1,
+    "cost": 80.9726788383685
+   },
+   "regret_orb": 10.319805885397514,
+   "regret_naive": 31.121526231262436,
+   "regret_observed": 10.319805885397514,
+   "regret_default": 6.480587759646255
+  },
+  {
+   "race_id": "2026_Britain",
+   "season": 2026,
+   "event": "Britain",
+   "n_laps": 52,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.32500000000000284,
+    "HARD": 1.274000000000001
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.16614825174810696,
+    "MEDIUM": 0.03319209022984623,
+    "HARD": 0.0384332673178136
+   },
+   "pre_race_slopes": {
+    "HARD": 0.025499862620246873
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "unscorable": "no plan (too few compounds or no classified finisher on slicks)"
+    },
+    "naive": {
+     "unscorable": "no plan (too few compounds or no classified finisher on slicks)"
+    },
+    "observed": {
+     "plan": "M-H-S",
+     "seq": [
+      "MEDIUM",
+      "HARD",
+      "SOFT"
+     ],
+     "stints": [
+      23,
+      25,
+      4
+     ],
+     "stops": 2,
+     "drivers": 14,
+     "drivers_classified": 19,
+     "cost_under_reference": 104.63831129920814,
+     "regret": 30.877699975510993
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      26,
+      26
+     ],
+     "stops": 1,
+     "cost_under_reference": 87.7145004992287,
+     "regret": 13.953889175531557
+    }
+   },
+   "oracle": {
+    "plan": "S-M",
+    "seq": [
+     "SOFT",
+     "MEDIUM"
+    ],
+    "stints": [
+     10,
+     42
+    ],
+    "stops": 1,
+    "cost": 73.76061132369715
+   },
+   "regret_orb": null,
+   "regret_naive": null,
+   "regret_observed": 30.877699975510993,
+   "regret_default": 13.953889175531557
+  },
+  {
+   "race_id": "2026_Canada",
+   "season": 2026,
+   "event": "Canada",
+   "n_laps": 68,
+   "circuit_class": "street",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6530000000000058,
+    "HARD": 1.2
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": -0.009340757017696433,
+    "MEDIUM": -0.007224366262181297,
+    "HARD": -0.00525212847926197
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.030270778846798407,
+    "HARD": 0.030270778846798407
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-S-H",
+     "seq": [
+      "SOFT",
+      "SOFT",
+      "HARD"
+     ],
+     "stints": [
+      30,
+      32,
+      6
+     ],
+     "stops": 2,
+     "time": 79.89456975065359,
+     "cost_under_reference": 39.81433358336294,
+     "regret": 33.290543730429846
+    },
+    "naive": {
+     "plan": "S-H",
+     "seq": [
+      "SOFT",
+      "HARD"
+     ],
+     "stints": [
+      6,
+      62
+     ],
+     "stops": 1,
+     "time": -1.836594112999201,
+     "cost_under_reference": 84.94643718262974,
+     "regret": 78.42264732969664
+    },
+    "observed": {
+     "plan": "S-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      31,
+      37
+     ],
+     "stops": 1,
+     "drivers": 5,
+     "drivers_classified": 9,
+     "cost_under_reference": 35.449255036909335,
+     "regret": 28.925465183976243
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      34,
+      34
+     ],
+     "stops": 1,
+     "cost_under_reference": 76.57848562884145,
+     "regret": 70.05469577590836
+    }
+   },
+   "oracle": {
+    "plan": "M-S",
+    "seq": [
+     "MEDIUM",
+     "SOFT"
+    ],
+    "stints": [
+     6,
+     62
+    ],
+    "stops": 1,
+    "cost": 6.523789852933094
+   },
+   "regret_orb": 33.290543730429846,
+   "regret_naive": 78.42264732969664,
+   "regret_observed": 28.925465183976243,
+   "regret_default": 70.05469577590836
+  },
+  {
+   "race_id": "2026_Hungary",
+   "season": 2026,
+   "event": "Hungary",
+   "n_laps": 70,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6,
+    "HARD": 1.2
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.04125650046932626,
+    "MEDIUM": 0.042304045579541594,
+    "HARD": 0.060776937391395086
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.13248352263860166,
+    "MEDIUM": 0.05768927439741813,
+    "HARD": 0.05161923675885305
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-M-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM",
+      "MEDIUM"
+     ],
+     "stints": [
+      16,
+      26,
+      28
+     ],
+     "stops": 2,
+     "time": 136.08853979769538,
+     "cost_under_reference": 112.03504656754136,
+     "regret": 23.692843400596573
+    },
+    "naive": {
+     "plan": "M-H-H",
+     "seq": [
+      "MEDIUM",
+      "HARD",
+      "HARD"
+     ],
+     "stints": [
+      20,
+      24,
+      26
+     ],
+     "stops": 2,
+     "time": 310.2449837232126,
+     "cost_under_reference": 162.44963581350194,
+     "regret": 74.10743264655716
+    },
+    "observed": {
+     "plan": "M-H-H",
+     "seq": [
+      "MEDIUM",
+      "HARD",
+      "HARD"
+     ],
+     "stints": [
+      22,
+      27,
+      21
+     ],
+     "stops": 2,
+     "drivers": 3,
+     "drivers_classified": 14,
+     "cost_under_reference": 160.51607840298365,
+     "regret": 72.17387523603887
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      35,
+      35
+     ],
+     "stops": 1,
+     "cost_under_reference": 148.9410192716901,
+     "regret": 60.59881610474531
+    }
+   },
+   "oracle": {
+    "plan": "S-S-M",
+    "seq": [
+     "SOFT",
+     "SOFT",
+     "MEDIUM"
+    ],
+    "stints": [
+     28,
+     28,
+     14
+    ],
+    "stops": 2,
+    "cost": 88.34220316694478
+   },
+   "regret_orb": 23.692843400596573,
+   "regret_naive": 74.10743264655716,
+   "regret_observed": 72.17387523603887,
+   "regret_default": 60.59881610474531
+  },
+  {
+   "race_id": "2026_Japan",
+   "season": 2026,
+   "event": "Japan",
+   "n_laps": 53,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6825000000000045,
+    "HARD": 1.2
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "MEDIUM": 0.038218261528523624,
+    "HARD": 0.023422106273692688
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.18228208448424563,
+    "MEDIUM": 0.01913933020406623,
+    "HARD": 0.02892419890679973
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      8,
+      45
+     ],
+     "stops": 1,
+     "time": 78.08386180264161,
+     "unscorable": "uses a compound without a race-derived reference: ['SOFT']"
+    },
+    "naive": {
+     "plan": "M-H-H",
+     "seq": [
+      "MEDIUM",
+      "HARD",
+      "HARD"
+     ],
+     "stints": [
+      10,
+      22,
+      21
+     ],
+     "stops": 2,
+     "time": 162.8249668813661,
+     "cost_under_reference": 113.8633038205361,
+     "regret": 20.624505101005255
+    },
+    "observed": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      21,
+      32
+     ],
+     "stops": 1,
+     "drivers": 17,
+     "drivers_classified": 19,
+     "cost_under_reference": 94.9277905255988,
+     "regret": 1.6889918060679463
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      26,
+      27
+     ],
+     "stops": 1,
+     "cost_under_reference": 93.41316596796776,
+     "regret": 0.17436724843690854
+    }
+   },
+   "oracle": {
+    "plan": "H-M",
+    "seq": [
+     "HARD",
+     "MEDIUM"
+    ],
+    "stints": [
+     25,
+     28
+    ],
+    "stops": 1,
+    "cost": 93.23879871953085
+   },
+   "regret_orb": null,
+   "regret_naive": 20.624505101005255,
+   "regret_observed": 1.6889918060679463,
+   "regret_default": 0.17436724843690854
+  },
+  {
+   "race_id": "2026_Miami",
+   "season": 2026,
+   "event": "Miami",
+   "n_laps": 57,
+   "circuit_class": "street",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.7355000000000018,
+    "HARD": 0.9465000000000003
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.01764941423314584,
+    "MEDIUM": 0.049635524915146334,
+    "HARD": 0.05693337396495831
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.02892419890679973,
+    "MEDIUM": 0.025984925756822302,
+    "HARD": 0.048876625160275466
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      40,
+      17
+     ],
+     "stops": 1,
+     "time": 61.197036744369626,
+     "cost_under_reference": 55.57025498319701,
+     "regret": 5.71178568682754
+    },
+    "naive": {
+     "plan": "M-H-H",
+     "seq": [
+      "MEDIUM",
+      "HARD",
+      "HARD"
+     ],
+     "stints": [
+      10,
+      24,
+      23
+     ],
+     "stops": 2,
+     "time": 128.39291178342455,
+     "cost_under_reference": 129.36407727414905,
+     "regret": 79.50560797777959
+    },
+    "observed": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      27,
+      30
+     ],
+     "stops": 1,
+     "drivers": 15,
+     "drivers_classified": 17,
+     "cost_under_reference": 114.48974731163099,
+     "regret": 64.63127801526153
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      28,
+      29
+     ],
+     "stops": 1,
+     "cost_under_reference": 113.96054079030634,
+     "regret": 64.10207149393688
+    }
+   },
+   "oracle": {
+    "plan": "M-S",
+    "seq": [
+     "MEDIUM",
+     "SOFT"
+    ],
+    "stints": [
+     6,
+     51
+    ],
+    "stops": 1,
+    "cost": 49.85846929636947
+   },
+   "regret_orb": 5.71178568682754,
+   "regret_naive": 79.50560797777959,
+   "regret_observed": 64.63127801526153,
+   "regret_default": 64.10207149393688
+  },
+  {
+   "race_id": "2026_Monza",
+   "season": 2026,
+   "event": "Monza",
+   "n_laps": 53,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.8059999999999974,
+    "HARD": 1.343999999999994
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.02460517510005116,
+    "MEDIUM": 0.027577618966801054,
+    "HARD": 0.023034666748543486
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.02449301413072191,
+    "MEDIUM": 0.030270778846798407,
+    "HARD": 0.030270778846798407
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      44,
+      9
+     ],
+     "stops": 1,
+     "time": 53.86426903752059,
+     "cost_under_reference": 53.854116202556675,
+     "regret": 0.000851514734243608
+    },
+    "naive": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      19,
+      34
+     ],
+     "stops": 1,
+     "time": 139.91512610891715,
+     "cost_under_reference": 100.95537431907533,
+     "regret": 47.1021096312529
+    },
+    "observed": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      3,
+      50
+     ],
+     "stops": 1,
+     "drivers": 6,
+     "drivers_classified": 18,
+     "cost_under_reference": 120.15266581819344,
+     "regret": 66.29940113037101
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      26,
+      27
+     ],
+     "stops": 1,
+     "cost_under_reference": 96.63084828829639,
+     "regret": 42.77758360047396
+    }
+   },
+   "oracle": {
+    "plan": "M-S",
+    "seq": [
+     "MEDIUM",
+     "SOFT"
+    ],
+    "stints": [
+     10,
+     43
+    ],
+    "stops": 1,
+    "cost": 53.85326468782243
+   },
+   "regret_orb": 0.000851514734243608,
+   "regret_naive": 47.1021096312529,
+   "regret_observed": 66.29940113037101,
+   "regret_default": 42.77758360047396
+  },
+  {
+   "race_id": "2026_Zandvoort",
+   "season": 2026,
+   "event": "Zandvoort",
+   "n_laps": 72,
+   "circuit_class": "permanent",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.9480000000000004,
+    "HARD": 0.9604999999999961
+   },
+   "pit_loss": 21.0,
+   "scorable_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "forecast_compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "reference_slopes": {
+    "SOFT": 0.03695828223534986,
+    "MEDIUM": 0.07258398838294723,
+    "HARD": 0.030270778846798407
+   },
+   "pre_race_slopes": {
+    "SOFT": 0.037283925832409116,
+    "MEDIUM": 0.023422106273692688,
+    "HARD": 0.023422106273692688
+   },
+   "label": "held-out strategy replay under a post-race reference model",
+   "plans": {
+    "orb": {
+     "plan": "S-S-M",
+     "seq": [
+      "SOFT",
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      30,
+      32,
+      10
+     ],
+     "stops": 2,
+     "time": 89.79115419663535,
+     "cost_under_reference": 92.17169362076451,
+     "regret": 2.369999541750346
+    },
+    "naive": {
+     "plan": "S-M",
+     "seq": [
+      "SOFT",
+      "MEDIUM"
+     ],
+     "stints": [
+      6,
+      66
+     ],
+     "stops": 1,
+     "time": 56.235514016724196,
+     "cost_under_reference": 244.82732224163874,
+     "regret": 155.02562816262457
+    },
+    "observed": {
+     "plan": "S-S-M-H-S",
+     "seq": [
+      "SOFT",
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "SOFT"
+     ],
+     "stints": [
+      2,
+      14,
+      22,
+      16,
+      18
+     ],
+     "stops": 4,
+     "drivers": 2,
+     "drivers_classified": 13,
+     "cost_under_reference": 153.0159357277128,
+     "regret": 63.21424164869862
+    },
+    "default": {
+     "plan": "M-H",
+     "seq": [
+      "MEDIUM",
+      "HARD"
+     ],
+     "stints": [
+      36,
+      36
+     ],
+     "stops": 1,
+     "cost_under_reference": 158.20727497501048,
+     "regret": 68.40558089599631
+    }
+   },
+   "oracle": {
+    "plan": "S-S-H",
+    "seq": [
+     "SOFT",
+     "SOFT",
+     "HARD"
+    ],
+    "stints": [
+     32,
+     32,
+     8
+    ],
+    "stops": 2,
+    "cost": 89.80169407901417
+   },
+   "regret_orb": 2.369999541750346,
+   "regret_naive": 155.02562816262457,
+   "regret_observed": 63.21424164869862,
+   "regret_default": 68.40558089599631
+  }
+ ]
+}

@@ -190,3 +190,81 @@ st.write(q['ev'], q['mode'])
 """
     at = AppTest.from_string(script); at.query_params['ev'] = 'Madrid'; at.query_params['mode'] = 'audit'; at.query_params['lap'] = '12'; at.run()
     assert not at.exception and at.session_state['ev'] == 'Madrid' and at.session_state['mode'] == 'audit' and at.session_state['lap'] == 12
+
+
+# ---- C3 integration: Workstream 8 live adapter, Workstream 2 counterfactuals, Workstream 4 player -------------------------------------
+def test_live_bridge_uses_workstream8_and_strips_post_race():
+    from app_v2.services import lock_repository as LR, replay_service as RS, live_bridge as LB
+    lock = LR.load_lock(); c = RS.ReplayCursor('Monza', 'NOR', 53).seek(30)
+    vm = LB.build(lock, 'Monza', 'NOR', c, 'x')
+    if not LB.AVAILABLE:
+        pytest.skip('live package not importable')
+    assert vm.live_source == 'live/estimator + decision/optimizer' and vm.orb_live is not None
+    assert vm.forecast.observed is None and vm.forecast.err is None and vm.forecast.n_race is None, 'live path must not carry a race-derived reference'
+    assert vm.orb_live['uses_future_data'] is False and vm.orb_live['uses_post_race_reference'] is False
+    assert LB.estimator_label_short(vm) == 'linear-Gaussian with fixed regime rules'
+    assert {k.label for k in vm.kpis} == {'LIVE DEGRADATION', 'USEFUL LIFE', 'CLIFF RISK', 'PIT WINDOW', 'RECOMMENDED TYRE'}
+    assert not any(k.value.endswith(k.unit) and k.unit for k in vm.kpis), 'unit must not be duplicated in the value'
+    cliff = next(k for k in vm.kpis if k.label == 'CLIFF RISK'); assert LB.CLIFF_LABEL in cliff.sub
+    ts = vm.orb_live['tyre_state']
+    for f in ('lap', 'timestamp', 'compound', 'tyre_age', 'state_regime', 'corrected_pace_loss', 'degradation_rate', 'thermal_stress_index', 'performance_wear_index', 'useful_laps_q10', 'useful_laps_q50', 'useful_laps_q90',
+              'cliff_probability_3_laps', 'cliff_probability_5_laps', 'trend_vs_pre_race', 'confidence', 'sensor_mode', 'support_status', 'sensor_availability', 'source_latency', 'missing_channels', 'quality_status'):
+        assert f in ts, f'7.1 field {f} missing'
+    r = vm.orb_live['recommendations'][0]
+    for f in ('action', 'pit_window', 'target_compound', 'target_set', 'expected_gain_median', 'expected_gain_q10', 'expected_gain_q90', 'probability_of_gain', 'rejoin_context', 'reasons', 'constraints', 'changed_since_last_update', 'change_reason'):
+        assert f in r, f'7.2 field {f} missing'
+    assert len(LB.tyre_state_rows(ts)) >= 15 and len(LB.recommendation_rows(r)) == 10
+
+
+def test_live_bridge_rejoin_rows_none_safe():
+    from app_v2.services import live_bridge as LB
+    rows = LB.recommendation_rows(dict(action='PIT_NOW', pit_window=[30, 30], target_compound='SOFT', target_set=None, expected_gain_median=1.0, expected_gain_q10=-1.0, expected_gain_q90=3.0, probability_of_gain=0.6,
+                                       rejoin_context=dict(position_now=20, projected_rejoin_position=20, gap_ahead_s=None, gap_behind_s=None, cars_within_pit_loss=0, traffic_density='clear', basis='observed_gap_structure'), reasons=[], constraints=[], changed_since_last_update=False, change_reason=None))
+    assert any('gap ahead —' in v for _, v in rows)
+
+
+def test_counterfactual_repository_reads_workstream2_outputs():
+    from app_v2.services import counterfactual_repository as CF
+    sc = CF.default_scenario('Monza')
+    if sc is None:
+        pytest.skip('no Workstream 2 scenarios under out/counterfactual')
+    assert sc.driver == 'NOR' and sc.lap == 24 and sc.to_compound == 'MEDIUM' and sc.mode == 'tyre_only'
+    assert all(v['status'] == 'verified' for v in CF.verify_assets(sc).values())
+    laps = CF.load_laps(sc); assert laps is not None and {'lap', 'cumulative_delta', 'cumulative_delta_q10', 'cumulative_delta_q90', 'pit_state'} <= set(laps.columns)
+    d = CF.decomposition(sc); assert abs((d['tyre'] + d['pit'] + d['interaction']) - d['total']) < 1e-6 and d['identity_check_delta_s'] == 0.0
+    assert all(i['identity_test'] == 'pass' and i['future_leakage_test'] == 'pass' for i in CF.identity_status('Monza'))
+    assert CF.find_scenario('Monza', 'NOR', 99, 'MEDIUM') is None and CF.lattice_lookup('Monza', 'NOR', 24, 'SOFT') is not None
+
+
+def test_ghost_audit_renders_real_data_without_fixture_labels():
+    at = _run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'audit', 'ilap': 24, 'rep': 'MEDIUM'})
+    html = ' '.join(getattr(el, 'value', '') or '' for el in at.get('html'))
+    from app_v2.services import counterfactual_repository as CF
+    if CF.default_scenario('Monza') is not None:
+        assert 'FIXTURE' not in html, 'audit with real Workstream 2 data must not carry FIXTURE labels'
+        assert 'leave-one-driver-out Sunday reference' in html
+
+
+def test_ghost_scenario_mode_is_pre_race_only():
+    at = _run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'scenario', 'ilap': 24, 'rep': 'MEDIUM', 'scenario': 'hotter_dry'})
+    html = ' '.join(getattr(el, 'value', '') or '' for el in at.get('html'))
+    assert 'MODEL-IMPLIED SCENARIO' in html and 'pre-race forecast only' in html
+
+
+def test_validation_page_shows_prefix_eval_and_identity_tests():
+    at = _run('validation', {'ev': 'Monza'})
+    html = ' '.join(getattr(el, 'value', '') or '' for el in at.get('html'))
+    from app_v2.services import live_bridge as LB
+    if LB.prefix_eval()[0] is not None:
+        assert 'prior-only' in html or 'prior' in html
+        assert LB.CLIFF_LABEL in html
+    assert 'identity test' in html
+
+
+def test_live_page_default_driver_and_feedback_reading():
+    at = _run('live_predictor', {'ev': 'Monza', 'drv': 'NOR', 'lap': 30})
+    html = ' '.join(getattr(el, 'value', '') or '' for el in at.get('html'))
+    from app_v2.services import live_bridge as LB
+    if LB.AVAILABLE:
+        assert 'PLACEHOLDER' not in html, 'no placeholder labels on the live path once Workstream 8 is wired'
+        assert 'linear-Gaussian with fixed regime rules' in html and LB.CLIFF_LABEL in html

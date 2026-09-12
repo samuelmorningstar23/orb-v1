@@ -1,0 +1,445 @@
+{
+ "generated_at": "2026-09-12T16:56:40",
+ "event": "Monza",
+ "driver": "NOR",
+ "checks": {
+  "static_imports": {
+   "status": "PASS",
+   "rules": [
+    {
+     "rule": "live/ must not import ghost-side modules (counterfactual, ghost, replay, interaction, evaluation)",
+     "pattern": "live/**/*.py",
+     "forbidden": [
+      "counterfactual",
+      "ghost",
+      "replay",
+      "interaction",
+      "evaluation"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "decision/ must not import ghost-side modules",
+     "pattern": "decision/**/*.py",
+     "forbidden": [
+      "counterfactual",
+      "ghost",
+      "replay",
+      "interaction",
+      "evaluation"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "counterfactual/ must not import live/ or decision/",
+     "pattern": "counterfactual/**/*.py",
+     "forbidden": [
+      "live",
+      "decision"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "events/ must not import live/ or decision/",
+     "pattern": "events/**/*.py",
+     "forbidden": [
+      "live",
+      "decision"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "replay/ must not import live/ or decision/",
+     "pattern": "replay/**/*.py",
+     "forbidden": [
+      "live",
+      "decision"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "pages consume services only (roadmap 13.1: no page imports a model)",
+     "pattern": "app_v2/pages/*.py",
+     "forbidden": [
+      "model_v2",
+      "pipeline",
+      "strategy2",
+      "liquid",
+      "features",
+      "tyre_proto",
+      "prior2025",
+      "sensitivity",
+      "counterfactual",
+      "live",
+      "decision",
+      "replay",
+      "events",
+      "interaction",
+      "evaluation"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "ui components consume view models only",
+     "pattern": "app_v2/ui/*.py",
+     "forbidden": [
+      "model_v2",
+      "pipeline",
+      "strategy2",
+      "liquid",
+      "features",
+      "tyre_proto",
+      "prior2025",
+      "sensitivity",
+      "counterfactual",
+      "live",
+      "decision",
+      "replay",
+      "events",
+      "interaction",
+      "evaluation"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "state modules consume services only",
+     "pattern": "app_v2/state/*.py",
+     "forbidden": [
+      "model_v2",
+      "pipeline",
+      "strategy2",
+      "liquid",
+      "features",
+      "tyre_proto",
+      "prior2025",
+      "sensitivity",
+      "counterfactual",
+      "live",
+      "decision",
+      "replay",
+      "events",
+      "interaction",
+      "evaluation"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "components consume view models only (replay/ geometry is Workstream 4's own package)",
+     "pattern": "app_v2/components/**/*.py",
+     "forbidden": [
+      "model_v2",
+      "pipeline",
+      "strategy2",
+      "liquid",
+      "features",
+      "tyre_proto",
+      "prior2025",
+      "sensitivity",
+      "counterfactual",
+      "live",
+      "decision",
+      "events",
+      "interaction",
+      "evaluation"
+     ],
+     "severity": "fail",
+     "violations": [],
+     "status": "PASS"
+    },
+    {
+     "rule": "services may bridge to live/ and counterfactual/ (listed for the record)",
+     "pattern": "app_v2/services/*.py",
+     "forbidden": [
+      "model_v2",
+      "pipeline",
+      "strategy2",
+      "liquid",
+      "features",
+      "tyre_proto",
+      "prior2025",
+      "sensitivity",
+      "counterfactual",
+      "live",
+      "decision",
+      "replay",
+      "events",
+      "interaction",
+      "evaluation"
+     ],
+     "severity": "info",
+     "violations": [
+      {
+       "file": "app_v2/services/live_bridge.py",
+       "line": 17,
+       "imports": "live"
+      },
+      {
+       "file": "app_v2/services/live_bridge.py",
+       "line": 18,
+       "imports": "live"
+      }
+     ],
+     "status": "INFO"
+    },
+    {
+     "rule": "live/ importing the dashboard package inverts the dependency direction (listed, not a boundary rule)",
+     "pattern": "live/**/*.py",
+     "forbidden": [
+      "app_v2"
+     ],
+     "severity": "info",
+     "violations": [
+      {
+       "file": "live/viewmodel.py",
+       "line": 209,
+       "imports": "app_v2.services"
+      },
+      {
+       "file": "live/viewmodel.py",
+       "line": 210,
+       "imports": "app_v2.services"
+      },
+      {
+       "file": "live/viewmodel.py",
+       "line": 211,
+       "imports": "app_v2.services"
+      },
+      {
+       "file": "live/viewmodel.py",
+       "line": 212,
+       "imports": "app_v2.services"
+      },
+      {
+       "file": "live/viewmodel.py",
+       "line": 213,
+       "imports": "app_v2.services"
+      },
+      {
+       "file": "live/viewmodel.py",
+       "line": 247,
+       "imports": "app_v2.services"
+      },
+      {
+       "file": "live/viewmodel.py",
+       "line": 184,
+       "imports": "app_v2.theme.tokens"
+      }
+     ],
+     "status": "INFO"
+    }
+   ]
+  },
+  "import_closure": {
+   "status": "PASS",
+   "cases": [
+    {
+     "case": "live side",
+     "statement": "import live.session, live.viewmodel, live.replay_run, decision.optimizer",
+     "forbidden": [
+      "counterfactual",
+      "ghost",
+      "replay",
+      "interaction",
+      "evaluation"
+     ],
+     "loaded": [],
+     "status": "PASS",
+     "stderr": ""
+    },
+    {
+     "case": "ghost side",
+     "statement": "import counterfactual.engine, counterfactual.run, events.sources",
+     "forbidden": [
+      "live",
+      "decision"
+     ],
+     "loaded": [],
+     "status": "PASS",
+     "stderr": ""
+    },
+    {
+     "case": "replay side",
+     "statement": "import replay.timewarp, replay.trajectory",
+     "forbidden": [
+      "live",
+      "decision"
+     ],
+     "loaded": [],
+     "status": "PASS",
+     "stderr": ""
+    }
+   ]
+  },
+  "future_read_and_deny_list_spy": {
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "race_csv": "feat/Monza_R.csv",
+   "inject": false,
+   "laps_processed": 50,
+   "feed_calls": 100,
+   "calls_by_kind": {
+    "row": 50,
+    "through": 0,
+    "field_at": 50,
+    "laps_of": 0
+   },
+   "max_requested_lap_minus_cursor": 0,
+   "violations": [],
+   "deny_list_hits": [],
+   "estimator_errors": [],
+   "deny_list": [
+    "obs",
+    "obs_se",
+    "obs_push",
+    "ratio",
+    "z",
+    "n_race",
+    "pred_clearstint",
+    "cost_under_truth_vs_best_s",
+    "best_under_truth",
+    "completed",
+    "err_*"
+   ],
+   "note": "the proxy sees only the LapFeed API; a leak that bypasses the feed (reading the CSV directly) is caught by the static import rules and the import-closure check, not here"
+  },
+  "target_driver_exclusion": {
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "reference_slopes_calls": [
+    "NOR",
+    null
+   ],
+   "n_laps_all": 496,
+   "n_laps_excluded": 480,
+   "checks": {
+    "reference_slopes called with the target driver": true,
+    "engine says target_driver_excluded": true,
+    "reference frame drops the target driver laps": true,
+    "all-driver refit matches the lock obs to 1e-4": true,
+    "included run uses every lap": true,
+    "label is the lead decision wording": true,
+    "post-race reference flagged": true
+   },
+   "slopes": {
+    "SOFT": {
+     "excluded": 0.024605175100077332,
+     "all_drivers": 0.02460517510005116,
+     "lock": 0.0246
+    },
+    "MEDIUM": {
+     "excluded": 0.027577618966809863,
+     "all_drivers": 0.027577618966801054,
+     "lock": 0.0276
+    },
+    "HARD": {
+     "excluded": 0.024840862454396984,
+     "all_drivers": 0.023034666748543486,
+     "lock": 0.023
+    }
+   }
+  },
+  "one_forecast_hash": {
+   "status": "PASS",
+   "lock_v2_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+   "recomputed": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+   "sources": [
+    {
+     "source": "schemas.lock_v2.compute_forecast_hash(pre_race_forecast)",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true,
+     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+    },
+    {
+     "source": "out/counterfactual/monza_nor_lap24_to_medium_new_tyre_only/summary.json",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true,
+     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+    },
+    {
+     "source": "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true,
+     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+    },
+    {
+     "source": "out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/summary.json",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true,
+     "engine_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a"
+    },
+    {
+     "source": "out/live/Austria_NOR/summary.json",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "out/live/Barcelona_NOR/summary.json",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "out/live/Monza_NOR/summary.json",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "out/live/Austria_NOR/live_predictor.json prior.forecast_hash",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "out/live/Barcelona_NOR/live_predictor.json prior.forecast_hash",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "out/live/Monza_NOR/live_predictor.json prior.forecast_hash",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "counterfactual.provider.ProviderA().forecast_hash",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "app_v2 LockView.forecast_hash (lock_v2.shared.forecast_hash)",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    },
+    {
+     "source": "live.priors.load_priors(Monza).forecast_hash",
+     "hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+     "agrees": true
+    }
+   ],
+   "fixture_hash": "sha256:0933f342bf019fa538b05fdfffa1da4895a2ead6605afbc9f56a071de2e68e70",
+   "fixture_note": "the fixture carries its own (synthetic) forecast hash and is labelled FIXTURE on screen; it is not expected to equal the lock"
+  }
+ },
+ "status": "PASS",
+ "exit_code": 0
+}

@@ -23,19 +23,19 @@ def render() -> None:
     with left:
         st.html(f'<div class="cs-mode live"><h2>LIVE PREDICTOR</h2><div class="lead">Compare actual tyre behaviour against the locked pre-race forecast and receive updated pit and compound recommendations. Sees only what existed at the current timestamp; makes the call.</div>{_status_html(vm.live_status)}</div>')
         c1, c2, c3 = st.columns(3)
-        if c1.button('Start historical replay', type='primary', use_container_width=True, key='btn_replay'):
+        if c1.button('Start historical replay', type='primary', width='stretch', key='btn_replay'):
             common.goto('live', mode='live')
-        c2.button('Load recorded-live session', use_container_width=True, disabled=True, help='RecordedLive source arrives with Workstream 2 (task 0.9).', key='btn_recorded')
-        c3.button('Connect live feed', use_container_width=True, disabled=True, help='Live adapter is Phase 1.', key='btn_live')
+        c2.button('Load recorded-live session', width='stretch', disabled=True, help='RecordedLive source arrives with Workstream 2 (task 0.9).', key='btn_recorded')
+        c3.button('Connect live feed', width='stretch', disabled=True, help='Live adapter is Phase 1.', key='btn_live')
         st.markdown(f'<div class="cs-muted">Recorded races available for replay: {esc(", ".join(vm.race_files))}. Live forecast weekend: {esc(", ".join(vm.live_events) or "none")} (no race file yet: the forecast is shown, replay waits for a source).</div>', unsafe_allow_html=True)
     with right:
         st.html(f'<div class="cs-mode ghost"><h2>GHOST STRATEGY</h2><div class="lead">Audit a completed race, test alternative tyre strategies and inspect generalisation across supported drivers, circuits and weather. Sees the finished race; audits whether the model deserved to make the call.</div>{_status_html(vm.ghost_status)}</div>')
         c1, c2, c3 = st.columns(3)
-        if c1.button('Historical audit', type='primary', use_container_width=True, key='btn_audit'):
+        if c1.button('Historical audit', type='primary', width='stretch', key='btn_audit'):
             common.goto('ghost', mode='audit')
-        if c2.button('Scenario explorer', use_container_width=True, key='btn_scenario'):
+        if c2.button('Scenario explorer', width='stretch', key='btn_scenario'):
             common.goto('ghost', mode='scenario')
-        if c3.button('Generalisation scorecard', use_container_width=True, key='btn_gen'):
+        if c3.button('Generalisation scorecard', width='stretch', key='btn_gen'):
             common.goto('generalisation', mode='audit')
         st.markdown(f'<div class="cs-muted">Scored weekends in the lock: {esc(", ".join(vm.scored_events))}.</div>', unsafe_allow_html=True)
     st.markdown('<div class="cs-muted" style="margin-top:16px">Defensible sentence: Orb v1 can be tested across any available driver, circuit and supported weather regime, and it abstains when the selected conditions fall outside the evidence.</div>', unsafe_allow_html=True)

@@ -1,5 +1,6 @@
-{"workstream": 7, "task": "red team: consistency probe, leakage audit, identity checks, claim audit, consolidated report", "status": "GREEN", "commit": null,
- "completed": ["read ROADMAP_v5 s3/s6/s7/s9/s14, release README, build_control.py, run_checkpoint.sh, sealed holdout manifest"],
- "in_progress": ["reading deliverables of Workstreams 1, 2, 6, 8", "evaluation/red_team/consistency_probe.py"],
- "blockers": [], "tests_passed": 0, "tests_failed": 0, "eta_minutes": 180, "needs_review_from": ["lead"],
- "updated_at": "2026-09-12T16:35:00"}
+{"workstream": 7, "task": "red team: RT-BLK-1 re-verification, tests/red_team acceptance suite (roadmap 0.0), consolidated red_team_report, claim audit re-run after lead rebuild, Madrid anchor check", "status": "AMBER", "commit": null,
+ "completed": ["(prior turn) consistency probe, leakage audit, identity checks, claim audit + claim_evidence_map, RT-BLK-1 filed"],
+ "in_progress": ["reading release README / roadmap 9,14 / live_bridge.py / test_pages.py before editing"],
+ "blockers": [], "tests_passed": 0, "tests_failed": 0, "eta_minutes": 120, "needs_review_from": ["lead"],
+ "notes": "Resumed 21:07 IST. Owns only evaluation/red_team/, tests/red_team/, progress/workstream_7.json. Will not edit other workstreams' files, never commits, never touches sealed manifest.",
+ "updated_at": "2026-09-12T21:07:00"}

@@ -42,6 +42,7 @@ import sys
 from pathlib import Path
 
 STALE_MIN = 40
+CLOCK_SLACK_MIN = 2   # updated_at more than this far in the future is marked 'clock ahead'
 PROTO = Path(os.environ.get('ORB_PROTO_ROOT') or Path(__file__).resolve().parent)
 WORKTREE = os.environ.get('ORB_LAST_GREEN_WORKTREE', '/private/tmp/orbv1_last_green')
 # Waves (ROADMAP_v5 s14.6): 1, 6, 9 first; 2, 4, 8 at C1; 3, 5, 7 from C1 as reviewers, builders from C2.
@@ -145,7 +146,11 @@ def effective_status(status, age) -> str:
         return 'RED (bad updated_at)'
     if age > STALE_MIN:
         return ('RED' if s == 'RED' else 'AMBER') + f' (stale {int(age)} min)'
-    return s if s in ('GREEN', 'AMBER', 'RED') else f'RED (bad status {s or "?"})'
+    if s not in ('GREEN', 'AMBER', 'RED'):
+        return f'RED (bad status {s or "?"})'
+    if age < -CLOCK_SLACK_MIN:      # future-dated heartbeat: the workstream guessed the time; staleness cannot be trusted
+        return f'{s} (clock ahead {int(-age)} min)'
+    return s
 
 
 def workstream_number(path):
@@ -675,6 +680,7 @@ def write_summary(root=PROTO) -> Path:
     notes = [f"- Workstream {a}: no heartbeat file (progress/workstream_{a}.json) although active; Workstream 9 cannot message workstreams, lead to ping." for a in rep['missing']]
     notes += [f"- Workstream {r['workstream']}: heartbeat stale ({r['age_min']:.0f} min > {STALE_MIN}); lead to ping." for r in rep['heartbeats'] if r['stale'] and not r['missing'] and r['age_min'] is not None]
     notes += [f"- Workstream {r['workstream']}: heartbeat unreadable or bad timestamp ({r['effective']})." for r in rep['heartbeats'] if r['unreadable'] or (r['age_min'] is None and not r['missing'])]
+    notes += [f"- Workstream {r['workstream']}: updated_at is {-r['age_min']:.0f} min in the future (clock ahead); the workstream should stamp real local time or staleness cannot be detected." for r in rep['heartbeats'] if r['age_min'] is not None and r['age_min'] < -CLOCK_SLACK_MIN]
     notes += [f"- Workstream {a} blockers: {', '.join(map(str, b))}" for a, b in rep['blockers'].items()]
     if stop:
         notes.append(f"- STOP THE LINE is active (raised by {stop.get('by')}); no production writes until cleared and a checkpoint says GO.")

@@ -1,0 +1,544 @@
+{
+ "generated_at": "2026-09-12T20:59:50",
+ "events": [
+  "Monza",
+  "Austria"
+ ],
+ "drivers": [
+  "NOR",
+  "VER"
+ ],
+ "checks": [
+  {
+   "check": "identity actual plan, std event off, fixed_context",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity actual plan, std event off, tyre_only",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity free (red-flag) stop, std event on == 0",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "cumulative": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, fixed_context",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, tyre_only",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "zero degradation -> offsets only in the tyre term",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "intervention_lap": 26,
+   "to_compound": "MEDIUM",
+   "max_abs_tyre_error": 0.0,
+   "pit_term_total_s": 21.884266464035928,
+   "cumulative": 8.557572092217757,
+   "closes": true
+  },
+  {
+   "check": "time accounting",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "intervention_lap": 26,
+   "to_compound": "MEDIUM",
+   "detail": {
+    "sum(lap_delta) == cumulative[-1]": true,
+    "cumulative[-1] == engine.elapsed_delta_mean_s": true,
+    "cf_lap_time_mean - actual == lap_delta": true,
+    "tyre + pit == lap_delta": true,
+    "median of sampled totals == summary median": true,
+    "q10 <= median <= q90": true,
+    "probability_of_gain == share of totals < 0": true,
+    "cumsum(lap_delta) == cumulative": true
+   },
+   "elapsed_delta_median_s": -4.742850658623159
+  },
+  {
+   "check": "event conservation: one stop -> one of each event",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "NOR",
+   "added": {
+    "pit_entry": 1,
+    "stationary": 1,
+    "pit_exit": 1,
+    "age_reset": 1,
+    "warm_up": 1
+   },
+   "stops_added": 1
+  },
+  {
+   "check": "identity actual plan, std event off, fixed_context",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity actual plan, std event off, tyre_only",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity actual plan, std event on == stop replacement",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "cumulative": -5.6065122291923,
+   "stop_replacement_delta_s": -5.606512229192301,
+   "max_abs_tyre_term": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, fixed_context",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, tyre_only",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "zero degradation -> offsets only in the tyre term",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "intervention_lap": 26,
+   "to_compound": "HARD",
+   "max_abs_tyre_error": 0.0,
+   "pit_term_total_s": 3.2751352701077607,
+   "cumulative": 3.8082030449804876,
+   "closes": true
+  },
+  {
+   "check": "time accounting",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "intervention_lap": 26,
+   "to_compound": "HARD",
+   "detail": {
+    "sum(lap_delta) == cumulative[-1]": true,
+    "cumulative[-1] == engine.elapsed_delta_mean_s": true,
+    "cf_lap_time_mean - actual == lap_delta": true,
+    "tyre + pit == lap_delta": true,
+    "median of sampled totals == summary median": true,
+    "q10 <= median <= q90": true,
+    "probability_of_gain == share of totals < 0": true,
+    "cumsum(lap_delta) == cumulative": true
+   },
+   "elapsed_delta_median_s": 4.157249314421858
+  },
+  {
+   "check": "event conservation: one stop -> one of each event",
+   "status": "PASS",
+   "event": "Monza",
+   "driver": "VER",
+   "added": {
+    "pit_entry": 0,
+    "stationary": 0,
+    "pit_exit": 0,
+    "age_reset": 0,
+    "warm_up": 0
+   },
+   "stops_added": 0
+  },
+  {
+   "check": "identity actual plan, std event off, fixed_context",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity actual plan, std event off, tyre_only",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity actual plan, std event on == stop replacement",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "cumulative": -1.3757561523055866,
+   "stop_replacement_delta_s": -1.3757561523055877,
+   "max_abs_tyre_term": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, fixed_context",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, tyre_only",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "zero degradation -> offsets only in the tyre term",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "intervention_lap": 35,
+   "to_compound": "MEDIUM",
+   "max_abs_tyre_error": 0.0,
+   "pit_term_total_s": -2.2383604926226823,
+   "cumulative": -42.35073261316844,
+   "closes": true
+  },
+  {
+   "check": "time accounting",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "intervention_lap": 35,
+   "to_compound": "MEDIUM",
+   "detail": {
+    "sum(lap_delta) == cumulative[-1]": true,
+    "cumulative[-1] == engine.elapsed_delta_mean_s": true,
+    "cf_lap_time_mean - actual == lap_delta": true,
+    "tyre + pit == lap_delta": true,
+    "median of sampled totals == summary median": true,
+    "q10 <= median <= q90": true,
+    "probability_of_gain == share of totals < 0": true,
+    "cumsum(lap_delta) == cumulative": true
+   },
+   "elapsed_delta_median_s": -7.240898576077015
+  },
+  {
+   "check": "event conservation: one stop -> one of each event",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "NOR",
+   "added": {
+    "pit_entry": 1,
+    "stationary": 1,
+    "pit_exit": 1,
+    "age_reset": 1,
+    "warm_up": 1
+   },
+   "stops_added": 1
+  },
+  {
+   "check": "identity actual plan, std event off, fixed_context",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity actual plan, std event off, tyre_only",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0,
+   "cumulative": 0.0,
+   "plans_equal": true
+  },
+  {
+   "check": "identity actual plan, std event on == stop replacement",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "cumulative": 1.3199727209337813,
+   "stop_replacement_delta_s": 1.3199727209337802,
+   "max_abs_tyre_term": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, fixed_context",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "same compound at own stop -> zero, tyre_only",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "max_abs_sampled_delta": 0.0
+  },
+  {
+   "check": "zero degradation -> offsets only in the tyre term",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "intervention_lap": 35,
+   "to_compound": "MEDIUM",
+   "max_abs_tyre_error": 0.0,
+   "pit_term_total_s": 0.5980956733341407,
+   "cumulative": -38.368208672338895,
+   "closes": true
+  },
+  {
+   "check": "time accounting",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "intervention_lap": 35,
+   "to_compound": "MEDIUM",
+   "detail": {
+    "sum(lap_delta) == cumulative[-1]": true,
+    "cumulative[-1] == engine.elapsed_delta_mean_s": true,
+    "cf_lap_time_mean - actual == lap_delta": true,
+    "tyre + pit == lap_delta": true,
+    "median of sampled totals == summary median": true,
+    "q10 <= median <= q90": true,
+    "probability_of_gain == share of totals < 0": true,
+    "cumsum(lap_delta) == cumulative": true
+   },
+   "elapsed_delta_median_s": -12.624401931133976
+  },
+  {
+   "check": "event conservation: one stop -> one of each event",
+   "status": "PASS",
+   "event": "Austria",
+   "driver": "VER",
+   "added": {
+    "pit_entry": 1,
+    "stationary": 1,
+    "pit_exit": 1,
+    "age_reset": 1,
+    "warm_up": 1
+   },
+   "stops_added": 1
+  },
+  {
+   "check": "on-disk scenario reproduces: monza_nor_lap24_to_medium_new_fixed_context",
+   "status": "PASS",
+   "max_abs_diff": 0.0,
+   "diffs": {
+    "elapsed_delta_median_s": 0.0,
+    "elapsed_delta_q10_s": 0.0,
+    "elapsed_delta_q90_s": 0.0,
+    "probability_of_gain": 0.0
+   },
+   "model_hash_unchanged": true,
+   "disk_generated_at": "2026-09-12T16:26:23",
+   "disk_git_sha": "ccae5d9"
+  },
+  {
+   "check": "on-disk scenario reproduces: monza_nor_lap24_to_medium_new_tyre_only",
+   "status": "PASS",
+   "max_abs_diff": 0.0,
+   "diffs": {
+    "elapsed_delta_median_s": 0.0,
+    "elapsed_delta_q10_s": 0.0,
+    "elapsed_delta_q90_s": 0.0,
+    "probability_of_gain": 0.0
+   },
+   "model_hash_unchanged": true,
+   "disk_generated_at": "2026-09-12T16:26:23",
+   "disk_git_sha": "ccae5d9"
+  },
+  {
+   "check": "on-disk scenario reproduces: monza_ver_lap20_to_hard_new_fixed_context",
+   "status": "PASS",
+   "max_abs_diff": 0.0,
+   "diffs": {
+    "elapsed_delta_median_s": 0.0,
+    "elapsed_delta_q10_s": 0.0,
+    "elapsed_delta_q90_s": 0.0,
+    "probability_of_gain": 0.0
+   },
+   "model_hash_unchanged": true,
+   "disk_generated_at": "2026-09-12T20:57:58",
+   "disk_git_sha": "b0b924c"
+  },
+  {
+   "check": "on-disk scenario reproduces: monza_ver_lap28_to_soft_new_fixed_context",
+   "status": "PASS",
+   "max_abs_diff": 0.0,
+   "diffs": {
+    "elapsed_delta_median_s": 0.0,
+    "elapsed_delta_q10_s": 0.0,
+    "elapsed_delta_q90_s": 0.0,
+    "probability_of_gain": 0.0
+   },
+   "model_hash_unchanged": true,
+   "disk_generated_at": "2026-09-12T16:26:24",
+   "disk_git_sha": "ccae5d9"
+  },
+  {
+   "check": "provider A reproduces every lock curve",
+   "status": "PASS",
+   "curves_checked": 31,
+   "mismatches": []
+  },
+  {
+   "check": "pit-loss derivation recomputed from the feature files",
+   "status": "PASS",
+   "recomputed": {
+    "n_green_stops": 225,
+    "n_races": 13,
+    "median_total_s": 21.981239436619717,
+    "mad_s": 1.85842364714604,
+    "transit_s": 19.481239436619717,
+    "transit_sd_s": 2.755298899258719,
+    "share_in": 0.17716967699379024,
+    "n_sc_stops": 103,
+    "n_outlap_stints": 205
+   },
+   "reported_in_summaries": [
+    {
+     "scenario": "monza_nor_lap24_to_medium_new_fixed_context",
+     "transit_med": 19.481239436619717,
+     "transit_sd": 2.755298899258719,
+     "share_in": 0.17716967699379024,
+     "pool_n_green": 225,
+     "pool_n_races": 13,
+     "pool_median": 21.981239436619717,
+     "pool_mad": 1.85842364714604,
+     "source": "season_pool"
+    },
+    {
+     "scenario": "monza_nor_lap24_to_medium_new_tyre_only",
+     "transit_med": 19.481239436619717,
+     "transit_sd": 2.755298899258719,
+     "share_in": 0.17716967699379024,
+     "pool_n_green": 225,
+     "pool_n_races": 13,
+     "pool_median": 21.981239436619717,
+     "pool_mad": 1.85842364714604,
+     "source": "season_pool"
+    },
+    {
+     "scenario": "monza_ver_lap20_to_hard_new_fixed_context",
+     "transit_med": 19.481239436619717,
+     "transit_sd": 2.755298899258719,
+     "share_in": 0.17716967699379024,
+     "pool_n_green": 225,
+     "pool_n_races": 13,
+     "pool_median": 21.981239436619717,
+     "pool_mad": 1.85842364714604,
+     "source": "season_pool"
+    },
+    {
+     "scenario": "monza_ver_lap28_to_soft_new_fixed_context",
+     "transit_med": 19.481239436619717,
+     "transit_sd": 2.755298899258719,
+     "share_in": 0.17716967699379024,
+     "pool_n_green": 225,
+     "pool_n_races": 13,
+     "pool_median": 21.981239436619717,
+     "pool_mad": 1.85842364714604,
+     "source": "season_pool"
+    }
+   ],
+   "summaries_agree": true,
+   "readme_claim": {
+    "n": 225,
+    "races": 13,
+    "median": 21.98,
+    "mad": 1.86,
+    "transit": 19.48,
+    "sd": 2.76,
+    "share_pct": 17.7
+   },
+   "readme_agrees": true,
+   "pitmodel_docstring_claim": {
+    "n": 205,
+    "median": 21.77,
+    "mad": 1.66
+   },
+   "pitmodel_docstring_agrees": false,
+   "note": "the docstring of counterfactual/pitmodel.py is informational; a stale value there is a LOW finding, not a failure"
+  },
+  {
+   "check": "batch conditioning == sequential filter (Monza)",
+   "status": "PASS",
+   "event": "Monza",
+   "drivers": [
+    "ANT",
+    "BOR",
+    "HUL",
+    "BEA",
+    "COL",
+    "GAS"
+   ],
+   "laps_compared": 227,
+   "max_abs_diff": 8.526512829121202e-14,
+   "per_driver": {
+    "ANT": {
+     "laps_compared": 43,
+     "max_abs_diff": 1.4210854715202004e-14
+    },
+    "BOR": {
+     "laps_compared": 37,
+     "max_abs_diff": 7.105427357601002e-14
+    },
+    "HUL": {
+     "laps_compared": 39,
+     "max_abs_diff": 8.526512829121202e-14
+    },
+    "BEA": {
+     "laps_compared": 46,
+     "max_abs_diff": 5.684341886080802e-14
+    },
+    "COL": {
+     "laps_compared": 28,
+     "max_abs_diff": 5.684341886080802e-14
+    },
+    "GAS": {
+     "laps_compared": 34,
+     "max_abs_diff": 8.526512829121202e-14
+    }
+   },
+   "online_safe_flags_violated": []
+  }
+ ],
+ "summary": {
+  "passed": 39,
+  "failed": 0
+ },
+ "status": "PASS",
+ "exit_code": 0
+}

@@ -21,19 +21,20 @@ FEEDBACK_MARKER = 'screenshot fixture (capture.py)'
 
 ROUTES = [
     ('landing', '/?ev=Monza&drv=LIN'),
-    ('live_stable', '/live?ev=Monza&drv=LIN&lap=30&mode=live'),
-    ('live_after_feedback', '/live?ev=Monza&drv=LIN&lap=32&mode=live'),
-    ('decision_change', '/live?ev=Barcelona&drv=PIA&lap=61&mode=live'),
-    ('decision_board', '/decision?ev=Barcelona&drv=PIA&lap=61&mode=live'),
-    ('ghost_audit', '/ghost?ev=Monza&drv=NOR&mode=audit&ilap=20&rep=SOFT'),
-    ('scenario_explorer', '/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=20&rep=SOFT'),
-    ('out_of_support', '/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=20&rep=SOFT'),
+    ('live_stable', '/live?ev=Monza&drv=NOR&lap=30&mode=live'),
+    ('live_after_feedback', '/live?ev=Monza&drv=NOR&lap=32&mode=live'),
+    ('decision_change', '/live?ev=Barcelona&drv=PIA&lap=35&mode=live'),
+    ('decision_board', '/decision?ev=Barcelona&drv=PIA&lap=35&mode=live'),
+    ('ghost_audit', '/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM'),
+    ('ghost_audit_fixed_context', '/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT'),
+    ('scenario_explorer', '/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM'),
+    ('out_of_support', '/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM'),
     ('missing_position', '/ghost?ev=Australia&drv=ANT&mode=audit'),
     ('offline_mode', '/live?ev=Madrid&mode=live'),
-    ('presentation_live', '/live?ev=Monza&drv=LIN&lap=30&mode=live&present=1'),
-    ('presentation_ghost', '/ghost?ev=Monza&drv=NOR&mode=audit&ilap=20&rep=SOFT&present=1'),
+    ('presentation_live', '/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1'),
+    ('presentation_ghost', '/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1'),
     ('prerace', '/pre-race?ev=Madrid'),
-    ('feedback', '/feedback?ev=Monza&drv=LIN&lap=32'),
+    ('feedback', '/feedback?ev=Monza&drv=NOR&lap=32'),
     ('generalisation', '/generalisation?ev=Monza'),
     ('validation', '/validation?ev=Monza'),
 ]
@@ -42,7 +43,7 @@ ROUTES = [
 def add_feedback_fixture() -> Path:
     sys.path.insert(0, str(PROTO))
     from app_v2.services import feedback_service as FS
-    e = FS.make_event('Monza', 'LIN', 31, 'rear', 'traction', 'lack_of_grip', 4, 'worsening', 0.8, 'radio', FEEDBACK_MARKER, True)
+    e = FS.make_event('Monza', 'NOR', 31, 'rear', 'traction', 'lack_of_grip', 4, 'worsening', 0.8, 'radio', FEEDBACK_MARKER, True)
     return FS.append(e)
 
 
@@ -118,7 +119,7 @@ def run(base: str, out: Path, compare: bool, routes=ROUTES) -> dict:
                 page.keyboard.press('Tab'); page.keyboard.press('Tab')
                 report['timings'][f'keyboard_focus_{vp_name}'] = page.evaluate('document.activeElement && (document.activeElement.tagName + ":" + (document.activeElement.textContent || "").trim().slice(0, 40))')
                 # five-second replay run: no console errors while the fragment polls
-                page.goto(base + '/live?ev=Monza&drv=LIN&lap=5&mode=live', wait_until='domcontentloaded'); page.wait_for_selector('[data-orb-ready="live"]', state='attached')
+                page.goto(base + '/live?ev=Monza&drv=NOR&lap=5&mode=live', wait_until='domcontentloaded'); page.wait_for_selector('[data-orb-ready="live"]', state='attached')
                 page.wait_for_timeout(500); errors.clear(); bad_responses.clear()
                 page.get_by_role('button', name='Start replay').first.click(); page.wait_for_timeout(6000)
                 lap_text = ' '.join(page.locator('[data-orb-header]').first.inner_text().split())

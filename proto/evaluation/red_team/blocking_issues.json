@@ -1,0 +1,23 @@
+{
+ "generated_at": "2026-09-12T16:45:00",
+ "workstream": 7,
+ "definition": "ROADMAP_v5 section 14.3 stop-the-line conditions only",
+ "issues": [
+  {
+   "id": "RT-BLK-1",
+   "severity": "BLOCKING",
+   "condition_14_3": "a live field contains future or post-race information",
+   "title": "LiveVM.forecast carries the race-derived reference (obs, err_cs, n_race) into the Live Predictor view model",
+   "files": [
+    "app_v2/services/lock_repository.py:158-166 (forecast_for returns observed/err/n_race from validation_rows)",
+    "app_v2/services/view_models.py:141 (build_live: forecast = lock.forecast_for(event, compound))",
+    "live/viewmodel.py:676 (build_live: forecast = lock.forecast_for(event, compound))"
+   ],
+   "reproduction": "cd proto && ../.venv/bin/python -c \"import sys; sys.path.insert(0,'.'); from app_v2.services import lock_repository as LR, replay_service as RS, view_models as VM; lock=LR.load_lock(); c=RS.ReplayCursor('Monza','LIN',53).seek(30); vm=VM.build_live(lock,'Monza','LIN',c); print(vm.forecast.observed, vm.forecast.err, vm.forecast.n_race)\"  -> 0.023 0.0072 214 (post-race values in the live path; same for live.viewmodel.build_live_vm)",
+   "rendered": false,
+   "note": "Not rendered on the Live Predictor, decision board or feedback pages today (only forecast.source is shown), so no screen shows post-race data; the violation is the data boundary in code (Phase 0 acceptance test 4: 'Live cannot read post-race reference fields'). Fix is a scrub: the live path must receive a forecast-only projection (prediction, band90, issued, gate, basis, n_prac, source) with observed/observed_se/err/n_race set to None, e.g. a LockView.forecast_for(..., live=True) or dataclasses.replace(f, observed=None, observed_se=None, err=None, n_race=None) in build_live (both app_v2/services/view_models.py and live/viewmodel.py).",
+   "owner": ["workstream 6", "workstream 8"],
+   "recommended_decision": "GO_WITH_REASSIGNMENT: two-line fix in each view model plus a test asserting LiveVM.forecast.observed is None; no rollback needed"
+  }
+ ]
+}
