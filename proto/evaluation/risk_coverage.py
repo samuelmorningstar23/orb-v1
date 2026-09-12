@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 
 from evaluation import PROTO, OUT_DIR, SEASON_DIRS, git_sha, now_iso
-from evaluation.common import mae, write_json
+from evaluation.common import mae, write_json, weekend_mean_bootstrap
 from evaluation.forecast import SeasonForecaster, MIN_PRAC, MIN_SLOPE
 
 LAPS_GRID = tuple(range(10, 61, 5))
@@ -63,7 +63,10 @@ def sweep(forecasters: Iterable[SeasonForecaster], laps_grid: Iterable[int] = LA
             iss, fb = df[df['issued']], df[~df['issued']]
             out.append(dict(min_laps=int(ml), min_slope=float(ms), n_cases=int(len(df)), n_weekends=int(df['race_id'].nunique()), n_issued=int(len(iss)), coverage=(len(iss) / len(df)) if len(df) else None,
                             mae_issued=mae(iss['err']), mae_fallback=mae(fb['err']), mae_all=mae(df['err']), mae_naive=mae(df['err_naive']), mae_naive_issued=mae(iss['err_naive']),
-                            n_no_forecast=int(df['prediction'].isna().sum())))
+                            n_no_forecast=int(df['prediction'].isna().sum()),
+                            bootstrap={k: weekend_mean_bootstrap(d, col, n_unit='compound-weekends') for k, d, col in [
+                                ('coverage', df, 'issued'), ('mae_issued', iss, 'err'), ('mae_fallback', fb, 'err'),
+                                ('mae_all', df, 'err'), ('mae_naive', df, 'err_naive'), ('mae_naive_issued', iss, 'err_naive')]}))
     for F in forecasters:
         F.set_gate(MIN_PRAC, MIN_SLOPE)
     return pd.DataFrame(out)
@@ -81,6 +84,10 @@ def figure(table: pd.DataFrame, path: Path) -> None:
     for i, ms in enumerate(slopes):
         t = table[table['min_slope'] == ms].sort_values('min_laps')
         ax1.plot(t['coverage'], t['mae_issued'], '-o', ms=3.5, lw=1.2, color=cmap(i / max(1, len(slopes) - 1)), label=f'min slope {ms:.3f}')
+        lo = [b['mae_issued']['ci90'][0] if b['mae_issued']['ci90'] else np.nan for b in t['bootstrap']]
+        hi = [b['mae_issued']['ci90'][1] if b['mae_issued']['ci90'] else np.nan for b in t['bootstrap']]
+        ax1.fill_between(t['coverage'], lo, hi, color=cmap(i / max(1, len(slopes) - 1)), alpha=.06)
+
     prod = table[(table['min_laps'] == MIN_PRAC) & (np.isclose(table['min_slope'], MIN_SLOPE))]
     if len(prod):
         ax1.scatter(prod['coverage'], prod['mae_issued'], s=140, facecolors='none', edgecolors=RED, lw=2, zorder=5, label=f'production gate ({MIN_PRAC} laps, {MIN_SLOPE})')
@@ -94,8 +101,9 @@ def figure(table: pd.DataFrame, path: Path) -> None:
     ax2.scatter([MIN_PRAC], [MIN_SLOPE], s=140, facecolors='none', edgecolors=RED, lw=2)
     ax2.grid(False)
     cb = fig.colorbar(im, ax=ax2); cb.set_label('MAE (s/lap per lap)', color=MUTED); cb.ax.yaxis.set_tick_params(color=MUTED); plt.setp(cb.ax.get_yticklabels(), color=MUTED)
-    fig.suptitle('Orb v1 abstention gate: development pool, leave-one-weekend-out, sealed weekends never in a pool', color=MUTED, fontsize=10, y=0.995)
-    fig.tight_layout()
+    fig.suptitle(f"Orb v1 diagnostic gate sweep: n={int(table['n_cases'].iloc[0])} compound-weekends / {int(table['n_weekends'].iloc[0])} weekends; shaded 90% weekend bootstrap MAE bands", color=MUTED, fontsize=10, y=0.995)
+    fig.text(.5, .005, 'Eligible n and 90% coverage/error bands for every point: risk_coverage.csv. Heatmap is point estimates; production gate unchanged.', ha='center', fontsize=8, color=MUTED)
+    fig.tight_layout(rect=[0,.035,1,.97])
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
@@ -106,7 +114,13 @@ def run(seasons: Iterable[int] = (2026, 2025, 2024, 2023), out_dir: Path = OUT_D
     forecasters = [SeasonForecaster(SEASON_DIRS[s], s, sealed=[r for r in sealed if r.startswith(f'{s}_')]) for s in seasons]
     table = sweep(forecasters)
     out_dir.mkdir(parents=True, exist_ok=True)
-    table.to_csv(out_dir / 'risk_coverage.csv', index=False, float_format='%.5f')
+    csv = table.drop(columns=['bootstrap']).copy()
+    for metric in ('coverage', 'mae_issued', 'mae_fallback', 'mae_all', 'mae_naive', 'mae_naive_issued'):
+        for field in ('n', 'n_weekends'):
+            csv[f'{metric}_{field}'] = table['bootstrap'].map(lambda b, m=metric, f=field: b[m][f])
+        for i, field in enumerate(('ci90_low', 'ci90_high')):
+            csv[f'{metric}_{field}'] = table['bootstrap'].map(lambda b, m=metric, j=i: (b[m]['ci90'] or [None, None])[j])
+    csv.to_csv(out_dir / 'risk_coverage.csv', index=False, float_format='%.10g')
     figure(table, out_dir / 'risk_coverage.png')
     prod = table[(table['min_laps'] == MIN_PRAC) & (np.isclose(table['min_slope'], MIN_SLOPE))].iloc[0].to_dict() if len(table) else {}
     best_all = table.sort_values('mae_all').iloc[0].to_dict() if len(table) else {}

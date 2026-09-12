@@ -1,0 +1,115 @@
+{
+ "checkpoint": "C5",
+ "at": "2026-09-13T00:44:41",
+ "git_commit": "230870b",
+ "all_green": true,
+ "summary": {
+  "PASS": 4,
+  "WARN": 1
+ },
+ "pytest": {
+  "passed": 506,
+  "skipped": 1,
+  "xfailed": 1
+ },
+ "test_dirs": [
+  "contract",
+  "counterfactual",
+  "evaluation",
+  "live",
+  "red_team",
+  "release",
+  "replay",
+  "screenshots",
+  "ui"
+ ],
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.12,
+   "timed_out": false,
+   "stdout_tail": "  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified\n  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified\nOK out/lock_v2.json: schema 2.1.0, forecast sha256:66e3201e860b19ef..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB",
+   "stderr_tail": "",
+   "log": "checkpoints/C5/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 114.63,
+   "timed_out": false,
+   "stdout_tail": "..s..................................................................... [ 14%]\n........................................................................ [ 28%]\n........................................................................ [ 42%]\n........................................................................ [ 56%]\n....x................................................................... [ 70%]\n........................................................................ [ 85%]\n........................................................................ [ 99%]\n....                                                                     [100%]\n=========================== short test summary info ============================\nSKIPPED [1] tests/contract/test_adapter.py:43: v1 lock regenerated since the documented numbers were recorded\nXFAIL tests/red_team/test_forecast_hash.py::test_forecast_hash_is_content_only - Workstream 1 / lead: pre_race_forecast.events.*.data_cutoff is stamped with the lock generated_at, so the hash changes at every refresh with identical numbers (proven 21:03 vs 18:11); exclude data_cutoff from the hashed content or set it to the real session cutoff\n506 passed, 1 skipped, 1 xfailed in 114.29s (0:01:54)",
+   "stderr_tail": "",
+   "counts": {
+    "passed": 506,
+    "skipped": 1,
+    "xfailed": 1
+   },
+   "test_dirs": [
+    "contract",
+    "counterfactual",
+    "evaluation",
+    "live",
+    "red_team",
+    "release",
+    "replay",
+    "screenshots",
+    "ui"
+   ],
+   "log": "checkpoints/C5/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "78 changed paths, 5 flagged: proto/build_deck_v5.py, proto/deck_src/build_deck.js, proto/make_deck_figs.py, proto/out/Orb_v1_ChallengeDay.pdf, proto/out/Orb_v1_Mentor_Briefing.pptx",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 78,
+    "flagged": 5,
+    "unowned": 0,
+    "lead_only": 5,
+    "outside_proto": 0,
+    "by_owner": {
+     "3": 13,
+     "6": 15,
+     "7": 16,
+     "9": 28,
+     "lead": 5,
+     "lead/notes": 1
+    }
+   },
+   "flagged": [
+    "proto/build_deck_v5.py",
+    "proto/deck_src/build_deck.js",
+    "proto/make_deck_figs.py",
+    "proto/out/Orb_v1_ChallengeDay.pdf",
+    "proto/out/Orb_v1_Mentor_Briefing.pptx"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python evaluation/red_team/consistency_probe.py",
+   "returncode": 0,
+   "duration_s": 47.75,
+   "timed_out": false,
+   "stdout_tail": "consistency probe: 15 routes, 3505 numbers, 0 mismatches, 0 placeholder values, 26 unhashed live values, 785 ambiguous matches, 0 unclassified small integers, 0 load failures -> exit 0\n  ok   landing/Monza                      numbers   44  mismatches  0  placeholders  0  unhashed   0  ambiguous  17\n  ok   pre_race/Monza                     numbers   79  mismatches  0  placeholders  0  unhashed   0  ambiguous  34\n  ok   pre_race/Madrid                    numbers   64  mismatches  0  placeholders  0  unhashed   0  ambiguous  16\n  ok   live_predictor/Monza-LIN-L30       numbers  124  mismatches  0  placeholders  0  unhashed  14  ambiguous  41\n  ok   live_predictor/Monza-NOR-L30       numbers  124  mismatches  0  placeholders  0  unhashed   0  ambiguous  42\n  ok   live_predictor/Madrid              numbers    9  mismatches  0  placeholders  0  unhashed   0  ambiguous   6\n  ok   live_predictor/Austria-NOR-L30     numbers  181  mismatches  0  placeholders  0  unhashed   0  ambiguous  63\n  ok   decision_board/Monza-LIN-L30       numbers  101  mismatches  0  placeholders  0  unhashed  12  ambiguous  32\n  ok   driver_feedback/Monza-LIN          numbers   17  mismatches  0  placeholders  0  unhashed   0  ambiguous   4\n  ok   ghost_strategy/Monza-NOR-audit     numbers  112  mismatches  0  placeholders  0  unhashed   0  ambiguous  34\n  ok   ghost_strategy/Monza-NOR-scenario  numbers   74  mismatches  0  placeholders  0  unhashed   0  ambiguous  20\n  ok   ghost_strategy/Austria-NOR-audit   numbers   83  mismatches  0  placeholders  0  unhashed   0  ambiguous  21\n  ok   ghost_strategy/Madrid-audit        numbers    1  mismatches  0  placeholders  0  unhashed   0  ambiguous   0\n  ok   generalisation                     numbers 1857  mismatches  0  placeholders  0  unhashed   0  ambiguous 323\n  ok   validation                         numbers  635  mismatches  0  placeholders  0  unhashed   0  ambiguous 132\n  note: out/sensitivity.json has no .sha256 sidecar and is not in the lock: its numbers are shown on the validation page as an unsigned asset\n  note: out/validation/*.json (Workstream 3 scorecards) have no .sha256 sidecar; the pages print the file sha256 next to the values, so they are matched as on-screen-hashed assets\n  note: Monza LIN: no hashed out/live record for the route driver; the live numbers were reproduced in-process (live/viewmodel.results_through) and are listed as UNHASHED\nreport: /Users/samuelmorningstar/Trackshift/proto/evaluation/red_team/consistency_probe_report.json",
+   "stderr_tail": "2026-09-13 00:43:54.565 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:43:55.445 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:43:56.485 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:43:57.431 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:43:59.598 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:01.834 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:02.096 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:05.489 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:07.226 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:07.704 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:07.834 Please replace `st.components.v1.html` with `st.iframe`.\n\n`st.components.v1.html` will be removed after 2026-06-01.\n2026-09-13 00:44:09.440 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:10.594 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:11.717 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:11.860 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-09-13 00:44:34.624 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.",
+   "log": "checkpoints/C5/logs/lock_dashboard_consistency.txt"
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ]
+}

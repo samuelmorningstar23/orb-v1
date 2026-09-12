@@ -1,0 +1,12 @@
+Red team verdict for C5: GO. Blocking list: 0 open, 1 resolved (RT-BLK-1 closed at the live_bridge boundary with guarding tests). Acceptance suite tests/red_team: 62 passed, 0 failed, 1 xfailed in 2.22 s. Consistency probe: PASS (3505 rendered numbers, 0 mismatches). Leakage audit PASS (5 of 5 checks pass); identity checks PASS {'passed': 41, 'failed': 0}. Hashed forecast out/forecast_Madrid_2026.json: PASS (issued 2026-09-12T21:33:14+05:30 from sessions ['FP1', 'FP2', 'FP3', 'Q']; pointers resolve {'lock_v2_forecast_hash': True, 'lock_sha256': True, 'lock_v2_sha256': True}). Forecast-hash provenance: PASS (runtime readers agree: True; stale sidecars: 0; content-only proof: the hash changes with the per-event data_cutoff stamp alone). Madrid anchors: PASS (0 stated times that did not happen as written). Wording flags outstanding: 0 (owners: []).
+  PASS  consistency_probe
+  PASS  leakage_audit
+  PASS  identity_checks
+  PASS  claim_audit
+  PASS  acceptance_suite
+  PASS  forecast_file_audit
+  PASS  hash_provenance
+  PASS  madrid_anchors
+  PASS  blocking
+  PASS  browser_consistency
+report: /Users/samuelmorningstar/Trackshift/proto/evaluation/red_team/red_team_report.json (+ .md) -> exit 0

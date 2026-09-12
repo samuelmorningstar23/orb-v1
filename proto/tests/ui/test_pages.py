@@ -315,7 +315,7 @@ def test_generalisation_page_withholds_pre_freeze_sealed_numbers():
     if VR.ghost_scorecard()[0] is not None:
         assert VR.REGRET_LABEL in html and 'never merged' in html and 'ghost_scorecard · development pool' in html
         hl = VR.dev_pool_headline(VR.ghost_scorecard()[0])
-        assert f"{hl['mae']:.3f}" in html and f"{hl['hidden_next1']:.1f}" in html
+        assert f"{hl['mae']:.4f}" in html and f"{hl['hidden_next1']:.4f}" in html
     if VR.live_scorecard()[0] is not None:
         assert 'model-implied rate proxy' in html and 'Live Predictor scorecard' in html
 

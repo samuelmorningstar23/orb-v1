@@ -1,0 +1,15 @@
+merge queue: OPEN (C5 GO; since 2026-09-13T00:45:16)
+last checkpoint: C5 GO at 2026-09-13T00:44:41 commit 230870b
+last green: C5 commit 230870b at 2026-09-13T00:44:41
+active workstreams: [3, 6, 7]   stale threshold 40 min   now 2026-09-13T00:45:16
+workstream  status                     age  task                                 tests    eta  blockers / needs review
+-----------------------------------------------------------------------------------------------------------------
+    1  AMBER (stale 495 min)     495m  contract_and_fixtures: lock v2 sch 109/109      0  -  review: 7
+    2  AMBER (stale 485 min)     485m  0.3 PreRaceCurveProvider (provider   53/53      0  -  review: 3,7
+    3  AMBER (stale 57 min)       57m  C5 evaluation scorecards: eligible   65/65      0  -  review: lead
+    4  AMBER (stale 477 min)     477m  0.5 track geometry, trajectory, ti   30/30      0  -  review: 6
+    6  AMBER (stale 50 min)       50m  C5 shared scorecard evidence on Va   74/74      0  -  review: 3,7,lead
+    7  AMBER (stale 56 min)       57m  C5 red-team tooling and independen     8/8      0  -  review: lead
+    8  AMBER (stale 495 min)     495m  live intelligence: 0.8 replay esti   31/31      0  -  review: 3,7
+    9  AMBER (stale 485 min)     485m  build_control_system (task 0.16)     83/83      0  -  review: lead
+STALE heartbeats (> 40 min): workstreams [1, 2, 3, 4, 6, 7, 8, 9]

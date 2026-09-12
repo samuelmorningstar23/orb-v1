@@ -1,10 +1,10 @@
 {
- "base": "http://localhost:8502",
+ "base": "http://localhost:8506",
  "routes": {
   "landing": {
    "1440x900": {
     "path": "/?ev=Monza&drv=LIN",
-    "load_ms": 465,
+    "load_ms": 425,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -16,7 +16,7 @@
    },
    "1920x1080": {
     "path": "/?ev=Monza&drv=LIN",
-    "load_ms": 400,
+    "load_ms": 440,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -382,11 +382,11 @@
   "generalisation": {
    "1440x900": {
     "path": "/generalisation?ev=Monza",
-    "load_ms": 866,
+    "load_ms": 872,
     "console_errors": [],
     "benign_base_path_probes_404": [
-     "http://localhost:8502/generalisation/_stcore/health",
-     "http://localhost:8502/generalisation/_stcore/host-config"
+     "http://localhost:8506/generalisation/_stcore/health",
+     "http://localhost:8506/generalisation/_stcore/host-config"
     ],
     "other_4xx_5xx": [],
     "horizontal_overflow": false,
@@ -397,11 +397,11 @@
    },
    "1920x1080": {
     "path": "/generalisation?ev=Monza",
-    "load_ms": 855,
+    "load_ms": 888,
     "console_errors": [],
     "benign_base_path_probes_404": [
-     "http://localhost:8502/generalisation/_stcore/health",
-     "http://localhost:8502/generalisation/_stcore/host-config"
+     "http://localhost:8506/generalisation/_stcore/health",
+     "http://localhost:8506/generalisation/_stcore/host-config"
     ],
     "other_4xx_5xx": [],
     "horizontal_overflow": false,
@@ -414,11 +414,11 @@
   "validation": {
    "1440x900": {
     "path": "/validation?ev=Monza",
-    "load_ms": 865,
+    "load_ms": 876,
     "console_errors": [],
     "benign_base_path_probes_404": [
-     "http://localhost:8502/validation/_stcore/health",
-     "http://localhost:8502/validation/_stcore/host-config"
+     "http://localhost:8506/validation/_stcore/health",
+     "http://localhost:8506/validation/_stcore/host-config"
     ],
     "other_4xx_5xx": [],
     "horizontal_overflow": false,
@@ -429,11 +429,11 @@
    },
    "1920x1080": {
     "path": "/validation?ev=Monza",
-    "load_ms": 865,
+    "load_ms": 879,
     "console_errors": [],
     "benign_base_path_probes_404": [
-     "http://localhost:8502/validation/_stcore/health",
-     "http://localhost:8502/validation/_stcore/host-config"
+     "http://localhost:8506/validation/_stcore/health",
+     "http://localhost:8506/validation/_stcore/host-config"
     ],
     "other_4xx_5xx": [],
     "horizontal_overflow": false,
@@ -606,8 +606,8 @@
  },
  "external_requests": [],
  "timings": {
-  "route_switch_ms_1440x900": 150,
-  "route_switch_validation_ms_1440x900": 163,
+  "route_switch_ms_1440x900": 157,
+  "route_switch_validation_ms_1440x900": 590,
   "keyboard_focus_1440x900": "SECTION:ORB V1|VALIDATION\u00b7Monza 2026\u00b7Validation\u00b7",
   "keyboard_nav_1440x900": {
    "reached": [
@@ -623,15 +623,15 @@
    "missing": [],
    "tabs": 13,
    "enter_activates": true,
-   "enter_switch_ms": 214
+   "enter_switch_ms": 131
   },
   "replay_run_1440x900": {
    "console_errors": [],
    "bad_responses": [],
    "header_after_6s": "ORB V1 | LIVE PREDICTOR \u00b7 Monza 2026 \u00b7 Race (replay) \u00b7 Lap 10/53 \u00b7 Forecast 66e320 \u00b7 PUBLIC PROXY \u00b7 NEAR TRAINING SUPPORT \u00b7 Feed latency 3.0 s (7.1 source_latency)"
   },
-  "route_switch_ms_1920x1080": 145,
-  "route_switch_validation_ms_1920x1080": 152,
+  "route_switch_ms_1920x1080": 130,
+  "route_switch_validation_ms_1920x1080": 606,
   "keyboard_focus_1920x1080": "SECTION:ORB V1|VALIDATION\u00b7Monza 2026\u00b7Validation\u00b7",
   "keyboard_nav_1920x1080": {
    "reached": [
@@ -647,7 +647,7 @@
    "missing": [],
    "tabs": 13,
    "enter_activates": true,
-   "enter_switch_ms": 205
+   "enter_switch_ms": 133
   },
   "replay_run_1920x1080": {
    "console_errors": [],
@@ -655,5 +655,5 @@
    "header_after_6s": "ORB V1 | LIVE PREDICTOR \u00b7 Monza 2026 \u00b7 Race (replay) \u00b7 Lap 10/53 \u00b7 Forecast 66e320 \u00b7 PUBLIC PROXY \u00b7 NEAR TRAINING SUPPORT \u00b7 Feed latency 3.0 s (7.1 source_latency)"
   }
  },
- "generated_at": "2026-09-12T22:14:51"
+ "generated_at": "2026-09-12T23:49:54"
 }

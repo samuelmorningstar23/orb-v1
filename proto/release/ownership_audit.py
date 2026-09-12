@@ -34,7 +34,7 @@ RULES = (
     ('live/', 8), ('decision/', 8), ('out/live/', 8), ('tests/live/', 8),
     ('progress/', 9), ('checkpoints/', 9), ('release/', 9), ('tests/release/', 9), ('build_control.py', 9),
 )
-LEAD_ONLY = {'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'out/results.csv', 'out/validation.csv', 'refresh.sh', 'cleanup_pass.sh'}
+LEAD_ONLY = {'make_deck_figs.py', 'app.py', 'pipeline.py', 'model_v2.py', 'strategy2.py', 'liquid.py', 'out/lock.json', 'out/results.csv', 'out/validation.csv', 'refresh.sh', 'cleanup_pass.sh'}
 # Globs match segment-wise ('*' never crosses '/'), so 'out/*.pdf' means direct children of out/ only.
 LEAD_ONLY_GLOBS = ('extract_*.py', 'build_*.py', 'refresh*.log', 'out/*.pptx', 'out/*.pdf', 'out/excluded_*.csv', 'deck_src/*',   # lead decision 12 Sep 20:58: deck source is lead-only
                    'out/CONTEXT_NOTES.md', 'out/THE_CASE.md', 'out/talk_track.md', 'out/ROADMAP.md', 'out/JURY_QUESTIONS.md', 'out/forecast_*.json', 'out/forecast_*.sha256')   # lead decision 12 Sep 22:00: outputs of the lead-only builders (build_case.py, build_manual.py, build_forecast.py)

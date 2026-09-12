@@ -19,7 +19,7 @@ Ghost scorecard extras: by_season blocks and lock_consistency_2026, which recomp
 numbers and compares them with out/lock.json (MAE naive / Orb v1 with fallback, calibration r, wins over naive, calibrated
 band coverage, counts). The sealed block is copied from holdout_aggregate.json only when that file says quotable: true; a
 dry run before the freeze is reported as such and its numbers are withheld (lead decision, 12 Sep 2026).
-Every interval is a weekend-grouped bootstrap (evaluation.common.weekend_bootstrap); each block carries generated_at,
+Every interval is a weekend-grouped bootstrap (evaluation.common weekend_bootstrap / weekend_mean_bootstrap); each block carries generated_at,
 git_sha, data_cutoff and units.
 
 CLI:  python -m evaluation.scorecards [--seasons 2026,2025,2024,2023] [--out out/validation]
@@ -27,6 +27,7 @@ CLI:  python -m evaluation.scorecards [--seasons 2026,2025,2024,2023] [--out out
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 from typing import Any, Iterable, Optional
@@ -35,7 +36,7 @@ import numpy as np
 import pandas as pd
 
 from evaluation import PROTO, OUT_DIR, SEASON_DIRS, COMPS, CALENDAR_2026, circuit_class, weather_regime, git_sha, now_iso
-from evaluation.common import mae, share, weekend_bootstrap, paired_probability, write_json, finite
+from evaluation.common import mae, share, weekend_bootstrap, weekend_mean_bootstrap, paired_probability, write_json, finite
 from evaluation.forecast import SeasonForecaster, score_forecast
 from evaluation.hidden_stop import stop_cases, aggregate as hs_aggregate, drivers_seen_in
 from evaluation.regret import weekend_regret, aggregate as regret_aggregate, LABEL as REGRET_LABEL
@@ -65,9 +66,28 @@ def _forecast_block(rows: pd.DataFrame, bootstrap: bool = True) -> dict[str, Any
     if len(m) >= 3 and m['prediction'].std() > 0:
         out['calibration'] = dict(slope=float(np.polyfit(m['prediction'], m['obs'], 1)[0]), r=float(np.corrcoef(m['prediction'], m['obs'])[0, 1]), n=int(len(m)))
     if bootstrap:
-        out['bootstrap'] = dict(mae_orb_v1=weekend_bootstrap(rows, lambda d: mae(d['err'])), mae_naive=weekend_bootstrap(rows, lambda d: mae(d['err_naive'])),
-                                band_coverage90=weekend_bootstrap(rows, lambda d: share(d['covered'])), p_orb_beats_naive=paired_probability(rows, 'err', 'err_naive'))
+        specs = {'mae_orb_v1': (rows, 'err'), 'mae_naive': (rows, 'err_naive'),
+                 'mae_clean_issued': (iss, 'err_clean'), 'mae_orb_v1_issued': (iss, 'err'),
+                 'mae_orb_v1_fallback': (fb, 'err'), 'mae_naive_issued': (iss, 'err_naive'),
+                 'band_coverage90': (rows, 'covered'), 'band_coverage90_issued': (iss, 'covered'),
+                 'band_coverage90_fallback': (fb, 'covered'), 'share_issued': (rows, 'issued')}
+        out['bootstrap'] = {k: weekend_mean_bootstrap(d, c, n_unit='compound-weekends') for k, (d, c) in specs.items()}
+        paired = rows.dropna(subset=['err', 'err_naive']).copy()
+        paired['win'] = (paired['err'] < paired['err_naive']).astype(float)
+        out['bootstrap']['win_share'] = weekend_mean_bootstrap(paired, 'win', n_unit='compound-weekends')
+        out['bootstrap']['p_orb_beats_naive'] = paired_probability(rows, 'err', 'err_naive')
+        def correlation(d):
+            return float(d[['prediction', 'obs']].corr().iloc[0, 1]) if len(d) >= 3 and d['prediction'].std() > 0 and d['obs'].std() > 0 else None
+        out['bootstrap']['calibration_r'] = weekend_bootstrap(m, correlation)
+        out['bootstrap']['calibration_r'].update(n=len(m), n_unit='compound-weekends')
+        for c, d in rows.groupby('compound'):
+            out['by_compound'][c]['bootstrap'] = {k: weekend_mean_bootstrap(d, col, n_unit='compound-weekends') for k, col in [('mae_orb_v1', 'err'), ('mae_naive', 'err_naive')]}
     return out
+
+
+def _hidden_cell(cases):
+    h = hs_aggregate(cases)
+    return dict(h['pooled'], bootstrap=h.get('bootstrap', {}))
 
 
 def development_pool(seasons: Iterable[int], sealed: Iterable[str], quiet: bool = False) -> dict[str, Any]:
@@ -100,14 +120,15 @@ def development_pool(seasons: Iterable[int], sealed: Iterable[str], quiet: bool 
                                forecast=_forecast_block(rows), hidden_stop=hs_aggregate(hs_cases), regret=regret_aggregate(regret_rows), by_circuit_class={}, by_weather_regime={}, by_driver_support={})
     for key, store in (('circuit_class', 'by_circuit_class'), ('weather_regime', 'by_weather_regime')):
         for val, d in rows.groupby(key):
-            cell = dict(forecast=_forecast_block(d, bootstrap=False))
+            cell = dict(forecast=_forecast_block(d, bootstrap=True))
             if len(hs):
-                cell['hidden_stop'] = hs_aggregate([c for c in hs_cases if c.get(key) == val], bootstrap=False)['pooled']
-            cell['regret'] = regret_aggregate([r for r in regret_rows if r.get(key) == val], bootstrap=False)
+                ha = hs_aggregate([c for c in hs_cases if c.get(key) == val], bootstrap=True)
+                cell['hidden_stop'] = dict(ha['pooled'], bootstrap=ha.get('bootstrap', {}))
+            cell['regret'] = regret_aggregate([r for r in regret_rows if r.get(key) == val], bootstrap=True)
             out[store][str(val)] = cell
     if len(hs):
         for val, d in hs.groupby('driver_support'):
-            out['by_driver_support'][str(val)] = dict(hidden_stop=hs_aggregate([c for c in hs_cases if c.get('driver_support') == val], bootstrap=False)['pooled'],
+            out['by_driver_support'][str(val)] = dict(hidden_stop=_hidden_cell([c for c in hs_cases if c.get('driver_support') == val]),
                                                      note='the pre-race degradation curve has no driver term; support status applies to the hidden-stop cases (driver seen in a pool weekend race)')
     out['abstention_coverage'] = out['forecast'].get('abstention')
     out['by_season'] = {}
@@ -130,7 +151,7 @@ def lock_meta(lock_path: Path = LOCK_PATH) -> dict[str, Any]:
     v = lock.get('validation', {})
     scored = sorted({r['event'] for r in lock.get('validation_rows', []) if r.get('obs') is not None})
     events = sorted(lock.get('events', {}).keys()) if isinstance(lock.get('events'), dict) else []
-    return dict(path=_rel(lock_path), generated_at=lock.get('generated_at'), validation_n_weekends=v.get('n_weekends'), validation_n_compound_weekends=v.get('n_compound_weekends'),
+    return dict(path=_rel(lock_path), sha256=hashlib.sha256(lock_path.read_bytes()).hexdigest(), generated_at=lock.get('generated_at'), validation_n_weekends=v.get('n_weekends'), validation_n_compound_weekends=v.get('n_compound_weekends'),
                 scored_events=scored, prospective_events=[e for e in events if e not in scored])
 
 
@@ -183,6 +204,7 @@ def rolling_origin_2026(quiet: bool = False) -> dict[str, Any]:
         d = pd.DataFrame(rows)
         series.append(dict(round=i + 1, event=ev, n_pool=len(pool), n_compounds=int(len(d)), n_issued=int(d['issued'].sum()) if len(d) else 0, n_no_forecast=int(d['prediction'].isna().sum()) if len(d) else 0,
                            mae_orb_v1=mae(d['err']) if len(d) else None, mae_naive=mae(d['err_naive']) if len(d) else None, band_coverage90=share(d['covered']) if len(d) else None,
+                           bootstrap={k: weekend_mean_bootstrap(d, col, n_unit='compound-weekends') for k, col in [('mae_orb_v1', 'err'), ('mae_naive', 'err_naive'), ('band_coverage90', 'covered')]},
                            factors={c: dict(k=f.factor, applied=f.factor_applied, from_n=f.factor_from_n_weekends) for c, f in fc.compounds.items()}))
     rows = pd.DataFrame(rows_all)
     scored = [s for s in series if s.get('mae_orb_v1') is not None]
@@ -195,16 +217,18 @@ def rolling_origin_2026(quiet: bool = False) -> dict[str, Any]:
 
 
 def render_rolling(out: dict[str, Any]) -> str:
-    L = ['| round | event | pool | compounds | issued | no forecast | MAE Orb v1 | MAE naive | cov90 |', '|---|---|---|---|---|---|---|---|---|']
-    f = lambda v: '—' if v is None else f'{v:.4f}'
-    g = lambda v: '—' if v is None else f'{v:.2f}'
+    L = ['Only earlier completed rounds enter each forecast. A single-round point estimate has no weekend bootstrap interval: n=1 weekend is insufficient.', '',
+         '| round | event | earlier pool | issued / compounds | no forecast | MAE Orb v1 | MAE naive | coverage90 |',
+         '|---|---|---|---|---|---|---|---|']
     for s in out['series']:
         if 'note' in s:
-            L.append(f"| {s['round']} | {s['event']} | {s['n_pool']} | — | — | — | {s['note']} | | |"); continue
-        L.append(f"| {s['round']} | {s['event']} | {s['n_pool']} | {s['n_compounds']} | {s['n_issued']} | {s['n_no_forecast']} | {f(s['mae_orb_v1'])} | {f(s['mae_naive'])} | {g(s['band_coverage90'])} |")
-    p = out.get('pooled', {}); q = out.get('pooled_from_round_4', {})
-    if p.get('n_weekends'):
-        L.append(f"pooled over {p['n_weekends']} rounds: MAE Orb v1 {f(p['mae']['orb_v1'])} vs naive {f(p['mae']['naive'])}; from a pool of >= 3 rounds ({q.get('n_weekends', 0)} rounds): {f(q.get('mae', {}).get('orb_v1'))} vs {f(q.get('mae', {}).get('naive'))}")
+            L.append(f"| {s['round']} | {s['event']} | {s['n_pool']} | — | — | {s['note']} | | |")
+            continue
+        b = s.get('bootstrap', {})
+        L.append(f"| {s['round']} | {s['event']} | {s['n_pool']} | {s['n_issued']} / {s['n_compounds']} | {s['n_no_forecast']} | {_ci(b.get('mae_orb_v1'))} | {_ci(b.get('mae_naive'))} | {_ci(b.get('band_coverage90'), pct=True)} |")
+    for label, p in [('All scored rounds', out.get('pooled', {})), ('At least 3 earlier rounds in pool', out.get('pooled_from_round_4', {}))]:
+        b = p.get('bootstrap', {})
+        L += ['', f"{label}: MAE Orb v1 {_ci(b.get('mae_orb_v1'))}; naive {_ci(b.get('mae_naive'))}; coverage90 {_ci(b.get('band_coverage90'), pct=True)}."]
     return '\n'.join(L)
 
 
@@ -220,16 +244,39 @@ def live_scorecard(prefix_path: Path = PREFIX_EVAL, feedback_log: Path = FEEDBAC
         return dict(status='missing', note=f'{prefix_path} not found: run live/prefix_eval.py')
     pe = json.loads(prefix_path.read_text(encoding='utf-8'))
     races = pd.DataFrame([dict(race_id=f'2026_{ev}', event=ev, **m) for ev, m in pe['races'].items()])
-    out: dict[str, Any] = dict(source=dict(path=str(prefix_path.relative_to(PROTO)), generated_at=pe.get('generated_at'), estimator=pe.get('estimator'), model_version=pe.get('model_version'), feedback=pe.get('feedback')),
-                               races=list(pe['races']), per_race=pe['races'], pooled_as_reported=pe.get('pooled'), pooled={}, note='all numbers from prefix evaluation where only data through lap k is revealed; re-pooled here with a race-grouped, laps-weighted bootstrap')
+    out: dict[str, Any] = dict(source=dict(path=str(prefix_path.relative_to(PROTO)), sha256=hashlib.sha256(prefix_path.read_bytes()).hexdigest(), generated_at=pe.get('generated_at'), estimator=pe.get('estimator'), model_version=pe.get('model_version'), feedback=pe.get('feedback')),
+                               races=list(pe['races']), per_race=pe['races'], pooled_as_reported=pe.get('pooled'), pooled={}, note='all numbers from prefix evaluation where only data through lap k is revealed; re-pooled here with whole-weekend bootstrap: means weighted by eligible windows/stints, alert lead median pooled from detected true stints, climatology from pooled event counts')
     for metric, wcol in METRICS_LIVE:
         if metric not in races or wcol not in races:
             continue
-        def stat(d: pd.DataFrame, m=metric, w=wcol) -> Optional[float]:
-            x = d.dropna(subset=[m, w])
-            x = x[x[w] > 0]
-            return float(np.average(x[m], weights=x[w])) if len(x) else None
-        out['pooled'][metric] = weekend_bootstrap(races, stat)
+        unit = 'stints' if wcol.startswith('aw_') else ('lap pairs' if wcol == 'lap_pairs' else 'scored windows')
+        out['pooled'][metric] = weekend_mean_bootstrap(races, metric, wcol, n_unit=unit)
+        out['pooled'][metric]['metric_label'] = metric
+    # A mean of per-race medians is not the pooled median. Prefix artifacts retain
+    # the underlying alert rows, so bootstrap those rows in whole-weekend clusters.
+    alerts = pd.DataFrame([dict(race_id=f'2026_{ev}', **a) for ev, aa in pe.get('per_stint_alerts', {}).items() for a in aa])
+    if not alerts.empty and {'truth', 'lead_laps'} <= set(alerts):
+        leads = alerts[alerts['truth'].astype(bool)].dropna(subset=['lead_laps'])
+        lead = weekend_bootstrap(leads, lambda d: float(d['lead_laps'].median()))
+        lead.update(n=len(leads), n_unit='detected true stints', metric_label='Median alert lead (laps)')
+        out['pooled']['aw_lead_laps_median'] = lead
+    else:
+        out['pooled']['aw_lead_laps_median'] = dict(estimate=None, ci90=None, n=0, n_weekends=0, n_rows=0,
+            n_unit='detected true stints', method='unavailable: prefix artifact has no per-stint alerts', metric_label='Median alert lead (laps)')
+    # Climatology must be fitted to the pooled scored windows on each resample.
+    for horizon in (3, 5):
+        count, events = f'cliff{horizon}_n', f'cliff{horizon}_events'
+        if count in races and events in races:
+            eligible = races[races[count] > 0]
+            def climatology(d, c=count, e=events):
+                rate = d[e].sum() / d[c].sum()
+                return float(rate * (1 - rate))
+            b = weekend_bootstrap(eligible, climatology)
+            b.update(n=int(eligible[count].sum()), n_unit='scored windows', metric_label=f'cliff{horizon}_brier_climatology')
+            out['pooled'][f'cliff{horizon}_brier_climatology'] = b
+    out['source_consistency'] = {k: dict(scorecard=v['estimate'], source=pe.get('pooled', {}).get(k),
+        match=(abs(v['estimate'] - pe['pooled'][k]) < 1e-10 if v['estimate'] is not None and pe.get('pooled', {}).get(k) is not None else v['estimate'] is pe.get('pooled', {}).get(k)))
+        for k, v in out['pooled'].items() if k in pe.get('pooled', {})}
     out['driver_feedback_ablation'] = feedback_ablation(feedback_log, live_out, quiet=quiet)
     return out
 
@@ -320,7 +367,7 @@ def build(seasons: Iterable[int] = (2026, 2025, 2024, 2023), out_dir: Path = OUT
     if p.exists():
         h = json.loads(p.read_text(encoding='utf-8'))
         quotable = h.get('quotable') is True                      # an aggregate file without the flag (pre 12 Sep evening) is treated as a dry run
-        sealed_agg = dict(generated_at=h.get('generated_at'), git_sha=h.get('git_sha'), dry_run_before_freeze=bool(h.get('dry_run_before_freeze', not quotable)), quotable=quotable,
+        sealed_agg = dict(source_sha256=hashlib.sha256(p.read_bytes()).hexdigest(), generated_at=h.get('generated_at'), git_sha=h.get('git_sha'), dry_run_before_freeze=bool(h.get('dry_run_before_freeze', not quotable)), quotable=quotable,
                           reveal=h.get('reveal'), post_holdout_tuning=h.get('post_holdout_tuning'), n_weekends=h.get('n_weekends'), aggregate=h.get('aggregate') if quotable else None,
                           note=('aggregate over the sealed weekends only; per-race results stay in holdout_per_race.json under the freeze' if quotable else
                                 'DRY RUN BEFORE FREEZE: holdout_aggregate.json was produced without a valid evaluation/holdout/freeze.json (quotable: false). Its numbers are withheld '
@@ -342,99 +389,65 @@ def build(seasons: Iterable[int] = (2026, 2025, 2024, 2023), out_dir: Path = OUT
 
 
 def _ci(b: Optional[dict[str, Any]], nd: int = 4, pct: bool = False) -> str:
-    if not b or b.get('estimate') is None:
-        return '—'
-    e = b['estimate']; ci = b.get('ci90')
-    fmt = (lambda v: f'{v:.0%}') if pct else (lambda v: f'{v:.{nd}f}')
-    return fmt(e) + (f' [{fmt(ci[0])}, {fmt(ci[1])}]' if ci else '')
+    if not b:
+        return 'unavailable (no source interval)'
+    n = b.get('n', b.get('n_rows', 0)); w = b.get('n_weekends', 0)
+    suffix = f"; n={n} {b.get('n_unit', 'rows')}, {w} weekends"
+    if b.get('estimate') is None:
+        return 'undefined; 90% CI unavailable' + suffix
+    fmt = (lambda v: f'{v:.1%}') if pct else (lambda v: f'{v:.{nd}f}')
+    ci = b.get('ci90')
+    return fmt(b['estimate']) + (f" [90% CI {fmt(ci[0])}, {fmt(ci[1])}]" if ci else '; 90% CI unavailable (insufficient weekends or undefined statistic)') + suffix
 
 
 def render_md(ghost: dict[str, Any], live: dict[str, Any]) -> str:
-    d = ghost['development_pool']; f = d['forecast']; b = f.get('bootstrap', {})
-    L = [f"# Orb v1 scorecards ({ghost['generated_at']}, git {ghost['git_sha']})", '', 'Two scorecards, never merged (roadmap v5 9.0.1). Intervals: weekend-grouped bootstrap, 90 %.', '',
-         '## Ghost Strategy scorecard', '', f"Development pool: {f.get('n_weekends', 0)} weekends, {f.get('n_compound_weekends', 0)} compound-weekends ({f.get('n_issued', 0)} issued, {f.get('n_withheld', 0)} withheld); sealed weekends excluded from every pool.", '',
-         '| metric | Orb v1 | naive / baseline |', '|---|---|---|',
-         f"| pre-race degradation MAE (s/lap per lap) | {_ci(b.get('mae_orb_v1'))} | {_ci(b.get('mae_naive'))} |",
-         f"| 90 % band coverage | {_ci(b.get('band_coverage90'), pct=True)} | nominal 90 % |",
-         f"| P(Orb v1 beats naive), weekend bootstrap | {b.get('p_orb_beats_naive', {}).get('p_bootstrap', '—')} | |",
-         f"| abstention: share issued | {f.get('abstention', {}).get('share_issued', float('nan')):.2f} | MAE issued {f.get('mae', {}).get('orb_v1_issued', float('nan')):.4f}, fallback {f.get('mae', {}).get('orb_v1_fallback', float('nan')):.4f} |"]
-    h = d['hidden_stop']; hp = h.get('pooled', {}); hb = h.get('bootstrap', {})
-    if hp.get('n_cases'):
-        L += [f"| hidden-stop next-lap MAE (s), {hp['n_cases']} stops | {_ci(hb.get('next1_mae'), 3)} | naive {_ci(hb.get('next1_mae_naive'), 3)} |",
-              f"| hidden-stop 3-lap cumulative MAE (s) | {_ci(hb.get('cum3_mae'), 3)} | naive {_ci(hb.get('cum3_mae_naive'), 3)} |",
-              f"| hidden-stop 5-lap cumulative MAE (s) | {_ci(hb.get('cum5_mae'), 3)} | naive {_ci(hb.get('cum5_mae_naive'), 3)} |",
-              f"| hidden-stop 90 % coverage next / +3 / +5 | {_ci(hb.get('next1_coverage90'), pct=True)} / {_ci(hb.get('cum3_coverage90'), pct=True)} / {_ci(hb.get('cum5_coverage90'), pct=True)} | nominal 90 % |"]
-    r = d['regret']
-    for name in ('orb', 'naive', 'observed', 'default'):
-        p = r.get('plans', {}).get(name, {})
-        if p.get('n'):
-            L.append(f"| strategy regret, {name} plan (s; {REGRET_LABEL}), n={p['n']} | median {p['median']:.1f}, mean {_ci(p.get('ci90_mean'), 1)} | p90 {p['p90']:.1f}; within 2/5/10 s {p['share_within_2s']:.0%}/{p['share_within_5s']:.0%}/{p['share_within_10s']:.0%} |")
-    for k in ('p_orb_beats_naive', 'p_orb_beats_observed'):
-        v = r.get(k)
-        if v and v.get('share_rows') is not None:
-            L.append(f"| {k.replace('_', ' ')} | share of weekends {v['share_rows']:.2f} | bootstrap P {v['p_bootstrap']} (n={v['n_weekends']}) |")
-    L += ['', '### By cell (development pool)', '', '| cell | weekends | pre-race MAE Orb v1 | naive | cov90 | hidden-stop next-lap MAE | naive | regret Orb v1 median (n) |', '|---|---|---|---|---|---|---|---|']
+    d = ghost['development_pool']; f = d['forecast']
+    L = [f"# Orb v1 scorecards ({ghost['generated_at']}, git {ghost['git_sha']})", '',
+         'Two scorecards, never merged. Every reported performance estimate below carries its eligible n and a 90% percentile bootstrap band from whole-weekend resampling (2000 draws; never row resampling). Counts and fixed gate settings are metadata, not estimates. Missing bands are explicit.', '',
+         '## Ghost Strategy scorecard', '', f"Development pool: {f.get('n_weekends', 0)} weekends; {f.get('n_compound_weekends', 0)} compound-weekends; sealed weekends excluded from every pool.", '']
+    def forecast_table(title, fc):
+        L.extend([title, '', '| metric | estimate, 90% interval and support |', '|---|---|'])
+        for k, label in [('mae_orb_v1', 'Orb v1 MAE (s/lap per lap)'), ('mae_naive', 'Naive MAE (s/lap per lap)'),
+                         ('band_coverage90', '90% predictive-band coverage'), ('share_issued', 'Share issued'),
+                         ('mae_orb_v1_issued', 'Issued MAE'), ('mae_orb_v1_fallback', 'Fallback MAE'),
+                         ('calibration_r', 'Calibration correlation'), ('win_share', 'Share beating naive')]:
+            L.append(f"| {label} | {_ci(fc.get('bootstrap', {}).get(k), pct=k in ('band_coverage90','share_issued','win_share'))} |")
+        L.append('')
+    forecast_table('### Development aggregate', f)
+    L += ['### Hidden-stop response', '', '| metric | Orb v1 | naive |', '|---|---|---|']
+    hb = d.get('hidden_stop', {}).get('bootstrap', {})
+    for h in ('next1', 'cum3', 'cum5'):
+        L.append(f"| {h} MAE (s) | {_ci(hb.get(h+'_mae'),3)} | {_ci(hb.get(h+'_mae_naive'),3)} |")
+        L.append(f"| {h} coverage90 | {_ci(hb.get(h+'_coverage90'),pct=True)} | |")
+    L += ['', f"### Strategy regret ({REGRET_LABEL})", '', '| plan | mean regret (s) | median regret (s) | within 5 s |', '|---|---|---|---|']
+    for name, p in d.get('regret', {}).get('plans', {}).items():
+        rb = p.get('bootstrap', {})
+        L.append(f"| {name} | {_ci(p.get('ci90_mean'),1)} | {_ci(p.get('ci90_median'),1)} | {_ci(rb.get('share_within_5s'),pct=True)} |")
     for store in ('by_circuit_class', 'by_weather_regime'):
         for val, cell in d.get(store, {}).items():
-            cf = cell['forecast']; ch = cell.get('hidden_stop', {}); cr = cell.get('regret', {}).get('plans', {}).get('orb', {})
-            L.append(f"| {store[3:]}={val} | {cf.get('n_weekends', 0)} | {cf.get('mae', {}).get('orb_v1', float('nan')):.4f} | {cf.get('mae', {}).get('naive', float('nan')):.4f} | {(cf.get('band_coverage90', {}).get('all') or float('nan')):.0%} | "
-                     f"{(ch.get('next1_mae') if ch.get('next1_mae') is not None else float('nan')):.3f} | {(ch.get('next1_mae_naive') if ch.get('next1_mae_naive') is not None else float('nan')):.3f} | {(cr.get('median') if cr.get('n') else float('nan')):.1f} ({cr.get('n', 0)}) |")
-    for val, cell in d.get('by_driver_support', {}).items():
-        ch = cell['hidden_stop']
-        L.append(f"| driver_support={val} | — | — | — | — | {ch.get('next1_mae', float('nan')):.3f} | {ch.get('next1_mae_naive', float('nan')):.3f} | — |")
-    bs = d.get('by_season', {})
-    if bs:
-        L += ['', '### By season (development pool, leave-one-weekend-out inside the season)', '', '| season | weekends | compound-weekends (issued / withheld) | MAE Orb v1 | MAE naive | cov90 | wins over naive | calibration r |', '|---|---|---|---|---|---|---|---|']
-        for season, cell in bs.items():
-            cf = cell['forecast']; cb = cf.get('bootstrap', {}); cr = cf.get('calibration', {}).get('r')
-            L.append(f"| {season} | {cf.get('n_weekends', 0)} | {cf.get('n_compound_weekends', 0)} ({cf.get('n_issued', 0)} / {cf.get('n_withheld', 0)}) | {_ci(cb.get('mae_orb_v1'))} | {_ci(cb.get('mae_naive'))} | "
-                     f"{_ci(cb.get('band_coverage90'), pct=True)} | {cf.get('wins_orb_over_naive')} of {cf.get('n_compound_weekends')} | {'—' if cr is None else f'{cr:.2f}'} |")
-    lc = d.get('lock_consistency_2026')
-    if lc and lc.get('metrics'):
-        L += ['', f"### Lock consistency: 2026 leave-one-weekend-out vs {lc['lock'].get('path')} (generated {lc['lock'].get('generated_at')})", '', '| metric | scorecard | lock | match |', '|---|---|---|---|']
-        fmt = lambda v: '—' if v is None else (f'{v}' if isinstance(v, int) else f'{v:.4f}')
-        for k, c in lc['metrics'].items():
-            L.append(f"| {k} | {fmt(c['scorecard'])} | {fmt(c['lock'])} | {'yes' if c['match'] else ('n/a' if c['match'] is None else 'NO')} |")
-        L += ['', f"All {lc['n_compared']} compared values match: {lc['all_match']} (floats within {lc['tolerance']}, counts exact). {lc['note']}."]
+            forecast_table(f"### {store[3:]}: {val}", cell['forecast'])
+    for season, cell in d.get('by_season', {}).items():
+        forecast_table(f"### Season {season} (leave-one-weekend-out inside season)", cell['forecast'])
+    lc = d.get('lock_consistency_2026', {})
+    L += ['### Lock consistency', '', f"{lc.get('n_compared', 0)} values compared with out/lock.json; all_match={lc.get('all_match')}. Counts exact; floats within {lc.get('tolerance')}. The 2026 performance estimates and intervals are in the season table above.", '']
     s = ghost.get('sealed_holdout')
-    L += ['', '### Sealed holdout (aggregate only)', '']
-    if s and s.get('quotable') and s.get('aggregate'):
-        a = s['aggregate']; sf = a.get('forecast', {}); sb = sf.get('bootstrap', {}); sh = a.get('hidden_stop', {}).get('pooled', {}); sr = a.get('regret', {}).get('plans', {})
-        L += [f"{s.get('n_weekends')} sealed weekends, {sf.get('n_compound_weekends', 0)} compound-weekends; per-race results {'revealed' if s.get('reveal', {}).get('per_race_written') else 'sealed'} ({s.get('reveal', {}).get('reason')}); post_holdout_tuning={s.get('post_holdout_tuning')}.", '',
-              '| metric | Orb v1 | naive |', '|---|---|---|', f"| pre-race degradation MAE | {_ci(sb.get('mae_orb_v1'))} | {_ci(sb.get('mae_naive'))} |", f"| 90 % band coverage | {_ci(sb.get('band_coverage90'), pct=True)} | |"]
-        if sh.get('n_cases'):
-            L.append(f"| hidden-stop next-lap / 3-lap / 5-lap MAE ({sh['n_cases']} stops) | {sh['next1_mae']:.3f} / {sh['cum3_mae']:.3f} / {sh['cum5_mae']:.3f} | {sh['next1_mae_naive']:.3f} / {sh['cum3_mae_naive']:.3f} / {sh['cum5_mae_naive']:.3f} |")
-        for name, p in sr.items():
-            L.append(f"| regret {name} | " + (f"n={p['n']}: median {p['median']:.1f} s, mean {p['mean']:.1f} s, within 5 s {p['share_within_5s']:.0%}" if p.get('n') and not p.get('suppressed') else f"n={p.get('n', 0)} suppressed") + ' | |')
-    elif s:
-        L.append(f"**DRY RUN BEFORE FREEZE, numbers withheld.** holdout_aggregate.json (generated {s.get('generated_at')}, git {s.get('git_sha')}, {s.get('n_weekends')} sealed weekends) was produced without a valid "
-                 f"evaluation/holdout/freeze.json (quotable: false); per-race results {'revealed' if (s.get('reveal') or {}).get('per_race_written') else 'sealed'}. Nothing from a pre-freeze run is quoted anywhere. "
-                 "After the lead writes freeze.json (C4): `python -m evaluation.holdout.evaluator`, then `python -m evaluation.scorecards`.")
+    L += ['### sealed holdout, aggregate only', '']
+    if s and s.get('quotable') is True and s.get('aggregate'):
+        sf = s['aggregate']['forecast']; sb = sf.get('bootstrap', {})
+        L += [f"sealed holdout, aggregate only: {s['n_weekends']} weekends / {sf['n_compound_weekends']} compound-weekends.", '',
+              f"Orb v1 MAE {_ci(sb.get('mae_orb_v1'))}; naive MAE {_ci(sb.get('mae_naive'))} s/lap.",
+              f"Coverage {_ci(sb.get('band_coverage90'), pct=True)}. Frozen post-freeze aggregate copied verbatim; no per-race data read.", '']
     else:
-        L.append('holdout_aggregate.json not found: run evaluation/holdout/evaluator.py')
-    ro = ghost.get('rolling_origin_2026', {})
-    L += ['', '### Rolling origin, 2026', '', render_rolling(ro), '', '## Live Predictor scorecard', '']
-    if live.get('pooled'):
-        L += [f"Source: {live['source']['path']} ({live['source']['estimator']}, {live['source']['model_version']}, generated {live['source']['generated_at']}); races {', '.join(live['races'])}; race-grouped laps-weighted bootstrap.", '',
-              '| metric | estimator | prior-only baseline |', '|---|---|---|']
-        P = live['pooled']
-        L += [f"| next-lap MAE (s) | {_ci(P.get('next1_mae'), 3)} | {_ci(P.get('next1_mae_prior_only'), 3)} |", f"| 3-lap cumulative MAE (s) | {_ci(P.get('cum3_mae'), 3)} | {_ci(P.get('cum3_mae_prior_only'), 3)} |",
-              f"| 5-lap cumulative MAE (s) | {_ci(P.get('cum5_mae'), 3)} | {_ci(P.get('cum5_mae_prior_only'), 3)} |", f"| 90 % coverage next lap | {_ci(P.get('coverage90_next1'), pct=True)} | {_ci(P.get('coverage90_next1_prior_only'), pct=True)} |",
-              f"| cliff-5 Brier (model-implied rate proxy) | {_ci(P.get('cliff5_brier'), 3)} | climatology {_ci(P.get('cliff5_brier_climatology'), 3)} |", f"| accelerating-wear detection rate / lead (laps) | {_ci(P.get('aw_detection_rate'), pct=True)} / {_ci(P.get('aw_lead_laps_median'), 1)} | |",
-              f"| false alert episodes per stint | {_ci(P.get('aw_false_alert_episodes_per_stint'), 2)} | |", f"| recommendation change rate | {_ci(P.get('recommendation_change_rate'), pct=True)} | |"]
-        fa = live.get('driver_feedback_ablation', {})
-        if fa.get('status') == 'run':
-            L += ['', f"### Driver-feedback ablation ({len(fa.get('pairs', []))} (event, driver) pairs, {fa.get('n_events')} recorded events)", '', '| metric | telemetry only | with feedback | difference |', '|---|---|---|---|']
-            g = lambda v: '—' if v is None else f'{v:.3f}'
-            for k, c in fa.get('comparison', {}).items():
-                L.append(f"| {k} | {g(c['telemetry_only'])} | {g(c['with_feedback'])} | {g(c['difference'])} |")
-            L += ['', f"Pairs: {', '.join(f'{p['event']} {p['driver']} ({p['n_events']} events)' for p in fa.get('pairs', []))}. {fa.get('note', '')}"]
-        else:
-            L += ['', f"**{fa.get('statement') or ('Driver-feedback ablation: ' + str(fa.get('status')) + ' (' + str(fa.get('reason', '')) + ')')}**", '',
-                  'Sources checked: ' + '; '.join(f"`{x['path']}` ({'missing' if not x['exists'] else str(x['n_events']) + ' events'})" for x in fa.get('sources', [])) + '.',
-                  '', f"Design (runs automatically once events exist): {fa.get('design', ABLATION_DESIGN)}."]
-    else:
-        L.append(f"prefix evaluation not available: {live.get('note')}")
+        L += ['Not quotable: numbers withheld until a valid post-freeze aggregate exists.', '']
+    L += ['### Rolling origin, 2026', '', render_rolling(ghost['rolling_origin_2026']), '', '## Live Predictor scorecard', '']
+    L += [f"Source: {live.get('source', {}).get('path')}; frozen prefix evaluation; source point-estimate agreement: {all(c['match'] for c in live.get('source_consistency', {}).values())}.",
+          'Only data through lap k enters the predictor; realised future outcomes are scoring targets only. Alert lead is the median over detected true stints, recomputed from source per-stint alerts. Climatology Brier uses the pooled event rate on each whole-weekend resample.', '',
+          '| metric | estimate, 90% interval and support |', '|---|---|']
+    for k, v in live.get('pooled', {}).items():
+        L.append(f"| {v.get('metric_label', k)} | {_ci(v,3)} |")
+    fa = live.get('driver_feedback_ablation', {})
+    L += ['', f"Driver-feedback ablation: {fa.get('status')}; {fa.get('statement', fa.get('reason', fa.get('note', '')))}", '',
+          'Risk-coverage threshold sweep: see risk_coverage.json and risk_coverage.csv. Each table row includes eligible n and whole-weekend 90% bands for coverage and every MAE. The production gate is frozen; the development sweep is diagnostic and does not select a new gate.']
     return '\n'.join(L) + '\n'
 
 

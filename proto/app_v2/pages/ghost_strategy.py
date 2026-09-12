@@ -39,7 +39,7 @@ def audit_evidence_html(sc: CF.Scenario | None, lattice: dict | None, vm, verifi
                  ('counterfactual plan', f"{sc.actual_plan.get('label', '—')} → {sc.cf_plan.get('label', '—')} (pit laps {', '.join(map(str, sc.cf_plan.get('pit_laps', [])))})"),
                  ('reference curves', f"{CF.REFERENCE_LABEL}: " + ', '.join(f"{c.lower()} {v['slope']:+.3f}" for c, v in sc.curves.items())),
                  ('identity / leakage tests', f"{sc.validation.get('identity_test', '—')} / {sc.validation.get('future_leakage_test', '—')} · target driver excluded {sc.validation.get('target_driver_excluded', '—')}"),
-                 ('assets', ' · '.join(f"{k} {v['short']} {v['status']}" for k, v in verified.items()) or '—'), ('claim scope', sc.claim_scope or '—')]
+                 ('assets', ' · '.join(f"{k} sha256 {v['short']} {v['status']}" for k, v in verified.items()) or '—'), ('claim scope', sc.claim_scope or '—')]
     elif lattice is not None:
         pairs = [('finish delta (median)', f"{lattice['elapsed_delta_median_s']:+.1f} s · {lattice['source']} (summary only)"), ('80% interval (q10 to q90)', f"{lattice['elapsed_delta_q10_s']:+.1f} to {lattice['elapsed_delta_q90_s']:+.1f} s"),
                  ('probability of gain', f"{100 * lattice['probability_of_gain']:.0f}%"), ('tyre / pit terms', f"{lattice['tyre_delta_mean_s']:+.1f} / {lattice['pit_delta_mean_s']:+.1f} s"), ('in support', str(lattice.get('in_support'))),
@@ -115,7 +115,7 @@ def scenario_evidence_html(vm, sc_row: dict, psc: CF.Scenario | None = None, ver
                   ('curve', f'{psc.curve_label} · curve_source {psc.curve_source} · forecast hash {psc.pre_race_forecast_hash[:6] or vm.forecast.source}'),
                   ('race data used', f"none: uses_post_race_reference = {str(psc.uses_post_race_reference).lower()} · identity / leakage tests {psc.validation.get('identity_test', '—')} / {psc.validation.get('future_leakage_test', '—')}"),
                   ('counterfactual plan', f"{psc.actual_plan.get('label', '—')} → {psc.cf_plan.get('label', '—')} (pit laps {', '.join(map(str, psc.cf_plan.get('pit_laps', [])))})"),
-                  ('assets (out/counterfactual/pre_race)', ' · '.join(f"{k} {v['short']} {v['status']}" for k, v in (verified or {}).items()) or '—'),
+                  ('assets (out/counterfactual/pre_race)', ' · '.join(f"{k} sha256 {v['short']} {v['status']}" for k, v in (verified or {}).items()) or '—'),
                   ('claim scope', f"{psc.claim_scope} · model-implied scenario; not evidence")]
     elif psc is not None:
         pairs += [('model-implied finish delta (pre-race curve)', f"withheld: {sc_row['label']} is outside the dry support; the pre-race-curve counterfactual is shown for supported dry scenarios only"), ('claim scope', 'model-implied scenario; not evidence')]

@@ -37,6 +37,7 @@ from evaluation.red_team import PROTO, RT_DIR, LOCK_V1, now_iso, owner_of, read_
 
 MAP_PATH = RT_DIR / 'claim_evidence_map.json'
 DECK = PROTO / 'out' / 'Orb_v1_Mentor_Briefing.pptx'
+CHALLENGE_DECK = PROTO / 'out' / 'Orb_v1_ChallengeDay.pdf'
 DOC_SOURCES = ('out/talk_track.md', 'out/THE_CASE.md', 'out/ROADMAP_v5.md')
 CODE_SOURCES = ('app_v2/pages/*.py', 'app_v2/ui/*.py', 'app_v2/services/*.py', 'live/viewmodel.py', 'decision/optimizer.py')
 
@@ -58,17 +59,32 @@ WORDING_RULES = [
 def _slides() -> list[tuple[str, str]]:
     """(source label, text) per slide of the deck through markitdown."""
     if not DECK.exists():
-        return []
+        raise FileNotFoundError(f'Required presentation missing: {DECK}')
     try:
         from markitdown import MarkItDown
         text = MarkItDown().convert(str(DECK)).text_content
     except Exception as e:
-        return [(f'{DECK.relative_to(PROTO)} (markitdown failed: {e!r})', '')]
+        raise RuntimeError(f'Cannot audit presentation {DECK.name}: {e}') from e
     parts = re.split(r'<!-- Slide number: (\d+) -->', text)
     out = []
     for i in range(1, len(parts) - 1, 2):
         out.append((f'{DECK.relative_to(PROTO)}#slide-{parts[i]}', parts[i + 1]))
+    if not out:
+        raise RuntimeError(f'No slides extracted from {DECK.name}')
     return out
+
+
+def _pdf_pages() -> list[tuple[str, str]]:
+    """ChallengeDay is a presentation surface; missing/empty extraction fails loudly."""
+    if not CHALLENGE_DECK.exists():
+        raise FileNotFoundError(f'Required presentation missing: {CHALLENGE_DECK}')
+    from pypdf import PdfReader
+    document = PdfReader(CHALLENGE_DECK)
+    pages = [(f'{CHALLENGE_DECK.relative_to(PROTO)}#page-{i + 1}', page.extract_text() or '')
+             for i, page in enumerate(document.pages)]
+    if not pages or any(not text.strip() for _, text in pages):
+        raise RuntimeError('ChallengeDay PDF contains a page without auditable text')
+    return pages
 
 
 def load_sources(extra: Optional[list[tuple[str, str]]] = None) -> list[tuple[str, list[tuple[int, str]]]]:
@@ -81,7 +97,7 @@ def load_sources(extra: Optional[list[tuple[str, str]]] = None) -> list[tuple[st
     for pat in CODE_SOURCES:
         for p in sorted(PROTO.glob(pat)):
             srcs.append((str(p.relative_to(PROTO)), list(enumerate(p.read_text(encoding='utf-8').splitlines(), 1))))
-    for label, text in _slides():
+    for label, text in _slides() + _pdf_pages():
         srcs.append((label, list(enumerate(text.splitlines(), 1))))
     for label, text in (extra or []):
         srcs.append((label, list(enumerate(text.splitlines(), 1))))
@@ -92,7 +108,7 @@ def audit_wording(sources: list[tuple[str, list[tuple[int, str]]]]) -> list[dict
     flags = []
     for src, lines in sources:
         is_code = src.endswith('.py')
-        slide_text = ' '.join(l for _, l in lines) if '#slide-' in src else ''
+        slide_text = ' '.join(l for _, l in lines) if ('#slide-' in src or '#page-' in src) else ''
         for no, line in lines:
             for rule, pattern, allowed, note in WORDING_RULES:
                 if rule == 'live_position_claim' and not is_code:
@@ -312,7 +328,7 @@ BLOCKING_VERDICTS = ('mismatch', 'exceeds_evidence', 'unverifiable')
 
 
 def source_kind(src: str) -> str:
-    return 'deck' if '#slide-' in src else ('talk_track' if 'talk_track' in src else ('THE_CASE' if 'THE_CASE' in src else ('ROADMAP_v5' if 'ROADMAP' in src else 'code')))
+    return 'deck' if ('#slide-' in src or '#page-' in src) else ('talk_track' if 'talk_track' in src else ('THE_CASE' if 'THE_CASE' in src else ('ROADMAP_v5' if 'ROADMAP' in src else 'code')))
 
 
 def locate(claims: list[dict], sources: list[tuple[str, list[tuple[int, str]]]]) -> None:
@@ -329,7 +345,7 @@ def locate(claims: list[dict], sources: list[tuple[str, list[tuple[int, str]]]])
             kind = source_kind(src)
             if kind not in c['search_in']:
                 continue
-            slide_text = ' '.join(l for _, l in lines) if '#slide-' in src else None
+            slide_text = ' '.join(l for _, l in lines) if ('#slide-' in src or '#page-' in src) else None
             for no, line in lines:
                 if not re.search(c['pattern'], line):
                     continue

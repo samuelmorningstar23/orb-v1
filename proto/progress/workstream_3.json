@@ -1,24 +1,29 @@
 {
- "workstream": 3,
- "task": "blind evaluation: sealed-holdout evaluator (dry-run flag), freeze-gate tests, reviews of Workstream 2 / Workstream 8, feedback ablation, scorecards refreshed vs lock 21:03",
- "status": "GREEN",
- "commit": null,
- "completed": [
-  "evaluation/{common,forecast,hidden_stop,regret,risk_coverage}.py, holdout/evaluator.py: 2026 dev-pool runs, sealed evaluator (manifest sha check, freeze gate, aggregate only)",
-  "evaluator.py: dry_run_before_freeze / quotable flags + stderr warning; holdout_aggregate.json re-run 21:15 flagged dry run (not quotable, numbers unchanged vs 16:55)",
-  "README: flags documented + exact post-freeze sequence (freeze.json by lead at C4 -> evaluator -> scorecards -> pytest tests/evaluation)",
-  "tests/evaluation/test_eval_freeze_gate.py: 36 new tests (gate over every flag combination and git_commit variant, dry-run flag, CLI end to end on a synthetic sealed weekend, tamper: body / metadata / sidecar / rehash, manifest sha vs last-green checkpoint); suite 59 passed",
-  "scorecards.py: feedback sources (UI log + out/live/*/driver_feedback.json), by_season, lock_consistency_2026 (11/11 values equal the 21:03 lock: MAE naive 0.1371 / Orb v1 0.0227, r 0.7806, 28 of 29 wins, coverage 0.862), sealed block only when quotable; ghost/live scorecards + SCORECARDS.md rebuilt 21:27 / 21:29; ablation NOT RUN (0 recorded events)",
-  "REVIEWS_workstream3.md: Workstream 2 counterfactual ACCEPT WITH NOTES (53 passed; 4 scenarios reproduce exactly; identity exactly zero); Workstream 8 live ACCEPT WITH NOTES (31 passed; next-lap MAE beats prior-only in every race; cliff Brier worse than climatology, labelled rate proxy)"
- ],
- "in_progress": [],
- "blockers": [],
- "tests_passed": 59,
- "tests_failed": 0,
- "eta_minutes": 0,
- "needs_review_from": [
-  "lead"
- ],
- "updated_at": "2026-09-12T21:30:55",
- "notes": "Not mine: proto/evaluation/red_team/claim_evidence_map.json shows modified in git (Workstream 7's). The screenshot gate writes rows into app_v2/state/feedback_events.jsonl while running: keep scorecard builds and tests/live off that window (review N5)."
+  "workstream": 3,
+  "task": "C5 evaluation scorecards: eligible n and whole-weekend bootstrap uncertainty; honest rolling origin; prefix-faithful live pooling",
+  "status": "GREEN",
+  "commit": null,
+  "completed": [
+    "evaluation/common.py: vectorised sufficient-sum mean bootstrap duplicates whole-weekend numerators/denominators; eligible n/unit metadata and win-share interval; deterministic 2000 draws seed2026",
+    "evaluation/scorecards.py: complete forecast/cell bands and n; explicit unavailable single-weekend rolling bands; live median from detected true-stint rows, climatology recomputed on pooled event counts; frozen input hashes; SCORECARDS renderer gives performance n/90% bands",
+    "evaluation/hidden_stop.py: eligible-stop counts and cluster mean bands for all horizons/cells; evaluation/regret.py: cluster bands for reported regret summaries; no predictive rule changes",
+    "evaluation/risk_coverage.py and out/validation/risk_coverage.{json,csv,png}: 121 frozen-rule diagnostic settings, every coverage/MAE carries n and90% weekend band; PNG adds shadedMAE bands and support caption",
+    "out/validation/ghost_scorecard.json,live_scorecard.json,SCORECARDS.md regenerated: lock11/11 matches; prefix pooled17/17 matches; frozen post-freeze aggregate copiedexactly; 64development weekends148compoundweekends; rolling13available rounds11scored, insufficient single-weekend intervals null",
+    "../.venv/bin/python -m pytest tests/evaluation -q: 65passed3.14s (six new tests in tests/evaluation/test_eval_c5_scorecards.py); earlier runs59passed2.70s and65passed3.49s/3.63s",
+    "../.venv/bin/python -m evaluation.scorecards --quiet: exit0 (~13min); ../.venv/bin/python -m evaluation.risk_coverage --quiet: exit0. Current render_md/live_scorecard/lock_meta used afterwards for final presentation wording and frozen INPUT hash metadata; no computed ghost metric changed during full run",
+    "Independent command assertion: 121risk settings x6=726 metric estimates/count/bands verified; final lock11/11/live17/17 and exact sealed aggregate-copy assertions passed; 5changed evaluation sources parse, no predictive/protected-file diff, reveal existence56683bytes only",
+    "Independent Workstream6 refutation command ../.venv/bin/python /private/tmp/orb-c5-workstream3-ui-refute.py /private/tmp/orb-c5-workstream6/proto: PASS1612 artifact estimate/band/count mappings; adversarial formatting/nullCI/shared-render/sealedgate/no directfuture reads. Initial finding: Validation legacyunbanded tables removed by Workstream6, corrected source rechecked. Script/log saved in /private/tmp for lead audit copy",
+    "RiskPNG visually inspected: labels, n, interval caption all visible, no clipping; Workstream6 synced final six validation artifacts",
+    "Workstream7 reported independent refutation PASS:17live metrics/bands rederived,29public lock rows,121x6risk JSON/CSV cells,18risk extreme/production metrics,13rolling rounds with360runtime training-pool guards; report is Workstream7-owned (not a Workstream3-run check)."
+  ],
+  "in_progress": [],
+  "blockers": [],
+  "tests_passed": 65,
+  "tests_failed": 0,
+  "eta_minutes": 0,
+  "needs_review_from": [
+    "lead"
+  ],
+  "updated_at": "2026-09-12T18:18:08.747431+00:00",
+  "notes": "Complete, all Workstream3 file claims RELEASED for lead integration at base 230870bc9f27f281c515ac7c6108da2e55574688; no commit made. Isolated /private/tmp/orb-c5-workstream3. Frozen manifest/freeze/aggregate/lock/Madrid/predictive rules unchanged; sealed per-race artifact never read (existence/sizeonly). Statistical limits: per-round n<=1weekend means no CI; live only3weekends; feedbackablation NOT RUN because no events; gate sweep diagnostic only. Workstream7 independentrefutation reported PASS; full final product suite/checkpoint/GO/commit owned by lead. Exclude temporary .venv/feat*/node_modules symlinks from integration."
 }

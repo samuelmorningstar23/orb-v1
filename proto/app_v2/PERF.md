@@ -72,3 +72,28 @@ the dashboard and the lead's quotable headline read the same (0.0372 vs 0.1713 s
 9 compound-weekends); a Race Twin frame set whose finish delta disagrees with its scenario's `summary.json` by more than 1 s is
 called out on the page (`monza_ver_lap20_to_hard_new_fixed_context`: frames -6.5 s, scenario +7.7 s — Workstream 4 must re-run
 `replay.build_maps`). `tests/ui` is 56 tests (5 added) in about 9 s; `tests/ui` + `tests/screenshots` 67 in 101 s.
+
+
+## C5 scorecard acceptance (12 Sep 2026)
+
+Validation and Generalisation now share `ui/scorecard_evidence.py`: estimates, 90% weekend-bootstrap intervals, eligible metric denominators and independent-weekend counts come directly from Workstream 3 JSON. Generalisation retains expandable season/circuit/weather/driver cells. Rolling-origin rows identify the unavailable single-weekend interval; no zero-width interval is invented. Validation's duplicated legacy performance panels were removed after independent review found missing weekend intervals; the lock-agreement result and scenario identity/leakage audit remain. The sealed card shows only the approved aggregate MAEs, coverage and counts, with source intervals.
+
+Final Workstream 3 input sync: ghost `8a83d6e8`, live `70c8e607`, SCORECARDS `7ff3ec51`, risk JSON `fbb73ad8`. The isolated Streamlit server was restarted on port 8506 after that sync. No feedback log was written and the main 8502 server was untouched.
+
+`../.venv/bin/python -m pytest tests/ui -q -p no:cacheprovider`: 63 passed in 9.81 s after the final source and input sync. Seven new regression checks cover eligible n instead of bootstrap-record count, unavailable single-weekend intervals, no replacement of missing intervals with bare estimates, source-bound forecast/live bands, identical route evidence, and restriction of sealed extras.
+
+`../.venv/bin/python tests/screenshots/capture.py --base http://localhost:8506 --compare --out /private/tmp/orb-c5-workstream6-captures-before`: all 19 routes at 1440x900 and 1920x1080; worst cold load 1051 ms; route switches 142-180 ms; zero console errors, zero external requests, no horizontal overflow. The compare mode writes its own temporary directory and ignores --out. Captures were inspected before golden updates.
+
+| Route | Difference at 1440x900 | Difference at 1920x1080 | Content reason |
+|---|---:|---:|---|
+| landing | 0.002% | 0.109% | Regenerated scorecards and corrected prefix pooled metrics/provenance |
+| generalisation | 7.664% | 9.187% | Shared uncertainty and denominator tables; limited sealed card |
+| validation | 8.102% | 7.876% | Same scorecard tables replace unbanded legacy summaries |
+
+Only these three routes' six PNGs are regenerated. Other routes remain unchanged; Ghost canvas jitter was at most 0.004%.
+
+`../.venv/bin/python tests/screenshots/capture.py --base http://localhost:8506 --update --routes landing,generalisation,validation` regenerated those six PNGs. Its optional route-switch timing observed 606 ms once at 1920x1080 (600 ms budget); the golden update report retains that observation. No timing threshold was changed.
+
+Final gate: `ORB_BASE=http://localhost:8506 ../.venv/bin/python -m pytest tests/screenshots -q -p no:cacheprovider` returned **11 passed in 92.07 s**, no skips. All 19 routes at both resolutions: worst cold load 985 ms; route switches 145-180 ms; zero errors, zero external requests, no overflow; maximum golden difference 0.00694% (Ghost canvas jitter). Raw final gate capture: `/private/tmp/orb-c5-workstream6-final-report.json`. This final full gate is separate from the preceding subset golden-update observation.
+
+Initial development UI check returned 55 passed / 1 failed because a required separation label moved into a caption not collected by the legacy HTML assertion. The label was retained in the evidence HTML; subsequent runs returned 63 passed, including the final source/input run. The local server needed an approved sandbox escalation to bind port 8506; no main server was restarted.

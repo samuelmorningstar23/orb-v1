@@ -1,0 +1,704 @@
+{
+ "generated_at": "2026-09-13T00:35:13",
+ "base": "http://localhost:8502",
+ "engine": "Chromium actual DOM",
+ "viewports": {
+  "1440x900": [
+   1440,
+   900
+  ],
+  "1920x1080": [
+   1920,
+   1080
+  ]
+ },
+ "routes": [
+  {
+   "route": "acceptance/ghost_audit_fixed_context",
+   "page": "ghost_strategy",
+   "state": {
+    "ev": "Monza",
+    "drv": "VER",
+    "mode": "audit",
+    "ilap": 28,
+    "rep": "SOFT"
+   },
+   "viewport": "1440x900",
+   "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
+   "status": "ok",
+   "numbers": 124,
+   "matched": {
+    "lock_v2": 6,
+    "lock": 104,
+    "sidecar:out/maps/Monza": 1,
+    "sidecar:out/counterfactual (Monza)": 9,
+    "asset:out/validation/hidden_stop_2026.json (sha256 printed on the page, no sidecar)": 1,
+    "asset:out/validation/regret_2026.json (sha256 printed on the page, no sidecar)": 2,
+    "derived": 1
+   },
+   "ambiguous": [
+    {
+     "widget": "MEDIUM",
+     "value": 1.0,
+     "decimals": 1,
+     "shown": "p 28\nframes workstream2 · 4922 @ 1.0 Hz · finish delta",
+     "reference": "lock.events.Australia.excluded_by_reason.timing flagged inaccurate",
+     "kind": "lock",
+     "ambiguity": 77
+    },
+    {
+     "widget": "MEDIUM",
+     "value": -37.5,
+     "decimals": 1,
+     "shown": "922 @ 1.0 Hz · finish delta -37.5 s\ntrack sidecar",
+     "reference": "out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/summary.json.engine.elapsed_delta_mean_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": -37.2,
+     "decimals": 1,
+     "shown": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixe",
+     "reference": "lock.events.Japan.track_temp.FP1",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "eave-one-driver-out Sunday reference: soft +0.025,",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 30
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "-out Sunday reference: soft +0.025, medium +0.028,",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.022,
+     "decimals": 3,
+     "shown": "eference: soft +0.025, medium +0.028, hard +0.022",
+     "reference": "lock.validation.withheld_cases[0].obs",
+     "kind": "lock",
+     "ambiguity": 16
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.003,
+     "decimals": 3,
+     "shown": "FORECAST ERROR (FROZEN VS RACE REFERENCE)\n+0.003",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "RAGE\ncovered\nRACE-DERIVED REFERENCE (LOCK)\n+0.028",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "0)\nFROZEN PLAN COST ABOVE THAT BEST (LOCK)\n+0.0 s",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.6,
+     "decimals": 1,
+     "shown": "medium → new hard (sc/vsc): next-lap error 0.6 s v",
+     "reference": "lock.events.Australia.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 94
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 1.1,
+     "decimals": 1,
+     "shown": "rd (sc/vsc): next-lap error 0.6 s vs naive 1.1 s ·",
+     "reference": "lock.rules.fuel_prior_kg_per_lap",
+     "kind": "lock",
+     "ambiguity": 58
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 2.0,
+     "decimals": 1,
+     "shown": "ve 1.1 s · inside the 90% interval · 3-lap 2.0 s v",
+     "reference": "lock.strategy.Australia.views.Naive fit.stops",
+     "kind": "lock",
+     "ambiguity": 37
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 3.4,
+     "decimals": 1,
+     "shown": "de the 90% interval · 3-lap 2.0 s vs naive 3.4 s ·",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json.engine.pit_model.stationary_q[2]",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 26
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 3.8,
+     "decimals": 1,
+     "shown": "erval · 3-lap 2.0 s vs naive 3.4 s · 5-lap 3.8 s v",
+     "reference": "lock_v2.input_availability.channels.position_xy.sample_rate_hz",
+     "kind": "lock_v2",
+     "ambiguity": 22
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 5.9,
+     "decimals": 1,
+     "shown": ".0 s vs naive 3.4 s · 5-lap 3.8 s vs naive 5.9 s\nH",
+     "reference": "lock.strategy.Hungary.views.Orb v1.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 1.0,
+     "decimals": 1,
+     "shown": "RESPONSE, 2026 POOL\nnext-lap MAE 1.0 s v",
+     "reference": "lock.events.Australia.excluded_by_reason.timing flagged inaccurate",
+     "kind": "lock",
+     "ambiguity": 77
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 1.4,
+     "decimals": 1,
+     "shown": "POOL\nnext-lap MAE 1.0 s vs naive 1.4 s ·",
+     "reference": "lock.validation_rows[14].z",
+     "kind": "lock",
+     "ambiguity": 48
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 2.6,
+     "decimals": 1,
+     "shown": "next-lap MAE 1.0 s vs naive 1.4 s · 3-lap 2.6 s v",
+     "reference": "lock.validation_rows[8].z",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 3.8,
+     "decimals": 1,
+     "shown": "MAE 1.0 s vs naive 1.4 s · 3-lap 2.6 s vs 3.8 s ·",
+     "reference": "lock_v2.input_availability.channels.position_xy.sample_rate_hz",
+     "kind": "lock_v2",
+     "ambiguity": 22
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 4.2,
+     "decimals": 1,
+     "shown": "naive 1.4 s · 3-lap 2.6 s vs 3.8 s · 5-lap 4.2 s v",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/laps.csv:cumulative_delta",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 24
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 6.2,
+     "decimals": 1,
+     "shown": "s · 3-lap 2.6 s vs 3.8 s · 5-lap 4.2 s vs 6.2 s ·",
+     "reference": "lock.strategy.Barcelona.views.Cleaned Friday curve.crossover.S-H",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "OST-RACE REFERENCE MODEL\nOrb v1 S-M (44/9) +0.0 s",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 47.1,
+     "decimals": 1,
+     "shown": "b v1 S-M (44/9) +0.0 s · naive M-H (19/34) +47.1 s",
+     "reference": "lock.strategy.Monza.views.Naive fit.cost_under_truth_vs_best_s",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 66.3,
+     "decimals": 1,
+     "shown": "19/34) +47.1 s · observed field M-H (3/50) +66.3 s",
+     "reference": "out/counterfactual/lattice_Monza_fixed_context.json.timing.per_scenario_ms_max",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 23.7,
+     "decimals": 1,
+     "shown": "A POST-RACE REFERENCE MODEL\nOrb v1 median +23.7 s",
+     "reference": "lock.strategy.Hungary.views.Orb v1.cost_under_truth_vs_best_s",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "pit transit loss: only 2 green-flag stop(s) measur...",
+     "value": 21.98,
+     "decimals": 2,
+     "shown": "25 stops used (median total 21.98 s)\nout-lap penal",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json.engine.pit_model.derivation.season_pool.median_total_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "pit transit loss: only 2 green-flag stop(s) measur...",
+     "value": 0.0134,
+     "decimals": 4,
+     "shown": "e rests on 32 race laps (SE 0.0134 s/lap per lap);",
+     "reference": "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json.engine.curves.by_compound.SOFT.sd",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart label",
+     "value": 0.0,
+     "decimals": 3,
+     "shown": "d context) · identity check +0.000 s",
+     "reference": "lock.events.Australia.offsets.SOFT",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart label",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "Medium pre-race forecast +0.030 (lock)",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 37
+    },
+    {
+     "widget": "chart label",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "driver-out Sunday reference +0.028 ± 0.003 (250 la",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "chart label",
+     "value": 0.003,
+     "decimals": 3,
+     "shown": "t Sunday reference +0.028 ± 0.003 (250 laps)",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "chart label",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "Soft pre-race forecast +0.025 (lock)",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 30
+    },
+    {
+     "widget": "chart label",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "driver-out Sunday reference +0.025 ± 0.013 (32 lap",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 30
+    },
+    {
+     "widget": "chart label",
+     "value": 0.013,
+     "decimals": 3,
+     "shown": "t Sunday reference +0.025 ± 0.013 (32 laps)",
+     "reference": "lock.events.Madrid.evolution_s_per_min.FP2",
+     "kind": "lock",
+     "ambiguity": 9
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": [],
+   "surfaces": 40
+  },
+  {
+   "route": "acceptance/ghost_audit_fixed_context",
+   "page": "ghost_strategy",
+   "state": {
+    "ev": "Monza",
+    "drv": "VER",
+    "mode": "audit",
+    "ilap": 28,
+    "rep": "SOFT"
+   },
+   "viewport": "1920x1080",
+   "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
+   "status": "ok",
+   "numbers": 124,
+   "matched": {
+    "lock_v2": 6,
+    "lock": 104,
+    "sidecar:out/maps/Monza": 1,
+    "sidecar:out/counterfactual (Monza)": 9,
+    "asset:out/validation/hidden_stop_2026.json (sha256 printed on the page, no sidecar)": 1,
+    "asset:out/validation/regret_2026.json (sha256 printed on the page, no sidecar)": 2,
+    "derived": 1
+   },
+   "ambiguous": [
+    {
+     "widget": "MEDIUM",
+     "value": 1.0,
+     "decimals": 1,
+     "shown": "p 28\nframes workstream2 · 4922 @ 1.0 Hz · finish delta",
+     "reference": "lock.events.Australia.excluded_by_reason.timing flagged inaccurate",
+     "kind": "lock",
+     "ambiguity": 77
+    },
+    {
+     "widget": "MEDIUM",
+     "value": -37.5,
+     "decimals": 1,
+     "shown": "922 @ 1.0 Hz · finish delta -37.5 s\ntrack sidecar",
+     "reference": "out/counterfactual/monza_ver_lap28_to_soft_new_fixed_context/summary.json.engine.elapsed_delta_mean_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": -37.2,
+     "decimals": 1,
+     "shown": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixe",
+     "reference": "lock.events.Japan.track_temp.FP1",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "eave-one-driver-out Sunday reference: soft +0.025,",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 30
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "-out Sunday reference: soft +0.025, medium +0.028,",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.022,
+     "decimals": 3,
+     "shown": "eference: soft +0.025, medium +0.028, hard +0.022",
+     "reference": "lock.validation.withheld_cases[0].obs",
+     "kind": "lock",
+     "ambiguity": 16
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.003,
+     "decimals": 3,
+     "shown": "FORECAST ERROR (FROZEN VS RACE REFERENCE)\n+0.003",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "RAGE\ncovered\nRACE-DERIVED REFERENCE (LOCK)\n+0.028",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "0)\nFROZEN PLAN COST ABOVE THAT BEST (LOCK)\n+0.0 s",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.6,
+     "decimals": 1,
+     "shown": "medium → new hard (sc/vsc): next-lap error 0.6 s v",
+     "reference": "lock.events.Australia.offsets.MEDIUM",
+     "kind": "lock",
+     "ambiguity": 94
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 1.1,
+     "decimals": 1,
+     "shown": "rd (sc/vsc): next-lap error 0.6 s vs naive 1.1 s ·",
+     "reference": "lock.rules.fuel_prior_kg_per_lap",
+     "kind": "lock",
+     "ambiguity": 58
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 2.0,
+     "decimals": 1,
+     "shown": "ve 1.1 s · inside the 90% interval · 3-lap 2.0 s v",
+     "reference": "lock.strategy.Australia.views.Naive fit.stops",
+     "kind": "lock",
+     "ambiguity": 37
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 3.4,
+     "decimals": 1,
+     "shown": "de the 90% interval · 3-lap 2.0 s vs naive 3.4 s ·",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json.engine.pit_model.stationary_q[2]",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 26
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 3.8,
+     "decimals": 1,
+     "shown": "erval · 3-lap 2.0 s vs naive 3.4 s · 5-lap 3.8 s v",
+     "reference": "lock_v2.input_availability.channels.position_xy.sample_rate_hz",
+     "kind": "lock_v2",
+     "ambiguity": 22
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 5.9,
+     "decimals": 1,
+     "shown": ".0 s vs naive 3.4 s · 5-lap 3.8 s vs naive 5.9 s\nH",
+     "reference": "lock.strategy.Hungary.views.Orb v1.alternatives[3].delta_to_best",
+     "kind": "lock",
+     "ambiguity": 17
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 1.0,
+     "decimals": 1,
+     "shown": "RESPONSE, 2026 POOL\nnext-lap MAE 1.0 s v",
+     "reference": "lock.events.Australia.excluded_by_reason.timing flagged inaccurate",
+     "kind": "lock",
+     "ambiguity": 77
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 1.4,
+     "decimals": 1,
+     "shown": "POOL\nnext-lap MAE 1.0 s vs naive 1.4 s ·",
+     "reference": "lock.validation_rows[14].z",
+     "kind": "lock",
+     "ambiguity": 48
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 2.6,
+     "decimals": 1,
+     "shown": "next-lap MAE 1.0 s vs naive 1.4 s · 3-lap 2.6 s v",
+     "reference": "lock.validation_rows[8].z",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 3.8,
+     "decimals": 1,
+     "shown": "MAE 1.0 s vs naive 1.4 s · 3-lap 2.6 s vs 3.8 s ·",
+     "reference": "lock_v2.input_availability.channels.position_xy.sample_rate_hz",
+     "kind": "lock_v2",
+     "ambiguity": 22
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 4.2,
+     "decimals": 1,
+     "shown": "naive 1.4 s · 3-lap 2.6 s vs 3.8 s · 5-lap 4.2 s v",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/laps.csv:cumulative_delta",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 24
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 6.2,
+     "decimals": 1,
+     "shown": "s · 3-lap 2.6 s vs 3.8 s · 5-lap 4.2 s vs 6.2 s ·",
+     "reference": "lock.strategy.Barcelona.views.Cleaned Friday curve.crossover.S-H",
+     "kind": "lock",
+     "ambiguity": 5
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 0.0,
+     "decimals": 1,
+     "shown": "OST-RACE REFERENCE MODEL\nOrb v1 S-M (44/9) +0.0 s",
+     "reference": "lock.rules.min_slope",
+     "kind": "lock",
+     "ambiguity": 51
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 47.1,
+     "decimals": 1,
+     "shown": "b v1 S-M (44/9) +0.0 s · naive M-H (19/34) +47.1 s",
+     "reference": "lock.strategy.Monza.views.Naive fit.cost_under_truth_vs_best_s",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 66.3,
+     "decimals": 1,
+     "shown": "19/34) +47.1 s · observed field M-H (3/50) +66.3 s",
+     "reference": "out/counterfactual/lattice_Monza_fixed_context.json.timing.per_scenario_ms_max",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "FINISH DELTA (MEDIAN)\n-37.2 s · Workstream 2 fixed cont...",
+     "value": 23.7,
+     "decimals": 1,
+     "shown": "A POST-RACE REFERENCE MODEL\nOrb v1 median +23.7 s",
+     "reference": "lock.strategy.Hungary.views.Orb v1.cost_under_truth_vs_best_s",
+     "kind": "lock",
+     "ambiguity": 2
+    },
+    {
+     "widget": "pit transit loss: only 2 green-flag stop(s) measur...",
+     "value": 21.98,
+     "decimals": 2,
+     "shown": "25 stops used (median total 21.98 s)\nout-lap penal",
+     "reference": "out/counterfactual/monza_nor_lap24_to_medium_new_fixed_context/summary.json.engine.pit_model.derivation.season_pool.median_total_s",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 2
+    },
+    {
+     "widget": "pit transit loss: only 2 green-flag stop(s) measur...",
+     "value": 0.0134,
+     "decimals": 4,
+     "shown": "e rests on 32 race laps (SE 0.0134 s/lap per lap);",
+     "reference": "out/counterfactual/monza_ver_lap20_to_hard_new_fixed_context/summary.json.engine.curves.by_compound.SOFT.sd",
+     "kind": "sidecar:out/counterfactual (Monza)",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart label",
+     "value": 0.0,
+     "decimals": 3,
+     "shown": "d context) · identity check +0.000 s",
+     "reference": "lock.events.Australia.offsets.SOFT",
+     "kind": "lock",
+     "ambiguity": 3
+    },
+    {
+     "widget": "chart label",
+     "value": 0.03,
+     "decimals": 3,
+     "shown": "Medium pre-race forecast +0.030 (lock)",
+     "reference": "lock.rules.fuel_s_per_kg",
+     "kind": "lock",
+     "ambiguity": 37
+    },
+    {
+     "widget": "chart label",
+     "value": 0.028,
+     "decimals": 3,
+     "shown": "driver-out Sunday reference +0.028 ± 0.003 (250 la",
+     "reference": "lock.events.Hungary.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 29
+    },
+    {
+     "widget": "chart label",
+     "value": 0.003,
+     "decimals": 3,
+     "shown": "t Sunday reference +0.028 ± 0.003 (250 laps)",
+     "reference": "lock.validation.push_diagnostic.energy_trend_issued.50%",
+     "kind": "lock",
+     "ambiguity": 11
+    },
+    {
+     "widget": "chart label",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "Soft pre-race forecast +0.025 (lock)",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 30
+    },
+    {
+     "widget": "chart label",
+     "value": 0.025,
+     "decimals": 3,
+     "shown": "driver-out Sunday reference +0.025 ± 0.013 (32 lap",
+     "reference": "lock.events.Belgium.beta_practice_se",
+     "kind": "lock",
+     "ambiguity": 30
+    },
+    {
+     "widget": "chart label",
+     "value": 0.013,
+     "decimals": 3,
+     "shown": "t Sunday reference +0.025 ± 0.013 (32 laps)",
+     "reference": "lock.events.Madrid.evolution_s_per_min.FP2",
+     "kind": "lock",
+     "ambiguity": 9
+    }
+   ],
+   "placeholders": [],
+   "unclassified": [],
+   "unhashed_live": [],
+   "mismatches": [],
+   "error": null,
+   "notes": [],
+   "surfaces": 40
+  }
+ ],
+ "exit_code": 0,
+ "error": null,
+ "summary": {
+  "routes": 1,
+  "viewport_route_checks": 2,
+  "numbers": 248,
+  "mismatches": 0,
+  "load_failures": 0
+ }
+}

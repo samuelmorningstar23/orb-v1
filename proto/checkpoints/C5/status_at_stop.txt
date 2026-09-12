@@ -1,0 +1,15 @@
+merge queue: OPEN (C4 GO; since 2026-09-12T23:22:16)
+last checkpoint: C4 GO at 2026-09-12T23:20:32 commit 295ebc9
+last green: C4 commit 295ebc9 at 2026-09-12T23:20:32
+active workstreams: [3, 6, 7]   stale threshold 40 min   now 2026-09-13T00:07:53
+workstream  status                     age  task                                 tests    eta  blockers / needs review
+-----------------------------------------------------------------------------------------------------------------
+    1  AMBER (stale 457 min)     458m  contract_and_fixtures: lock v2 sch 109/109      0  -  review: 7
+    2  AMBER (stale 447 min)     448m  0.3 PreRaceCurveProvider (provider   53/53      0  -  review: 3,7
+    3  GREEN                      20m  C5 evaluation scorecards: eligible   65/65      0  -  review: lead
+    4  AMBER (stale 439 min)     440m  0.5 track geometry, trajectory, ti   30/30      0  -  review: 6
+    6  GREEN                      13m  C5 shared scorecard evidence on Va   74/74      0  -  review: 3,7,lead
+    7  GREEN                      19m  C5 red-team tooling and independen     8/8      0  -  review: lead
+    8  AMBER (stale 457 min)     458m  live intelligence: 0.8 replay esti   31/31      0  -  review: 3,7
+    9  AMBER (stale 448 min)     448m  build_control_system (task 0.16)     83/83      0  -  review: lead
+STALE heartbeats (> 40 min): workstreams [1, 2, 4, 8, 9]

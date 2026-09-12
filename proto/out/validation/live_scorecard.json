@@ -1,7 +1,7 @@
 {
  "scorecard": "Live Predictor",
- "generated_at": "2026-09-12T21:53:14",
- "git_sha": "cdb1a45a2f7b7bc7e94b8dfe342630eed208ec8e",
+ "generated_at": "2026-09-12T23:44:41",
+ "git_sha": "230870bc9f27f281c515ac7c6108da2e55574688",
  "data_cutoff": "2026-09-06T15:00:00 (Monza race, the latest completed 2026 round on disk; Madrid is the live weekend)",
  "units": {
   "mae": "s",
@@ -12,6 +12,7 @@
  },
  "source": {
   "path": "out/live/prefix_eval.json",
+  "sha256": "f3cfb209f6daaa5ee14672fbfc6c23ed4da9449ddd96382f51e15c2c43e047c8",
   "generated_at": "2026-09-12T21:49:21",
   "estimator": "linear-Gaussian with fixed regime rules",
   "model_version": "live_estimator_lg_v0.1",
@@ -207,21 +208,27 @@
     0.324637036583613,
     0.4265645215318147
    ],
-   "n_weekends": 3,
+   "n": 1890,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "next1_mae"
   },
   "next1_mae_prior_only": {
-   "estimate": 0.42579264664115674,
+   "estimate": 0.4257926466411567,
    "ci90": [
     0.35291082965304293,
     0.4944117802976452
    ],
-   "n_weekends": 3,
+   "n": 1890,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "next1_mae_prior_only"
   },
   "cum3_mae": {
    "estimate": 1.0449894977748657,
@@ -229,10 +236,13 @@
     0.8240276634884772,
     1.2329858789516732
    ],
-   "n_weekends": 3,
+   "n": 1315,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "cum3_mae"
   },
   "cum3_mae_prior_only": {
    "estimate": 1.1217084950753795,
@@ -240,21 +250,27 @@
     0.8659179794242445,
     1.3617433597091475
    ],
-   "n_weekends": 3,
+   "n": 1315,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "cum3_mae_prior_only"
   },
   "cum5_mae": {
-   "estimate": 1.8453345807671657,
+   "estimate": 1.8453345807671655,
    "ci90": [
     1.3836808445291817,
     2.24318622117759
    ],
-   "n_weekends": 3,
+   "n": 943,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "cum5_mae"
   },
   "cum5_mae_prior_only": {
    "estimate": 1.7964417026953998,
@@ -262,10 +278,13 @@
     1.3218844885658318,
     2.2410287763608028
    ],
-   "n_weekends": 3,
+   "n": 943,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "cum5_mae_prior_only"
   },
   "coverage90_next1": {
    "estimate": 0.8904761904761904,
@@ -273,10 +292,13 @@
     0.8691817736403724,
     0.9154686601495112
    ],
-   "n_weekends": 3,
+   "n": 1890,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "coverage90_next1"
   },
   "coverage90_next1_prior_only": {
    "estimate": 0.9126984126984127,
@@ -284,10 +306,13 @@
     0.8630985915492958,
     0.9620471535365153
    ],
-   "n_weekends": 3,
+   "n": 1890,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "coverage90_next1_prior_only"
   },
   "coverage90_next3": {
    "estimate": 0.8597742127153892,
@@ -295,21 +320,27 @@
     0.819304152637486,
     0.9053030303030303
    ],
-   "n_weekends": 3,
+   "n": 1683,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "coverage90_next3"
   },
   "cliff3_brier": {
-   "estimate": 0.16393416937471988,
+   "estimate": 0.16393416937471986,
    "ci90": [
     0.10828200584532376,
     0.2142097260994264
    ],
-   "n_weekends": 3,
+   "n": 2231,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "cliff3_brier"
   },
   "cliff5_brier": {
    "estimate": 0.1951054353337612,
@@ -317,21 +348,27 @@
     0.13227176603373106,
     0.2499810126503006
    ],
-   "n_weekends": 3,
+   "n": 2337,
+   "n_unit": "scored windows",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "cliff5_brier"
   },
   "cliff5_brier_climatology": {
-   "estimate": 0.12286588091453476,
+   "estimate": 0.1261333510571779,
    "ci90": [
-    0.09008240750497057,
-    0.15149721901451085
+    0.09332354122468614,
+    0.15163794522913562
    ],
    "n_weekends": 3,
    "n_rows": 3,
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
+   "n": 2337,
+   "n_unit": "scored windows",
+   "metric_label": "cliff5_brier_climatology"
   },
   "recommendation_change_rate": {
    "estimate": 0.09265084358021161,
@@ -339,10 +376,13 @@
     0.07457949857188194,
     0.10746812386156648
    ],
-   "n_weekends": 3,
+   "n": 3497,
+   "n_unit": "lap pairs",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "recommendation_change_rate"
   },
   "aw_false_alert_episodes_per_stint": {
    "estimate": 0.0759493670886076,
@@ -350,10 +390,13 @@
     0.05555555555555555,
     0.08653846153846154
    ],
-   "n_weekends": 3,
+   "n": 79,
+   "n_unit": "stints",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "aw_false_alert_episodes_per_stint"
   },
   "aw_detection_rate": {
    "estimate": 0.7878787878787878,
@@ -361,24 +404,131 @@
     0.3333333333333333,
     0.9
    ],
-   "n_weekends": 3,
+   "n": 33,
+   "n_unit": "stints",
    "n_rows": 3,
+   "n_weekends": 3,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "metric_label": "aw_detection_rate"
   },
   "aw_lead_laps_median": {
-   "estimate": 8.484848484848484,
+   "estimate": 8.5,
    "ci90": [
-    6.333333333333333,
-    8.87037037037037
+    7.0,
+    9.0
+   ],
+   "n_weekends": 3,
+   "n_rows": 26,
+   "n_boot": 2000,
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
+   "n": 26,
+   "n_unit": "detected true stints",
+   "metric_label": "Median alert lead (laps)"
+  },
+  "cliff3_brier_climatology": {
+   "estimate": 0.09103820277452249,
+   "ci90": [
+    0.0659445968405132,
+    0.11153586050867156
    ],
    "n_weekends": 3,
    "n_rows": 3,
    "n_boot": 2000,
-   "method": "weekend-grouped bootstrap (resample weekends, never rows)"
+   "method": "weekend-grouped bootstrap (resample weekends, never rows)",
+   "n": 2231,
+   "n_unit": "scored windows",
+   "metric_label": "cliff3_brier_climatology"
   }
  },
- "note": "all numbers from prefix evaluation where only data through lap k is revealed; re-pooled here with a race-grouped, laps-weighted bootstrap",
+ "note": "all numbers from prefix evaluation where only data through lap k is revealed; re-pooled here with whole-weekend bootstrap: means weighted by eligible windows/stints, alert lead median pooled from detected true stints, climatology from pooled event counts",
+ "source_consistency": {
+  "next1_mae": {
+   "scorecard": 0.37967248546702026,
+   "source": 0.37967248546702026,
+   "match": true
+  },
+  "next1_mae_prior_only": {
+   "scorecard": 0.4257926466411567,
+   "source": 0.4257926466411567,
+   "match": true
+  },
+  "cum3_mae": {
+   "scorecard": 1.0449894977748657,
+   "source": 1.0449894977748657,
+   "match": true
+  },
+  "cum3_mae_prior_only": {
+   "scorecard": 1.1217084950753795,
+   "source": 1.1217084950753795,
+   "match": true
+  },
+  "cum5_mae": {
+   "scorecard": 1.8453345807671655,
+   "source": 1.8453345807671653,
+   "match": true
+  },
+  "cum5_mae_prior_only": {
+   "scorecard": 1.7964417026953998,
+   "source": 1.7964417026953998,
+   "match": true
+  },
+  "coverage90_next1": {
+   "scorecard": 0.8904761904761904,
+   "source": 0.8904761904761904,
+   "match": true
+  },
+  "coverage90_next1_prior_only": {
+   "scorecard": 0.9126984126984127,
+   "source": 0.9126984126984127,
+   "match": true
+  },
+  "coverage90_next3": {
+   "scorecard": 0.8597742127153892,
+   "source": 0.8597742127153892,
+   "match": true
+  },
+  "cliff3_brier": {
+   "scorecard": 0.16393416937471986,
+   "source": 0.16393416937471988,
+   "match": true
+  },
+  "cliff5_brier": {
+   "scorecard": 0.1951054353337612,
+   "source": 0.19510543533376123,
+   "match": true
+  },
+  "cliff5_brier_climatology": {
+   "scorecard": 0.1261333510571779,
+   "source": 0.12613335105717788,
+   "match": true
+  },
+  "recommendation_change_rate": {
+   "scorecard": 0.09265084358021161,
+   "source": 0.09265084358021161,
+   "match": true
+  },
+  "aw_false_alert_episodes_per_stint": {
+   "scorecard": 0.0759493670886076,
+   "source": 0.0759493670886076,
+   "match": true
+  },
+  "aw_detection_rate": {
+   "scorecard": 0.7878787878787878,
+   "source": 0.7878787878787878,
+   "match": true
+  },
+  "aw_lead_laps_median": {
+   "scorecard": 8.5,
+   "source": 8.5,
+   "match": true
+  },
+  "cliff3_brier_climatology": {
+   "scorecard": 0.09103820277452249,
+   "source": 0.09103820277452247,
+   "match": true
+  }
+ },
  "driver_feedback_ablation": {
   "status": "not run",
   "n_events": 0,

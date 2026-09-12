@@ -307,6 +307,19 @@ def _probe_summary(probe: Optional[dict]) -> dict:
     return dict(status='PASS' if probe.get('exit_code') == 0 else 'FAIL', generated_at=probe.get('generated_at'), exit_code=probe.get('exit_code'), counts=s, failing_routes=failing, notes=probe.get('notes'))
 
 
+def _browser_summary(browser: Optional[dict]) -> dict:
+    from evaluation.red_team.browser_consistency import browser_routes, VIEWPORTS
+    expected = {(name, viewport) for name, _, _, _ in browser_routes() for viewport in VIEWPORTS}
+    records = (browser or {}).get('routes', [])
+    actual = {(r.get('route'), r.get('viewport')) for r in records}
+    complete = actual == expected and len(records) == len(expected)
+    green = bool(browser and browser.get('exit_code') == 0 and complete and
+                 all(r.get('status') == 'ok' and r.get('numbers', 0) > 0 and not r.get('mismatches') for r in records))
+    return dict(status='PASS' if green else 'FAIL', counts=(browser or {}).get('summary'),
+                generated_at=(browser or {}).get('generated_at'), matrix_complete=complete,
+                missing=sorted(expected - actual), error=(browser or {}).get('error'))
+
+
 def _leakage_summary(leak: Optional[dict]) -> dict:
     if not leak:
         return dict(status='SKIP', note='no leakage_audit_report.json')
@@ -349,7 +362,7 @@ def verdict(checks: dict, blocking: dict) -> tuple[str, str]:
     return dec, ''
 
 
-def build(event: str = 'Madrid', rerun: Optional[set[str]] = None, skip_tests: bool = False, out: Path | str | None = REPORT_JSON) -> dict:
+def build(event: str = 'Madrid', rerun: Optional[set[str]] = None, skip_tests: bool = False, out: Path | str | None = REPORT_JSON, checkpoint: str = 'C4') -> dict:
     rerun = rerun if rerun is not None else {'leakage', 'claims'}
     inputs = run_or_load(rerun)
     blocking = _report('blocking_issues.json') or dict(issues=[], resolved=[])
@@ -365,6 +378,8 @@ def build(event: str = 'Madrid', rerun: Optional[set[str]] = None, skip_tests: b
         blocking=dict(status='PASS' if not blocking.get('issues') else 'FAIL', open=[i.get('id') for i in blocking.get('issues') or []], resolved=[r.get('id') for r in blocking.get('resolved') or []],
                       observations=[o.get('id') for o in blocking.get('observations_not_blocking') or []]),
     )
+    if checkpoint == 'C5':
+        checks['browser_consistency'] = _browser_summary(_report('browser_consistency_report.json'))
     wording = wording_outstanding(inputs['claims'])
     dec, why = verdict(checks, blocking)
     lock = read_json(LOCK_V1) if LOCK_V1.exists() else {}
@@ -373,8 +388,8 @@ def build(event: str = 'Madrid', rerun: Optional[set[str]] = None, skip_tests: b
                   fail=sum(1 for v in checks.values() if v.get('status') == 'FAIL'), skip=sum(1 for v in checks.values() if v.get('status') == 'SKIP'),
                   blocking_open=len(blocking.get('issues') or []), blocking_resolved=len(blocking.get('resolved') or []), wording_outstanding=len(wording),
                   acceptance_tests=(checks['acceptance_suite'].get('counts') or {}))
-    para = _verdict_paragraph(dec, why, checks, counts, wording)
-    rep = dict(generated_at=now_iso(), workstream=7, checkpoint_target='C4', lock=dict(generated_at=lock.get('generated_at'), forecast_hash=(v2.get('shared') or {}).get('forecast_hash')),
+    para = _verdict_paragraph(dec, why, checks, counts, wording, checkpoint)
+    rep = dict(generated_at=now_iso(), workstream=7, checkpoint_target=checkpoint, lock=dict(generated_at=lock.get('generated_at'), forecast_hash=(v2.get('shared') or {}).get('forecast_hash')),
                verdict=dict(decision=dec, paragraph=para), counts=counts, checks=checks, blocking=blocking, wording_flags_outstanding=wording,
                inputs={k: (v.get('generated_at') if isinstance(v, dict) else None) for k, v in inputs.items()}, rerun=sorted(rerun))
     rep['exit_code'] = 0 if (dec in ('GO', 'GO_WITH_REASSIGNMENT') and counts['fail'] == 0) else 1
@@ -384,10 +399,10 @@ def build(event: str = 'Madrid', rerun: Optional[set[str]] = None, skip_tests: b
     return rep
 
 
-def _verdict_paragraph(dec: str, why: str, checks: dict, counts: dict, wording: list[dict]) -> str:
+def _verdict_paragraph(dec: str, why: str, checks: dict, counts: dict, wording: list[dict], checkpoint: str = 'C4') -> str:
     bits = []
     fa = checks['forecast_file_audit']; hp = checks['hash_provenance']; pr = checks['consistency_probe']; ac = checks['acceptance_suite']; an = checks['madrid_anchors']
-    bits.append(f"Red team verdict for C4: {dec}." + (f' {why}' if why else ''))
+    bits.append(f"Red team verdict for {checkpoint}: {dec}." + (f' {why}' if why else ''))
     bits.append(f"Blocking list: {counts['blocking_open']} open, {counts['blocking_resolved']} resolved (RT-BLK-1 closed at the live_bridge boundary with guarding tests).")
     bits.append(f"Acceptance suite tests/red_team: {ac.get('counts', {}).get('passed', '?')} passed, {ac.get('counts', {}).get('failed', '?')} failed, {ac.get('counts', {}).get('xfailed', '?')} xfailed in {ac.get('seconds', '?')} s"
                 + (f" (failing: {', '.join(n['test'].split('::')[-1] for n in ac.get('not_green', []) if n['status'] in ('FAILED', 'ERROR'))})" if any(n['status'] in ('FAILED', 'ERROR') for n in ac.get('not_green', [])) else '') + '.')
@@ -437,11 +452,12 @@ def render_md(rep: dict) -> str:
 
 def main(argv: Optional[list[str]] = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
+    ap.add_argument('--checkpoint', default='C4', choices=[f'C{i}' for i in range(8)])
     ap.add_argument('--event', default='Madrid'); ap.add_argument('--rerun', default='leakage,claims', help='comma list of leakage,claims,identity,probe (or none)')
     ap.add_argument('--skip-tests', action='store_true'); ap.add_argument('--out', default=str(REPORT_JSON))
     a = ap.parse_args(argv)
     rerun = {x.strip() for x in a.rerun.split(',') if x.strip() and x.strip() != 'none'}
-    rep = build(a.event, rerun, a.skip_tests, a.out)
+    rep = build(a.event, rerun, a.skip_tests, a.out, a.checkpoint)
     print(rep['verdict']['paragraph'])
     for k, v in rep['checks'].items():
         print(f"  {v.get('status'):5s} {k}")

@@ -65,6 +65,37 @@ def weekend_bootstrap(df: pd.DataFrame, stat: Callable[[pd.DataFrame], Optional[
     return dict(estimate=est, ci90=[float(lo), float(hi)], n_weekends=len(weekends), n_rows=int(len(df)), n_boot=len(stats), method='weekend-grouped bootstrap (resample weekends, never rows)')
 
 
+def weekend_mean_bootstrap(df: pd.DataFrame, value_col: str, weight_col: Optional[str] = None,
+                           n: int = N_BOOT, seed: int = SEED, n_unit: str = 'rows') -> dict[str, Any]:
+    """Exact cluster bootstrap for a (possibly weighted) mean via weekend sums.
+
+    Sufficient sums avoid rebuilding thousands of DataFrames. Only whole weekends
+    are sampled; duplicating a weekend duplicates its numerator and denominator.
+    n counts eligible observations, while n_rows counts input summary rows.
+    """
+    if df is None or df.empty:
+        return dict(estimate=None, ci90=None, n=0, n_unit=n_unit, n_rows=0, n_weekends=0,
+                    method='weekend-grouped bootstrap (no eligible observations)')
+    d = df[['race_id', value_col] + ([weight_col] if weight_col else [])].copy()
+    d['_value'] = pd.to_numeric(d[value_col], errors='coerce')
+    d['_weight'] = pd.to_numeric(d[weight_col], errors='coerce') if weight_col else 1.0
+    d = d[np.isfinite(d['_value']) & np.isfinite(d['_weight']) & (d['_weight'] > 0)].dropna(subset=['race_id'])
+    if d.empty:
+        return weekend_mean_bootstrap(None, value_col, n_unit=n_unit)
+    d['_num'] = d['_value'] * d['_weight']
+    g = d.groupby('race_id', sort=True)[['_num', '_weight']].sum()
+    a, w = g['_num'].to_numpy(), g['_weight'].to_numpy()
+    out = dict(estimate=float(a.sum() / w.sum()), ci90=None, n=int(w.sum()), n_unit=n_unit,
+               n_rows=int(len(d)), n_weekends=int(len(g)), method='weekend-grouped bootstrap (fewer than 2 weekends: no interval)')
+    if len(g) < 2:
+        return out
+    draws = np.random.default_rng(seed).choice(len(g), size=(n, len(g)), replace=True)
+    stats = a[draws].sum(axis=1) / w[draws].sum(axis=1)
+    out.update(ci90=np.percentile(stats, [5, 95]).tolist(), n_boot=n,
+               method='weekend-grouped bootstrap (resample weekends, never rows)')
+    return out
+
+
 def paired_probability(df: pd.DataFrame, a_col: str, b_col: str, weekend_col: str = 'race_id', n: int = N_BOOT, seed: int = SEED) -> dict[str, Any]:
     """P(mean(a) < mean(b)) under the weekend bootstrap plus the raw share of rows where a < b (ties count half)."""
     d = df.dropna(subset=[a_col, b_col])
@@ -82,7 +113,10 @@ def paired_probability(df: pd.DataFrame, a_col: str, b_col: str, weekend_col: st
         s = pd.concat([groups[w] for w in draw], ignore_index=True)
         diffs.append(float((s[b_col] - s[a_col]).mean()))
     diffs = np.array(diffs)
-    return dict(p_bootstrap=float(np.mean(diffs > 0) + 0.5 * np.mean(diffs == 0)), share_rows=wins, n_rows=int(len(d)), n_weekends=len(weekends))
+    d = d.copy()
+    d['_win'] = (d[a_col] < d[b_col]).astype(float) + 0.5 * (d[a_col] == d[b_col]).astype(float)
+    return dict(p_bootstrap=float(np.mean(diffs > 0) + 0.5 * np.mean(diffs == 0)), share_rows=wins, n_rows=int(len(d)), n_weekends=len(weekends),
+                share_rows_bootstrap=weekend_mean_bootstrap(d.rename(columns={weekend_col: 'race_id'}) if weekend_col != 'race_id' else d, '_win', n=n, seed=seed))
 
 
 def describe(values: Sequence[float]) -> dict[str, Any]:
@@ -97,4 +131,4 @@ def write_json(path, obj: Any) -> None:
     atomic_write_json(path, strip_nonfinite(obj))
 
 
-__all__ = ['SEED', 'N_BOOT', 'finite', 'mae', 'share', 'weekend_bootstrap', 'paired_probability', 'describe', 'write_json']
+__all__ = ['SEED', 'N_BOOT', 'finite', 'mae', 'share', 'weekend_bootstrap', 'weekend_mean_bootstrap', 'paired_probability', 'describe', 'write_json']

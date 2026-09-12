@@ -1,29 +1,23 @@
 {
- "workstream": 7,
- "task": "red team C4 re-run: four probes against the post-qualifying / post-freeze / post-rebuild tree, refreshed blocking list and verdict, tests/red_team acceptance suite",
- "status": "GREEN",
- "commit": null,
- "completed": [
-  "all four probes re-run against the current tree, and re-run a SECOND time at 22:15-22:17 after Workstream 6 edited app_v2/pages/{landing,generalisation,ghost_strategy}.py at 22:05-22:06 (three probe routes) so no report predates its inputs: consistency_probe 15 routes / 1692 numbers / 0 mismatches / 0 placeholders / 0 load failures; leakage_audit PASS 5 of 5 (one_forecast_hash now ok at sha256:66e3201e - it was the single FAIL at 21:42 on the stale out/live sidecars); identity_checks 41 passed 0 failed; claim_audit 19 verified / 5 exceeds_evidence / 5 unverifiable / 5 mismatch with must_reword_before_presentation empty",
-  "independent hash sweep (not the audit's fixed path list): every JSON under out/live and out/counterfactual walked for any *forecast_hash field - 24 fields, 0 stale, including the two out/counterfactual/pre_race scenarios the audit does not enumerate. Nothing to report to workstreams 2 or 8",
-  "identity_checks.reproduce_on_disk now also globs out/counterfactual/pre_race/*/summary.json (curve_source pre_race_forecast): 39 -> 41 checks, all six on-disk scenarios reproduce at max|diff| 0.00e+00 with the model hash unchanged. The Scenario Explorer's -14.2 s / -16.6 s pre-race numbers were previously unverified by any reproduction check",
-  "claim audit run after the 22:00:13 document rebuild (waited for 3 min of mtime quiet on THE_CASE.md, talk_track.md, the pptx and the three builders): madrid_timing is now 0 occurrences (the lead's fix landed), and no flagged claim is stated unqualified in any presentation document",
-  "claim_audit gate made qualification-aware and STRICTER on the presentation surfaces: it now blocks `unverifiable` verdicts too (the C3 gate ignored them) but only where the claim appears WITHOUT the qualification its evidence requires; ROADMAP_v5 is no longer treated as a claim surface. Each occurrence records `qualified` / `qualified_same_line` / `kind`, and summary.qualified_in_presentation lists every reclassification with file:line so a human can audit it",
-  "tests/red_team: 39 -> 53 passed + 1 strict xfail in 2.1 s. New tests/red_team/test_c4_artifact_provenance.py (every on-disk sidecar carries the lock forecast hash, with a planted-stale-pointer self-test; the real sealed_holdout_manifest.json still matches its recorded .sha256 - previously only proven in tmp_path) and tests/red_team/test_claim_gate.py (gate empty; every reclassified occurrence re-read from disk to prove its qualifiers; bare claim, wrong count, partial caveat and no-qualifier cases all still block)",
-  "blocking_issues.json refreshed: issues still [], RT-BLK-1 kept in `resolved` with its evidence and 5 guarding tests plus a 22:12 re-verification, and a new c4_rerun block recording each roadmap 14.3 condition with the command-level evidence that cleared it",
-  "red_team_report.json/.md rebuilt from this run: C4 verdict GO (was GO_WITH_REASSIGNMENT at 21:42), 8 of 9 checks PASS, claim_audit WARN",
-  "whole tree ../.venv/bin/python -m pytest tests -q -p no:cacheprovider --ignore=tests/screenshots: 472 passed, 1 skipped, 1 xfailed in 21.4 s"
- ],
- "in_progress": [],
- "blockers": [],
- "tests_passed": 53,
- "tests_failed": 0,
- "eta_minutes": 0,
- "needs_review_from": [
-  "lead",
-  "workstream 1",
-  "workstream 6"
- ],
- "notes": "C4 verdict GO. No roadmap 14.3 stop-the-line condition found; all four conditions re-checked with evidence in blocking_issues.json c4_rerun. Open items, none blocking: (1) Workstream 1 / lead, unchanged and still the only documented defect: pre_race_forecast.events.*.data_cutoff is stamped with the lock generated_at (all 12 events read 2026-09-12T21:33:10, identical to out/lock.json generated_at) inside the hashed block, so the forecast hash moves on a rebuild with identical numbers - verified again by substitution (zeroing only data_cutoff gives c956f2b9 instead of 66e3201e). tests/red_team::test_forecast_hash_is_content_only is the strict xfail documenting exactly this; it still xfails for that reason and must stay until the hash is content-only, when the marker comes off. (2) RT-OBS-4 (workstream 6 / lead): the last live_position_claim reword flag, app_v2/services/live_bridge.py:99, is a false positive - the rule wants 'frozen_field' on the matched line, but the qualification is in the docstring (lines 93-94) and in the label appended at line 106, and the value rendered is the OBSERVED position, which the rule's own note permits. I deliberately did NOT widen the rule's allowed_context to the enclosing function, because that would let a real future violation hide behind an unrelated frozen_field mention. Fix by adding the same end-of-line marker the other three lines carry, or accept it. (3) RT-OBS-2 (lead): the 8502 dashboard process (pid 86120, started 21:49:46) predates the 22:01:33 / 22:01:51 reword of live/viewmodel.py and decision/optimizer.py and Streamlit does not reload imported modules. Verified to change nothing on screen (both live pages take live_bridge.rejoin_text whenever rejoin_context.position_now is set, and it is set in all three demo records, so the reworded live/viewmodel string is unreachable from the UI; HTTP 200; probe 0 mismatches against the current tree) - but restart it once before the demo so the process matches the tree. (4) RT-OBS-3 (for the lead's awareness): liquid_23_pct_10_of_31 went from '3 occurrences, unverifiable' to 'qualified in all three documents'. This is a tool fix, not a wording change - the documents already say '23% lap-weighted with the three degenerate Hungary cells excluded, 31% with them' and '9 of 31 cells', exactly what out/liquid.json supports (lap-weighted no-Hungary 22.9%, all 31.2%, liquid beats best 9 of 31). The old regex 23%|10 of 31 matched the corrected sentence. Audit it at out/talk_track.md:12, out/THE_CASE.md:10, pptx slide 8 line 16. (5) RT-OBS-1 (low, unchanged): the lock-metadata support chip on the live pages uses the whole-session race rain flag. Sealed holdout untouched by me: sealed_holdout_manifest.json hashes 37b85e762b2e03c0, equal to its .sha256, unmodified against HEAD; out/validation/holdout_per_race.json checked for existence and size only (56683 bytes, 21:37:55), never opened. Did not rebuild any lock, forecast or scenario; did not commit.",
- "updated_at": "2026-09-12T22:16:43"
+  "workstream": 7,
+  "task": "C5 red-team tooling and independent Workstream3 evaluation refutation complete; final integrated probes owned by lead",
+  "status": "GREEN",
+  "commit": null,
+  "completed": [
+    "Public consistency-probe evidence allowlist; never loads post-freeze per-race holdout file",
+    "Actual DOM browser audit across15 existing+19 screenshot routes at1440x900 and1920x1080; complete68-check matrix required by C5 report",
+    "Mentor PPTX and ChallengeDay PDF both audited as presentation surfaces; pypdf extraction tested on real10-page PDF; missing/empty extraction fails loudly",
+    "C5 report checkpoint CLI configurable and browser matrix gate mandatory for C5",
+    "Independent Workstream3 refutation PASS:17 live clustered bands,29 lock rows,121risk cells x6metrics,3 independent risk gate cells x6metrics,13 rolling rounds and360 temporal-pool guards; exact input hashes recorded in c5_scorecard_refutation.json"
+  ],
+  "in_progress": [],
+  "blockers": [],
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "eta_minutes": 0,
+  "needs_review_from": [
+    "lead"
+  ],
+  "notes": "All Workstream7 source/test/progress claims released for lead integration; no commits. Exact tests: ../.venv/bin/python -m pytest tests/red_team/test_c5_audit_boundaries.py -q -p no:cacheprovider =>8passed. Preparatory safe AppTest: ../.venv/bin/python -m evaluation.red_team.consistency_probe --out /private/tmp/orb-c5-workstream7-preparatory-probe.json =>15routes1692numbers0mismatches0loadfailures. Preparatory browser Validation via browser_consistency.run(base=http://localhost:8507,routes=[validation],out=None) =>2casesx2viewports1108numbers0mismatches0loadfailures before final source/artifacts. Isolated8507 stopped. Source syntax compile passed. Final independent command: ../.venv/bin/python evaluation/red_team/refute_c5_scorecards.py --source /private/tmp/orb-c5-workstream3/proto --out /private/tmp/orb-c5-workstream7/proto/evaluation/red_team/c5_scorecard_refutation.json =>6checksPASS, generated2026-09-12T18:17:45UTC, input fingerprints stable through run. Final integrated claim audit/browser probe/report are NOT represented as run by Workstream7; lead runs them after final rebuilds. Diagnostic failures resolved: sandbox bind required escalation; direct fresh-session deep links required first loading landing; missing fitz replaced with installed pypdf. A main-doc audit extraction diagnostic found every_withheld_rises survivor on ChallengeDay page9line9 (wrapped negation); reported to lead, who owns document fix. Protected per-race file never read; no protected/model/forecast files edited.",
+  "updated_at": "2026-09-12T23:48:42.499922"
 }

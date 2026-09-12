@@ -1,0 +1,655 @@
+{
+ "at": "2026-09-13T00:43:54",
+ "proto_root": "/Users/samuelmorningstar/Trackshift/proto",
+ "rules_version": "roadmap_v5_s6 + workstream9 brief + lead decisions 12 Sep 2026 14:55, 15:05, 20:58 and 22:00 (out/ subtrees, tests/ per workstream, lead-only globs incl. generated documents and the published forecast)",
+ "changed": [
+  {
+   "path": "coordination/NOTES_B.md",
+   "git_status": "M",
+   "owner": "lead/notes",
+   "category": "coordination",
+   "flagged": false,
+   "reason": "coordination notes (lead decision 12 Sep 20:58)"
+  },
+  {
+   "path": "proto/app_v2/PERF.md",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/generalisation.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/ghost_strategy.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/validation.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/ui/scorecard_evidence.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/build_deck_v5.py",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/checkpoints/C5/COMMANDS.md",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/artifact_refutation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/browser_consistency_failed_before_fix.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/browser_probe.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/claim_audit.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/deck_layout_geometry.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/deck_package_integrity.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/deck_refutation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/final_source_fingerprints.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/fixed_route_probe.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/identity_checks.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/independent_browser_acceptance.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/leakage_audit.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/logs/pytest.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/logs/schema_validation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/protected_fingerprints.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/red_team_build.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/review_tools/artifact_check.py",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/review_tools/deck_refuter.py",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/review_tools/ui_refuter.py",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/run_checkpoint.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/scorecard_refutation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/status_at_stop.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C5/ui_refutation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/deck_src/build_deck.js",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/evaluation/common.py",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/hidden_stop.py",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/browser_consistency.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/browser_consistency_report.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/build_report.py",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/c5_scorecard_refutation.json",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/claim_audit.py",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/claim_evidence_map.json",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/consistency_probe.py",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/consistency_probe_report.json",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/identity_checks_report.json",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/leakage_audit_report.json",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/red_team_report.json",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/red_team_report.md",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/red_team/refute_c5_scorecards.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: evaluation/red_team/)"
+  },
+  {
+   "path": "proto/evaluation/regret.py",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/risk_coverage.py",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/evaluation/scorecards.py",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: evaluation/)"
+  },
+  {
+   "path": "proto/make_deck_figs.py",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/Orb_v1_ChallengeDay.pdf",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/Orb_v1_Mentor_Briefing.pptx",
+   "git_status": "M",
+   "owner": "lead",
+   "category": "lead_only",
+   "flagged": true,
+   "reason": "lead-only file; only the lead edits it"
+  },
+  {
+   "path": "proto/out/validation/SCORECARDS.md",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/ghost_scorecard.json",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/live_scorecard.json",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/risk_coverage.csv",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/risk_coverage.json",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/out/validation/risk_coverage.png",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: out/validation/)"
+  },
+  {
+   "path": "proto/progress/SUMMARY.md",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: progress/)"
+  },
+  {
+   "path": "proto/progress/workstream_3.json",
+   "git_status": "M",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 3 (blind evaluation)"
+  },
+  {
+   "path": "proto/progress/workstream_6.json",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 6 (dashboard)"
+  },
+  {
+   "path": "proto/progress/workstream_7.json",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 7 (red team)"
+  },
+  {
+   "path": "proto/release/active_workstreams.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/merge_queue.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/ownership_audit.py",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/tests/evaluation/test_eval_c5_scorecards.py",
+   "git_status": "??",
+   "owner": 3,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 3 (blind evaluation: tests/evaluation/)"
+  },
+  {
+   "path": "proto/tests/red_team/test_c5_audit_boundaries.py",
+   "git_status": "??",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: tests/red_team/)"
+  },
+  {
+   "path": "proto/tests/red_team/test_claim_gate.py",
+   "git_status": "M",
+   "owner": 7,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 7 (red team: tests/red_team/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/generalisation_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/generalisation_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/landing_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/landing_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/report.json",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/validation_1440x900.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/screenshots/golden/validation_1920x1080.png",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/screenshots/)"
+  },
+  {
+   "path": "proto/tests/ui/test_pages.py",
+   "git_status": "M",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/ui/)"
+  },
+  {
+   "path": "proto/tests/ui/test_scorecard_evidence.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: tests/ui/)"
+  }
+ ],
+ "repo_root": "/Users/samuelmorningstar/Trackshift",
+ "git_commit": "230870b",
+ "summary": {
+  "total": 78,
+  "flagged": 5,
+  "unowned": 0,
+  "lead_only": 5,
+  "outside_proto": 0,
+  "by_owner": {
+   "3": 13,
+   "6": 15,
+   "7": 16,
+   "9": 28,
+   "lead": 5,
+   "lead/notes": 1
+  }
+ },
+ "flagged_paths": [
+  "proto/build_deck_v5.py",
+  "proto/deck_src/build_deck.js",
+  "proto/make_deck_figs.py",
+  "proto/out/Orb_v1_ChallengeDay.pdf",
+  "proto/out/Orb_v1_Mentor_Briefing.pptx"
+ ]
+}

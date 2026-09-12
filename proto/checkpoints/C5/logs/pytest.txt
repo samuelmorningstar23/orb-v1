@@ -1,0 +1,12 @@
+..s..................................................................... [ 14%]
+........................................................................ [ 28%]
+........................................................................ [ 42%]
+........................................................................ [ 56%]
+....x................................................................... [ 70%]
+........................................................................ [ 85%]
+........................................................................ [ 99%]
+....                                                                     [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/contract/test_adapter.py:43: v1 lock regenerated since the documented numbers were recorded
+XFAIL tests/red_team/test_forecast_hash.py::test_forecast_hash_is_content_only - Workstream 1 / lead: pre_race_forecast.events.*.data_cutoff is stamped with the lock generated_at, so the hash changes at every refresh with identical numbers (proven 21:03 vs 18:11); exclude data_cutoff from the hashed content or set it to the real session cutoff
+506 passed, 1 skipped, 1 xfailed in 114.29s (0:01:54)

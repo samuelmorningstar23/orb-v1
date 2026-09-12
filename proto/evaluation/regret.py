@@ -183,6 +183,14 @@ def aggregate(rows: list[dict[str, Any]], bootstrap: bool = True) -> dict[str, A
                 sub = df.dropna(subset=[col])
                 d['ci90_mean'] = weekend_bootstrap(sub, lambda x, c=col: float(x[c].mean()))
                 d['ci90_median'] = weekend_bootstrap(sub, lambda x, c=col: float(x[c].median()))
+                stats = dict(mean=lambda v: v.mean(), median=lambda v: v.median(), p10=lambda v: np.percentile(v, 10),
+                    p90=lambda v: np.percentile(v, 90), min=lambda v: v.min(), max=lambda v: v.max(),
+                    worst_decile_mean=lambda v: v[v >= np.percentile(v, 90)].mean(),
+                    share_within_2s=lambda v: (v <= 2).mean(), share_within_5s=lambda v: (v <= 5).mean(), share_within_10s=lambda v: (v <= 10).mean())
+                d['bootstrap'] = {k: weekend_bootstrap(sub, lambda x, c=col, f=fn: float(f(x[c]))) for k, fn in stats.items()}
+                for b in d['bootstrap'].values():
+                    b.update(n=len(sub), n_unit='weekends')
+
         out['plans'][name] = d
     if 'regret_orb' in df:
         out['p_orb_beats_naive'] = paired_probability(df, 'regret_orb', 'regret_naive') if 'regret_naive' in df else None

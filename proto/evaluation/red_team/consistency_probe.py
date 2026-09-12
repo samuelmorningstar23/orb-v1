@@ -370,7 +370,13 @@ def build_base_references(lock: dict, state_values: list[float]) -> ReferenceSet
             refs.notes.append('out/sensitivity.json has no .sha256 sidecar and is not in the lock: its numbers are shown on the validation page as an unsigned asset')
     # Workstream 3's scorecards (out/validation/*.json): not in the lock; the pages print each file's sha256 next to the values
     # (services/asset_repository), so they are hashed-on-screen assets. Listed as assets, matched last in provenance order.
-    for p in sorted(glob.glob(str(PROTO / 'out' / 'validation' / '*.json'))):
+    # Public evidence only: never ingest the post-freeze per-race audit trail.
+    for filename in ('ghost_scorecard.json', 'live_scorecard.json', 'holdout_aggregate.json',
+                     'hidden_stop_2026.json', 'regret_2026.json', 'risk_coverage.json', 'rolling_origin_2026.json'):
+        p = PROTO / 'out' / 'validation' / filename
+        if not p.exists():
+            continue
+        p = str(p)
         rel = str(Path(p).relative_to(PROTO))
         signed = Path(p + '.sha256').exists()
         try:
@@ -569,6 +575,12 @@ def probe_route(name: str, page: str, state: dict, refs: ReferenceSet, verbose: 
     except Exception as e:
         rec['status'] = 'load_failure'; rec['error'] = f'{type(e).__name__}: {e}\n{traceback.format_exc()[-800:]}'
         return rec
+    return match_surfaces(rec, surfaces, refs, verbose)
+
+
+def match_surfaces(rec: dict, surfaces: list[dict], refs: ReferenceSet, verbose: bool = False) -> dict:
+    """Shared numeric matcher for AppTest elements and actual browser DOM surfaces."""
+    name = rec['route']
     for s in surfaces:
         if s['kind'] == 'error':
             rec['status'] = 'load_failure'; rec['error'] = f"surface {s['widget']}: {s['raw']}"
@@ -649,6 +661,8 @@ def run(routes: Optional[list[str]] = None, verbose: bool = False, out: Path | s
 def main(argv: Optional[list[str]] = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--routes', default=None, help='comma-separated route names or page modules (default: all)')
+    ap.add_argument('--browser', action='store_true', help='also audit actual DOM at 1440x900 and 1920x1080; server required')
+    ap.add_argument('--base', default='http://localhost:8502')
     ap.add_argument('--verbose', action='store_true')
     ap.add_argument('--out', default=str(REPORT_PATH))
     a = ap.parse_args(argv)
@@ -656,6 +670,13 @@ def main(argv: Optional[list[str]] = None) -> int:
     if rep.get('error'):
         print(f'consistency probe: {rep["error"]}')
         return rep['exit_code']
+    if a.browser:
+        from evaluation.red_team.browser_consistency import run as run_browser
+        browser = run_browser(a.base, routes=[x.strip() for x in a.routes.split(',')] if a.routes else None)
+        rep['browser'] = browser
+        rep['exit_code'] = max(rep['exit_code'], browser['exit_code'])
+        write_json(a.out, rep)
+        print(f"browser consistency: {browser.get('summary')} -> exit {browser['exit_code']}")
     s = rep['summary']
     print(f"consistency probe: {s['routes']} routes, {s['numbers']} numbers, {s['mismatches']} mismatches, {s['placeholders']} placeholder values, "
           f"{s['unhashed_live_values']} unhashed live values, {s['ambiguous_matches']} ambiguous matches, {s['unclassified_integers']} unclassified small integers, "

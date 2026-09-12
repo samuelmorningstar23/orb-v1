@@ -23,7 +23,7 @@ import pytest
 from rt_helpers import PROTO
 
 MAP = PROTO / 'evaluation' / 'red_team' / 'claim_evidence_map.json'
-DOCS = ('out/THE_CASE.md', 'out/talk_track.md', 'out/Orb_v1_Mentor_Briefing.pptx')
+DOCS = ('out/THE_CASE.md', 'out/talk_track.md', 'out/Orb_v1_Mentor_Briefing.pptx', 'out/Orb_v1_ChallengeDay.pdf')
 BLOCKING_VERDICTS = ('mismatch', 'exceeds_evidence', 'unverifiable')
 
 
@@ -36,9 +36,9 @@ def claim_map() -> dict:
 
 def _lines(source: str) -> dict[int, str]:
     """Line number -> text for a claim-audit source label (a file path, or a '...pptx#slide-N' label)."""
-    if '#slide-' in source:
-        from evaluation.red_team.claim_audit import _slides
-        for label, text in _slides():
+    if '#slide-' in source or '#page-' in source:
+        from evaluation.red_team.claim_audit import _slides, _pdf_pages
+        for label, text in _slides() + _pdf_pages():
             if label == source:
                 return dict(enumerate(text.splitlines(), 1))
         return {}

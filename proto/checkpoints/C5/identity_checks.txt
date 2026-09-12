@@ -1,0 +1,43 @@
+identity checks: PASS (41 passed, 0 failed) -> exit 0
+  PASS  identity actual plan, std event off, fixed_context Monza NOR max|delta| 0.00e+00
+  PASS  identity actual plan, std event off, tyre_only Monza NOR max|delta| 0.00e+00
+  PASS  identity free (red-flag) stop, std event on == 0 Monza NOR
+  PASS  same compound at own stop -> zero, fixed_context Monza NOR max|delta| 0.00e+00
+  PASS  same compound at own stop -> zero, tyre_only Monza NOR max|delta| 0.00e+00
+  PASS  zero degradation -> offsets only in the tyre term Monza NOR
+  PASS  time accounting Monza NOR
+  PASS  event conservation: one stop -> one of each event Monza NOR
+  PASS  identity actual plan, std event off, fixed_context Monza VER max|delta| 0.00e+00
+  PASS  identity actual plan, std event off, tyre_only Monza VER max|delta| 0.00e+00
+  PASS  identity actual plan, std event on == stop replacement Monza VER
+  PASS  same compound at own stop -> zero, fixed_context Monza VER max|delta| 0.00e+00
+  PASS  same compound at own stop -> zero, tyre_only Monza VER max|delta| 0.00e+00
+  PASS  zero degradation -> offsets only in the tyre term Monza VER
+  PASS  time accounting Monza VER
+  PASS  event conservation: one stop -> one of each event Monza VER
+  PASS  identity actual plan, std event off, fixed_context Austria NOR max|delta| 0.00e+00
+  PASS  identity actual plan, std event off, tyre_only Austria NOR max|delta| 0.00e+00
+  PASS  identity actual plan, std event on == stop replacement Austria NOR
+  PASS  same compound at own stop -> zero, fixed_context Austria NOR max|delta| 0.00e+00
+  PASS  same compound at own stop -> zero, tyre_only Austria NOR max|delta| 0.00e+00
+  PASS  zero degradation -> offsets only in the tyre term Austria NOR
+  PASS  time accounting Austria NOR
+  PASS  event conservation: one stop -> one of each event Austria NOR
+  PASS  identity actual plan, std event off, fixed_context Austria VER max|delta| 0.00e+00
+  PASS  identity actual plan, std event off, tyre_only Austria VER max|delta| 0.00e+00
+  PASS  identity actual plan, std event on == stop replacement Austria VER
+  PASS  same compound at own stop -> zero, fixed_context Austria VER max|delta| 0.00e+00
+  PASS  same compound at own stop -> zero, tyre_only Austria VER max|delta| 0.00e+00
+  PASS  zero degradation -> offsets only in the tyre term Austria VER
+  PASS  time accounting Austria VER
+  PASS  event conservation: one stop -> one of each event Austria VER
+  PASS  on-disk scenario reproduces: monza_nor_lap24_to_medium_new_fixed_context  max|diff| 0.00e+00
+  PASS  on-disk scenario reproduces: monza_nor_lap24_to_medium_new_tyre_only  max|diff| 0.00e+00
+  PASS  on-disk scenario reproduces: monza_ver_lap20_to_hard_new_fixed_context  max|diff| 0.00e+00
+  PASS  on-disk scenario reproduces: monza_ver_lap28_to_soft_new_fixed_context  max|diff| 0.00e+00
+  PASS  on-disk scenario reproduces: pre_race/monza_nor_lap24_to_medium_new_fixed_context  max|diff| 0.00e+00
+  PASS  on-disk scenario reproduces: pre_race/monza_nor_lap24_to_medium_new_tyre_only  max|diff| 0.00e+00
+  PASS  provider A reproduces every lock curve 
+  PASS  pit-loss derivation recomputed from the feature files  pool n=225 median 21.981 transit 19.481 share_in 0.177; README agrees True; docstring agrees False
+  PASS  batch conditioning == sequential filter (Monza) Monza max|diff| 8.53e-14
+report: /Users/samuelmorningstar/Trackshift/proto/evaluation/red_team/identity_checks_report.json

@@ -1,0 +1,43 @@
+== Orb v1 checkpoint C5 (AUTO) started 2026-09-13T00:41:59 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
+git: main @ 230870b, 75 uncommitted paths
+merge queue FROZEN (checkpoint C5 in progress (run_checkpoint.sh))
+== checkpoint C5 (AUTO) at 2026-09-13T00:41:59 == merge queue FROZEN
+[1/5] schema_validation ... PASS (0.12s)
+[2/5] pytest ... PASS (114.63s)
+[3/5] ownership_audit ... WARN - 78 changed paths, 5 flagged: proto/build_deck_v5.py, proto/deck_src/build_deck.js, proto/make_deck_figs.py, proto/out/Orb_v1_ChallengeDay.pdf, proto/out/Orb_v1_Mentor_Briefing.pptx
+[4/5] lock_dashboard_consistency ... PASS (47.75s)
+[5/5] sealed_holdout_integrity ... PASS
+checks: {'PASS': 4, 'WARN': 1}  green=True  hashes changed since last green: none
+heartbeats: missing none, stale [1, 2, 3, 4, 6, 7, 8, 9]
+C5 recorded: PENDING at commit 230870b; merge queue FROZEN (C5 pending lead decision (checks green; proposed GO))
+next: python build_control.py decide C5 GO|GO_WITH_REASSIGNMENT|ROLLBACK|CUT_FROM_DEMO|HOLD 'note'
+== artifacts in checkpoints/C5 ==
+   COMMANDS.md
+   artifact_hashes.json
+   artifact_refutation.txt
+   browser_consistency_failed_before_fix.json
+   browser_probe.txt
+   checkpoint.json
+   checkpoint.md
+   claim_audit.txt
+   deck_layout_geometry.json
+   deck_package_integrity.json
+   deck_refutation.txt
+   final_source_fingerprints.json
+   fixed_route_probe.json
+   identity_checks.txt
+   independent_browser_acceptance.json
+   leakage_audit.txt
+   logs
+   ownership_audit.json
+   protected_fingerprints.json
+   red_team_build.txt
+   red_team_report.json
+   review_tools
+   run_checkpoint.txt
+   scorecard_refutation.txt
+   status_at_stop.txt
+   test_report.json
+   ui_refutation.txt
+== merge queue: FROZEN - C5 pending lead decision (checks green; proposed GO) ==
+== checkpoint C5 finished 2026-09-13T00:44:41 exit 3 ==

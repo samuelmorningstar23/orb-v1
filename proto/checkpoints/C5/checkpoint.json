@@ -1,0 +1,403 @@
+{
+ "checkpoint": "C5",
+ "decision": "GO",
+ "proposed": "GO",
+ "note": "Scorecards with whole-weekend bands and n; 68 browser checks/15072 numbers/0 mismatches; independent refuters PASS; Madrid frozen; red team 10/10 PASS.",
+ "at": "2026-09-13T00:44:41",
+ "git_commit": "230870b",
+ "git_branch": "main",
+ "git_dirty_paths": 80,
+ "decided_by": "lead",
+ "all_green": true,
+ "decision_overrides_checks": false,
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.12,
+   "timed_out": false,
+   "log": "checkpoints/C5/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 114.63,
+   "timed_out": false,
+   "counts": {
+    "passed": 506,
+    "skipped": 1,
+    "xfailed": 1
+   },
+   "test_dirs": [
+    "contract",
+    "counterfactual",
+    "evaluation",
+    "live",
+    "red_team",
+    "release",
+    "replay",
+    "screenshots",
+    "ui"
+   ],
+   "log": "checkpoints/C5/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "78 changed paths, 5 flagged: proto/build_deck_v5.py, proto/deck_src/build_deck.js, proto/make_deck_figs.py, proto/out/Orb_v1_ChallengeDay.pdf, proto/out/Orb_v1_Mentor_Briefing.pptx",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 78,
+    "flagged": 5,
+    "unowned": 0,
+    "lead_only": 5,
+    "outside_proto": 0,
+    "by_owner": {
+     "3": 13,
+     "6": 15,
+     "7": 16,
+     "9": 28,
+     "lead": 5,
+     "lead/notes": 1
+    }
+   },
+   "flagged": [
+    "proto/build_deck_v5.py",
+    "proto/deck_src/build_deck.js",
+    "proto/make_deck_figs.py",
+    "proto/out/Orb_v1_ChallengeDay.pdf",
+    "proto/out/Orb_v1_Mentor_Briefing.pptx"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python evaluation/red_team/consistency_probe.py",
+   "returncode": 0,
+   "duration_s": 47.75,
+   "timed_out": false,
+   "log": "checkpoints/C5/logs/lock_dashboard_consistency.txt"
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ],
+ "artifact_hashes": {
+  "out/lock.json": "6e0d69d64ca7da64",
+  "out/lock_v2.json": "233f4e8c356758a1",
+  "evaluation/holdout/sealed_holdout_manifest.json": "37b85e762b2e03c0",
+  "evaluation/holdout/sealed_holdout_manifest.sha256": "2f636dda347557ea",
+  "fixtures/lock_v2_fixture.json": "57825e9ff6ad7a04",
+  "schemas/lock_v2_minimal.py": "f2cf5dea71eff700",
+  "ui/tokens.py": "714224d37e4d978c",
+  "theme/base.css": "f0b55603d5ed6e7b"
+ },
+ "hash_changes_since_last_green": {
+  "changed": [],
+  "added": [],
+  "removed": []
+ },
+ "previous_green": {
+  "checkpoint": "C4",
+  "git_commit": "295ebc9",
+  "at": "2026-09-12T23:20:32",
+  "decision": "GO"
+ },
+ "active_workstreams": [
+  3,
+  6,
+  7
+ ],
+ "missing_heartbeats": [],
+ "stale_heartbeats": [
+  1,
+  2,
+  3,
+  4,
+  6,
+  7,
+  8,
+  9
+ ],
+ "heartbeats": [
+  {
+   "workstream": 1,
+   "status": "GREEN",
+   "effective": "AMBER (stale 494 min)",
+   "age_min": 494.6,
+   "stale": true,
+   "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
+   "tests_passed": 109,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    7
+   ],
+   "completed": [
+    "schemas/lock_v2.py + lock_v2.schema.json (48 models, extra=forbid, cross-block hash checks)",
+    "shared/lockio.py (atomic write, canonical_json, forecast_hash, sidecar refs)",
+    "validators/adapt_v1.py -> out/lock_v2.json + out/lock_v2_sidecars/ (forecast_hash sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a)",
+    "validators/validate_lock.py (exit 0/1/2/3; sidecar sha256 verified)",
+    "fixtures: lock_v2_fixture.json, sidecars/, mini_race/, golden_race.json, make_fixtures.py, seed_v1_snapshot.json",
+    "schemas/README.md",
+    "lead change applied: TrafficMode = clean_air|paired_replay|frozen_field; safety_car_schedule = 'historical_fixed'|'observed_fixed'|[periods]; schema + fixture regenerated",
+    "tests/contract: 109 passed",
+    "lead change 2: StateRegime += accelerating_wear, anomaly; SCHEMA_VERSION 2.1.0; schema + fixture regenerated"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:30:03",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_1.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 2,
+   "status": "GREEN",
+   "effective": "AMBER (stale 484 min)",
+   "age_min": 484.7,
+   "stale": true,
+   "task": "0.3 PreRaceCurveProvider (provider A); 0.4 counterfactual core (fixed_context, tyre_only); 0.9 RaceEventSource (replay, recorded-live, live stub)",
+   "tests_passed": 53,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    3,
+    7
+   ],
+   "completed": [
+    "counterfactual/provider.py: TyreCurveProvider + ProviderA reproducing lock.json exactly; reference_curve_post_race fenced (assert_pre_race)",
+    "counterfactual/racedata.py, pitmodel.py, engine.py, run.py: decomposition, standardised pit event, SC rules, whole-curve sampling, schema-valid summary, support guard, CLI + lattice",
+    "events/: RaceEvent, ReplayEventSource, RecordedLiveEventSource, LiveEventSource stub, record()",
+    "lead follow-up applied: traffic_mode 'paired_replay' (fixed_context) / 'clean_air' (tyre_only); safety_car_schedule = observed period list in both modes; mirrored engine.* fields dropped; default-curve decision recorded in counterfactual/README.md ('leave-one-driver-out Sunday reference' for Historical Audit, pre-race forecast only for Scenario Explorer)",
+    "out/counterfactual regenerated (4 Monza scenarios + 2 lattices); validators/validate_lock.py --strict accepts a lock carrying them (sidecars verified)",
+    "tests/counterfactual: 53 passed"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:40:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_2.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 3,
+   "status": "GREEN",
+   "effective": "AMBER (stale 56 min)",
+   "age_min": 56.5,
+   "stale": true,
+   "task": "C5 evaluation scorecards: eligible n and whole-weekend bootstrap uncertainty; honest rolling origin; prefix-faithful live pooling",
+   "tests_passed": 65,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "evaluation/common.py: vectorised sufficient-sum mean bootstrap duplicates whole-weekend numerators/denominators; eligible n/unit metadata and win-share interval; deterministic 2000 draws seed2026",
+    "evaluation/scorecards.py: complete forecast/cell bands and n; explicit unavailable single-weekend rolling bands; live median from detected true-stint rows, climatology recomputed on pooled event counts; frozen input hashes; SCORECARDS renderer gives performance n/90% bands",
+    "evaluation/hidden_stop.py: eligible-stop counts and cluster mean bands for all horizons/cells; evaluation/regret.py: cluster bands for reported regret summaries; no predictive rule changes",
+    "evaluation/risk_coverage.py and out/validation/risk_coverage.{json,csv,png}: 121 frozen-rule diagnostic settings, every coverage/MAE carries n and90% weekend band; PNG adds shadedMAE bands and support caption",
+    "out/validation/ghost_scorecard.json,live_scorecard.json,SCORECARDS.md regenerated: lock11/11 matches; prefix pooled17/17 matches; frozen post-freeze aggregate copiedexactly; 64development weekends148compoundweekends; rolling13available rounds11scored, insufficient single-weekend intervals null",
+    "../.venv/bin/python -m pytest tests/evaluation -q: 65passed3.14s (six new tests in tests/evaluation/test_eval_c5_scorecards.py); earlier runs59passed2.70s and65passed3.49s/3.63s",
+    "../.venv/bin/python -m evaluation.scorecards --quiet: exit0 (~13min); ../.venv/bin/python -m evaluation.risk_coverage --quiet: exit0. Current render_md/live_scorecard/lock_meta used afterwards for final presentation wording and frozen INPUT hash metadata; no computed ghost metric changed during full run",
+    "Independent command assertion: 121risk settings x6=726 metric estimates/count/bands verified; final lock11/11/live17/17 and exact sealed aggregate-copy assertions passed; 5changed evaluation sources parse, no predictive/protected-file diff, reveal existence56683bytes only",
+    "Independent Workstream6 refutation command ../.venv/bin/python /private/tmp/orb-c5-workstream3-ui-refute.py /private/tmp/orb-c5-workstream6/proto: PASS1612 artifact estimate/band/count mappings; adversarial formatting/nullCI/shared-render/sealedgate/no directfuture reads. Initial finding: Validation legacyunbanded tables removed by Workstream6, corrected source rechecked. Script/log saved in /private/tmp for lead audit copy",
+    "RiskPNG visually inspected: labels, n, interval caption all visible, no clipping; Workstream6 synced final six validation artifacts",
+    "Workstream7 reported independent refutation PASS:17live metrics/bands rederived,29public lock rows,121x6risk JSON/CSV cells,18risk extreme/production metrics,13rolling rounds with360runtime training-pool guards; report is Workstream7-owned (not a Workstream3-run check)."
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T18:18:08.747431+00:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_3.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 4,
+   "status": "GREEN",
+   "effective": "AMBER (stale 476 min)",
+   "age_min": 476.7,
+   "stale": true,
+   "task": "0.5 track geometry, trajectory, time warp, browser player, Plotly fallback",
+   "tests_passed": 30,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    6
+   ],
+   "completed": [
+    "replay/sources.py (PositionSource from FastF1 cache or fixtures/mini_race; distinct-points quality gate)",
+    "replay/geometry.py (canonical 10 m path, sectors, pit flags, recorded/schematic pit lane, QualityRefusal + meta)",
+    "replay/trajectory.py (race clock with red-flag cuts, projection with S/F guard, 1 Hz S(t), stops, per-driver refusal)",
+    "replay/timewarp.py (Workstream 2 laps table loader, FIXTURE generator, ghost schedule follow/reference/pit pair, whole-curve quantiles, 1 Hz frames)",
+    "replay/io.py + build_maps.py + perf_harness.py",
+    "app_v2/components/race_twin: player.html + player.py (race_twin_player), plotly_fallback.py extended (race_twin_animation, track/pitlane on race_twin_map), README.md",
+    "out/maps/Monza (22 drivers; frames for the 4 Workstream 2 scenarios NOR x2 / VER x2 labelled workstream2 + PIA FIXTURE; 1.83 MB; sha256 sidecars), out/maps/Hungary refused (meta.json)",
+    "tests/replay: 30 passed",
+    "PERF.md: 119-122 FPS at 1x-10x headless Chromium, 0 console errors, 0 external requests, identity overlay 0.11 m"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:48:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_4.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 6,
+   "status": "GREEN",
+   "effective": "AMBER (stale 49 min)",
+   "age_min": 49.8,
+   "stale": true,
+   "task": "C5 shared scorecard evidence on Validation and Generalisation, n plus weekend-bootstrap bands",
+   "tests_passed": 74,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    3,
+    7,
+    "lead"
+   ],
+   "completed": [
+    "Shared scorecard_evidence renderer displays evaluator estimates/CI/eligible n/independent weekends; no UI recomputation",
+    "Generalisation grouped cell tables; Validation duplicates without weekend bands removed after Workstream3 independent refutation",
+    "Sealed card restricted to approved aggregate MAEs, coverage and counts; extra calibration/by-compound metrics removed",
+    "Final UI suite:63 passed in9.81s on final regenerated artifacts",
+    "Final screenshots gate:11 passed in92.07s,19routes at1440x900 and1920x1080, worst985ms, switches145-180ms,0console errors/0external/nooverflow,maxgoldendiff0.00694%",
+    "Golden update limited to landing/generalisation/validation at both resolutions (6PNG plusreport); other golden bytes unchanged",
+    "Independent deck/Madrid refuter finalPASS after lead fixed proof-table calibration and slide5card overflow:9protected hashes, Qafter21:30, full4digests on bothMadrid slides, source forecasts/bands/n/gates/plans,all20mentor proof-table cells equal lockv2; reviewed latest changed figures/Madrid/proof/slide5"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T23:54:51.600190+05:30",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_6.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 7,
+   "status": "GREEN",
+   "effective": "AMBER (stale 55 min)",
+   "age_min": 56.0,
+   "stale": true,
+   "task": "C5 red-team tooling and independent Workstream3 evaluation refutation complete; final integrated probes owned by lead",
+   "tests_passed": 8,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "Public consistency-probe evidence allowlist; never loads post-freeze per-race holdout file",
+    "Actual DOM browser audit across15 existing+19 screenshot routes at1440x900 and1920x1080; complete68-check matrix required by C5 report",
+    "Mentor PPTX and ChallengeDay PDF both audited as presentation surfaces; pypdf extraction tested on real10-page PDF; missing/empty extraction fails loudly",
+    "C5 report checkpoint CLI configurable and browser matrix gate mandatory for C5",
+    "Independent Workstream3 refutation PASS:17 live clustered bands,29 lock rows,121risk cells x6metrics,3 independent risk gate cells x6metrics,13 rolling rounds and360 temporal-pool guards; exact input hashes recorded in c5_scorecard_refutation.json"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T23:48:42.499922",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_7.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 8,
+   "status": "GREEN",
+   "effective": "AMBER (stale 494 min)",
+   "age_min": 494.7,
+   "stale": true,
+   "task": "live intelligence: 0.8 replay estimator, 0.10 feedback adapter, 0.12 action engine, prefix evaluation, view-model adapter",
+   "tests_passed": 31,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    3,
+    7
+   ],
+   "completed": [
+    "live/lapfeed.py: online-safe race access (rows <= k, rival laps <= own cutoff), FutureDataError",
+    "live/priors.py: forecast-only lock reader (deny list on obs/err), support status",
+    "live/clock.py: data_cutoff timestamps (FastF1 StartDate + session time)",
+    "live/estimator.py: linear-Gaussian (intercept, slope) filter with fixed regime rules; widening status x2, rain x4, temp x2, feed x2, out-of-support x2 (additive-equivalent, capped at 4x prior, floored); batch conditioning == sequential filter to 1e-9",
+    "live/feedback.py: DriverFeedbackAdapter, documented regime-shift table R1-R8, never seconds, reversible when disabled",
+    "decision/optimizer.py: StrategyOptimizer re-run per lap (pit now / pit in window / extend / stay out / two-stop), sampled gains vs the pre-race plan, rejoin from observed lap-time ordering, change_reason naming the observation, hysteresis",
+    "live/session.py + live/replay_run.py: out/live/<event>_<driver>/ states.jsonl, recommendations.jsonl, estimator_trace.jsonl, live_predictor.json (validated LivePredictor), summary.json, .sha256 sidecars; Monza/Austria/Barcelona NOR written",
+    "live/viewmodel.py: build_live / build_live_vm with exactly Workstream 6's LiveVM keys + orb_live (one-line wiring)",
+    "live/prefix_eval.py: 3 races, 66 drivers, 3563 laps vs prior-only baseline; out/live/prefix_eval.json + PREFIX_EVAL.md",
+    "tests/live: 31 passed (future-lap raise, widening x2/x4/x2/x2/x2, cap, floor, pit reset, feedback reversibility, batch==replay synthetic+real, schema validation, optimizer ordering, view-model keys); tests/contract still 108 passed"
+   ],
+   "in_progress": [],
+   "commit": null,
+   "updated_at": "2026-09-12T16:30:00",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_8.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 9,
+   "status": "GREEN",
+   "effective": "AMBER (stale 484 min)",
+   "age_min": 484.9,
+   "stale": true,
+   "task": "build_control_system (task 0.16)",
+   "tests_passed": 83,
+   "tests_failed": 0,
+   "eta_minutes": 0,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "read ROADMAP_v5 s6/s14, starter, C0, last_green",
+    "build_control.py: status/checkpoint/decide/sign/checks/stop-the-line/clear-stop/freeze/unfreeze/rollback/heartbeat/summary/active-workstreams",
+    "release/ownership_audit.py; ownership map per lead decisions 14:55 and 15:05 (out/ subtrees, tests/ per workstream, lead-only globs)",
+    "release/rollback.sh; drill PASSED, recorded in checkpoints/rollback_drill.md",
+    "release/run_checkpoint.sh; C1 REHEARSAL artifact set under checkpoints/rehearsal/C1",
+    "release/build_control_app.py hidden route on 8599 (HTTP 200 smoke)",
+    "release/README.md incl. ownership map",
+    "tests/release/test_build_control.py: 83 passed",
+    "SUMMARY.md cadence"
+   ],
+   "in_progress": [
+    "30-min heartbeat and SUMMARY.md cadence",
+    "real C1 at the 16:05 lead commit; queue left OPEN until then"
+   ],
+   "commit": null,
+   "updated_at": "2026-09-12T16:39:50",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_9.json",
+   "missing": false,
+   "unreadable": false
+  }
+ ],
+ "stop_the_line": null,
+ "merge_queue_before": {
+  "state": "FROZEN",
+  "reason": "checkpoint C5 in progress (run_checkpoint.sh)",
+  "since": "2026-09-13T00:41:59",
+  "by": "workstream 9"
+ },
+ "rehearsal": false,
+ "directory": "checkpoints/C5",
+ "decided_at": "2026-09-13T00:45:16",
+ "decision_note": "506 passed/1 known skip/1 expected xfail; 68 browser checks and 15072 numbers with zero mismatches; red team 10/10 PASS; 5 lead-only ownership flags, zero unowned; frozen sources unchanged."
+}

@@ -54,7 +54,7 @@ import numpy as np
 import pandas as pd
 
 from evaluation import PROTO, OUT_DIR, SEASON_DIRS, COMPS, circuit_class, weather_regime, git_sha, now_iso
-from evaluation.common import mae, share, weekend_bootstrap, paired_probability, write_json
+from evaluation.common import mae, share, weekend_bootstrap, weekend_mean_bootstrap, paired_probability, write_json
 from evaluation.forecast import SeasonForecaster, WeekendForecast
 
 from counterfactual.racedata import RaceData, load_race     # noqa: E402  (post-race file access; scoring only)
@@ -163,9 +163,9 @@ def aggregate(cases: list[dict[str, Any]], bootstrap: bool = True, min_weekends_
         ci = {}
         for h in HORIZONS:
             key = 'next1' if h == 1 else f'cum{h}'
-            ci[f'{key}_mae'] = weekend_bootstrap(df, lambda d, c=f'err{h}': mae(d[c]))
-            ci[f'{key}_mae_naive'] = weekend_bootstrap(df, lambda d, c=f'err{h}_naive': mae(d[c]))
-            ci[f'{key}_coverage90'] = weekend_bootstrap(df, lambda d, c=f'cov{h}': share(d[c]))
+            ci[f'{key}_mae'] = weekend_mean_bootstrap(df, f'err{h}', n_unit='stops')
+            ci[f'{key}_mae_naive'] = weekend_mean_bootstrap(df, f'err{h}_naive', n_unit='stops')
+            ci[f'{key}_coverage90'] = weekend_mean_bootstrap(df, f'cov{h}', n_unit='stops')
             ci[f'p_orb_beats_naive_{key}'] = paired_probability(df, f'err{h}', f'err{h}_naive')
         out['bootstrap'] = ci
     by: dict[str, dict[str, Any]] = {}
@@ -176,6 +176,13 @@ def aggregate(cases: list[dict[str, Any]], bootstrap: bool = True, min_weekends_
                 by[cell][str(val)] = dict(suppressed=f'fewer than {min_weekends_per_cell} weekends in the cell', n_cases=int(len(d)))
             else:
                 by[cell][str(val)] = _metrics(d)
+                if bootstrap:
+                    by[cell][str(val)]['bootstrap'] = {}
+                    for h in HORIZONS:
+                        key = 'next1' if h == 1 else f'cum{h}'
+                        for metric, col in [(f'{key}_mae', f'err{h}'), (f'{key}_mae_naive', f'err{h}_naive'), (f'{key}_coverage90', f'cov{h}')]:
+                            by[cell][str(val)]['bootstrap'][metric] = weekend_mean_bootstrap(d, col, n_unit='stops')
+
     out['by'] = by
     return out
 

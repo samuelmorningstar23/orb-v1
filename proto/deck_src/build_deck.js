@@ -1,6 +1,6 @@
 const pptxgen = require('pptxgenjs');
 const pres = new pptxgen(); pres.layout = 'LAYOUT_16x9'; pres.title = 'Orb v1 mentor briefing'; pres.author = 'Team Orb v1';
-const OUT = '/Users/samuelmorningstar/Trackshift/proto/out/';
+const OUT = require('path').resolve(__dirname, '../out') + '/';
 const BG = '0B0E13', SURF = '161A20', LINE = '2B3038', INK = 'ECEDEF', MUTED = '9AA1AA', GOLD = 'F2C230', RED = 'E10600', SLATE = '8FB3D9', TEAL = '39D0C3', CRIT = 'F16464';
 const F = 'Calibri';
 function base(notes) { const s = pres.addSlide(); s.background = { color: BG }; if (notes) s.addNotes(notes); s.addText('ORB V1  ·  TrackShift 2026  ·  Tyre Degradation Intelligence', { x: 0.5, y: 5.2, w: 6, h: 0.3, fontFace: F, fontSize: 9, color: MUTED, isTextBox: true, margin: 0 }); return s; }
@@ -22,6 +22,8 @@ const img = (s, name, x, y, w, h) => s.addImage({ path: OUT + name, x, y, w, h }
 // ---- claim support read from the lock (red-team claim map, 12 Sep): every quoted figure below is derived here, not typed ----
 const fs = require('fs');
 const LOCK = JSON.parse(fs.readFileSync(OUT + 'lock.json', 'utf8').replace(/([:\[,])\s*-?(?:NaN|Infinity)\b/g, '$1null'));   // the lock is written by Python json.dump, which emits bare NaN
+const LOCK2 = JSON.parse(fs.readFileSync(OUT + 'lock_v2.json', 'utf8'));
+const MAD2 = LOCK2.pre_race_forecast.events.Madrid;
 const ROWS = LOCK.validation_rows, WH = ROWS.filter(r => !r.issued), ISS = ROWS.filter(r => r.issued);
 const median = a => { const s = [...a].sort((x, y) => x - y), n = s.length; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; };
 const mean = a => a.reduce((x, y) => x + y, 0) / a.length;
@@ -55,7 +57,7 @@ const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six'];
 const SC_TXT = `beats the naive plan on ${SC_BEATS} of the ${N_SC} scored weekends; the ${WORDS[SC_MISS.length] || SC_MISS.length} misses are ${MISS_TXT}`;
 const MISS_TITLE = SC_MISS.map(m => m[0]).join(' and ') + (SC_MISS.length === 1 ? ', the miss' : ', the misses');
 const NAIVE_COSTS = Object.values(SC).map(x => x[0]), ORB_COSTS = Object.values(SC).map(x => x[1]);
-const MAD = {}; (LOCK.live.Madrid.compounds || []).forEach(c => { MAD[c.compound] = c; });
+const MAD = MAD2.compounds;
 const MAXTREND = Math.max(...ROWS.filter(r => r.energy_trend != null).map(r => r.energy_trend));
 function madHardLaps() { try { const rows = fs.readFileSync(OUT + 'excluded_Madrid.csv', 'utf8').trim().split('\n'); const h = rows[0].split(','), ic = h.indexOf('Compound'), ir = h.indexOf('reason'); return rows.slice(1).filter(r => { const c = r.split(','); return c[ic] === 'HARD' && c.slice(ir).join(',') === 'kept'; }).length; } catch (e) { return null; } }
 const MAD_HARD_N = madHardLaps();
@@ -63,7 +65,7 @@ const madRow = (label, comp, col, extra) => { const c = MAD[comp]; if (!c) retur
 const MS = LOCK.strategy.Madrid.views, NAME = { S: 'soft', M: 'medium', H: 'hard' };
 const stopsWord = k => ({ 1: 'one stop', 2: 'two stops' })[k] || `${k} stops`;
 const planTxt = v => `${stopsWord(v.stints.length - 1)}, ${v.plan.split('-').map(x => NAME[x]).join(' then ')}, ${v.stints.join(' / ')} laps`;
-const MAD_PLAN_TXT = planTxt(MS['Orb v1']), BH = MS['Orb v1, band high'];
+const MAD_PLAN_TXT = planTxt(MAD2.strategy), BH = MS['Orb v1, band high'];
 const MAD_BAND_TXT = BH ? `the top of the band says ${stopsWord(BH.stints.length - 1)}` : 'no band-high plan in the lock';
 const MAD_NOTE_SOFT = MAD.SOFT ? `soft ${MAD.SOFT.issued ? 'issued' : 'withheld'} at ${sgn(MAD.SOFT.prediction, 3)} s/lap with a wide band` : 'soft: no row in the lock';
 const MAD_NOTE_MED = MAD.MEDIUM ? `medium ${MAD.MEDIUM.issued ? 'issued' : 'withheld'} because drivers were learning a brand-new circuit, energy rising ${sgn(MAD.MEDIUM.energy_trend, 2)} MJ per lap through runs, ${(MAD.MEDIUM.energy_trend / MAXTREND).toFixed(1)} times the largest within-run ramp seen at an established circuit this season, forecast low degradation (${sgn(MAD.MEDIUM.prediction, 3)} s/lap) by two independent routes` : 'medium: no row in the lock';
@@ -82,7 +84,15 @@ const LOCK_HM = hm(LOCK.generated_at);
 function forecast() { try { const raw = fs.readFileSync(OUT + 'forecast_Madrid_2026.json'); const Fj = JSON.parse(raw.toString('utf8')); const sha = require('crypto').createHash('sha256').update(raw).digest('hex'); let listed = null; try { listed = ((fs.readFileSync(OUT + 'forecast_Madrid_2026.sha256', 'utf8').split('\n').find(l => l.trim().endsWith('forecast_Madrid_2026.json')) || '').trim().split(/\s+/)[0]) || null; } catch (e) { listed = null; } return { issuedHm: hm(Fj.issued_at), sessions: Fj.sessions_used || [], sha, shaOk: listed === sha }; } catch (e) { return null; } }
 function refresh(log, sess) { let txt; try { txt = fs.readFileSync(PROTO + log, 'utf8'); } catch (e) { return { missed: [], landed: null }; } const missed = []; let landed = null; txt.split(/^== .*? start /m).slice(1).forEach(blk => { const start = blk.match(/^\w{3} \w{3} +\d+ (\d\d:\d\d)/), rebuilt = blk.match(/lock rebuilt: \w{3} \w{3} +\d+ (\d\d:\d\d)/); if (new RegExp(`Madrid ${sess}: \\d+ laps`).test(blk) && rebuilt) landed = rebuilt[1]; else if (new RegExp(`\\b${sess}: not run yet`).test(blk) && start) missed.push(start[1]); }); return { missed, landed }; }
 const FC = forecast(), FP3 = refresh('refresh_fp3.log', 'FP3'), QR = refresh('refresh_q.log', 'Q'), Q_LANDED = QR.landed || LOCK_HM;
-if (FC && !FC.shaOk) console.warn('WARNING: out/forecast_Madrid_2026.json does not match out/forecast_Madrid_2026.sha256');
+const fileSha = name => require('crypto').createHash('sha256').update(fs.readFileSync(OUT + name)).digest('hex');
+const FROZEN = JSON.parse(fs.readFileSync(OUT + 'forecast_Madrid_2026.json', 'utf8'));
+const PDF_SHA = fileSha('forecast_Madrid_2026.pdf'), SIDECAR_SHA = fileSha('forecast_Madrid_2026.sha256');
+const FORECAST_HASH = LOCK2.shared.forecast_hash.replace(/^sha256:/, '');
+if (!FC || !FC.shaOk || FROZEN.lock_sha256 !== fileSha('lock.json') || FROZEN.lock_v2_sha256 !== fileSha('lock_v2.json') || FROZEN.lock_v2_forecast_hash !== LOCK2.shared.forecast_hash) throw new Error('Frozen Madrid provenance does not match lock files');
+const listedPdf = fs.readFileSync(OUT + 'forecast_Madrid_2026.sha256', 'utf8').split('\n').find(l => l.trim().endsWith('forecast_Madrid_2026.pdf'));
+if (!listedPdf || listedPdf.trim().split(/\s+/)[0] !== PDF_SHA) throw new Error('Frozen Madrid PDF hash mismatch');
+FROZEN.compounds.forEach(c => { const v = MAD[c.compound]; if (!v || Math.abs(v.prediction - c.prediction_s_per_lap) > 0.000051 || v.n_prac !== c.clean_practice_laps || v.issued !== c.issued) throw new Error('Madrid frozen compound disagrees with lock v2'); });
+const MAD_HASH_LINES = [`JSON SHA256 ${FC.sha}`, `PDF SHA256 ${PDF_SHA}`, `SHA256 sidecar ${SIDECAR_SHA}`, `lock v2 forecast_hash ${FORECAST_HASH}`];
 const SESS = FC && FC.sessions.length ? FC.sessions : null;
 const SESS_TXT = SESS ? (SESS.length > 1 ? `${SESS.slice(0, -1).join(', ')} and ${SESS[SESS.length - 1]}` : SESS[0]) : 'the sessions in the lock';
 const SESS_SHORT = SESS ? SESS.join(', ') : 'sessions per the lock';
@@ -131,23 +141,23 @@ const MAD_EVO_TXT = FRI.length ? `${Math.min(...FRI).toFixed(1) === Math.max(...
   title(s, 'The discovery: the fifth confounder is the driver’s push profile', 'Tyre demand per lap from the public 3.7 Hz traces, m × (∫v²κ ds + ∫|dv| v)');
   img(s, 'fig_push.png', 0.5, 1.35, 4.9, 3.11);
   card(s, 5.7, 1.35, 3.8, 3.75); stat(s, 5.9, 1.5, 1.7, '+0.10', 'MJ per lap of age, median energy trend on withheld compounds', GOLD); stat(s, 7.7, 1.5, 1.7, '0.00', 'on issued compounds', SLATE);
-  bullets(s, [RAMP_SLIDE, `The push profile ${PUSH_TXT}`, `The energy price of lap time has a consistent scale Friday to Sunday, within ${BETA_WITHIN} s/MJ at Austria and Barcelona`, 'Used as a diagnostic and a second opinion, not as the headline predictor: easing off is partly caused by degradation'], 5.9, 2.85, 3.45, 2.2, 10.5); }
+  bullets(s, [`Wrong-way cleaned slopes: ${N_WRONG_UP} of ${N_WRONG} had rising energy; ${N_NEG} withheld cases had falling trends.`, `Push profile explains ${PUSH_WORD} of the pooled gap on ${N_PUSH} issued cases; per-case shares vary widely.`, `Practice/race energy coefficients differ by at most ${BETA_WITHIN} s/MJ at Austria and Barcelona.`, 'Diagnostic and second opinion. Easing off can respond to degradation.'], 5.9, 2.85, 3.45, 2.2, 10.5); }
 
 // 6 learn + refuse
 { const s = base(`The same estimator runs on race laps, so for every past weekend we know how much Sunday shrank Friday, per compound. For a new weekend the median of the other weekends is applied only when they agree. When Friday has no signal we withhold and forecast low degradation, the typical race value of earlier withheld cases; the ${WH_TXT}.`);
   title(s, 'Learn the second lie, and refuse honestly', 'Transfer factors learned leave-one-weekend-out; withheld is still a forecast');
   card(s, 0.5, 1.4, 4.4, 1.7); s.addText('Season transfer factor, race ÷ cleaned Friday', { x: 0.65, y: 1.5, w: 4.1, h: 0.3, fontFace: F, fontSize: 11, bold: true, color: INK, isTextBox: true, margin: 0 });
-  [['Soft', '×0.97', RED], ['Medium', '×0.45', GOLD], ['Hard', 'not applied', SLATE]].forEach(([c, v, col], i) => { s.addText(v, { x: 0.65 + i * 1.4, y: 1.85, w: 1.35, h: 0.55, fontFace: F, fontSize: fitSize(v, 1.35, 22, 11), bold: true, color: col, isTextBox: true, margin: 0 }); s.addText(c, { x: 0.65 + i * 1.4, y: 2.4, w: 1.35, h: 0.3, fontFace: F, fontSize: 11, color: MUTED, isTextBox: true, margin: 0 }); });
+  [['Soft', `×${LOCK2.validation.by_compound.SOFT.k_median.toFixed(2)}`, RED], ['Medium', `×${LOCK2.validation.by_compound.MEDIUM.k_median.toFixed(2)}`, GOLD], ['Hard', 'not applied', SLATE]].forEach(([c, v, col], i) => { s.addText(v, { x: 0.65 + i * 1.4, y: 1.85, w: 1.35, h: 0.55, fontFace: F, fontSize: fitSize(v, 1.35, 22, 11), bold: true, color: col, isTextBox: true, margin: 0 }); s.addText(c, { x: 0.65 + i * 1.4, y: 2.4, w: 1.35, h: 0.3, fontFace: F, fontSize: 11, color: MUTED, isTextBox: true, margin: 0 }); });
   s.addText('applied only if at least three weekends exist and a majority sit within ±50% of their median', { x: 0.65, y: 2.7, w: 4.1, h: 0.35, fontFace: F, fontSize: 9.5, color: MUTED, isTextBox: true, margin: 0 });
   card(s, 0.5, 3.3, 4.4, 1.75); s.addText('The gate and the fallback', { x: 0.65, y: 3.4, w: 4.1, h: 0.3, fontFace: F, fontSize: 11, bold: true, color: INK, isTextBox: true, margin: 0 });
   bullets(s, ['Issue only with 30+ clean long-run laps and a cleaned slope above +0.02 s/lap', 'Otherwise withhold, and forecast the median race degradation of the other withheld cases', `${WH_SLIDE}; fallback error ${WH_FB.toFixed(3)} against ${WH_NV.toFixed(3)} naive`], 0.65, 3.75, 4.1, 1.25, 10.5);
   img(s, 'fig_withheld.png', 5.2, 1.4, 4.3, 2.58); s.addText('Withheld compounds and what the race did', { x: 5.2, y: 4.05, w: 4.3, h: 0.3, fontFace: F, fontSize: 10, color: MUTED, isTextBox: true, margin: 0 }); }
 
 // 7 proof
-{ const s = base('Every number is leave-one-weekend-out: each weekend predicted from its own Friday and factors learned from the other weekends only. Naive 0.137, ours 0.023. Correlation with the race from 0.20 to 0.78. Beats the naive line on 28 of 29.');
-  title(s, 'The proof: 11 weekends, 29 compound-weekends, every one held out', 'Mean absolute error against the race-derived reference, s per lap of tyre age');
-  table(s, [['Predictor', 'Cases', 'MAE', 'Calibration slope', 'r'], ['Naive straight line', '29', '0.137', '+0.06', '0.20'], ['Cleaned Friday curve, issued', '16', '0.045', '+0.45', '0.67'], ['Orb v1, issued', '16', '0.023', '+0.76', '0.82'], ['Orb v1, all cases with fallback', '29', '0.023', '+0.77', '0.78']], 0.5, 1.4, 5.1, [2.3, 0.6, 0.7, 1.0, 0.5], 11);
-  stat(s, 0.5, 3.4, 1.45, '28/29', 'cases where Orb v1 beats the naive line', GOLD); stat(s, 2.05, 3.4, 2.35, '0.016 to 0.030', '90% bootstrap interval on the error', SLATE); stat(s, 4.5, 3.4, 1.1, `${WH_LT06}/${NWH}`, 'withheld cases below 0.06 s/lap in the race', INK);
+{ const v = LOCK2.validation, c = v.calibration; const s = base(`Source: out/lock_v2.json validation. Development evaluation leaves each weekend out of its own training pool. Naive MAE ${v.mae_all_with_fallback.naive.toFixed(3)} vs Orb v1 ${v.mae_all_with_fallback.clearstint.toFixed(3)} s/lap; wins ${v.wins_clearstint_over_naive}/${v.n_compound_weekends}.`);
+  title(s, `The proof: ${v.n_weekends} weekends, ${v.n_compound_weekends} compound-weekends, every one held out`, 'Mean absolute error against the race-derived reference, s per lap of tyre age');
+  table(s, [['Predictor', 'Cases', 'MAE', 'Calibration slope', 'r'], ...[['Naive straight line', c.naive, v.mae_all_with_fallback.naive], ['Cleaned Friday curve, issued', c.clean, v.mae_issued.clean], ['Orb v1, issued', c.clearstint, v.mae_issued.clearstint], ['Orb v1, all cases with fallback', c.all_with_fallback, v.mae_all_with_fallback.clearstint]].map(([name, cal, error]) => [name, cal.n, error.toFixed(3), sgn(cal.slope, 2), cal.r.toFixed(2)])], 0.5, 1.4, 5.1, [2.3, 0.6, 0.7, 1.0, 0.5], 11);
+  stat(s, 0.5, 3.4, 1.45, `${v.wins_clearstint_over_naive}/${v.n_compound_weekends}`, 'cases where Orb v1 beats the naive line', GOLD); stat(s, 2.05, 3.4, 2.35, v.ci90_mae_clearstint_all.map(x => x.toFixed(3)).join(' to '), '90% bootstrap interval on the error', SLATE); stat(s, 4.5, 3.4, 1.1, `${WH_LT06}/${NWH}`, 'withheld cases below 0.06 s/lap in the race', INK);
   img(s, 'fig_calibration.png', 5.9, 1.3, 3.6, 3.2); s.addText('Predicted from Friday against observed in the race; filled = issued, open = fallback, × = naive', { x: 5.9, y: 4.55, w: 3.6, h: 0.45, fontFace: F, fontSize: 9, color: MUTED, isTextBox: true, margin: 0 }); }
 
 // 8 holds up
@@ -163,16 +173,15 @@ const MAD_EVO_TXT = FRI.length ? `${Math.min(...FRI).toFixed(1) === Math.max(...
   table(s, [['Race', 'Naive plan', 'Cost', 'Orb v1 plan', 'Cost', 'Best plan'], ['Hungary', 'M-H-H', '+74 s', 'S-M-M 16/26/28', '+24 s', 'S-S-M'], ['Monza', 'M-H', '+47 s', 'S-M 44/9', '+0 s', 'S-M'], ['Zandvoort', 'S-M', '+155 s', 'S-S-M 30/32/10', '+2 s', 'S-S-H'], ['Miami', 'M-H-H', '+80 s', 'S-M 40/17', '+6 s', 'S-M'], ['Canada', 'S-H', '+75 s', 'S-S-H 30/32/6', '+30 s', 'S-H'], ['Barcelona', 'S-H-H', '+0 s', 'S-H 12/54', '+55 s', 'S-H-H']], 0.5, 1.4, 5.3, [1.1, 0.9, 0.7, 1.4, 0.6, 0.6], 10);
   img(s, 'fig_strategy.png', 6.0, 1.4, 3.5, 1.96); bullets(s, [`Beats the naive plan on ${SC_BEATS} of the ${N_SC} scored weekends (${N_SPRINT} sprint); the ${WORDS[SC_MISS.length] || SC_MISS.length} misses are ${MISS_TXT}`, 'Assumptions stated on screen: linear curves, no safety car, no traffic', 'Next: pit window and a probability that one stop beats two, from the band'], 6.0, 3.55, 3.5, 1.5, 10.5); }
 
-// 10 madrid
-{ const s = base(`Madrid is the live test. Curves issued from FP1 and FP2 this morning, ${MAD_REFRESHED_TXT}: ${MAD_NOTE_SOFT}; ${MAD_NOTE_MED}. ${cap(MAD_HASH_TXT)}, scored after Sunday's race${QR.missed.length ? ` (a ${QR.missed.join(' and ')} attempt found qualifying not yet run)` : ''}.`);
-  title(s, 'Madrid, live: issued from Friday, scored after Sunday', 'A forecast, not a hindcast: time-stamped and hashed before the race');
-  img(s, 'fig_madrid.png', 0.5, 1.35, 4.8, 3.07);
-  card(s, 5.6, 1.35, 3.9, 3.7);
-  [madRow('Soft', 'SOFT', RED, c => ''), madRow('Medium', 'MEDIUM', GOLD, c => `; drivers learning a new track (${sgn(c.energy_trend, 2)} MJ per lap through runs); low-degradation forecast, second opinion ${c.second_opinion ? sgn(c.second_opinion.prediction, 3) : 'none'}`), ['Hard', 'no curve', MAD_HARD_N ? `${MAD_HARD_N} clean laps on Friday (excluded-laps table), too few for a curve` : 'no long runs on Friday', SLATE]].forEach(([c, v, d, col], i) => { const y = 1.5 + i * 1.02; s.addText(c, { x: 5.75, y, w: 1.0, h: 0.3, fontFace: F, fontSize: 12, bold: true, color: col, isTextBox: true, margin: 0 }); s.addText(v, { x: 6.7, y, w: 2.7, h: 0.3, fontFace: F, fontSize: 13, bold: true, color: INK, isTextBox: true, margin: 0 }); s.addText(d, { x: 5.75, y: y + 0.3, w: 3.6, h: 0.68, fontFace: F, fontSize: 9, color: MUTED, valign: 'top', isTextBox: true, margin: 0 }); });
-  // the plan stays inside the card (3.6 in wide); the timing and hash line runs full width under the figure, where there is room,
-  // so neither box overflows the card's bottom edge at 5.05 in (geometric fit checked at build time, no renderer on this machine)
-  s.addText(`Plan on the central curve: ${MAD_PLAN_TXT}; ${MAD_BAND_TXT}.`, { x: 5.75, y: 4.6, w: 3.6, h: 0.42, fontFace: F, fontSize: 9, color: INK, valign: 'top', isTextBox: true, margin: 0 });
-  s.addText(`${MAD_SLIDE_TXT}; scored after Sunday's 18:30 IST race either way.`, { x: 0.5, y: 4.5, w: 4.8, h: 0.6, fontFace: F, fontSize: 9, color: MUTED, valign: 'top', isTextBox: true, margin: 0 }); }
+// 10 madrid: lock-v2 numbers and immutable published-file provenance
+{ const s = base(`Madrid: ${MAD_REFRESHED_TXT}. Hashed before the race, verifiable after the event. ${MAD_NOTE_SOFT}; ${MAD_NOTE_MED}. Sources: out/lock_v2.json pre_race_forecast.events.Madrid and frozen forecast_Madrid_2026.json. Full digests: ${MAD_HASH_LINES.join('; ')}.`);
+  title(s, 'Madrid: the frozen forecast', `${SESS_SHORT}; published ${FC.issuedHm} IST. Hashed before the race, verifiable after the event.`);
+  img(s, 'fig_madrid.png', 0.5, 1.35, 4.8, 2.4);
+  card(s, 5.6, 1.35, 3.9, 2.75);
+  [madRow('Soft', 'SOFT', RED, c => ''), madRow('Medium', 'MEDIUM', GOLD, c => ''), ['Hard', 'no curve', 'No issued curve in the frozen forecast.', SLATE]].forEach(([c, v, d, col], i) => { const y = 1.5 + i * 0.72; s.addText(c, { x: 5.75, y, w: 1.0, h: 0.25, fontFace: F, fontSize: 11, bold: true, color: col, isTextBox: true, margin: 0 }); s.addText(v, { x: 6.7, y, w: 2.7, h: 0.25, fontFace: F, fontSize: 12, bold: true, color: INK, isTextBox: true, margin: 0 }); s.addText(d, { x: 5.75, y: y + 0.26, w: 3.6, h: 0.44, fontFace: F, fontSize: 8.5, color: MUTED, valign: 'top', isTextBox: true, margin: 0 }); });
+  s.addText(`Central: ${MAD2.strategy.plan} ${MAD2.strategy.stints.join('/')}; band-high: ${MAD2.strategy.band_high_plan}. Pit loss ${MAD2.strategy.pit_loss_s} s.`, { x: 5.75, y: 3.74, w: 3.6, h: 0.3, fontFace: F, fontSize: 9, color: INK, isTextBox: true, margin: 0 });
+  s.addText(`Qualifying refresh landed ${Q_LANDED} IST. Forecast remains frozen for the race.`, { x: 0.5, y: 3.83, w: 4.8, h: 0.3, fontFace: F, fontSize: 9, color: MUTED, isTextBox: true, margin: 0 });
+  MAD_HASH_LINES.forEach((text, i) => s.addText(text, { x: 0.5, y: 4.28 + i * 0.19, w: 9, h: 0.18, fontFace: 'Consolas', fontSize: 8, color: MUTED, isTextBox: true, margin: 0 })); }
 
 // 11 product
 { const s = base('The product is two independent modes on one shared core. Live Predictor makes the call during the race and may only see what exists at that moment. Ghost Strategy audits after the race and replays alternative tyre plans. Same frozen forecast, enforced boundary, sensor mode always on screen.');
@@ -207,18 +216,18 @@ const MAD_EVO_TXT = FRI.length ? `${Math.min(...FRI).toFixed(1) === Math.max(...
 { const s = base('The models by their proper names. Core: stint fixed-effects OLS with physics priors. Transfer: leave-one-weekend-out median-ratio estimator with an agreement rule. Gate: selective prediction with a nonparametric fallback. Live: a Kalman filter on intercept and slope with explicit process noise and fixed regime rules. Counterfactual: iso-context additive decomposition. Ablation: a CfC continuous-time recurrent cell, reported not deployed.');
   title(s, 'Models and methods, by name', 'What each component is, how it is estimated, how it is validated');
   table(s, [['Component', 'Model or method', 'Estimation', 'Validation'],
-    ['Degradation curve', 'Panel fixed-effects linear regression (stint fixed effects), compound-specific age slopes; corrected lap time = raw minus fuel-mass prior minus measured track evolution', 'Ordinary least squares; OLS standard errors (cluster-robust by stint planned)', 'Leave-one-weekend-out; sensitivity grid over fuel prior, fuel cost, traffic threshold, run length'],
-    ['Track evolution', 'Driver-demeaned linear regression of push-lap times on session time, per session', 'OLS', 'Part of the same sweep'],
-    ['Tyre demand index', 'Kinematic work proxy: m × (∫ v²κ ds + ∫ |dv| v) on a 10 m arc-length resampled path', 'Deterministic from telemetry', 'Feed-quality gates; practice-vs-race scale check'],
-    ['Push adjustment', 'Same regression with within-run energy deviation as a covariate (control-function style)', 'OLS', 'Held out; reported as diagnostic and second opinion'],
-    ['Friday-to-Sunday transfer', 'Leave-one-weekend-out median-ratio estimator per compound with an agreement rule (scalar domain transfer)', 'Cross-validated medians', 'r 0.78, calibration slope 0.77 on 29 held-out cases'],
-    ['Abstention', 'Threshold-based selective prediction; nonparametric leave-one-out fallback (median of withheld outcomes)', 'Rule + cross-validated median', `${WH_SHORT}; risk-coverage curve planned`],
-    ['Uncertainty', 'Parametric bootstrap on slope × nonparametric bootstrap over weekend ratios; bootstrap CIs on error', 'Resampling, seed fixed', 'Coverage check planned'],
-    ['Strategy', 'Exhaustive enumeration of 1- and 2-stop plans under a linear stint-time cost; Monte Carlo over the posterior for probabilities', 'Exact search', `Replay regret vs race-derived reference on ${N_SC} scored weekends`],
-    ['Live estimator', 'Bayesian state-space model, linear-Gaussian form (Kalman filter = exact Bayesian inference) on stint intercept and slope; prior from the pre-race forecast band; random-walk process noise; variance multipliers for flags, rain, temperature, feed; pit resets; fixed regime rules. Regime-switching and hierarchical versions: Phase 2', 'Recursive Bayesian update', 'Prefix evaluation: next 1, 3, 5 laps; coverage; cliff Brier; alert lead time'],
-    ['Counterfactual', 'Iso-context single-car additive decomposition, paired replay; standardised pit-event distribution; fixed observed SC schedule', 'Whole-curve sampling', 'Identity tests; hidden-stop-response; strategy regret; sealed holdout'],
-    ['Neural ablation', 'Closed-form continuous-time cell (CfC, Hasani et al. 2022; liquid time-constant family), ncps / PyTorch', 'Adam, early stopping, 3 seeds', 'Stint-grouped 5-fold CV vs OLS with identical covariates: not adopted'],
-    ['Planned', 'Errors-in-variables hierarchical regression across three seasons; empirical-Bayes partial pooling; learned abstention classifier; monotone I-spline wear curve; CatBoost residual model; regime-switching state-space', 'Chronological validation', 'Adopted only if held-out error improves']],
+    ['Degradation curve', 'Stint fixed-effects regression; fuel prior and track evolution removed', 'OLS; robust errors planned', 'Weekend holdout; sensitivity sweep'],
+    ['Track evolution', 'Driver-demeaned push-lap trend per session', 'OLS', 'Same sensitivity sweep'],
+    ['Tyre demand index', 'Telemetry work proxy: speed, curvature and acceleration', 'Deterministic proxy', 'Feed gates; practice/race scale'],
+    ['Push adjustment', 'Within-run energy deviation as a regression covariate', 'OLS', 'Held-out diagnostic only'],
+    ['Friday-to-Sunday', 'Per-compound median ratio; weekend left out; agreement rule', 'Cross-validated median', '29 cases: r 0.78; slope 0.77'],
+    ['Abstention', 'Selective prediction; leave-one-out median fallback', 'Rule + median', 'Risk-coverage scorecard'],
+    ['Uncertainty', 'Slope bootstrap × weekend-ratio bootstrap; error CIs', 'Seeded resampling', 'Weekend-bootstrap scorecards'],
+    ['Strategy', 'Enumerate 1/2-stop plans; posterior Monte Carlo', 'Exact search', `${N_SC} scored replay weekends`],
+    ['Live estimator', 'Kalman intercept/slope; pre-race prior; pit resets; fixed regimes', 'Recursive Bayes', 'Prefix 1/3/5 laps; Brier; lead time'],
+    ['Counterfactual', 'Iso-context paired replay; fixed observed SC schedule', 'Whole-curve sampling', 'Identity; hidden-stop; regret'],
+    ['Neural ablation', 'CfC continuous-time cell (Hasani et al.); ncps / PyTorch', 'Adam; 3 seeds', 'Stint-grouped 5-fold; not adopted'],
+    ['Planned', 'Hierarchical pooling, learned gate, wear/residual and regime models', 'Chronological tests', 'Only adopt after held-out gain']],
     0.5, 1.3, 9, [1.5, 3.6, 1.7, 2.2], 7.5);
 }
 
@@ -226,7 +235,7 @@ const MAD_EVO_TXT = FRI.length ? `${Math.min(...FRI).toFixed(1) === Math.max(...
 { const s = base('Where the tech comes from, and what private data would add. Fixed effects from econometrics; physics priors from the regulations; cross-validation and the bootstrap; MIT liquid networks tested and set aside. The private feeds a team has would replace our two stated assumptions with measurements and tighten the same model.');
   title(s, 'Where it comes from, and what real-life data would add', 'Public prototype today; the team adapter is where measurements replace assumptions');
   bullets(s, ['Data: Formula 1’s own live-timing feed via FastF1 (open source) and OpenF1', 'Cleaning: fixed-effects regression, econometrics since the 1970s', 'Physics: fuel burn and its cost from the 2026 regulations; rubber laid on the track', 'Push measurement: energy from speed squared times path curvature plus speed changes, basic mechanics', 'Validation: leave-one-out cross-validation and the bootstrap', 'Liquid networks: MIT (Hasani, Lechner, Rus), tested and reported', 'Prior art: arXiv 2512.00640 (one driver, one race), TUM race simulation'], 0.5, 1.4, 4.2, 3.6, 10.5);
-  table(s, [['Private data (team only)', 'What it would buy'], ['Fuel mass per lap', 'retires the largest assumption; rescues low-degradation Fridays'], ['Tyre pressures and temperatures', 'separates graining, blistering and cliff; bands roughly a third narrower; live alerts on the same lap'], ['Tread depth after runs', 'the only route to a physical wear number'], ['Aero map, ride heights', 'a true friction coefficient from the grip index'], ['Driver instructions, engine modes', 'the second lie becomes measurable instead of learned'], ['Steering, wheel speeds, brake temps', 'actual slip and thermal path']], 5.0, 1.4, 4.5, [1.8, 2.7], 9.5); }
+  table(s, [['Private data (team only)', 'What it would buy'], ['Fuel mass per lap', 'retires the largest assumption; rescues low-degradation Fridays'], ['Tyre pressures and temperatures', 'separates graining, blistering and cliff; candidate inputs for sharper bands and earlier alerts; benefit requires validation'], ['Tread depth after runs', 'the only route to a physical wear number'], ['Aero map, ride heights', 'a true friction coefficient from the grip index'], ['Driver instructions, engine modes', 'the second lie becomes measurable instead of learned'], ['Steering, wheel speeds, brake temps', 'actual slip and thermal path']], 5.0, 1.4, 4.5, [1.8, 2.7], 9.5); }
 
 // 16 field
 { const s = base('The field, from a public sweep on the morning of 12 September. PITWALL is the only rival we reviewed with comparable rigour and it concluded the practice curve cannot be delivered; the rest are one weekend, synthetic data, or simulators without a scorecard. We deliver the literal brief, at season scale, with abstention and a live forecast.');
@@ -242,8 +251,8 @@ const JURY_QA = [
   ['What breaks it?', 'Green tracks and new circuits (the gate withholds, the fallback answers); degraded telemetry feeds (refused); wet sessions (excluded); the replay ignores safety cars and traffic and says so.'],
   ['Where could the race leak into the Friday prediction?', 'Nowhere we left open: factors from other weekends only, the fallback from other weekends\' outcomes, offsets from that weekend\'s practice or qualifying; only the scorecard sees the race.'],
   ['The race starts after the event closes; what are you showing?', `A lap-by-lap replay of a race already scored, then Madrid on Sunday evening against a forecast hashed before the race (sha256 ${HASH12}, ${FC ? FC.issuedHm + ' IST' : 'not yet published'}).`],
-  ['The 2026 cars are new; does a method tuned on 2026 mean anything?', 'The method is stated priors and measured corrections, not tuned; only the transfer factor is 2026-specific, and three past seasons will say whether it belongs to the tyre and circuit or to the car.'],
-  ['Would this work in Formula 2, without telemetry?', 'Yes, in a degraded mode: lap times, age, compound and flags are enough for the estimator; without telemetry more is withheld and the bands widen, still far better than a straight line.']];
+  ['The 2026 cars are new; does a method tuned on 2026 mean anything?', 'The method is stated priors and measured corrections, not tuned; only the transfer factor is 2026-specific, and the separate past-season scorecards test transfer beyond the current cars.'],
+  ['Would this work in Formula 2, without telemetry?', 'Yes, in a degraded mode: lap times, age, compound and flags are enough for the estimator; without telemetry more is withheld and the bands widen, relative accuracy requires validation in that series.']];
 const JURY_WORD = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][JURY_QA.length] || String(JURY_QA.length);
 { const s = base(`${JURY_WORD} questions we expect from the jury, each with the one-line answer we will give; the written answers are in The Case and the talk track. Mentor: tell us which ones we are missing.`);
   title(s, `${JURY_WORD} questions we expect from the jury`, 'The one-line answers; the written versions are in The Case and the talk track. Which ones are we missing?');
@@ -253,8 +262,27 @@ const JURY_WORD = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'E
 { const s = base('Disclosure first, then the ask. The estimator and the six-weekend validation were pre-work disclosed in the idea round. Everything else was built here. What we would value from the mentor: pressure on the fuel prior and identification, a view on the live-mode design, and what a Haas strategist would want on the decision card.');
   title(s, 'What was built when, and what we would like from you', 'Disclosed pre-work, today’s build, and three questions for the mentor');
   card(s, 0.5, 1.4, 4.4, 3.6); s.addText('Disclosed pre-work (4 to 5 September)', { x: 0.65, y: 1.5, w: 4.1, h: 0.3, fontFace: F, fontSize: 12, bold: true, color: SLATE, isTextBox: true, margin: 0 }); bullets(s, ['The stint fixed-effects estimator with the fuel prior and evolution', 'Six-weekend validation and the first transfer factors', 'Hungary and Austria strategy replay'], 0.65, 1.85, 4.1, 1.0, 10.5);
-  s.addText('Built at Plaksha', { x: 0.65, y: 2.9, w: 4.1, h: 0.3, fontFace: F, fontSize: 12, bold: true, color: GOLD, isTextBox: true, margin: 0 }); bullets(s, ['Seven more 2026 weekends and three past seasons on disk', 'The gate and scored fallback, the push diagnostic, compound offsets from practice or qualifying medians, replay scoring', 'The liquid-network ablation, the dashboard, Madrid live', 'The lock contract, sealed holdout, build control; Live Predictor and Ghost Strategy in progress'], 0.65, 3.25, 4.1, 1.7, 10.5);
+  s.addText('Built at Plaksha', { x: 0.65, y: 2.9, w: 4.1, h: 0.3, fontFace: F, fontSize: 12, bold: true, color: GOLD, isTextBox: true, margin: 0 }); bullets(s, ['Seven more 2026 weekends and three past seasons on disk', 'The gate and scored fallback, the push diagnostic, compound offsets from practice or qualifying medians, replay scoring', 'The liquid-network ablation, the dashboard, Madrid live', 'The lock contract, sealed holdout, build control; Live Predictor and Ghost Strategy integrated at C4'], 0.65, 3.25, 4.1, 1.7, 10.5);
   card(s, 5.1, 1.4, 4.4, 3.6); s.addText('Three questions for you', { x: 5.25, y: 1.5, w: 4.1, h: 0.3, fontFace: F, fontSize: 12, bold: true, color: TEAL, isTextBox: true, margin: 0 });
   [['1', 'Is a stated fuel prior with a published sensitivity sweep acceptable, or would you insist on estimating fuel from race pit steps?'], ['2', 'On the live decision card: gain, probability, downside, rejoin margin, and why it moved. What would a strategist add or remove?'], ['3', 'For a junior series with two engineers and public timing only, is a withheld-with-fallback answer more useful than a forced curve?']].forEach(([n, q], i) => { const y = 1.95 + i * 1.0; num(s, 5.25, y, n, TEAL); s.addText(q, { x: 5.7, y: y - 0.02, w: 3.65, h: 0.95, fontFace: F, fontSize: 10.5, color: INK, valign: 'top', isTextBox: true, margin: 0 }); }); }
 
-pres.writeFile({ fileName: OUT + 'Orb_v1_Mentor_Briefing.pptx' }).then(f => console.log('written', f));
+// PptxGenJS emits unused slide-master content-type overrides for this deck.
+// Remove only orphan metadata; never delete an actual part or repair a missing relationship target.
+async function writeDeck() {
+  const fileName = OUT + 'Orb_v1_Mentor_Briefing.pptx';
+  await pres.writeFile({ fileName });
+  const JSZip = require('jszip');
+  const zip = await JSZip.loadAsync(fs.readFileSync(fileName));
+  const relations = (await Promise.all(Object.keys(zip.files).filter(n => n.endsWith('.rels')).map(n => zip.file(n).async('string')))).join('\n');
+  const contentTypes = await zip.file('[Content_Types].xml').async('string');
+  let removed = 0;
+  const cleaned = contentTypes.replace(/<Override\b[^>]*PartName="(\/ppt\/slideMasters\/[^"]+)"[^>]*\/>/g, (entry, part) => {
+    if (zip.file(part.slice(1))) return entry;
+    if (relations.includes(part.split('/').pop())) throw new Error(`Missing referenced master ${part}`);
+    removed += 1;
+    return '';
+  });
+  if (removed) { zip.file('[Content_Types].xml', cleaned); fs.writeFileSync(fileName, await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' })); }
+  console.log(`written ${fileName}; ${pres._slides.length} slides; removed ${removed} unused master content-type entries`);
+}
+writeDeck().catch(error => { console.error(error); process.exitCode = 1; });

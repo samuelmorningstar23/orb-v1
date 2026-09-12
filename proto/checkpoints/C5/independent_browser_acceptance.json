@@ -1,0 +1,698 @@
+{
+  "base": "http://localhost:8506",
+  "routes": {
+    "landing": {
+      "1440x900": {
+        "path": "/?ev=Monza&drv=LIN",
+        "load_ms": 429,
+        "console_errors": [],
+        "benign_base_path_probes_404": [],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/?ev=Monza&drv=LIN",
+        "load_ms": 470,
+        "console_errors": [],
+        "benign_base_path_probes_404": [],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "live_stable": {
+      "1440x900": {
+        "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
+        "load_ms": 909,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
+        "load_ms": 985,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "live_after_feedback": {
+      "1440x900": {
+        "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
+        "load_ms": 878,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
+        "load_ms": 875,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "decision_change": {
+      "1440x900": {
+        "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
+        "load_ms": 874,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/host-config",
+          "http://localhost:8506/live/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
+        "load_ms": 859,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "decision_board": {
+      "1440x900": {
+        "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
+        "load_ms": 869,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/decision/_stcore/host-config",
+          "http://localhost:8506/decision/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
+        "load_ms": 874,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/decision/_stcore/host-config",
+          "http://localhost:8506/decision/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "ghost_audit": {
+      "1440x900": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
+        "load_ms": 888,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 6.944444444444444e-05
+      },
+      "1920x1080": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
+        "load_ms": 869,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 2.8935185185185186e-05
+      }
+    },
+    "ghost_audit_fixed_context": {
+      "1440x900": {
+        "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
+        "load_ms": 890,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 2.4691358024691357e-05
+      },
+      "1920x1080": {
+        "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
+        "load_ms": 883,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 5.304783950617284e-06
+      }
+    },
+    "scenario_explorer": {
+      "1440x900": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
+        "load_ms": 886,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
+        "load_ms": 890,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "out_of_support": {
+      "1440x900": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
+        "load_ms": 877,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
+        "load_ms": 885,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "missing_position": {
+      "1440x900": {
+        "path": "/ghost?ev=Australia&drv=ANT&mode=audit",
+        "load_ms": 882,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/ghost?ev=Australia&drv=ANT&mode=audit",
+        "load_ms": 887,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/host-config",
+          "http://localhost:8506/ghost/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "offline_mode": {
+      "1440x900": {
+        "path": "/live?ev=Madrid&mode=live",
+        "load_ms": 884,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/live?ev=Madrid&mode=live",
+        "load_ms": 871,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "presentation_live": {
+      "1440x900": {
+        "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
+        "load_ms": 867,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": false,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
+        "load_ms": 868,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/host-config",
+          "http://localhost:8506/live/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": false,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "presentation_ghost": {
+      "1440x900": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
+        "load_ms": 874,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": false,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
+        "load_ms": 876,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": false,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "prerace": {
+      "1440x900": {
+        "path": "/pre-race?ev=Madrid",
+        "load_ms": 871,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/pre-race/_stcore/health",
+          "http://localhost:8506/pre-race/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/pre-race?ev=Madrid",
+        "load_ms": 869,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/pre-race/_stcore/health",
+          "http://localhost:8506/pre-race/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "feedback": {
+      "1440x900": {
+        "path": "/feedback?ev=Monza&drv=NOR&lap=32",
+        "load_ms": 882,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/feedback/_stcore/host-config",
+          "http://localhost:8506/feedback/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/feedback?ev=Monza&drv=NOR&lap=32",
+        "load_ms": 886,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/feedback/_stcore/health",
+          "http://localhost:8506/feedback/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "generalisation": {
+      "1440x900": {
+        "path": "/generalisation?ev=Monza",
+        "load_ms": 875,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/generalisation/_stcore/health",
+          "http://localhost:8506/generalisation/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/generalisation?ev=Monza",
+        "load_ms": 869,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/generalisation/_stcore/health",
+          "http://localhost:8506/generalisation/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "validation": {
+      "1440x900": {
+        "path": "/validation?ev=Monza",
+        "load_ms": 876,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/validation/_stcore/health",
+          "http://localhost:8506/validation/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/validation?ev=Monza",
+        "load_ms": 869,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/validation/_stcore/host-config",
+          "http://localhost:8506/validation/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "degraded_feed": {
+      "1440x900": {
+        "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
+        "load_ms": 870,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
+        "load_ms": 865,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/live/_stcore/health",
+          "http://localhost:8506/live/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    },
+    "position_refused": {
+      "1440x900": {
+        "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
+        "load_ms": 873,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/host-config",
+          "http://localhost:8506/ghost/_stcore/health"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      },
+      "1920x1080": {
+        "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
+        "load_ms": 875,
+        "console_errors": [],
+        "benign_base_path_probes_404": [
+          "http://localhost:8506/ghost/_stcore/health",
+          "http://localhost:8506/ghost/_stcore/host-config"
+        ],
+        "other_4xx_5xx": [],
+        "horizontal_overflow": false,
+        "scroll_width": 1920,
+        "inner_width": 1920,
+        "expected_text_missing": [],
+        "sidebar_visible": true,
+        "diff_vs_golden": 0.0
+      }
+    }
+  },
+  "external_requests": [],
+  "timings": {
+    "route_switch_ms_1440x900": 180,
+    "route_switch_validation_ms_1440x900": 164,
+    "keyboard_focus_1440x900": "SECTION:ORB V1|VALIDATION\u00b7Monza 2026\u00b7Validation\u00b7",
+    "keyboard_nav_1440x900": {
+      "reached": [
+        "Landing",
+        "Pre-race plan",
+        "Live Predictor",
+        "Decision board",
+        "Driver feedback",
+        "Ghost Strategy",
+        "Generalisation",
+        "Validation"
+      ],
+      "missing": [],
+      "tabs": 13,
+      "enter_activates": true,
+      "enter_switch_ms": 137
+    },
+    "replay_run_1440x900": {
+      "console_errors": [],
+      "bad_responses": [],
+      "header_after_6s": "ORB V1 | LIVE PREDICTOR \u00b7 Monza 2026 \u00b7 Race (replay) \u00b7 Lap 10/53 \u00b7 Forecast 66e320 \u00b7 PUBLIC PROXY \u00b7 NEAR TRAINING SUPPORT \u00b7 Feed latency 3.0 s (7.1 source_latency)"
+    },
+    "route_switch_ms_1920x1080": 173,
+    "route_switch_validation_ms_1920x1080": 145,
+    "keyboard_focus_1920x1080": "SECTION:ORB V1|VALIDATION\u00b7Monza 2026\u00b7Validation\u00b7",
+    "keyboard_nav_1920x1080": {
+      "reached": [
+        "Landing",
+        "Pre-race plan",
+        "Live Predictor",
+        "Decision board",
+        "Driver feedback",
+        "Ghost Strategy",
+        "Generalisation",
+        "Validation"
+      ],
+      "missing": [],
+      "tabs": 13,
+      "enter_activates": true,
+      "enter_switch_ms": 140
+    },
+    "replay_run_1920x1080": {
+      "console_errors": [],
+      "bad_responses": [],
+      "header_after_6s": "ORB V1 | LIVE PREDICTOR \u00b7 Monza 2026 \u00b7 Race (replay) \u00b7 Lap 10/53 \u00b7 Forecast 66e320 \u00b7 PUBLIC PROXY \u00b7 NEAR TRAINING SUPPORT \u00b7 Feed latency 3.0 s (7.1 source_latency)"
+    }
+  },
+  "generated_at": "2026-09-12T23:51:09",
+  "feedback_fixture": "none: the capture never writes app_v2/state/feedback_events.jsonl (use ORB_FEEDBACK_LOG on the server for a fixture log)"
+}

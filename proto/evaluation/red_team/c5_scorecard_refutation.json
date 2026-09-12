@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-09-12T18:30:44.162756+00:00",
+  "input_sha256": {
+    "out/lock.json": "6e0d69d64ca7da64235a4f3ab039a947cb2723479cfef2c36fdb9c9613600ef3",
+    "out/validation/ghost_scorecard.json": "30e408ab1d46e3fd8a71bb4a72debb70c23a6573ba7ceecc3c79220954f78b50",
+    "out/validation/live_scorecard.json": "8f68564abbad3dfb2f8cbd975d8e7da1f42ac22f6b9b59259ed8dab0fec95cef",
+    "out/validation/risk_coverage.json": "fbb73ad8c1745014be880c45782e2e34201662052ba2d13f300266eace8a56d2",
+    "out/validation/risk_coverage.csv": "1a9360cf35e58d9b9912a78a4a24ae9ca8d60524df7b7c697e849960b9df0ae3",
+    "out/validation/holdout_aggregate.json": "4a454cc5e889f91ffcd6001a0539fdbd85abdfb1928a2480104006ad7136f2fe",
+    "out/live/prefix_eval.json": "f3cfb209f6daaa5ee14672fbfc6c23ed4da9449ddd96382f51e15c2c43e047c8"
+  },
+  "checks": [
+    {
+      "check": "aggregate_and_prefix_provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "live_independent_weekend_bootstrap",
+      "status": "PASS",
+      "metrics": 17,
+      "draws_per_metric": 2000
+    },
+    {
+      "check": "lock_public_rows_independent_mae_and_weekend_band",
+      "status": "PASS",
+      "rows": 29
+    },
+    {
+      "check": "risk_csv_json_all_cells",
+      "status": "PASS",
+      "rows": 121,
+      "metrics": 6
+    },
+    {
+      "check": "risk_independent_error_and_cluster_band_recomputation",
+      "status": "PASS",
+      "gate_cells": 3,
+      "metrics_per_cell": 6,
+      "draws_per_metric": 2000
+    },
+    {
+      "check": "rolling_temporal_pool_guard_and_independent_round_metrics",
+      "status": "PASS",
+      "rounds": 13,
+      "pool_calls": 360
+    }
+  ],
+  "notes": [
+    "No per-race holdout reads; aggregate equivalence checked without printing figures.",
+    "Independent raw-observation cluster resampling uses no evaluation bootstrap helper.",
+    "Risk full matrix cross-format checked; production and two extreme gate cells independently recomputed."
+  ]
+}
