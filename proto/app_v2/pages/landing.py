@@ -2,6 +2,7 @@
 from __future__ import annotations
 import streamlit as st
 from app_v2.pages import common
+from app_v2.services import counterfactual_repository as CF
 from app_v2.services import validation_repository as VR
 from app_v2.services import view_models as VM
 from app_v2.ui import shell, empty_states, cards
@@ -59,6 +60,17 @@ def replay_target(selected: str, available: list[str]) -> str | None:
     return selected if selected in available else ('Monza' if 'Monza' in available else next(iter(available), None))
 
 
+
+def ghost_target(event: str):
+    """A prepared audit scenario for this weekend if one exists, else the first prepared elsewhere; None when none exist."""
+    here = CF.scenarios_for(event)
+    if here:
+        return here[0]
+    for sc in CF.scenarios_for(None) or []:
+        return sc
+    return None
+
+
 def render() -> None:
     ctx = common.context('landing')
     if not common.require_lock(ctx, 'landing'):
@@ -75,9 +87,12 @@ def render() -> None:
             common.goto('live', ev=target, drv=None, lap=1, mode='live')
         st.caption('Historical replay · an external live feed is not connected.')
     with right:
-        st.html(cards.card_html('Ghost Strategy', '<h2>Compare a different stop</h2><p>Start with a prepared Monza strategy and compare its modelled tyre-time result with the recorded race.</p>', extra_class='start-card'))
-        if st.button('Compare Monza strategies', width='stretch'):
-            common.goto('ghost', ev='Monza', drv='NOR', mode='audit', ilap=24, rep='MEDIUM', lap=None)
+        gs = ghost_target(ctx.event)                 # this weekend when it has prepared simulations, else one that does
+        body = (f'<h2>Compare a different stop</h2><p>Start with a prepared {gs.event} strategy and compare its modelled tyre-time result with the recorded race.</p>'
+                if gs else '<h2>Compare a different stop</h2><p>No prepared simulation exists yet. A simulation is only written when replaying the actual plan reproduces the race exactly.</p>')
+        st.html(cards.card_html('Ghost Strategy', body, extra_class='start-card'))
+        if st.button(f'Compare {gs.event} strategies' if gs else 'No prepared strategies available', width='stretch', disabled=gs is None) and gs:
+            common.goto('ghost', ev=gs.event, drv=gs.driver, mode='audit', ilap=gs.lap, rep=gs.to_compound, lap=None)
         st.caption('Modelled comparison · traffic and rivals are not simulated.')
     st.markdown('### Madrid · frozen forecast')
     st.caption('Issued before the race. Race results have not been used.')

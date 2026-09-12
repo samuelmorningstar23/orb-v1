@@ -31,6 +31,6 @@ PAGES = {
 }
 st.session_state['_pages'] = PAGES
 nav = st.navigation([PAGES[k] for k in ('landing', 'prerace', 'live', 'ghost', 'feedback', 'decision', 'validation', 'generalisation')], position='top')
-ctx = common.bootstrap()            # lock, query params, sidebar (engineering controls + presentation toggle)
+ctx = common.bootstrap(page=nav.url_path)            # lock, query params, sidebar (engineering controls + presentation toggle)
 shell.inject_css(ctx.presentation)
 nav.run()

@@ -4,7 +4,7 @@
   "landing": {
    "1440x900": {
     "path": "/?ev=Monza&drv=LIN",
-    "load_ms": 420,
+    "load_ms": 930,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -27,7 +27,7 @@
    },
    "1920x1080": {
     "path": "/?ev=Monza&drv=LIN",
-    "load_ms": 418,
+    "load_ms": 903,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -52,7 +52,7 @@
   "live_stable": {
    "1440x900": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
-    "load_ms": 1047,
+    "load_ms": 1507,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -75,7 +75,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
-    "load_ms": 640,
+    "load_ms": 1556,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -100,7 +100,7 @@
   "live_after_feedback": {
    "1440x900": {
     "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
-    "load_ms": 621,
+    "load_ms": 1135,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -123,7 +123,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
-    "load_ms": 638,
+    "load_ms": 1135,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -148,7 +148,7 @@
   "decision_change": {
    "1440x900": {
     "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 619,
+    "load_ms": 1134,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -171,7 +171,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 638,
+    "load_ms": 1131,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -196,7 +196,7 @@
   "decision_board": {
    "1440x900": {
     "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 500,
+    "load_ms": 1106,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -219,7 +219,7 @@
    },
    "1920x1080": {
     "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 604,
+    "load_ms": 1094,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -244,7 +244,7 @@
   "ghost_audit": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
-    "load_ms": 570,
+    "load_ms": 1214,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -263,11 +263,11 @@
       "ws://localhost:8502/_stcore/stream"
      ]
     },
-    "diff_vs_golden": 0.00032407407407407406
+    "diff_vs_golden": 0.0003248456790123457
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
-    "load_ms": 569,
+    "load_ms": 1215,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -292,7 +292,7 @@
   "ghost_audit_fixed_context": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
-    "load_ms": 610,
+    "load_ms": 1730,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -315,7 +315,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
-    "load_ms": 578,
+    "load_ms": 1721,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -334,13 +334,13 @@
       "ws://localhost:8502/_stcore/stream"
      ]
     },
-    "diff_vs_golden": 0.0
+    "diff_vs_golden": 5.304783950617284e-06
    }
   },
   "scenario_explorer": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
-    "load_ms": 563,
+    "load_ms": 1210,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -363,7 +363,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
-    "load_ms": 576,
+    "load_ms": 1207,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -388,7 +388,7 @@
   "out_of_support": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
-    "load_ms": 607,
+    "load_ms": 1205,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -411,7 +411,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
-    "load_ms": 602,
+    "load_ms": 1193,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -436,7 +436,7 @@
   "missing_position": {
    "1440x900": {
     "path": "/ghost?ev=Canada&drv=ANT&mode=audit",
-    "load_ms": 518,
+    "load_ms": 1199,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -459,7 +459,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Canada&drv=ANT&mode=audit",
-    "load_ms": 497,
+    "load_ms": 1216,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -484,7 +484,7 @@
   "offline_mode": {
    "1440x900": {
     "path": "/live?ev=Madrid&mode=live",
-    "load_ms": 494,
+    "load_ms": 995,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -507,7 +507,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Madrid&mode=live",
-    "load_ms": 462,
+    "load_ms": 991,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -532,7 +532,7 @@
   "presentation_live": {
    "1440x900": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
-    "load_ms": 631,
+    "load_ms": 1138,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -555,7 +555,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
-    "load_ms": 667,
+    "load_ms": 1121,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -580,7 +580,7 @@
   "presentation_ghost": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
-    "load_ms": 594,
+    "load_ms": 1199,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -603,7 +603,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
-    "load_ms": 595,
+    "load_ms": 1220,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -628,7 +628,7 @@
   "prerace": {
    "1440x900": {
     "path": "/pre-race?ev=Madrid",
-    "load_ms": 505,
+    "load_ms": 1100,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -651,7 +651,7 @@
    },
    "1920x1080": {
     "path": "/pre-race?ev=Madrid",
-    "load_ms": 590,
+    "load_ms": 994,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -676,7 +676,7 @@
   "feedback": {
    "1440x900": {
     "path": "/feedback?ev=Monza&drv=NOR&lap=32",
-    "load_ms": 507,
+    "load_ms": 1115,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -699,7 +699,7 @@
    },
    "1920x1080": {
     "path": "/feedback?ev=Monza&drv=NOR&lap=32",
-    "load_ms": 591,
+    "load_ms": 1095,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -724,7 +724,7 @@
   "generalisation": {
    "1440x900": {
     "path": "/generalisation?ev=Monza",
-    "load_ms": 591,
+    "load_ms": 1098,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -747,7 +747,7 @@
    },
    "1920x1080": {
     "path": "/generalisation?ev=Monza",
-    "load_ms": 619,
+    "load_ms": 1114,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -772,7 +772,7 @@
   "validation": {
    "1440x900": {
     "path": "/validation?ev=Monza",
-    "load_ms": 585,
+    "load_ms": 1162,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -795,7 +795,7 @@
    },
    "1920x1080": {
     "path": "/validation?ev=Monza",
-    "load_ms": 597,
+    "load_ms": 1149,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -820,7 +820,7 @@
   "degraded_feed": {
    "1440x900": {
     "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
-    "load_ms": 650,
+    "load_ms": 1171,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -843,7 +843,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
-    "load_ms": 641,
+    "load_ms": 1144,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -868,7 +868,7 @@
   "position_refused": {
    "1440x900": {
     "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
-    "load_ms": 615,
+    "load_ms": 1201,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -891,7 +891,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
-    "load_ms": 596,
+    "load_ms": 1190,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -918,10 +918,132 @@
  "raw_console_errors": [],
  "raw_network_failures": [],
  "timings": {
-  "route_switch_ms_1440x900": 277,
-  "route_switch_validation_ms_1440x900": 207,
+  "route_switch_ms_1440x900": 265,
+  "route_switch_validation_ms_1440x900": 255,
   "keyboard_focus_1440x900": "BUTTON:",
   "keyboard_nav_1440x900": {
+   "reached": [
+    "Landing",
+    "Pre-race plan",
+    "Live Predictor",
+    "Ghost Strategy",
+    "Driver feedback",
+    "Decision board",
+    "Validation",
+    "Generalisation"
+   ],
+   "missing": [],
+   "tabs": 13,
+   "enter_activates": true,
+   "enter_switch_ms": 200,
+   "activations": [
+    {
+     "target": "Landing",
+     "activated": true,
+     "switch_ms": 293,
+     "focused": {
+      "tag": "A",
+      "text": "Landing",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Pre-race plan",
+     "activated": true,
+     "switch_ms": 201,
+     "focused": {
+      "tag": "A",
+      "text": "Pre-race plan",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Live Predictor",
+     "activated": true,
+     "switch_ms": 222,
+     "focused": {
+      "tag": "A",
+      "text": "Live Predictor",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Decision board",
+     "activated": true,
+     "switch_ms": 192,
+     "focused": {
+      "tag": "A",
+      "text": "Decision board",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Driver feedback",
+     "activated": true,
+     "switch_ms": 199,
+     "focused": {
+      "tag": "A",
+      "text": "Driver feedback",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Ghost Strategy",
+     "activated": true,
+     "switch_ms": 295,
+     "focused": {
+      "tag": "A",
+      "text": "Ghost Strategy",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Generalisation",
+     "activated": true,
+     "switch_ms": 200,
+     "focused": {
+      "tag": "A",
+      "text": "Generalisation",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Validation",
+     "activated": true,
+     "switch_ms": 242,
+     "focused": {
+      "tag": "A",
+      "text": "Validation",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    }
+   ]
+  },
+  "replay_run_1440x900": {
+   "console_errors": [],
+   "bad_responses": [],
+   "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
+  },
+  "route_switch_ms_1920x1080": 256,
+  "route_switch_validation_ms_1920x1080": 247,
+  "keyboard_focus_1920x1080": "BUTTON:",
+  "keyboard_nav_1920x1080": {
    "reached": [
     "Landing",
     "Pre-race plan",
@@ -940,7 +1062,7 @@
     {
      "target": "Landing",
      "activated": true,
-     "switch_ms": 89,
+     "switch_ms": 290,
      "focused": {
       "tag": "A",
       "text": "Landing",
@@ -952,7 +1074,7 @@
     {
      "target": "Pre-race plan",
      "activated": true,
-     "switch_ms": 211,
+     "switch_ms": 205,
      "focused": {
       "tag": "A",
       "text": "Pre-race plan",
@@ -964,7 +1086,7 @@
     {
      "target": "Live Predictor",
      "activated": true,
-     "switch_ms": 226,
+     "switch_ms": 222,
      "focused": {
       "tag": "A",
       "text": "Live Predictor",
@@ -976,7 +1098,7 @@
     {
      "target": "Decision board",
      "activated": true,
-     "switch_ms": 191,
+     "switch_ms": 189,
      "focused": {
       "tag": "A",
       "text": "Decision board",
@@ -988,7 +1110,7 @@
     {
      "target": "Driver feedback",
      "activated": true,
-     "switch_ms": 204,
+     "switch_ms": 195,
      "focused": {
       "tag": "A",
       "text": "Driver feedback",
@@ -1000,7 +1122,7 @@
     {
      "target": "Ghost Strategy",
      "activated": true,
-     "switch_ms": 204,
+     "switch_ms": 293,
      "focused": {
       "tag": "A",
       "text": "Ghost Strategy",
@@ -1024,129 +1146,7 @@
     {
      "target": "Validation",
      "activated": true,
-     "switch_ms": 189,
-     "focused": {
-      "tag": "A",
-      "text": "Validation",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    }
-   ]
-  },
-  "replay_run_1440x900": {
-   "console_errors": [],
-   "bad_responses": [],
-   "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
-  },
-  "route_switch_ms_1920x1080": 269,
-  "route_switch_validation_ms_1920x1080": 214,
-  "keyboard_focus_1920x1080": "BUTTON:",
-  "keyboard_nav_1920x1080": {
-   "reached": [
-    "Landing",
-    "Pre-race plan",
-    "Live Predictor",
-    "Ghost Strategy",
-    "Driver feedback",
-    "Decision board",
-    "Validation",
-    "Generalisation"
-   ],
-   "missing": [],
-   "tabs": 13,
-   "enter_activates": true,
-   "enter_switch_ms": 209,
-   "activations": [
-    {
-     "target": "Landing",
-     "activated": true,
-     "switch_ms": 95,
-     "focused": {
-      "tag": "A",
-      "text": "Landing",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    },
-    {
-     "target": "Pre-race plan",
-     "activated": true,
-     "switch_ms": 226,
-     "focused": {
-      "tag": "A",
-      "text": "Pre-race plan",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    },
-    {
-     "target": "Live Predictor",
-     "activated": true,
-     "switch_ms": 239,
-     "focused": {
-      "tag": "A",
-      "text": "Live Predictor",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    },
-    {
-     "target": "Decision board",
-     "activated": true,
-     "switch_ms": 190,
-     "focused": {
-      "tag": "A",
-      "text": "Decision board",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    },
-    {
-     "target": "Driver feedback",
-     "activated": true,
-     "switch_ms": 192,
-     "focused": {
-      "tag": "A",
-      "text": "Driver feedback",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    },
-    {
-     "target": "Ghost Strategy",
-     "activated": true,
-     "switch_ms": 194,
-     "focused": {
-      "tag": "A",
-      "text": "Ghost Strategy",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    },
-    {
-     "target": "Generalisation",
-     "activated": true,
-     "switch_ms": 209,
-     "focused": {
-      "tag": "A",
-      "text": "Generalisation",
-      "is_nav": true,
-      "is_button": false
-     },
-     "keys": "Tab then Enter"
-    },
-    {
-     "target": "Validation",
-     "activated": true,
-     "switch_ms": 199,
+     "switch_ms": 237,
      "focused": {
       "tag": "A",
       "text": "Validation",
@@ -1163,6 +1163,6 @@
    "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
   }
  },
- "generated_at": "2026-09-13T02:11:56",
+ "generated_at": "2026-09-13T04:05:08",
  "feedback_fixture": "none: the capture never writes app_v2/state/feedback_events.jsonl (use ORB_FEEDBACK_LOG on the server for a fixture log)"
 }

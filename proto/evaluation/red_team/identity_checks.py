@@ -189,8 +189,14 @@ def pit_loss_derivation() -> dict:
         d = pm['derivation']['season_pool']
         reported.append(dict(scenario=p.parent.name, transit_med=pm['transit_med'], transit_sd=pm['transit_sd'], share_in=pm['share_in'], pool_n_green=d['n_green_stops'], pool_n_races=d['n_races'], pool_median=d['median_total_s'], pool_mad=d['mad_s'],
                              source=pm['derivation']['transit']['source']))
-    agree = all(abs(x['transit_med'] - mine['transit_s']) < 1e-6 and abs(x['share_in'] - mine['share_in']) < 1e-6 and x['pool_n_green'] == mine['n_green_stops'] and abs(x['pool_median'] - mine['median_total_s']) < 1e-6
-                and abs(x['transit_sd'] - mine['transit_sd_s']) < 1e-6 for x in reported)
+    # Every scenario must record the same season pool. The transit itself equals the pool only when the pit model fell
+    # back to it: a race with enough green stops of its own derives transit from those (pitmodel.derivation.transit.source).
+    pool_agree = all(x['pool_n_green'] == mine['n_green_stops'] and abs(x['pool_median'] - mine['median_total_s']) < 1e-6
+                     and abs(x['pool_mad'] - mine['mad_s']) < 1e-6 for x in reported)
+    pooled = [x for x in reported if x['source'] == 'season_pool']
+    transit_agree = all(abs(x['transit_med'] - mine['transit_s']) < 1e-6 and abs(x['share_in'] - mine['share_in']) < 1e-6
+                        and abs(x['transit_sd'] - mine['transit_sd_s']) < 1e-6 for x in pooled)
+    agree = pool_agree and transit_agree
     readme = (PROTO / 'counterfactual' / 'README.md').read_text(encoding='utf-8')
     m = re.search(r'(\d+) green stops over (\d+) race files, median ([\d.]+) s \(MAD ([\d.]+)\) -> transit ([\d.]+) s,\s*sd ([\d.]+), ([\d.]+)% of it on the in-lap', readme)
     readme_claim = dict(n=int(m.group(1)), races=int(m.group(2)), median=float(m.group(3)), mad=float(m.group(4)), transit=float(m.group(5)), sd=float(m.group(6)), share_pct=float(m.group(7))) if m else None
@@ -202,6 +208,7 @@ def pit_loss_derivation() -> dict:
     doc_ok = bool(m2) and docstring_claim['n'] == mine['n_green_stops'] and abs(docstring_claim['median'] - mine['median_total_s']) < 0.006
     return dict(check='pit-loss derivation recomputed from the feature files', status='PASS' if (agree and readme_ok) else 'FAIL', recomputed=mine, reported_in_summaries=reported, summaries_agree=agree,
                 readme_claim=readme_claim, readme_agrees=readme_ok, pitmodel_docstring_claim=docstring_claim, pitmodel_docstring_agrees=doc_ok,
+                pool_block_agrees=pool_agree, pooled_transit_agrees=transit_agree, n_pooled_source=len(pooled), n_race_source=len(reported) - len(pooled),
                 note='the docstring of counterfactual/pitmodel.py is informational; a stale value there is a LOW finding, not a failure' if not doc_ok else '')
 
 

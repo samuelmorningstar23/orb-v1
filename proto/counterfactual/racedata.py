@@ -93,7 +93,7 @@ def traffic_beta(df: pd.DataFrame) -> dict[str, Any]:
     d = df.copy()
     d['stint_id'] = d['session'] + '_' + d['Driver'] + '_' + d['Stint'].fillna(0).astype(int).astype(str)
     n_laps = int(d['LapNumber'].max())
-    ok = d['IsAccurate'] & (d['TrackStatus'].astype(str) == '1') & ~d['pit_in'] & ~d['pit_out'] & ~d['deleted'] & d['Compound'].isin(COMPS) & d['traffic'].notna() & d['lap_s'].notna()
+    ok = d['IsAccurate'] & (d['TrackStatus'].astype(str) == '1') & ~d['pit_in'] & ~d['pit_out'] & ~d['deleted'] & d['Compound'].isin(COMPS) & d['traffic'].notna() & d['lap_s'].notna() & d['TyreLife'].notna()   # TyreLife enters the design matrix: a missing value makes the fit non-finite
     r = d[ok].copy()
     r = r[r.groupby('stint_id')['lap_s'].transform('size') >= 8]
     r = r[r['lap_s'] <= 1.08 * r.groupby('stint_id')['lap_s'].transform('min')]
@@ -107,7 +107,15 @@ def traffic_beta(df: pd.DataFrame) -> dict[str, Any]:
     X.append(r['traffic'].values.astype(float))
     X = np.column_stack(X)
     y = r['y'].values
-    b, *_ = np.linalg.lstsq(X, y, rcond=None)
+    finite = np.isfinite(X).all(axis=1) & np.isfinite(y)        # a single non-finite row would fail the whole decomposition
+    if not finite.all():
+        X, y = X[finite], y[finite]
+    if len(y) < 60 or X.size == 0:
+        return dict(beta=0.0, se=float('nan'), n=int(len(y)), note='too few finite laps; traffic effect set to 0')
+    try:
+        b, *_ = np.linalg.lstsq(X, y, rcond=None)
+    except np.linalg.LinAlgError:                                # ill-conditioned race: degrade to no traffic term, never crash the scenario
+        return dict(beta=0.0, se=float('nan'), n=int(len(y)), note='traffic fit did not converge; traffic effect set to 0')
     res = y - X @ b
     s2 = float(res @ res) / max(1, len(y) - X.shape[1])
     try:

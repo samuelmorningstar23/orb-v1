@@ -1,6 +1,6 @@
 {
  "state": "OPEN",
- "reason": "C6 GO",
- "since": "2026-09-13T02:22:47",
+ "reason": "stop cleared: Scenario generation complete and stable (483 prepared simulations over 10 races, none failing the identity test). All gates pass against the ready server: pytest 595 passed / 1 skipped / 1 xfailed; identity 518/0; consistency probe 3755 numbers, 0 mismatches (was 24); release gate 326/326 with Ghost route switch 295 ms. Four defects fixed: traffic-fit crash on missing tyre metadata, scenarios written despite failing their identity test, a pit-loss check that assumed every race used the pooled transit, and the Ghost weekend list excluding every race without position-feed assets.",
+ "since": "2026-09-13T04:09:04",
  "by": "workstream 9"
 }

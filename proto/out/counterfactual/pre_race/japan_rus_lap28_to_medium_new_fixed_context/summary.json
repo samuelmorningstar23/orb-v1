@@ -1,0 +1,557 @@
+{
+ "scenario": {
+  "scenario_id": "japan_rus_lap28_to_medium_new_fixed_context",
+  "schema_version": "2.0.0",
+  "event_id": "2026_Japan",
+  "driver_id": "RUS",
+  "simulation_mode": "fixed_context",
+  "availability_mode": "PUBLIC PROXY",
+  "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
+  "model_hash": "sha256:152fbd570ade21566ae4ee137130556fc70aa1aaeddab5895eb68bb9d52ec9bf",
+  "split_id": "development_pool",
+  "data_cutoff": "2026-09-12T21:33:10",
+  "generated_at": "2026-09-13T03:30:32",
+  "git_sha": "92c24b1",
+  "intervention": {
+   "lap": 28,
+   "from_compound": "HARD",
+   "to_compound": "MEDIUM",
+   "set_status": "new",
+   "pit_stop": true
+  },
+  "actual_plan": {
+   "label": "M-H",
+   "stints": [
+    {
+     "compound": "MEDIUM",
+     "laps": 21,
+     "set_status": "new"
+    },
+    {
+     "compound": "HARD",
+     "laps": 32,
+     "set_status": "new"
+    }
+   ],
+   "pit_laps": [
+    21
+   ],
+   "n_laps": 53
+  },
+  "counterfactual_plan": {
+   "label": "M-M",
+   "stints": [
+    {
+     "compound": "MEDIUM",
+     "laps": 28,
+     "set_status": "new"
+    },
+    {
+     "compound": "MEDIUM",
+     "laps": 25,
+     "set_status": "new"
+    }
+   ],
+   "pit_laps": [
+    28
+   ],
+   "n_laps": 53
+  },
+  "summary": {
+   "elapsed_delta_median_s": -13.696867207988397,
+   "elapsed_delta_q10_s": -37.64330922167893,
+   "elapsed_delta_q90_s": 12.421313224304658,
+   "probability_of_gain": 0.748,
+   "oracle_regret_median_s": null,
+   "estimated_finish_position_median": null,
+   "estimated_finish_position_q10": null,
+   "estimated_finish_position_q90": null
+  },
+  "assumptions": {
+   "rivals_follow_observed_trajectories": true,
+   "rival_strategy_response": "none",
+   "safety_car_mode": "fixed_observed_schedule",
+   "driver_baseline_preserved": true
+  },
+  "claim_scope": "Model-implied race-time delta with the observed race context held fixed (SC schedule, traffic, rivals on their observed trajectories). Rival strategy responses are not simulated.",
+  "track_position_simulated": false,
+  "rival_interactions_simulated": false,
+  "traffic_mode": "paired_replay",
+  "safety_car_schedule": [
+   {
+    "kind": "SC",
+    "start_lap": 21,
+    "end_lap": 27
+   }
+  ],
+  "assets": {
+   "laps": {
+    "path": "out/counterfactual/pre_race/japan_rus_lap28_to_medium_new_fixed_context/laps.csv",
+    "sha256": "ad6a9d0ac82c46f9a3d493bc35bbae0a42359b77bf2bacba8b50e506f8bb98d3",
+    "bytes": 11403,
+    "format": "csv",
+    "description": "per-lap counterfactual table (mandatory columns first)"
+   },
+   "lap_deltas": {
+    "path": "out/counterfactual/pre_race/japan_rus_lap28_to_medium_new_fixed_context/lap_deltas.json",
+    "sha256": "0101c44421ad2031414771a3f3e3613719033efc8bd9fd73c1f49a9c4498d1be",
+    "bytes": 2698,
+    "description": "per-lap counterfactual minus actual lap time (s), model-implied, mean over sampled curves",
+    "format": "json"
+   },
+   "ghost_replay": {
+    "path": "out/counterfactual/pre_race/japan_rus_lap28_to_medium_new_fixed_context/ghost_replay.json",
+    "sha256": "6ac37e367781e756851988b5e3d7690869b2e17781d9aeaafcc813f78a5d6d2d",
+    "bytes": 10189,
+    "description": "actual vs ghost elapsed time per lap for the Race Twin scrubber",
+    "format": "json"
+   }
+  },
+  "validation": {
+   "identity_test": "pass",
+   "future_leakage_test": "pass",
+   "target_driver_excluded": true,
+   "sealed_holdout": false
+  },
+  "warnings": [
+   "out-lap penalty for SOFT: race_pooled_compounds (n=6) used, fewer than 3 green pit-out stints on SOFT in Japan",
+   "out-lap penalty for MEDIUM: race_pooled_compounds (n=6) used, fewer than 3 green pit-out stints on MEDIUM in Japan",
+   "actual stop on lap 21 not measurable (missing or unclean neighbouring laps); standardised mean used for its loss"
+  ]
+ },
+ "engine": {
+  "engine_version": "counterfactual_engine_v1",
+  "provider": "provider_A_v2",
+  "mode": "fixed_context",
+  "curve_source": "pre_race_forecast",
+  "uses_post_race_reference": false,
+  "uses_future_data_for_pre_race_quantities": false,
+  "pre_race_forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a",
+  "curves": {
+   "source": "pre_race_forecast",
+   "by_compound": {
+    "MEDIUM": {
+     "slope": 0.0191,
+     "sd": 0.018785866106073665,
+     "sd_from": "band90_width",
+     "band": [
+      -0.0094,
+      0.0524
+     ],
+     "issued": true,
+     "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
+    },
+    "HARD": {
+     "slope": 0.0289,
+     "sd": 0.033224840863978186,
+     "sd_from": "band90_width",
+     "band": [
+      -0.0182,
+      0.0911
+     ],
+     "issued": false,
+     "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
+    }
+   },
+   "uses_post_race_reference": false,
+   "target_driver_excluded": true,
+   "label": "frozen pre-race forecast (provider A), model-implied; no race data",
+   "intended_page": "scenario_explorer"
+  },
+  "offsets": {
+   "SOFT": 0.0,
+   "MEDIUM": 0.6825000000000045,
+   "HARD": 1.2
+  },
+  "offsets_source": {
+   "MEDIUM": "practice (20 drivers)",
+   "HARD": "practice value +2.07 s implausible, nominal Pirelli-range step"
+  },
+  "offset_sd": 0.15,
+  "pit_model": {
+   "event": "Japan",
+   "transit_med": 20.96675000000001,
+   "transit_sd": 2.0243364452830597,
+   "share_in": 0.10948489743919032,
+   "stationary_q": [
+    2.1,
+    2.5,
+    3.4
+   ],
+   "outlap_pen": {
+    "SOFT": 0.20337735849056315,
+    "MEDIUM": 0.20337735849056315,
+    "HARD": 0.28637735849056867
+   },
+   "outlap_pen_sd": {
+    "SOFT": 0.2794700999999965,
+    "MEDIUM": 0.2794700999999965,
+    "HARD": 0.26242019999998883
+   },
+   "warmup": {
+    "SOFT": 0.1778773584905622,
+    "MEDIUM": 0.1778773584905622,
+    "HARD": 0.261377358490563
+   },
+   "warmup_sd": {
+    "SOFT": 0.477397200000004,
+    "MEDIUM": 0.477397200000004,
+    "HARD": 0.31579379999999085
+   },
+   "sc_factor": 0.55,
+   "sc_factor_measured": -2.3276945010192422,
+   "derivation": {
+    "race_green_stops": [
+     {
+      "driver": "ALB",
+      "in_lap": 46,
+      "in_excess_s": 21.54,
+      "out_excess_s": 23.942,
+      "total_s": 45.482
+     },
+     {
+      "driver": "ALB",
+      "in_lap": 47,
+      "in_excess_s": 22.437,
+      "out_excess_s": 26.158,
+      "total_s": 48.595
+     },
+     {
+      "driver": "ALB",
+      "in_lap": 48,
+      "in_excess_s": 24.599,
+      "out_excess_s": 33.556,
+      "total_s": 58.155
+     },
+     {
+      "driver": "BEA",
+      "in_lap": 16,
+      "in_excess_s": 2.084,
+      "out_excess_s": 21.382,
+      "total_s": 23.467
+     },
+     {
+      "driver": "COL",
+      "in_lap": 17,
+      "in_excess_s": 2.401,
+      "out_excess_s": 20.572,
+      "total_s": 22.973
+     },
+     {
+      "driver": "LEC",
+      "in_lap": 17,
+      "in_excess_s": 2.108,
+      "out_excess_s": 19.993,
+      "total_s": 22.101
+     },
+     {
+      "driver": "LIN",
+      "in_lap": 18,
+      "in_excess_s": 2.569,
+      "out_excess_s": 23.271,
+      "total_s": 25.84
+     },
+     {
+      "driver": "NOR",
+      "in_lap": 16,
+      "in_excess_s": 2.866,
+      "out_excess_s": 20.058,
+      "total_s": 22.924
+     },
+     {
+      "driver": "PIA",
+      "in_lap": 18,
+      "in_excess_s": 2.487,
+      "out_excess_s": 20.11,
+      "total_s": 22.597
+     }
+    ],
+    "race_sc_stops": [
+     {
+      "driver": "ALO",
+      "in_lap": 23,
+      "total_s": -55.027
+     },
+     {
+      "driver": "HUL",
+      "in_lap": 23,
+      "total_s": -15.13
+     },
+     {
+      "driver": "STR",
+      "in_lap": 24,
+      "total_s": -46.304
+     }
+    ],
+    "season_pool": {
+     "n_green_stops": 225,
+     "n_races": 13,
+     "median_total_s": 21.981239436619717,
+     "mad_s": 1.85842364714604
+    },
+    "transit": {
+     "source": "race",
+     "n": 9,
+     "median_total_s": 23.46675000000001,
+     "stationary_subtracted_s": 2.5,
+     "transit_s": 20.96675000000001,
+     "sd_s": 2.0243364452830597
+    },
+    "race_outlap_stints": [
+     {
+      "driver": "BEA",
+      "out_lap": 17,
+      "compound": "HARD",
+      "penalty_s": 0.109,
+      "warmup_s": 0.261
+     },
+     {
+      "driver": "BOT",
+      "out_lap": 20,
+      "compound": "MEDIUM",
+      "penalty_s": -0.08,
+      "warmup_s": -0.206
+     },
+     {
+      "driver": "HAD",
+      "out_lap": 20,
+      "compound": "HARD",
+      "penalty_s": 0.286,
+      "warmup_s": 0.525
+     },
+     {
+      "driver": "LEC",
+      "out_lap": 18,
+      "compound": "HARD",
+      "penalty_s": 0.12,
+      "warmup_s": 0.094
+     },
+     {
+      "driver": "NOR",
+      "out_lap": 17,
+      "compound": "HARD",
+      "penalty_s": 0.591,
+      "warmup_s": 0.474
+     },
+     {
+      "driver": "OCO",
+      "out_lap": 20,
+      "compound": "HARD",
+      "penalty_s": 2.172,
+      "warmup_s": -0.484
+     }
+    ],
+    "outlap_sources": {
+     "SOFT": {
+      "source": "race_pooled_compounds",
+      "n": 6
+     },
+     "MEDIUM": {
+      "source": "race_pooled_compounds",
+      "n": 6
+     },
+     "HARD": {
+      "source": "race_compound",
+      "n": 5
+     }
+    },
+    "sc_factor_measured": {
+     "ratio": -2.3276945010192422,
+     "n_sc_stops": 3,
+     "note": "(median SC/VSC stop total - stationary) / green transit; SC laps are field-relative already"
+    },
+    "sc_factor": {
+     "used": 0.55,
+     "default": 0.55,
+     "rule": "transit loss x factor when the in-lap or out-lap falls on an SC/VSC lap; 0 under red flag"
+    },
+    "stationary": {
+     "q10": 2.1,
+     "median": 2.5,
+     "q90": 3.4,
+     "source": "stated assumption (2026 stop times), split-normal sampling"
+    }
+   },
+   "warnings": [
+    "out-lap penalty for SOFT: race_pooled_compounds (n=6) used, fewer than 3 green pit-out stints on SOFT in Japan",
+    "out-lap penalty for MEDIUM: race_pooled_compounds (n=6) used, fewer than 3 green pit-out stints on MEDIUM in Japan"
+   ],
+   "total_green_median": 23.46675000000001,
+   "lock_pit_loss_for_comparison": 21.0
+  },
+  "plan_info": {
+   "replaced_stop": {
+    "index": 1,
+    "in_lap": 21,
+    "to_compound": "HARD",
+    "free": false
+   }
+  },
+  "standardised_pit_event": true,
+  "stop_replacement_delta_s": 0.0,
+  "elapsed_delta_mean_s": -13.366933102976057,
+  "elapsed_delta_sd_s": 19.39410141242499,
+  "tyre_delta_mean_s": -22.130078971230397,
+  "pit_delta_mean_s": 8.763145868254341,
+  "identity_check_delta_s": 0.0,
+  "n_samples": 500,
+  "seed": 2026,
+  "sampled_parameters": [
+   "slope_SOFT",
+   "slope_MEDIUM",
+   "slope_HARD",
+   "offset_SOFT",
+   "offset_MEDIUM",
+   "offset_HARD",
+   "pit_transit",
+   "pit_stationary",
+   "outlap_pen_SOFT",
+   "outlap_pen_MEDIUM",
+   "outlap_pen_HARD",
+   "warmup_SOFT",
+   "warmup_MEDIUM",
+   "warmup_HARD"
+  ],
+  "theta_mean": {
+   "slope_SOFT": 0.0,
+   "slope_MEDIUM": 0.0191,
+   "slope_HARD": 0.0289,
+   "offset_SOFT": 0.0,
+   "offset_MEDIUM": 0.6825000000000045,
+   "offset_HARD": 1.2,
+   "pit_transit": 20.96675000000001,
+   "pit_stationary": 2.5,
+   "outlap_pen_SOFT": 0.20337735849056315,
+   "outlap_pen_MEDIUM": 0.20337735849056315,
+   "outlap_pen_HARD": 0.28637735849056867,
+   "warmup_SOFT": 0.1778773584905622,
+   "warmup_MEDIUM": 0.1778773584905622,
+   "warmup_HARD": 0.261377358490563
+  },
+  "theta_sample_mean": {
+   "slope_SOFT": 0.0,
+   "slope_MEDIUM": 0.01806962857017974,
+   "slope_HARD": 0.0299445674749762,
+   "offset_SOFT": 0.0,
+   "offset_MEDIUM": 0.6822045119751916,
+   "offset_HARD": 1.194772286847919,
+   "pit_transit": 20.88132069180998,
+   "pit_stationary": 2.6723895725518023,
+   "outlap_pen_SOFT": 0.202065336405254,
+   "outlap_pen_MEDIUM": 0.19249926844376508,
+   "outlap_pen_HARD": 0.2908346302756024,
+   "warmup_SOFT": 0.16517254681829813,
+   "warmup_MEDIUM": 0.18560233998273204,
+   "warmup_HARD": 0.2895617314942481
+  },
+  "n_laps": 53,
+  "retired": false,
+  "timing_ms": 139.65616701170802,
+  "support": {
+   "in_support": true,
+   "stints_beyond_support": [],
+   "longest_observed_stint_laps": {
+    "MEDIUM": 33,
+    "HARD": 37,
+    "SOFT": 1
+   },
+   "rule": "counterfactual stint length <= longest stint observed on that compound in this race (the linear reference has no cliff term)"
+  },
+  "frozen_laps": [
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "cf_stops": [
+   {
+    "in_lap": 28,
+    "out_lap": 29,
+    "to_compound": "MEDIUM",
+    "coincident_actual": null,
+    "free": false
+   }
+  ],
+  "actual_stops": [
+   {
+    "in_lap": 21,
+    "out_lap": 22,
+    "free": false,
+    "measured": false,
+    "meas_in": 1.8086226415094302,
+    "meas_out": null,
+    "label_in": "GREEN",
+    "label_out": "SC"
+   }
+  ]
+ },
+ "events": {
+  "actual": [
+   {
+    "kind": "pit_entry",
+    "lap": 21,
+    "compound": "HARD",
+    "free": false
+   },
+   {
+    "kind": "stationary",
+    "lap": 22,
+    "compound": "HARD",
+    "free": false
+   },
+   {
+    "kind": "pit_exit",
+    "lap": 22,
+    "compound": "HARD",
+    "free": false
+   },
+   {
+    "kind": "age_reset",
+    "lap": 22,
+    "compound": "HARD",
+    "free": false
+   },
+   {
+    "kind": "warm_up",
+    "lap": 23,
+    "compound": "HARD",
+    "free": false
+   }
+  ],
+  "counterfactual": [
+   {
+    "kind": "pit_entry",
+    "lap": 28,
+    "compound": "MEDIUM",
+    "free": false
+   },
+   {
+    "kind": "stationary",
+    "lap": 29,
+    "compound": "MEDIUM",
+    "free": false
+   },
+   {
+    "kind": "pit_exit",
+    "lap": 29,
+    "compound": "MEDIUM",
+    "free": false
+   },
+   {
+    "kind": "age_reset",
+    "lap": 29,
+    "compound": "MEDIUM",
+    "free": false
+   },
+   {
+    "kind": "warm_up",
+    "lap": 30,
+    "compound": "MEDIUM",
+    "free": false
+   }
+  ]
+ },
+ "sidecar_root": "/Users/samuelmorningstar/Trackshift/proto"
+}

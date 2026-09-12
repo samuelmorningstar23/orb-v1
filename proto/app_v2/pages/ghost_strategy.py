@@ -305,7 +305,11 @@ def render() -> None:
     if mode == 'scenario' and not sc_row['available']:
         empty_states.out_of_support(sc_row['support'], f"{sc_row['label']}: {sc_row['reason']} · scenario unavailable")
     elif active is None:
-        empty_states.empty('SIMULATION NOT AVAILABLE', f'{driver} · lap {ilap} → {rep.title()} · {FIDELITY[fidelity]} has no prepared simulation. Choose one above to see its result. No ghost animation is available for this selection.', '◌', 'decision')
+        reason = ('No simulation is prepared for any driver at this race. A simulation is only written when replaying the actual plan '
+                  'reproduces the race exactly; where the lap record has gaps or the race ran long under caution, the engine refuses rather than approximate.'
+                  if not prepared else
+                  f'{driver} · lap {ilap} → {rep.title()} · {FIDELITY[fidelity]} has no prepared simulation. Choose one above to see its result. No ghost animation is available for this selection.')
+        empty_states.empty('SIMULATION NOT AVAILABLE', reason, '◌', 'decision')
     else:
         st.html(cards.kv_html([('Finish delta · median', _fmt(active.finish_delta_s)), ('80% interval · q10–q90', f'{_fmt(active.q10)} to {_fmt(active.q90)}'),
                                ('Probability of gain', pct(active.probability_of_gain))]))

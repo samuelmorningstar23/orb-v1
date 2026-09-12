@@ -200,6 +200,12 @@ def _scenario_dirs() -> list[Path]:
     return dirs
 
 
+@_cache
+def events_with_scenarios() -> frozenset:
+    """Events that have at least one prepared scenario, read once: callers must not scan the directory per event."""
+    return frozenset(sc.event for sc in list_scenarios(None, None))
+
+
 def list_scenarios(event: Optional[str] = None, curve_source: Optional[str] = RACE_REFERENCE) -> list[Scenario]:
     """Scenarios on disk. `curve_source` selects race_reference (audit, default), PRE_RACE (scenario explorer) or None for all."""
     out = []

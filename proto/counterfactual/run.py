@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 
 from counterfactual import PROTO
-from counterfactual.engine import CounterfactualEngine, ScenarioSpec, CounterfactualResult, LAP_COLUMNS, EXTRA_COLUMNS, FrozenFieldNotAvailable
+from counterfactual.engine import IDENTITY_TOL, CounterfactualEngine, ScenarioSpec, CounterfactualResult, LAP_COLUMNS, EXTRA_COLUMNS, FrozenFieldNotAvailable
 from shared.lockio import atomic_write_json, sidecar_ref, strip_nonfinite
 
 DEFAULT_OUT = PROTO / 'out' / 'counterfactual'
@@ -39,6 +39,17 @@ def _root_for(out_dir: Path) -> Path:
     except ValueError:
         return out_dir
 
+
+
+def _missing_laps(event: str, driver: str) -> list[int]:
+    """Lap numbers absent from a driver's race record, the usual reason the actual plan cannot be reproduced exactly."""
+    try:
+        import pandas as pd
+        d = pd.read_csv(PROTO / 'feat' / f'{event}_R.csv')
+        laps = sorted(int(x) for x in d[d.Driver == driver].LapNumber.dropna().unique())
+        return [n for n in range(laps[0], laps[-1] + 1) if n not in set(laps)] if laps else []
+    except Exception:
+        return []
 
 def write_scenario(result: CounterfactualResult, out_dir: Path | str | None = None, root: Path | str | None = None) -> dict[str, Any]:
     """Write laps.csv, lap_deltas.json, ghost_replay.json and summary.json for one scenario; returns the summary dict."""
@@ -155,6 +166,15 @@ def main(argv: Optional[list[str]] = None) -> int:
     t0 = time.perf_counter()
     engine.compile(spec)
     t_second = (time.perf_counter() - t0) * 1000
+    if result.scenario['validation']['identity_test'] == 'fail':
+        # The identity property is the engine's own correctness guarantee: replaying the actual plan must cost exactly
+        # nothing. A scenario that fails it would be displayed as a working simulation, so refuse to write it.
+        delta = result.engine.get('identity_check_delta_s')
+        gaps = _missing_laps(args.event, args.driver.upper())
+        why = f"; the driver's race record is missing lap(s) {gaps}" if gaps else ''
+        print(f"refused: {spec.scenario_id} fails the identity test (replaying the actual plan moves the clock by "
+              f"{delta:+.4f} s, tolerance {IDENTITY_TOL}){why}. No scenario written.", file=sys.stderr)
+        return 4
     summary = write_scenario(result, args.out)
     s = result.summary
     say(f"{spec.scenario_id}: {result.scenario['actual_plan']['label']} -> {result.scenario['counterfactual_plan']['label']} "

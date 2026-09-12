@@ -127,6 +127,7 @@ def render() -> None:
         return
     lock, ev = ctx.lock, ctx.event
     st.session_state['mode'] = 'live'
+    ctx.mode = 'live'
     if not A.race_csv_asset(ev).exists:
         forecast_only(ctx, lock, ev); return
     driver = ctx.driver or app_state.default_driver(lock, ev)
@@ -190,21 +191,25 @@ def render() -> None:
             if k:
                 cards.kpi_card('Tyre degradation', k.value, f'Forecast {vm.prior.slope:+.3f} s/lap' if vm.prior.slope is not None else 'No prior available', 'live', unit=getattr(k, 'unit', 's/lap'))
         with b:
-            proj = (orb or {}).get('projection') or (state.project() if state else [])
+            proj = charts.live_projection(vm, [] if src.cursor.at_end else (orb or {}).get('projection'))
             if src.cursor.at_end:
                 cards.kpi_card('Replay complete', 'Finished', 'Restart or scrub back to explore an earlier lap.')
             elif proj:
                 nxt = proj[0]
                 cards.kpi_card('Next lap · pace loss', f"{nxt['loss']:+.2f}", f"90% band {nxt['lo']:+.2f} to {nxt['hi']:+.2f} s · vs a fresh tyre", 'live', unit='s')
         with c:
-            k = next((k for k in vm.kpis if k.label == 'USEFUL LIFE'), None)
-            if k:
-                cards.kpi_card('Estimated useful life', k.value, f"80% range {ts.get('useful_laps_q10', 0):.0f} to {ts.get('useful_laps_q90', 0):.0f} laps" if ts else k.sub, 'neutral', unit=getattr(k, 'unit', ''))
+            if state:
+                cards.kpi_card('Clean laps used', str(state.kept_laps), f'Of {state.laps_in_stint} recorded laps on this tyre set', 'neutral', unit='laps')
         left, right = st.columns([2.1, 1.2], gap='medium')
         with left:
-            st.plotly_chart(charts.forecast_vs_live(vm, presentation, estimator_label=label, projection=(orb or {}).get('projection')), width='stretch', config={'displayModeBar': False}, key='live_chart')
             compound = state.compound if state else vm.prior.compound
-            st.caption(f'{compound.title()} tyres · age {state.tyre_age if state else "—"} laps · {state.kept_laps if state else 0} clean laps. Pace loss relative to a fresh tyre, fuel corrected.')
+            st.markdown(f'### Pace loss on this {compound.lower()} tyre set')
+            st.caption('Higher means slower. Dots are clean, fuel-corrected laps; the solid line is the current fitted trend.')
+            st.plotly_chart(charts.forecast_vs_live(vm, presentation, estimator_label=label, projection=proj), width='stretch', config={'displayModeBar': False}, key='live_chart')
+            st.caption(f'Tyre age {state.tyre_age if state else "—"} laps. Pace loss is relative to a fresh tyre of the same compound, not total lap time.'
+                       + (' The dotted forecast assumes you stay on this set; shading is the 90% model range.' if proj else ''))
+            if state and state.band90[0] is not None and state.band90[0] <= 0 <= state.band90[1]:
+                st.caption('Trend uncertain: the 90% range includes both improving and worsening pace.')
         with right:
             if src.cursor.at_end:
                 st.html(cards.card_html('Race complete', '<p>No further pit decision is needed.</p>'))
@@ -222,6 +227,7 @@ def render() -> None:
             st.caption(f'Estimation method: {label}. Prior: {vm.prior.source}.')
             if orb:
                 st.caption(f"Data cutoff {orb.get('data_cutoff', '—')} · no future data. Regime: {orb['regime']}.")
+                st.caption('Useful-life figures below are a model crossover proxy, capped at laps remaining. They are not tyre expiry or a pit-stop countdown.')
             note = LB.support_note(vm)
             if note:
                 st.caption(note)
