@@ -1,0 +1,124 @@
+/* Orb v1 premium shell extensions. Extends theme/base.css; every colour is a base token. No external assets. */
+.stApp, [data-testid="stHeader"], [data-testid="stToolbar"] { background: var(--bg); }
+[data-testid="stHeader"] { border-bottom: 1px solid var(--border); }
+[data-testid="stSidebar"] { background: var(--surface); border-right: 1px solid var(--border); }
+[data-testid="stSidebar"] * { font-size: 0.86rem; }
+.block-container { padding-top: 68px; padding-bottom: calc(var(--sp)*4); max-width: 1880px; }   /* Streamlit's absolute header is 60 px tall */
+[data-testid="stAppDeployButton"] { display: none; }
+h1, h2, h3, h4 { color: var(--text); letter-spacing: 0.01em; }
+h2 { font-size: 1.15rem; margin: calc(var(--sp)*1.5) 0 var(--sp) 0; }
+h3, [data-testid="stMarkdownContainer"] h3 { font-size: 0.8rem !important; font-weight: 600 !important; color: var(--text2) !important; text-transform: uppercase; letter-spacing: 0.08em; margin: var(--sp) 0 4px 0 !important; padding: 0 !important; }
+[data-testid="stMarkdownContainer"] h2 { font-size: 1.35rem !important; padding: 0 !important; margin: calc(var(--sp)*1.5) 0 var(--sp) 0 !important; }
+a { color: var(--live); }
+[data-testid="stVerticalBlockBorderWrapper"] > div { border-color: var(--border) !important; border-radius: var(--radius) !important; background: var(--surface); }
+[data-testid="stMetric"] { display: none; }               /* no unstyled st.metric in this shell */
+div[data-testid="stDataFrame"], div[data-testid="stTable"] { border: 1px solid var(--border); border-radius: calc(var(--radius) - 4px); overflow: hidden; }
+.stButton > button, .stDownloadButton > button { background: var(--raised); color: var(--text); border: 1px solid var(--border); border-radius: 10px; font-variant-numeric: tabular-nums; }
+.stButton > button:hover { border-color: var(--live); color: var(--live); }
+.stButton > button p, .stButton > button div, .stButton > button span { white-space: normal !important; font-size: 0.84rem; line-height: 1.25; overflow: visible !important; text-overflow: clip !important; }
+.stButton > button[kind="primary"], [data-testid="stFormSubmitButton"] > button, .stFormSubmitButton > button { background: var(--live) !important; color: var(--bg) !important; border-color: var(--live) !important; font-weight: 600; border-radius: 10px; }
+[data-testid="stFormSubmitButton"] > button p { color: var(--bg) !important; }
+.stButton > button:focus-visible { outline: 2px solid var(--live); outline-offset: 2px; }
+[data-baseweb="select"] > div, .stTextInput input, .stNumberInput input, .stTextArea textarea { background: var(--raised) !important; border-color: var(--border) !important; color: var(--text) !important; border-radius: 10px !important; }
+[data-testid="stSlider"] [role="group"] > div > div:first-child { background: var(--border) !important; }        /* track: flat, no primary-colour fill */
+[data-testid="stSlider"] [role="group"] > div > div:nth-child(2) { background: var(--live) !important; border-color: var(--live) !important; }   /* thumb */
+[data-testid="stSliderThumbValue"], [data-testid="stSliderThumbValue"] p { color: var(--live) !important; background: transparent !important; }
+[data-testid="stButtonGroup"] button[aria-checked="true"] { border-color: var(--live) !important; background: var(--raised) !important; }
+[data-testid="stButtonGroup"] button[aria-checked="true"] p { color: var(--live) !important; }
+[data-testid="stButtonGroup"] button { border-color: var(--border); }
+div[data-testid="stSegmentedControl"] button, div[data-testid="stPills"] button { border-color: var(--border); background: var(--raised); color: var(--text2); }
+div[data-testid="stSegmentedControl"] button[aria-checked="true"], div[data-testid="stPills"] button[aria-checked="true"] { border-color: var(--live); color: var(--live); }
+[data-testid="stTopNav"], header[data-testid="stHeader"] nav, [data-testid="stTopNavigation"] { background: var(--bg); }
+[data-testid="stTopNav"] a, [data-testid="stTopNavigation"] a { color: var(--text2); font-size: 0.86rem; letter-spacing: 0.02em; }
+[data-testid="stTopNav"] a[aria-current="page"], [data-testid="stTopNavigation"] a[aria-current="page"] { color: var(--text); border-bottom: 2px solid var(--live); }
+hr { border-color: var(--border); }
+.stAlert { display: none; }                                 /* alerts are rendered by ui/alerts.py */
+
+/* ---- global frame ---- */
+.cs-header { top: 60px; flex-wrap: wrap; row-gap: 2px; gap: 14px; font-size: 0.78rem; color: var(--text2); }
+.cs-header .brand { color: var(--text); font-size: 0.86rem; }
+.cs-header .mode { color: var(--live); font-weight: 600; letter-spacing: 0.08em; }
+.cs-header .sep { color: var(--border); }
+.cs-header .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.78rem; }
+.cs-header .hot { color: var(--text); }
+.cs-frame-note { font-size: 0.72rem; color: var(--text2); margin-top: 2px; }
+
+/* ---- cards ---- */
+.cs-card { margin-bottom: var(--sp); min-height: 0; }
+.cs-card.kpi { min-height: 108px; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; border-top: 2px solid var(--border); }
+.cs-card.kpi.live { border-top-color: var(--live); } .cs-card.kpi.decision { border-top-color: var(--decision); } .cs-card.kpi.critical { border-top-color: var(--critical); }
+.cs-card.kpi .cs-kpi-value { font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cs-card.kpi .unit { font-size: 0.85rem; font-weight: 500; color: var(--text2); margin-left: 5px; }
+.cs-card.kpi .cs-kpi-sub { white-space: normal; line-height: 1.25; }
+.cs-card .cs-src { font-size: 0.66rem; color: var(--text2); letter-spacing: 0.05em; text-transform: uppercase; }
+.cs-card.hero { padding: calc(var(--sp)*2.5); }
+.cs-card-title { color: var(--text2); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--sp); }
+.present .cs-card.kpi .cs-kpi-value { font-size: 2.6rem; }
+.present .cs-card.kpi { min-height: 132px; }
+.present .cs-decision .headline { font-size: 2.2rem; }
+
+/* ---- mode cards (landing) ---- */
+.cs-mode { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: calc(var(--sp)*3); min-height: 300px; display: flex; flex-direction: column; gap: calc(var(--sp)*1.5); }
+.cs-mode.live { border-top: 3px solid var(--live); } .cs-mode.ghost { border-top: 3px solid var(--decision); }
+.cs-mode h2 { margin: 0; font-size: 1.5rem; letter-spacing: 0.04em; }
+.cs-mode .lead { color: var(--text2); font-size: 0.95rem; line-height: 1.45; }
+.cs-status { display: flex; flex-wrap: wrap; gap: var(--sp); margin-top: auto; }
+.cs-status .item { font-size: 0.74rem; color: var(--text2); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; }
+.cs-status .item.ok { border-color: var(--live); color: var(--live); } .cs-status .item.no { border-color: var(--critical); color: var(--critical); }
+
+/* ---- badges, chips, banners ---- */
+.cs-badge { margin-right: 4px; font-variant-numeric: tabular-nums; }
+.cs-badge.compound { font-weight: 700; letter-spacing: 0.04em; }
+.cs-badge.neutral { color: var(--text2); }
+.cs-badge.fixture { border-color: var(--decision); color: var(--decision); border-style: dashed; }
+.cs-badge.placeholder { border-color: var(--text2); color: var(--text2); border-style: dashed; }
+.cs-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: var(--sp) 0; }
+.cs-banner-audit, .cs-banner-scenario { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px var(--sp); margin-bottom: var(--sp); background: var(--surface); border-radius: 0 8px 8px 0; }
+.cs-banner-scenario { color: var(--decision); }
+.cs-banner-note { border-left: 3px solid var(--text2); padding: 6px var(--sp); color: var(--text2); font-size: 0.78rem; background: var(--surface); border-radius: 0 8px 8px 0; margin-bottom: var(--sp); }
+.cs-alert { border: 1px solid var(--border); border-left-width: 3px; border-radius: 10px; padding: var(--sp) calc(var(--sp)*1.5); margin-bottom: var(--sp); background: var(--surface); font-size: 0.86rem; }
+.cs-alert .title { font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+.cs-alert.live { border-left-color: var(--live); } .cs-alert.decision { border-left-color: var(--decision); } .cs-alert.critical { border-left-color: var(--critical); } .cs-alert.neutral { border-left-color: var(--text2); }
+
+/* ---- decision card ---- */
+.cs-decision { border-left: 4px solid var(--decision); }
+.cs-decision.changed { border-left-color: var(--critical); }
+.cs-decision .headline { font-size: 1.55rem; font-weight: 700; letter-spacing: 0.02em; line-height: 1.15; }
+.cs-decision .status { font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--decision); }
+.cs-decision.changed .status { color: var(--critical); }
+.cs-decision .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px calc(var(--sp)*2); margin: var(--sp) 0; }
+.cs-decision .grid .k { color: var(--text2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.cs-decision .grid .v { font-size: 0.98rem; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.cs-decision ul { margin: 4px 0 0 1.1em; padding: 0; color: var(--text2); font-size: 0.82rem; line-height: 1.4; }
+.cs-alt { display: flex; justify-content: space-between; gap: var(--sp); border: 1px solid var(--border); border-radius: 10px; padding: 6px 10px; margin-bottom: 6px; font-size: 0.82rem; background: var(--raised); }
+.cs-alt .d { color: var(--text2); font-variant-numeric: tabular-nums; }
+
+/* ---- empty / degraded states ---- */
+.cs-empty { border: 1px dashed var(--border); border-radius: var(--radius); padding: calc(var(--sp)*4); text-align: center; color: var(--text2); background: var(--surface); margin: var(--sp) 0; }
+.cs-empty .glyph { font-size: 1.8rem; color: var(--text2); }
+.cs-empty .title { color: var(--text); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.86rem; margin-top: 6px; }
+.cs-empty .body { font-size: 0.86rem; margin-top: 4px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.cs-empty.critical { border-color: var(--critical); } .cs-empty.decision { border-color: var(--decision); }
+
+/* ---- lists / timelines ---- */
+.cs-list { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+.cs-list .lap { color: var(--text); font-variant-numeric: tabular-nums; font-family: ui-monospace, Menlo, Consolas, monospace; margin-right: 6px; }
+.cs-list .hot { color: var(--text); }
+.cs-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.cs-table th { text-align: left; color: var(--text2); font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); padding: 4px 6px; }
+.cs-table td { padding: 5px 6px; border-bottom: 1px solid var(--border); }
+.cs-table tr:last-child td { border-bottom: none; }
+.cs-table td.num { text-align: right; }
+.cs-kv { display: grid; grid-template-columns: minmax(84px, max-content) minmax(0, 1fr); gap: 3px calc(var(--sp)*1.5); font-size: 0.82rem; }
+.cs-kv .v { overflow-wrap: anywhere; }
+.cs-kv.stack { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.cs-kv.stack .k { margin-top: 6px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.cs-kv.stack .v { font-size: 0.86rem; }
+.cs-kv .k { color: var(--text2); } .cs-kv .v { color: var(--text); font-variant-numeric: tabular-nums; }
+.cs-muted { color: var(--text2); font-size: 0.78rem; }
+.cs-cell { border: 1px solid var(--border); border-radius: 10px; padding: var(--sp); min-height: 92px; background: var(--surface); margin-bottom: var(--sp); }
+.cs-cell .name { font-size: 0.74rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; }
+.cs-cell .val { font-size: 1.2rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cs-cell.pending { border-style: dashed; } .cs-cell.pending .val { color: var(--text2); font-size: 0.86rem; font-weight: 500; }
+.present [data-testid="stSidebar"] { display: none; }
+@media (max-width: 1500px) { .cs-card.kpi .cs-kpi-value { font-size: 1.6rem; } .cs-decision .headline { font-size: 1.3rem; } }

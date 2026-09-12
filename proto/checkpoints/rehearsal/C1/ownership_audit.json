@@ -1,0 +1,458 @@
+{
+ "at": "2026-09-12T14:54:24",
+ "proto_root": "/Users/samuelmorningstar/Trackshift/proto",
+ "rules_version": "roadmap_v5_s6 + workstream9 brief (12 Sep 2026)",
+ "changed": [
+  {
+   "path": "proto/app_v2/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/components/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/components/race_twin/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/pages/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/asset_repository.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/decision_service.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/event_service.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/feedback_service.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/lock_repository.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/paths.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/replay_service.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/support_service.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/services/view_models.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/state/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/theme/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/theme/plotly_theme.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/theme/tokens.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/app_v2/ui/__init__.py",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 6 (dashboard: app_v2/)"
+  },
+  {
+   "path": "proto/build_control.py",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: build_control.py)"
+  },
+  {
+   "path": "proto/checkpoints/C0/artifact_hashes.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C0/checkpoint.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/C0/checkpoint.md",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/last_green.json",
+   "git_status": "M",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/artifact_hashes.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/checkpoint.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/checkpoint.md",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/logs/pytest.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/logs/schema_validation.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/ownership_audit.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/run_checkpoint.txt",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rehearsal/C1/test_report.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/checkpoints/rollback_drill.md",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: checkpoints/)"
+  },
+  {
+   "path": "proto/fixtures/seed_v1_snapshot.json",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: fixtures/)"
+  },
+  {
+   "path": "proto/out/lock_v2.json",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/out/lock_v2_sidecars/validation_rows.json",
+   "git_status": "??",
+   "owner": null,
+   "category": "unowned",
+   "flagged": true,
+   "reason": "no workstream owns this path (lead to confirm)"
+  },
+  {
+   "path": "proto/progress/SUMMARY.md",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: progress/)"
+  },
+  {
+   "path": "proto/progress/workstream_1.json",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 1 (contract and fixtures)"
+  },
+  {
+   "path": "proto/progress/workstream_6.json",
+   "git_status": "??",
+   "owner": 6,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 6 (dashboard)"
+  },
+  {
+   "path": "proto/progress/workstream_9.json",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "heartbeat of workstream 9 (build control)"
+  },
+  {
+   "path": "proto/release/README.md",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/build_control_app.py",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/ownership_audit.py",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/rollback.sh",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/release/run_checkpoint.sh",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: release/)"
+  },
+  {
+   "path": "proto/schemas/__init__.py",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: schemas/)"
+  },
+  {
+   "path": "proto/schemas/lock_v2.py",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: schemas/)"
+  },
+  {
+   "path": "proto/schemas/lock_v2.schema.json",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: schemas/)"
+  },
+  {
+   "path": "proto/shared/__init__.py",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: shared/)"
+  },
+  {
+   "path": "proto/shared/lockio.py",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: shared/)"
+  },
+  {
+   "path": "proto/tests/release/test_build_control.py",
+   "git_status": "??",
+   "owner": 9,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 9 (build control: tests/release/)"
+  },
+  {
+   "path": "proto/validators/__init__.py",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: validators/)"
+  },
+  {
+   "path": "proto/validators/adapt_v1.py",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: validators/)"
+  },
+  {
+   "path": "proto/validators/validate_lock.py",
+   "git_status": "??",
+   "owner": 1,
+   "category": "workstream",
+   "flagged": false,
+   "reason": "owned by workstream 1 (contract and fixtures: validators/)"
+  }
+ ],
+ "repo_root": "/Users/samuelmorningstar/Trackshift",
+ "git_commit": "02f4c00",
+ "summary": {
+  "total": 54,
+  "flagged": 2,
+  "unowned": 2,
+  "lead_only": 0,
+  "outside_proto": 0,
+  "by_owner": {
+   "1": 10,
+   "6": 20,
+   "9": 22,
+   "unowned": 2
+  }
+ },
+ "flagged_paths": [
+  "proto/out/lock_v2.json",
+  "proto/out/lock_v2_sidecars/validation_rows.json"
+ ]
+}

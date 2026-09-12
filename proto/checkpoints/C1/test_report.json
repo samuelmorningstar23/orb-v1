@@ -1,0 +1,91 @@
+{
+ "checkpoint": "C1",
+ "at": "2026-09-12T15:42:02",
+ "git_commit": "02f4c00",
+ "all_green": true,
+ "summary": {
+  "PASS": 3,
+  "WARN": 1,
+  "NOT_IMPLEMENTED": 1
+ },
+ "pytest": {
+  "passed": 218
+ },
+ "test_dirs": [
+  "contract",
+  "release",
+  "screenshots",
+  "ui"
+ ],
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.1,
+   "timed_out": false,
+   "stdout_tail": "  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified\n  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified\nOK out/lock_v2.json: schema 2.0.0, forecast sha256:e126256132b6ead8..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB",
+   "stderr_tail": "",
+   "log": "checkpoints/C1/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 80.01,
+   "timed_out": false,
+   "stdout_tail": "........................................................................ [ 33%]\n........................................................................ [ 66%]\n........................................................................ [ 99%]\n..                                                                       [100%]\n218 passed in 79.74s (0:01:19)",
+   "stderr_tail": "",
+   "counts": {
+    "passed": 218
+   },
+   "test_dirs": [
+    "contract",
+    "release",
+    "screenshots",
+    "ui"
+   ],
+   "log": "checkpoints/C1/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "138 changed paths, 1 flagged: proto/out/Orb_v1_Mentor_Briefing.pptx",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 138,
+    "flagged": 1,
+    "unowned": 1,
+    "lead_only": 0,
+    "outside_proto": 0,
+    "by_owner": {
+     "1": 30,
+     "4": 2,
+     "6": 79,
+     "9": 26,
+     "unowned": 1
+    }
+   },
+   "flagged": [
+    "proto/out/Orb_v1_Mentor_Briefing.pptx"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "NOT_IMPLEMENTED",
+   "note": "not implemented: Workstream 7 provides evaluation/red_team/consistency_probe.py (exit 0 = lock and dashboard agree)",
+   "command": null
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "golden": "monza_2026",
+ "event": "Monza",
+ "season": 2026,
+ "event_id": "2026_Monza",
+ "path_root": "proto",
+ "hash_of": "file bytes (sha256)",
+ "columns": [
+  "event",
+  "session",
+  "Driver",
+  "LapNumber",
+  "Stint",
+  "Compound",
+  "TyreLife",
+  "FreshTyre",
+  "lap_s",
+  "s1",
+  "s2",
+  "s3",
+  "t_min",
+  "TrackStatus",
+  "IsAccurate",
+  "pit_in",
+  "pit_out",
+  "deleted",
+  "energy_MJ",
+  "e_lat",
+  "e_long",
+  "traffic",
+  "full_throttle",
+  "n_tel",
+  "pos_distinct",
+  "stale_share",
+  "track_temp",
+  "rain"
+ ],
+ "header_sha256": "ed2511ada28bab62fcae21ff7c7fd129428f8760c44fe35d106ae73a5f6c9d58",
+ "files": {
+  "FP1": {
+   "path": "feat/Monza_FP1.csv",
+   "sha256": "4aa96489e86fc72ec5a5f9784b8b74ffeaf2213d665f260fc7a626af405d00bf",
+   "bytes": 108870,
+   "rows": 438,
+   "format": "csv"
+  },
+  "FP2": {
+   "path": "feat/Monza_FP2.csv",
+   "sha256": "b4fac73da82e2fb7da645fed0ab3fc4f894157c6662b133c5b06ba134e7327e3",
+   "bytes": 120609,
+   "rows": 518,
+   "format": "csv"
+  },
+  "FP3": {
+   "path": "feat/Monza_FP3.csv",
+   "sha256": "1d0d35d66e5bc8e734e78ee6126bececbfa7ec8da583d9a0eef72dbb485fa394",
+   "bytes": 86945,
+   "rows": 372,
+   "format": "csv"
+  },
+  "Q": {
+   "path": "feat/Monza_Q.csv",
+   "sha256": "3562a084f4ed9b03682bf4ce1d3d87064a4bf1e43097e9de3ca29619aacdfd0f",
+   "bytes": 45691,
+   "rows": 198,
+   "format": "csv"
+  },
+  "R": {
+   "path": "feat/Monza_R.csv",
+   "sha256": "c922216a56528626ce58ea4cc5476465e4cd2a7c8e3ab41a5175330eed5e4333",
+   "bytes": 227892,
+   "rows": 992,
+   "format": "csv"
+  }
+ },
+ "note": "feat/ is gitignored: tests skip the byte-hash check when the files are absent and always check the column layout against fixtures/mini_race"
+}

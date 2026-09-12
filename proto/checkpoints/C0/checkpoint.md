@@ -1,10 +1,10 @@
 # C0: GO
 
-Naming frozen; holdout gold-v1.1 sealed (6 weekends, distinct circuits, sha 37b85e76...); lock_v2_minimal schema validates fixture; tokens and base.css committed; Workstream 9 tooling live. Download: 3 workers still running, cleanup pass queued.
+Naming final: Orb v1 (product and team; registered as FireBolt). Holdout gold-v1.1 sealed. Schema fixture valid. Tokens committed. Workstream 9 tooling live.
 
-commit 0e3c9c4
+commit 02f4c00
 
-- out/lock.json: 05fed1f7426893e9
+- out/lock.json: 74fcbc9f6dd1f340
 - evaluation/holdout/sealed_holdout_manifest.json: 37b85e762b2e03c0
 - fixtures/lock_v2_fixture.json: 8038a4879a5b854a
-- ui/tokens.py: 8689fe95ce57fb9d
+- ui/tokens.py: 714224d37e4d978c

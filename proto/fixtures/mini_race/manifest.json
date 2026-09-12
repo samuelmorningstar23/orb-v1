@@ -1,0 +1,129 @@
+{
+ "event": "Mini",
+ "session": "R",
+ "n_laps": 14,
+ "drivers": [
+  "ALP",
+  "BRV",
+  "CHR"
+ ],
+ "sample_rate_hz": 4,
+ "seed": 2026,
+ "plans": {
+  "ALP": [
+   {
+    "compound": "SOFT",
+    "laps": 6
+   },
+   {
+    "compound": "MEDIUM",
+    "laps": 8
+   }
+  ],
+  "BRV": [
+   {
+    "compound": "MEDIUM",
+    "laps": 8
+   },
+   {
+    "compound": "HARD",
+    "laps": 6
+   }
+  ],
+  "CHR": [
+   {
+    "compound": "SOFT",
+    "laps": 5
+   },
+   {
+    "compound": "HARD",
+    "laps": 9
+   }
+  ]
+ },
+ "pit_laps": {
+  "ALP": 6,
+  "BRV": 8,
+  "CHR": 5
+ },
+ "lap_time_model": {
+  "base_s": {
+   "ALP": 45.0,
+   "BRV": 45.3,
+   "CHR": 45.6
+  },
+  "compound_offset_s": {
+   "SOFT": 0.0,
+   "MEDIUM": 0.4,
+   "HARD": 0.9
+  },
+  "degradation_s_per_lap": {
+   "SOFT": 0.12,
+   "MEDIUM": 0.06,
+   "HARD": 0.03
+  },
+  "fuel_s_per_lap": 0.033,
+  "pit_in_s": 18.0,
+  "pit_out_s": 8.0,
+  "grid_start_s": 4.0,
+  "noise_sd_s": 0.08
+ },
+ "track": {
+  "shape": "stadium",
+  "direction": "counter-clockwise",
+  "length_m": 1500.0,
+  "straight_m": 373.009,
+  "radius_m": 120.0,
+  "start_finish_xy": [
+   0.0,
+   0.0
+  ],
+  "note": "samples on a global 0.25 s grid from t=0; constant speed within each lap; the car is at (0,0) at each lap start time in Mini_R.csv (t_min * 60), so the first sample at or after a lap start lies within one sample of travel of the line"
+ },
+ "files": {
+  "laps": "Mini_R.csv",
+  "positions": "Mini_positions.csv"
+ },
+ "columns": {
+  "laps": [
+   "event",
+   "session",
+   "Driver",
+   "LapNumber",
+   "Stint",
+   "Compound",
+   "TyreLife",
+   "FreshTyre",
+   "lap_s",
+   "s1",
+   "s2",
+   "s3",
+   "t_min",
+   "TrackStatus",
+   "IsAccurate",
+   "pit_in",
+   "pit_out",
+   "deleted",
+   "energy_MJ",
+   "e_lat",
+   "e_long",
+   "traffic",
+   "full_throttle",
+   "n_tel",
+   "pos_distinct",
+   "stale_share",
+   "track_temp",
+   "rain"
+  ],
+  "positions": [
+   "Driver",
+   "SessionTime_s",
+   "X",
+   "Y"
+  ]
+ },
+ "sha256": {
+  "Mini_R.csv": "fd5cf42858fa36de0a8d4ee7da984177e292bdf7dafdc5e34ca232fad3694e04",
+  "Mini_positions.csv": "29f5b3434ca76936d1f49d4126882ca280e6b3d3a7b3d7312c42e0df0fb7ec8e"
+ }
+}

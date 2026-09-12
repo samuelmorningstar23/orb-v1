@@ -1,0 +1,91 @@
+{
+ "checkpoint": "C1",
+ "at": "2026-09-12T14:54:24",
+ "git_commit": "02f4c00",
+ "all_green": true,
+ "summary": {
+  "PASS": 3,
+  "WARN": 1,
+  "NOT_IMPLEMENTED": 1
+ },
+ "pytest": {
+  "passed": 57
+ },
+ "test_dirs": [
+  "contract",
+  "release",
+  "screenshots",
+  "ui"
+ ],
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.11,
+   "timed_out": false,
+   "stdout_tail": "  ok sidecar $.validation.rows: out/lock_v2_sidecars/validation_rows.json: sha256 verified\n  ok sidecar $.validation.sealed_holdout: evaluation/holdout/sealed_holdout_manifest.json: sha256 verified\nOK out/lock_v2.json: schema 2.0.0, forecast sha256:e126256132b6ead8..., blocks ['driver_profile', 'input_availability', 'pre_race_forecast', 'shared', 'validation'], sidecars 2 verified / 0 missing / 0 mismatched, 58 kB",
+   "stderr_tail": "",
+   "log": "rehearsal/C1/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 2.11,
+   "timed_out": false,
+   "stdout_tail": ".........................................................                [100%]\n57 passed in 1.96s",
+   "stderr_tail": "",
+   "counts": {
+    "passed": 57
+   },
+   "test_dirs": [
+    "contract",
+    "release",
+    "screenshots",
+    "ui"
+   ],
+   "log": "rehearsal/C1/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "54 changed paths, 2 flagged: proto/out/lock_v2.json, proto/out/lock_v2_sidecars/validation_rows.json",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 54,
+    "flagged": 2,
+    "unowned": 2,
+    "lead_only": 0,
+    "outside_proto": 0,
+    "by_owner": {
+     "1": 10,
+     "6": 20,
+     "9": 22,
+     "unowned": 2
+    }
+   },
+   "flagged": [
+    "proto/out/lock_v2.json",
+    "proto/out/lock_v2_sidecars/validation_rows.json"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "NOT_IMPLEMENTED",
+   "note": "not implemented: Workstream 7 provides evaluation/red_team/consistency_probe.py (exit 0 = lock and dashboard agree)",
+   "command": null
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ]
+}

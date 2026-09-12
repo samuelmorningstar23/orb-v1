@@ -1,0 +1,20 @@
+== Orb v1 checkpoint C1 (REHEARSAL) started 2026-09-12T14:54:22 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
+git: main @ 02f4c00, 52 uncommitted paths
+== checkpoint C1 (REHEARSAL) at 2026-09-12T14:54:22 == merge queue untouched (rehearsal)
+[1/5] schema_validation ... PASS (0.11s)
+[2/5] pytest ... PASS (2.11s)
+[3/5] ownership_audit ... WARN - 54 changed paths, 2 flagged: proto/out/lock_v2.json, proto/out/lock_v2_sidecars/validation_rows.json
+[4/5] lock_dashboard_consistency ... NOT_IMPLEMENTED - not implemented: Workstream 7 provides evaluation/red_team/consistency_probe.py (exit 0 = lock and dashboard agree)
+[5/5] sealed_holdout_integrity ... PASS
+checks: {'PASS': 3, 'WARN': 1, 'NOT_IMPLEMENTED': 1}  green=True  hashes changed since last green: none
+C1 REHEARSAL recorded under /Users/samuelmorningstar/Trackshift/proto/checkpoints/rehearsal/C1 (no decision, queue and last green untouched)
+== artifacts in checkpoints/rehearsal/C1 ==
+   artifact_hashes.json
+   checkpoint.json
+   checkpoint.md
+   logs
+   ownership_audit.json
+   run_checkpoint.txt
+   test_report.json
+== merge queue: OPEN - never frozen ==
+== checkpoint C1 finished 2026-09-12T14:54:24 exit 0 ==

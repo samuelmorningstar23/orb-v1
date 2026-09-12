@@ -1,0 +1,23 @@
+== Orb v1 checkpoint C1 (AUTO) started 2026-09-12T15:40:42 by samuelmorningstar in /Users/samuelmorningstar/Trackshift/proto ==
+git: main @ 02f4c00, 135 uncommitted paths
+merge queue FROZEN (checkpoint C1 in progress (run_checkpoint.sh))
+== checkpoint C1 (AUTO) at 2026-09-12T15:40:42 == merge queue FROZEN
+[1/5] schema_validation ... PASS (0.1s)
+[2/5] pytest ... PASS (80.01s)
+[3/5] ownership_audit ... WARN - 138 changed paths, 1 flagged: proto/out/Orb_v1_Mentor_Briefing.pptx
+[4/5] lock_dashboard_consistency ... NOT_IMPLEMENTED - not implemented: Workstream 7 provides evaluation/red_team/consistency_probe.py (exit 0 = lock and dashboard agree)
+[5/5] sealed_holdout_integrity ... PASS
+checks: {'PASS': 3, 'WARN': 1, 'NOT_IMPLEMENTED': 1}  green=True  hashes changed since last green: ['fixtures/lock_v2_fixture.json']
+heartbeats: missing none, stale [9]
+C1 recorded: PENDING at commit 02f4c00; merge queue FROZEN (C1 pending lead decision (checks green; proposed GO))
+next: python build_control.py decide C1 GO|GO_WITH_REASSIGNMENT|ROLLBACK|CUT_FROM_DEMO|HOLD 'note'
+== artifacts in checkpoints/C1 ==
+   artifact_hashes.json
+   checkpoint.json
+   checkpoint.md
+   logs
+   ownership_audit.json
+   run_checkpoint.txt
+   test_report.json
+== merge queue: FROZEN - C1 pending lead decision (checks green; proposed GO) ==
+== checkpoint C1 finished 2026-09-12T15:42:02 exit 3 ==

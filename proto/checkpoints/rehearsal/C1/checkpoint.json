@@ -1,0 +1,217 @@
+{
+ "checkpoint": "C1",
+ "decision": "REHEARSAL",
+ "proposed": "GO",
+ "note": "Workstream 9 tooling acceptance run; C1 substantive gate (provider A reproduces v1, both modes read one forecast hash) not assessed here",
+ "at": "2026-09-12T14:54:24",
+ "git_commit": "02f4c00",
+ "git_branch": "main",
+ "git_dirty_paths": 54,
+ "decided_by": "none (rehearsal; nothing decided)",
+ "all_green": true,
+ "decision_overrides_checks": false,
+ "checks": [
+  {
+   "name": "schema_validation",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python validators/validate_lock.py out/lock_v2.json",
+   "returncode": 0,
+   "duration_s": 0.11,
+   "timed_out": false,
+   "log": "rehearsal/C1/logs/schema_validation.txt"
+  },
+  {
+   "name": "pytest",
+   "status": "PASS",
+   "note": "",
+   "command": "/Users/samuelmorningstar/Trackshift/.venv/bin/python -m pytest tests -q -p no:cacheprovider --color=no",
+   "returncode": 0,
+   "duration_s": 2.11,
+   "timed_out": false,
+   "counts": {
+    "passed": 57
+   },
+   "test_dirs": [
+    "contract",
+    "release",
+    "screenshots",
+    "ui"
+   ],
+   "log": "rehearsal/C1/logs/pytest.txt"
+  },
+  {
+   "name": "ownership_audit",
+   "status": "WARN",
+   "note": "54 changed paths, 2 flagged: proto/out/lock_v2.json, proto/out/lock_v2_sidecars/validation_rows.json",
+   "command": "release/ownership_audit.py",
+   "summary": {
+    "total": 54,
+    "flagged": 2,
+    "unowned": 2,
+    "lead_only": 0,
+    "outside_proto": 0,
+    "by_owner": {
+     "1": 10,
+     "6": 20,
+     "9": 22,
+     "unowned": 2
+    }
+   },
+   "flagged": [
+    "proto/out/lock_v2.json",
+    "proto/out/lock_v2_sidecars/validation_rows.json"
+   ]
+  },
+  {
+   "name": "lock_dashboard_consistency",
+   "status": "NOT_IMPLEMENTED",
+   "note": "not implemented: Workstream 7 provides evaluation/red_team/consistency_probe.py (exit 0 = lock and dashboard agree)",
+   "command": null
+  },
+  {
+   "name": "sealed_holdout_integrity",
+   "status": "PASS",
+   "note": "",
+   "command": null,
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd"
+  }
+ ],
+ "artifact_hashes": {
+  "out/lock.json": "74fcbc9f6dd1f340",
+  "out/lock_v2.json": "726b11de8873f714",
+  "evaluation/holdout/sealed_holdout_manifest.json": "37b85e762b2e03c0",
+  "evaluation/holdout/sealed_holdout_manifest.sha256": "2f636dda347557ea",
+  "fixtures/lock_v2_fixture.json": "8038a4879a5b854a",
+  "schemas/lock_v2_minimal.py": "f2cf5dea71eff700",
+  "ui/tokens.py": "714224d37e4d978c",
+  "theme/base.css": "f0b55603d5ed6e7b"
+ },
+ "hash_changes_since_last_green": {
+  "changed": [],
+  "added": [
+   "out/lock_v2.json",
+   "evaluation/holdout/sealed_holdout_manifest.sha256",
+   "schemas/lock_v2_minimal.py",
+   "theme/base.css"
+  ],
+  "removed": []
+ },
+ "previous_green": {
+  "checkpoint": "C0",
+  "git_commit": "02f4c00",
+  "at": "2026-09-12T14:31:39"
+ },
+ "active_workstreams": [
+  1,
+  6,
+  9
+ ],
+ "missing_heartbeats": [],
+ "stale_heartbeats": [],
+ "heartbeats": [
+  {
+   "workstream": 1,
+   "status": "AMBER",
+   "effective": "AMBER",
+   "age_min": 10.1,
+   "stale": false,
+   "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
+   "tests_passed": 0,
+   "tests_failed": 0,
+   "eta_minutes": 120,
+   "blockers": [],
+   "needs_review_from": [
+    7
+   ],
+   "completed": [
+    "context read (ROADMAP_v5 s6/s7, lock.json v1, pipeline.py, feat layout)",
+    "pytest installed"
+   ],
+   "in_progress": [
+    "shared/lockio.py",
+    "schemas/lock_v2.py"
+   ],
+   "commit": null,
+   "updated_at": "2026-09-12T14:44:19",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_1.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 6,
+   "status": "AMBER",
+   "effective": "AMBER",
+   "age_min": 9.1,
+   "stale": false,
+   "task": "0.14 design system + shell; 0.15 hero screens",
+   "tests_passed": 0,
+   "tests_failed": 0,
+   "eta_minutes": 150,
+   "blockers": [],
+   "needs_review_from": [
+    4,
+    8,
+    7
+   ],
+   "completed": [
+    "read ROADMAP_v5 sections 3/7/8/13/14, tokens, base.css, lock.json, fixture, app.py, feat layout",
+    "playwright 1.62 + chromium installed and smoke-tested",
+    "app_v2 skeleton created"
+   ],
+   "in_progress": [
+    "services: lock_repository, asset_repository, replay_service, event_service",
+    "ui design system",
+    "shell + landing"
+   ],
+   "commit": null,
+   "updated_at": "2026-09-12T14:45:19",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_6.json",
+   "missing": false,
+   "unreadable": false
+  },
+  {
+   "workstream": 9,
+   "status": "GREEN",
+   "effective": "GREEN",
+   "age_min": 1.4,
+   "stale": false,
+   "task": "build_control_system (task 0.16)",
+   "tests_passed": 57,
+   "tests_failed": 0,
+   "eta_minutes": 20,
+   "blockers": [],
+   "needs_review_from": [
+    "lead"
+   ],
+   "completed": [
+    "read ROADMAP_v5 s6/s14, starter, C0, last_green",
+    "build_control.py: status/checkpoint/decide/sign/checks/stop-the-line/clear-stop/freeze/unfreeze/rollback/heartbeat/summary/active-workstreams",
+    "release/ownership_audit.py",
+    "release/rollback.sh + drill PASSED (checkpoints/rollback_drill.md)",
+    "release/run_checkpoint.sh",
+    "release/build_control_app.py (port 8599, HTTP 200 smoke)",
+    "tests/release/test_build_control.py: 57 passed"
+   ],
+   "in_progress": [
+    "C1 REHEARSAL run via release/run_checkpoint.sh",
+    "SUMMARY.md cadence",
+    "final report"
+   ],
+   "commit": null,
+   "updated_at": "2026-09-12T14:52:57",
+   "file": "/Users/samuelmorningstar/Trackshift/proto/progress/workstream_9.json",
+   "missing": false,
+   "unreadable": false
+  }
+ ],
+ "stop_the_line": null,
+ "merge_queue_before": {
+  "state": "OPEN",
+  "reason": "never frozen",
+  "since": null,
+  "by": null
+ },
+ "rehearsal": true,
+ "directory": "checkpoints/rehearsal/C1"
+}

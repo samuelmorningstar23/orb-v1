@@ -1,0 +1,3782 @@
+{
+ "$defs": {
+  "Assumptions": {
+   "additionalProperties": false,
+   "properties": {
+    "driver_baseline_preserved": {
+     "title": "Driver Baseline Preserved",
+     "type": "boolean"
+    },
+    "rival_strategy_response": {
+     "const": "none",
+     "default": "none",
+     "title": "Rival Strategy Response",
+     "type": "string"
+    },
+    "rivals_follow_observed_trajectories": {
+     "title": "Rivals Follow Observed Trajectories",
+     "type": "boolean"
+    },
+    "safety_car_mode": {
+     "enum": [
+      "fixed_observed_schedule",
+      "none"
+     ],
+     "title": "Safety Car Mode",
+     "type": "string"
+    }
+   },
+   "required": [
+    "rivals_follow_observed_trajectories",
+    "safety_car_mode",
+    "driver_baseline_preserved"
+   ],
+   "title": "Assumptions",
+   "type": "object"
+  },
+  "BandCoverage": {
+   "additionalProperties": false,
+   "properties": {
+    "calibrated_all": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Calibrated All",
+     "type": "number"
+    },
+    "calibrated_fallback": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Calibrated Fallback",
+     "type": "number"
+    },
+    "calibrated_issued": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Calibrated Issued",
+     "type": "number"
+    },
+    "method": {
+     "minLength": 1,
+     "title": "Method",
+     "type": "string"
+    },
+    "nominal": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Nominal",
+     "type": "number"
+    },
+    "raw_all": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Raw All",
+     "type": "number"
+    },
+    "widening_factor_median": {
+     "minimum": 0.0,
+     "title": "Widening Factor Median",
+     "type": "number"
+    },
+    "widening_fallback": {
+     "minimum": 0.0,
+     "title": "Widening Fallback",
+     "type": "number"
+    },
+    "widening_issued": {
+     "minimum": 0.0,
+     "title": "Widening Issued",
+     "type": "number"
+    }
+   },
+   "required": [
+    "raw_all",
+    "calibrated_issued",
+    "calibrated_fallback",
+    "calibrated_all",
+    "nominal",
+    "widening_factor_median",
+    "widening_issued",
+    "widening_fallback",
+    "method"
+   ],
+   "title": "BandCoverage",
+   "type": "object"
+  },
+  "BetaPair": {
+   "additionalProperties": false,
+   "properties": {
+    "event": {
+     "title": "Event",
+     "type": "string"
+    },
+    "practice": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Practice"
+    },
+    "race": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Race"
+    }
+   },
+   "required": [
+    "event"
+   ],
+   "title": "BetaPair",
+   "type": "object"
+  },
+  "ByCompound": {
+   "additionalProperties": false,
+   "properties": {
+    "k_median": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "K Median"
+    },
+    "mae_clearstint": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Mae Clearstint"
+    },
+    "mae_naive": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Mae Naive"
+    },
+    "n": {
+     "minimum": 0,
+     "title": "N",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "n"
+   ],
+   "title": "ByCompound",
+   "type": "object"
+  },
+  "Calib": {
+   "additionalProperties": false,
+   "properties": {
+    "n": {
+     "minimum": 0,
+     "title": "N",
+     "type": "integer"
+    },
+    "r": {
+     "title": "R",
+     "type": "number"
+    },
+    "slope": {
+     "title": "Slope",
+     "type": "number"
+    }
+   },
+   "required": [
+    "slope",
+    "r",
+    "n"
+   ],
+   "title": "Calib",
+   "type": "object"
+  },
+  "Calibration": {
+   "additionalProperties": false,
+   "properties": {
+    "all_with_fallback": {
+     "$ref": "#/$defs/Calib"
+    },
+    "clean": {
+     "$ref": "#/$defs/Calib"
+    },
+    "clearstint": {
+     "$ref": "#/$defs/Calib"
+    },
+    "naive": {
+     "$ref": "#/$defs/Calib"
+    }
+   },
+   "required": [
+    "naive",
+    "clean",
+    "clearstint",
+    "all_with_fallback"
+   ],
+   "title": "Calibration",
+   "type": "object"
+  },
+  "Channel": {
+   "additionalProperties": false,
+   "description": "Parameter policy 9.1: source, unit, sample rate, latency, availability, public or private, online-safe, missingness, quality, ablation.",
+   "properties": {
+    "ablation_value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "held-out improvement when the channel is included; null until measured",
+     "title": "Ablation Value"
+    },
+    "available": {
+     "title": "Available",
+     "type": "boolean"
+    },
+    "description": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Description"
+    },
+    "latency_s": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Latency S"
+    },
+    "missingness": {
+     "anyOf": [
+      {
+       "maximum": 1.0,
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "share of laps/samples missing in the current feed",
+     "title": "Missingness"
+    },
+    "online_safe": {
+     "title": "Online Safe",
+     "type": "boolean"
+    },
+    "quality_score": {
+     "anyOf": [
+      {
+       "maximum": 1.0,
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Quality Score"
+    },
+    "sample_rate_hz": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Sample Rate Hz"
+    },
+    "source": {
+     "minLength": 1,
+     "title": "Source",
+     "type": "string"
+    },
+    "unit": {
+     "minLength": 1,
+     "title": "Unit",
+     "type": "string"
+    },
+    "visibility": {
+     "enum": [
+      "public",
+      "private"
+     ],
+     "title": "Visibility",
+     "type": "string"
+    }
+   },
+   "required": [
+    "source",
+    "unit",
+    "available",
+    "visibility",
+    "online_safe"
+   ],
+   "title": "Channel",
+   "type": "object"
+  },
+  "CompoundForecast": {
+   "additionalProperties": false,
+   "description": "One compound of one weekend, exactly the v1 per-compound record minus every post-race quantity.",
+   "properties": {
+    "band90": {
+     "description": "[5th, 95th] percentile after conformal widening",
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "title": "Band90",
+     "type": "array"
+    },
+    "basis": {
+     "minLength": 1,
+     "title": "Basis",
+     "type": "string"
+    },
+    "clean": {
+     "description": "cleaned Friday slope (s/lap per lap)",
+     "title": "Clean",
+     "type": "number"
+    },
+    "clean_se": {
+     "minimum": 0.0,
+     "title": "Clean Se",
+     "type": "number"
+    },
+    "compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "Compound",
+     "type": "string"
+    },
+    "energy_trend": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Energy Trend"
+    },
+    "factor": {
+     "description": "season transfer factor applied to the clean slope (1.0 when not applied)",
+     "title": "Factor",
+     "type": "number"
+    },
+    "factor_applied": {
+     "title": "Factor Applied",
+     "type": "boolean"
+    },
+    "factor_from_n_weekends": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Factor From N Weekends"
+    },
+    "gate": {
+     "description": "'ok' or the reason the curve was withheld",
+     "minLength": 1,
+     "title": "Gate",
+     "type": "string"
+    },
+    "issued": {
+     "title": "Issued",
+     "type": "boolean"
+    },
+    "n_prac": {
+     "description": "clean practice laps on this compound",
+     "minimum": 0,
+     "title": "N Prac",
+     "type": "integer"
+    },
+    "naive": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "raw lap-time slope vs tyre age (s/lap per lap)",
+     "title": "Naive"
+    },
+    "prediction": {
+     "description": "race degradation forecast (s/lap per lap)",
+     "title": "Prediction",
+     "type": "number"
+    },
+    "push_adj": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Push Adj"
+    },
+    "second_opinion": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SecondOpinion"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    }
+   },
+   "required": [
+    "compound",
+    "n_prac",
+    "clean",
+    "clean_se",
+    "gate",
+    "issued",
+    "factor",
+    "factor_applied",
+    "prediction",
+    "band90",
+    "basis"
+   ],
+   "title": "CompoundForecast",
+   "type": "object"
+  },
+  "CounterfactualRef": {
+   "additionalProperties": false,
+   "properties": {
+    "scenario_id": {
+     "minLength": 1,
+     "title": "Scenario Id",
+     "type": "string"
+    },
+    "simulation_mode": {
+     "enum": [
+      "tyre_only",
+      "fixed_context",
+      "frozen_field"
+     ],
+     "title": "Simulation Mode",
+     "type": "string"
+    },
+    "summary": {
+     "$ref": "#/$defs/CounterfactualSummary"
+    }
+   },
+   "required": [
+    "scenario_id",
+    "simulation_mode",
+    "summary"
+   ],
+   "title": "CounterfactualRef",
+   "type": "object"
+  },
+  "CounterfactualScenario": {
+   "additionalProperties": false,
+   "description": "One Race Twin scenario. Self-describing (schema_version, hashes, cutoff, split) so a list item can travel alone.",
+   "properties": {
+    "actual_plan": {
+     "$ref": "#/$defs/Plan"
+    },
+    "assets": {
+     "additionalProperties": {
+      "$ref": "#/$defs/SidecarRef"
+     },
+     "title": "Assets",
+     "type": "object"
+    },
+    "assumptions": {
+     "$ref": "#/$defs/Assumptions"
+    },
+    "availability_mode": {
+     "enum": [
+      "PUBLIC PROXY",
+      "TEAM SENSOR"
+     ],
+     "title": "Availability Mode",
+     "type": "string"
+    },
+    "claim_scope": {
+     "minLength": 1,
+     "title": "Claim Scope",
+     "type": "string"
+    },
+    "counterfactual_plan": {
+     "$ref": "#/$defs/Plan"
+    },
+    "data_cutoff": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Data Cutoff",
+     "type": "string"
+    },
+    "driver_id": {
+     "examples": [
+      "NOR"
+     ],
+     "pattern": "^[A-Z]{3}$",
+     "title": "Driver Id",
+     "type": "string"
+    },
+    "event_id": {
+     "examples": [
+      "2026_Monza"
+     ],
+     "pattern": "^\\d{4}_[A-Za-z0-9]+$",
+     "title": "Event Id",
+     "type": "string"
+    },
+    "forecast_hash": {
+     "description": "'sha256:' + 64 hex characters",
+     "pattern": "^sha256:[0-9a-f]{64}$",
+     "title": "Forecast Hash",
+     "type": "string"
+    },
+    "generated_at": {
+     "anyOf": [
+      {
+       "description": "ISO-8601 timestamp",
+       "examples": [
+        "2026-09-13T15:04:05"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Generated At"
+    },
+    "git_sha": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{7,40}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Git Sha"
+    },
+    "intervention": {
+     "$ref": "#/$defs/Intervention"
+    },
+    "model_hash": {
+     "description": "'sha256:' + 64 hex characters",
+     "pattern": "^sha256:[0-9a-f]{64}$",
+     "title": "Model Hash",
+     "type": "string"
+    },
+    "rival_interactions_simulated": {
+     "title": "Rival Interactions Simulated",
+     "type": "boolean"
+    },
+    "safety_car_schedule": {
+     "items": {
+      "$ref": "#/$defs/SafetyCarPeriod"
+     },
+     "title": "Safety Car Schedule",
+     "type": "array"
+    },
+    "scenario_id": {
+     "minLength": 1,
+     "title": "Scenario Id",
+     "type": "string"
+    },
+    "schema_version": {
+     "default": "2.0.0",
+     "pattern": "^\\d+\\.\\d+\\.\\d+$",
+     "title": "Schema Version",
+     "type": "string"
+    },
+    "simulation_mode": {
+     "enum": [
+      "tyre_only",
+      "fixed_context",
+      "frozen_field"
+     ],
+     "title": "Simulation Mode",
+     "type": "string"
+    },
+    "split_id": {
+     "enum": [
+      "development_pool",
+      "sealed_holdout",
+      "prospective"
+     ],
+     "title": "Split Id",
+     "type": "string"
+    },
+    "summary": {
+     "$ref": "#/$defs/CounterfactualSummary"
+    },
+    "track_position_simulated": {
+     "title": "Track Position Simulated",
+     "type": "boolean"
+    },
+    "traffic_mode": {
+     "enum": [
+      "none",
+      "observed_fixed",
+      "simulated"
+     ],
+     "title": "Traffic Mode",
+     "type": "string"
+    },
+    "validation": {
+     "$ref": "#/$defs/CounterfactualValidation"
+    },
+    "warnings": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Warnings",
+     "type": "array"
+    }
+   },
+   "required": [
+    "scenario_id",
+    "event_id",
+    "driver_id",
+    "simulation_mode",
+    "availability_mode",
+    "forecast_hash",
+    "model_hash",
+    "split_id",
+    "data_cutoff",
+    "intervention",
+    "actual_plan",
+    "counterfactual_plan",
+    "summary",
+    "assumptions",
+    "claim_scope",
+    "track_position_simulated",
+    "rival_interactions_simulated",
+    "traffic_mode",
+    "validation"
+   ],
+   "title": "CounterfactualScenario",
+   "type": "object"
+  },
+  "CounterfactualSummary": {
+   "additionalProperties": false,
+   "description": "Negative elapsed delta = the counterfactual is faster. Finish positions only in frozen_field mode, only as distributions.",
+   "properties": {
+    "elapsed_delta_median_s": {
+     "title": "Elapsed Delta Median S",
+     "type": "number"
+    },
+    "elapsed_delta_q10_s": {
+     "title": "Elapsed Delta Q10 S",
+     "type": "number"
+    },
+    "elapsed_delta_q90_s": {
+     "title": "Elapsed Delta Q90 S",
+     "type": "number"
+    },
+    "estimated_finish_position_median": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Estimated Finish Position Median"
+    },
+    "estimated_finish_position_q10": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Estimated Finish Position Q10"
+    },
+    "estimated_finish_position_q90": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Estimated Finish Position Q90"
+    },
+    "oracle_regret_median_s": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Oracle Regret Median S"
+    },
+    "probability_of_gain": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Probability Of Gain",
+     "type": "number"
+    }
+   },
+   "required": [
+    "elapsed_delta_median_s",
+    "elapsed_delta_q10_s",
+    "elapsed_delta_q90_s",
+    "probability_of_gain"
+   ],
+   "title": "CounterfactualSummary",
+   "type": "object"
+  },
+  "CounterfactualValidation": {
+   "additionalProperties": false,
+   "properties": {
+    "future_leakage_test": {
+     "description": "no input carries data after data_cutoff for pre-race quantities",
+     "enum": [
+      "pass",
+      "fail",
+      "not_run"
+     ],
+     "title": "Future Leakage Test",
+     "type": "string"
+    },
+    "identity_test": {
+     "description": "the actual plan replayed as a counterfactual gives zero delta",
+     "enum": [
+      "pass",
+      "fail",
+      "not_run"
+     ],
+     "title": "Identity Test",
+     "type": "string"
+    },
+    "sealed_holdout": {
+     "title": "Sealed Holdout",
+     "type": "boolean"
+    },
+    "target_driver_excluded": {
+     "title": "Target Driver Excluded",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "identity_test",
+    "future_leakage_test",
+    "target_driver_excluded",
+    "sealed_holdout"
+   ],
+   "title": "CounterfactualValidation",
+   "type": "object"
+  },
+  "Describe3": {
+   "additionalProperties": false,
+   "properties": {
+    "50%": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "50%"
+    },
+    "max": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Max"
+    },
+    "min": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Min"
+    }
+   },
+   "title": "Describe3",
+   "type": "object"
+  },
+  "DriverFeedbackEvent": {
+   "additionalProperties": false,
+   "description": "Roadmap 7.3. A timestamped observation with a confidence; it shifts regime probabilities, never seconds.",
+   "properties": {
+    "axle": {
+     "enum": [
+      "front",
+      "rear",
+      "all",
+      "unknown"
+     ],
+     "title": "Axle",
+     "type": "string"
+    },
+    "corner_phase": {
+     "enum": [
+      "braking",
+      "entry",
+      "mid",
+      "exit",
+      "traction"
+     ],
+     "title": "Corner Phase",
+     "type": "string"
+    },
+    "driver_confidence": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Driver Confidence",
+     "type": "number"
+    },
+    "engineer_confirmed": {
+     "title": "Engineer Confirmed",
+     "type": "boolean"
+    },
+    "feedback_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Feedback Id"
+    },
+    "lap": {
+     "minimum": 0,
+     "title": "Lap",
+     "type": "integer"
+    },
+    "raw_message": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Raw Message"
+    },
+    "severity": {
+     "maximum": 5,
+     "minimum": 1,
+     "title": "Severity",
+     "type": "integer"
+    },
+    "source": {
+     "enum": [
+      "team_radio",
+      "engineer_entry",
+      "simulated",
+      "other"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "symptom": {
+     "enum": [
+      "understeer",
+      "oversteer",
+      "sliding",
+      "graining",
+      "overheating",
+      "vibration",
+      "lack_of_grip"
+     ],
+     "title": "Symptom",
+     "type": "string"
+    },
+    "timestamp": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Timestamp",
+     "type": "string"
+    },
+    "trend": {
+     "enum": [
+      "improving",
+      "stable",
+      "worsening",
+      "unknown"
+     ],
+     "title": "Trend",
+     "type": "string"
+    }
+   },
+   "required": [
+    "timestamp",
+    "lap",
+    "axle",
+    "corner_phase",
+    "symptom",
+    "severity",
+    "trend",
+    "driver_confidence",
+    "source",
+    "engineer_confirmed"
+   ],
+   "title": "DriverFeedbackEvent",
+   "type": "object"
+  },
+  "DriverProfileBlock": {
+   "additionalProperties": false,
+   "properties": {
+    "drivers": {
+     "additionalProperties": {
+      "$ref": "#/$defs/DriverProfileEntry"
+     },
+     "title": "Drivers",
+     "type": "object"
+    },
+    "meta": {
+     "$ref": "#/$defs/Meta"
+    },
+    "note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Note"
+    },
+    "population_prior": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/PopulationPrior"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "status": {
+     "enum": [
+      "stub",
+      "population_prior_only",
+      "available"
+     ],
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "meta",
+    "status"
+   ],
+   "title": "DriverProfileBlock",
+   "type": "object"
+  },
+  "DriverProfileEntry": {
+   "additionalProperties": false,
+   "properties": {
+    "cross_track": {
+     "default": false,
+     "title": "Cross Track",
+     "type": "boolean"
+    },
+    "driver": {
+     "examples": [
+      "NOR"
+     ],
+     "pattern": "^[A-Z]{3}$",
+     "title": "Driver",
+     "type": "string"
+    },
+    "evidence_count": {
+     "minimum": 0,
+     "title": "Evidence Count",
+     "type": "integer"
+    },
+    "interval90": {
+     "anyOf": [
+      {
+       "items": {
+        "type": "number"
+       },
+       "maxItems": 2,
+       "minItems": 2,
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Interval90"
+    },
+    "outcome_residual_s_per_lap": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Outcome Residual S Per Lap"
+    },
+    "shrinkage": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Shrinkage"
+    },
+    "style_profile": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "title": "Style Profile",
+     "type": "object"
+    },
+    "teammate_reference": {
+     "anyOf": [
+      {
+       "examples": [
+        "NOR"
+       ],
+       "pattern": "^[A-Z]{3}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Teammate Reference"
+    }
+   },
+   "required": [
+    "driver",
+    "evidence_count"
+   ],
+   "title": "DriverProfileEntry",
+   "type": "object"
+  },
+  "EventForecast": {
+   "additionalProperties": false,
+   "properties": {
+    "compounds": {
+     "additionalProperties": {
+      "$ref": "#/$defs/CompoundForecast"
+     },
+     "minProperties": 1,
+     "propertyNames": {
+      "enum": [
+       "SOFT",
+       "MEDIUM",
+       "HARD",
+       "INTERMEDIATE",
+       "WET"
+      ]
+     },
+     "title": "Compounds",
+     "type": "object"
+    },
+    "data_cutoff": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Data Cutoff",
+     "type": "string"
+    },
+    "event": {
+     "minLength": 1,
+     "title": "Event",
+     "type": "string"
+    },
+    "event_id": {
+     "examples": [
+      "2026_Monza"
+     ],
+     "pattern": "^\\d{4}_[A-Za-z0-9]+$",
+     "title": "Event Id",
+     "type": "string"
+    },
+    "format": {
+     "enum": [
+      "conventional",
+      "sprint"
+     ],
+     "title": "Format",
+     "type": "string"
+    },
+    "note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Note"
+    },
+    "practice_laps_clean": {
+     "minimum": 0,
+     "title": "Practice Laps Clean",
+     "type": "integer"
+    },
+    "practice_runs": {
+     "minimum": 0,
+     "title": "Practice Runs",
+     "type": "integer"
+    },
+    "race_laps": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Race Laps"
+    },
+    "rain_in_practice": {
+     "default": false,
+     "title": "Rain In Practice",
+     "type": "boolean"
+    },
+    "season": {
+     "minimum": 1950,
+     "title": "Season",
+     "type": "integer"
+    },
+    "sessions_used": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Sessions Used",
+     "type": "array"
+    },
+    "status": {
+     "enum": [
+      "prospective",
+      "leave_one_weekend_out"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "strategy": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/PreRacePlan"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "track_temp_practice_c": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Track Temp Practice C"
+    },
+    "tyre_nomination": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Tyre Nomination"
+    }
+   },
+   "required": [
+    "event",
+    "event_id",
+    "season",
+    "status",
+    "data_cutoff",
+    "format",
+    "practice_laps_clean",
+    "practice_runs",
+    "compounds"
+   ],
+   "title": "EventForecast",
+   "type": "object"
+  },
+  "ForecastSnapshot": {
+   "additionalProperties": false,
+   "properties": {
+    "event": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Event"
+    },
+    "event_id": {
+     "anyOf": [
+      {
+       "examples": [
+        "2026_Monza"
+       ],
+       "pattern": "^\\d{4}_[A-Za-z0-9]+$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Event Id"
+    },
+    "issued_at": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Issued At",
+     "type": "string"
+    },
+    "kind": {
+     "enum": [
+      "prospective",
+      "historical_only"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Note"
+    },
+    "race_laps": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Race Laps"
+    },
+    "season": {
+     "anyOf": [
+      {
+       "minimum": 1950,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Season"
+    },
+    "sessions_used": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Sessions Used",
+     "type": "array"
+    },
+    "snapshot_id": {
+     "minLength": 1,
+     "title": "Snapshot Id",
+     "type": "string"
+    },
+    "tyre_nomination": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Tyre Nomination"
+    }
+   },
+   "required": [
+    "snapshot_id",
+    "kind",
+    "issued_at"
+   ],
+   "title": "ForecastSnapshot",
+   "type": "object"
+  },
+  "GhostStrategy": {
+   "additionalProperties": false,
+   "properties": {
+    "claim_scope": {
+     "minLength": 1,
+     "title": "Claim Scope",
+     "type": "string"
+    },
+    "counterfactual": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CounterfactualRef"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "driver": {
+     "examples": [
+      "NOR"
+     ],
+     "pattern": "^[A-Z]{3}$",
+     "title": "Driver",
+     "type": "string"
+    },
+    "event": {
+     "minLength": 1,
+     "title": "Event",
+     "type": "string"
+    },
+    "event_id": {
+     "examples": [
+      "2026_Monza"
+     ],
+     "pattern": "^\\d{4}_[A-Za-z0-9]+$",
+     "title": "Event Id",
+     "type": "string"
+    },
+    "evidence_grade": {
+     "enum": [
+      "observed_outcome_audit",
+      "model_implied_scenario"
+     ],
+     "title": "Evidence Grade",
+     "type": "string"
+    },
+    "forecast_snapshot_hash": {
+     "description": "'sha256:' + 64 hex characters",
+     "pattern": "^sha256:[0-9a-f]{64}$",
+     "title": "Forecast Snapshot Hash",
+     "type": "string"
+    },
+    "generalisation_status": {
+     "$ref": "#/$defs/SupportFields"
+    },
+    "ghost_replay": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SidecarRef"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "live_estimator_disabled": {
+     "const": true,
+     "default": true,
+     "title": "Live Estimator Disabled",
+     "type": "boolean"
+    },
+    "meta": {
+     "$ref": "#/$defs/Meta"
+    },
+    "mode": {
+     "enum": [
+      "historical_audit",
+      "scenario_explorer",
+      "generalisation_scorecard"
+     ],
+     "title": "Mode",
+     "type": "string"
+    },
+    "model_implied": {
+     "const": true,
+     "default": true,
+     "title": "Model Implied",
+     "type": "boolean"
+    },
+    "race_reference": {
+     "$ref": "#/$defs/RaceReference"
+    },
+    "weather_context": {
+     "enum": [
+      "actual_historical",
+      "pre_race_snapshot",
+      "cooler_dry",
+      "baseline_dry",
+      "hotter_dry",
+      "damp"
+     ],
+     "title": "Weather Context",
+     "type": "string"
+    }
+   },
+   "required": [
+    "meta",
+    "mode",
+    "event",
+    "event_id",
+    "driver",
+    "weather_context",
+    "forecast_snapshot_hash",
+    "race_reference",
+    "generalisation_status",
+    "claim_scope",
+    "evidence_grade"
+   ],
+   "title": "GhostStrategy",
+   "type": "object"
+  },
+  "InputAvailability": {
+   "additionalProperties": false,
+   "properties": {
+    "channels": {
+     "additionalProperties": {
+      "$ref": "#/$defs/Channel"
+     },
+     "minProperties": 1,
+     "title": "Channels",
+     "type": "object"
+    },
+    "confidence_effect": {
+     "minLength": 1,
+     "title": "Confidence Effect",
+     "type": "string"
+    },
+    "event_id": {
+     "anyOf": [
+      {
+       "examples": [
+        "2026_Monza"
+       ],
+       "pattern": "^\\d{4}_[A-Za-z0-9]+$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Event Id"
+    },
+    "meta": {
+     "$ref": "#/$defs/Meta"
+    },
+    "missing_channels": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Missing Channels",
+     "type": "array"
+    },
+    "public_display_rules": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Public Display Rules",
+     "type": "array"
+    },
+    "sensor_mode": {
+     "enum": [
+      "PUBLIC PROXY",
+      "TEAM SENSOR"
+     ],
+     "title": "Sensor Mode",
+     "type": "string"
+    }
+   },
+   "required": [
+    "meta",
+    "sensor_mode",
+    "channels",
+    "confidence_effect"
+   ],
+   "title": "InputAvailability",
+   "type": "object"
+  },
+  "Intervention": {
+   "additionalProperties": false,
+   "properties": {
+    "from_compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "From Compound",
+     "type": "string"
+    },
+    "lap": {
+     "description": "lap on which the counterfactual diverges",
+     "minimum": 1,
+     "title": "Lap",
+     "type": "integer"
+    },
+    "pit_stop": {
+     "title": "Pit Stop",
+     "type": "boolean"
+    },
+    "set_status": {
+     "enum": [
+      "new",
+      "scrubbed",
+      "used"
+     ],
+     "title": "Set Status",
+     "type": "string"
+    },
+    "to_compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "To Compound",
+     "type": "string"
+    }
+   },
+   "required": [
+    "lap",
+    "from_compound",
+    "to_compound",
+    "set_status",
+    "pit_stop"
+   ],
+   "title": "Intervention",
+   "type": "object"
+  },
+  "LivePredictor": {
+   "additionalProperties": false,
+   "properties": {
+    "data_cutoff": {
+     "description": "latest event timestamp the estimator has consumed",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Data Cutoff",
+     "type": "string"
+    },
+    "driver": {
+     "examples": [
+      "NOR"
+     ],
+     "pattern": "^[A-Z]{3}$",
+     "title": "Driver",
+     "type": "string"
+    },
+    "driver_feedback": {
+     "items": {
+      "$ref": "#/$defs/DriverFeedbackEvent"
+     },
+     "title": "Driver Feedback",
+     "type": "array"
+    },
+    "event_id": {
+     "examples": [
+      "2026_Monza"
+     ],
+     "pattern": "^\\d{4}_[A-Za-z0-9]+$",
+     "title": "Event Id",
+     "type": "string"
+    },
+    "feedback_enabled": {
+     "default": true,
+     "title": "Feedback Enabled",
+     "type": "boolean"
+    },
+    "lap": {
+     "description": "last completed lap consumed",
+     "minimum": 0,
+     "title": "Lap",
+     "type": "integer"
+    },
+    "meta": {
+     "$ref": "#/$defs/Meta"
+    },
+    "n_laps": {
+     "minimum": 1,
+     "title": "N Laps",
+     "type": "integer"
+    },
+    "posterior": {
+     "$ref": "#/$defs/LiveTyreState"
+    },
+    "prior": {
+     "$ref": "#/$defs/LivePrior"
+    },
+    "recommendation_history": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SidecarRef"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "recommendations": {
+     "items": {
+      "$ref": "#/$defs/LiveRecommendation"
+     },
+     "title": "Recommendations",
+     "type": "array"
+    },
+    "session": {
+     "default": "R",
+     "title": "Session",
+     "type": "string"
+    },
+    "source": {
+     "enum": [
+      "replay",
+      "live",
+      "recorded_live"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "state_history": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SidecarRef"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "per-lap LiveTyreState records"
+    },
+    "uses_future_data": {
+     "const": false,
+     "default": false,
+     "title": "Uses Future Data",
+     "type": "boolean"
+    },
+    "uses_post_race_reference": {
+     "const": false,
+     "default": false,
+     "title": "Uses Post Race Reference",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "meta",
+    "event_id",
+    "driver",
+    "source",
+    "data_cutoff",
+    "lap",
+    "n_laps",
+    "prior",
+    "posterior"
+   ],
+   "title": "LivePredictor",
+   "type": "object"
+  },
+  "LivePrior": {
+   "additionalProperties": false,
+   "description": "What the live estimator starts from: the frozen forecast for this car, nothing else.",
+   "properties": {
+    "band90": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "title": "Band90",
+     "type": "array"
+    },
+    "basis": {
+     "minLength": 1,
+     "title": "Basis",
+     "type": "string"
+    },
+    "compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "Compound",
+     "type": "string"
+    },
+    "degradation_rate": {
+     "description": "pre-race forecast (s/lap per lap)",
+     "title": "Degradation Rate",
+     "type": "number"
+    },
+    "driver": {
+     "examples": [
+      "NOR"
+     ],
+     "pattern": "^[A-Z]{3}$",
+     "title": "Driver",
+     "type": "string"
+    },
+    "event_id": {
+     "examples": [
+      "2026_Monza"
+     ],
+     "pattern": "^\\d{4}_[A-Za-z0-9]+$",
+     "title": "Event Id",
+     "type": "string"
+    },
+    "forecast_hash": {
+     "description": "'sha256:' + 64 hex characters",
+     "pattern": "^sha256:[0-9a-f]{64}$",
+     "title": "Forecast Hash",
+     "type": "string"
+    },
+    "planned_pit_window": {
+     "anyOf": [
+      {
+       "items": {
+        "type": "integer"
+       },
+       "maxItems": 2,
+       "minItems": 2,
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Planned Pit Window"
+    },
+    "planned_plan": {
+     "anyOf": [
+      {
+       "pattern": "^[SMHIW](-[SMHIW])*$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Planned Plan"
+    },
+    "useful_laps_q10": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Useful Laps Q10"
+    },
+    "useful_laps_q50": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Useful Laps Q50"
+    },
+    "useful_laps_q90": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Useful Laps Q90"
+    }
+   },
+   "required": [
+    "forecast_hash",
+    "event_id",
+    "driver",
+    "compound",
+    "degradation_rate",
+    "band90",
+    "basis"
+   ],
+   "title": "LivePrior",
+   "type": "object"
+  },
+  "LiveRecommendation": {
+   "additionalProperties": false,
+   "description": "Roadmap 7.2. Ranked action; gain in seconds (positive = gain), q10 is the downside.",
+   "properties": {
+    "action": {
+     "enum": [
+      "PIT_NOW",
+      "PIT",
+      "STAY_OUT",
+      "EXTEND",
+      "MANAGE",
+      "HOLD"
+     ],
+     "title": "Action",
+     "type": "string"
+    },
+    "change_reason": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Change Reason"
+    },
+    "changed_since_last_update": {
+     "title": "Changed Since Last Update",
+     "type": "boolean"
+    },
+    "constraints": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Constraints",
+     "type": "array"
+    },
+    "expected_gain_median": {
+     "title": "Expected Gain Median",
+     "type": "number"
+    },
+    "expected_gain_q10": {
+     "title": "Expected Gain Q10",
+     "type": "number"
+    },
+    "expected_gain_q90": {
+     "title": "Expected Gain Q90",
+     "type": "number"
+    },
+    "issued_at": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Issued At",
+     "type": "string"
+    },
+    "lap": {
+     "minimum": 0,
+     "title": "Lap",
+     "type": "integer"
+    },
+    "pit_window": {
+     "anyOf": [
+      {
+       "items": {
+        "type": "integer"
+       },
+       "maxItems": 2,
+       "minItems": 2,
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Pit Window"
+    },
+    "probability_of_gain": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Probability Of Gain",
+     "type": "number"
+    },
+    "rank": {
+     "minimum": 1,
+     "title": "Rank",
+     "type": "integer"
+    },
+    "reasons": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Reasons",
+     "type": "array"
+    },
+    "rejoin_context": {
+     "$ref": "#/$defs/RejoinContext"
+    },
+    "target_compound": {
+     "anyOf": [
+      {
+       "enum": [
+        "SOFT",
+        "MEDIUM",
+        "HARD",
+        "INTERMEDIATE",
+        "WET"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Compound"
+    },
+    "target_set": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/TyreSet"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    }
+   },
+   "required": [
+    "rank",
+    "lap",
+    "issued_at",
+    "action",
+    "expected_gain_median",
+    "expected_gain_q10",
+    "expected_gain_q90",
+    "probability_of_gain",
+    "rejoin_context",
+    "changed_since_last_update"
+   ],
+   "title": "LiveRecommendation",
+   "type": "object"
+  },
+  "LiveTyreState": {
+   "additionalProperties": false,
+   "description": "Roadmap 7.1. Every value is online-safe: computed from data with timestamp <= live_predictor.data_cutoff.",
+   "properties": {
+    "cliff_probability_3_laps": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Cliff Probability 3 Laps",
+     "type": "number"
+    },
+    "cliff_probability_5_laps": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Cliff Probability 5 Laps",
+     "type": "number"
+    },
+    "compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "Compound",
+     "type": "string"
+    },
+    "confidence": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Confidence",
+     "type": "number"
+    },
+    "confidence_effect": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence Effect"
+    },
+    "corrected_pace_loss": {
+     "description": "pace loss vs fresh-tyre reference after fuel, evolution and traffic correction (s/lap)",
+     "title": "Corrected Pace Loss",
+     "type": "number"
+    },
+    "degradation_rate": {
+     "description": "current posterior degradation rate (s/lap per lap)",
+     "title": "Degradation Rate",
+     "type": "number"
+    },
+    "lap": {
+     "minimum": 0,
+     "title": "Lap",
+     "type": "integer"
+    },
+    "missing_channels": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Missing Channels",
+     "type": "array"
+    },
+    "performance_wear_index": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Performance Wear Index",
+     "type": "number"
+    },
+    "quality_status": {
+     "enum": [
+      "OK",
+      "DEGRADED",
+      "STALE",
+      "OFFLINE"
+     ],
+     "title": "Quality Status",
+     "type": "string"
+    },
+    "sensor_availability": {
+     "additionalProperties": {
+      "type": "boolean"
+     },
+     "title": "Sensor Availability",
+     "type": "object"
+    },
+    "sensor_mode": {
+     "enum": [
+      "PUBLIC PROXY",
+      "TEAM SENSOR"
+     ],
+     "title": "Sensor Mode",
+     "type": "string"
+    },
+    "source_latency": {
+     "description": "seconds between event time and receipt",
+     "minimum": 0.0,
+     "title": "Source Latency",
+     "type": "number"
+    },
+    "state_regime": {
+     "enum": [
+      "warm_up",
+      "normal",
+      "overheating",
+      "graining",
+      "cliff",
+      "damage_suspected",
+      "cooling",
+      "unknown"
+     ],
+     "title": "State Regime",
+     "type": "string"
+    },
+    "support_status": {
+     "enum": [
+      "IN SUPPORT",
+      "NEAR TRAINING SUPPORT",
+      "OUT OF SUPPORT, FORECAST WITHHELD"
+     ],
+     "title": "Support Status",
+     "type": "string"
+    },
+    "team_sensor": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/TeamSensorChannels"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "thermal_stress_index": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "Thermal Stress Index",
+     "type": "number"
+    },
+    "timestamp": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Timestamp",
+     "type": "string"
+    },
+    "trend_vs_pre_race": {
+     "description": "fractional deviation of degradation_rate from the pre-race forecast (+0.31 = 31% faster)",
+     "title": "Trend Vs Pre Race",
+     "type": "number"
+    },
+    "tyre_age": {
+     "description": "laps on this set",
+     "minimum": 0,
+     "title": "Tyre Age",
+     "type": "integer"
+    },
+    "useful_laps_q10": {
+     "minimum": 0.0,
+     "title": "Useful Laps Q10",
+     "type": "number"
+    },
+    "useful_laps_q50": {
+     "minimum": 0.0,
+     "title": "Useful Laps Q50",
+     "type": "number"
+    },
+    "useful_laps_q90": {
+     "minimum": 0.0,
+     "title": "Useful Laps Q90",
+     "type": "number"
+    }
+   },
+   "required": [
+    "lap",
+    "timestamp",
+    "compound",
+    "tyre_age",
+    "state_regime",
+    "corrected_pace_loss",
+    "degradation_rate",
+    "thermal_stress_index",
+    "performance_wear_index",
+    "useful_laps_q10",
+    "useful_laps_q50",
+    "useful_laps_q90",
+    "cliff_probability_3_laps",
+    "cliff_probability_5_laps",
+    "trend_vs_pre_race",
+    "confidence",
+    "sensor_mode",
+    "support_status",
+    "source_latency",
+    "quality_status"
+   ],
+   "title": "LiveTyreState",
+   "type": "object"
+  },
+  "MaeAll": {
+   "additionalProperties": false,
+   "properties": {
+    "clearstint": {
+     "title": "Clearstint",
+     "type": "number"
+    },
+    "naive": {
+     "title": "Naive",
+     "type": "number"
+    }
+   },
+   "required": [
+    "naive",
+    "clearstint"
+   ],
+   "title": "MaeAll",
+   "type": "object"
+  },
+  "MaeIssued": {
+   "additionalProperties": false,
+   "properties": {
+    "clean": {
+     "title": "Clean",
+     "type": "number"
+    },
+    "clearstint": {
+     "title": "Clearstint",
+     "type": "number"
+    },
+    "naive": {
+     "title": "Naive",
+     "type": "number"
+    },
+    "push_adjusted": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Push Adjusted"
+    }
+   },
+   "required": [
+    "naive",
+    "clean",
+    "clearstint"
+   ],
+   "title": "MaeIssued",
+   "type": "object"
+  },
+  "Meta": {
+   "additionalProperties": false,
+   "description": "Provenance carried by every namespaced block.",
+   "properties": {
+    "data_cutoff": {
+     "description": "latest timestamp of any input this block was computed from",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Data Cutoff",
+     "type": "string"
+    },
+    "generated_at": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Generated At",
+     "type": "string"
+    },
+    "git_sha": {
+     "pattern": "^[0-9a-f]{7,40}$",
+     "title": "Git Sha",
+     "type": "string"
+    },
+    "model_hash": {
+     "description": "'sha256:' + 64 hex characters",
+     "pattern": "^sha256:[0-9a-f]{64}$",
+     "title": "Model Hash",
+     "type": "string"
+    },
+    "model_version": {
+     "minLength": 1,
+     "title": "Model Version",
+     "type": "string"
+    },
+    "provenance": {
+     "description": "which code produced the block, from which inputs",
+     "minLength": 1,
+     "title": "Provenance",
+     "type": "string"
+    },
+    "schema_version": {
+     "default": "2.0.0",
+     "pattern": "^\\d+\\.\\d+\\.\\d+$",
+     "title": "Schema Version",
+     "type": "string"
+    },
+    "units": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "title": "Units",
+     "type": "object"
+    }
+   },
+   "required": [
+    "generated_at",
+    "data_cutoff",
+    "git_sha",
+    "model_version",
+    "model_hash",
+    "provenance"
+   ],
+   "title": "Meta",
+   "type": "object"
+  },
+  "PathB": {
+   "additionalProperties": false,
+   "properties": {
+    "k3_medians": {
+     "additionalProperties": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "propertyNames": {
+      "enum": [
+       "SOFT",
+       "MEDIUM",
+       "HARD",
+       "INTERMEDIATE",
+       "WET"
+      ]
+     },
+     "title": "K3 Medians",
+     "type": "object"
+    },
+    "mae_fallback": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Mae Fallback"
+    },
+    "mae_push_adjusted": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Mae Push Adjusted"
+    },
+    "n_withheld_with_push_signal": {
+     "minimum": 0,
+     "title": "N Withheld With Push Signal",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "n_withheld_with_push_signal"
+   ],
+   "title": "PathB",
+   "type": "object"
+  },
+  "Plan": {
+   "additionalProperties": false,
+   "properties": {
+    "label": {
+     "pattern": "^[SMHIW](-[SMHIW])*$",
+     "title": "Label",
+     "type": "string"
+    },
+    "n_laps": {
+     "minimum": 1,
+     "title": "N Laps",
+     "type": "integer"
+    },
+    "pit_laps": {
+     "description": "lap numbers on which the car pits (end of each stint but the last)",
+     "items": {
+      "type": "integer"
+     },
+     "title": "Pit Laps",
+     "type": "array"
+    },
+    "stints": {
+     "items": {
+      "$ref": "#/$defs/Stint"
+     },
+     "minItems": 1,
+     "title": "Stints",
+     "type": "array"
+    }
+   },
+   "required": [
+    "label",
+    "stints",
+    "n_laps"
+   ],
+   "title": "Plan",
+   "type": "object"
+  },
+  "PlanAlternative": {
+   "additionalProperties": false,
+   "properties": {
+    "delta_to_best_s": {
+     "minimum": 0.0,
+     "title": "Delta To Best S",
+     "type": "number"
+    },
+    "plan": {
+     "pattern": "^[SMHIW](-[SMHIW])*$",
+     "title": "Plan",
+     "type": "string"
+    },
+    "stints": {
+     "items": {
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Stints",
+     "type": "array"
+    },
+    "stops": {
+     "minimum": 0,
+     "title": "Stops",
+     "type": "integer"
+    },
+    "time_s": {
+     "title": "Time S",
+     "type": "number"
+    }
+   },
+   "required": [
+    "plan",
+    "stops",
+    "stints",
+    "time_s",
+    "delta_to_best_s"
+   ],
+   "title": "PlanAlternative",
+   "type": "object"
+  },
+  "PopulationPrior": {
+   "additionalProperties": false,
+   "properties": {
+    "note": {
+     "minLength": 1,
+     "title": "Note",
+     "type": "string"
+    },
+    "residual_mean_s_per_lap": {
+     "title": "Residual Mean S Per Lap",
+     "type": "number"
+    },
+    "residual_sd_s_per_lap": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Residual Sd S Per Lap"
+    }
+   },
+   "required": [
+    "residual_mean_s_per_lap",
+    "note"
+   ],
+   "title": "PopulationPrior",
+   "type": "object"
+  },
+  "PreRaceForecast": {
+   "additionalProperties": false,
+   "properties": {
+    "events": {
+     "additionalProperties": {
+      "$ref": "#/$defs/EventForecast"
+     },
+     "minProperties": 1,
+     "title": "Events",
+     "type": "object"
+    },
+    "meta": {
+     "$ref": "#/$defs/Meta"
+    }
+   },
+   "required": [
+    "meta",
+    "events"
+   ],
+   "title": "PreRaceForecast",
+   "type": "object"
+  },
+  "PreRacePlan": {
+   "additionalProperties": false,
+   "description": "The pre-race plan for the point forecast (v1 strategy view 'Orb v1'); cost-under-truth fields are validation, not forecast.",
+   "properties": {
+    "alternatives": {
+     "items": {
+      "$ref": "#/$defs/PlanAlternative"
+     },
+     "maxItems": 8,
+     "title": "Alternatives",
+     "type": "array"
+    },
+    "band_high_plan": {
+     "anyOf": [
+      {
+       "pattern": "^[SMHIW](-[SMHIW])*$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Band High Plan"
+    },
+    "band_low_plan": {
+     "anyOf": [
+      {
+       "pattern": "^[SMHIW](-[SMHIW])*$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Band Low Plan"
+    },
+    "crossover": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "title": "Crossover",
+     "type": "object"
+    },
+    "n_laps": {
+     "minimum": 1,
+     "title": "N Laps",
+     "type": "integer"
+    },
+    "offsets_s": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "description": "compound pace offsets, SOFT = 0",
+     "propertyNames": {
+      "enum": [
+       "SOFT",
+       "MEDIUM",
+       "HARD",
+       "INTERMEDIATE",
+       "WET"
+      ]
+     },
+     "title": "Offsets S",
+     "type": "object"
+    },
+    "offsets_source": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "propertyNames": {
+      "enum": [
+       "SOFT",
+       "MEDIUM",
+       "HARD",
+       "INTERMEDIATE",
+       "WET"
+      ]
+     },
+     "title": "Offsets Source",
+     "type": "object"
+    },
+    "pit_loss_s": {
+     "minimum": 0.0,
+     "title": "Pit Loss S",
+     "type": "number"
+    },
+    "plan": {
+     "pattern": "^[SMHIW](-[SMHIW])*$",
+     "title": "Plan",
+     "type": "string"
+    },
+    "stints": {
+     "items": {
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Stints",
+     "type": "array"
+    },
+    "stops": {
+     "minimum": 0,
+     "title": "Stops",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "plan",
+    "stints",
+    "stops",
+    "n_laps",
+    "pit_loss_s"
+   ],
+   "title": "PreRacePlan",
+   "type": "object"
+  },
+  "PushDiagnostic": {
+   "additionalProperties": false,
+   "properties": {
+    "beta_practice_vs_race": {
+     "items": {
+      "$ref": "#/$defs/BetaPair"
+     },
+     "title": "Beta Practice Vs Race",
+     "type": "array"
+    },
+    "energy_trend_issued": {
+     "$ref": "#/$defs/Describe3"
+    },
+    "energy_trend_withheld": {
+     "$ref": "#/$defs/Describe3"
+    }
+   },
+   "required": [
+    "energy_trend_withheld",
+    "energy_trend_issued"
+   ],
+   "title": "PushDiagnostic",
+   "type": "object"
+  },
+  "RaceReference": {
+   "additionalProperties": false,
+   "description": "Race-derived pace-loss reference (wording rule 9.2). The target driver is excluded for generalisation claims.",
+   "properties": {
+    "by_compound": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "description": "observed race degradation (s/lap per lap)",
+     "minProperties": 1,
+     "propertyNames": {
+      "enum": [
+       "SOFT",
+       "MEDIUM",
+       "HARD",
+       "INTERMEDIATE",
+       "WET"
+      ]
+     },
+     "title": "By Compound",
+     "type": "object"
+    },
+    "by_compound_se": {
+     "anyOf": [
+      {
+       "additionalProperties": {
+        "type": "number"
+       },
+       "propertyNames": {
+        "enum": [
+         "SOFT",
+         "MEDIUM",
+         "HARD",
+         "INTERMEDIATE",
+         "WET"
+        ]
+       },
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "By Compound Se"
+    },
+    "kind": {
+     "const": "race-derived pace-loss reference",
+     "default": "race-derived pace-loss reference",
+     "title": "Kind",
+     "type": "string"
+    },
+    "n_laps_used": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "N Laps Used"
+    },
+    "n_stints_used": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "N Stints Used"
+    },
+    "source": {
+     "minLength": 1,
+     "title": "Source",
+     "type": "string"
+    },
+    "target_driver_excluded": {
+     "title": "Target Driver Excluded",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "by_compound",
+    "target_driver_excluded",
+    "source"
+   ],
+   "title": "RaceReference",
+   "type": "object"
+  },
+  "RejoinContext": {
+   "additionalProperties": false,
+   "description": "Phase 0: the observed gap structure; Phase 1: live rejoin and traffic estimation. Rival responses are never simulated.",
+   "properties": {
+    "basis": {
+     "enum": [
+      "observed_gap_structure",
+      "live_rejoin_estimate"
+     ],
+     "title": "Basis",
+     "type": "string"
+    },
+    "cars_within_pit_loss": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cars Within Pit Loss"
+    },
+    "gap_ahead_s": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Gap Ahead S"
+    },
+    "gap_behind_s": {
+     "anyOf": [
+      {
+       "minimum": 0.0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Gap Behind S"
+    },
+    "note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Note"
+    },
+    "position_now": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Position Now"
+    },
+    "projected_rejoin_position": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Projected Rejoin Position"
+    },
+    "traffic_density": {
+     "anyOf": [
+      {
+       "enum": [
+        "clear",
+        "light",
+        "dense"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Traffic Density"
+    }
+   },
+   "required": [
+    "basis"
+   ],
+   "title": "RejoinContext",
+   "type": "object"
+  },
+  "SafetyCarPeriod": {
+   "additionalProperties": false,
+   "properties": {
+    "end_lap": {
+     "minimum": 1,
+     "title": "End Lap",
+     "type": "integer"
+    },
+    "kind": {
+     "enum": [
+      "SC",
+      "VSC",
+      "RED"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "start_lap": {
+     "minimum": 1,
+     "title": "Start Lap",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "kind",
+    "start_lap",
+    "end_lap"
+   ],
+   "title": "SafetyCarPeriod",
+   "type": "object"
+  },
+  "SecondOpinion": {
+   "additionalProperties": false,
+   "properties": {
+    "basis": {
+     "minLength": 1,
+     "title": "Basis",
+     "type": "string"
+    },
+    "factor": {
+     "title": "Factor",
+     "type": "number"
+    },
+    "factor_applied": {
+     "title": "Factor Applied",
+     "type": "boolean"
+    },
+    "prediction": {
+     "title": "Prediction",
+     "type": "number"
+    }
+   },
+   "required": [
+    "prediction",
+    "factor",
+    "factor_applied",
+    "basis"
+   ],
+   "title": "SecondOpinion",
+   "type": "object"
+  },
+  "Shared": {
+   "additionalProperties": false,
+   "properties": {
+    "forecast_hash": {
+     "description": "'sha256:' + 64 hex characters",
+     "pattern": "^sha256:[0-9a-f]{64}$",
+     "title": "Forecast Hash",
+     "type": "string"
+    },
+    "forecast_snapshot": {
+     "$ref": "#/$defs/ForecastSnapshot"
+    },
+    "meta": {
+     "$ref": "#/$defs/Meta"
+    },
+    "model_version": {
+     "minLength": 1,
+     "title": "Model Version",
+     "type": "string"
+    },
+    "support_definition": {
+     "$ref": "#/$defs/SupportDefinition"
+    },
+    "training_cutoff": {
+     "description": "ISO-8601 timestamp",
+     "examples": [
+      "2026-09-13T15:04:05"
+     ],
+     "title": "Training Cutoff",
+     "type": "string"
+    }
+   },
+   "required": [
+    "meta",
+    "forecast_snapshot",
+    "model_version",
+    "forecast_hash",
+    "training_cutoff",
+    "support_definition"
+   ],
+   "title": "Shared",
+   "type": "object"
+  },
+  "SidecarRef": {
+   "additionalProperties": false,
+   "description": "A large artifact kept out of the lock: path relative to the lock root (proto/), sha256 of the file bytes.",
+   "properties": {
+    "bytes": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Bytes"
+    },
+    "description": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Description"
+    },
+    "format": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Format"
+    },
+    "path": {
+     "title": "Path",
+     "type": "string"
+    },
+    "sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Sha256",
+     "type": "string"
+    }
+   },
+   "required": [
+    "path",
+    "sha256"
+   ],
+   "title": "SidecarRef",
+   "type": "object"
+  },
+  "Stint": {
+   "additionalProperties": false,
+   "properties": {
+    "compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "Compound",
+     "type": "string"
+    },
+    "laps": {
+     "minimum": 1,
+     "title": "Laps",
+     "type": "integer"
+    },
+    "set_status": {
+     "default": "new",
+     "enum": [
+      "new",
+      "scrubbed",
+      "used"
+     ],
+     "title": "Set Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "compound",
+    "laps"
+   ],
+   "title": "Stint",
+   "type": "object"
+  },
+  "SupportDefinition": {
+   "additionalProperties": false,
+   "properties": {
+    "compounds": {
+     "items": {
+      "enum": [
+       "SOFT",
+       "MEDIUM",
+       "HARD",
+       "INTERMEDIATE",
+       "WET"
+      ],
+      "type": "string"
+     },
+     "title": "Compounds",
+     "type": "array"
+    },
+    "definition": {
+     "minLength": 1,
+     "title": "Definition",
+     "type": "string"
+    },
+    "drivers_seen": {
+     "items": {
+      "examples": [
+       "NOR"
+      ],
+      "pattern": "^[A-Z]{3}$",
+      "type": "string"
+     },
+     "title": "Drivers Seen",
+     "type": "array"
+    },
+    "n_training_weekends": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "N Training Weekends"
+    },
+    "seasons_seen": {
+     "items": {
+      "type": "integer"
+     },
+     "title": "Seasons Seen",
+     "type": "array"
+    },
+    "track_temp_range_c": {
+     "anyOf": [
+      {
+       "items": {
+        "type": "number"
+       },
+       "maxItems": 2,
+       "minItems": 2,
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Track Temp Range C"
+    },
+    "tracks_seen": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Tracks Seen",
+     "type": "array"
+    },
+    "weather": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Weather",
+     "type": "array"
+    }
+   },
+   "required": [
+    "definition"
+   ],
+   "title": "SupportDefinition",
+   "type": "object"
+  },
+  "SupportFields": {
+   "additionalProperties": false,
+   "description": "Support fields on every Ghost Strategy result (roadmap 7.0).",
+   "properties": {
+    "abstention_reason": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Abstention Reason"
+    },
+    "circuit_generalisation": {
+     "anyOf": [
+      {
+       "enum": [
+        "seen",
+        "seen_circuit_new_season",
+        "never_seen"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Circuit Generalisation"
+    },
+    "compound_support": {
+     "title": "Compound Support",
+     "type": "boolean"
+    },
+    "driver_seen_during_training": {
+     "title": "Driver Seen During Training",
+     "type": "boolean"
+    },
+    "overall_support_status": {
+     "enum": [
+      "IN SUPPORT",
+      "NEAR TRAINING SUPPORT",
+      "OUT OF SUPPORT, FORECAST WITHHELD"
+     ],
+     "title": "Overall Support Status",
+     "type": "string"
+    },
+    "season_support": {
+     "title": "Season Support",
+     "type": "boolean"
+    },
+    "track_seen_during_training": {
+     "title": "Track Seen During Training",
+     "type": "boolean"
+    },
+    "weather_in_training_range": {
+     "title": "Weather In Training Range",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "track_seen_during_training",
+    "driver_seen_during_training",
+    "weather_in_training_range",
+    "compound_support",
+    "season_support",
+    "overall_support_status"
+   ],
+   "title": "SupportFields",
+   "type": "object"
+  },
+  "TeamSensorChannels": {
+   "additionalProperties": false,
+   "description": "Private channels; only allowed under sensor_mode 'TEAM SENSOR'. Keys are wheel positions FL/FR/RL/RR.",
+   "properties": {
+    "pressure_bar": {
+     "anyOf": [
+      {
+       "additionalProperties": {
+        "type": "number"
+       },
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Pressure Bar"
+    },
+    "tread_remaining_mm": {
+     "anyOf": [
+      {
+       "additionalProperties": {
+        "type": "number"
+       },
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Tread Remaining Mm"
+    },
+    "tyre_carcass_temp_c": {
+     "anyOf": [
+      {
+       "additionalProperties": {
+        "type": "number"
+       },
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Tyre Carcass Temp C"
+    },
+    "tyre_surface_temp_c": {
+     "anyOf": [
+      {
+       "additionalProperties": {
+        "type": "number"
+       },
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Tyre Surface Temp C"
+    }
+   },
+   "title": "TeamSensorChannels",
+   "type": "object"
+  },
+  "TyreSet": {
+   "additionalProperties": false,
+   "properties": {
+    "age_laps": {
+     "default": 0,
+     "minimum": 0,
+     "title": "Age Laps",
+     "type": "integer"
+    },
+    "compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "Compound",
+     "type": "string"
+    },
+    "set_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Set Id"
+    },
+    "status": {
+     "enum": [
+      "new",
+      "scrubbed",
+      "used"
+     ],
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "compound",
+    "status"
+   ],
+   "title": "TyreSet",
+   "type": "object"
+  },
+  "ValidationBlock": {
+   "additionalProperties": false,
+   "description": "The v1 leave-one-weekend-out scorecard (out/lock.json 'validation'), copied exactly, plus hashed sidecars.",
+   "properties": {
+    "band_coverage": {
+     "$ref": "#/$defs/BandCoverage"
+    },
+    "by_compound": {
+     "additionalProperties": {
+      "$ref": "#/$defs/ByCompound"
+     },
+     "propertyNames": {
+      "enum": [
+       "SOFT",
+       "MEDIUM",
+       "HARD",
+       "INTERMEDIATE",
+       "WET"
+      ]
+     },
+     "title": "By Compound",
+     "type": "object"
+    },
+    "calibration": {
+     "$ref": "#/$defs/Calibration"
+    },
+    "ci90_mae_clearstint_all": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "title": "Ci90 Mae Clearstint All",
+     "type": "array"
+    },
+    "mae_all_with_fallback": {
+     "$ref": "#/$defs/MaeAll"
+    },
+    "mae_issued": {
+     "$ref": "#/$defs/MaeIssued"
+    },
+    "meta": {
+     "$ref": "#/$defs/Meta"
+    },
+    "n_compound_weekends": {
+     "minimum": 0,
+     "title": "N Compound Weekends",
+     "type": "integer"
+    },
+    "n_issued": {
+     "minimum": 0,
+     "title": "N Issued",
+     "type": "integer"
+    },
+    "n_weekends": {
+     "minimum": 0,
+     "title": "N Weekends",
+     "type": "integer"
+    },
+    "n_withheld": {
+     "minimum": 0,
+     "title": "N Withheld",
+     "type": "integer"
+    },
+    "p_clearstint_beats_clean_issued": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "P Clearstint Beats Clean Issued",
+     "type": "number"
+    },
+    "p_clearstint_beats_naive_all": {
+     "maximum": 1.0,
+     "minimum": 0.0,
+     "title": "P Clearstint Beats Naive All",
+     "type": "number"
+    },
+    "path_b_push_adjusted": {
+     "$ref": "#/$defs/PathB"
+    },
+    "push_diagnostic": {
+     "$ref": "#/$defs/PushDiagnostic"
+    },
+    "rows": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SidecarRef"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "validation_rows sidecar (one record per compound-weekend)"
+    },
+    "sealed_holdout": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SidecarRef"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "sealed_holdout_manifest.json reference; never opened before freeze"
+    },
+    "source": {
+     "minLength": 1,
+     "title": "Source",
+     "type": "string"
+    },
+    "wins_clearstint_over_clean_issued": {
+     "minimum": 0,
+     "title": "Wins Clearstint Over Clean Issued",
+     "type": "integer"
+    },
+    "wins_clearstint_over_naive": {
+     "minimum": 0,
+     "title": "Wins Clearstint Over Naive",
+     "type": "integer"
+    },
+    "withheld_cases": {
+     "items": {
+      "$ref": "#/$defs/WithheldCase"
+     },
+     "title": "Withheld Cases",
+     "type": "array"
+    }
+   },
+   "required": [
+    "meta",
+    "source",
+    "n_weekends",
+    "n_compound_weekends",
+    "n_issued",
+    "n_withheld",
+    "mae_issued",
+    "mae_all_with_fallback",
+    "ci90_mae_clearstint_all",
+    "p_clearstint_beats_clean_issued",
+    "p_clearstint_beats_naive_all",
+    "calibration",
+    "by_compound",
+    "push_diagnostic",
+    "path_b_push_adjusted",
+    "band_coverage",
+    "wins_clearstint_over_naive",
+    "wins_clearstint_over_clean_issued"
+   ],
+   "title": "ValidationBlock",
+   "type": "object"
+  },
+  "WithheldCase": {
+   "additionalProperties": false,
+   "properties": {
+    "clean": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Clean"
+    },
+    "compound": {
+     "enum": [
+      "SOFT",
+      "MEDIUM",
+      "HARD",
+      "INTERMEDIATE",
+      "WET"
+     ],
+     "title": "Compound",
+     "type": "string"
+    },
+    "event": {
+     "title": "Event",
+     "type": "string"
+    },
+    "floor": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Floor"
+    },
+    "gate": {
+     "title": "Gate",
+     "type": "string"
+    },
+    "obs": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Obs"
+    }
+   },
+   "required": [
+    "event",
+    "compound",
+    "gate"
+   ],
+   "title": "WithheldCase",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "counterfactuals": {
+   "items": {
+    "$ref": "#/$defs/CounterfactualScenario"
+   },
+   "title": "Counterfactuals",
+   "type": "array"
+  },
+  "driver_profile": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/DriverProfileBlock"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "extensions": {
+   "additionalProperties": true,
+   "description": "free namespace for material not yet promoted to a stable block",
+   "title": "Extensions",
+   "type": "object"
+  },
+  "ghost_strategy": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/GhostStrategy"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "input_availability": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/InputAvailability"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "live_predictor": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/LivePredictor"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "pre_race_forecast": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/PreRaceForecast"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "schema_version": {
+   "default": "2.0.0",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$",
+   "title": "Schema Version",
+   "type": "string"
+  },
+  "shared": {
+   "$ref": "#/$defs/Shared"
+  },
+  "validation": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/ValidationBlock"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  }
+ },
+ "required": [
+  "shared"
+ ],
+ "title": "LockV2",
+ "type": "object"
+}

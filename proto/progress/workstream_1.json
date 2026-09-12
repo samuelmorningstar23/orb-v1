@@ -1,0 +1,24 @@
+{
+ "workstream": 1,
+ "task": "contract_and_fixtures: lock v2 schema, lockio, adapter, validator, fixtures, contract tests",
+ "status": "GREEN",
+ "commit": null,
+ "completed": [
+  "schemas/lock_v2.py + lock_v2.schema.json (48 models, extra=forbid, cross-block hash checks)",
+  "shared/lockio.py (atomic write, canonical_json, forecast_hash, sidecar refs)",
+  "validators/adapt_v1.py -> out/lock_v2.json + out/lock_v2_sidecars/ (forecast_hash sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a)",
+  "validators/validate_lock.py (exit 0/1/2/3; sidecar sha256 verified)",
+  "fixtures: lock_v2_fixture.json, sidecars/, mini_race/, golden_race.json, make_fixtures.py, seed_v1_snapshot.json",
+  "tests/contract: 106 passed",
+  "schemas/README.md"
+ ],
+ "in_progress": [],
+ "blockers": [],
+ "tests_passed": 106,
+ "tests_failed": 0,
+ "eta_minutes": 0,
+ "needs_review_from": [
+  7
+ ],
+ "updated_at": "2026-09-12T15:12:36"
+}

@@ -1,0 +1,2481 @@
+{
+ "schema_version": "2.0.0",
+ "shared": {
+  "meta": {
+   "schema_version": "2.0.0",
+   "generated_at": "2026-09-12T15:12:25",
+   "data_cutoff": "2026-09-12T14:31:34",
+   "git_sha": "02f4c00",
+   "model_version": "provider_A_clearstint_v2",
+   "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): shared",
+   "units": {
+    "pace_loss": "s/lap",
+    "degradation_rate": "s/lap per lap",
+    "time": "s",
+    "laps": "lap",
+    "temperature": "degC",
+    "probability": "fraction 0-1",
+    "index": "fraction 0-1",
+    "latency": "s",
+    "energy": "MJ"
+   }
+  },
+  "forecast_snapshot": {
+   "snapshot_id": "Madrid_FP1+FP2_e1262561",
+   "kind": "prospective",
+   "event": "Madrid",
+   "event_id": "2026_Madrid",
+   "season": 2026,
+   "issued_at": "2026-09-12T14:31:34",
+   "sessions_used": [
+    "FP1",
+    "FP2"
+   ],
+   "race_laps": 56,
+   "tyre_nomination": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
+   "note": "issued from practice sessions only; the hash is frozen before the race and both modes must reference it"
+  },
+  "model_version": "provider_A_clearstint_v2",
+  "forecast_hash": "sha256:e126256132b6ead81ad53af0114f6e453bf46cb53bcc257e776440c1621bec4a",
+  "training_cutoff": "2026-09-12T14:31:34",
+  "support_definition": {
+   "definition": "Training support is the set of completed weekends scored leave-one-weekend-out by pipeline.py. A track is seen when it has practice and race files; weather is in range when practice was dry and track temperature lies inside the observed practice range; compound support covers the dry slick compounds fitted in training.",
+   "tracks_seen": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "drivers_seen": [
+    "ALB",
+    "ALO",
+    "ANT",
+    "BEA",
+    "BOR",
+    "BOT",
+    "COL",
+    "GAS",
+    "HAD",
+    "HAM",
+    "HUL",
+    "LAW",
+    "LEC",
+    "LIN",
+    "NOR",
+    "OCO",
+    "PER",
+    "PIA",
+    "RUS",
+    "SAI",
+    "STR",
+    "TSU",
+    "VER"
+   ],
+   "seasons_seen": [
+    2026
+   ],
+   "weather": [
+    "dry",
+    "rain_affected_sessions: Canada_Q, Miami_R, Zandvoort_FP1, Zandvoort_Q, Zandvoort_R, Zandvoort_S, Zandvoort_SQ"
+   ],
+   "compounds": [
+    "SOFT",
+    "MEDIUM",
+    "HARD"
+   ],
+   "track_temp_range_c": [
+    27.4,
+    55.1
+   ],
+   "n_training_weekends": 11
+  }
+ },
+ "pre_race_forecast": {
+  "meta": {
+   "schema_version": "2.0.0",
+   "generated_at": "2026-09-12T15:12:25",
+   "data_cutoff": "2026-09-12T14:31:34",
+   "git_sha": "02f4c00",
+   "model_version": "provider_A_clearstint_v2",
+   "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): pre_race_forecast from live[] and validation_rows[] minus post-race columns",
+   "units": {
+    "pace_loss": "s/lap",
+    "degradation_rate": "s/lap per lap",
+    "time": "s",
+    "laps": "lap",
+    "temperature": "degC",
+    "probability": "fraction 0-1",
+    "index": "fraction 0-1",
+    "latency": "s",
+    "energy": "MJ"
+   }
+  },
+  "events": {
+   "Australia": {
+    "event": "Australia",
+    "event_id": "2026_Australia",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2",
+     "FP3"
+    ],
+    "race_laps": 58,
+    "practice_laps_clean": 271,
+    "practice_runs": 60,
+    "track_temp_practice_c": 35.02,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 75,
+      "naive": 0.076,
+      "clean": 0.0205,
+      "clean_se": 0.0268,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9632,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0198,
+      "band90": [
+       -0.0393,
+       0.0779
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": 0.0284,
+      "push_adj": 0.0335,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 121,
+      "naive": 0.1742,
+      "clean": -0.0755,
+      "clean_se": 0.0218,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 0.4518,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0276,
+      "band90": [
+       -0.0215,
+       0.0949
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.1275,
+      "push_adj": -0.0172,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 75,
+      "naive": 0.1796,
+      "clean": -0.0241,
+      "clean_se": 0.0254,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0276,
+      "band90": [
+       -0.0215,
+       0.0949
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.1512,
+      "push_adj": 0.045,
+      "second_opinion": {
+       "prediction": 0.0349,
+       "factor": 0.7747,
+       "factor_applied": true,
+       "basis": "push-adjusted Friday curve (degradation at constant tyre energy) × its own season factor"
+      }
+     }
+    },
+    "strategy": {
+     "plan": "S-M",
+     "stints": [
+      47,
+      11
+     ],
+     "stops": 1,
+     "n_laps": 58,
+     "pit_loss_s": 21.0,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        47,
+        11
+       ],
+       "time_s": 51.74101624048648,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        11,
+        47
+       ],
+       "time_s": 51.74101624048648,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        52,
+        6
+       ],
+       "time_s": 56.92602990042847,
+       "delta_to_best_s": 5.185013659941987
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        52
+       ],
+       "time_s": 56.92602990042847,
+       "delta_to_best_s": 5.185013659941987
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.6,
+      "HARD": 1.346499999999999
+     },
+     "offsets_source": {
+      "MEDIUM": "practice value +1.40 s implausible, nominal Pirelli-range step",
+      "HARD": "practice (14 drivers)"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Austria": {
+    "event": "Austria",
+    "event_id": "2026_Austria",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2",
+     "FP3"
+    ],
+    "race_laps": 71,
+    "practice_laps_clean": 279,
+    "practice_runs": 51,
+    "track_temp_practice_c": 49.47,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 62,
+      "naive": 0.4362,
+      "clean": 0.1393,
+      "clean_se": 0.0362,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9675,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.1348,
+      "band90": [
+       0.0412,
+       0.2996
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": -0.0834,
+      "push_adj": 0.0892,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 140,
+      "naive": 0.1214,
+      "clean": 0.16,
+      "clean_se": 0.0175,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.4293,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0687,
+      "band90": [
+       0.0388,
+       0.186
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": -0.0627,
+      "push_adj": 0.1223,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 77,
+      "naive": 0.1091,
+      "clean": 0.0672,
+      "clean_se": 0.0283,
+      "gate": "ok",
+      "issued": true,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0672,
+      "band90": [
+       -0.0024,
+       0.1359
+      ],
+      "basis": "cleaned Friday curve (weekends disagree on the factor)",
+      "energy_trend": -0.0045,
+      "push_adj": 0.0645,
+      "second_opinion": null
+     }
+    },
+    "strategy": {
+     "plan": "S-M-M",
+     "stints": [
+      18,
+      26,
+      27
+     ],
+     "stops": 2,
+     "n_laps": 71,
+     "pit_loss_s": 21.0,
+     "crossover": {
+      "S-M": 9.075790769283854,
+      "M-H": 777.4396528406317,
+      "S-H": 25.906029495914037
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        18,
+        26,
+        27
+       ],
+       "time_s": 146.9181734766857,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        26,
+        18,
+        27
+       ],
+       "time_s": 146.9181734766857,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        26,
+        28,
+        17
+       ],
+       "time_s": 147.0150097836119,
+       "delta_to_best_s": 0.09683630692620682
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        20,
+        20,
+        31
+       ],
+       "time_s": 151.2784534136939,
+       "delta_to_best_s": 4.360279937008215
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.6,
+      "HARD": 1.7510000000000048
+     },
+     "offsets_source": {
+      "MEDIUM": "practice value +1.01 s implausible, nominal Pirelli-range step",
+      "HARD": "practice (15 drivers)"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Barcelona": {
+    "event": "Barcelona",
+    "event_id": "2026_Barcelona",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2",
+     "FP3"
+    ],
+    "race_laps": 66,
+    "practice_laps_clean": 252,
+    "practice_runs": 45,
+    "track_temp_practice_c": 48.13,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 114,
+      "naive": 0.3219,
+      "clean": 0.2199,
+      "clean_se": 0.0269,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9633,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.2118,
+      "band90": [
+       0.0737,
+       0.412
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": -0.1784,
+      "push_adj": 0.1169,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 126,
+      "naive": 0.3692,
+      "clean": 0.3079,
+      "clean_se": 0.0225,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.4744,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.1461,
+      "band90": [
+       0.0864,
+       0.3044
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": -0.2561,
+      "push_adj": 0.1599,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 12,
+      "naive": 0.2018,
+      "clean": 0.34,
+      "clean_se": 0.0866,
+      "gate": "too few clean practice laps",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0255,
+      "band90": [
+       -0.0098,
+       0.0623
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": -0.3279,
+      "push_adj": 0.1507,
+      "second_opinion": {
+       "prediction": 0.1467,
+       "factor": 0.974,
+       "factor_applied": true,
+       "basis": "push-adjusted Friday curve (degradation at constant tyre energy) × its own season factor"
+      }
+     }
+    },
+    "strategy": {
+     "plan": "S-H",
+     "stints": [
+      12,
+      54
+     ],
+     "stops": 1,
+     "n_laps": 66,
+     "pit_loss_s": 21.0,
+     "crossover": {
+      "S-M": 13.916090635444307,
+      "M-H": 2.3599468752341224,
+      "S-H": 6.439816428717007
+     },
+     "alternatives": [
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        12,
+        54
+       ],
+       "time_s": 140.19086107214258,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        54,
+        12
+       ],
+       "time_s": 140.19086107214258,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-H-H",
+       "stops": 2,
+       "stints": [
+        8,
+        28,
+        30
+       ],
+       "time_s": 141.43664114888549,
+       "delta_to_best_s": 1.2457800767429035
+      },
+      {
+       "plan": "H-S-H",
+       "stops": 2,
+       "stints": [
+        28,
+        8,
+        30
+       ],
+       "time_s": 141.43664114888549,
+       "delta_to_best_s": 1.2457800767429035
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.9154999999999944,
+      "HARD": 1.2
+     },
+     "offsets_source": {
+      "MEDIUM": "practice (26 drivers)",
+      "HARD": "practice value +2.66 s implausible, nominal Pirelli-range step"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Belgium": {
+    "event": "Belgium",
+    "event_id": "2026_Belgium",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2",
+     "FP3"
+    ],
+    "race_laps": 44,
+    "practice_laps_clean": 138,
+    "practice_runs": 24,
+    "track_temp_practice_c": 35.53,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 69,
+      "naive": 0.1141,
+      "clean": 0.1593,
+      "clean_se": 0.0377,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9632,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.1534,
+      "band90": [
+       0.0222,
+       0.3353
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": -0.1315,
+      "push_adj": 0.1399,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 56,
+      "naive": 0.2139,
+      "clean": 0.1472,
+      "clean_se": 0.0368,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.4744,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0698,
+      "band90": [
+       0.0255,
+       0.1935
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": 0.0348,
+      "push_adj": 0.1523,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 13,
+      "naive": 0.1009,
+      "clean": 0.1463,
+      "clean_se": 0.0752,
+      "gate": "too few clean practice laps",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0255,
+      "band90": [
+       -0.017,
+       0.0916
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": -0.1689,
+      "push_adj": 0.1214,
+      "second_opinion": {
+       "prediction": 0.1183,
+       "factor": 0.974,
+       "factor_applied": true,
+       "basis": "push-adjusted Friday curve (degradation at constant tyre energy) × its own season factor"
+      }
+     }
+    },
+    "strategy": {
+     "plan": "M-H",
+     "stints": [
+      18,
+      26
+     ],
+     "stops": 1,
+     "n_laps": 44,
+     "pit_loss_s": 21.0,
+     "crossover": {
+      "S-M": 7.177504978728756,
+      "M-H": 13.538044362252503,
+      "S-H": 9.381298966577669
+     },
+     "alternatives": [
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        18,
+        26
+       ],
+       "time_s": 83.88957090812212,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        26,
+        18
+       ],
+       "time_s": 83.88957090812212,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        13,
+        31
+       ],
+       "time_s": 84.8085984408582,
+       "delta_to_best_s": 0.9190275327360808
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        31,
+        13
+       ],
+       "time_s": 84.8085984408582,
+       "delta_to_best_s": 0.9190275327360808
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.6,
+      "HARD": 1.2
+     },
+     "offsets_source": {
+      "MEDIUM": "practice value +1.16 s implausible, nominal Pirelli-range step",
+      "HARD": "practice value +3.01 s implausible, nominal Pirelli-range step"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Britain": {
+    "event": "Britain",
+    "event_id": "2026_Britain",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "sprint",
+    "sessions_used": [
+     "FP1"
+    ],
+    "race_laps": 52,
+    "practice_laps_clean": 146,
+    "practice_runs": 34,
+    "track_temp_practice_c": 40.3,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 133,
+      "naive": 0.0139,
+      "clean": -0.0509,
+      "clean_se": 0.0293,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0255,
+      "band90": [
+       -0.0161,
+       0.092
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.1457,
+      "push_adj": 0.031,
+      "second_opinion": {
+       "prediction": 0.024,
+       "factor": 0.7747,
+       "factor_applied": true,
+       "basis": "push-adjusted Friday curve (degradation at constant tyre energy) × its own season factor"
+      }
+     }
+    },
+    "strategy": null,
+    "note": null
+   },
+   "Canada": {
+    "event": "Canada",
+    "event_id": "2026_Canada",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "sprint",
+    "sessions_used": [
+     "FP1"
+    ],
+    "race_laps": 68,
+    "practice_laps_clean": 118,
+    "practice_runs": 19,
+    "track_temp_practice_c": 40.2,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 20,
+      "naive": 0.0806,
+      "clean": 0.0501,
+      "clean_se": 0.0502,
+      "gate": "too few clean practice laps",
+      "issued": false,
+      "factor": 0.9673,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0303,
+      "band90": [
+       0.0218,
+       0.0752
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": -0.1546,
+      "push_adj": 0.0061,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 92,
+      "naive": -0.0507,
+      "clean": -0.0491,
+      "clean_se": 0.0239,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0303,
+      "band90": [
+       0.0218,
+       0.0752
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.0075,
+      "push_adj": -0.047,
+      "second_opinion": null
+     }
+    },
+    "strategy": {
+     "plan": "S-S-H",
+     "stints": [
+      30,
+      32,
+      6
+     ],
+     "stops": 2,
+     "n_laps": 68,
+     "pit_loss_s": 21.0,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        30,
+        32,
+        6
+       ],
+       "time_s": 79.89456975065359,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-H-S",
+       "stops": 2,
+       "stints": [
+        30,
+        6,
+        32
+       ],
+       "time_s": 79.89456975065359,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "H-S-S",
+       "stops": 2,
+       "stints": [
+        6,
+        30,
+        32
+       ],
+       "time_s": 79.89456975065359,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        54,
+        14
+       ],
+       "time_s": 85.93053836640946,
+       "delta_to_best_s": 6.035968615755877
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.6530000000000058,
+      "HARD": 1.2
+     },
+     "offsets_source": {
+      "MEDIUM": "qualifying (20 drivers)",
+      "HARD": "practice value -42.24 s implausible, nominal Pirelli-range step"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Hungary": {
+    "event": "Hungary",
+    "event_id": "2026_Hungary",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2",
+     "FP3"
+    ],
+    "race_laps": 70,
+    "practice_laps_clean": 296,
+    "practice_runs": 61,
+    "track_temp_practice_c": 41.88,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 80,
+      "naive": 0.5423,
+      "clean": 0.1369,
+      "clean_se": 0.0392,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9675,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.1325,
+      "band90": [
+       0.0356,
+       0.2905
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": -0.1351,
+      "push_adj": 0.0591,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 159,
+      "naive": 0.2849,
+      "clean": 0.1216,
+      "clean_se": 0.0242,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.4744,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0577,
+      "band90": [
+       0.0267,
+       0.1501
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": -0.0824,
+      "push_adj": 0.0741,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 57,
+      "naive": 0.2096,
+      "clean": 0.0516,
+      "clean_se": 0.0367,
+      "gate": "ok",
+      "issued": true,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0516,
+      "band90": [
+       -0.0364,
+       0.1424
+      ],
+      "basis": "cleaned Friday curve (weekends disagree on the factor)",
+      "energy_trend": -0.0009,
+      "push_adj": 0.0511,
+      "second_opinion": null
+     }
+    },
+    "strategy": {
+     "plan": "S-M-M",
+     "stints": [
+      16,
+      26,
+      28
+     ],
+     "stops": 2,
+     "n_laps": 70,
+     "pit_loss_s": 21.0,
+     "crossover": {
+      "S-M": 8.02200722795186,
+      "M-H": 98.84617455878511,
+      "S-H": 14.839678443268415
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        16,
+        26,
+        28
+       ],
+       "time_s": 136.08853979769538,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        26,
+        16,
+        28
+       ],
+       "time_s": 136.08853979769538,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        26,
+        28,
+        16
+       ],
+       "time_s": 136.08853979769538,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        18,
+        18,
+        34
+       ],
+       "time_s": 142.03448300886555,
+       "delta_to_best_s": 5.945943211170174
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.6,
+      "HARD": 1.2
+     },
+     "offsets_source": {
+      "MEDIUM": "practice value +1.59 s implausible, nominal Pirelli-range step",
+      "HARD": "practice value +2.12 s implausible, nominal Pirelli-range step"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Japan": {
+    "event": "Japan",
+    "event_id": "2026_Japan",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2",
+     "FP3"
+    ],
+    "race_laps": 53,
+    "practice_laps_clean": 310,
+    "practice_runs": 66,
+    "track_temp_practice_c": 33.82,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 135,
+      "naive": 0.2641,
+      "clean": 0.0446,
+      "clean_se": 0.0281,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.4293,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0191,
+      "band90": [
+       -0.0094,
+       0.0524
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": 0.0127,
+      "push_adj": 0.0487,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 87,
+      "naive": 0.0989,
+      "clean": -0.074,
+      "clean_se": 0.0343,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0289,
+      "band90": [
+       -0.0182,
+       0.0911
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.2074,
+      "push_adj": -0.0073,
+      "second_opinion": null
+     }
+    },
+    "strategy": {
+     "plan": "M-H",
+     "stints": [
+      43,
+      10
+     ],
+     "stops": 1,
+     "n_laps": 53,
+     "pit_loss_s": 21.0,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        43,
+        10
+       ],
+       "time_s": 82.04413731292084,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        10,
+        43
+       ],
+       "time_s": 82.04413731292084,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-H-M",
+       "stops": 2,
+       "stints": [
+        24,
+        6,
+        23
+       ],
+       "time_s": 92.90916237458515,
+       "delta_to_best_s": 10.865025061664312
+      },
+      {
+       "plan": "H-M-M",
+       "stops": 2,
+       "stints": [
+        6,
+        24,
+        23
+       ],
+       "time_s": 92.90916237458515,
+       "delta_to_best_s": 10.865025061664312
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.6825000000000045,
+      "HARD": 1.2
+     },
+     "offsets_source": {
+      "MEDIUM": "practice (20 drivers)",
+      "HARD": "practice value +2.07 s implausible, nominal Pirelli-range step"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Madrid": {
+    "event": "Madrid",
+    "event_id": "2026_Madrid",
+    "season": 2026,
+    "status": "prospective",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2"
+    ],
+    "race_laps": 56,
+    "practice_laps_clean": 157,
+    "practice_runs": 39,
+    "track_temp_practice_c": 50.42,
+    "rain_in_practice": false,
+    "tyre_nomination": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 41,
+      "naive": 0.4794433604638165,
+      "clean": 0.10093563048728363,
+      "clean_se": 0.08678463181303231,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9673403796626557,
+      "factor_applied": true,
+      "factor_from_n_weekends": 7,
+      "prediction": 0.09763911111705847,
+      "band90": [
+       -0.09555284627831415,
+       0.3000899632831943
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": 0.008356327501629702,
+      "push_adj": 0.105335645599527,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 112,
+      "naive": 0.15318851442158327,
+      "clean": -0.19873171654803912,
+      "clean_se": 0.0441554421984582,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 0.45182685386752625,
+      "factor_applied": true,
+      "factor_from_n_weekends": 6,
+      "prediction": 0.027577618966801054,
+      "band90": [
+       -0.013275769235062622,
+       0.08796834182264004
+      ],
+      "basis": "low-degradation fallback: median race degradation of the 13 withheld cases this season",
+      "energy_trend": 0.4815170921473892,
+      "push_adj": 0.05481058201952749,
+      "second_opinion": {
+       "prediction": 0.032655689056113775,
+       "factor": 0.5957916857091475,
+       "factor_applied": true,
+       "basis": "push-adjusted Friday curve (degradation at constant tyre energy) × its own season factor"
+      }
+     }
+    },
+    "strategy": {
+     "plan": "S-M",
+     "stints": [
+      18,
+      38
+     ],
+     "stops": 1,
+     "n_laps": 56,
+     "pit_loss_s": 21.0,
+     "crossover": {
+      "S-M": 9.919857237831318
+     },
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        18,
+        38
+       ],
+       "time_s": 84.54130365541633,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        38,
+        18
+       ],
+       "time_s": 84.54130365541633,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        14,
+        14,
+        28
+       ],
+       "time_s": 93.16072663510332,
+       "delta_to_best_s": 8.619422979686988
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        14,
+        28,
+        14
+       ],
+       "time_s": 93.16072663510332,
+       "delta_to_best_s": 8.619422979686988
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.6949999999999932,
+      "HARD": 1.2
+     },
+     "offsets_source": {
+      "MEDIUM": "practice (22 drivers)",
+      "HARD": "nominal Pirelli-range step"
+     },
+     "band_low_plan": "S-M",
+     "band_high_plan": "S-M-M"
+    },
+    "note": "two compounds in the data only; hard had 4 clean laps on Friday"
+   },
+   "Miami": {
+    "event": "Miami",
+    "event_id": "2026_Miami",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "sprint",
+    "sessions_used": [
+     "FP1"
+    ],
+    "race_laps": 57,
+    "practice_laps_clean": 208,
+    "practice_runs": 38,
+    "track_temp_practice_c": 52.65,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 15,
+      "naive": 0.4951,
+      "clean": 0.2932,
+      "clean_se": 0.0821,
+      "gate": "too few clean practice laps",
+      "issued": false,
+      "factor": 0.9673,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0289,
+      "band90": [
+       -0.018,
+       0.0918
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": -0.5652,
+      "push_adj": 0.0096,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 41,
+      "naive": 0.1275,
+      "clean": 0.0605,
+      "clean_se": 0.0376,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.4293,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.026,
+      "band90": [
+       -0.0149,
+       0.0727
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": 0.0852,
+      "push_adj": 0.1033,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 152,
+      "naive": 0.0478,
+      "clean": 0.0489,
+      "clean_se": 0.0227,
+      "gate": "ok",
+      "issued": true,
+      "factor": 1.0,
+      "factor_applied": false,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0489,
+      "band90": [
+       -0.0059,
+       0.1047
+      ],
+      "basis": "cleaned Friday curve (weekends disagree on the factor)",
+      "energy_trend": 0.049,
+      "push_adj": 0.0735,
+      "second_opinion": null
+     }
+    },
+    "strategy": {
+     "plan": "S-M",
+     "stints": [
+      40,
+      17
+     ],
+     "stops": 1,
+     "n_laps": 57,
+     "pit_loss_s": 21.0,
+     "crossover": {
+      "S-M": 250.23193234206553
+     },
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        40,
+        17
+       ],
+       "time_s": 61.197036744369626,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        17,
+        40
+       ],
+       "time_s": 61.197036744369626,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        48,
+        9
+       ],
+       "time_s": 65.73280604660889,
+       "delta_to_best_s": 4.53576930223926
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        9,
+        48
+       ],
+       "time_s": 65.73280604660889,
+       "delta_to_best_s": 4.53576930223926
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.7355000000000018,
+      "HARD": 0.9465000000000003
+     },
+     "offsets_source": {
+      "MEDIUM": "qualifying (20 drivers)",
+      "HARD": "practice (16 drivers)"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Monza": {
+    "event": "Monza",
+    "event_id": "2026_Monza",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "conventional",
+    "sessions_used": [
+     "FP1",
+     "FP2",
+     "FP3"
+    ],
+    "race_laps": 53,
+    "practice_laps_clean": 330,
+    "practice_runs": 68,
+    "track_temp_practice_c": 52.85,
+    "rain_in_practice": false,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 98,
+      "naive": 0.2424,
+      "clean": 0.0254,
+      "clean_se": 0.0268,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9632,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0245,
+      "band90": [
+       -0.0372,
+       0.0954
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": 0.0518,
+      "push_adj": 0.0526,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 149,
+      "naive": 0.1284,
+      "clean": -0.0611,
+      "clean_se": 0.0221,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 0.4518,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0303,
+      "band90": [
+       -0.0228,
+       0.0935
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.1011,
+      "push_adj": -0.008,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 83,
+      "naive": 0.0563,
+      "clean": -0.0327,
+      "clean_se": 0.0236,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0303,
+      "band90": [
+       -0.0228,
+       0.0935
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.1291,
+      "push_adj": 0.0352,
+      "second_opinion": {
+       "prediction": 0.0342,
+       "factor": 0.974,
+       "factor_applied": true,
+       "basis": "push-adjusted Friday curve (degradation at constant tyre energy) × its own season factor"
+      }
+     }
+    },
+    "strategy": {
+     "plan": "S-M",
+     "stints": [
+      44,
+      9
+     ],
+     "stops": 1,
+     "n_laps": 53,
+     "pit_loss_s": 21.0,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        44,
+        9
+       ],
+       "time_s": 53.86426903752059,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        9,
+        44
+       ],
+       "time_s": 53.86426903752059,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        47,
+        6
+       ],
+       "time_s": 57.32780629523704,
+       "delta_to_best_s": 3.463537257716446
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        47
+       ],
+       "time_s": 57.32780629523704,
+       "delta_to_best_s": 3.463537257716446
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.8059999999999974,
+      "HARD": 1.343999999999994
+     },
+     "offsets_source": {
+      "MEDIUM": "practice (23 drivers)",
+      "HARD": "practice (21 drivers)"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   },
+   "Zandvoort": {
+    "event": "Zandvoort",
+    "event_id": "2026_Zandvoort",
+    "season": 2026,
+    "status": "leave_one_weekend_out",
+    "data_cutoff": "2026-09-12T14:31:34",
+    "format": "sprint",
+    "sessions_used": [
+     "FP1"
+    ],
+    "race_laps": 72,
+    "practice_laps_clean": 178,
+    "practice_runs": 42,
+    "track_temp_practice_c": 27.55,
+    "rain_in_practice": true,
+    "tyre_nomination": null,
+    "compounds": {
+     "SOFT": {
+      "compound": "SOFT",
+      "n_prac": 31,
+      "naive": 0.1754,
+      "clean": 0.0385,
+      "clean_se": 0.068,
+      "gate": "ok",
+      "issued": true,
+      "factor": 0.9675,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0373,
+      "band90": [
+       -0.0933,
+       0.1814
+      ],
+      "basis": "cleaned Friday curve × season transfer factor",
+      "energy_trend": 0.0093,
+      "push_adj": 0.0418,
+      "second_opinion": null
+     },
+     "MEDIUM": {
+      "compound": "MEDIUM",
+      "n_prac": 91,
+      "naive": -0.014,
+      "clean": -0.0128,
+      "clean_se": 0.0365,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 0.4518,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0234,
+      "band90": [
+       -0.0122,
+       0.0643
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.0711,
+      "push_adj": 0.0123,
+      "second_opinion": null
+     },
+     "HARD": {
+      "compound": "HARD",
+      "n_prac": 56,
+      "naive": 0.0231,
+      "clean": -0.1012,
+      "clean_se": 0.0368,
+      "gate": "no positive degradation signal in cleaned practice",
+      "issued": false,
+      "factor": 1.1703,
+      "factor_applied": true,
+      "factor_from_n_weekends": null,
+      "prediction": 0.0234,
+      "band90": [
+       -0.0122,
+       0.0643
+      ],
+      "basis": "low-degradation fallback: median race degradation of the withheld cases on the other weekends (leave-one-weekend-out)",
+      "energy_trend": 0.2284,
+      "push_adj": -0.0205,
+      "second_opinion": null
+     }
+    },
+    "strategy": {
+     "plan": "S-S-M",
+     "stints": [
+      30,
+      32,
+      10
+     ],
+     "stops": 2,
+     "n_laps": 72,
+     "pit_loss_s": 21.0,
+     "crossover": {
+      "S-M": 68.38929016385083,
+      "S-H": 69.29104768183379
+     },
+     "alternatives": [
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        30,
+        32,
+        10
+       ],
+       "time_s": 89.79115419663535,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        30,
+        10,
+        32
+       ],
+       "time_s": 89.79115419663535,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "M-S-S",
+       "stops": 2,
+       "stints": [
+        10,
+        30,
+        32
+       ],
+       "time_s": 89.79115419663535,
+       "delta_to_best_s": 0.0
+      },
+      {
+       "plan": "S-S-H",
+       "stops": 2,
+       "stints": [
+        32,
+        32,
+        8
+       ],
+       "time_s": 89.89902150487694,
+       "delta_to_best_s": 0.10786730824159463
+      }
+     ],
+     "offsets_s": {
+      "SOFT": 0.0,
+      "MEDIUM": 0.9480000000000004,
+      "HARD": 0.9604999999999961
+     },
+     "offsets_source": {
+      "MEDIUM": "qualifying (22 drivers)",
+      "HARD": "practice (4 drivers)"
+     },
+     "band_low_plan": null,
+     "band_high_plan": null
+    },
+    "note": null
+   }
+  }
+ },
+ "validation": {
+  "meta": {
+   "schema_version": "2.0.0",
+   "generated_at": "2026-09-12T15:12:25",
+   "data_cutoff": "2026-09-12T14:31:34",
+   "git_sha": "02f4c00",
+   "model_version": "provider_A_clearstint_v2",
+   "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): validation copied verbatim",
+   "units": {
+    "pace_loss": "s/lap",
+    "degradation_rate": "s/lap per lap",
+    "time": "s",
+    "laps": "lap",
+    "temperature": "degC",
+    "probability": "fraction 0-1",
+    "index": "fraction 0-1",
+    "latency": "s",
+    "energy": "MJ"
+   }
+  },
+  "source": "pipeline.py leave-one-weekend-out scorecard, copied verbatim from v1 out/lock.json",
+  "n_weekends": 11,
+  "n_compound_weekends": 29,
+  "n_issued": 16,
+  "n_withheld": 13,
+  "mae_issued": {
+   "naive": 0.16267078585895134,
+   "clean": 0.045398693822790964,
+   "clearstint": 0.022578579345158285,
+   "push_adjusted": 0.034650396668385985
+  },
+  "mae_all_with_fallback": {
+   "naive": 0.1371372633798251,
+   "clearstint": 0.02273090763948737
+  },
+  "ci90_mae_clearstint_all": [
+   0.016034340023302184,
+   0.030120024352749512
+  ],
+  "p_clearstint_beats_clean_issued": 0.993,
+  "p_clearstint_beats_naive_all": 1.0,
+  "calibration": {
+   "naive": {
+    "slope": 0.06534299583722919,
+    "r": 0.19570921400280697,
+    "n": 29
+   },
+   "clean": {
+    "slope": 0.4533958435690814,
+    "r": 0.66632529726246,
+    "n": 16
+   },
+   "clearstint": {
+    "slope": 0.762347390449753,
+    "r": 0.8175644356016055,
+    "n": 16
+   },
+   "all_with_fallback": {
+    "slope": 0.7653025986667082,
+    "r": 0.7806457826398171,
+    "n": 29
+   }
+  },
+  "by_compound": {
+   "SOFT": {
+    "n": 9,
+    "mae_naive": 0.22097530110927568,
+    "mae_clearstint": 0.0315792396733294,
+    "k_median": 0.9673403796626557
+   },
+   "MEDIUM": {
+    "n": 9,
+    "mae_naive": 0.14801769703131212,
+    "mae_clearstint": 0.017375020483689798,
+    "k_median": 0.45182685386752625
+   },
+   "HARD": {
+    "n": 11,
+    "mae_naive": 0.05964033224996701,
+    "mae_clearstint": 0.019873452739269187,
+    "k_median": 1.1703450083546054
+   }
+  },
+  "withheld_cases": [
+   {
+    "event": "Australia",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0755,
+    "obs": 0.0223,
+    "floor": 0.0276
+   },
+   {
+    "event": "Australia",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0241,
+    "obs": 0.0439,
+    "floor": 0.0276
+   },
+   {
+    "event": "Barcelona",
+    "compound": "HARD",
+    "gate": "too few clean practice laps",
+    "clean": 0.34,
+    "obs": 0.1003,
+    "floor": 0.0255
+   },
+   {
+    "event": "Belgium",
+    "compound": "HARD",
+    "gate": "too few clean practice laps",
+    "clean": 0.1463,
+    "obs": 0.0563,
+    "floor": 0.0255
+   },
+   {
+    "event": "Britain",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0509,
+    "obs": 0.0384,
+    "floor": 0.0255
+   },
+   {
+    "event": "Canada",
+    "compound": "SOFT",
+    "gate": "too few clean practice laps",
+    "clean": 0.0501,
+    "obs": -0.0093,
+    "floor": 0.0303
+   },
+   {
+    "event": "Canada",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0491,
+    "obs": -0.0053,
+    "floor": 0.0303
+   },
+   {
+    "event": "Japan",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.074,
+    "obs": 0.0234,
+    "floor": 0.0289
+   },
+   {
+    "event": "Miami",
+    "compound": "SOFT",
+    "gate": "too few clean practice laps",
+    "clean": 0.2932,
+    "obs": 0.0176,
+    "floor": 0.0289
+   },
+   {
+    "event": "Monza",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0611,
+    "obs": 0.0276,
+    "floor": 0.0303
+   },
+   {
+    "event": "Monza",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0327,
+    "obs": 0.023,
+    "floor": 0.0303
+   },
+   {
+    "event": "Zandvoort",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0128,
+    "obs": 0.0726,
+    "floor": 0.0234
+   },
+   {
+    "event": "Zandvoort",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.1012,
+    "obs": 0.0303,
+    "floor": 0.0234
+   }
+  ],
+  "push_diagnostic": {
+   "energy_trend_withheld": {
+    "min": -0.565,
+    "50%": 0.101,
+    "max": 0.228
+   },
+   "energy_trend_issued": {
+    "min": -0.256,
+    "50%": -0.003,
+    "max": 0.085
+   },
+   "beta_practice_vs_race": [
+    {
+     "event": "Australia",
+     "practice": -0.457,
+     "race": -0.359
+    },
+    {
+     "event": "Austria",
+     "practice": -0.601,
+     "race": -0.59
+    },
+    {
+     "event": "Barcelona",
+     "practice": -0.578,
+     "race": -0.575
+    },
+    {
+     "event": "Belgium",
+     "practice": -0.147,
+     "race": -0.33
+    },
+    {
+     "event": "Britain",
+     "practice": -0.562,
+     "race": -0.491
+    },
+    {
+     "event": "Canada",
+     "practice": -0.285,
+     "race": -0.712
+    },
+    {
+     "event": "Japan",
+     "practice": -0.322,
+     "race": -0.107
+    },
+    {
+     "event": "Miami",
+     "practice": -0.502,
+     "race": -0.366
+    },
+    {
+     "event": "Monza",
+     "practice": -0.526,
+     "race": -0.235
+    },
+    {
+     "event": "Zandvoort",
+     "practice": -0.353,
+     "race": -0.555
+    }
+   ]
+  },
+  "path_b_push_adjusted": {
+   "n_withheld_with_push_signal": 5,
+   "mae_fallback": 0.028414499790670067,
+   "mae_push_adjusted": 0.028603159178244714,
+   "k3_medians": {
+    "SOFT": 0.8836286498713259,
+    "MEDIUM": 0.5957916857091475,
+    "HARD": 0.874368710199429
+   }
+  },
+  "band_coverage": {
+   "raw_all": 0.7586206896551724,
+   "calibrated_issued": 1.0,
+   "calibrated_fallback": 0.6923076923076923,
+   "calibrated_all": 0.8620689655172413,
+   "nominal": 0.9,
+   "widening_factor_median": 1.4949781425173776,
+   "widening_issued": 1.4949781425173776,
+   "widening_fallback": 1.4787075479983502,
+   "method": "leave-one-weekend-out conformal, pooled over issued and fallback cases: half-widths scaled by the 90th percentile of standardised residuals on the other weekends"
+  },
+  "wins_clearstint_over_naive": 28,
+  "wins_clearstint_over_clean_issued": 9,
+  "rows": {
+   "path": "out/lock_v2_sidecars/validation_rows.json",
+   "sha256": "c9c31fa2bda0fc87b03d4bd0846a17a3829fd800b0e3eda931b1877487ca8c9b",
+   "bytes": 22514,
+   "format": "json",
+   "description": "one record per compound-weekend incl. observed race degradation (post-race)"
+  },
+  "sealed_holdout": {
+   "path": "evaluation/holdout/sealed_holdout_manifest.json",
+   "sha256": "37b85e762b2e03c0f9eed6d9b6fdacdc26445057600f1ef810bb63bc4cc3d1dd",
+   "bytes": 5253,
+   "format": "json",
+   "description": "sealed holdout manifest; never opened before freeze.json"
+  }
+ },
+ "live_predictor": null,
+ "ghost_strategy": null,
+ "counterfactuals": [],
+ "input_availability": {
+  "meta": {
+   "schema_version": "2.0.0",
+   "generated_at": "2026-09-12T15:12:25",
+   "data_cutoff": "2026-09-12T14:31:34",
+   "git_sha": "02f4c00",
+   "model_version": "provider_A_clearstint_v2",
+   "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): input_availability: public feed table",
+   "units": {
+    "pace_loss": "s/lap",
+    "degradation_rate": "s/lap per lap",
+    "time": "s",
+    "laps": "lap",
+    "temperature": "degC",
+    "probability": "fraction 0-1",
+    "index": "fraction 0-1",
+    "latency": "s",
+    "energy": "MJ"
+   }
+  },
+  "sensor_mode": "PUBLIC PROXY",
+  "event_id": "2026_Madrid",
+  "channels": {
+   "lap_time": {
+    "source": "FastF1 live timing",
+    "unit": "s",
+    "sample_rate_hz": null,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": "lap times; basis of corrected pace loss"
+   },
+   "sector_times": {
+    "source": "FastF1 live timing",
+    "unit": "s",
+    "sample_rate_hz": null,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "car_speed": {
+    "source": "FastF1 car data",
+    "unit": "km/h",
+    "sample_rate_hz": 7.51,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "throttle": {
+    "source": "FastF1 car data",
+    "unit": "%",
+    "sample_rate_hz": 7.51,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "brake": {
+    "source": "FastF1 car data",
+    "unit": "bool",
+    "sample_rate_hz": 7.51,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "gear": {
+    "source": "FastF1 car data",
+    "unit": "gear",
+    "sample_rate_hz": 7.51,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "drs": {
+    "source": "FastF1 car data",
+    "unit": "state",
+    "sample_rate_hz": 7.51,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "position_xy": {
+    "source": "FastF1 position data",
+    "unit": "m",
+    "sample_rate_hz": 3.73,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0313,
+    "quality_score": 0.9687,
+    "ablation_value": null,
+    "description": null
+   },
+   "gap_to_car_ahead": {
+    "source": "derived from position data",
+    "unit": "share of lap within 60 m",
+    "sample_rate_hz": null,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0313,
+    "quality_score": 0.9687,
+    "ablation_value": null,
+    "description": "traffic proxy"
+   },
+   "tyre_demand_index": {
+    "source": "derived from speed and accelerations (energy_MJ)",
+    "unit": "MJ",
+    "sample_rate_hz": null,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": "the proxy is a tyre demand index, not a wear measurement"
+   },
+   "compound_and_stint": {
+    "source": "FastF1 live timing",
+    "unit": "category",
+    "sample_rate_hz": null,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "track_status": {
+    "source": "FastF1 live timing",
+    "unit": "code",
+    "sample_rate_hz": null,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "pit_events": {
+    "source": "FastF1 live timing",
+    "unit": "event",
+    "sample_rate_hz": null,
+    "latency_s": 3.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   },
+   "track_temp": {
+    "source": "FastF1 weather feed",
+    "unit": "degC",
+    "sample_rate_hz": 0.016666666666666666,
+    "latency_s": 60.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": 0.0,
+    "quality_score": 1.0,
+    "ablation_value": null,
+    "description": null
+   },
+   "air_temp": {
+    "source": "FastF1 weather feed",
+    "unit": "degC",
+    "sample_rate_hz": 0.016666666666666666,
+    "latency_s": 60.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   },
+   "rain_flag": {
+    "source": "FastF1 weather feed",
+    "unit": "bool",
+    "sample_rate_hz": 0.016666666666666666,
+    "latency_s": 60.0,
+    "available": true,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   },
+   "team_radio": {
+    "source": "FastF1 team radio records",
+    "unit": "text",
+    "sample_rate_hz": null,
+    "latency_s": null,
+    "available": false,
+    "visibility": "public",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": "public but not ingested by v1"
+   },
+   "driver_feedback_structured": {
+    "source": "engineer entry (DriverFeedbackAdapter)",
+    "unit": "event",
+    "sample_rate_hz": null,
+    "latency_s": null,
+    "available": false,
+    "visibility": "private",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": "Phase 0 live slice adds it"
+   },
+   "tyre_pressure": {
+    "source": "team sensor adapter",
+    "unit": "bar",
+    "sample_rate_hz": null,
+    "latency_s": null,
+    "available": false,
+    "visibility": "private",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   },
+   "tyre_surface_temp": {
+    "source": "team sensor adapter",
+    "unit": "degC",
+    "sample_rate_hz": null,
+    "latency_s": null,
+    "available": false,
+    "visibility": "private",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   },
+   "tyre_carcass_temp": {
+    "source": "team sensor adapter",
+    "unit": "degC",
+    "sample_rate_hz": null,
+    "latency_s": null,
+    "available": false,
+    "visibility": "private",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   },
+   "tread_depth": {
+    "source": "team sensor adapter",
+    "unit": "mm",
+    "sample_rate_hz": null,
+    "latency_s": null,
+    "available": false,
+    "visibility": "private",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   },
+   "brake_temp": {
+    "source": "team sensor adapter",
+    "unit": "degC",
+    "sample_rate_hz": null,
+    "latency_s": null,
+    "available": false,
+    "visibility": "private",
+    "online_safe": true,
+    "missingness": null,
+    "quality_score": null,
+    "ablation_value": null,
+    "description": null
+   }
+  },
+  "missing_channels": [
+   "brake_temp",
+   "driver_feedback_structured",
+   "team_radio",
+   "tread_depth",
+   "tyre_carcass_temp",
+   "tyre_pressure",
+   "tyre_surface_temp"
+  ],
+  "confidence_effect": "PUBLIC PROXY: no tyre pressures or temperatures are observed; thermal_stress_index and performance_wear_index are demand-based proxies from public telemetry; bands carry the public-mode widening.",
+  "public_display_rules": [
+   "Public mode never displays physical tread remaining, physical wear percentages or per-tyre structural health.",
+   "Public mode displays performance_loss, operational useful laps remaining, thermal_stress_index and performance_wear_index.",
+   "Every output carries sensor_availability, source_latency, missing_channels, quality_status and confidence_effect.",
+   "sensor_mode and claim_scope are rendered verbatim, never paraphrased."
+  ]
+ },
+ "driver_profile": {
+  "meta": {
+   "schema_version": "2.0.0",
+   "generated_at": "2026-09-12T15:12:25",
+   "data_cutoff": "2026-09-12T14:31:34",
+   "git_sha": "02f4c00",
+   "model_version": "provider_A_clearstint_v2",
+   "model_hash": "sha256:8f084b7b43d3d2e0a2ec9d68ea59c80ac4e1b8bef4ebd08cd6b5047787762f7e",
+   "provenance": "validators/adapt_v1.py from lock.json (v1 generated_at 2026-09-12T14:31:34): driver_profile stub",
+   "units": {
+    "pace_loss": "s/lap",
+    "degradation_rate": "s/lap per lap",
+    "time": "s",
+    "laps": "lap",
+    "temperature": "degC",
+    "probability": "fraction 0-1",
+    "index": "fraction 0-1",
+    "latency": "s",
+    "energy": "MJ"
+   }
+  },
+  "status": "stub",
+  "population_prior": {
+   "residual_mean_s_per_lap": 0.0,
+   "residual_sd_s_per_lap": null,
+   "note": "Phase 2: unseen drivers receive the population prior; no ranking of tyre management is implied"
+  },
+  "drivers": {},
+  "note": "Driver profiles are Phase 2 (roadmap v5 section 5); this block is a typed placeholder."
+ },
+ "extensions": {}
+}

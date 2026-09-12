@@ -1,0 +1,1032 @@
+{
+ "source": "proto/out/lock.json",
+ "v1_generated_at": "2026-09-12T14:31:34",
+ "rules": {
+  "min_practice_laps": 30,
+  "min_slope": 0.02,
+  "factor_rule": "median of other weekends, applied only if >=3 exist and a majority sit within \u00b150% of it",
+  "fuel_prior_kg_per_lap": 1.1,
+  "fuel_s_per_kg": 0.03,
+  "traffic_max": 0.3,
+  "min_stint": 5
+ },
+ "validation": {
+  "n_weekends": 11,
+  "n_compound_weekends": 29,
+  "n_issued": 16,
+  "n_withheld": 13,
+  "mae_issued": {
+   "naive": 0.16267078585895134,
+   "clean": 0.045398693822790964,
+   "clearstint": 0.022578579345158285,
+   "push_adjusted": 0.034650396668385985
+  },
+  "mae_all_with_fallback": {
+   "naive": 0.1371372633798251,
+   "clearstint": 0.02273090763948737
+  },
+  "ci90_mae_clearstint_all": [
+   0.016034340023302184,
+   0.030120024352749512
+  ],
+  "p_clearstint_beats_clean_issued": 0.993,
+  "p_clearstint_beats_naive_all": 1.0,
+  "calibration": {
+   "naive": {
+    "slope": 0.06534299583722919,
+    "r": 0.19570921400280697,
+    "n": 29
+   },
+   "clean": {
+    "slope": 0.4533958435690814,
+    "r": 0.66632529726246,
+    "n": 16
+   },
+   "clearstint": {
+    "slope": 0.762347390449753,
+    "r": 0.8175644356016055,
+    "n": 16
+   },
+   "all_with_fallback": {
+    "slope": 0.7653025986667082,
+    "r": 0.7806457826398171,
+    "n": 29
+   }
+  },
+  "by_compound": {
+   "SOFT": {
+    "n": 9,
+    "mae_naive": 0.22097530110927568,
+    "mae_clearstint": 0.0315792396733294,
+    "k_median": 0.9673403796626557
+   },
+   "MEDIUM": {
+    "n": 9,
+    "mae_naive": 0.14801769703131212,
+    "mae_clearstint": 0.017375020483689798,
+    "k_median": 0.45182685386752625
+   },
+   "HARD": {
+    "n": 11,
+    "mae_naive": 0.05964033224996701,
+    "mae_clearstint": 0.019873452739269187,
+    "k_median": 1.1703450083546054
+   }
+  },
+  "withheld_cases": [
+   {
+    "event": "Australia",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0755,
+    "obs": 0.0223,
+    "floor": 0.0276
+   },
+   {
+    "event": "Australia",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0241,
+    "obs": 0.0439,
+    "floor": 0.0276
+   },
+   {
+    "event": "Barcelona",
+    "compound": "HARD",
+    "gate": "too few clean practice laps",
+    "clean": 0.34,
+    "obs": 0.1003,
+    "floor": 0.0255
+   },
+   {
+    "event": "Belgium",
+    "compound": "HARD",
+    "gate": "too few clean practice laps",
+    "clean": 0.1463,
+    "obs": 0.0563,
+    "floor": 0.0255
+   },
+   {
+    "event": "Britain",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0509,
+    "obs": 0.0384,
+    "floor": 0.0255
+   },
+   {
+    "event": "Canada",
+    "compound": "SOFT",
+    "gate": "too few clean practice laps",
+    "clean": 0.0501,
+    "obs": -0.0093,
+    "floor": 0.0303
+   },
+   {
+    "event": "Canada",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0491,
+    "obs": -0.0053,
+    "floor": 0.0303
+   },
+   {
+    "event": "Japan",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.074,
+    "obs": 0.0234,
+    "floor": 0.0289
+   },
+   {
+    "event": "Miami",
+    "compound": "SOFT",
+    "gate": "too few clean practice laps",
+    "clean": 0.2932,
+    "obs": 0.0176,
+    "floor": 0.0289
+   },
+   {
+    "event": "Monza",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0611,
+    "obs": 0.0276,
+    "floor": 0.0303
+   },
+   {
+    "event": "Monza",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0327,
+    "obs": 0.023,
+    "floor": 0.0303
+   },
+   {
+    "event": "Zandvoort",
+    "compound": "MEDIUM",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.0128,
+    "obs": 0.0726,
+    "floor": 0.0234
+   },
+   {
+    "event": "Zandvoort",
+    "compound": "HARD",
+    "gate": "no positive degradation signal in cleaned practice",
+    "clean": -0.1012,
+    "obs": 0.0303,
+    "floor": 0.0234
+   }
+  ],
+  "push_diagnostic": {
+   "energy_trend_withheld": {
+    "min": -0.565,
+    "50%": 0.101,
+    "max": 0.228
+   },
+   "energy_trend_issued": {
+    "min": -0.256,
+    "50%": -0.003,
+    "max": 0.085
+   },
+   "beta_practice_vs_race": [
+    {
+     "event": "Australia",
+     "practice": -0.457,
+     "race": -0.359
+    },
+    {
+     "event": "Austria",
+     "practice": -0.601,
+     "race": -0.59
+    },
+    {
+     "event": "Barcelona",
+     "practice": -0.578,
+     "race": -0.575
+    },
+    {
+     "event": "Belgium",
+     "practice": -0.147,
+     "race": -0.33
+    },
+    {
+     "event": "Britain",
+     "practice": -0.562,
+     "race": -0.491
+    },
+    {
+     "event": "Canada",
+     "practice": -0.285,
+     "race": -0.712
+    },
+    {
+     "event": "Japan",
+     "practice": -0.322,
+     "race": -0.107
+    },
+    {
+     "event": "Miami",
+     "practice": -0.502,
+     "race": -0.366
+    },
+    {
+     "event": "Monza",
+     "practice": -0.526,
+     "race": -0.235
+    },
+    {
+     "event": "Zandvoort",
+     "practice": -0.353,
+     "race": -0.555
+    }
+   ]
+  },
+  "path_b_push_adjusted": {
+   "n_withheld_with_push_signal": 5,
+   "mae_fallback": 0.028414499790670067,
+   "mae_push_adjusted": 0.028603159178244714,
+   "k3_medians": {
+    "SOFT": 0.8836286498713259,
+    "MEDIUM": 0.5957916857091475,
+    "HARD": 0.874368710199429
+   }
+  },
+  "band_coverage": {
+   "raw_all": 0.7586206896551724,
+   "calibrated_issued": 1.0,
+   "calibrated_fallback": 0.6923076923076923,
+   "calibrated_all": 0.8620689655172413,
+   "nominal": 0.9,
+   "widening_factor_median": 1.4949781425173776,
+   "widening_issued": 1.4949781425173776,
+   "widening_fallback": 1.4787075479983502,
+   "method": "leave-one-weekend-out conformal, pooled over issued and fallback cases: half-widths scaled by the 90th percentile of standardised residuals on the other weekends"
+  },
+  "wins_clearstint_over_naive": 28,
+  "wins_clearstint_over_clean_issued": 9
+ },
+ "validation_rows_monza": [
+  {
+   "event": "Monza",
+   "compound": "SOFT",
+   "n_prac": 98,
+   "naive": 0.2424,
+   "clean": 0.0254,
+   "clean_se": 0.0268,
+   "push_adj": 0.0526,
+   "push_adj_se": 0.0205,
+   "energy_trend": 0.0518,
+   "gate": "ok",
+   "obs": 0.0246,
+   "obs_se": 0.0137,
+   "obs_push": 0.0183,
+   "n_race": 32,
+   "issued": true,
+   "completed": true,
+   "ratio": 0.9676,
+   "k": 0.9632,
+   "k_applied": true,
+   "lo": -0.0372,
+   "hi": 0.0954,
+   "floor": 0.0303,
+   "k3": 1.1053,
+   "k3_applied": true,
+   "pred_push": 0.0582,
+   "pred_clearstint": 0.0245,
+   "half": 0.0443,
+   "z": 0.0025,
+   "lo_raw": -0.0168,
+   "hi_raw": 0.0719,
+   "widen": 1.495,
+   "err_naive": 0.2178,
+   "err_clean": 0.0008,
+   "err_cs": 0.0001,
+   "err_push": 0.028
+  },
+  {
+   "event": "Monza",
+   "compound": "MEDIUM",
+   "n_prac": 149,
+   "naive": 0.1284,
+   "clean": -0.0611,
+   "clean_se": 0.0221,
+   "push_adj": -0.008,
+   "push_adj_se": 0.0173,
+   "energy_trend": 0.1011,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.0276,
+   "obs_se": 0.003,
+   "obs_push": 0.033,
+   "n_race": 250,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 0.4518,
+   "k_applied": true,
+   "lo": -0.0228,
+   "hi": 0.0935,
+   "floor": 0.0303,
+   "k3": 0.5958,
+   "k3_applied": true,
+   "pred_push": null,
+   "pred_clearstint": 0.0303,
+   "half": 0.0389,
+   "z": 0.0692,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0726,
+   "widen": 1.495,
+   "err_naive": 0.1008,
+   "err_clean": null,
+   "err_cs": 0.0027,
+   "err_push": null
+  },
+  {
+   "event": "Monza",
+   "compound": "HARD",
+   "n_prac": 83,
+   "naive": 0.0563,
+   "clean": -0.0327,
+   "clean_se": 0.0236,
+   "push_adj": 0.0352,
+   "push_adj_se": 0.0187,
+   "energy_trend": 0.1291,
+   "gate": "no positive degradation signal in cleaned practice",
+   "obs": 0.023,
+   "obs_se": 0.003,
+   "obs_push": 0.0285,
+   "n_race": 214,
+   "issued": false,
+   "completed": true,
+   "ratio": null,
+   "k": 1.1703,
+   "k_applied": true,
+   "lo": -0.0228,
+   "hi": 0.0935,
+   "floor": 0.0303,
+   "k3": 0.974,
+   "k3_applied": true,
+   "pred_push": 0.0342,
+   "pred_clearstint": 0.0303,
+   "half": 0.0389,
+   "z": 0.1859,
+   "lo_raw": -0.0053,
+   "hi_raw": 0.0726,
+   "widen": 1.495,
+   "err_naive": 0.0333,
+   "err_clean": null,
+   "err_cs": 0.0072,
+   "err_push": null
+  }
+ ],
+ "events": {
+  "Monza": {
+   "event": "Monza",
+   "sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q",
+    "R"
+   ],
+   "format": "conventional",
+   "completed": true,
+   "practice_laps_clean": 330,
+   "practice_runs": 68,
+   "practice_laps_total": 1328,
+   "evolution_s_per_min": {
+    "FP1": -0.0066,
+    "FP2": -0.0151,
+    "FP3": -0.0082
+   },
+   "beta_practice_s_per_MJ": -0.5257307233474506,
+   "beta_practice_se": 0.03859577259174531,
+   "track_temp": {
+    "FP1": 51.650000000000006,
+    "FP2": 55.1,
+    "FP3": 51.8,
+    "Q": 53.8,
+    "R": 55.4
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false,
+    "FP3": false,
+    "Q": false,
+    "R": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 348,
+    "pit in/out lap": 310,
+    "cool-down / aborted (>105% of run best)": 133,
+    "traffic (>30% of lap within 60 m of a car)": 83,
+    "no gap-to-car-ahead data": 50,
+    "lap deleted (track limits)": 49,
+    "yellow / SC / VSC / red flag": 25
+   },
+   "race": {
+    "beta_race": -0.23469723404626297,
+    "n": 496,
+    "stints": 21,
+    "telemetry": "telemetry"
+   },
+   "race_unusable": false,
+   "tyres": null,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.8059999999999974,
+    "HARD": 1.343999999999994
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (23 drivers)",
+    "HARD": "practice (21 drivers)"
+   }
+  },
+  "Madrid": {
+   "event": "Madrid",
+   "sessions": [
+    "FP1",
+    "FP2"
+   ],
+   "format": "conventional",
+   "completed": false,
+   "practice_laps_clean": 157,
+   "practice_runs": 39,
+   "practice_laps_total": 734,
+   "evolution_s_per_min": {
+    "FP1": -0.0105,
+    "FP2": -0.0127
+   },
+   "beta_practice_s_per_MJ": -0.5265489069904642,
+   "beta_practice_se": 0.03159636087251637,
+   "track_temp": {
+    "FP1": 49.849999999999994,
+    "FP2": 51.0
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 217,
+    "pit in/out lap": 140,
+    "cool-down / aborted (>105% of run best)": 100,
+    "lap deleted (track limits)": 55,
+    "traffic (>30% of lap within 60 m of a car)": 35,
+    "no gap-to-car-ahead data": 19,
+    "yellow / SC / VSC / red flag": 11
+   },
+   "race": null,
+   "race_unusable": false,
+   "tyres": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6949999999999932,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (22 drivers)",
+    "HARD": "nominal Pirelli-range step"
+   }
+  }
+ },
+ "live_madrid": {
+  "meta": {
+   "event": "Madrid",
+   "sessions": [
+    "FP1",
+    "FP2"
+   ],
+   "format": "conventional",
+   "completed": false,
+   "practice_laps_clean": 157,
+   "practice_runs": 39,
+   "practice_laps_total": 734,
+   "evolution_s_per_min": {
+    "FP1": -0.0105,
+    "FP2": -0.0127
+   },
+   "beta_practice_s_per_MJ": -0.5265489069904642,
+   "beta_practice_se": 0.03159636087251637,
+   "track_temp": {
+    "FP1": 49.849999999999994,
+    "FP2": 51.0
+   },
+   "rain": {
+    "FP1": false,
+    "FP2": false
+   },
+   "excluded_by_reason": {
+    "short run (<5 clean laps)": 217,
+    "pit in/out lap": 140,
+    "cool-down / aborted (>105% of run best)": 100,
+    "lap deleted (track limits)": 55,
+    "traffic (>30% of lap within 60 m of a car)": 35,
+    "no gap-to-car-ahead data": 19,
+    "yellow / SC / VSC / red flag": 11
+   },
+   "race": null,
+   "race_unusable": false,
+   "tyres": "C2 hard / C3 medium / C4 soft (Pirelli nomination)",
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6949999999999932,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (22 drivers)",
+    "HARD": "nominal Pirelli-range step"
+   }
+  },
+  "compounds": [
+   {
+    "compound": "SOFT",
+    "n_prac": 41,
+    "second_opinion": null,
+    "naive": 0.4794433604638165,
+    "clean": 0.10093563048728363,
+    "clean_se": 0.08678463181303231,
+    "gate": "ok",
+    "issued": true,
+    "factor": 0.9673403796626557,
+    "factor_applied": true,
+    "factor_from_n_weekends": 7,
+    "prediction": 0.09763911111705847,
+    "band90": [
+     -0.09555284627831415,
+     0.3000899632831943
+    ],
+    "energy_trend": 0.008356327501629702,
+    "push_adj": 0.105335645599527,
+    "basis": "cleaned Friday curve \u00d7 season transfer factor"
+   },
+   {
+    "compound": "MEDIUM",
+    "n_prac": 112,
+    "second_opinion": {
+     "prediction": 0.032655689056113775,
+     "factor": 0.5957916857091475,
+     "factor_applied": true,
+     "basis": "push-adjusted Friday curve (degradation at constant tyre energy) \u00d7 its own season factor"
+    },
+    "naive": 0.15318851442158327,
+    "clean": -0.19873171654803912,
+    "clean_se": 0.0441554421984582,
+    "gate": "no positive degradation signal in cleaned practice",
+    "issued": false,
+    "factor": 0.45182685386752625,
+    "factor_applied": true,
+    "factor_from_n_weekends": 6,
+    "prediction": 0.027577618966801054,
+    "band90": [
+     -0.013275769235062622,
+     0.08796834182264004
+    ],
+    "energy_trend": 0.4815170921473892,
+    "push_adj": 0.05481058201952749,
+    "basis": "low-degradation fallback: median race degradation of the 13 withheld cases this season"
+   }
+  ]
+ },
+ "strategy": {
+  "Monza": {
+   "n_laps": 53,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.8059999999999974,
+    "HARD": 1.343999999999994
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (23 drivers)",
+    "HARD": "practice (21 drivers)"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "M-H",
+     "stints": [
+      19,
+      34
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 7.069549766351558,
+      "M-H": 7.468319178815388,
+      "S-H": 7.223953179912
+     },
+     "alternatives": [
+      {
+       "plan": "M-H",
+       "stops": 1,
+       "stints": [
+        19,
+        34
+       ],
+       "time": 139.91512610891715,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "H-M",
+       "stops": 1,
+       "stints": [
+        34,
+        19
+       ],
+       "time": 139.91512610891715,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H-H",
+       "stops": 2,
+       "stints": [
+        10,
+        22,
+        21
+       ],
+       "time": 140.38575754521426,
+       "delta_to_best": 0.47063143629711135
+      },
+      {
+       "plan": "H-S-H",
+       "stops": 2,
+       "stints": [
+        22,
+        10,
+        21
+       ],
+       "time": 140.38575754521426,
+       "delta_to_best": 0.47063143629711135
+      }
+     ],
+     "cost_under_truth_vs_best_s": 47.1021096312529,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       43,
+       10
+      ]
+     }
+    },
+    "Cleaned Friday curve": {
+     "plan": "S-M",
+     "stints": [
+      43,
+      10
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        43,
+        10
+       ],
+       "time": 54.7810990168676,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        10,
+        43
+       ],
+       "time": 54.7810990168676,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        47,
+        6
+       ],
+       "time": 58.38404213947333,
+       "delta_to_best": 3.60294312260573
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        47
+       ],
+       "time": 58.38404213947333,
+       "delta_to_best": 3.60294312260573
+      }
+     ],
+     "cost_under_truth_vs_best_s": 0.0,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       43,
+       10
+      ]
+     }
+    },
+    "Orb v1": {
+     "plan": "S-M",
+     "stints": [
+      44,
+      9
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        44,
+        9
+       ],
+       "time": 53.86426903752059,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        9,
+        44
+       ],
+       "time": 53.86426903752059,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-H",
+       "stops": 1,
+       "stints": [
+        47,
+        6
+       ],
+       "time": 57.32780629523704,
+       "delta_to_best": 3.463537257716446
+      },
+      {
+       "plan": "H-S",
+       "stops": 1,
+       "stints": [
+        6,
+        47
+       ],
+       "time": 57.32780629523704,
+       "delta_to_best": 3.463537257716446
+      }
+     ],
+     "cost_under_truth_vs_best_s": 0.000851514734243608,
+     "best_under_truth": {
+      "plan": "S-M",
+      "stints": [
+       43,
+       10
+      ]
+     }
+    }
+   }
+  },
+  "Madrid": {
+   "n_laps": 56,
+   "offsets": {
+    "SOFT": 0.0,
+    "MEDIUM": 0.6949999999999932,
+    "HARD": 1.2
+   },
+   "offsets_source": {
+    "MEDIUM": "practice (22 drivers)",
+    "HARD": "nominal Pirelli-range step"
+   },
+   "pit_loss": 21.0,
+   "views": {
+    "Naive fit": {
+     "plan": "S-M-M",
+     "stints": [
+      8,
+      24,
+      24
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 2.1302365571913264
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        8,
+        24,
+        24
+       ],
+       "time": 184.53306962964703,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        24,
+        8,
+        24
+       ],
+       "time": 184.53306962964703,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        24,
+        24,
+        8
+       ],
+       "time": 184.53306962964703,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        12,
+        12,
+        32
+       ],
+       "time": 219.9166998469511,
+       "delta_to_best": 35.38363021730407
+      }
+     ]
+    },
+    "Orb v1": {
+     "plan": "S-M",
+     "stints": [
+      18,
+      38
+     ],
+     "stops": 1,
+     "crossover": {
+      "S-M": 9.919857237831318
+     },
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        18,
+        38
+       ],
+       "time": 84.54130365541633,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        38,
+        18
+       ],
+       "time": 84.54130365541633,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        14,
+        14,
+        28
+       ],
+       "time": 93.16072663510332,
+       "delta_to_best": 8.619422979686988
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        14,
+        28,
+        14
+       ],
+       "time": 93.16072663510332,
+       "delta_to_best": 8.619422979686988
+      }
+     ]
+    },
+    "Orb v1, band low": {
+     "plan": "S-M",
+     "stints": [
+      50,
+      6
+     ],
+     "stops": 1,
+     "crossover": {},
+     "alternatives": [
+      {
+       "plan": "S-M",
+       "stops": 1,
+       "stints": [
+        50,
+        6
+       ],
+       "time": -96.93867015878689,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S",
+       "stops": 1,
+       "stints": [
+        6,
+        50
+       ],
+       "time": -96.93867015878689,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        6,
+        44,
+        6
+       ],
+       "time": -50.71271874131196,
+       "delta_to_best": 46.22595141747493
+      },
+      {
+       "plan": "S-M-S",
+       "stops": 2,
+       "stints": [
+        6,
+        6,
+        44
+       ],
+       "time": -50.71271874131196,
+       "delta_to_best": 46.22595141747493
+      }
+     ]
+    },
+    "Orb v1, band high": {
+     "plan": "S-M-M",
+     "stints": [
+      8,
+      24,
+      24
+     ],
+     "stops": 2,
+     "crossover": {
+      "S-M": 3.2764222487769077
+     },
+     "alternatives": [
+      {
+       "plan": "S-M-M",
+       "stops": 2,
+       "stints": [
+        8,
+        24,
+        24
+       ],
+       "time": 138.9442437717787,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-S-M",
+       "stops": 2,
+       "stints": [
+        24,
+        8,
+        24
+       ],
+       "time": 138.9442437717787,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "M-M-S",
+       "stops": 2,
+       "stints": [
+        24,
+        24,
+        8
+       ],
+       "time": 138.9442437717787,
+       "delta_to_best": 0.0
+      },
+      {
+       "plan": "S-S-M",
+       "stops": 2,
+       "stints": [
+        12,
+        12,
+        32
+       ],
+       "time": 157.50131875453204,
+       "delta_to_best": 18.557074982753335
+      }
+     ]
+    }
+   },
+   "note": "two compounds in the data only; hard had 4 clean laps on Friday"
+  }
+ }
+}
