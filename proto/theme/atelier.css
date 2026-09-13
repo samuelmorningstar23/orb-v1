@@ -1,0 +1,63 @@
+/* Orb Atelier: local-only presentation layer. Scientific colours and values stay intact. */
+.stApp {background:radial-gradient(ellipse at 82% 0%,#15252e 0,transparent 42%),#090e15!important;color:#edf1f7}
+[data-testid="stHeader"] {background:rgba(9,14,21,.96)!important}
+[data-testid="stSidebar"] {background:linear-gradient(165deg,#131b25,#0d141d)!important;border-right:1px solid #25313e}
+.block-container {max-width:1540px;padding:3.5rem 2.4rem 4rem}
+h1,[data-testid="stMarkdownContainer"] h1 {font-size:clamp(2rem,3.7vw,3.5rem)!important;letter-spacing:-.055em!important;line-height:1.09!important;font-weight:650!important}
+[data-testid="stMarkdownContainer"] h2 {font-size:1.55rem!important;letter-spacing:-.025em!important;margin:1rem 0 .65rem!important}
+[data-testid="stMarkdownContainer"] h3 {font-size:1.08rem!important;letter-spacing:-.015em!important;text-transform:none!important;color:#e9eff7!important;margin:.7rem 0!important}
+[data-testid="stCaptionContainer"] {color:#a4b0c0;line-height:1.55}
+.cs-card {border:1px solid #2a3645!important;background:linear-gradient(135deg,rgba(29,40,54,.96),rgba(16,23,33,.98))!important;box-shadow:0 10px 28px #0000001f,inset 0 1px #ffffff07;border-radius:18px!important;padding:21px}
+.cs-card.kpi {min-height:128px;border-top-width:1px!important;position:relative;overflow:visible}
+.cs-card.kpi.live::before {content:'';position:absolute;top:20px;left:0;width:3px;height:28px;background:var(--live);border-radius:4px}
+.cs-kpi-label,.cs-card-title {font-size:.72rem;letter-spacing:.075em;color:#aab6c7}
+.cs-card.kpi .cs-kpi-value {font-size:clamp(1.6rem,2.4vw,2.4rem);letter-spacing:-.045em;font-weight:600;line-height:1.2}
+.cs-card.kpi .cs-kpi-sub {font-size:.78rem;color:#a7b3c5;line-height:1.5}
+[data-testid="stMetric"] {display:block!important;padding:18px 20px;border:1px solid #2a3645;border-radius:16px;background:linear-gradient(135deg,#1c2836,#111923)}
+[data-testid="stMetricValue"] {font-size:1.65rem!important;font-variant-numeric:tabular-nums}
+.stAlert,[data-testid="stAlert"] {display:block!important;border-radius:12px;background:#172432;border:1px solid #2d4053;font-size:.86rem}
+.stButton>button,.stDownloadButton>button {background:#1b2736!important;border:1px solid #35465a!important;border-radius:12px!important;min-height:44px;transition:background .15s,border-color .15s,transform .15s}
+.stButton>button:hover,.stDownloadButton>button:hover {background:#26374a!important;border-color:#72d8d0!important;transform:translateY(-1px)}
+.stButton>button[kind="primary"] {background:linear-gradient(110deg,#b6f4e7,#64d9ca)!important;color:#092326!important;border-color:#a0ece0!important;box-shadow:0 5px 18px #40bea423}
+[data-testid="stExpander"] details {border:1px solid #2b3848!important;border-radius:13px!important;background:#111a25}
+[data-testid="stExpander"] summary {min-height:43px;color:#bbc7d8}
+[data-baseweb="select"]>div {background:#141f2d!important;border:1px solid #354253!important;border-radius:12px!important}
+.cs-header {border-bottom:0;padding:4px 0;margin:8px 0 14px;opacity:.9;font-size:.75rem}
+.cs-header .brand {display:none}.cs-header .mode {font-size:.68rem;color:#a6b5c8}
+.cs-banner-audit,.cs-banner-scenario {background:transparent;font-size:.7rem;letter-spacing:.035em;padding:4px 0;border:0}
+.cs-decision.compact {border-left:1px solid #435343!important;background:radial-gradient(ellipse at 100% 0%,#353828 0,transparent 70%),linear-gradient(135deg,#1b2933,#111923)!important}
+.cs-decision.compact .headline {font-size:1.4rem;font-weight:600;letter-spacing:-.02em;text-transform:none;line-height:1.35;margin:10px 0}
+.cs-decision.compact .grid {gap:15px}.cs-decision .status {font-size:.66rem;letter-spacing:.1em}
+.cs-decision.changed {border-color:#566353}.cs-decision.changed .status {color:#dccba0}
+.orb-nav-brand {font-size:1.25rem;font-weight:700;letter-spacing:-.04em;color:#ecf5ff;margin:5px 0}
+.orb-nav-brand span {font-size:.6rem;letter-spacing:.18em;color:#8eacb9;margin-left:8px;vertical-align:middle}
+[data-testid="stPageLink"] a {border-radius:10px;min-height:40px;padding:8px 12px!important;font-size:.84rem;color:#bac5d5}
+[data-testid="stPageLink"] a:hover {background:#1c2938;color:#eff9ff}
+[data-testid="stPageLink"] a[aria-current="page"] {background:#203337;border:1px solid #3e6666;color:#b9f4e7}
+.orb-hero {padding:28px 0 24px;max-width:850px}
+.orb-eyebrow {color:#89b9bc;font-size:.67rem;font-weight:650;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+.orb-hero h1 {margin:0 0 18px}.orb-hero p {color:#b3bfce;font-size:1.05rem;line-height:1.6;max-width:650px}
+.orb-hero em {font-style:normal;color:#a4ebde}
+.orb-inline-note {display:flex;gap:10px;align-items:center;color:#a8b9c9;font-size:.76rem;padding:10px 14px;border:1px solid #2d4050;background:#15212b;border-radius:12px;margin:10px 0}
+.orb-tip {display:inline-flex;align-items:center;position:relative;cursor:help;gap:6px;text-transform:inherit}
+.orb-tip>span[role="tooltip"] {position:absolute;z-index:99;top:calc(100% + 9px);left:0;width:260px;max-width:70vw;background:#213245;color:#edf6ff;border:1px solid #52667d;border-radius:10px;padding:11px 13px;font-size:.78rem;font-weight:400;line-height:1.5;letter-spacing:0;text-transform:none;box-shadow:0 12px 30px #0007;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .12s}
+.orb-tip:hover>span[role="tooltip"],.orb-tip:focus>span[role="tooltip"],.orb-tip:focus-within>span[role="tooltip"] {opacity:1;visibility:visible}
+.orb-tip:focus-visible {outline:2px solid #90dbd5;outline-offset:4px;border-radius:3px}
+.orb-tip .orb-info {font-size:.67rem;color:#849fb3;border:1px solid #566b7c;border-radius:50%;width:13px;height:13px;line-height:13px;text-align:center;text-transform:none}
+.orb-result {padding:22px 24px;border-radius:18px;background:linear-gradient(130deg,#233d41,#182330);border:1px solid #466164;margin-bottom:8px}
+.orb-result .number {font-size:2.5rem;letter-spacing:-.045em;font-weight:650;color:#d6faf1}.orb-result .explain {font-size:.86rem;color:#acbfcb;line-height:1.5;margin-top:8px}
+@media(max-width:1000px){.block-container{padding:3rem 1.2rem}.orb-nav-brand span{display:none}.cs-card{padding:16px}.cs-card.kpi .cs-kpi-value{font-size:1.55rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* Prepared strategy: separate the recorded plan from the hypothetical tyre change. */
+.orb-strategy-summary{padding:20px 24px;border:1px solid #385563;border-radius:18px;background:linear-gradient(120deg,#172b34,#141d29);margin:8px 0 4px;color:#e2ecf4}
+.orb-strategy-eyebrow{font-size:10px;letter-spacing:.12em;color:#92dfd2;font-weight:650}
+.orb-strategy-summary h3{font-size:clamp(20px,2vw,28px)!important;color:#e2ecf4!important;text-transform:none!important;line-height:1.3;margin:7px 0!important;padding:0!important;letter-spacing:-.025em}
+.orb-strategy-summary p{font-size:13px;color:#b9c8d5;line-height:1.55;margin:5px 0 12px}
+.orb-strategy-plans{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid #304450;border-bottom:1px solid #304450;padding:12px 0;margin:12px 0}
+.orb-strategy-plans span{display:block;font-size:11px;color:#9baebf;margin-bottom:5px}
+.orb-strategy-plans strong{font-size:13px;line-height:1.5;font-weight:550;display:block}
+.orb-strategy-plans>div+div strong{color:#a2e9da}
+.orb-strategy-summary .orb-strategy-analysis{color:#e2ecf4;margin-bottom:8px}
+.orb-strategy-model{font-size:11px;color:#a1b5c6;line-height:1.5}
+@media(max-width:700px){.orb-strategy-summary{padding:16px}.orb-strategy-plans{grid-template-columns:1fr}}

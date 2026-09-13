@@ -1,0 +1,270 @@
+{
+ "generated_at": "2026-09-13T05:57:31",
+ "git_sha": null,
+ "estimator": "linear-Gaussian with fixed regime rules",
+ "model_version": "live_estimator_lg_v0.1",
+ "module": "tyreformer.baseline_kalman",
+ "policy": {
+  "estimator": "live.estimator.LiveTyreStateEstimator() defaults; context from LiveSession.context_for (support gate from live.priors.support_status); feedback disabled; clock None; rows from LapFeed.row(driver, k)",
+  "priors_loo": "SeasonForecaster(season dir, season, sealed=season sealed ids) per event; pool = development events minus the event; forecast(event, pool, target_obs_in_widening=False); pipeline.rng re-seeded to 0 before each forecast; prior = prediction with band90; pit loss 21 s; offsets from the forecast",
+  "default_prior": "slick compound in the race without a forecast prior: mean = median of the event's finite forecast predictions (0.03 if none), band90 = mean +- 0.12",
+  "errors": "an update that raises is recorded with error set; the driver state restarts (fresh stint on the next lap)",
+  "sealed": "sealed weekends skipped unless --include-sealed; sealed rows never enter pooled scores",
+  "scoring": "live/prefix_eval.py definitions (origin anchored and n_obs >= 1; target kept, same stint, tyre age + h; cumulative only where all targets exist; coverage |err| <= 1.6448536269514722 sd)"
+ },
+ "output_format": "parquet",
+ "sealed_race_ids": [
+  "2023_Canada",
+  "2024_Bahrain",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Zandvoort",
+  "2025_Qatar"
+ ],
+ "totals": {
+  "events_listed": 3,
+  "processed": 3,
+  "skipped": 0,
+  "failed": 0,
+  "rows": 3563,
+  "error_rows": 0,
+  "rows_out_of_support": 0,
+  "events_with_errors": 0,
+  "runtime_s_sum": 5.1
+ },
+ "skipped": {},
+ "failed": {},
+ "default_priors": [],
+ "pooled_scores_non_sealed": {
+  "2026": {
+   "races": 3,
+   "rows": 3563,
+   "origins": 2805,
+   "next1_mae": 0.37967248546702026,
+   "next1_n": 1890,
+   "next3_mae": 0.46949386382308184,
+   "next3_n": 1683,
+   "next5_mae": 0.5509070876318498,
+   "next5_n": 1490,
+   "cum3_mae": 1.0449894977748662,
+   "cum3_n": 1315,
+   "cum5_mae": 1.845334580767166,
+   "cum5_n": 943,
+   "coverage90_next1": 0.8904761904761904,
+   "coverage90_next1_n": 1890,
+   "coverage90_next3": 0.8597742127153892,
+   "coverage90_next3_n": 1683
+  }
+ },
+ "runs": [
+  {
+   "started_at": "2026-09-13T05:57:29",
+   "wall_s": 2.5,
+   "options": {
+    "seasons": [
+     2026
+    ],
+    "events": [
+     "Austria",
+     "Barcelona",
+     "Monza"
+    ],
+    "include_sealed": false,
+    "workers": 3,
+    "lock_priors": true,
+    "support_gate": "product",
+    "out_dir": "out/tyreformer/kalman/lock_priors"
+   },
+   "race_ids": [
+    "2026_Austria",
+    "2026_Barcelona",
+    "2026_Monza"
+   ]
+  }
+ ],
+ "events": {
+  "2026_Austria": {
+   "season": 2026,
+   "event": "Austria",
+   "race_id": "2026_Austria",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/lock_priors/2026_Austria.parquet",
+   "format": "parquet",
+   "n_rows": 1338,
+   "n_drivers": 22,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "lock",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "lock_v2.pre_race_forecast",
+    "MEDIUM": "lock_v2.pre_race_forecast",
+    "SOFT": "lock_v2.pre_race_forecast"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.0672,
+     "band90": [
+      -0.0024,
+      0.1359
+     ],
+     "sd": 0.042040214926698835,
+     "issued": true,
+     "source": "lock_v2.pre_race_forecast"
+    },
+    "MEDIUM": {
+     "mean": 0.0687,
+     "band90": [
+      0.0388,
+      0.186
+     ],
+     "sd": 0.04474562282870621,
+     "issued": true,
+     "source": "lock_v2.pre_race_forecast"
+    },
+    "SOFT": {
+     "mean": 0.1348,
+     "band90": [
+      0.0412,
+      0.2996
+     ],
+     "sd": 0.07854802268300057,
+     "issued": true,
+     "source": "lock_v2.pre_race_forecast"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": "lock_v2 pre-race forecast (live/priors.py strips race-derived keys)",
+   "runtime_s": 1.88,
+   "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
+  },
+  "2026_Barcelona": {
+   "season": 2026,
+   "event": "Barcelona",
+   "race_id": "2026_Barcelona",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/lock_priors/2026_Barcelona.parquet",
+   "format": "parquet",
+   "n_rows": 1233,
+   "n_drivers": 22,
+   "n_laps": 66,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "lock",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "lock_v2.pre_race_forecast",
+    "MEDIUM": "lock_v2.pre_race_forecast",
+    "SOFT": "lock_v2.pre_race_forecast"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.0255,
+     "band90": [
+      -0.0098,
+      0.0623
+     ],
+     "sd": 0.021916843790419277,
+     "issued": false,
+     "source": "lock_v2.pre_race_forecast"
+    },
+    "MEDIUM": {
+     "mean": 0.1461,
+     "band90": [
+      0.0864,
+      0.3044
+     ],
+     "sd": 0.06626729467838284,
+     "issued": true,
+     "source": "lock_v2.pre_race_forecast"
+    },
+    "SOFT": {
+     "mean": 0.2118,
+     "band90": [
+      0.0737,
+      0.412
+     ],
+     "sd": 0.10283589811787575,
+     "issued": true,
+     "source": "lock_v2.pre_race_forecast"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": "lock_v2 pre-race forecast (live/priors.py strips race-derived keys)",
+   "runtime_s": 1.7,
+   "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
+  },
+  "2026_Monza": {
+   "season": 2026,
+   "event": "Monza",
+   "race_id": "2026_Monza",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/lock_priors/2026_Monza.parquet",
+   "format": "parquet",
+   "n_rows": 992,
+   "n_drivers": 22,
+   "n_laps": 53,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "lock",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "lock_v2.pre_race_forecast",
+    "MEDIUM": "lock_v2.pre_race_forecast",
+    "SOFT": "lock_v2.pre_race_forecast"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.0303,
+     "band90": [
+      -0.0228,
+      0.0935
+     ],
+     "sd": 0.035352689775669376,
+     "issued": false,
+     "source": "lock_v2.pre_race_forecast"
+    },
+    "MEDIUM": {
+     "mean": 0.0303,
+     "band90": [
+      -0.0228,
+      0.0935
+     ],
+     "sd": 0.035352689775669376,
+     "issued": false,
+     "source": "lock_v2.pre_race_forecast"
+    },
+    "SOFT": {
+     "mean": 0.0245,
+     "band90": [
+      -0.0372,
+      0.0954
+     ],
+     "sd": 0.040307537955750296,
+     "issued": true,
+     "source": "lock_v2.pre_race_forecast"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": "lock_v2 pre-race forecast (live/priors.py strips race-derived keys)",
+   "runtime_s": 1.49,
+   "forecast_hash": "sha256:66e3201e860b19efc410cac30073d6c12bd7d4f9cb894cd70a445747d3d0451a"
+  }
+ }
+}

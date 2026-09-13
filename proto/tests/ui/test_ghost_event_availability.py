@@ -1,6 +1,6 @@
 """Ghost navigation must offer exactly the weekends it can actually analyse.
 
-A weekend qualifies when a prepared simulation exists for it, or when its position feed can render the animation.
+A weekend qualifies when a prepared simulation exists for it. Geometry alone is not a strategy result.
 Where a simulation exists but the feed is refused, the page shows the numbers and states the refusal: the animation is
 never faked (that was the original defect). A weekend with neither is not offered and the link recovers to Monza.
 """
@@ -33,9 +33,9 @@ def test_unavailable_ghost_link_recovers_and_discards_old_scenario(event):
     assert not set(('lap', 'ilap', 'rep', 'scenario')).intersection(at.query_params)
     assert any(f'{event} has no prepared simulation and no race visualisation. Showing Monza.' == el.value for el in at.info)
     offered = weekend(at).options
-    assert 'Madrid · forecast only' not in offered
-    assert f'{event} · recorded race' not in offered
-    assert all(RT.assets_status(name)['status'] == 'ok' or name in CF.events_with_scenarios()
+    assert 'Madrid · pre-race' not in offered
+    assert f'{event} · replay' not in offered
+    assert all(name in CF.events_with_scenarios()
                for name in (label.split(' · ')[0] for label in offered))
     at.run()
     assert not at.info  # The explanation is transient, not permanent page clutter.
@@ -59,8 +59,8 @@ def test_other_routes_keep_hungary_and_forecast_weekends(page):
     assert not at.exception
     assert at.session_state['ev'] == 'Hungary'
     assert at.session_state['lap'] == 38
-    assert 'Hungary · recorded race' in weekend(at).options
-    assert 'Madrid · forecast only' in weekend(at).options
+    assert 'Hungary · replay' in weekend(at).options
+    assert 'Madrid · pre-race' in weekend(at).options
 
 
 def test_refused_feed_still_offers_a_weekend_that_has_simulations(monkeypatch):
@@ -69,7 +69,7 @@ def test_refused_feed_still_offers_a_weekend_that_has_simulations(monkeypatch):
     at = bootstrap(ev='Hungary', drv='ANT', mode='audit')
     assert not at.exception
     assert at.session_state['ev'] == 'Hungary'
-    assert 'Hungary · recorded race' in weekend(at).options
+    assert 'Hungary · replay' in weekend(at).options
 
 
 def test_no_simulations_and_no_feeds_gives_empty_state_without_invalid_selector(monkeypatch):

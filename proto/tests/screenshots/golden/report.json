@@ -4,7 +4,7 @@
   "landing": {
    "1440x900": {
     "path": "/?ev=Monza&drv=LIN",
-    "load_ms": 1445,
+    "load_ms": 1140,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -17,7 +17,7 @@
     "network": {
      "route": "landing",
      "viewport": "1440x900",
-     "local_request_count": 100,
+     "local_request_count": 102,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -26,7 +26,7 @@
    },
    "1920x1080": {
     "path": "/?ev=Monza&drv=LIN",
-    "load_ms": 921,
+    "load_ms": 985,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -39,7 +39,7 @@
     "network": {
      "route": "landing",
      "viewport": "1920x1080",
-     "local_request_count": 100,
+     "local_request_count": 101,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -50,7 +50,7 @@
   "live_stable": {
    "1440x900": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
-    "load_ms": 1738,
+    "load_ms": 1208,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -63,7 +63,7 @@
     "network": {
      "route": "live_stable",
      "viewport": "1440x900",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -72,7 +72,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live",
-    "load_ms": 1500,
+    "load_ms": 1200,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -85,7 +85,7 @@
     "network": {
      "route": "live_stable",
      "viewport": "1920x1080",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -96,7 +96,7 @@
   "live_after_feedback": {
    "1440x900": {
     "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
-    "load_ms": 1034,
+    "load_ms": 1170,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -109,7 +109,7 @@
     "network": {
      "route": "live_after_feedback",
      "viewport": "1440x900",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -118,7 +118,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Monza&drv=NOR&lap=32&mode=live",
-    "load_ms": 1130,
+    "load_ms": 1156,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -131,7 +131,7 @@
     "network": {
      "route": "live_after_feedback",
      "viewport": "1920x1080",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -142,7 +142,7 @@
   "decision_change": {
    "1440x900": {
     "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 1710,
+    "load_ms": 1744,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -155,7 +155,7 @@
     "network": {
      "route": "decision_change",
      "viewport": "1440x900",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -164,7 +164,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 1138,
+    "load_ms": 1336,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -177,7 +177,7 @@
     "network": {
      "route": "decision_change",
      "viewport": "1920x1080",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -188,7 +188,7 @@
   "decision_board": {
    "1440x900": {
     "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 1006,
+    "load_ms": 1230,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -201,7 +201,7 @@
     "network": {
      "route": "decision_board",
      "viewport": "1440x900",
-     "local_request_count": 103,
+     "local_request_count": 104,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -210,7 +210,7 @@
    },
    "1920x1080": {
     "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
-    "load_ms": 1017,
+    "load_ms": 1189,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -223,7 +223,7 @@
     "network": {
      "route": "decision_board",
      "viewport": "1920x1080",
-     "local_request_count": 103,
+     "local_request_count": 104,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -234,7 +234,7 @@
   "ghost_audit": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
-    "load_ms": 1729,
+    "load_ms": 2395,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -247,7 +247,7 @@
     "network": {
      "route": "ghost_audit",
      "viewport": "1440x900",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -256,7 +256,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM",
-    "load_ms": 1197,
+    "load_ms": 1772,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -269,7 +269,7 @@
     "network": {
      "route": "ghost_audit",
      "viewport": "1920x1080",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -280,7 +280,7 @@
   "ghost_audit_fixed_context": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
-    "load_ms": 1715,
+    "load_ms": 1753,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -293,7 +293,7 @@
     "network": {
      "route": "ghost_audit_fixed_context",
      "viewport": "1440x900",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -302,7 +302,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=VER&mode=audit&ilap=28&rep=SOFT",
-    "load_ms": 1709,
+    "load_ms": 1747,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -315,7 +315,7 @@
     "network": {
      "route": "ghost_audit_fixed_context",
      "viewport": "1920x1080",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -326,7 +326,7 @@
   "scenario_explorer": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
-    "load_ms": 1201,
+    "load_ms": 1755,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -339,7 +339,7 @@
     "network": {
      "route": "scenario_explorer",
      "viewport": "1440x900",
-     "local_request_count": 104,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -348,7 +348,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=hotter_dry&ilap=24&rep=MEDIUM",
-    "load_ms": 1212,
+    "load_ms": 1785,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -361,7 +361,7 @@
     "network": {
      "route": "scenario_explorer",
      "viewport": "1920x1080",
-     "local_request_count": 104,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -372,7 +372,7 @@
   "out_of_support": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
-    "load_ms": 1190,
+    "load_ms": 1755,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -385,7 +385,7 @@
     "network": {
      "route": "out_of_support",
      "viewport": "1440x900",
-     "local_request_count": 104,
+     "local_request_count": 102,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -394,7 +394,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=scenario&scenario=wet&ilap=24&rep=MEDIUM",
-    "load_ms": 1214,
+    "load_ms": 1756,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -407,7 +407,7 @@
     "network": {
      "route": "out_of_support",
      "viewport": "1920x1080",
-     "local_request_count": 104,
+     "local_request_count": 102,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -418,7 +418,7 @@
   "missing_position": {
    "1440x900": {
     "path": "/ghost?ev=Canada&drv=ANT&mode=audit",
-    "load_ms": 1194,
+    "load_ms": 1811,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -431,7 +431,7 @@
     "network": {
      "route": "missing_position",
      "viewport": "1440x900",
-     "local_request_count": 101,
+     "local_request_count": 105,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -440,7 +440,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Canada&drv=ANT&mode=audit",
-    "load_ms": 1203,
+    "load_ms": 1769,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -453,7 +453,7 @@
     "network": {
      "route": "missing_position",
      "viewport": "1920x1080",
-     "local_request_count": 101,
+     "local_request_count": 105,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -464,7 +464,7 @@
   "offline_mode": {
    "1440x900": {
     "path": "/live?ev=Madrid&mode=live",
-    "load_ms": 980,
+    "load_ms": 1199,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -477,7 +477,7 @@
     "network": {
      "route": "offline_mode",
      "viewport": "1440x900",
-     "local_request_count": 103,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -486,7 +486,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Madrid&mode=live",
-    "load_ms": 982,
+    "load_ms": 1127,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -499,7 +499,7 @@
     "network": {
      "route": "offline_mode",
      "viewport": "1920x1080",
-     "local_request_count": 103,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -510,7 +510,7 @@
   "presentation_live": {
    "1440x900": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
-    "load_ms": 1125,
+    "load_ms": 1169,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -523,7 +523,7 @@
     "network": {
      "route": "presentation_live",
      "viewport": "1440x900",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -532,7 +532,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
-    "load_ms": 1122,
+    "load_ms": 1184,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -545,7 +545,7 @@
     "network": {
      "route": "presentation_live",
      "viewport": "1920x1080",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -556,7 +556,7 @@
   "presentation_ghost": {
    "1440x900": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
-    "load_ms": 1201,
+    "load_ms": 1763,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -569,7 +569,7 @@
     "network": {
      "route": "presentation_ghost",
      "viewport": "1440x900",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -578,7 +578,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
-    "load_ms": 1212,
+    "load_ms": 1786,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -591,7 +591,7 @@
     "network": {
      "route": "presentation_ghost",
      "viewport": "1920x1080",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -602,7 +602,7 @@
   "prerace": {
    "1440x900": {
     "path": "/pre-race?ev=Madrid",
-    "load_ms": 1020,
+    "load_ms": 1138,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -615,7 +615,7 @@
     "network": {
      "route": "prerace",
      "viewport": "1440x900",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -624,7 +624,7 @@
    },
    "1920x1080": {
     "path": "/pre-race?ev=Madrid",
-    "load_ms": 1080,
+    "load_ms": 1150,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -637,7 +637,7 @@
     "network": {
      "route": "prerace",
      "viewport": "1920x1080",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -648,7 +648,7 @@
   "feedback": {
    "1440x900": {
     "path": "/feedback?ev=Monza&drv=NOR&lap=32",
-    "load_ms": 1129,
+    "load_ms": 1250,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -661,7 +661,7 @@
     "network": {
      "route": "feedback",
      "viewport": "1440x900",
-     "local_request_count": 118,
+     "local_request_count": 119,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -670,7 +670,7 @@
    },
    "1920x1080": {
     "path": "/feedback?ev=Monza&drv=NOR&lap=32",
-    "load_ms": 1084,
+    "load_ms": 1274,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -683,7 +683,7 @@
     "network": {
      "route": "feedback",
      "viewport": "1920x1080",
-     "local_request_count": 118,
+     "local_request_count": 119,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -694,7 +694,7 @@
   "generalisation": {
    "1440x900": {
     "path": "/generalisation?ev=Monza",
-    "load_ms": 1217,
+    "load_ms": 1818,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -707,7 +707,7 @@
     "network": {
      "route": "generalisation",
      "viewport": "1440x900",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -716,7 +716,7 @@
    },
    "1920x1080": {
     "path": "/generalisation?ev=Monza",
-    "load_ms": 1117,
+    "load_ms": 1212,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -729,7 +729,7 @@
     "network": {
      "route": "generalisation",
      "viewport": "1920x1080",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -740,7 +740,7 @@
   "validation": {
    "1440x900": {
     "path": "/validation?ev=Monza",
-    "load_ms": 1151,
+    "load_ms": 1374,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -753,7 +753,7 @@
     "network": {
      "route": "validation",
      "viewport": "1440x900",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -762,7 +762,7 @@
    },
    "1920x1080": {
     "path": "/validation?ev=Monza",
-    "load_ms": 1165,
+    "load_ms": 1341,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -775,7 +775,7 @@
     "network": {
      "route": "validation",
      "viewport": "1920x1080",
-     "local_request_count": 106,
+     "local_request_count": 107,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -786,7 +786,7 @@
   "degraded_feed": {
    "1440x900": {
     "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
-    "load_ms": 1728,
+    "load_ms": 1793,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -799,7 +799,7 @@
     "network": {
      "route": "degraded_feed",
      "viewport": "1440x900",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -808,7 +808,7 @@
    },
    "1920x1080": {
     "path": "/live?ev=Hungary&drv=NOR&lap=30&mode=live",
-    "load_ms": 1154,
+    "load_ms": 1257,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -821,7 +821,7 @@
     "network": {
      "route": "degraded_feed",
      "viewport": "1920x1080",
-     "local_request_count": 111,
+     "local_request_count": 112,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -832,7 +832,7 @@
   "position_refused": {
    "1440x900": {
     "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
-    "load_ms": 1191,
+    "load_ms": 1755,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -845,7 +845,7 @@
     "network": {
      "route": "position_refused",
      "viewport": "1440x900",
-     "local_request_count": 101,
+     "local_request_count": 105,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -854,7 +854,7 @@
    },
    "1920x1080": {
     "path": "/ghost?ev=Hungary&drv=NOR&mode=audit",
-    "load_ms": 1197,
+    "load_ms": 1768,
     "console_errors": [],
     "benign_base_path_probes_404": [],
     "other_4xx_5xx": [],
@@ -867,7 +867,53 @@
     "network": {
      "route": "position_refused",
      "viewport": "1920x1080",
-     "local_request_count": 101,
+     "local_request_count": 105,
+     "external_requests": [],
+     "websockets": [
+      "ws://localhost:8502/_stcore/stream"
+     ]
+    }
+   }
+  },
+  "guided_demo": {
+   "1440x900": {
+    "path": "/demo",
+    "load_ms": 1400,
+    "console_errors": [],
+    "benign_base_path_probes_404": [],
+    "other_4xx_5xx": [],
+    "horizontal_overflow": false,
+    "scroll_width": 1440,
+    "inner_width": 1440,
+    "expected_text_missing": [],
+    "sidebar_visible": false,
+    "offline_notice_visible": true,
+    "network": {
+     "route": "guided_demo",
+     "viewport": "1440x900",
+     "local_request_count": 107,
+     "external_requests": [],
+     "websockets": [
+      "ws://localhost:8502/_stcore/stream"
+     ]
+    }
+   },
+   "1920x1080": {
+    "path": "/demo",
+    "load_ms": 1409,
+    "console_errors": [],
+    "benign_base_path_probes_404": [],
+    "other_4xx_5xx": [],
+    "horizontal_overflow": false,
+    "scroll_width": 1920,
+    "inner_width": 1920,
+    "expected_text_missing": [],
+    "sidebar_visible": false,
+    "offline_notice_visible": true,
+    "network": {
+     "route": "guided_demo",
+     "viewport": "1920x1080",
+     "local_request_count": 106,
      "external_requests": [],
      "websockets": [
       "ws://localhost:8502/_stcore/stream"
@@ -880,44 +926,45 @@
  "raw_console_errors": [],
  "raw_network_failures": [],
  "timings": {
-  "route_switch_ms_1440x900": 257,
-  "route_switch_validation_ms_1440x900": 241,
+  "route_switch_ms_1440x900": 252,
+  "route_switch_validation_ms_1440x900": 431,
   "keyboard_focus_1440x900": "BUTTON:",
   "keyboard_nav_1440x900": {
    "reached": [
-    "Landing",
-    "Pre-race plan",
+    "Decision board",
+    "Driver feedback",
+    "Validation",
+    "Generalisation",
+    "Overview",
+    "Forecast",
     "Live Predictor",
     "Ghost Strategy",
-    "Driver feedback",
-    "Decision board",
-    "Validation",
-    "Generalisation"
+    "Guided demo"
    ],
    "missing": [],
-   "tabs": 13,
+   "tabs": 19,
    "enter_activates": true,
-   "enter_switch_ms": 199,
+   "enter_switch_ms": 250,
    "activations": [
     {
-     "target": "Landing",
+     "target": "Overview",
      "activated": true,
-     "switch_ms": 287,
+     "switch_ms": 313,
      "focused": {
       "tag": "A",
-      "text": "Landing",
+      "text": "Overview",
       "is_nav": true,
       "is_button": false
      },
      "keys": "Tab then Enter"
     },
     {
-     "target": "Pre-race plan",
+     "target": "Forecast",
      "activated": true,
-     "switch_ms": 91,
+     "switch_ms": 208,
      "focused": {
       "tag": "A",
-      "text": "Pre-race plan",
+      "text": "Forecast",
       "is_nav": true,
       "is_button": false
      },
@@ -926,7 +973,7 @@
     {
      "target": "Live Predictor",
      "activated": true,
-     "switch_ms": 220,
+     "switch_ms": 231,
      "focused": {
       "tag": "A",
       "text": "Live Predictor",
@@ -938,7 +985,7 @@
     {
      "target": "Decision board",
      "activated": true,
-     "switch_ms": 200,
+     "switch_ms": 309,
      "focused": {
       "tag": "A",
       "text": "Decision board",
@@ -950,7 +997,7 @@
     {
      "target": "Driver feedback",
      "activated": true,
-     "switch_ms": 192,
+     "switch_ms": 243,
      "focused": {
       "tag": "A",
       "text": "Driver feedback",
@@ -962,7 +1009,7 @@
     {
      "target": "Ghost Strategy",
      "activated": true,
-     "switch_ms": 297,
+     "switch_ms": 817,
      "focused": {
       "tag": "A",
       "text": "Ghost Strategy",
@@ -974,7 +1021,7 @@
     {
      "target": "Generalisation",
      "activated": true,
-     "switch_ms": 199,
+     "switch_ms": 250,
      "focused": {
       "tag": "A",
       "text": "Generalisation",
@@ -986,10 +1033,22 @@
     {
      "target": "Validation",
      "activated": true,
-     "switch_ms": 229,
+     "switch_ms": 337,
      "focused": {
       "tag": "A",
       "text": "Validation",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Guided demo",
+     "activated": true,
+     "switch_ms": 426,
+     "focused": {
+      "tag": "A",
+      "text": "Guided demo",
       "is_nav": true,
       "is_button": false
      },
@@ -1000,46 +1059,47 @@
   "replay_run_1440x900": {
    "console_errors": [],
    "bad_responses": [],
-   "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
+   "header_after_6s": "LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
   },
-  "route_switch_ms_1920x1080": 233,
-  "route_switch_validation_ms_1920x1080": 276,
+  "route_switch_ms_1920x1080": 254,
+  "route_switch_validation_ms_1920x1080": 363,
   "keyboard_focus_1920x1080": "BUTTON:",
   "keyboard_nav_1920x1080": {
    "reached": [
-    "Landing",
-    "Pre-race plan",
+    "Decision board",
+    "Driver feedback",
+    "Validation",
+    "Generalisation",
+    "Overview",
+    "Forecast",
     "Live Predictor",
     "Ghost Strategy",
-    "Driver feedback",
-    "Decision board",
-    "Validation",
-    "Generalisation"
+    "Guided demo"
    ],
    "missing": [],
-   "tabs": 13,
+   "tabs": 19,
    "enter_activates": true,
-   "enter_switch_ms": 206,
+   "enter_switch_ms": 240,
    "activations": [
     {
-     "target": "Landing",
+     "target": "Overview",
      "activated": true,
-     "switch_ms": 295,
+     "switch_ms": 808,
      "focused": {
       "tag": "A",
-      "text": "Landing",
+      "text": "Overview",
       "is_nav": true,
       "is_button": false
      },
      "keys": "Tab then Enter"
     },
     {
-     "target": "Pre-race plan",
+     "target": "Forecast",
      "activated": true,
-     "switch_ms": 215,
+     "switch_ms": 304,
      "focused": {
       "tag": "A",
-      "text": "Pre-race plan",
+      "text": "Forecast",
       "is_nav": true,
       "is_button": false
      },
@@ -1048,7 +1108,7 @@
     {
      "target": "Live Predictor",
      "activated": true,
-     "switch_ms": 239,
+     "switch_ms": 229,
      "focused": {
       "tag": "A",
       "text": "Live Predictor",
@@ -1072,7 +1132,7 @@
     {
      "target": "Driver feedback",
      "activated": true,
-     "switch_ms": 193,
+     "switch_ms": 305,
      "focused": {
       "tag": "A",
       "text": "Driver feedback",
@@ -1084,7 +1144,7 @@
     {
      "target": "Ghost Strategy",
      "activated": true,
-     "switch_ms": 307,
+     "switch_ms": 865,
      "focused": {
       "tag": "A",
       "text": "Ghost Strategy",
@@ -1096,7 +1156,7 @@
     {
      "target": "Generalisation",
      "activated": true,
-     "switch_ms": 206,
+     "switch_ms": 240,
      "focused": {
       "tag": "A",
       "text": "Generalisation",
@@ -1108,10 +1168,22 @@
     {
      "target": "Validation",
      "activated": true,
-     "switch_ms": 249,
+     "switch_ms": 331,
      "focused": {
       "tag": "A",
       "text": "Validation",
+      "is_nav": true,
+      "is_button": false
+     },
+     "keys": "Tab then Enter"
+    },
+    {
+     "target": "Guided demo",
+     "activated": true,
+     "switch_ms": 307,
+     "focused": {
+      "tag": "A",
+      "text": "Guided demo",
       "is_nav": true,
       "is_button": false
      },
@@ -1122,9 +1194,9 @@
   "replay_run_1920x1080": {
    "console_errors": [],
    "bad_responses": [],
-   "header_after_6s": "ORB LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
+   "header_after_6s": "LIVE PREDICTOR Monza 2026 Lap 10/53 Recorded replay"
   }
  },
- "generated_at": "2026-09-13T04:03:01",
+ "generated_at": "2026-09-13T06:05:13",
  "feedback_fixture": "none: the capture never writes app_v2/state/feedback_events.jsonl (use ORB_FEEDBACK_LOG on the server for a fixture log)"
 }

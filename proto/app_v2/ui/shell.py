@@ -3,12 +3,13 @@ from __future__ import annotations
 from functools import lru_cache
 import streamlit as st
 from app_v2.theme.tokens import BASE_CSS_PATH, PREMIUM_CSS_PATH
+from pathlib import Path
 from app_v2.ui.formatting import esc
 
 
 def _css_bundle() -> str:   # not cached: two small local files, and CSS edits then apply without a restart
     parts = []
-    for p in (BASE_CSS_PATH, PREMIUM_CSS_PATH):
+    for p in (BASE_CSS_PATH, PREMIUM_CSS_PATH, Path(__file__).resolve().parents[2] / 'theme' / 'atelier.css'):
         if p.exists():
             parts.append(p.read_text())
     return '\n'.join(parts)

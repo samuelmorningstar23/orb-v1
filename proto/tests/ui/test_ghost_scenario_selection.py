@@ -58,21 +58,31 @@ ghost_strategy.render()
 
 def test_missing_combination_refuses_arbitrary_frames_and_offers_working_defaults(monkeypatch):
     calls=[]
+    rendered=[]
     real=G.RT.load_assets
+    real_player=G.RT.race_twin_player
+    def player(frames, *a, **kw):
+        rendered.append(frames.meta['scenario_id'])
+        return real_player(frames, *a, **kw)
+    monkeypatch.setattr(G.RT, 'race_twin_player', player)
     def load(*a,**kw):
         calls.append((a,kw)); return real(*a,**kw)
     monkeypatch.setattr(G.RT,'load_assets',load)
     at=run_page(dict(ev='Monza',drv='NOR',mode='audit',ilap=23,rep='MEDIUM',fid='fixed_context'))
-    assert not calls
+    # Ranking may verify other exact replays, but must never render one for a missing selection.
+    assert not rendered
+    assert all(kw.get('scenario_id') for _, kw in calls)
     html=' '.join(x.value for x in at.get('html'))
     assert 'SIMULATION NOT AVAILABLE' in html
-    assert len(at.expander)==1 and at.expander[0].label=='Details'
-    assert at.expander[0].proto.expanded is False
-    assert {'NOR · lap 24 → Medium','VER · lap 28 → Soft'} <= {b.label for b in at.button}
-    at.button(key='quick_audit_VER').click().run(timeout=30)
+    assert all(not e.proto.expanded for e in at.expander)
+    assert 'Simulation assumptions' in {e.label for e in at.expander}
+    select = next(s for s in at.selectbox if s.label == 'Prepared simulations')
+    option = 'monza_ver_lap28_to_soft_new_fixed_context'
+    select.select(option).run(timeout=30)
     assert not at.exception
     assert at.session_state['drv']=='VER' and at.session_state['ilap']==28 and at.session_state['rep']=='SOFT'
-    assert calls and all(kw['scenario_id']=='monza_ver_lap28_to_soft_new_fixed_context' for _,kw in calls)
+    assert calls and all(kw.get('scenario_id') for _, kw in calls)
+    assert rendered == ['monza_ver_lap28_to_soft_new_fixed_context']
 
 
 def test_out_of_support_never_loads_frames_or_shows_simulated_finish(monkeypatch):
@@ -100,8 +110,31 @@ def test_prepared_defaults_use_their_own_verified_frames(driver,lap,compound):
 
 def test_prepared_action_recovers_from_unsupported_weather():
     at=run_page(dict(ev='Monza',drv='NOR',mode='scenario',scenario='wet',ilap=24,rep='MEDIUM',fid='fixed_context'))
-    at.button(key='quick_scenario_NOR').click().run(timeout=30)
+    at.selectbox(key='scenario_ctl').select('actual_historical').run(timeout=30)
     assert not at.exception
     assert at.session_state['scenario']=='actual_historical'
     html=' '.join(x.value for x in at.get('html'))
-    assert 'Finish delta · median' in html and 'OUT OF SUPPORT' not in html
+    assert 'Modelled finish' in html and 'OUT OF SUPPORT' not in html
+
+
+def test_verified_replays_are_first_even_from_another_weekend():
+    from app_v2.services import lock_repository as LR
+    choices, playable = G.prepared_picker(LR.load_lock(), CF.RACE_REFERENCE, 'Australia')
+    assert playable
+    assert all(sc.scenario_id in playable for sc in choices[:len(playable)])
+    assert all(sc.scenario_id not in playable for sc in choices[len(playable):])
+    assert choices[0].event == 'Monza'
+    for sc in choices[:len(playable)]:
+        assert G.DEMO.exact_replay(sc) is not None
+    assert choices[len(playable)].event == 'Australia'
+
+
+def test_prepared_picker_changes_race_with_the_exact_replay():
+    at=run_page(dict(ev='Australia',drv='HAM',mode='audit',ilap=36,rep='MEDIUM'))
+    select=next(s for s in at.selectbox if s.label=='Prepared simulations')
+    assert select.options[1].startswith('▶ 3D replay · Monza')
+    select.select('monza_nor_lap24_to_medium_new_tyre_only').run(timeout=30)
+    assert not at.exception
+    assert at.session_state['ev']=='Monza'
+    assert at.session_state['drv']=='NOR' and at.session_state['ilap']==24
+    assert at.session_state['rep']=='MEDIUM'

@@ -41,13 +41,14 @@ ROUTES = [
     ('validation', '/validation?ev=Monza'),
     ('degraded_feed', '/live?ev=Hungary&drv=NOR&lap=30&mode=live'),
     ('position_refused', '/ghost?ev=Hungary&drv=NOR&mode=audit'),
+    ('guided_demo', '/demo'),
 ]
-NAV_TITLES = ['Landing', 'Pre-race plan', 'Live Predictor', 'Decision board', 'Driver feedback', 'Ghost Strategy', 'Generalisation', 'Validation']
+NAV_TITLES = ['Overview', 'Forecast', 'Live Predictor', 'Decision board', 'Driver feedback', 'Ghost Strategy', 'Generalisation', 'Validation', 'Guided demo']
 # designed degraded / labelled states every route must show (13.6 failure modes, 0.17 release gate); a tuple = any of these
 EXPECTED_TEXT = {
-    'offline_mode': ['NO RACE FEED'], 'out_of_support': ['OUT OF SUPPORT', 'MODEL-IMPLIED SCENARIO'], 'missing_position': ['POSITION DATA UNAVAILABLE'],
-    'degraded_feed': ['DEGRADED'], 'position_refused': ['POSITION FEED REFUSED'], 'scenario_explorer': ['MODEL-IMPLIED SCENARIO', 'model-implied, pre-race curve'],
-    'ghost_audit': ['HISTORICAL AUDIT', 'leave-one-driver-out Sunday reference', 'Finish delta'],
+    'offline_mode': ['Madrid', 'tyre forecast', 'frozen'], 'out_of_support': ['OUT OF SUPPORT', 'MODEL-IMPLIED SCENARIO'], 'missing_position': ['Modelled finish', 'Time comparison available'],
+    'degraded_feed': ['DEGRADED'], 'position_refused': ['Modelled finish', 'Time comparison available'], 'scenario_explorer': ['MODEL-IMPLIED SCENARIO', 'pre-race forecast only'],
+    'ghost_audit': ['Historical audit', 'leave-one-driver-out Sunday reference', 'Modelled finish'],
     'generalisation': [('aggregate revealed after freeze', 'sealed holdout, aggregate only'), 'never merged'], 'validation': ['identity test'], 'landing': ['Watch the prediction evolve', 'Compare Monza strategies', 'View Madrid forecast'],
     'decision_board': ['Modelled tyre-time'], 'live_stable': ['Next lap', 'Modelled tyre-time'], 'presentation_live': [], 'presentation_ghost': [],
 }
@@ -76,8 +77,8 @@ def diff_ratio(a: Path, b: Path) -> float | None:
     hist = d.histogram(); return hist[255] / float(ia.size[0] * ia.size[1])
 
 
-FOCUS_JS = """() => { const a = document.activeElement; if (!a) return null; const link = a.closest('a'); const btn = a.closest('button');
-  const nav = !!(link && (link.closest('[data-testid=\"stTopNav\"]') || link.closest('header') || link.closest('nav')));
+FOCUS_JS = """() => { const a = document.activeElement; if (!a) return null; const link = a.closest('a'); const btn = a.closest('button,summary');
+  const nav = !!(link && (link.closest('[data-testid=\"stTopNav\"]') || link.closest('header') || link.closest('nav') || link.closest('[data-testid="stPageLink"]')));
   return {tag: a.tagName, text: (a.textContent || '').trim().slice(0, 40), is_nav: nav, is_button: !!btn}; }"""
 
 
@@ -87,12 +88,15 @@ def goto_route(page, base: str, path: str):
     page.goto(base + '/' + ('?' + target.query if target.query else ''), wait_until='domcontentloaded')
     page.wait_for_selector('[data-orb-ready="landing"]', state='attached', timeout=30000)
     destinations = {'/live': ('Live Predictor', 'live'), '/ghost': ('Ghost Strategy', 'ghost'),
-                    '/decision': ('Decision board', 'decision'), '/pre-race': ('Pre-race plan', 'prerace'),
+                    '/decision': ('Decision board', 'decision'), '/pre-race': ('Forecast', 'prerace'),
                     '/feedback': ('Driver feedback', 'feedback'), '/validation': ('Validation', 'validation'),
-                    '/generalisation': ('Generalisation', 'generalisation')}
+                    '/generalisation': ('Generalisation', 'generalisation'), '/demo': ('Guided demo', 'demo')}
     if target.path not in ('', '/'):
         title, marker = destinations[target.path]
-        page.get_by_role('link', name=title, exact=True).first.click()
+        link = page.get_by_role('link', name=title, exact=True).first
+        if not link.is_visible():
+            page.get_by_text('More tools', exact=True).click()
+        link.click()
         page.wait_for_selector(f'[data-orb-ready="{marker}"]', state='attached', timeout=30000)
 
 
@@ -115,11 +119,11 @@ def keyboard_nav(page, base: str, max_tabs: int = 60) -> dict:
         if len(reached) == len(NAV_TITLES):
             break
     # Activate every navigation destination with Tab/Enter; each begins on a different route.
-    markers = dict(zip(NAV_TITLES, ['landing', 'prerace', 'live', 'decision', 'feedback', 'ghost', 'generalisation', 'validation']))
+    markers = dict(zip(NAV_TITLES, ['landing', 'prerace', 'live', 'decision', 'feedback', 'ghost', 'generalisation', 'validation', 'demo']))
     activations = []
     for target in NAV_TITLES:
-        start = '/validation?ev=Monza' if target == 'Landing' else '/?ev=Monza&drv=LIN'
-        start_marker = 'validation' if target == 'Landing' else 'landing'
+        start = '/validation?ev=Monza' if target == 'Overview' else '/?ev=Monza&drv=LIN'
+        start_marker = 'validation' if target == 'Overview' else 'landing'
         goto_route(page, base, start)
         page.wait_for_selector(f'[data-orb-ready="{start_marker}"]', state='attached')
         page.wait_for_timeout(150)
@@ -189,6 +193,7 @@ def scripted_pass(base: str, speed: int = 1, viewport=(1440, 900)) -> dict:
             rep['steps'].append({'step': 'ghost_strategy_nor_lap24_medium', 'switch_ms': ms, 'player_iframes': page.locator('iframe').count(), 'audit_banner': 'historical audit' in body, 'reference_label': 'leave-one-driver-out sunday reference' in body,
                                  'workstream3_rows': 'held-out strategy replay under a post-race reference model' in body, 'header': header()[:160], 'console_errors': list(errors)}); errors.clear()
             # 3. Validation
+            page.get_by_text('More tools', exact=True).click()
             t0 = time.perf_counter(); page.get_by_role('link', name='Validation').first.click(); page.wait_for_selector('[data-orb-ready="validation"]', state='attached', timeout=30000); ms = round((time.perf_counter() - t0) * 1000)
             page.wait_for_timeout(800); body = page.inner_text('body').lower()
             rep['steps'].append({'step': 'validation', 'switch_ms': ms, 'prefix_eval': 'prior' in body, 'regret_table': 'orb v1 (pre-race slopes)' in body, 'console_errors': list(errors)}); errors.clear()
@@ -233,7 +238,7 @@ def run(base: str, out: Path, compare: bool, routes=ROUTES) -> dict:
                 for name, path in routes:
                     current_network = network_bucket(name, vp_name)
                     errors.clear(); bad_responses.clear()
-                    marker = {'landing': 'landing', 'prerace': 'prerace', 'feedback': 'feedback', 'generalisation': 'generalisation', 'validation': 'validation', 'decision_board': 'decision'}.get(name, 'ghost' if '/ghost' in path else 'live')
+                    marker = {'landing': 'landing', 'prerace': 'prerace', 'feedback': 'feedback', 'generalisation': 'generalisation', 'validation': 'validation', 'decision_board': 'decision', 'guided_demo': 'demo'}.get(name, 'ghost' if '/ghost' in path else 'live')
                     t0 = time.perf_counter()
                     goto_route(page, base, path)
                     page.wait_for_selector(f'[data-orb-ready="{marker}"]', state='attached', timeout=30000)
@@ -261,6 +266,7 @@ def run(base: str, out: Path, compare: bool, routes=ROUTES) -> dict:
                 link = page.get_by_role('link', name='Live Predictor').first
                 t0 = time.perf_counter(); link.click(); page.wait_for_selector('[data-orb-ready="live"]', state='attached', timeout=30000)
                 report['timings'][f'route_switch_ms_{vp_name}'] = round((time.perf_counter() - t0) * 1000)
+                page.get_by_text('More tools', exact=True).click()
                 t0 = time.perf_counter(); page.get_by_role('link', name='Validation').first.click(); page.wait_for_selector('[data-orb-ready="validation"]', state='attached', timeout=30000)
                 report['timings'][f'route_switch_validation_ms_{vp_name}'] = round((time.perf_counter() - t0) * 1000)
                 # keyboard: tab reaches the top navigation and the first control

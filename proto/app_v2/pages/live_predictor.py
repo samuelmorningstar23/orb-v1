@@ -14,6 +14,7 @@ from app_v2.services import view_models as VM
 from app_v2.state import app_state, query_state
 from app_v2.ui import shell, cards, badges, charts, empty_states, banners
 from app_v2.ui.formatting import spl, secs, pct, esc
+from app_v2.ui.help import tip
 
 FRAGMENT_PERIOD_S = 0.7
 
@@ -44,12 +45,12 @@ def decision_html(d, vm, compact: bool = False) -> str:
         down = f'{d.downside_q10_s:+.1f} s' if d.downside_q10_s is not None else 'pending'
         headline = d.headline; reasons = d.reasons; src = d.rule_label
     grid = [('expected gain', gain), ('probability of gain', prob), ('downside q10', down), ('rejoin traffic', _rejoin_text(top, d))]
-    g = ''.join(f'<div><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div></div>' for k, v in grid)
+    g = ''.join(f'<div><div class="k">{tip(k)}</div><div class="v">{esc(v)}</div></div>' for k, v in grid)
     rs = ''.join(f'<li>{esc(r)}</li>' for r in reasons) or '<li>no change</li>'
     status = ('Recommended strategy' if d.status == 'HOLD PLAN' else d.status.replace('_', ' ').title()) + (' · updated this lap' if d.changed_since_last_update else '')
     if compact:
         grid = [('Modelled gain vs pre-race plan', gain.split(' vs pre-race plan')[0]), ('80% outcome range', f"{top['expected_gain_q10']:+.1f} to {top['expected_gain_q90']:+.1f} s" if top else down), ('Probability of gain', prob)]
-        g = ''.join(f'<div><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div></div>' for k, v in grid)
+        g = ''.join(f'<div><div class="k">{tip(k)}</div><div class="v">{esc(v)}</div></div>' for k, v in grid)
     tyre = badges.compound_html(d.target_compound) if d.target_compound else ''
     if compact:
         return (f'<div class="cs-card cs-decision compact {changed}" role="region" aria-label="decision"><div class="status">{esc(status)}</div><div class="headline">{esc(headline)}</div>{tyre}<div class="grid">{g}</div><div class="cs-muted">Modelled tyre-time gain; rivals are not simulated.</div></div>')
@@ -105,19 +106,9 @@ def state_panel_html(vm, src) -> str:
 
 
 def forecast_only(ctx, lock, ev) -> None:
-    sup = VM.SS.support_for(lock, ev, None, ctx.compound)
-    common.header(ctx, 'live', n_laps=lock.n_laps(ev), support=sup.overall_support_status, latency='no feed')
-    empty_states.empty('NO RACE FEED', f'{ev} has a pre-race forecast, but no recorded race to replay yet.')
-    if st.button('Start Monza replay', type='primary'):
-        common.goto('live', ev='Monza', drv='NOR', lap=1, mode='live')
-    comps = lock.compounds_for(ev)
-    if comps:
-        cards.section('Tyre degradation forecast', 'Expected pace lost per additional lap of tyre age. The band shows uncertainty.')
-        cols = st.columns(len(comps))
-        for col, c in zip(cols, comps):
-            f = lock.forecast_for(ev, c)
-            with col:
-                cards.kpi_card(f'{c} FORECAST', spl(f.prediction), f'90% band {spl(f.band90[0])} to {spl(f.band90[1])} · ' + ('issued' if f.issued else 'withheld → fallback'), 'live' if f.issued else 'decision', '', 's/lap')
+    # A forecast-only weekend is a useful forecast view, never a dead-end live error.
+    from app_v2.pages import pre_race
+    pre_race.render()
     shell.ready_marker('live')
 
 

@@ -1,0 +1,232 @@
+{
+ "label": "sealed holdout, aggregate only",
+ "quotable": true,
+ "generated_at": "2026-09-13T06:17:40",
+ "freeze": {
+  "path": "tyreformer/FREEZE.json",
+  "frozen_at": "2026-09-13T06:17:12+05:30",
+  "sha256": "8e09be9186ddab95db23762a00d8046bd14e34a14206770abd9ce6daeb04e605"
+ },
+ "sealed_weekends": 6,
+ "weekends_requested": 6,
+ "weekends_scored": 5,
+ "estimator_races": 5,
+ "head_to_head": {
+  "origins": 4289,
+  "origins_without_tyreformer": 0,
+  "weekends": 5,
+  "next1": {
+   "n": 3007,
+   "weekends": 5,
+   "tyreformer": 0.24306749938073433,
+   "orb_v1_estimator": 0.28934196166523113,
+   "prior_only": 0.3914813067630533,
+   "coverage90_tyreformer": 0.9012304622547389,
+   "coverage90_orb_v1_estimator": 0.9428001330229464,
+   "tyreformer_ci90": [
+    0.2195738409589098,
+    0.26183247723108055
+   ],
+   "orb_v1_estimator_ci90": [
+    0.25628833876754453,
+    0.3157227517290512
+   ],
+   "difference_ci90": [
+    -0.0548665885993066,
+    -0.03666701659125968
+   ],
+   "p_tyreformer_better": 1.0,
+   "weekends_tyreformer_better": 5
+  },
+  "next3": {
+   "n": 2685,
+   "weekends": 5,
+   "tyreformer": 0.3046137438470701,
+   "orb_v1_estimator": 0.36744436053812307,
+   "prior_only": 0.4517107634153131,
+   "coverage90_tyreformer": 0.9080074487895717,
+   "coverage90_orb_v1_estimator": 0.9180633147113594,
+   "tyreformer_ci90": [
+    0.2670185746033694,
+    0.33761911519563
+   ],
+   "orb_v1_estimator_ci90": [
+    0.32992728866229654,
+    0.40123396723108834
+   ],
+   "difference_ci90": [
+    -0.07606060336116904,
+    -0.0525029709187797
+   ],
+   "p_tyreformer_better": 1.0,
+   "weekends_tyreformer_better": 5
+  },
+  "next5": {
+   "n": 2389,
+   "weekends": 5,
+   "tyreformer": 0.34660720360243835,
+   "orb_v1_estimator": 0.4367836532556324,
+   "prior_only": 0.5067935885333571,
+   "coverage90_tyreformer": 0.9058183340309753,
+   "coverage90_orb_v1_estimator": 0.9066555043951444,
+   "tyreformer_ci90": [
+    0.30056235151900973,
+    0.39000599683103115
+   ],
+   "orb_v1_estimator_ci90": [
+    0.39123469583987414,
+    0.4780908397338828
+   ],
+   "difference_ci90": [
+    -0.11255093468310279,
+    -0.06830205659001354
+   ],
+   "p_tyreformer_better": 1.0,
+   "weekends_tyreformer_better": 5
+  },
+  "cum3": {
+   "n": 2236,
+   "weekends": 5,
+   "tyreformer": 0.6492113462070617,
+   "orb_v1_estimator": 0.8198609224155425,
+   "prior_only": 1.1490588394981147,
+   "coverage90_tyreformer": 0.9136851520572451,
+   "tyreformer_ci90": [
+    0.5760445399203544,
+    0.7145585065958197
+   ],
+   "orb_v1_estimator_ci90": [
+    0.7390635062430986,
+    0.8935173779019648
+   ],
+   "difference_ci90": [
+    -0.1984441705605564,
+    -0.1475060363907711
+   ],
+   "p_tyreformer_better": 1.0,
+   "weekends_tyreformer_better": 5
+  },
+  "cum5": {
+   "n": 1680,
+   "weekends": 5,
+   "tyreformer": 1.1096172143695142,
+   "orb_v1_estimator": 1.4281134994983566,
+   "prior_only": 2.040377448009462,
+   "coverage90_tyreformer": 0.9279761904761905,
+   "tyreformer_ci90": [
+    0.9875122944548749,
+    1.2425496260396753
+   ],
+   "orb_v1_estimator_ci90": [
+    1.3026737952649892,
+    1.5515515347351476
+   ],
+   "difference_ci90": [
+    -0.3732058289189517,
+    -0.27786566918556255
+   ],
+   "p_tyreformer_better": 1.0,
+   "weekends_tyreformer_better": 5
+  },
+  "cliff3": {
+   "n": 3370,
+   "weekends": 5,
+   "events": 184,
+   "climatology_train_rate": 0.0516195426513436,
+   "climatology_oracle": 0.05161831133495936,
+   "tyreformer_brier": 0.04993760750086127,
+   "orb_v1_estimator_brier": 0.08903670237388724,
+   "tyreformer_brier_ci90": [
+    0.03516073710912143,
+    0.06262869313935893
+   ],
+   "orb_v1_estimator_brier_ci90": [
+    0.06512334257407408,
+    0.11148211241502104
+   ],
+   "difference_ci90": [
+    -0.052720285120579746,
+    -0.025910495828178552
+   ],
+   "p_tyreformer_better": 1.0,
+   "weekends_tyreformer_better": 5
+  },
+  "cliff5": {
+   "n": 3460,
+   "weekends": 5,
+   "events": 282,
+   "climatology_train_rate": 0.07486643447754246,
+   "climatology_oracle": 0.07486016906679141,
+   "tyreformer_brier": 0.07182214597627976,
+   "orb_v1_estimator_brier": 0.11137432761921966,
+   "tyreformer_brier_ci90": [
+    0.05116178573200806,
+    0.08933980514882274
+   ],
+   "orb_v1_estimator_brier_ci90": [
+    0.08195410031533813,
+    0.13811637265895502
+   ],
+   "difference_ci90": [
+    -0.051675325916218845,
+    -0.02772028975757429
+   ],
+   "p_tyreformer_better": 1.0,
+   "weekends_tyreformer_better": 5
+  }
+ },
+ "tyreformer_all_origins": {
+  "origins": 4968,
+  "weekends": 6,
+  "next1_mae": 0.23974171643985082,
+  "next1_mae_persistence": 0.2768825376823973,
+  "next1_n": 3475,
+  "next1_cov90": 0.9044604316546763,
+  "next1_width90": 1.0391861296211191,
+  "next2_mae": 0.27844544393391685,
+  "next2_mae_persistence": 0.3208008093799078,
+  "next2_n": 3267,
+  "next2_cov90": 0.9035812672176309,
+  "next2_width90": 1.253546007990892,
+  "next3_mae": 0.30416621488734413,
+  "next3_mae_persistence": 0.3568219115208823,
+  "next3_n": 3078,
+  "next3_cov90": 0.9074074074074074,
+  "next3_width90": 1.3954928690528223,
+  "next5_mae": 0.3484398444435828,
+  "next5_mae_persistence": 0.4233683504231647,
+  "next5_n": 2721,
+  "next5_cov90": 0.9037118706357956,
+  "next5_width90": 1.604526390207108,
+  "next10_mae": 0.4228306127756642,
+  "next10_mae_persistence": 0.5615337028191797,
+  "next10_n": 1939,
+  "next10_cov90": 0.9071686436307375,
+  "next10_width90": 2.0196986186235506,
+  "cum3_mae": 0.6395462709669552,
+  "cum3_mae_summed_medians": 0.6458018143825015,
+  "cum3_mae_persistence": 0.7838943566774539,
+  "cum3_n": 2579,
+  "cum3_cov90": 0.9135323768902676,
+  "cum5_mae": 1.0930558831990151,
+  "cum5_mae_summed_medians": 1.0967707113009597,
+  "cum5_mae_persistence": 1.3529867942318112,
+  "cum5_n": 1938,
+  "cum5_cov90": 0.9277605779153767,
+  "cliff3_n": 3883,
+  "cliff3_events": 195,
+  "cliff3_brier": 0.046007213478975725,
+  "cliff3_brier_climatology_train_rate": 0.04770766320387771,
+  "cliff3_brier_climatology_oracle": 0.047696964700624886,
+  "cliff3_mean_p": 0.036795328056428725,
+  "cliff3_auc": 0.7555370154068637,
+  "cliff5_n": 3993,
+  "cliff5_events": 299,
+  "cliff5_brier": 0.06618583543322844,
+  "cliff5_brier_climatology_train_rate": 0.06929083564930592,
+  "cliff5_brier_climatology_oracle": 0.06927387139866417,
+  "cliff5_mean_p": 0.056713282513636755,
+  "cliff5_auc": 0.7379801467805517
+ },
+ "rules": "pooled over the sealed weekends only; weekend-grouped bootstrap; no per-weekend value is written; per-race working files deleted after scoring"
+}

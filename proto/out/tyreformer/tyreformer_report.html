@@ -1,0 +1,262 @@
+<title>Orb TyreFormer</title>
+<meta name="description" content="Evaluation of the learned tyre model trained on four Formula 1 seasons, scored against the Orb v1 live estimator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F2F5F7; --surface:#FFFFFF; --raised:#E9EEF2; --rule:#D3DBE2; --ink:#0B1117; --ink2:#4B5864; --ink3:#6B7885;
+  --brand:#0B857C; --est:#D35A2A; --tf:#138A63; --tfband:rgba(27,175,122,.16); --tfband2:rgba(27,175,122,.30); --estband:rgba(235,104,52,.14);
+  --tree:#2A78D6; --good:#138A63;
+  --sans:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#090C11; --surface:#11161E; --raised:#171D27; --rule:#272F3B; --ink:#F3F6FA; --ink2:#A7B1BE; --ink3:#7D8896;
+  --brand:#39D0C3; --est:#E0662F; --tf:#2BBF8A; --tfband:rgba(25,158,112,.20); --tfband2:rgba(25,158,112,.38); --estband:rgba(217,89,38,.18); --tree:#3987E5; --good:#2BBF8A;
+}}
+:root[data-theme="dark"]{
+  --ground:#090C11; --surface:#11161E; --raised:#171D27; --rule:#272F3B; --ink:#F3F6FA; --ink2:#A7B1BE; --ink3:#7D8896;
+  --brand:#39D0C3; --est:#E0662F; --tf:#2BBF8A; --tfband:rgba(25,158,112,.20); --tfband2:rgba(25,158,112,.38); --estband:rgba(217,89,38,.18); --tree:#3987E5; --good:#2BBF8A;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55; margin:0; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px; margin:0 auto; padding:48px 28px 72px; display:flex; flex-direction:column; gap:56px}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3)}
+h1{font-size:44px; line-height:1.05; letter-spacing:-.02em; margin:10px 0 14px; font-weight:700; text-wrap:balance}
+h1 .tf{color:var(--brand)}
+h2{font-size:22px; letter-spacing:-.01em; margin:0 0 6px; font-weight:650; text-wrap:balance}
+.lede{font-size:18px; color:var(--ink2); max-width:64ch; margin:0}
+p{max-width:68ch; margin:0}
+.sub{color:var(--ink2); max-width:72ch}
+section{display:flex; flex-direction:column; gap:18px}
+.num{font-family:var(--mono); font-variant-numeric:tabular-nums}
+.strip{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:12px; overflow:hidden; margin-top:28px}
+.stat{background:var(--surface); padding:18px 20px; display:flex; flex-direction:column; gap:6px}
+.stat .k{font-size:13px; color:var(--ink2)}
+.stat .v{font-size:34px; font-weight:650; letter-spacing:-.02em; color:var(--ink)}
+.stat .v small{font-size:15px; color:var(--ink3); font-weight:500; letter-spacing:0; margin-left:6px}
+.stat .d{font-family:var(--mono); font-size:12.5px; color:var(--ink3)}
+.label-sealed{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; color:var(--ink2); margin-top:10px}
+.label-sealed i{width:8px; height:8px; border-radius:50%; background:var(--brand); display:inline-block}
+.tablewrap{overflow-x:auto; border:1px solid var(--rule); border-radius:12px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:860px; font-size:14px}
+th,td{padding:12px 14px; text-align:right; border-bottom:1px solid var(--rule); white-space:nowrap}
+th{font-size:12px; font-weight:500; color:var(--ink3); text-transform:uppercase; letter-spacing:.06em; background:var(--raised)}
+th:first-child,td:first-child{text-align:left}
+tr:last-child td{border-bottom:none}
+td .split{font-weight:600} td .note{display:block; font-size:12px; color:var(--ink3); font-weight:400; white-space:normal; max-width:26ch}
+.pair{font-family:var(--mono); font-variant-numeric:tabular-nums}
+.pair .a{color:var(--ink3)} .pair .arrow{color:var(--ink3); margin:0 4px} .pair .b{color:var(--ink); font-weight:500}
+.chg{display:block; font-family:var(--mono); font-size:12px; color:var(--good)}
+.legend-inline{display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink2)}
+.sw{display:inline-block; width:18px; height:3px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.panel{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:18px 18px 10px}
+.panelhead{display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:6px}
+.seg{display:inline-flex; border:1px solid var(--rule); border-radius:8px; overflow:hidden}
+.seg button{font:500 13px var(--sans); color:var(--ink2); background:transparent; border:0; padding:7px 12px; cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--raised); color:var(--ink)}
+.seg button:focus-visible{outline:2px solid var(--brand); outline-offset:-2px}
+.grid2{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:18px}
+svg text{fill:var(--ink2); font-family:var(--sans)}
+svg .tick{font-size:11px; fill:var(--ink3); font-family:var(--mono)}
+svg .grid{stroke:var(--rule); stroke-width:1}
+svg .lbl{font-size:12px; fill:var(--ink)}
+.tip{position:fixed; pointer-events:none; background:var(--raised); color:var(--ink); border:1px solid var(--rule); border-radius:8px; padding:8px 10px; font-size:12.5px; font-family:var(--mono); box-shadow:0 6px 24px rgba(0,0,0,.18); z-index:9}
+dl{display:grid; grid-template-columns:minmax(160px,220px) minmax(0,1fr); gap:10px 24px; margin:0}
+dt{color:var(--ink3); font-size:13px} dd{margin:0; max-width:68ch}
+ul.plain{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:8px; max-width:74ch}
+pre{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px 16px; overflow-x:auto; font:12.5px/1.6 var(--mono); color:var(--ink2); margin:0}
+.foot{font-size:12.5px; color:var(--ink3); font-family:var(--mono)}
+@media (max-width:760px){ .strip{grid-template-columns:1fr} .grid2{grid-template-columns:1fr} h1{font-size:34px} dl{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Orb v1 · Trackshift 2026 · learned tyre model</div>
+    <h1>Orb <span class="tf">TyreFormer</span></h1>
+    <p class="lede">At the end of every lap it forecasts the car's next ten fuel-corrected lap times on its current tyres, with a 90&nbsp;% band and a cliff risk. It learned from every race and sprint stint of 2023 to 2026, and it is scored on exactly the laps Orb&nbsp;v1's live estimator is scored on.</p>
+    <div class="strip" id="strip"></div>
+    <div class="label-sealed"><i></i><span id="sealedlabel"></span></div>
+  </header>
+
+  <section>
+    <h2>Better on every split we could score</h2>
+    <p class="sub">Each cell reads Orb v1 live estimator → Orb TyreFormer, mean absolute error in seconds, on identical forecast origins and targets. Brier scores are for the cliff within five laps; the base rate is a constant forecast.</p>
+    <div class="tablewrap"><table id="splits"></table></div>
+  </section>
+
+  <section>
+    <div class="panelhead">
+      <div><h2>Error grows more slowly with horizon</h2><p class="sub">Mean absolute error by laps ahead, with 90&nbsp;% weekend-bootstrap bands.</p></div>
+      <div class="seg" role="group" aria-label="Data set"><button type="button" data-set="2026" aria-pressed="true">Every 2026 race</button><button type="button" data-set="cv" aria-pressed="false">2023–25 cross-validation</button></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><div class="legend-inline"><span><i class="sw" style="background:var(--est)"></i>Orb v1 live estimator</span><span><i class="sw" style="background:var(--tf)"></i>Orb TyreFormer</span></div><svg id="horizon" viewBox="0 0 560 330" role="img" aria-label="Error by horizon"></svg></div>
+      <div class="panel"><div class="legend-inline"><span>Next-lap error on the same origins</span></div><svg id="ladder" viewBox="0 0 480 330" role="img" aria-label="Next-lap error by model"></svg></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="fantitle">One stint, one forecast</h2>
+    <p class="sub" id="fansub"></p>
+    <div class="panel"><div class="legend-inline"><span><i class="sw" style="background:var(--ink3);height:8px;width:8px;border-radius:50%"></i>clean laps seen</span><span><i class="sw" style="border:1.5px solid var(--ink);height:9px;width:9px;border-radius:50%;background:transparent"></i>what happened next</span><span><i class="sw" style="background:var(--tf)"></i>TyreFormer median, 50&nbsp;% and 90&nbsp;% band</span><span><i class="sw" style="background:var(--est)"></i>Orb v1 estimator</span></div><svg id="fan" viewBox="0 0 1000 360" role="img" aria-label="Forecast fan for one stint"></svg></div>
+  </section>
+
+  <section>
+    <h2>How it was tested</h2>
+    <ul class="plain">
+      <li><strong>Model selection</strong> used only 5-fold cross-validation of 2023–2025, grouped by weekend. That covered seven transformer configurations, the tree ablation, the blend weights and the conformal band widths.</li>
+      <li><strong>2026 was never used for a choice.</strong> The strict test trains on 2023–2025 only. The deployment protocol forecasts race <em>r</em> with a model trained on 2023–2025 plus the 2026 races held before <em>r</em>. One early single-seed probe on 2026 checked the pipeline before any tuning.</li>
+      <li><strong>Sealed holdout.</strong> Six weekends are refused by every loader. The model was frozen with <span class="num" id="frozen"></span>, then scored once. Only pooled numbers were written.</li>
+      <li><strong>Baseline.</strong> The baseline is the real Orb v1 live estimator. Run with the product's priors, it reproduces its published prefix evaluation exactly. Everywhere else it gets leave-one-out priors.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What is inside</h2>
+    <dl id="facts"></dl>
+  </section>
+
+  <section>
+    <h2>Where it is weaker</h2>
+    <ul class="plain">
+      <li>It uses public timing and telemetry-derived data only. Tyre temperatures, pressures and wear are never observed; the model infers their effect from lap times and energy proxies.</li>
+      <li>The cliff label is dominated by lap-to-lap noise. TyreFormer's probability is calibrated where the estimator's is not, but it is only slightly better than a constant base rate. Show it as a risk, not a call.</li>
+      <li>2026 is a regulation change. Next-lap bands cover 85–88&nbsp;% there, against 90&nbsp;% in cross-validation.</li>
+      <li>The estimator's 2026 priors are leave-one-out within the season, so they draw on later 2026 weekends. That is a small edge in the estimator's favour.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Companion: learned practice-to-race transfer</h2>
+    <p class="sub" id="presub"></p>
+    <div class="tablewrap"><table id="pre" style="min-width:640px"></table></div>
+  </section>
+
+  <section>
+    <h2>Reproduce</h2>
+    <pre>cd proto
+../.venv/bin/python -m tyreformer.data --out out/tyreformer/cache/samples_dev_v3.npz
+../.venv/bin/python -m tyreformer.train --experiment cv|temporal|rolling|production   # flags in out/tyreformer/logs/train_*.json
+../.venv/bin/python -m tyreformer.gbm --experiment cv|temporal|rolling|production
+../.venv/bin/python -m tyreformer.blend && ../.venv/bin/python -m tyreformer.evaluate
+../.venv/bin/python -m tyreformer.sealed verify
+../.venv/bin/python -m pytest tests/tyreformer -q</pre>
+    <p class="foot">Sources: out/tyreformer/evaluation.json, sealed_holdout_aggregate.json, prerace/prerace_eval.json, tyreformer/FREEZE.json.</p>
+  </section>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const D = {"splits": [{"name": "Sealed holdout", "note": "aggregate only \u00b7 frozen before the first look", "races": 5, "next1": [0.28934196166523113, 0.24306749938073433], "next5": [0.4367836532556324, 0.34660720360243835], "cum5": [1.4281134994983566, 1.1096172143695142], "cliff5": [0.11137432761921966, 0.07182214597627976, 0.07486643447754246], "cov1": [0.9428001330229464, 0.9012304622547389], "better": [5, 5], "ci1": [-0.0548665885993066, -0.03666701659125968], "ci5": [-0.3732058289189517, -0.27786566918556255]}, {"name": "2026, deployment protocol", "note": "trained on 2023\u201325 + earlier 2026 races", "races": 12, "next1": [0.42119747357776954, 0.3507718686315637], "next5": [0.5934633098994955, 0.4531419584918756], "cum5": [1.9582743570017156, 1.4784850451483003], "cliff5": [0.205926537, 0.11446713495192505, 0.11964875887541589], "cov1": [0.8756711409395973, 0.8776845637583892], "better": [12, 12], "ci1": [-0.09936901857228647, -0.04612536679869144], "ci5": [-0.671559489036463, -0.31798444563338085]}, {"name": "2026, strict temporal", "note": "no 2026 race in training", "races": 12, "next1": [0.42119747357776954, 0.3534511212296138], "next5": [0.5934633098994955, 0.4562942373307881], "cum5": [1.9582743570017156, 1.5120745029291538], "cliff5": [0.205926537, 0.11846639902085121, 0.11964875887541589], "cov1": [0.8756711409395973, 0.8521812080536912], "better": [12, 12], "ci1": [-0.09889169159451199, -0.04312048359910993], "ci5": [-0.6469445636077388, -0.28352315997093064]}, {"name": "Cross-validation 2023\u201325", "note": "5 folds grouped by weekend", "races": 56, "next1": [0.33688284782407446, 0.2793390142008975], "next5": [0.5482545827721266, 0.4145091984867059], "cum5": [1.7293033006306713, 1.3148312727378384], "cliff5": [0.1451406376747589, 0.06870064037862036, 0.06995149791363779], "cov1": [0.9325603236526514, 0.8990030342436064], "better": [55, 56], "ci1": [-0.06490085324696615, -0.05116450527288428], "ci5": [-0.4775822848624123, -0.35810328362598126]}], "horizon": {"2026": {"estimator": [{"h": 1, "mae": 0.42119747357776954, "lo": 0.3689600328589456, "hi": 0.47938203707213933, "n": 5960}, {"h": 2, "mae": 0.48005308133234387, "lo": 0.4133720298322285, "hi": 0.5514553478738053, "n": 5566}, {"h": 3, "mae": 0.5222334380285814, "lo": 0.44445484590433054, "hi": 0.6049525304941673, "n": 5215}, {"h": 4, "mae": 0.5634574510098196, "lo": 0.47940198729434114, "hi": 0.6463368004719141, "n": 4878}, {"h": 5, "mae": 0.5934633098994955, "lo": 0.5059808127116504, "hi": 0.6779071166319405, "n": 4562}], "tyreformer": [{"h": 1, "mae": 0.3507718686315637, "lo": 0.3186725681415394, "hi": 0.3822576378301434, "n": 5960}, {"h": 2, "mae": 0.3922077406428941, "lo": 0.35033667855446177, "hi": 0.433833070565797, "n": 5566}, {"h": 3, "mae": 0.42447444078666374, "lo": 0.3766882331039091, "hi": 0.4722181417652883, "n": 5215}, {"h": 4, "mae": 0.4443512878792853, "lo": 0.3977509655649234, "hi": 0.4873661690341409, "n": 4878}, {"h": 5, "mae": 0.4531419584918756, "lo": 0.4088539943277865, "hi": 0.4953856452765007, "n": 4562}]}, "cv": {"estimator": [{"h": 1, "mae": 0.33688284782407446, "lo": 0.31340801549805974, "hi": 0.36264913527445947, "n": 27684}, {"h": 2, "mae": 0.40315733204002846, "lo": 0.37337951702668526, "hi": 0.4354692324222602, "n": 25917}, {"h": 3, "mae": 0.4578401129847133, "lo": 0.42132725646585806, "hi": 0.4985147947251321, "n": 24297}, {"h": 4, "mae": 0.5039838951834972, "lo": 0.46028193478021934, "hi": 0.5505461343421503, "n": 22733}, {"h": 5, "mae": 0.5482545827721266, "lo": 0.5005706977824969, "hi": 0.6006739684305815, "n": 21259}], "tyreformer": [{"h": 1, "mae": 0.2793390142008975, "lo": 0.2616794707495643, "hi": 0.29861929897952016, "n": 27684}, {"h": 2, "mae": 0.3290837740524394, "lo": 0.3082701099839779, "hi": 0.3525893687626536, "n": 25917}, {"h": 3, "mae": 0.3656286178289279, "lo": 0.340218521763473, "hi": 0.39431918069907906, "n": 24297}, {"h": 4, "mae": 0.391947667363371, "lo": 0.36163398454314205, "hi": 0.42525778934165537, "n": 22733}, {"h": 5, "mae": 0.4145091984867059, "lo": 0.38047353699450887, "hi": 0.4505583686466437, "n": 21259}]}}, "ladder": {"2026": {"current pace (persistence)": 0.4199537415293372, "pre-race slope only": 0.4615715839836439, "Orb v1 live estimator": 0.42119747357776954, "gradient-boosted trees": 0.35397440701930566, "transformer": 0.3676315251953644, "Orb TyreFormer ensemble": 0.3507718686315637, "n": 5960, "weekends": 12}, "cv": {"current pace (persistence)": 0.33505144168518364, "pre-race slope only": 0.5172739536061824, "Orb v1 live estimator": 0.33688284782407446, "gradient-boosted trees": 0.28018131861145756, "transformer": 0.2977020826339038, "Orb TyreFormer ensemble": 0.2793390142008975, "n": 27684, "weekends": 56}}, "fan": {"event": "Barcelona", "season": 2026, "driver": "ALB", "stint": 4, "compound": "SOFT", "origin_lap": 40, "past": [[36, 82.16463636363636], [37, 82.24045454545454], [38, 82.27127272727273], [39, 82.39609090909092], [40, 82.71390909090908]], "future": [[41, 82.58272727272727], [42, 82.80654545454546], [43, 85.27436363636363], [44, 82.95818181818181], [45, 82.938], [46, 84.84981818181818], [47, 83.51563636363636]], "tyreformer": [{"lap": 41, "q05": 82.23003474253922, "q25": 82.57889435071259, "q50": 82.77787557620316, "q75": 83.13803878802567, "q95": 83.99551371115952}, {"lap": 42, "q05": 82.31453297457658, "q25": 82.69220850787126, "q50": 82.93836573681794, "q75": 83.31310961565934, "q95": 84.3383581431862}, {"lap": 43, "q05": 82.35409900300006, "q25": 82.74964913479785, "q50": 83.03676303975085, "q75": 83.51335379235248, "q95": 84.62434658162097}, {"lap": 44, "q05": 82.33402865192618, "q25": 82.84520836732115, "q50": 83.12792201897825, "q75": 83.64632316491331, "q95": 84.85527475735869}, {"lap": 45, "q05": 82.42460926778054, "q25": 82.92646332986092, "q50": 83.23551698930001, "q75": 83.80922313935494, "q95": 84.92296215302682}, {"lap": 46, "q05": 82.61270701687263, "q25": 83.12138694326805, "q50": 83.50537997286247, "q75": 84.0233753303759, "q95": 85.21180158655571}, {"lap": 47, "q05": 82.6733977476828, "q25": 83.18698918621467, "q50": 83.56800776522087, "q75": 84.16940611402916, "q95": 85.35678297083305}, {"lap": 48, "q05": 82.69202905695366, "q25": 83.22244983713554, "q50": 83.58938604395317, "q75": 84.14024275343345, "q95": 85.36150294344353}, {"lap": 49, "q05": 82.7776323537104, "q25": 83.31390100519585, "q50": 83.66895967523979, "q75": 84.28371780912804, "q95": 85.3828597645037}, {"lap": 50, "q05": 82.77386486332344, "q25": 83.39045280020164, "q50": 83.75092893640922, "q75": 84.39737993280815, "q95": 85.53280335466789}], "estimator": [{"lap": 41, "mean": 82.84280145437278}, {"lap": 42, "mean": 83.00464685147232}, {"lap": 43, "mean": 83.16649224857187}, {"lap": 44, "mean": 83.32833764567141}, {"lap": 45, "mean": 83.49018304277095}]}, "facts": {"origins": {"2023": 15430, "2024": 15591, "2025": 16165, "2026": 11383}, "weekends": {"2023": 20, "2024": 20, "2025": 21, "2026": 13}, "targets": 280282, "weights": {"h1": 0.8, "h2": 0.7, "h3": 0.6, "h4": 0.5, "h5": 0.4}, "frozen_at": "2026-09-13T06:17:12+05:30", "frozen_files": 16, "sealed_ids": ["2023_Canada", "2024_Bahrain", "2024_Monza", "2024_SaudiArabia", "2024_Zandvoort", "2025_Qatar"]}, "prerace": {"model": "huber_obs", "A": {"orb": {"n_rows": 148, "n_weekends": 64, "mae": 0.05199519940245076, "median_ae": 0.03041612442573509, "pearson_r": 0.270814349235517, "spearman_rho": 0.25835468865091094, "calibration_slope": 0.14513697298319048, "calibration_intercept": 0.03535655082058774, "share_beats_naive": 0.8445945945945946, "coverage90": 0.8648648648648649, "mean_band_width": 0.22140197308924478}, "learned": {"n_rows": 148, "n_weekends": 64, "mae": 0.029857584266622536, "median_ae": 0.022111098998069158, "pearson_r": 0.40159746993920914, "spearman_rho": 0.404398508904741, "calibration_slope": 1.0964727649823613, "calibration_intercept": -0.0009058601804791632, "share_beats_naive": 0.8783783783783784, "coverage90": 0.9121621621621622, "mean_band_width": 0.13713916623810996}, "rows": 148, "weekends": 64}, "B": {"orb": {"n_rows": 29, "n_weekends": 11, "mae": 0.022730907639487367, "median_ae": 0.013901159526099993, "pearson_r": 0.780645782639817, "spearman_rho": 0.3786260338156431, "calibration_slope": 0.7653025986667078, "calibration_intercept": 0.01416440071982323, "share_beats_naive": 0.9655172413793104, "coverage90": 0.8620689655172413, "mean_band_width": 0.14882112016438045}, "learned": {"n_rows": 29, "n_weekends": 11, "mae": 0.028499518139887884, "median_ae": 0.019217758457927135, "pearson_r": 0.5777385788913938, "spearman_rho": 0.47881773399014765, "calibration_slope": 1.819331244299272, "calibration_intercept": -0.020469208100743957, "share_beats_naive": 0.8275862068965517, "coverage90": 0.896551724137931, "mean_band_width": 0.13335394198663889}, "rows": 29, "weekends": 11}}};
+const $ = s => document.querySelector(s);
+const f3 = v => v == null ? '—' : v.toFixed(3);
+const pct = (a, b) => (100 * (b / a - 1)).toFixed(0) + ' %';
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs, parent, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; };
+const tip = $('#tip');
+function showTip(ev, html){ tip.innerHTML = html; tip.hidden = false; const x = Math.min(ev.clientX + 14, innerWidth - tip.offsetWidth - 8); tip.style.left = x + 'px'; tip.style.top = (ev.clientY + 14) + 'px'; }
+function hideTip(){ tip.hidden = true; }
+
+// headline strip: sealed holdout
+const S0 = D.splits[0];
+$('#strip').innerHTML = [
+  ['Next-lap error', S0.next1, 's'], ['5-lap cumulative error', S0.cum5, 's'], ['Cliff risk, Brier score', S0.cliff5, '']
+].map(([k, v, u]) => `<div class="stat"><div class="k">${k}</div><div class="v num">${f3(v[1])}<small>${u ? u + ' ' : ''}from ${f3(v[0])}</small></div><div class="d">${pct(v[0], v[1])} vs the Orb v1 live estimator</div></div>`).join('');
+$('#sealedlabel').textContent = `sealed holdout, aggregate only · ${S0.races} weekends · model frozen ${D.facts.frozen_at.slice(0, 16).replace('T', ' ')} IST before scoring`;
+$('#frozen').textContent = `${D.facts.frozen_files} files hashed at ${D.facts.frozen_at.slice(11, 16)} IST`;
+
+// splits table
+const pair = (v, extra) => `<span class="pair"><span class="a">${f3(v[0])}</span><span class="arrow">→</span><span class="b">${f3(v[1])}</span></span><span class="chg">${pct(v[0], v[1])}${extra || ''}</span>`;
+$('#splits').innerHTML = `<thead><tr><th>Split</th><th>Races</th><th>Next lap</th><th>5 laps ahead</th><th>5-lap cumulative</th><th>Cliff Brier (base rate)</th><th>Next-lap 90 % band covers</th><th>Races better</th></tr></thead><tbody>` +
+  D.splits.map(r => `<tr><td><span class="split">${r.name}</span><span class="note">${r.note}</span></td><td class="num">${r.races}</td><td>${pair(r.next1)}</td><td>${pair(r.next5)}</td><td>${pair(r.cum5)}</td>` +
+  `<td><span class="pair"><span class="a">${f3(r.cliff5[0])}</span><span class="arrow">→</span><span class="b">${f3(r.cliff5[1])}</span></span><span class="chg" style="color:var(--ink3)">base rate ${f3(r.cliff5[2])}</span></td>` +
+  `<td class="num">${(100 * r.cov1[1]).toFixed(1)} %<span class="chg" style="color:var(--ink3)">estimator ${(100 * r.cov1[0]).toFixed(1)} %</span></td><td class="num">${r.better[0]}/${r.better[1]}</td></tr>`).join('') + '</tbody>';
+
+// horizon chart
+function drawHorizon(set){
+  const svg = $('#horizon'); svg.innerHTML = '';
+  const H = D.horizon[set], W = 560, Ht = 330, m = {l:48, r:150, t:16, b:40};
+  const all = [...H.estimator, ...H.tyreformer];
+  const lo = Math.floor(Math.min(...all.map(p => p.lo)) * 20) / 20, hi = Math.ceil(Math.max(...all.map(p => p.hi)) * 20) / 20;
+  const x = h => m.l + (h - 1) / 4 * (W - m.l - m.r), y = v => Ht - m.b - (v - lo) / (hi - lo) * (Ht - m.t - m.b);
+  for (let v = lo; v <= hi + 1e-9; v += 0.05){ el('line', {x1:m.l, x2:W - m.r, y1:y(v), y2:y(v), class:'grid'}, svg); el('text', {x:m.l - 8, y:y(v) + 4, 'text-anchor':'end', class:'tick'}, svg, v.toFixed(2)); }
+  for (let h = 1; h <= 5; h++) el('text', {x:x(h), y:Ht - m.b + 20, 'text-anchor':'middle', class:'tick'}, svg, '+' + h);
+  el('text', {x:(m.l + W - m.r) / 2, y:Ht - 4, 'text-anchor':'middle', class:'tick'}, svg, 'laps ahead');
+  [['estimator', 'var(--est)', 'var(--estband)', 'Orb v1 estimator'], ['tyreformer', 'var(--tf)', 'var(--tfband)', 'TyreFormer']].forEach(([k, c, band, name]) => {
+    const pts = H[k];
+    el('path', {d:'M' + pts.map(p => `${x(p.h)},${y(p.hi)}`).join('L') + 'L' + pts.slice().reverse().map(p => `${x(p.h)},${y(p.lo)}`).join('L') + 'Z', fill:band, stroke:'none'}, svg);
+    el('path', {d:'M' + pts.map(p => `${x(p.h)},${y(p.mae)}`).join('L'), fill:'none', stroke:c, 'stroke-width':2.2}, svg);
+    pts.forEach(p => { const dot = el('circle', {cx:x(p.h), cy:y(p.mae), r:4.5, fill:c, stroke:'var(--surface)', 'stroke-width':2}, svg);
+      const hit = el('circle', {cx:x(p.h), cy:y(p.mae), r:14, fill:'transparent'}, svg);
+      hit.addEventListener('mousemove', ev => showTip(ev, `${name}, +${p.h} lap${p.h > 1 ? 's' : ''}<br>${p.mae.toFixed(3)} s [${p.lo.toFixed(3)}, ${p.hi.toFixed(3)}]<br>n = ${p.n.toLocaleString()}`)); hit.addEventListener('mouseleave', hideTip); });
+    const last = pts[4]; el('text', {x:x(5) + 12, y:y(last.mae) + 4, class:'lbl'}, svg, `${name} ${last.mae.toFixed(3)} s`);
+  });
+}
+// ladder chart
+function drawLadder(set){
+  const svg = $('#ladder'); svg.innerHTML = '';
+  const L = D.ladder[set];
+  const rows = [['current pace', L['current pace (persistence)'], 'var(--ink3)'], ['pre-race slope only', L['pre-race slope only'], 'var(--ink3)'], ['Orb v1 live estimator', L['Orb v1 live estimator'], 'var(--est)'],
+                ['gradient-boosted trees', L['gradient-boosted trees'], 'var(--tree)'], ['transformer', L['transformer'], 'var(--tf)'], ['TyreFormer ensemble', L['Orb TyreFormer ensemble'], 'var(--tf)']];
+  const W = 480, m = {l:156, r:64, t:10, b:40}, bh = 30, gap = 16;
+  const max = Math.ceil(Math.max(...rows.map(r => r[1])) * 10) / 10;
+  const x = v => m.l + v / max * (W - m.l - m.r);
+  for (let v = 0; v <= max + 1e-9; v += 0.1){ el('line', {x1:x(v), x2:x(v), y1:m.t, y2:m.t + rows.length * (bh + gap) - gap, class:'grid'}, svg); el('text', {x:x(v), y:m.t + rows.length * (bh + gap) + 12, 'text-anchor':'middle', class:'tick'}, svg, v.toFixed(1)); }
+  rows.forEach(([name, v, c], i) => { const yy = m.t + i * (bh + gap);
+    el('text', {x:m.l - 10, y:yy + bh / 2 + 4, 'text-anchor':'end', class:'lbl'}, svg, name);
+    el('rect', {x:m.l, y:yy, width:Math.max(0, x(v) - m.l), height:bh, rx:4, fill:c, opacity:name === 'transformer' ? .55 : 1}, svg);
+    el('text', {x:x(v) + 6, y:yy + bh / 2 + 4, class:'tick', style:'fill:var(--ink)'}, svg, v.toFixed(3) + ' s'); });
+  el('text', {x:(m.l + W - m.r) / 2, y:328, 'text-anchor':'middle', class:'tick'}, svg, `next-lap error, s · n = ${L.n.toLocaleString()} origins, ${L.weekends} races`);
+}
+function setData(set){ document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.set === set))); drawHorizon(set); drawLadder(set); }
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => setData(b.dataset.set)));
+setData('2026');
+
+// fan chart
+(function(){
+  const F = D.fan, svg = $('#fan'), W = 1000, Ht = 360, m = {l:56, r:24, t:20, b:44};
+  $('#fantitle').textContent = `One stint, one forecast: ${F.event} ${F.season}, ${F.driver}`;
+  $('#fansub').textContent = `${F.compound.toLowerCase()} tyres, forecast made at the end of lap ${F.origin_lap} by a model that never trained on this race. A typical stint, chosen by rule: clearly degrading, with a 5-lap error near the median.`;
+  const laps = [...F.past.map(p => p[0]), ...F.future.map(p => p[0]), ...F.tyreformer.map(p => p.lap)];
+  const vals = [...F.past.map(p => p[1]), ...F.future.map(p => p[1]), ...F.tyreformer.flatMap(p => [p.q05, p.q95]), ...F.estimator.map(p => p.mean)];
+  const x0 = Math.min(...laps) - 0.5, x1 = Math.max(...laps) + 0.5, y0 = Math.floor(Math.min(...vals) * 2) / 2, y1 = Math.ceil(Math.max(...vals) * 2) / 2;
+  const x = l => m.l + (l - x0) / (x1 - x0) * (W - m.l - m.r), y = v => Ht - m.b - (v - y0) / (y1 - y0) * (Ht - m.t - m.b);
+  for (let v = y0; v <= y1 + 1e-9; v += 0.5){ el('line', {x1:m.l, x2:W - m.r, y1:y(v), y2:y(v), class:'grid'}, svg); el('text', {x:m.l - 8, y:y(v) + 4, 'text-anchor':'end', class:'tick'}, svg, v.toFixed(1)); }
+  for (let l = Math.ceil(x0); l <= x1; l += 2) el('text', {x:x(l), y:Ht - m.b + 20, 'text-anchor':'middle', class:'tick'}, svg, l);
+  el('text', {x:(m.l + W - m.r) / 2, y:Ht - 6, 'text-anchor':'middle', class:'tick'}, svg, 'race lap · fuel-corrected lap time, s');
+  el('line', {x1:x(F.origin_lap + 0.5), x2:x(F.origin_lap + 0.5), y1:m.t, y2:Ht - m.b, stroke:'var(--rule)', 'stroke-width':1.5, 'stroke-dasharray':'3 4'}, svg);
+  el('text', {x:x(F.origin_lap + 0.5) + 8, y:m.t + 12, class:'tick'}, svg, `forecast at end of lap ${F.origin_lap}`);
+  const T = F.tyreformer;
+  el('path', {d:'M' + T.map(p => `${x(p.lap)},${y(p.q95)}`).join('L') + 'L' + T.slice().reverse().map(p => `${x(p.lap)},${y(p.q05)}`).join('L') + 'Z', fill:'var(--tfband)'}, svg);
+  el('path', {d:'M' + T.map(p => `${x(p.lap)},${y(p.q75)}`).join('L') + 'L' + T.slice().reverse().map(p => `${x(p.lap)},${y(p.q25)}`).join('L') + 'Z', fill:'var(--tfband2)'}, svg);
+  el('path', {d:'M' + T.map(p => `${x(p.lap)},${y(p.q50)}`).join('L'), fill:'none', stroke:'var(--tf)', 'stroke-width':2.4}, svg);
+  el('path', {d:'M' + F.estimator.map(p => `${x(p.lap)},${y(p.mean)}`).join('L'), fill:'none', stroke:'var(--est)', 'stroke-width':2.4, 'stroke-dasharray':'8 5'}, svg);
+  F.past.forEach(p => el('circle', {cx:x(p[0]), cy:y(p[1]), r:5, fill:'var(--ink3)'}, svg));
+  F.future.forEach(p => el('circle', {cx:x(p[0]), cy:y(p[1]), r:5.5, fill:'var(--surface)', stroke:'var(--ink)', 'stroke-width':1.8}, svg));
+  T.forEach(p => { const actual = F.future.find(q => q[0] === p.lap); const est = F.estimator.find(q => q.lap === p.lap);
+    const hit = el('rect', {x:x(p.lap - 0.5), y:m.t, width:x(p.lap + 0.5) - x(p.lap - 0.5), height:Ht - m.t - m.b, fill:'transparent'}, svg);
+    hit.addEventListener('mousemove', ev => showTip(ev, `lap ${p.lap}<br>TyreFormer ${p.q50.toFixed(2)} s (90 %: ${p.q05.toFixed(2)}–${p.q95.toFixed(2)})` + (est ? `<br>estimator ${est.mean.toFixed(2)} s` : '') + (actual ? `<br>actual ${actual[1].toFixed(2)} s` : '<br>no clean lap')));
+    hit.addEventListener('mouseleave', hideTip); });
+})();
+
+// facts
+const fx = D.facts, o = fx.origins, w = fx.weekends;
+const total = Object.values(o).reduce((a, b) => a + b, 0);
+$('#facts').innerHTML = [
+  ['Training data', `${total.toLocaleString()} forecast origins with ${fx.targets.toLocaleString()} future-lap targets, from ${Object.keys(w).map(k => `${w[k]} weekends of ${k}`).join(', ')}. That is every race and sprint lap on disk except the sealed weekends (${fx.sealed_ids.join(', ')}).`],
+  ['Per-lap inputs', 'Lap time against the current level, clean flag, tyre age, race progress, traffic share, track status, pit and deletion flags, compound, tyre energy and its lateral and longitudinal split, full-throttle share, sector losses against the stint best, feed quality, and how the rest of the field\'s laps just changed.'],
+  ['Per-forecast context', 'Stint and tyre-set state, track temperature and its change since practice, rain, season, sprint flag, the weekend\'s Orb v1 pre-race forecast for every compound, compound pace offsets, and the Pirelli C-number nomination (verified for 82 of 82 weekends from Pirelli and Formula 1 sources).'],
+  ['Transformer', '24-lap window plus a context token; 3 pre-norm layers, width 96, 4 heads, 468,278 parameters. A circuit embedding is dropped to "unknown" half the time in training, so a new circuit such as Madrid still works. Outputs: monotone quantiles for 10 horizons, 3- and 5-lap sums, and cliff probabilities. About 40 seconds per model on an M2 Max; 3 seeds each.'],
+  ['Ensemble', `Gradient-boosted median experts for 1 to 5 laps. Blend weight on the trees: ${Object.entries(fx.weights).map(([k, v]) => `${k.replace('h', '+')} ${v}`).join(', ')}. The transformer's bands move with the blended median, then split-conformal margins set them to 90 %.`],
+  ['Live use', 'tyreformer.infer forecasts one car at the end of one lap and refuses any lap completed later. Tests assert the live forecast equals the scored replay.']
+].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+
+// pre-race companion
+const P = D.prerace;
+$('#presub').textContent = `A small regularised model (${P.model}) predicts each compound's race degradation, in seconds per lap per lap of tyre age. It uses practice, the Orb v1 forecast, the Pirelli C-number and earlier seasons of the same circuit. Across four seasons it beats Orb v1, much of it by shrinking toward typical degradation. On 2026 alone it does not beat Orb v1, so treat it as a second opinion.`;
+$('#pre').innerHTML = `<thead><tr><th>Protocol</th><th>Compound-weekends</th><th>MAE, Orb v1 → learned</th><th>Correlation, Orb v1 → learned</th></tr></thead><tbody>` +
+  [['Leave one weekend out, 2023–2026', P.A], ['Trained 2023–25, tested on 2026', P.B]].map(([n, r]) =>
+  `<tr><td>${n}</td><td class="num">${r.rows} (${r.weekends} weekends)</td><td class="pair"><span class="a">${r.orb.mae.toFixed(4)}</span><span class="arrow">→</span><span class="b">${r.learned.mae.toFixed(4)}</span></td><td class="pair"><span class="a">${r.orb.pearson_r.toFixed(2)}</span><span class="arrow">→</span><span class="b">${r.learned.pearson_r.toFixed(2)}</span></td></tr>`).join('') + '</tbody>';
+</script>

@@ -1,0 +1,764 @@
+{
+ "experiment": "rolling",
+ "config": {
+  "d": 96,
+  "layers": 3,
+  "heads": 4,
+  "dropout": 0.2,
+  "circuit_dropout": 0.5,
+  "lr": 0.001,
+  "weight_decay": 0.05,
+  "batch": 1024,
+  "epochs": 40,
+  "patience": 6,
+  "warmup_steps": 150,
+  "w_cum": 0.25,
+  "w_cliff": 0.5,
+  "target_clip": [
+   -6.0,
+   12.0
+  ],
+  "cum_clip": [
+   -20.0,
+   40.0
+  ],
+  "val_weekends": 0.12,
+  "tok_noise": 0.0,
+  "horizon_weighting": "inv_sqrt"
+ },
+ "seeds": 2,
+ "samples": "samples_dev_v3.npz",
+ "samples_sha16": "5901011b50611b25",
+ "started": "2026-09-13T06:02:20",
+ "runs": [
+  {
+   "event": "Australia",
+   "seed": 0,
+   "earlier_2026": [],
+   "best_val": 0.3636194511818745,
+   "epochs_run": 11,
+   "n_train": 41424,
+   "n_val": 5762,
+   "train_weekends": 54,
+   "val_weekends": [
+    "2023_Belgium",
+    "2023_Mexico",
+    "2023_Monaco",
+    "2023_Zandvoort",
+    "2024_Austria",
+    "2024_LasVegas",
+    "2025_Canada"
+   ],
+   "seconds": 35.0
+  },
+  {
+   "event": "Australia",
+   "seed": 1,
+   "earlier_2026": [],
+   "best_val": 0.35144131396799694,
+   "epochs_run": 12,
+   "n_train": 42388,
+   "n_val": 4798,
+   "train_weekends": 54,
+   "val_weekends": [
+    "2023_Belgium",
+    "2023_Qatar",
+    "2024_Brazil",
+    "2024_Imola",
+    "2025_Austria",
+    "2025_Japan",
+    "2025_Miami"
+   ],
+   "seconds": 37.9
+  },
+  {
+   "event": "China",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia"
+   ],
+   "best_val": 0.3753116644313018,
+   "epochs_run": 15,
+   "n_train": 42403,
+   "n_val": 5595,
+   "train_weekends": 55,
+   "val_weekends": [
+    "2023_Australia",
+    "2024_Britain",
+    "2024_Hungary",
+    "2024_Miami",
+    "2025_Hungary",
+    "2025_Imola",
+    "2026_Australia"
+   ],
+   "seconds": 49.0
+  },
+  {
+   "event": "China",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia"
+   ],
+   "best_val": 0.40596854260115095,
+   "epochs_run": 13,
+   "n_train": 41669,
+   "n_val": 6329,
+   "train_weekends": 55,
+   "val_weekends": [
+    "2024_Monaco",
+    "2024_Singapore",
+    "2024_USA",
+    "2025_Bahrain",
+    "2025_Canada",
+    "2025_China",
+    "2025_Monaco"
+   ],
+   "seconds": 42.1
+  },
+  {
+   "event": "Japan",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "China"
+   ],
+   "best_val": 0.31337764912435895,
+   "epochs_run": 10,
+   "n_train": 42771,
+   "n_val": 5934,
+   "train_weekends": 55,
+   "val_weekends": [
+    "2023_Monza",
+    "2023_Singapore",
+    "2024_Mexico",
+    "2024_Singapore",
+    "2025_Barcelona",
+    "2025_Belgium",
+    "2025_Miami",
+    "2025_USA"
+   ],
+   "seconds": 33.5
+  },
+  {
+   "event": "Japan",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "China"
+   ],
+   "best_val": 0.296921928235547,
+   "epochs_run": 12,
+   "n_train": 42640,
+   "n_val": 6065,
+   "train_weekends": 55,
+   "val_weekends": [
+    "2023_Azerbaijan",
+    "2023_Bahrain",
+    "2023_Brazil",
+    "2023_Britain",
+    "2023_Monaco",
+    "2024_Azerbaijan",
+    "2024_China",
+    "2025_Singapore"
+   ],
+   "seconds": 39.8
+  },
+  {
+   "event": "Miami",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "China",
+    "Japan"
+   ],
+   "best_val": 0.2643377270214914,
+   "epochs_run": 13,
+   "n_train": 43402,
+   "n_val": 6034,
+   "train_weekends": 56,
+   "val_weekends": [
+    "2023_AbuDhabi",
+    "2023_Japan",
+    "2023_Monaco",
+    "2023_Monza",
+    "2024_USA",
+    "2025_AbuDhabi",
+    "2025_Azerbaijan",
+    "2025_SaudiArabia"
+   ],
+   "seconds": 43.7
+  },
+  {
+   "event": "Miami",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "China",
+    "Japan"
+   ],
+   "best_val": 0.30485605208869815,
+   "epochs_run": 13,
+   "n_train": 42160,
+   "n_val": 7276,
+   "train_weekends": 56,
+   "val_weekends": [
+    "2023_Britain",
+    "2023_Hungary",
+    "2023_SaudiArabia",
+    "2024_Austria",
+    "2024_Barcelona",
+    "2025_Barcelona",
+    "2025_USA",
+    "2026_Australia"
+   ],
+   "seconds": 43.6
+  },
+  {
+   "event": "Canada",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "China",
+    "Japan",
+    "Miami"
+   ],
+   "best_val": 0.3282297214048099,
+   "epochs_run": 11,
+   "n_train": 43084,
+   "n_val": 7232,
+   "train_weekends": 57,
+   "val_weekends": [
+    "2023_AbuDhabi",
+    "2023_Hungary",
+    "2023_Monza",
+    "2024_Imola",
+    "2024_Qatar",
+    "2025_Austria",
+    "2025_Hungary",
+    "2025_Monaco"
+   ],
+   "seconds": 36.8
+  },
+  {
+   "event": "Canada",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "China",
+    "Japan",
+    "Miami"
+   ],
+   "best_val": 0.3763684429530275,
+   "epochs_run": 11,
+   "n_train": 44123,
+   "n_val": 6193,
+   "train_weekends": 57,
+   "val_weekends": [
+    "2023_Austria",
+    "2023_Barcelona",
+    "2023_Belgium",
+    "2024_Azerbaijan",
+    "2024_Hungary",
+    "2025_Azerbaijan",
+    "2025_Britain",
+    "2025_Singapore"
+   ],
+   "seconds": 35.3
+  },
+  {
+   "event": "Monaco",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami"
+   ],
+   "best_val": 0.24321327435997545,
+   "epochs_run": 11,
+   "n_train": 45026,
+   "n_val": 6565,
+   "train_weekends": 58,
+   "val_weekends": [
+    "2023_Azerbaijan",
+    "2023_Monza",
+    "2023_Qatar",
+    "2024_Austria",
+    "2025_Azerbaijan",
+    "2025_Bahrain",
+    "2025_Japan",
+    "2025_Singapore"
+   ],
+   "seconds": 38.3
+  },
+  {
+   "event": "Monaco",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami"
+   ],
+   "best_val": 0.4280686930326913,
+   "epochs_run": 12,
+   "n_train": 44538,
+   "n_val": 7053,
+   "train_weekends": 58,
+   "val_weekends": [
+    "2023_Belgium",
+    "2023_Monaco",
+    "2024_AbuDhabi",
+    "2024_Austria",
+    "2025_Azerbaijan",
+    "2025_Imola",
+    "2025_Monaco",
+    "2026_Canada"
+   ],
+   "seconds": 42.5
+  },
+  {
+   "event": "Barcelona",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.38490785940344446,
+   "epochs_run": 11,
+   "n_train": 44821,
+   "n_val": 6801,
+   "train_weekends": 59,
+   "val_weekends": [
+    "2023_Monaco",
+    "2023_Zandvoort",
+    "2024_Austria",
+    "2024_Azerbaijan",
+    "2024_Canada",
+    "2024_Imola",
+    "2025_Barcelona",
+    "2025_Monaco"
+   ],
+   "seconds": 36.8
+  },
+  {
+   "event": "Barcelona",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.32557637186991495,
+   "epochs_run": 12,
+   "n_train": 45866,
+   "n_val": 5756,
+   "train_weekends": 59,
+   "val_weekends": [
+    "2023_Hungary",
+    "2023_Singapore",
+    "2024_AbuDhabi",
+    "2024_Britain",
+    "2024_Canada",
+    "2024_Mexico",
+    "2025_Bahrain",
+    "2025_USA"
+   ],
+   "seconds": 37.1
+  },
+  {
+   "event": "Austria",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Barcelona",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.27094689539600175,
+   "epochs_run": 10,
+   "n_train": 46091,
+   "n_val": 6502,
+   "train_weekends": 60,
+   "val_weekends": [
+    "2023_Austria",
+    "2024_Australia",
+    "2024_Belgium",
+    "2024_USA",
+    "2025_Austria",
+    "2025_Azerbaijan",
+    "2025_Mexico",
+    "2025_Zandvoort"
+   ],
+   "seconds": 21.0
+  },
+  {
+   "event": "Austria",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Barcelona",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.293588382703487,
+   "epochs_run": 11,
+   "n_train": 44837,
+   "n_val": 7756,
+   "train_weekends": 60,
+   "val_weekends": [
+    "2023_Bahrain",
+    "2023_Barcelona",
+    "2023_Miami",
+    "2024_Austria",
+    "2025_Bahrain",
+    "2025_Canada",
+    "2025_China",
+    "2026_Barcelona"
+   ],
+   "seconds": 21.4
+  },
+  {
+   "event": "Britain",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.4479674783769077,
+   "epochs_run": 11,
+   "n_train": 48021,
+   "n_val": 5669,
+   "train_weekends": 61,
+   "val_weekends": [
+    "2023_Hungary",
+    "2023_Monaco",
+    "2024_Britain",
+    "2024_Qatar",
+    "2025_Australia",
+    "2025_Austria",
+    "2025_Monaco",
+    "2026_Australia"
+   ],
+   "seconds": 27.8
+  },
+  {
+   "event": "Britain",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.3723261956446253,
+   "epochs_run": 10,
+   "n_train": 48092,
+   "n_val": 5598,
+   "train_weekends": 61,
+   "val_weekends": [
+    "2023_Belgium",
+    "2023_Hungary",
+    "2023_Singapore",
+    "2023_Zandvoort",
+    "2024_Miami",
+    "2024_USA",
+    "2025_Britain",
+    "2025_Imola"
+   ],
+   "seconds": 23.4
+  },
+  {
+   "event": "Belgium",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Britain",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.41156533982574217,
+   "epochs_run": 12,
+   "n_train": 49670,
+   "n_val": 5126,
+   "train_weekends": 62,
+   "val_weekends": [
+    "2023_Barcelona",
+    "2023_Belgium",
+    "2023_Japan",
+    "2023_Singapore",
+    "2024_Australia",
+    "2024_Canada",
+    "2024_LasVegas",
+    "2025_Miami"
+   ],
+   "seconds": 25.1
+  },
+  {
+   "event": "Belgium",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Britain",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.2815056174576163,
+   "epochs_run": 17,
+   "n_train": 47798,
+   "n_val": 6998,
+   "train_weekends": 62,
+   "val_weekends": [
+    "2023_Azerbaijan",
+    "2023_Bahrain",
+    "2023_Barcelona",
+    "2023_Hungary",
+    "2024_Barcelona",
+    "2024_Imola",
+    "2025_Zandvoort",
+    "2026_Japan"
+   ],
+   "seconds": 34.7
+  },
+  {
+   "event": "Hungary",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.30396377839693767,
+   "epochs_run": 16,
+   "n_train": 50161,
+   "n_val": 5229,
+   "train_weekends": 62,
+   "val_weekends": [
+    "2023_Australia",
+    "2023_Monza",
+    "2023_USA",
+    "2024_Brazil",
+    "2024_Hungary",
+    "2024_Qatar",
+    "2025_Australia",
+    "2025_Britain",
+    "2026_China"
+   ],
+   "seconds": 34.6
+  },
+  {
+   "event": "Hungary",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "China",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.31647351502523263,
+   "epochs_run": 13,
+   "n_train": 48088,
+   "n_val": 7302,
+   "train_weekends": 62,
+   "val_weekends": [
+    "2023_AbuDhabi",
+    "2023_Australia",
+    "2023_Miami",
+    "2023_Monaco",
+    "2023_Monza",
+    "2024_Japan",
+    "2025_Hungary",
+    "2025_Japan",
+    "2025_Monaco"
+   ],
+   "seconds": 27.7
+  },
+  {
+   "event": "Zandvoort",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "China",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.3211649984434404,
+   "epochs_run": 10,
+   "n_train": 48504,
+   "n_val": 7996,
+   "train_weekends": 63,
+   "val_weekends": [
+    "2023_Belgium",
+    "2023_Mexico",
+    "2024_Austria",
+    "2024_China",
+    "2024_Qatar",
+    "2025_Brazil",
+    "2025_Canada",
+    "2025_Hungary",
+    "2026_Australia"
+   ],
+   "seconds": 20.5
+  },
+  {
+   "event": "Zandvoort",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "China",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monaco"
+   ],
+   "best_val": 0.37200110568572914,
+   "epochs_run": 11,
+   "n_train": 49671,
+   "n_val": 6829,
+   "train_weekends": 63,
+   "val_weekends": [
+    "2023_AbuDhabi",
+    "2023_Bahrain",
+    "2023_Barcelona",
+    "2023_Singapore",
+    "2024_Britain",
+    "2024_Japan",
+    "2024_Monaco",
+    "2025_China",
+    "2026_Belgium"
+   ],
+   "seconds": 22.6
+  },
+  {
+   "event": "Monza",
+   "seed": 0,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "China",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monaco",
+    "Zandvoort"
+   ],
+   "best_val": 0.3359046201514577,
+   "epochs_run": 12,
+   "n_train": 50456,
+   "n_val": 7376,
+   "train_weekends": 64,
+   "val_weekends": [
+    "2024_Azerbaijan",
+    "2024_Hungary",
+    "2024_Mexico",
+    "2024_Miami",
+    "2024_USA",
+    "2025_Britain",
+    "2026_Australia",
+    "2026_China",
+    "2026_Zandvoort"
+   ],
+   "seconds": 25.6
+  },
+  {
+   "event": "Monza",
+   "seed": 1,
+   "earlier_2026": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "China",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monaco",
+    "Zandvoort"
+   ],
+   "best_val": 0.33521167838267624,
+   "epochs_run": 12,
+   "n_train": 50465,
+   "n_val": 7367,
+   "train_weekends": 64,
+   "val_weekends": [
+    "2023_Australia",
+    "2023_Brazil",
+    "2023_Hungary",
+    "2023_Monza",
+    "2024_Barcelona",
+    "2024_Britain",
+    "2024_Canada",
+    "2024_Mexico",
+    "2026_Zandvoort"
+   ],
+   "seconds": 26.2
+  }
+ ],
+ "seconds": 865.9
+}

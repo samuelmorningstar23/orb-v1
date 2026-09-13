@@ -1,0 +1,923 @@
+{
+ "season": 2026,
+ "generated_at": "2026-09-13T06:05:59",
+ "git_sha": "e35c11455b752177242c3861015a574cc0cce82b",
+ "rule": "SeasonForecaster.forecast(event, pool=development events minus event, target_obs_in_widening=False)",
+ "sealed_excluded": [],
+ "events": {
+  "Australia": {
+   "race_id": "2026_Australia",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.019788026053792197,
+     "band90": [
+      -0.033644046583775775,
+      0.07185147979730017
+     ],
+     "band90_raw": [
+      -0.019439135226512312,
+      0.05801041564102156
+     ],
+     "widen": 1.362119278929204,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9631772854791862,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.027577618966801054,
+     "band90": [
+      -0.01714041295185819,
+      0.08888166242314346
+     ],
+     "band90_raw": [
+      -0.00525212847926197,
+      0.07258398838294723
+     ],
+     "widen": 1.362119278929204,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.45182685386752625,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.027577618966801054,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.027577618966801054,
+     "band90": [
+      -0.01714041295185819,
+      0.08888166242314346
+     ],
+     "band90_raw": [
+      -0.00525212847926197,
+      0.07258398838294723
+     ],
+     "widen": 1.362119278929204,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.027577618966801054,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    }
+   }
+  },
+  "Austria": {
+   "race_id": "2026_Austria",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.13479146787258428,
+     "band90": [
+      0.040986984175413244,
+      0.30086917828079046
+     ],
+     "band90_raw": [
+      0.07204507645095809,
+      0.24588186156125033
+     ],
+     "widen": 1.4949781425173776,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9674641735999729,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.06868152602259776,
+     "band90": [
+      0.039903553308369144,
+      0.1863675242424681
+     ],
+     "band90_raw": [
+      0.0494317645071754,
+      0.14740240820332326
+     ],
+     "widen": 1.4949781425173776,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4292503306578138,
+     "factor_applied": true,
+     "factor_from_n_weekends": 5,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.06720102525859062,
+     "band90": [
+      -0.0020362438542986805,
+      0.13678814565453162
+     ],
+     "band90_raw": [
+      0.02088779355053273,
+      0.11374827462423284
+     ],
+     "widen": 1.4949781425173776,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 2,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Barcelona": {
+   "race_id": "2026_Barcelona",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.21184057796251227,
+     "band90": [
+      0.027515284612265933,
+      0.5219280943382537
+     ],
+     "band90_raw": [
+      0.0978323531531793,
+      0.40363480562913
+     ],
+     "widen": 1.616771892190335,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9633010794165034,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.025499862620246873,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.14605342379809383,
+     "band90": [
+      0.06974384571097768,
+      0.3531505608179515
+     ],
+     "band90_raw": [
+      0.09885469498809756,
+      0.2741464083559161
+     ],
+     "widen": 1.616771892190335,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4744033770772387,
+     "factor_applied": true,
+     "factor_from_n_weekends": 5,
+     "floor": 0.025499862620246873,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.025499862620246873,
+     "band90": [
+      -0.020516435163804636,
+      0.07335552433078046
+     ],
+     "band90_raw": [
+      -0.0029619742080211875,
+      0.05509937628181897
+     ],
+     "widen": 1.616771892190335,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.025499862620246873,
+     "basis": "low-degradation fallback: median race degradation of the 12 withheld cases in the pool"
+    }
+   }
+  },
+  "Belgium": {
+   "race_id": "2026_Belgium",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.15341391847489833,
+     "band90": [
+      0.03368705601668849,
+      0.2990423155184734
+     ],
+     "band90_raw": [
+      0.06500164116122657,
+      0.26095317875290097
+     ],
+     "widen": 1.3541881975671688,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9631772854791862,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.025499862620246873,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.06981941010769284,
+     "band90": [
+      0.031032517587488713,
+      0.18208707024994447
+     ],
+     "band90_raw": [
+      0.0411772371882377,
+      0.15272344098312296
+     ],
+     "widen": 1.3541881975671688,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4744033770772387,
+     "factor_applied": true,
+     "factor_from_n_weekends": 5,
+     "floor": 0.025499862620246873,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.025499862620246873,
+     "band90": [
+      -0.013042820893676317,
+      0.08537104321397473
+     ],
+     "band90_raw": [
+      -0.0029619742080211875,
+      0.06971172379381776
+     ],
+     "widen": 1.3541881975671688,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.025499862620246873,
+     "basis": "low-degradation fallback: median race degradation of the 12 withheld cases in the pool"
+    }
+   }
+  },
+  "Britain": {
+   "race_id": "2026_Britain",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "HARD": {
+     "prediction": 0.025499862620246873,
+     "band90": [
+      -0.01217267222396104,
+      0.08567213719518281
+     ],
+     "band90_raw": [
+      -0.0029619742080211875,
+      0.07096039421494738
+     ],
+     "widen": 1.3236157269650237,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.025499862620246873,
+     "basis": "low-degradation fallback: median race degradation of the 12 withheld cases in the pool"
+    }
+   }
+  },
+  "Canada": {
+   "race_id": "2026_Canada",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.030270778846798407,
+     "band90": [
+      0.02205477186701353,
+      0.07402908216861137
+     ],
+     "band90_raw": [
+      0.022326100957223982,
+      0.07258398838294723
+     ],
+     "widen": 1.0341523084990654,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 0.9673403796626557,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.030270778846798407,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.030270778846798407,
+     "band90": [
+      0.02205477186701353,
+      0.07402908216861137
+     ],
+     "band90_raw": [
+      0.022326100957223982,
+      0.07258398838294723
+     ],
+     "widen": 1.0341523084990654,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.030270778846798407,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    }
+   }
+  },
+  "Hungary": {
+   "race_id": "2026_Hungary",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.13248352263860166,
+     "band90": [
+      0.03598806942471326,
+      0.2944803544026853
+     ],
+     "band90_raw": [
+      0.06793712529034295,
+      0.24084419170584226
+     ],
+     "widen": 1.4949781425173776,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9674641735999729,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.05768927439741813,
+     "band90": [
+      0.02720777029952526,
+      0.15313755010745667
+     ],
+     "band90_raw": [
+      0.03730001034666392,
+      0.12153520832479597
+     ],
+     "widen": 1.4949781425173776,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4744033770772387,
+     "factor_applied": true,
+     "factor_from_n_weekends": 5,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.05161923675885305,
+     "band90": [
+      -0.03899680653047474,
+      0.14032062407411716
+     ],
+     "band90_raw": [
+      -0.008994387422126887,
+      0.11095213587796714
+     ],
+     "widen": 1.4949781425173776,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 2,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Japan": {
+   "race_id": "2026_Japan",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.18228208448424563,
+     "band90": [
+      0.03828413543701539,
+      0.3028815399438363
+     ],
+     "band90_raw": [
+      0.08274504788593086,
+      0.26564516355060686
+     ],
+     "widen": 1.4466770758741698,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9673403796626557,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02892419890679973,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.01913933020406623,
+     "band90": [
+      -0.008370455451999239,
+      0.05147557040553179
+     ],
+     "band90_raw": [
+      0.00012348616061071786,
+      0.04149140914464531
+     ],
+     "widen": 1.4466770758741698,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4292503306578138,
+     "factor_applied": true,
+     "factor_from_n_weekends": 5,
+     "floor": 0.02892419890679973,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.02892419890679973,
+     "band90": [
+      -0.017204796775766966,
+      0.08973699901606627
+     ],
+     "band90_raw": [
+      -0.0029619742080211875,
+      0.07096039421494738
+     ],
+     "widen": 1.4466770758741698,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.02892419890679973,
+     "basis": "low-degradation fallback: median race degradation of the 12 withheld cases in the pool"
+    }
+   }
+  },
+  "Madrid": {
+   "race_id": "2026_Madrid",
+   "completed": false,
+   "development": false,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.06762490392631254,
+     "band90": [
+      -0.11810181837771255,
+      0.2625708306893798
+     ],
+     "band90_raw": [
+      -0.06080203752014135,
+      0.20242677202067313
+     ],
+     "widen": 1.446166358960294,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9673403796626557,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.027577618966801054,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "band90_raw": [
+      -0.0006718199367804047,
+      0.0693368000469475
+     ],
+     "widen": 1.446166358960294,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.45182685386752625,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.027577618966801054,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    }
+   }
+  },
+  "Miami": {
+   "race_id": "2026_Miami",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02892419890679973,
+     "band90": [
+      -0.01710545126037344,
+      0.09050928701751793
+     ],
+     "band90_raw": [
+      -0.0024943055356133727,
+      0.07096039421494738
+     ],
+     "widen": 1.465049052590673,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 0.9673403796626557,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02892419890679973,
+     "basis": "low-degradation fallback: median race degradation of the 12 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.025984925756822302,
+     "band90": [
+      -0.013154365070544047,
+      0.07064562931845556
+     ],
+     "band90_raw": [
+      -0.0007304192059662335,
+      0.056469026942826225
+     ],
+     "widen": 1.465049052590673,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4292503306578138,
+     "factor_applied": true,
+     "factor_from_n_weekends": 5,
+     "floor": 0.02892419890679973,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.048876625160275466,
+     "band90": [
+      -0.005697581663678598,
+      0.1048821311533007
+     ],
+     "band90_raw": [
+      0.011625854117865996,
+      0.08710435951086917
+     ],
+     "widen": 1.465049052590673,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 2,
+     "floor": 0.02892419890679973,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Monaco": {
+   "race_id": "2026_Monaco",
+   "completed": false,
+   "development": false,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "band90_raw": [
+      -0.0006718199367804047,
+      0.0693368000469475
+     ],
+     "widen": 1.446166358960294,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.9673403796626557,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.027577618966801054,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "band90_raw": [
+      -0.0006718199367804047,
+      0.0693368000469475
+     ],
+     "widen": 1.446166358960294,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.45182685386752625,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.027577618966801054,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "band90_raw": [
+      -0.0006718199367804047,
+      0.0693368000469475
+     ],
+     "widen": 1.446166358960294,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.027577618966801054,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    }
+   }
+  },
+  "Monza": {
+   "race_id": "2026_Monza",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02449301413072191,
+     "band90": [
+      -0.03576858832790522,
+      0.09590360508484023
+     ],
+     "band90_raw": [
+      -0.016767880742764914,
+      0.07338757992382962
+     ],
+     "widen": 1.4605015873601341,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9631772854791862,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.030270778846798407,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.030270778846798407,
+     "band90": [
+      -0.021610483690559713,
+      0.09206928854064572
+     ],
+     "band90_raw": [
+      -0.00525212847926197,
+      0.07258398838294723
+     ],
+     "widen": 1.4605015873601341,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.45182685386752625,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.030270778846798407,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.030270778846798407,
+     "band90": [
+      -0.021610483690559713,
+      0.09206928854064572
+     ],
+     "band90_raw": [
+      -0.00525212847926197,
+      0.07258398838294723
+     ],
+     "widen": 1.4605015873601341,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.030270778846798407,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    }
+   }
+  },
+  "Zandvoort": {
+   "race_id": "2026_Zandvoort",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Canada",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monza"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.037283925832409116,
+     "band90": [
+      -0.10771838167710193,
+      0.19908710798974819
+     ],
+     "band90_raw": [
+      -0.07005149190959122,
+      0.15705589668676126
+     ],
+     "widen": 1.3509269406119957,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.9674641735999729,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.023422106273692688,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.023422106273692688,
+     "band90": [
+      -0.01531468995550651,
+      0.06790264624456016
+     ],
+     "band90_raw": [
+      -0.00525212847926197,
+      0.056348046702948566
+     ],
+     "widen": 1.3509269406119957,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.45182685386752625,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.023422106273692688,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.023422106273692688,
+     "band90": [
+      -0.01531468995550651,
+      0.06790264624456016
+     ],
+     "band90_raw": [
+      -0.00525212847926197,
+      0.056348046702948566
+     ],
+     "widen": 1.3509269406119957,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.1703450083546054,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.023422106273692688,
+     "basis": "low-degradation fallback: median race degradation of the 11 withheld cases in the pool"
+    }
+   }
+  }
+ }
+}

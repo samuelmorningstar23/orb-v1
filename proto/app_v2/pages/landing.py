@@ -77,8 +77,9 @@ def render() -> None:
         return
     common.header(ctx, 'landing', session='Overview')
     vm = VM.build_landing(ctx.lock)
-    st.markdown('# Make the next tyre call.')
-    st.markdown('See how tyre pace is changing. Compare the next stop. Replay the decision.')
+    st.html('<section class="orb-hero"><div class="orb-eyebrow">THE STRATEGY WORKSPACE</div><h1>Every lap tells a story.<br><em>Make the next call.</em></h1><p>See the tyre trend. Understand the pit decision. Explore a different race with Ghost Strategy.</p></section>')
+    if st.button('New here? Take the guided demo →', type='primary'):
+        common.goto('demo')
     target = replay_target(ctx.event, vm.race_files)
     left, right = st.columns(2, gap='large')
     with left:

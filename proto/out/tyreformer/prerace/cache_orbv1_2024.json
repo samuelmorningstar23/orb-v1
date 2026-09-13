@@ -1,0 +1,1543 @@
+{
+ "season": 2024,
+ "generated_at": "2026-09-13T06:05:55",
+ "git_sha": "e35c11455b752177242c3861015a574cc0cce82b",
+ "rule": "SeasonForecaster.forecast(event, pool=development events minus event, target_obs_in_widening=False)",
+ "sealed_excluded": [
+  "2024_Bahrain",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Zandvoort"
+ ],
+ "events": {
+  "AbuDhabi": {
+   "race_id": "2024_AbuDhabi",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.15027906890087905,
+     "band90": [
+      -0.25444421767066316,
+      0.009740306636264906
+     ],
+     "band90_raw": [
+      -0.0026863843245575857,
+      0.09716234402038837
+     ],
+     "widen": 2.6458476606157024,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.042177194878456684,
+     "band90": [
+      -0.011575969739378536,
+      0.11352125685858935
+     ],
+     "band90_raw": [
+      0.021861148184624514,
+      0.06914173370739687
+     ],
+     "widen": 2.6458476606157024,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5962103639730609,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Australia": {
+   "race_id": "2024_Australia",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.04376836001062756,
+     "band90": [
+      -0.06012283878387695,
+      0.0919663638447682
+     ],
+     "band90_raw": [
+      -0.010916616097608854,
+      0.06913823463637005
+     ],
+     "widen": 1.8998124565122898,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07598249847338018,
+      0.1740796084975995
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.8998124565122898,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Austria": {
+   "race_id": "2024_Austria",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07623374401949884,
+      0.16729482015539637
+     ],
+     "band90_raw": [
+      -0.03609607370036372,
+      0.0910737578356486
+     ],
+     "widen": 1.9149869212961261,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.04176592892839266,
+     "band90": [
+      -0.06558691376372451,
+      0.14880904857033495
+     ],
+     "band90_raw": [
+      -0.014293379622632447,
+      0.09766350110057856
+     ],
+     "widen": 1.9149869212961261,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5962103639730609,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.1245165209509421,
+     "band90": [
+      -0.09724314097973108,
+      0.1749817216828529
+     ],
+     "band90_raw": [
+      0.008714340025038465,
+      0.15086928616865664
+     ],
+     "widen": 1.9149869212961261,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Azerbaijan": {
+   "race_id": "2024_Azerbaijan",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.0715385185226083,
+     "band90": [
+      -0.01598439619432683,
+      0.17957146763964804
+     ],
+     "band90_raw": [
+      0.02570019993299018,
+      0.12811854394587818
+     ],
+     "widen": 1.909383184416326,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6073724981130888,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.018320181133331045,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.018320181133331045,
+     "band90": [
+      -0.08623551089948335,
+      0.16508633956708474
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.909383184416326,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.018320181133331045,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Barcelona": {
+   "race_id": "2024_Barcelona",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.12275324894397954,
+     "band90": [
+      -0.11370347505606468,
+      0.132876821758734
+     ],
+     "band90_raw": [
+      -0.0019355816481917908,
+      0.12809163152127598
+     ],
+     "widen": 1.8963745419462639,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.08964148450953248,
+     "band90": [
+      0.04678609662706419,
+      0.17409300459149415
+     ],
+     "band90_raw": [
+      0.0670428960268557,
+      0.13417462826039112
+     ],
+     "widen": 1.8963745419462639,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6073724981130888,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.028616428513946468,
+     "band90": [
+      -0.010045781624585762,
+      0.11566871591776733
+     ],
+     "band90_raw": [
+      0.008228994869718727,
+      0.07452101406827395
+     ],
+     "widen": 1.8963745419462639,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.35342490545305383,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Belgium": {
+   "race_id": "2024_Belgium",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.4064281372015728,
+     "band90": [
+      -0.3140598132418123,
+      0.4390039751178884
+     ],
+     "band90_raw": [
+      -0.006378100111377643,
+      0.4250925840799352
+     ],
+     "widen": 1.7453417252927301,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.17441141931224635,
+     "band90": [
+      0.10230967899293149,
+      0.3309991708610208
+     ],
+     "band90_raw": [
+      0.13310046038973397,
+      0.2641289510022147
+     ],
+     "widen": 1.7453417252927301,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6073724981130888,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.06919401827337947,
+      0.16053593623607584
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.7453417252927301,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Brazil": {
+   "race_id": "2024_Brazil",
+   "completed": false,
+   "development": false,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07577103392579049,
+      0.166416137994521
+     ],
+     "band90_raw": [
+      -0.03609607370036372,
+      0.0910737578356486
+     ],
+     "widen": 1.9044388829887555,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.04795707181771331,
+     "band90": [
+      -0.008346170247523897,
+      0.10987133561852244
+     ],
+     "band90_raw": [
+      0.018392856043628194,
+      0.08046757365311125
+     ],
+     "widen": 1.9044388829887555,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Britain": {
+   "race_id": "2024_Britain",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.3111854871293892,
+     "band90": [
+      -0.2702046785167407,
+      0.3242564031319014
+     ],
+     "band90_raw": [
+      -0.0048524604097127675,
+      0.3182907078743928
+     ],
+     "widen": 1.8396213814614684,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.018320181133331045,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.04615782375253757,
+     "band90": [
+      0.0019025879307779103,
+      0.08694711575531305
+     ],
+     "band90_raw": [
+      0.022101114982061364,
+      0.06833047972067534
+     ],
+     "widen": 1.8396213814614684,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5962103639730609,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.018320181133331045,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.018320181133331045,
+     "band90": [
+      -0.08241543243386533,
+      0.15972404670273926
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.8396213814614684,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.018320181133331045,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Canada": {
+   "race_id": "2024_Canada",
+   "completed": false,
+   "development": false,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07577103392579049,
+      0.166416137994521
+     ],
+     "band90_raw": [
+      -0.03609607370036372,
+      0.0910737578356486
+     ],
+     "widen": 1.9044388829887555,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.019234818333930568,
+     "band90": [
+      -0.03491578170513701,
+      0.07717824748689067
+     ],
+     "band90_raw": [
+      -0.009199068687996666,
+      0.04966027838441318
+     ],
+     "widen": 1.9044388829887555,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07577103392579049,
+      0.166416137994521
+     ],
+     "band90_raw": [
+      -0.03609607370036372,
+      0.0910737578356486
+     ],
+     "widen": 1.9044388829887555,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.0077708596786162315,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  },
+  "China": {
+   "race_id": "2024_China",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07522286302012708,
+      0.11725578637980903
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.06580612103597601
+     ],
+     "widen": 1.8825270788626214,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.13861874563507784,
+     "band90": [
+      -0.00509704122979715,
+      0.32625661299216824
+     ],
+     "band90_raw": [
+      0.06227679630614458,
+      0.23829214181828537
+     ],
+     "widen": 1.8825270788626214,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6073724981130888,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.20251273983170828,
+     "band90": [
+      -0.05467740287419223,
+      0.3982795439323524
+     ],
+     "band90_raw": [
+      0.06589311528888962,
+      0.30650423418987804
+     ],
+     "widen": 1.8825270788626214,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5585476201541703,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Hungary": {
+   "race_id": "2024_Hungary",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.22064608996623747,
+     "band90": [
+      -0.20152956251547988,
+      0.246571626242465
+     ],
+     "band90_raw": [
+      -0.003565281281239957,
+      0.23441476659325097
+     ],
+     "widen": 1.8829359551783535,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.06466837289774276,
+     "band90": [
+      0.02021308354202113,
+      0.13169600659320752
+     ],
+     "band90_raw": [
+      0.041058812926537694,
+      0.10026577784990208
+     ],
+     "widen": 1.8829359551783535,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6073724981130888,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07524083178839588,
+      0.17148025244538162
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09459128985594586
+     ],
+     "widen": 1.8829359551783535,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Imola": {
+   "race_id": "2024_Imola",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.0077708596786162315,
+     "band90": [
+      -0.07470038853004801,
+      0.16438299235396964
+     ],
+     "band90_raw": [
+      -0.03609607370036372,
+      0.0910737578356486
+     ],
+     "widen": 1.8800322214495766,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.05056115833959902,
+     "band90": [
+      0.013132724709789358,
+      0.10587515394313737
+     ],
+     "band90_raw": [
+      0.03065275825858822,
+      0.07998299216374972
+     ],
+     "widen": 1.8800322214495766,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.596846933467299,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.0229940058904882,
+     "band90": [
+      -0.006762219997691721,
+      0.07888029617037029
+     ],
+     "band90_raw": [
+      0.0071664974314912915,
+      0.05272024655927399
+     ],
+     "widen": 1.8800322214495766,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.35342490545305383,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Japan": {
+   "race_id": "2024_Japan",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.41664597970278283,
+     "band90": [
+      -0.36261838513549394,
+      0.4413536376824856
+     ],
+     "band90_raw": [
+      -0.00658124640657121,
+      0.4300649861686802
+     ],
+     "widen": 1.8412434663098194,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.0474276413137713,
+     "band90": [
+      -0.01730648550865347,
+      0.12474706795663812
+     ],
+     "band90_raw": [
+      0.012269810202949483,
+      0.08942069006458575
+     ],
+     "widen": 1.8412434663098194,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5962103639730609,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07340858413255676,
+      0.16894440131803895
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.8412434663098194,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "LasVegas": {
+   "race_id": "2024_LasVegas",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07519716319239976,
+      0.11722169391716869
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.06580612103597601
+     ],
+     "widen": 1.8819422835823383,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07519716319239976,
+      0.11722169391716869
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.06580612103597601
+     ],
+     "widen": 1.8819422835823383,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Mexico": {
+   "race_id": "2024_Mexico",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07696970568220979,
+      0.17604918202461667
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.9222761913867192,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.007508005798378933,
+     "band90": [
+      -0.07696970568220979,
+      0.17604918202461667
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.9222761913867192,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.007508005798378933,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.03673865495380576,
+     "band90": [
+      -0.0354930528628288,
+      0.12473922491109415
+     ],
+     "band90_raw": [
+      -0.000837479079528445,
+      0.08251801296260744
+     ],
+     "widen": 1.9222761913867192,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5585476201541703,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.007508005798378933,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Miami": {
+   "race_id": "2024_Miami",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Monaco",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.018320181133331045,
+     "band90": [
+      -0.08583597762579803,
+      0.16452550961507362
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.902086956926864,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.018320181133331045,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.018320181133331045,
+     "band90": [
+      -0.08583597762579803,
+      0.16452550961507362
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.902086956926864,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.018320181133331045,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.08705016609022347,
+     "band90": [
+      -0.01979007296151135,
+      0.19793089121959784
+     ],
+     "band90_raw": [
+      0.030880158371778828,
+      0.14534441216849978
+     ],
+     "widen": 1.902086956926864,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5585476201541703,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.018320181133331045,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Monaco": {
+   "race_id": "2024_Monaco",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Qatar",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02886950258804586,
+     "band90": [
+      -0.0855994141167149,
+      0.16148509166689234
+     ],
+     "band90_raw": [
+      -0.03192187470272278,
+      0.09929809178421145
+     ],
+     "widen": 1.8829794916020637,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.02886950258804586,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.02886950258804586,
+     "band90": [
+      -0.0855994141167149,
+      0.16148509166689234
+     ],
+     "band90_raw": [
+      -0.03192187470272278,
+      0.09929809178421145
+     ],
+     "widen": 1.8829794916020637,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02886950258804586,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02886950258804586,
+     "band90": [
+      -0.0855994141167149,
+      0.16148509166689234
+     ],
+     "band90_raw": [
+      -0.03192187470272278,
+      0.09929809178421145
+     ],
+     "widen": 1.8829794916020637,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02886950258804586,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    }
+   }
+  },
+  "Qatar": {
+   "race_id": "2024_Qatar",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.02886950258804586,
+     "band90": [
+      -0.07960162099224688,
+      0.16193352472580907
+     ],
+     "band90_raw": [
+      -0.028542471584609846,
+      0.09929809178421145
+     ],
+     "widen": 1.8893466936720598,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.6067359286188506,
+     "factor_applied": true,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02886950258804586,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02886950258804586,
+     "band90": [
+      -0.07960162099224688,
+      0.16193352472580907
+     ],
+     "band90_raw": [
+      -0.028542471584609846,
+      0.09929809178421145
+     ],
+     "widen": 1.8893466936720598,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02886950258804586,
+     "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+    }
+   }
+  },
+  "Singapore": {
+   "race_id": "2024_Singapore",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.3567137098718766,
+     "band90": [
+      -0.4574187467117566,
+      0.4314152077268361
+     ],
+     "band90_raw": [
+      0.0030670133268323593,
+      0.3891628988579434
+     ],
+     "widen": 2.3021067764447123,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.03994752880863904,
+     "band90": [
+      -0.043337637665493645,
+      0.12547553631951597
+     ],
+     "band90_raw": [
+      0.003769725360809754,
+      0.07709958812491594
+     ],
+     "widen": 2.3021067764447123,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.5962103639730609,
+     "factor_applied": true,
+     "factor_from_n_weekends": 10,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "HARD": {
+     "prediction": 0.0178122685934002,
+     "band90": [
+      -0.04097115770998726,
+      0.11014428451636683
+     ],
+     "band90_raw": [
+      -0.007722353390628879,
+      0.05791988517648535
+     ],
+     "widen": 2.3021067764447123,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.35342490545305383,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.0077708596786162315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "USA": {
+   "race_id": "2024_USA",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Barcelona",
+    "Belgium",
+    "Britain",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "LasVegas",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "Singapore"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.01805732725309375,
+     "band90": [
+      -0.08621363233635408,
+      0.1656327172871503
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.9133679946054738,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.01805732725309375,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.01805732725309375,
+     "band90": [
+      -0.08621363233635408,
+      0.1656327172871503
+     ],
+     "band90_raw": [
+      -0.036438702723067706,
+      0.09518592480993006
+     ],
+     "widen": 1.9133679946054738,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.01805732725309375,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  }
+ }
+}

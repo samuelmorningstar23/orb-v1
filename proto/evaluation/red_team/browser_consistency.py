@@ -16,9 +16,9 @@ REPORT_PATH = RT_DIR / 'browser_consistency_report.json'
 VIEWPORTS = {'1440x900': (1440, 900), '1920x1080': (1920, 1080)}
 PAGE_PATHS = {'landing': '', 'pre_race': 'pre-race', 'live_predictor': 'live',
               'decision_board': 'decision', 'driver_feedback': 'feedback',
-              'ghost_strategy': 'ghost', 'generalisation': 'generalisation', 'validation': 'validation'}
+              'ghost_strategy': 'ghost', 'generalisation': 'generalisation', 'validation': 'validation', 'guided_demo': 'demo'}
 MARKERS = {'pre_race': 'prerace', 'live_predictor': 'live', 'decision_board': 'decision',
-           'driver_feedback': 'feedback', 'ghost_strategy': 'ghost'}
+           'driver_feedback': 'feedback', 'ghost_strategy': 'ghost', 'guided_demo':'demo'}
 
 
 def browser_routes():
@@ -71,11 +71,24 @@ def navigate(page, base, path, module):
     parsed=urlparse(path)
     page.goto(base.rstrip('/')+'/' + ('?'+parsed.query if parsed.query else ''),wait_until='domcontentloaded')
     page.wait_for_selector('[data-orb-ready="landing"]',state='attached',timeout=60000)
-    titles={'pre_race':'Pre-race plan','live_predictor':'Live Predictor','decision_board':'Decision board',
-            'driver_feedback':'Driver feedback','ghost_strategy':'Ghost Strategy','generalisation':'Generalisation','validation':'Validation'}
+    titles={'pre_race':'Forecast','live_predictor':'Live Predictor','decision_board':'Decision board',
+            'driver_feedback':'Driver feedback','ghost_strategy':'Ghost Strategy','generalisation':'Generalisation','validation':'Validation','guided_demo':'Guided demo'}
     if module!='landing':
-        page.get_by_role('link',name=titles[module],exact=True).first.click()
+        link=page.get_by_role('link',name=titles[module],exact=True).first
+        if not link.is_visible():
+            page.get_by_text('More tools',exact=True).click()
+        link.click()
         page.wait_for_selector(f'[data-orb-ready="{MARKERS.get(module,module)}"]',state='attached',timeout=60000)
+        if module == 'guided_demo':
+            state={k:v[0] for k,v in parse_qs(parsed.query).items()}
+            case=state.get('_demo_case','monza_nor')
+            label={'monza_nor':'Norris · Monza','monza_ver':'Verstappen · Monza','austria_ver':'Verstappen · Austria'}[case]
+            page.get_by_role('radio',name=label,exact=True).check()
+            page.wait_for_selector(f'[data-orb-demo-ready="{case}:0"]',state='attached',timeout=30000)
+            for step in range(int(state.get('_demo_step',0))):
+                page.get_by_role('button',name='Next →',exact=True).click()
+                page.wait_for_selector(f'[data-orb-demo-ready="{case}:{step+1}"]',state='attached',timeout=30000)
+
 
 
 def network_guard():
@@ -127,7 +140,7 @@ def run(base='http://localhost:8502', routes=None, out=REPORT_PATH):
                         navigate(page,base,path,module)
                         # Open all audit rails, so below-fold/expanded evidence is checked too.
                         for detail in page.locator('details').all():
-                            if detail.get_attribute('open') is None:
+                            if detail.is_visible() and detail.get_attribute('open') is None:
                                 detail.locator('summary').click()
                         page.wait_for_timeout(300)
                         errors = page.locator('[data-testid="stException"]').all_text_contents()
@@ -139,7 +152,10 @@ def run(base='http://localhost:8502', routes=None, out=REPORT_PATH):
                         rec['surfaces'] = len(surfaces)
                         match_surfaces(rec, surfaces, route_references(refs_base, lock, module, state))
                         if not rec['numbers']:
-                            raise RuntimeError('no numeric product evidence found')
+                            if module == 'guided_demo' and int(state.get('_demo_step',0)) == 0:
+                                rec['nonnumeric_intro'] = True
+                            else:
+                                raise RuntimeError('no numeric product evidence found')
                     except Exception as error:
                         rec.update(status='load_failure', error=f'{type(error).__name__}: {error}')
                     finally:

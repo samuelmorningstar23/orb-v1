@@ -1,0 +1,580 @@
+{
+ "generated_at": "2026-09-13T10:54:07+05:30",
+ "source": "deck_src/season_effects.py over feat2023/, feat2024/, feat2025/, feat/ race files and out/tyreformer/prerace/predictions_A.csv",
+ "sealed_excluded": [
+  "2023_Canada",
+  "2024_Bahrain",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Zandvoort",
+  "2025_Qatar"
+ ],
+ "wet_races_skipped": [
+  "2023_Austria",
+  "2023_Belgium",
+  "2023_Brazil",
+  "2023_Monaco",
+  "2023_Zandvoort",
+  "2024_Austria",
+  "2024_Barcelona",
+  "2024_Brazil",
+  "2024_Britain",
+  "2024_Canada",
+  "2025_Australia",
+  "2025_Belgium",
+  "2025_Britain",
+  "2025_Canada",
+  "2025_Miami",
+  "2025_Singapore",
+  "2026_Canada",
+  "2026_Miami",
+  "2026_Zandvoort"
+ ],
+ "races_used": {
+  "2023": [
+   "AbuDhabi",
+   "Australia",
+   "Azerbaijan",
+   "Bahrain",
+   "Barcelona",
+   "Britain",
+   "Hungary",
+   "Japan",
+   "Mexico",
+   "Miami",
+   "Monza",
+   "Qatar",
+   "SaudiArabia",
+   "Singapore",
+   "USA"
+  ],
+  "2024": [
+   "AbuDhabi",
+   "Australia",
+   "Azerbaijan",
+   "Belgium",
+   "China",
+   "Hungary",
+   "Imola",
+   "Japan",
+   "LasVegas",
+   "Mexico",
+   "Miami",
+   "Monaco",
+   "Qatar",
+   "Singapore",
+   "USA"
+  ],
+  "2025": [
+   "AbuDhabi",
+   "Austria",
+   "Azerbaijan",
+   "Bahrain",
+   "Barcelona",
+   "Brazil",
+   "China",
+   "Hungary",
+   "Imola",
+   "Japan",
+   "Mexico",
+   "Monaco",
+   "Monza",
+   "SaudiArabia",
+   "USA",
+   "Zandvoort"
+  ],
+  "2026": [
+   "Australia",
+   "Austria",
+   "Barcelona",
+   "Belgium",
+   "Britain",
+   "China",
+   "Hungary",
+   "Japan",
+   "Monaco",
+   "Monza"
+  ]
+ },
+ "units": {
+  "degradation": "s/lap per lap of tyre age (race-derived reference, 70 kg fuel subtracted in every season)",
+  "stint": "laps",
+  "stops": "pit stops per driver finishing >= 90% distance"
+ },
+ "fuel": {
+  "fuel_s_per_kg": 0.03,
+  "model_fuel_kg": 70.0,
+  "pre_2026_fuel_kg": 100.0,
+  "note": "bias of the reference slope for a season fuel load F = 0.03 x (F - 70) / race laps; masking in raw lap time = 0.03 x F / race laps"
+ },
+ "degradation": {
+  "2023": {
+   "SOFT": {
+    "n": 7,
+    "median": 0.039103,
+    "p25": 0.035466,
+    "p75": 0.10794999999999999,
+    "median_inverse_laps": 0.017543859649122806,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.05361912903225806
+   },
+   "MEDIUM": {
+    "n": 13,
+    "median": 0.035998,
+    "p25": 0.010315,
+    "p75": 0.051696,
+    "median_inverse_laps": 0.017543859649122806,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.049634363636363636
+   },
+   "HARD": {
+    "n": 13,
+    "median": 0.034976,
+    "p25": 0.01153,
+    "p75": 0.05743,
+    "median_inverse_laps": 0.017543859649122806,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.05049324137931034
+   }
+  },
+  "2024": {
+   "SOFT": {
+    "n": 5,
+    "median": 0.074596,
+    "p25": 0.003989,
+    "p75": 0.145574,
+    "median_inverse_laps": 0.017857142857142856,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.09157713207547169
+   },
+   "MEDIUM": {
+    "n": 14,
+    "median": 0.053305,
+    "p25": 0.025618000000000002,
+    "p75": 0.062665,
+    "median_inverse_laps": 0.017392619479733817,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.07006362068965516
+   },
+   "HARD": {
+    "n": 12,
+    "median": 0.0217385,
+    "p25": 0.0050025,
+    "p75": 0.04978425,
+    "median_inverse_laps": 0.017543859649122806,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.03986050956937799
+   }
+  },
+  "2025": {
+   "SOFT": {
+    "n": 7,
+    "median": 0.051609,
+    "p25": 0.0475665,
+    "p75": 0.1022165,
+    "median_inverse_laps": 0.014285714285714285,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.064109
+   },
+   "MEDIUM": {
+    "n": 13,
+    "median": 0.041513,
+    "p25": 0.025626,
+    "p75": 0.060683,
+    "median_inverse_laps": 0.015151515151515152,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.05758442857142857
+   },
+   "HARD": {
+    "n": 11,
+    "median": 0.033189,
+    "p25": 0.0206125,
+    "p75": 0.0459835,
+    "median_inverse_laps": 0.014285714285714285,
+    "fuel_kg_assumed": 100.0,
+    "median_fuel_corrected": 0.04472746153846154
+   }
+  },
+  "2026": {
+   "SOFT": {
+    "n": 6,
+    "median": 0.0644115,
+    "p25": 0.046234,
+    "p75": 0.156173,
+    "median_inverse_laps": 0.01619644723092999,
+    "fuel_kg_assumed": 70.0,
+    "median_fuel_corrected": 0.0644115
+   },
+   "MEDIUM": {
+    "n": 7,
+    "median": 0.042304,
+    "p25": 0.032898,
+    "p75": 0.0628485,
+    "median_inverse_laps": 0.017241379310344827,
+    "fuel_kg_assumed": 70.0,
+    "median_fuel_corrected": 0.042304
+   },
+   "HARD": {
+    "n": 8,
+    "median": 0.050104499999999996,
+    "p25": 0.03468025,
+    "p75": 0.06524474999999999,
+    "median_inverse_laps": 0.01805465191932336,
+    "fuel_kg_assumed": 70.0,
+    "median_fuel_corrected": 0.050104499999999996
+   }
+  }
+ },
+ "stint_length": {
+  "2023": {
+   "SOFT": {
+    "n": 72,
+    "median": 11.0,
+    "p25": 6.0,
+    "p75": 16.0
+   },
+   "MEDIUM": {
+    "n": 216,
+    "median": 17.0,
+    "p25": 12.0,
+    "p75": 20.0
+   },
+   "HARD": {
+    "n": 170,
+    "median": 19.5,
+    "p25": 17.0,
+    "p75": 25.0
+   }
+  },
+  "2024": {
+   "SOFT": {
+    "n": 35,
+    "median": 7.0,
+    "p25": 1.5,
+    "p75": 10.0
+   },
+   "MEDIUM": {
+    "n": 249,
+    "median": 15.0,
+    "p25": 10.0,
+    "p75": 25.0
+   },
+   "HARD": {
+    "n": 172,
+    "median": 20.0,
+    "p25": 13.75,
+    "p75": 28.0
+   }
+  },
+  "2025": {
+   "SOFT": {
+    "n": 97,
+    "median": 14.0,
+    "p25": 10.0,
+    "p75": 20.0
+   },
+   "MEDIUM": {
+    "n": 232,
+    "median": 21.0,
+    "p25": 15.75,
+    "p75": 27.0
+   },
+   "HARD": {
+    "n": 119,
+    "median": 28.0,
+    "p25": 19.5,
+    "p75": 32.0
+   }
+  },
+  "2026": {
+   "SOFT": {
+    "n": 34,
+    "median": 11.0,
+    "p25": 3.0,
+    "p75": 15.5
+   },
+   "MEDIUM": {
+    "n": 149,
+    "median": 18.0,
+    "p25": 12.0,
+    "p75": 22.0
+   },
+   "HARD": {
+    "n": 103,
+    "median": 22.0,
+    "p25": 17.5,
+    "p75": 25.5
+   }
+  }
+ },
+ "stops": {
+  "2023": {
+   "n_drivers": 265,
+   "mean": 1.728301886792453,
+   "median": 2.0,
+   "one_stop_share": 0.37358490566037733
+  },
+  "2024": {
+   "n_drivers": 267,
+   "mean": 1.7078651685393258,
+   "median": 2.0,
+   "one_stop_share": 0.47191011235955055
+  },
+  "2025": {
+   "n_drivers": 273,
+   "mean": 1.6446886446886446,
+   "median": 2.0,
+   "one_stop_share": 0.4652014652014652
+  },
+  "2026": {
+   "n_drivers": 180,
+   "mean": 1.5888888888888888,
+   "median": 2.0,
+   "one_stop_share": 0.4111111111111111
+  }
+ },
+ "race_laps": {
+  "2023": {
+   "median_race_laps": 57.0,
+   "n_races": 15
+  },
+  "2024": {
+   "median_race_laps": 57.0,
+   "n_races": 15
+  },
+  "2025": {
+   "median_race_laps": 60.5,
+   "n_races": 16
+  },
+  "2026": {
+   "median_race_laps": 54.5,
+   "n_races": 10
+  }
+ },
+ "paired_same_circuit": {
+  "2023_to_2024": {
+   "SOFT": {
+    "circuits": [
+     "Japan",
+     "Singapore"
+    ],
+    "n": 2,
+    "median_change": -0.0350125,
+    "median_change_fuel_adjusted": {
+     "100": -0.0350125,
+     "110": -0.0350125
+    },
+    "earlier_median": 0.0696855,
+    "later_median": 0.034673
+   },
+   "MEDIUM": {
+    "circuits": [
+     "AbuDhabi",
+     "Australia",
+     "Hungary",
+     "Japan",
+     "Mexico",
+     "Miami",
+     "Qatar",
+     "Singapore"
+    ],
+    "n": 8,
+    "median_change": 0.0052155,
+    "median_change_fuel_adjusted": {
+     "100": 0.005079383847549905,
+     "110": 0.005034011796733205
+    },
+    "earlier_median": 0.033919,
+    "later_median": 0.054114999999999996
+   },
+   "HARD": {
+    "circuits": [
+     "Hungary",
+     "Japan",
+     "Mexico",
+     "Miami",
+     "Qatar",
+     "Singapore",
+     "USA"
+    ],
+    "n": 7,
+    "median_change": -0.014911,
+    "median_change_fuel_adjusted": {
+     "100": -0.014911,
+     "110": -0.014910999999999997
+    },
+    "earlier_median": 0.045223,
+    "later_median": 0.014607
+   }
+  },
+  "2024_to_2025": {
+   "SOFT": {
+    "circuits": [
+     "Japan"
+    ],
+    "n": 1,
+    "median_change": -0.05904999999999999,
+    "median_change_fuel_adjusted": {
+     "100": -0.05904999999999999,
+     "110": -0.05904999999999999
+    },
+    "earlier_median": 0.074596,
+    "later_median": 0.015546
+   },
+   "MEDIUM": {
+    "circuits": [
+     "AbuDhabi",
+     "China",
+     "Hungary",
+     "Imola",
+     "Japan",
+     "Mexico",
+     "Monaco"
+    ],
+    "n": 7,
+    "median_change": -0.038775000000000004,
+    "median_change_fuel_adjusted": {
+     "100": -0.038775,
+     "110": -0.038775
+    },
+    "earlier_median": 0.054356,
+    "later_median": 0.025626
+   },
+   "HARD": {
+    "circuits": [
+     "Hungary",
+     "Japan",
+     "Mexico",
+     "Monaco",
+     "USA"
+    ],
+    "n": 5,
+    "median_change": 0.0003849999999999999,
+    "median_change_fuel_adjusted": {
+     "100": 0.00038499999999999646,
+     "110": 0.0003849999999999999
+    },
+    "earlier_median": 0.013249,
+    "later_median": 0.033189
+   }
+  },
+  "2025_to_2026": {
+   "SOFT": {
+    "circuits": [
+     "Austria",
+     "Barcelona",
+     "Hungary"
+    ],
+    "n": 3,
+    "median_change": 0.019367999999999996,
+    "median_change_fuel_adjusted": {
+     "100": 0.006510857142857138,
+     "110": 0.002225142857142856
+    },
+    "earlier_median": 0.081773,
+    "later_median": 0.067658
+   },
+   "MEDIUM": {
+    "circuits": [
+     "Austria",
+     "Barcelona",
+     "Hungary",
+     "Japan"
+    ],
+    "n": 4,
+    "median_change": 0.021483500000000003,
+    "median_change_fuel_adjusted": {
+     "100": 0.006564362533692723,
+     "110": 0.0015913167115902994
+    },
+    "earlier_median": 0.039202,
+    "later_median": 0.059105000000000005
+   },
+   "HARD": {
+    "circuits": [
+     "Austria",
+     "Hungary",
+     "Japan"
+    ],
+    "n": 3,
+    "median_change": 0.025950999999999995,
+    "median_change_fuel_adjusted": {
+     "100": 0.013093857142857143,
+     "110": 0.008808142857142848
+    },
+    "earlier_median": 0.034826,
+    "later_median": 0.060777
+   }
+  }
+ },
+ "pirelli_c_number": {
+  "2023": {
+   "SOFT": {
+    "n": 21,
+    "median": 4.0,
+    "mean": 4.142857142857143
+   },
+   "MEDIUM": {
+    "n": 21,
+    "median": 3.0,
+    "mean": 3.142857142857143
+   },
+   "HARD": {
+    "n": 21,
+    "median": 2.0,
+    "mean": 2.142857142857143
+   }
+  },
+  "2024": {
+   "SOFT": {
+    "n": 24,
+    "median": 5.0,
+    "mean": 4.291666666666667
+   },
+   "MEDIUM": {
+    "n": 24,
+    "median": 4.0,
+    "mean": 3.2916666666666665
+   },
+   "HARD": {
+    "n": 24,
+    "median": 3.0,
+    "mean": 2.2916666666666665
+   }
+  },
+  "2025": {
+   "SOFT": {
+    "n": 23,
+    "median": 5.0,
+    "mean": 4.565217391304348
+   },
+   "MEDIUM": {
+    "n": 23,
+    "median": 4.0,
+    "mean": 3.5652173913043477
+   },
+   "HARD": {
+    "n": 23,
+    "median": 3.0,
+    "mean": 2.4347826086956523
+   }
+  },
+  "2026": {
+   "SOFT": {
+    "n": 14,
+    "median": 4.5,
+    "mean": 4.357142857142857
+   },
+   "MEDIUM": {
+    "n": 14,
+    "median": 3.5,
+    "mean": 3.357142857142857
+   },
+   "HARD": {
+    "n": 14,
+    "median": 2.5,
+    "mean": 2.357142857142857
+   }
+  }
+ }
+}

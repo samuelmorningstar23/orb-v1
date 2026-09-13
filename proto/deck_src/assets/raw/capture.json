@@ -1,0 +1,28 @@
+{
+ "landing": {
+  "path": "/?ev=Monza&drv=LIN&present=1",
+  "console_errors": []
+ },
+ "prerace": {
+  "path": "/pre-race?ev=Madrid&present=1",
+  "console_errors": []
+ },
+ "live": {
+  "path": "/live?ev=Monza&drv=NOR&lap=30&mode=live&present=1",
+  "console_errors": []
+ },
+ "decision": {
+  "path": "/decision?ev=Barcelona&drv=PIA&lap=35&mode=live",
+  "console_errors": []
+ },
+ "ghost": {
+  "path": "/ghost?ev=Monza&drv=NOR&mode=audit&ilap=24&rep=MEDIUM&present=1",
+  "console_errors": []
+ },
+ "demo": {
+  "path": "/demo",
+  "console_errors": []
+ },
+ "captured_at": "2026-09-13T10:49:47",
+ "ghost_twin_advanced": true
+}

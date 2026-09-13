@@ -1,0 +1,4746 @@
+{
+ "generated_at": "2026-09-13T06:00:09",
+ "git_sha": null,
+ "estimator": "linear-Gaussian with fixed regime rules",
+ "model_version": "live_estimator_lg_v0.1",
+ "module": "tyreformer.baseline_kalman",
+ "policy": {
+  "estimator": "live.estimator.LiveTyreStateEstimator() defaults; context from LiveSession.context_for (support gate from live.priors.support_status); feedback disabled; clock None; rows from LapFeed.row(driver, k)",
+  "priors_loo": "SeasonForecaster(season dir, season, sealed=season sealed ids) per event; pool = development events minus the event; forecast(event, pool, target_obs_in_widening=False); pipeline.rng re-seeded to 0 before each forecast; prior = prediction with band90; pit loss 21 s; offsets from the forecast",
+  "default_prior": "slick compound in the race without a forecast prior: mean = median of the event's finite forecast predictions (0.03 if none), band90 = mean +- 0.12",
+  "errors": "an update that raises is recorded with error set; the driver state restarts (fresh stint on the next lap)",
+  "sealed": "sealed weekends skipped unless --include-sealed; sealed rows never enter pooled scores",
+  "scoring": "live/prefix_eval.py definitions (origin anchored and n_obs >= 1; target kept, same stint, tyre age + h; cumulative only where all targets exist; coverage |err| <= 1.6448536269514722 sd)"
+ },
+ "output_format": "parquet",
+ "sealed_race_ids": [
+  "2023_Canada",
+  "2024_Bahrain",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Zandvoort",
+  "2025_Qatar"
+ ],
+ "totals": {
+  "events_listed": 81,
+  "processed": 69,
+  "skipped": 12,
+  "failed": 0,
+  "rows": 75763,
+  "error_rows": 4754,
+  "rows_out_of_support": 18312,
+  "events_with_errors": 11,
+  "runtime_s_sum": 174.3
+ },
+ "skipped": {
+  "2023_Austria": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+  "2023_Azerbaijan": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+  "2023_Belgium": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+  "2023_Canada": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+  "2024_Bahrain": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+  "2024_Monza": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+  "2024_SaudiArabia": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+  "2024_Zandvoort": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+  "2025_Azerbaijan": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+  "2025_Monza": "race file carries no driver codes (Driver column empty): no per-driver feed",
+  "2025_Qatar": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+  "2026_China": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists"
+ },
+ "failed": {},
+ "default_priors": [
+  {
+   "race_id": "2023_Barcelona",
+   "compound": "HARD",
+   "mean": 0.029119165364339512
+  },
+  {
+   "race_id": "2023_Brazil",
+   "compound": "SOFT",
+   "mean": 0.04078028041428183
+  },
+  {
+   "race_id": "2023_USA",
+   "compound": "SOFT",
+   "mean": 0.14266115039296312
+  },
+  {
+   "race_id": "2024_AbuDhabi",
+   "compound": "HARD",
+   "mean": 0.09622813188966786
+  },
+  {
+   "race_id": "2024_Australia",
+   "compound": "HARD",
+   "mean": 0.025638182904503246
+  },
+  {
+   "race_id": "2024_LasVegas",
+   "compound": "HARD",
+   "mean": 0.007508005798378933
+  },
+  {
+   "race_id": "2024_Qatar",
+   "compound": "SOFT",
+   "mean": 0.02886950258804586
+  },
+  {
+   "race_id": "2024_USA",
+   "compound": "MEDIUM",
+   "mean": 0.01805732725309375
+  },
+  {
+   "race_id": "2025_Brazil",
+   "compound": "SOFT",
+   "mean": 0.03788470073818979
+  },
+  {
+   "race_id": "2025_China",
+   "compound": "HARD",
+   "mean": 0.1628917081685728
+  },
+  {
+   "race_id": "2025_Imola",
+   "compound": "HARD",
+   "mean": 0.040991951013087474
+  },
+  {
+   "race_id": "2025_USA",
+   "compound": "MEDIUM",
+   "mean": 0.018680540172957148
+  },
+  {
+   "race_id": "2025_USA",
+   "compound": "SOFT",
+   "mean": 0.018680540172957148
+  },
+  {
+   "race_id": "2026_Britain",
+   "compound": "MEDIUM",
+   "mean": 0.025499862620246873
+  },
+  {
+   "race_id": "2026_Britain",
+   "compound": "SOFT",
+   "mean": 0.025499862620246873
+  },
+  {
+   "race_id": "2026_Canada",
+   "compound": "MEDIUM",
+   "mean": 0.030270778846798407
+  }
+ ],
+ "pooled_scores_non_sealed": {
+  "2023": {
+   "races": 17,
+   "rows": 18686,
+   "origins": 12780,
+   "next1_mae": 0.3169870080995525,
+   "next1_n": 8464,
+   "next3_mae": 0.43979945214500843,
+   "next3_n": 7363,
+   "next5_mae": 0.5310426248480936,
+   "next5_n": 6363,
+   "cum3_mae": 0.9660401788613124,
+   "cum3_n": 5933,
+   "cum5_mae": 1.6948568895759422,
+   "cum5_n": 4228,
+   "coverage90_next1": 0.9517958412098299,
+   "coverage90_next1_n": 8464,
+   "coverage90_next3": 0.9269319570827108,
+   "coverage90_next3_n": 7363
+  },
+  "2024": {
+   "races": 20,
+   "rows": 21947,
+   "origins": 14491,
+   "next1_mae": 0.3630799653003045,
+   "next1_n": 9729,
+   "next3_mae": 0.4864467034287523,
+   "next3_n": 8580,
+   "next5_mae": 0.5749380850967656,
+   "next5_n": 7541,
+   "cum3_mae": 1.0201086809069875,
+   "cum3_n": 6897,
+   "cum5_mae": 1.7459518756356884,
+   "cum5_n": 4952,
+   "coverage90_next1": 0.9189022510021585,
+   "coverage90_next1_n": 9729,
+   "coverage90_next3": 0.8860139860139861,
+   "coverage90_next3_n": 8580
+  },
+  "2025": {
+   "races": 20,
+   "rows": 22465,
+   "origins": 14981,
+   "next1_mae": 0.32777175642191575,
+   "next1_n": 9491,
+   "next3_mae": 0.44436020392951714,
+   "next3_n": 8354,
+   "next5_mae": 0.5357867917783155,
+   "next5_n": 7355,
+   "cum3_mae": 0.975192759118456,
+   "cum3_n": 6824,
+   "cum5_mae": 1.7417925659497497,
+   "cum5_n": 5060,
+   "coverage90_next1": 0.929406806448214,
+   "coverage90_next1_n": 9491,
+   "coverage90_next3": 0.9004069906631553,
+   "coverage90_next3_n": 8354
+  },
+  "2026": {
+   "races": 12,
+   "rows": 12665,
+   "origins": 9596,
+   "next1_mae": 0.42119747357776954,
+   "next1_n": 5960,
+   "next3_mae": 0.5222334380285814,
+   "next3_n": 5215,
+   "next5_mae": 0.5934633098994955,
+   "next5_n": 4562,
+   "cum3_mae": 1.1595318575128468,
+   "cum3_n": 3819,
+   "cum5_mae": 1.958274357001717,
+   "cum5_n": 2502,
+   "coverage90_next1": 0.8756711409395973,
+   "coverage90_next1_n": 5960,
+   "coverage90_next3": 0.8550335570469799,
+   "coverage90_next3_n": 5215
+  },
+  "all": {
+   "races": 69,
+   "rows": 75763,
+   "origins": 51848,
+   "next1_mae": 0.3518190970659013,
+   "next1_n": 33644,
+   "next3_mae": 0.4692189144927023,
+   "next3_n": 29512,
+   "next5_mae": 0.5562419656447906,
+   "next5_n": 25821,
+   "cum3_mae": 1.016068397966411,
+   "cum3_n": 23473,
+   "cum5_mae": 1.7635217681399498,
+   "cum5_n": 16742,
+   "coverage90_next1": 0.9224824634407324,
+   "coverage90_next1_n": 33644,
+   "coverage90_next3": 0.8948224451070751,
+   "coverage90_next3_n": 29512
+  }
+ },
+ "runs": [
+  {
+   "started_at": "2026-09-13T05:59:51",
+   "wall_s": 18.8,
+   "options": {
+    "seasons": [
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "events": null,
+    "include_sealed": false,
+    "workers": 10,
+    "lock_priors": false,
+    "support_gate": "product",
+    "out_dir": "out/tyreformer/kalman"
+   },
+   "race_ids": [
+    "2023_AbuDhabi",
+    "2023_Australia",
+    "2023_Austria",
+    "2023_Azerbaijan",
+    "2023_Bahrain",
+    "2023_Barcelona",
+    "2023_Belgium",
+    "2023_Brazil",
+    "2023_Britain",
+    "2023_Canada",
+    "2023_Hungary",
+    "2023_Japan",
+    "2023_Mexico",
+    "2023_Miami",
+    "2023_Monaco",
+    "2023_Monza",
+    "2023_Qatar",
+    "2023_SaudiArabia",
+    "2023_Singapore",
+    "2023_USA",
+    "2023_Zandvoort",
+    "2024_AbuDhabi",
+    "2024_Australia",
+    "2024_Austria",
+    "2024_Azerbaijan",
+    "2024_Bahrain",
+    "2024_Barcelona",
+    "2024_Belgium",
+    "2024_Brazil",
+    "2024_Britain",
+    "2024_Canada",
+    "2024_China",
+    "2024_Hungary",
+    "2024_Imola",
+    "2024_Japan",
+    "2024_LasVegas",
+    "2024_Mexico",
+    "2024_Miami",
+    "2024_Monaco",
+    "2024_Monza",
+    "2024_Qatar",
+    "2024_SaudiArabia",
+    "2024_Singapore",
+    "2024_USA",
+    "2024_Zandvoort",
+    "2025_AbuDhabi",
+    "2025_Australia",
+    "2025_Austria",
+    "2025_Azerbaijan",
+    "2025_Bahrain",
+    "2025_Barcelona",
+    "2025_Belgium",
+    "2025_Brazil",
+    "2025_Britain",
+    "2025_Canada",
+    "2025_China",
+    "2025_Hungary",
+    "2025_Imola",
+    "2025_Japan",
+    "2025_Mexico",
+    "2025_Miami",
+    "2025_Monaco",
+    "2025_Monza",
+    "2025_Qatar",
+    "2025_SaudiArabia",
+    "2025_Singapore",
+    "2025_USA",
+    "2025_Zandvoort",
+    "2026_Australia",
+    "2026_Austria",
+    "2026_Barcelona",
+    "2026_Belgium",
+    "2026_Britain",
+    "2026_Canada",
+    "2026_China",
+    "2026_Hungary",
+    "2026_Japan",
+    "2026_Miami",
+    "2026_Monaco",
+    "2026_Monza",
+    "2026_Zandvoort"
+   ]
+  }
+ ],
+ "events": {
+  "2023_AbuDhabi": {
+   "season": 2023,
+   "event": "AbuDhabi",
+   "race_id": "2023_AbuDhabi",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_AbuDhabi.parquet",
+   "format": "parquet",
+   "n_rows": 1137,
+   "n_drivers": 20,
+   "n_laps": 58,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03152084194654137,
+     "band90": [
+      -0.042597317285201455,
+      0.0932614283930957
+     ],
+     "sd": 0.04129812630504214,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03152084194654137,
+     "band90": [
+      -0.042597317285201455,
+      0.0932614283930957
+     ],
+     "sd": 0.04129812630504214,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.3020560590975193,
+     "band90": [
+      -0.23368785232978717,
+      0.30505466801096487
+     ],
+     "sd": 0.16376609794126273,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.64
+  },
+  "2023_Australia": {
+   "season": 2023,
+   "event": "Australia",
+   "race_id": "2023_Australia",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Australia.parquet",
+   "format": "parquet",
+   "n_rows": 901,
+   "n_drivers": 19,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03548718232704218,
+     "band90": [
+      -0.031921707829982965,
+      0.09810456712798711
+     ],
+     "sd": 0.03952518109436805,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03548718232704218,
+     "band90": [
+      -0.031921707829982965,
+      0.09810456712798711
+     ],
+     "sd": 0.03952518109436805,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.04541152871820699,
+     "band90": [
+      -0.06150232520270785,
+      0.10185005299607536
+     ],
+     "sd": 0.04965559716749269,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.47
+  },
+  "2023_Austria": {
+   "season": 2023,
+   "event": "Austria",
+   "race_id": "2023_Austria",
+   "sealed": false,
+   "status": "skipped",
+   "skipped": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 1.07
+  },
+  "2023_Azerbaijan": {
+   "season": 2023,
+   "event": "Azerbaijan",
+   "race_id": "2023_Azerbaijan",
+   "sealed": false,
+   "status": "skipped",
+   "skipped": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 1.09
+  },
+  "2023_Bahrain": {
+   "season": 2023,
+   "event": "Bahrain",
+   "race_id": "2023_Bahrain",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Bahrain.parquet",
+   "format": "parquet",
+   "n_rows": 1055,
+   "n_drivers": 20,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.034975954487890704,
+     "band90": [
+      -0.042260589829137774,
+      0.08545776673340909
+     ],
+     "sd": 0.03882362371637185,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.19170300044273336,
+     "band90": [
+      -0.19061499336772542,
+      0.6928087583856408
+     ],
+     "sd": 0.2685417526757929,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.04161253895467618,
+     "band90": [
+      0.0038892898933072864,
+      0.14593145740957206
+     ],
+     "sd": 0.04317775308053457,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.7
+  },
+  "2023_Barcelona": {
+   "season": 2023,
+   "event": "Barcelona",
+   "race_id": "2023_Barcelona",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Barcelona.parquet",
+   "format": "parquet",
+   "n_rows": 1312,
+   "n_drivers": 20,
+   "n_laps": 66,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "default_prior",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.029119165364339512,
+     "band90": [
+      -0.09088083463566049,
+      0.1491191653643395
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "MEDIUM": {
+     "mean": 0.034975954487890704,
+     "band90": [
+      -0.0444228461537273,
+      0.09575733881817955
+     ],
+     "sd": 0.042611750576163135,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02326237624078832,
+     "band90": [
+      0.00021608324656459746,
+      0.12212256620703801
+     ],
+     "sd": 0.03705693958507774,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.029119165364339512,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.97
+  },
+  "2023_Belgium": {
+   "season": 2023,
+   "event": "Belgium",
+   "race_id": "2023_Belgium",
+   "sealed": false,
+   "status": "skipped",
+   "skipped": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 1.07
+  },
+  "2023_Brazil": {
+   "season": 2023,
+   "event": "Brazil",
+   "race_id": "2023_Brazil",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Brazil.parquet",
+   "format": "parquet",
+   "n_rows": 1092,
+   "n_drivers": 20,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 1092,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "default_prior"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.04658460634067296,
+     "band90": [
+      -0.302679857439721,
+      0.011728885076166776
+     ],
+     "sd": 0.09557347151266113,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.034975954487890704,
+     "band90": [
+      -0.043747906947730036,
+      0.09524065923425903
+     ],
+     "sd": 0.04224952418398067,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.04078028041428183,
+     "band90": [
+      -0.07921971958571816,
+      0.16078028041428183
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    }
+   },
+   "default_prior_mean": 0.04078028041428183,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.8
+  },
+  "2023_Britain": {
+   "season": 2023,
+   "event": "Britain",
+   "race_id": "2023_Britain",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Britain.parquet",
+   "format": "parquet",
+   "n_rows": 965,
+   "n_drivers": 20,
+   "n_laps": 52,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.015452305858540823,
+     "band90": [
+      -0.1523741054222878,
+      0.04058709623291001
+     ],
+     "sd": 0.058656040420091045,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.04828283802777378,
+     "band90": [
+      -0.04209872268627553,
+      0.21095194302565173
+     ],
+     "sd": 0.07692194051969371,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.16294576094431434,
+     "band90": [
+      -0.11655235419176369,
+      0.17920956785934988
+     ],
+     "sd": 0.08990524056516531,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.53
+  },
+  "2023_Canada": {
+   "season": 2023,
+   "event": "Canada",
+   "race_id": "2023_Canada",
+   "sealed": true,
+   "status": "skipped",
+   "skipped": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": null,
+   "support_gate": null,
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.0
+  },
+  "2023_Hungary": {
+   "season": 2023,
+   "event": "Hungary",
+   "race_id": "2023_Hungary",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Hungary.parquet",
+   "format": "parquet",
+   "n_rows": 1251,
+   "n_drivers": 20,
+   "n_laps": 70,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.034975954487890704,
+     "band90": [
+      -0.04003511575142167,
+      0.09239844264134686
+     ],
+     "sd": 0.040256943299634924,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.11609732614172685,
+     "band90": [
+      -0.10867703832056702,
+      0.40362949790645675
+     ],
+     "sd": 0.1557301293661367,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.03967387963159555,
+     "band90": [
+      0.0023733126310548913,
+      0.14989406111144363
+     ],
+     "sd": 0.04484312344369503,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.88
+  },
+  "2023_Japan": {
+   "season": 2023,
+   "event": "Japan",
+   "race_id": "2023_Japan",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Japan.parquet",
+   "format": "parquet",
+   "n_rows": 817,
+   "n_drivers": 20,
+   "n_laps": 53,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.20717643244131523,
+     "band90": [
+      -1.180899109528533,
+      0.028587425904460506
+     ],
+     "sd": 0.36765780116089225,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.2484402584677391,
+     "band90": [
+      -0.22471349604796775,
+      0.8690087303968265
+     ],
+     "sd": 0.3324679498904318,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.41983876309574797,
+     "band90": [
+      -0.27985371114652224,
+      0.4305949553899769
+     ],
+     "sd": 0.21596106027173545,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.1
+  },
+  "2023_Mexico": {
+   "season": 2023,
+   "event": "Mexico",
+   "race_id": "2023_Mexico",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Mexico.parquet",
+   "format": "parquet",
+   "n_rows": 1249,
+   "n_drivers": 20,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.031570779281678,
+     "band90": [
+      -0.4088255548949916,
+      0.08841407505151294
+     ],
+     "sd": 0.15115011506162868,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.19593385564019172,
+     "band90": [
+      -0.26002426057686,
+      0.7992968923551478
+     ],
+     "sd": 0.32201076605683304,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.25868471058191744,
+     "band90": [
+      -0.2681491784593376,
+      0.2682549114479843
+     ],
+     "sd": 0.1630552655622856,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.64
+  },
+  "2023_Miami": {
+   "season": 2023,
+   "event": "Miami",
+   "race_id": "2023_Miami",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Miami.parquet",
+   "format": "parquet",
+   "n_rows": 1138,
+   "n_drivers": 20,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03755060465906576,
+     "band90": [
+      -0.04916869044305133,
+      0.09483770717109914
+     ],
+     "sd": 0.04377483663426273,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03755060465906576,
+     "band90": [
+      -0.04916869044305133,
+      0.09483770717109914
+     ],
+     "sd": 0.04377483663426273,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.0384304512337863,
+     "band90": [
+      -0.045012343208439526,
+      0.07969856957254345
+     ],
+     "sd": 0.03790942571957569,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.47
+  },
+  "2023_Monaco": {
+   "season": 2023,
+   "event": "Monaco",
+   "race_id": "2023_Monaco",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Monaco.parquet",
+   "format": "parquet",
+   "n_rows": 1512,
+   "n_drivers": 20,
+   "n_laps": 78,
+   "errors": 442,
+   "error_messages": {
+    "KeyError: no pre-race prior for Monaco INTERMEDIATE": 398,
+    "KeyError: no pre-race prior for Monaco WET": 44
+   },
+   "rows_out_of_support": 1512,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03599841016619365,
+     "band90": [
+      -0.028337398099156738,
+      0.08485843111319323
+     ],
+     "sd": 0.03440908885678299,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03599841016619365,
+     "band90": [
+      -0.028337398099156738,
+      0.08485843111319323
+     ],
+     "sd": 0.03440908885678299,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.03599841016619365,
+     "band90": [
+      -0.028337398099156738,
+      0.08485843111319323
+     ],
+     "sd": 0.03440908885678299,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.59
+  },
+  "2023_Monza": {
+   "season": 2023,
+   "event": "Monza",
+   "race_id": "2023_Monza",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Monza.parquet",
+   "format": "parquet",
+   "n_rows": 947,
+   "n_drivers": 19,
+   "n_laps": 51,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.034975954487890704,
+     "band90": [
+      -0.04212133651465112,
+      0.09399548674003584
+     ],
+     "sd": 0.04137657631790686,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.024879041766951104,
+     "band90": [
+      -0.03218478276433612,
+      0.03368836867521379
+     ],
+     "sd": 0.020024016228616482,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.03677388272688553,
+     "band90": [
+      -0.03323618452813547,
+      0.06428321162942582
+     ],
+     "sd": 0.02964379156894986,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.13
+  },
+  "2023_Qatar": {
+   "season": 2023,
+   "event": "Qatar",
+   "race_id": "2023_Qatar",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Qatar.parquet",
+   "format": "parquet",
+   "n_rows": 1000,
+   "n_drivers": 19,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03755060465906576,
+     "band90": [
+      -0.04955635642379272,
+      0.0950938008207651
+     ],
+     "sd": 0.04397052566697031,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03755060465906576,
+     "band90": [
+      -0.04955635642379272,
+      0.0950938008207651
+     ],
+     "sd": 0.04397052566697031,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.03755060465906576,
+     "band90": [
+      -0.04955635642379272,
+      0.0950938008207651
+     ],
+     "sd": 0.04397052566697031,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.15
+  },
+  "2023_SaudiArabia": {
+   "season": 2023,
+   "event": "SaudiArabia",
+   "race_id": "2023_SaudiArabia",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_SaudiArabia.parquet",
+   "format": "parquet",
+   "n_rows": 924,
+   "n_drivers": 20,
+   "n_laps": 50,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03599841016619365,
+     "band90": [
+      -0.05108902125926544,
+      0.11032564653714956
+     ],
+     "sd": 0.04906657502879957,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.0550305426965636,
+     "band90": [
+      -0.089796079630269,
+      0.2914106591615616
+     ],
+     "sd": 0.11587862060964933,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02693963943647287,
+     "band90": [
+      -0.00870577266064396,
+      0.089524309149778
+     ],
+     "sd": 0.02985982466794902,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.26
+  },
+  "2023_Singapore": {
+   "season": 2023,
+   "event": "Singapore",
+   "race_id": "2023_Singapore",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Singapore.parquet",
+   "format": "parquet",
+   "n_rows": 1063,
+   "n_drivers": 19,
+   "n_laps": 62,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.031009614107389893,
+     "band90": [
+      -0.052089264012540895,
+      0.1088919021091673
+     ],
+     "sd": 0.04893479987640797,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03811394889079622,
+     "band90": [
+      -0.05820487416206682,
+      0.21924683378846535
+     ],
+     "sd": 0.08433933068705748,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.031009614107389893,
+     "band90": [
+      -0.052089264012540895,
+      0.1088919021091673
+     ],
+     "sd": 0.04893479987640797,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.42
+  },
+  "2023_USA": {
+   "season": 2023,
+   "event": "USA",
+   "race_id": "2023_USA",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_USA.parquet",
+   "format": "parquet",
+   "n_rows": 1014,
+   "n_drivers": 20,
+   "n_laps": 56,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "default_prior"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.10690934211250672,
+     "band90": [
+      -0.7933689404175337,
+      0.042752610314546066
+     ],
+     "sd": 0.25416290453811535,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.17841295867341955,
+     "band90": [
+      -0.18281756021132106,
+      0.7262125031617438
+     ],
+     "sd": 0.2763255187204216,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.14266115039296312,
+     "band90": [
+      0.022661150392963125,
+      0.2626611503929631
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    }
+   },
+   "default_prior_mean": 0.14266115039296312,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.22
+  },
+  "2023_Zandvoort": {
+   "season": 2023,
+   "event": "Zandvoort",
+   "race_id": "2023_Zandvoort",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2023_Zandvoort.parquet",
+   "format": "parquet",
+   "n_rows": 1309,
+   "n_drivers": 20,
+   "n_laps": 72,
+   "errors": 296,
+   "error_messages": {
+    "KeyError: no pre-race prior for Zandvoort INTERMEDIATE": 293,
+    "KeyError: no pre-race prior for Zandvoort WET": 3
+   },
+   "rows_out_of_support": 1309,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.01245780358039348,
+     "band90": [
+      -0.014520478311434024,
+      0.04447778055975923
+     ],
+     "sd": 0.01793419727582054,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03599841016619365,
+     "band90": [
+      -0.052545564498546554,
+      0.10007969837530643
+     ],
+     "sd": 0.046394785643244306,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.029254164725565895,
+     "band90": [
+      -0.00014145996122558527,
+      0.12405796241555857
+     ],
+     "sd": 0.03775394367673069,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 16,
+   "leakage_check": "pass: 16 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.46
+  },
+  "2024_AbuDhabi": {
+   "season": 2024,
+   "event": "AbuDhabi",
+   "race_id": "2024_AbuDhabi",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_AbuDhabi.parquet",
+   "format": "parquet",
+   "n_rows": 1033,
+   "n_drivers": 19,
+   "n_laps": 58,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "default_prior",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.09622813188966786,
+     "band90": [
+      -0.023771868110332134,
+      0.21622813188966786
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "MEDIUM": {
+     "mean": 0.042177194878456684,
+     "band90": [
+      -0.010975947514477113,
+      0.11640162916685678
+     ],
+     "sd": 0.038720033987891096,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.15027906890087905,
+     "band90": [
+      -0.25343050445003,
+      0.013672589557113035
+     ],
+     "sd": 0.08119357541320707,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.09622813188966786,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.49
+  },
+  "2024_Australia": {
+   "season": 2024,
+   "event": "Australia",
+   "race_id": "2024_Australia",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Australia.parquet",
+   "format": "parquet",
+   "n_rows": 995,
+   "n_drivers": 19,
+   "n_laps": 58,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "default_prior",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.025638182904503246,
+     "band90": [
+      -0.09436181709549675,
+      0.14563818290450325
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "MEDIUM": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07673185030304253,
+      0.17557463761906894
+     ],
+     "sd": 0.07669572653395597,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.04376836001062756,
+     "band90": [
+      -0.05762574591389659,
+      0.10010728574404751
+     ],
+     "sd": 0.04794743710730125,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.025638182904503246,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.41
+  },
+  "2024_Austria": {
+   "season": 2024,
+   "event": "Austria",
+   "race_id": "2024_Austria",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Austria.parquet",
+   "format": "parquet",
+   "n_rows": 1405,
+   "n_drivers": 20,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 1405,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.1245165209509421,
+     "band90": [
+      -0.0971621209052084,
+      0.17765876099692418
+     ],
+     "sd": 0.0835396163522095,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.04176592892839266,
+     "band90": [
+      -0.065185692067682,
+      0.14662445365136634
+     ],
+     "sd": 0.0643857125790614,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.0077708596786162315,
+     "band90": [
+      -0.07646715494517646,
+      0.1677380653305829
+     ],
+     "sd": 0.0742331160275832,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 3.31
+  },
+  "2024_Azerbaijan": {
+   "season": 2024,
+   "event": "Azerbaijan",
+   "race_id": "2024_Azerbaijan",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Azerbaijan.parquet",
+   "format": "parquet",
+   "n_rows": 952,
+   "n_drivers": 20,
+   "n_laps": 50,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.018320181133331045,
+     "band90": [
+      -0.08645104091428273,
+      0.1653888817977779
+     ],
+     "sd": 0.07655390078046459,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.0715385185226083,
+     "band90": [
+      -0.01347567464682381,
+      0.18375026531130528
+     ],
+     "sd": 0.05995242881388248,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.51
+  },
+  "2024_Bahrain": {
+   "season": 2024,
+   "event": "Bahrain",
+   "race_id": "2024_Bahrain",
+   "sealed": true,
+   "status": "skipped",
+   "skipped": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": null,
+   "support_gate": null,
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.0
+  },
+  "2024_Barcelona": {
+   "season": 2024,
+   "event": "Barcelona",
+   "race_id": "2024_Barcelona",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Barcelona.parquet",
+   "format": "parquet",
+   "n_rows": 1310,
+   "n_drivers": 20,
+   "n_laps": 66,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 1310,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.028616428513946468,
+     "band90": [
+      -0.009445734819135604,
+      0.11351987611958844
+     ],
+     "sd": 0.03737889163020093,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.08964148450953248,
+     "band90": [
+      0.046692774887245644,
+      0.17361738931889026
+     ],
+     "sd": 0.03858234324074273,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.12275324894397954,
+     "band90": [
+      -0.11457662026449197,
+      0.1361492899091154
+     ],
+     "sd": 0.07621526501367057,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.94
+  },
+  "2024_Belgium": {
+   "season": 2024,
+   "event": "Belgium",
+   "race_id": "2024_Belgium",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Belgium.parquet",
+   "format": "parquet",
+   "n_rows": 840,
+   "n_drivers": 20,
+   "n_laps": 44,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.06892026268869146,
+      0.15998976746051166
+     ],
+     "sd": 0.06958370836116855,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.17441141931224635,
+     "band90": [
+      0.10430140538686383,
+      0.32255369323456845
+     ],
+     "sd": 0.066343984738693,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.4064281372015728,
+     "band90": [
+      -0.31170733650740634,
+      0.4395023921522125
+     ],
+     "sd": 0.2283515433686008,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.31
+  },
+  "2024_Brazil": {
+   "season": 2024,
+   "event": "Brazil",
+   "race_id": "2024_Brazil",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Brazil.parquet",
+   "format": "parquet",
+   "n_rows": 1097,
+   "n_drivers": 18,
+   "n_laps": 69,
+   "errors": 1097,
+   "error_messages": {
+    "KeyError: no pre-race prior for Brazil INTERMEDIATE": 1084,
+    "KeyError: no pre-race prior for Brazil WET": 13
+   },
+   "rows_out_of_support": 1097,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "MEDIUM": {
+     "mean": 0.04795707181771331,
+     "band90": [
+      -0.007596549783210373,
+      0.11128796552340614
+     ],
+     "sd": 0.036138326644588395,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.0077708596786162315,
+     "band90": [
+      -0.07561533089699556,
+      0.16612045939218084
+     ],
+     "sd": 0.07348246261194775,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 18,
+   "leakage_check": "pass: 18 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.44
+  },
+  "2024_Britain": {
+   "season": 2024,
+   "event": "Britain",
+   "race_id": "2024_Britain",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Britain.parquet",
+   "format": "parquet",
+   "n_rows": 960,
+   "n_drivers": 19,
+   "n_laps": 52,
+   "errors": 234,
+   "error_messages": {
+    "KeyError: no pre-race prior for Britain INTERMEDIATE": 234
+   },
+   "rows_out_of_support": 960,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.018320181133331045,
+     "band90": [
+      -0.0821233581048645,
+      0.15931405824193778
+     ],
+     "sd": 0.07339176337358234,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.04615782375253757,
+     "band90": [
+      0.0016217108339640143,
+      0.08802474263559024
+     ],
+     "sd": 0.026264656740844262,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.3111854871293892,
+     "band90": [
+      -0.26862212293032695,
+      0.3299612610290537
+     ],
+     "sd": 0.18195642887348557,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.34
+  },
+  "2024_Canada": {
+   "season": 2024,
+   "event": "Canada",
+   "race_id": "2024_Canada",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Canada.parquet",
+   "format": "parquet",
+   "n_rows": 1267,
+   "n_drivers": 20,
+   "n_laps": 70,
+   "errors": 844,
+   "error_messages": {
+    "KeyError: no pre-race prior for Canada INTERMEDIATE": 825,
+    "KeyError: no pre-race prior for Canada WET": 19
+   },
+   "rows_out_of_support": 1267,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.0077708596786162315,
+     "band90": [
+      -0.07561533089699556,
+      0.16612045939218084
+     ],
+     "sd": 0.07348246261194775,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.019234818333930568,
+     "band90": [
+      -0.034750972348609466,
+      0.07762223859114326
+     ],
+     "sd": 0.034159030657342514,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.0077708596786162315,
+     "band90": [
+      -0.07561533089699556,
+      0.16612045939218084
+     ],
+     "sd": 0.07348246261194775,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 18,
+   "leakage_check": "pass: 18 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.0
+  },
+  "2024_China": {
+   "season": 2024,
+   "event": "China",
+   "race_id": "2024_China",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_China.parquet",
+   "format": "parquet",
+   "n_rows": 1007,
+   "n_drivers": 20,
+   "n_laps": 56,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.20251273983170828,
+     "band90": [
+      -0.05536731060970698,
+      0.395333707237677
+     ],
+     "sd": 0.13700338147495267,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.13861874563507784,
+     "band90": [
+      -0.0021776313982445616,
+      0.32302604880158625
+     ],
+     "sd": 0.09885489957016863,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07473085420795442,
+      0.11660310527137159
+     ],
+     "sd": 0.05816139392109293,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.53
+  },
+  "2024_Hungary": {
+   "season": 2024,
+   "event": "Hungary",
+   "race_id": "2024_Hungary",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Hungary.parquet",
+   "format": "parquet",
+   "n_rows": 1355,
+   "n_drivers": 20,
+   "n_laps": 70,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07477828694181426,
+      0.17056368950769143
+     ],
+     "sd": 0.07457866536860668,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.06466837289774276,
+     "band90": [
+      0.018310031217396168,
+      0.1315173633424242
+     ],
+     "sd": 0.034412585493957745,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.22064608996623747,
+     "band90": [
+      -0.19925242887303118,
+      0.25175738650531165
+     ],
+     "sd": 0.13709724925926461,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 3.12
+  },
+  "2024_Imola": {
+   "season": 2024,
+   "event": "Imola",
+   "race_id": "2024_Imola",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Imola.parquet",
+   "format": "parquet",
+   "n_rows": 1237,
+   "n_drivers": 20,
+   "n_laps": 63,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.0229940058904882,
+     "band90": [
+      -0.0068550123127402544,
+      0.07775388199748294
+     ],
+     "sd": 0.025719277668200504,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.05056115833959902,
+     "band90": [
+      0.013114887048065009,
+      0.10416792210307457
+     ],
+     "sd": 0.027678157363997435,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.0077708596786162315,
+     "band90": [
+      -0.0742948327840395,
+      0.16361284576736243
+     ],
+     "sd": 0.07231879926979694,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.99
+  },
+  "2024_Japan": {
+   "season": 2024,
+   "event": "Japan",
+   "race_id": "2024_Japan",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Japan.parquet",
+   "format": "parquet",
+   "n_rows": 876,
+   "n_drivers": 18,
+   "n_laps": 53,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07361688931398203,
+      0.16935999023109208
+     ],
+     "sd": 0.0738597269580154,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.0474276413137713,
+     "band90": [
+      -0.018682752584556157,
+      0.12711199299466008
+     ],
+     "sd": 0.04431845581586136,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.41664597970278283,
+     "band90": [
+      -0.36470757751559013,
+      0.4480061248171964
+     ],
+     "sd": 0.24704742386076275,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.38
+  },
+  "2024_LasVegas": {
+   "season": 2024,
+   "event": "LasVegas",
+   "race_id": "2024_LasVegas",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_LasVegas.parquet",
+   "format": "parquet",
+   "n_rows": 938,
+   "n_drivers": 20,
+   "n_laps": 50,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "default_prior",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.11249199420162106,
+      0.12750800579837893
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "MEDIUM": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07493836361282594,
+      0.11687837974823442
+     ],
+     "sd": 0.05830814980071156,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07493836361282594,
+      0.11687837974823442
+     ],
+     "sd": 0.05830814980071156,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.007508005798378933,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.3
+  },
+  "2024_Mexico": {
+   "season": 2024,
+   "event": "Mexico",
+   "race_id": "2024_Mexico",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Mexico.parquet",
+   "format": "parquet",
+   "n_rows": 1213,
+   "n_drivers": 18,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03673865495380576,
+     "band90": [
+      -0.036781231508601166,
+      0.1239186292945855
+     ],
+     "sd": 0.04884928913128382,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07756021556696858,
+      0.17722730615707893
+     ],
+     "sd": 0.07744990725900149,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.007508005798378933,
+     "band90": [
+      -0.07756021556696858,
+      0.17722730615707893
+     ],
+     "sd": 0.07744990725900149,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 3.1
+  },
+  "2024_Miami": {
+   "season": 2024,
+   "event": "Miami",
+   "race_id": "2024_Miami",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Miami.parquet",
+   "format": "parquet",
+   "n_rows": 1106,
+   "n_drivers": 20,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.08705016609022347,
+     "band90": [
+      -0.019424132663889815,
+      0.18999483737136183
+     ],
+     "sd": 0.06365884678242865,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.018320181133331045,
+     "band90": [
+      -0.08655800064592531,
+      0.16553902253727354
+     ],
+     "sd": 0.07663205377442268,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.018320181133331045,
+     "band90": [
+      -0.08655800064592531,
+      0.16553902253727354
+     ],
+     "sd": 0.07663205377442268,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.87
+  },
+  "2024_Monaco": {
+   "season": 2024,
+   "event": "Monaco",
+   "race_id": "2024_Monaco",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Monaco.parquet",
+   "format": "parquet",
+   "n_rows": 1226,
+   "n_drivers": 16,
+   "n_laps": 78,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02886950258804586,
+     "band90": [
+      -0.08527471250860169,
+      0.16110891535393007
+     ],
+     "sd": 0.07489530491511655,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.02886950258804586,
+     "band90": [
+      -0.08527471250860169,
+      0.16110891535393007
+     ],
+     "sd": 0.07489530491511655,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02886950258804586,
+     "band90": [
+      -0.08527471250860169,
+      0.16110891535393007
+     ],
+     "sd": 0.07489530491511655,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 3.14
+  },
+  "2024_Monza": {
+   "season": 2024,
+   "event": "Monza",
+   "race_id": "2024_Monza",
+   "sealed": true,
+   "status": "skipped",
+   "skipped": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": null,
+   "support_gate": null,
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.0
+  },
+  "2024_Qatar": {
+   "season": 2024,
+   "event": "Qatar",
+   "race_id": "2024_Qatar",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Qatar.parquet",
+   "format": "parquet",
+   "n_rows": 923,
+   "n_drivers": 18,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "default_prior"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02886950258804586,
+     "band90": [
+      -0.07892941596157413,
+      0.16110891535393007
+     ],
+     "sd": 0.07296647172198077,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.02886950258804586,
+     "band90": [
+      -0.07892941596157413,
+      0.16110891535393007
+     ],
+     "sd": 0.07296647172198077,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02886950258804586,
+     "band90": [
+      -0.09113049741195414,
+      0.14886950258804585
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    }
+   },
+   "default_prior_mean": 0.02886950258804586,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.62
+  },
+  "2024_SaudiArabia": {
+   "season": 2024,
+   "event": "SaudiArabia",
+   "race_id": "2024_SaudiArabia",
+   "sealed": true,
+   "status": "skipped",
+   "skipped": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": null,
+   "support_gate": null,
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.0
+  },
+  "2024_Singapore": {
+   "season": 2024,
+   "event": "Singapore",
+   "race_id": "2024_Singapore",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_Singapore.parquet",
+   "format": "parquet",
+   "n_rows": 1176,
+   "n_drivers": 20,
+   "n_laps": 62,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.0178122685934002,
+     "band90": [
+      -0.041615032097600424,
+      0.11030389830502496
+     ],
+     "sd": 0.04618007581750234,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03994752880863904,
+     "band90": [
+      -0.04379690651450445,
+      0.12561316986944998
+     ],
+     "sd": 0.05149700666615988,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.3567137098718766,
+     "band90": [
+      -0.4590010058724226,
+      0.43579044092670055
+     ],
+     "sd": 0.2719972866088716,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.97
+  },
+  "2024_USA": {
+   "season": 2024,
+   "event": "USA",
+   "race_id": "2024_USA",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2024_USA.parquet",
+   "format": "parquet",
+   "n_rows": 1031,
+   "n_drivers": 20,
+   "n_laps": 56,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "default_prior",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.01805732725309375,
+     "band90": [
+      -0.08583177451053041,
+      0.16509227133934884
+     ],
+     "sd": 0.07627549398268806,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.01805732725309375,
+     "band90": [
+      -0.10194267274690624,
+      0.13805732725309375
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "SOFT": {
+     "mean": 0.01805732725309375,
+     "band90": [
+      -0.08583177451053041,
+      0.16509227133934884
+     ],
+     "sd": 0.07627549398268806,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.01805732725309375,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.69
+  },
+  "2024_Zandvoort": {
+   "season": 2024,
+   "event": "Zandvoort",
+   "race_id": "2024_Zandvoort",
+   "sealed": true,
+   "status": "skipped",
+   "skipped": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": null,
+   "support_gate": null,
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.0
+  },
+  "2025_AbuDhabi": {
+   "season": 2025,
+   "event": "AbuDhabi",
+   "race_id": "2025_AbuDhabi",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_AbuDhabi.parquet",
+   "format": "parquet",
+   "n_rows": 1156,
+   "n_drivers": 20,
+   "n_laps": 58,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.06286358851208527,
+     "band90": [
+      -0.007257182511311189,
+      0.15724754104132532
+     ],
+     "sd": 0.050005885282791145,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.09540548139490568,
+     "band90": [
+      -0.016029679928219173,
+      0.15179361949567438
+     ],
+     "sd": 0.05101466071936528,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.12178589798881478,
+     "band90": [
+      0.03840041528464867,
+      0.20327467190996382
+     ],
+     "sd": 0.0501182153608673,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.94
+  },
+  "2025_Australia": {
+   "season": 2025,
+   "event": "Australia",
+   "race_id": "2025_Australia",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Australia.parquet",
+   "format": "parquet",
+   "n_rows": 858,
+   "n_drivers": 17,
+   "n_laps": 57,
+   "errors": 692,
+   "error_messages": {
+    "KeyError: no pre-race prior for Australia INTERMEDIATE": 692
+   },
+   "rows_out_of_support": 858,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.013982849740990927,
+      0.07969178121077874
+     ],
+     "sd": 0.028475065931971022,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.013982849740990927,
+      0.07969178121077874
+     ],
+     "sd": 0.028475065931971022,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.013982849740990927,
+      0.07969178121077874
+     ],
+     "sd": 0.028475065931971022,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 18,
+   "leakage_check": "pass: 18 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.7
+  },
+  "2025_Austria": {
+   "season": 2025,
+   "event": "Austria",
+   "race_id": "2025_Austria",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Austria.parquet",
+   "format": "parquet",
+   "n_rows": 1124,
+   "n_drivers": 17,
+   "n_laps": 70,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03991010913504667,
+     "band90": [
+      -3.743761600421419e-05,
+      0.12117701328895569
+     ],
+     "sd": 0.036846576777052054,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.03937493406625592,
+     "band90": [
+      -0.01731175636853806,
+      0.0523210481858677
+     ],
+     "sd": 0.02116686962701397,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02710142861203268,
+     "band90": [
+      0.0027999530709623167,
+      0.06544464464513168
+     ],
+     "sd": 0.019042634112760953,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.75
+  },
+  "2025_Azerbaijan": {
+   "season": 2025,
+   "event": "Azerbaijan",
+   "race_id": "2025_Azerbaijan",
+   "sealed": false,
+   "status": "skipped",
+   "skipped": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 1.18
+  },
+  "2025_Bahrain": {
+   "season": 2025,
+   "event": "Bahrain",
+   "race_id": "2025_Bahrain",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Bahrain.parquet",
+   "format": "parquet",
+   "n_rows": 1115,
+   "n_drivers": 20,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.016496234658877156,
+      0.06970024824461556
+     ],
+     "sd": 0.026201870333972203,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.16332344002074178,
+     "band90": [
+      -0.03898499756353477,
+      0.26173058823228124
+     ],
+     "sd": 0.09141104742345806,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.17985264722507774,
+     "band90": [
+      0.03351289389095827,
+      0.23754585586472735
+     ],
+     "sd": 0.06202161658357356,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.63
+  },
+  "2025_Barcelona": {
+   "season": 2025,
+   "event": "Barcelona",
+   "race_id": "2025_Barcelona",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Barcelona.parquet",
+   "format": "parquet",
+   "n_rows": 1202,
+   "n_drivers": 19,
+   "n_laps": 66,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.08708481506439224,
+     "band90": [
+      -0.0016559102261393815,
+      0.2586088318898168
+     ],
+     "sd": 0.07911486403757516,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.15124980560862866,
+     "band90": [
+      -0.043412614388100346,
+      0.2402878745440278
+     ],
+     "sd": 0.08623882523149828,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.051788997458161,
+     "band90": [
+      0.018733411006797,
+      0.10933820985580628
+     ],
+     "sd": 0.027541903232123393,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.76
+  },
+  "2025_Belgium": {
+   "season": 2025,
+   "event": "Belgium",
+   "race_id": "2025_Belgium",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Belgium.parquet",
+   "format": "parquet",
+   "n_rows": 819,
+   "n_drivers": 20,
+   "n_laps": 44,
+   "errors": 237,
+   "error_messages": {
+    "KeyError: no pre-race prior for Belgium INTERMEDIATE": 180,
+    "KeyError: no pre-race prior for Belgium nan": 57
+   },
+   "rows_out_of_support": 819,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02635891916528315,
+     "band90": [
+      -0.0088005367517218,
+      0.08778162358717514
+     ],
+     "sd": 0.02935889210941515,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.02635891916528315,
+     "band90": [
+      -0.0088005367517218,
+      0.08778162358717514
+     ],
+     "sd": 0.02935889210941515,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.03
+  },
+  "2025_Brazil": {
+   "season": 2025,
+   "event": "Brazil",
+   "race_id": "2025_Brazil",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Brazil.parquet",
+   "format": "parquet",
+   "n_rows": 1249,
+   "n_drivers": 19,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "default_prior"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.05708886130342243,
+     "band90": [
+      0.01754670025992696,
+      0.10828939280319866
+     ],
+     "sd": 0.027583819938875587,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.013868345542688437,
+      0.07787306176997515
+     ],
+     "sd": 0.02788740767246708,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.03788470073818979,
+     "band90": [
+      -0.08211529926181022,
+      0.15788470073818978
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    }
+   },
+   "default_prior_mean": 0.03788470073818979,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.86
+  },
+  "2025_Britain": {
+   "season": 2025,
+   "event": "Britain",
+   "race_id": "2025_Britain",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Britain.parquet",
+   "format": "parquet",
+   "n_rows": 734,
+   "n_drivers": 18,
+   "n_laps": 52,
+   "errors": 519,
+   "error_messages": {
+    "KeyError: no pre-race prior for Britain INTERMEDIATE": 519
+   },
+   "rows_out_of_support": 734,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.1253350096951067,
+     "band90": [
+      -0.0011334112305253774,
+      0.362007317924308
+     ],
+     "sd": 0.11038694361755118,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.030343605289473885,
+     "band90": [
+      -0.007421160215684473,
+      0.061944810324472833
+     ],
+     "sd": 0.021085757846039572,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.08862131874314197,
+     "band90": [
+      0.022298939997545786,
+      0.15953573354759742
+     ],
+     "sd": 0.04171702311420945,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 18,
+   "leakage_check": "pass: 18 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.58
+  },
+  "2025_Canada": {
+   "season": 2025,
+   "event": "Canada",
+   "race_id": "2025_Canada",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Canada.parquet",
+   "format": "parquet",
+   "n_rows": 1346,
+   "n_drivers": 20,
+   "n_laps": 70,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 1346,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.025725418765305638,
+     "band90": [
+      -0.018096233616364067,
+      0.08361367399617223
+     ],
+     "sd": 0.030917616603078145,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.0387645798943872,
+     "band90": [
+      -0.00912239618609166,
+      0.06460140490160059
+     ],
+     "sd": 0.02241044427288341,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.014664064553530663,
+     "band90": [
+      -0.015394251251222783,
+      0.04914729786371826
+     ],
+     "sd": 0.019619237863298705,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.94
+  },
+  "2025_China": {
+   "season": 2025,
+   "event": "China",
+   "race_id": "2025_China",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_China.parquet",
+   "format": "parquet",
+   "n_rows": 1065,
+   "n_drivers": 20,
+   "n_laps": 56,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "default_prior",
+    "MEDIUM": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.1628917081685728,
+     "band90": [
+      0.042891708168572795,
+      0.2828917081685728
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "MEDIUM": {
+     "mean": 0.1628917081685728,
+     "band90": [
+      -0.029796056415559213,
+      0.2769538109836293
+     ],
+     "sd": 0.09324533878668297,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.1628917081685728,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.48
+  },
+  "2025_Hungary": {
+   "season": 2025,
+   "event": "Hungary",
+   "race_id": "2025_Hungary",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Hungary.parquet",
+   "format": "parquet",
+   "n_rows": 1368,
+   "n_drivers": 20,
+   "n_laps": 70,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.03969811285990943,
+     "band90": [
+      -0.07908215816090242,
+      0.22031723643435416
+     ],
+     "sd": 0.09101095370721692,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.11671895301039877,
+     "band90": [
+      -0.031548637796660076,
+      0.18857876945623595
+     ],
+     "sd": 0.06691398056521124,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.23689256312276413,
+     "band90": [
+      -0.037348365256188065,
+      0.26647616003499475
+     ],
+     "sd": 0.09235609792656234,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.86
+  },
+  "2025_Imola": {
+   "season": 2025,
+   "event": "Imola",
+   "race_id": "2025_Imola",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Imola.parquet",
+   "format": "parquet",
+   "n_rows": 1205,
+   "n_drivers": 20,
+   "n_laps": 63,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "default_prior",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.040991951013087474,
+     "band90": [
+      -0.07900804898691252,
+      0.16099195101308747
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "MEDIUM": {
+     "mean": 0.05978092255704355,
+     "band90": [
+      -0.013787674461529745,
+      0.11799317215710949
+     ],
+     "sd": 0.04005853300845934,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.014979731126560654,
+      0.08127553699545827
+     ],
+     "sd": 0.029259523931140265,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.040991951013087474,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.64
+  },
+  "2025_Japan": {
+   "season": 2025,
+   "event": "Japan",
+   "race_id": "2025_Japan",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Japan.parquet",
+   "format": "parquet",
+   "n_rows": 1059,
+   "n_drivers": 20,
+   "n_laps": 53,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02635891916528315,
+     "band90": [
+      -0.019875807890267314,
+      0.08981278760641931
+     ],
+     "sd": 0.03334296550750857,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.02635891916528315,
+     "band90": [
+      -0.019875807890267314,
+      0.08981278760641931
+     ],
+     "sd": 0.03334296550750857,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.07206614223577522,
+     "band90": [
+      -0.019282003090896935,
+      0.16116199734521908
+     ],
+     "sd": 0.054851081421313494,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.44
+  },
+  "2025_Mexico": {
+   "season": 2025,
+   "event": "Mexico",
+   "race_id": "2025_Mexico",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Mexico.parquet",
+   "format": "parquet",
+   "n_rows": 1262,
+   "n_drivers": 20,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.025725418765305638,
+     "band90": [
+      -0.021493110596640677,
+      0.08810093704845186
+     ],
+     "sd": 0.03331422500134897,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.14628891644345288,
+     "band90": [
+      -0.04611501242570515,
+      0.23414398118517568
+     ],
+     "sd": 0.08519268493522592,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.026913409423789034,
+     "band90": [
+      -0.008567236243557586,
+      0.0815765657707011
+     ],
+     "sd": 0.027401770144535233,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.94
+  },
+  "2025_Miami": {
+   "season": 2025,
+   "event": "Miami",
+   "race_id": "2025_Miami",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Miami.parquet",
+   "format": "parquet",
+   "n_rows": 1002,
+   "n_drivers": 19,
+   "n_laps": 57,
+   "errors": 354,
+   "error_messages": {
+    "KeyError: no pre-race prior for Miami nan": 354
+   },
+   "rows_out_of_support": 1002,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.015102560421389407,
+      0.08382594366776817
+     ],
+     "sd": 0.03007212996590737,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.06682406256103945,
+     "band90": [
+      -0.013725480711549873,
+      0.12159162400268445
+     ],
+     "sd": 0.041133479142769505,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.13
+  },
+  "2025_Monaco": {
+   "season": 2025,
+   "event": "Monaco",
+   "race_id": "2025_Monaco",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Monaco.parquet",
+   "format": "parquet",
+   "n_rows": 1423,
+   "n_drivers": 20,
+   "n_laps": 78,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.005795540929557107,
+      0.08557127349852917
+     ],
+     "sd": 0.027773539520784925,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.005795540929557107,
+      0.08557127349852917
+     ],
+     "sd": 0.027773539520784925,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.005795540929557107,
+      0.08557127349852917
+     ],
+     "sd": 0.027773539520784925,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.82
+  },
+  "2025_Monza": {
+   "season": 2025,
+   "event": "Monza",
+   "race_id": "2025_Monza",
+   "sealed": false,
+   "status": "skipped",
+   "skipped": "race file carries no driver codes (Driver column empty): no per-driver feed",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.0
+  },
+  "2025_Qatar": {
+   "season": 2025,
+   "event": "Qatar",
+   "race_id": "2025_Qatar",
+   "sealed": true,
+   "status": "skipped",
+   "skipped": "sealed holdout weekend (evaluation/holdout manifest); runs only with --include-sealed",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": null,
+   "support_gate": null,
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.0
+  },
+  "2025_SaudiArabia": {
+   "season": 2025,
+   "event": "SaudiArabia",
+   "race_id": "2025_SaudiArabia",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_SaudiArabia.parquet",
+   "format": "parquet",
+   "n_rows": 861,
+   "n_drivers": 19,
+   "n_laps": 50,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.02053918008282494,
+      0.0714580370452239
+     ],
+     "sd": 0.02796516833493386,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.02053918008282494,
+      0.0714580370452239
+     ],
+     "sd": 0.02796516833493386,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02220297946913139,
+     "band90": [
+      -0.02053918008282494,
+      0.0714580370452239
+     ],
+     "sd": 0.02796516833493386,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.16
+  },
+  "2025_Singapore": {
+   "season": 2025,
+   "event": "Singapore",
+   "race_id": "2025_Singapore",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Singapore.parquet",
+   "format": "parquet",
+   "n_rows": 1209,
+   "n_drivers": 20,
+   "n_laps": 62,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 1209,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.015257774219449596,
+      0.08412524909932129
+     ],
+     "sd": 0.030210294001346713,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.371159881262102,
+     "band90": [
+      -0.06413180080075098,
+      0.5835200518438327
+     ],
+     "sd": 0.1968721842577945,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.06584314283238933,
+     "band90": [
+      -0.09148246821404234,
+      0.2275444477836565
+     ],
+     "sd": 0.09697729657227154,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.79
+  },
+  "2025_USA": {
+   "season": 2025,
+   "event": "USA",
+   "race_id": "2025_USA",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_USA.parquet",
+   "format": "parquet",
+   "n_rows": 1066,
+   "n_drivers": 20,
+   "n_laps": 56,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "default_prior",
+    "SOFT": "default_prior"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.014920792039603097,
+      0.08347543189218384
+     ],
+     "sd": 0.029910328286825095,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.10131945982704285,
+      0.13868054017295714
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "SOFT": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.10131945982704285,
+      0.13868054017295714
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    }
+   },
+   "default_prior_mean": 0.018680540172957148,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.52
+  },
+  "2025_Zandvoort": {
+   "season": 2025,
+   "event": "Zandvoort",
+   "race_id": "2025_Zandvoort",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2025_Zandvoort.parquet",
+   "format": "parquet",
+   "n_rows": 1342,
+   "n_drivers": 20,
+   "n_laps": 72,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.018680540172957148,
+     "band90": [
+      -0.015011867879719466,
+      0.08365105734540239
+     ],
+     "sd": 0.029991399723506427,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.04206294161176061,
+     "band90": [
+      -0.008471013627609415,
+      0.07520679707119539
+     ],
+     "sd": 0.02543624834687906,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.130713836794185,
+     "band90": [
+      0.03454244813924445,
+      0.1997522310189314
+     ],
+     "sd": 0.05022020810018285,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 17,
+   "leakage_check": "pass: 17 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.98
+  },
+  "2026_Australia": {
+   "season": 2026,
+   "event": "Australia",
+   "race_id": "2026_Australia",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Australia.parquet",
+   "format": "parquet",
+   "n_rows": 1000,
+   "n_drivers": 20,
+   "n_laps": 58,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.027577618966801054,
+     "band90": [
+      -0.01748104173407858,
+      0.08934863113289579
+     ],
+     "sd": 0.03247391473518821,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.027577618966801054,
+     "band90": [
+      -0.01748104173407858,
+      0.08934863113289579
+     ],
+     "sd": 0.03247391473518821,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.019788026053792197,
+     "band90": [
+      -0.034469760828844315,
+      0.07316555922958776
+     ],
+     "sd": 0.03271881409226683,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.1
+  },
+  "2026_Austria": {
+   "season": 2026,
+   "event": "Austria",
+   "race_id": "2026_Austria",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Austria.parquet",
+   "format": "parquet",
+   "n_rows": 1338,
+   "n_drivers": 22,
+   "n_laps": 71,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.06720102525859062,
+     "band90": [
+      -0.002518652529515303,
+      0.137009203427016
+     ],
+     "sd": 0.04241345663538722,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.06868152602259776,
+     "band90": [
+      0.03942457096524747,
+      0.1846414814344831
+     ],
+     "sd": 0.044142806414445755,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.13479146787258428,
+     "band90": [
+      0.039962659523568006,
+      0.2906036654285411
+     ],
+     "sd": 0.07618945594858323,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.4
+  },
+  "2026_Barcelona": {
+   "season": 2026,
+   "event": "Barcelona",
+   "race_id": "2026_Barcelona",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Barcelona.parquet",
+   "format": "parquet",
+   "n_rows": 1233,
+   "n_drivers": 22,
+   "n_laps": 66,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.025499862620246873,
+     "band90": [
+      -0.020516435163804636,
+      0.07335552433078046
+     ],
+     "sd": 0.028535049549838938,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.14605342379809383,
+     "band90": [
+      0.06945450209072583,
+      0.3509524564690778
+     ],
+     "sd": 0.08556930226675329,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.21184057796251227,
+     "band90": [
+      0.026118955013298695,
+      0.5129751522900206
+     ],
+     "sd": 0.14799377564648356,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.27
+  },
+  "2026_Belgium": {
+   "season": 2026,
+   "event": "Belgium",
+   "race_id": "2026_Belgium",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Belgium.parquet",
+   "format": "parquet",
+   "n_rows": 810,
+   "n_drivers": 21,
+   "n_laps": 44,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.025499862620246873,
+     "band90": [
+      -0.013042820893676317,
+      0.08537104321397473
+     ],
+     "sd": 0.029915690519541446,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.06981941010769284,
+     "band90": [
+      0.03171122871761189,
+      0.17938596228484177
+     ],
+     "sd": 0.044889931586473836,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.15341391847489833,
+     "band90": [
+      0.030608407221133616,
+      0.29492441081515663
+     ],
+     "sd": 0.08034636008430102,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.7
+  },
+  "2026_Britain": {
+   "season": 2026,
+   "event": "Britain",
+   "race_id": "2026_Britain",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Britain.parquet",
+   "format": "parquet",
+   "n_rows": 1092,
+   "n_drivers": 22,
+   "n_laps": 52,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "default_prior",
+    "SOFT": "default_prior"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.025499862620246873,
+     "band90": [
+      -0.01217267222396104,
+      0.08567213719518281
+     ],
+     "sd": 0.029742710176736763,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.025499862620246873,
+     "band90": [
+      -0.09450013737975313,
+      0.14549986262024686
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "SOFT": {
+     "mean": 0.025499862620246873,
+     "band90": [
+      -0.09450013737975313,
+      0.14549986262024686
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    }
+   },
+   "default_prior_mean": 0.025499862620246873,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.05
+  },
+  "2026_Canada": {
+   "season": 2026,
+   "event": "Canada",
+   "race_id": "2026_Canada",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Canada.parquet",
+   "format": "parquet",
+   "n_rows": 1206,
+   "n_drivers": 21,
+   "n_laps": 68,
+   "errors": 14,
+   "error_messages": {
+    "KeyError: no pre-race prior for Canada INTERMEDIATE": 14
+   },
+   "rows_out_of_support": 14,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "default_prior",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.030270778846798407,
+     "band90": [
+      0.0218407457316311,
+      0.07516898146201548
+     ],
+     "sd": 0.016210632623044247,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.030270778846798407,
+     "band90": [
+      -0.08972922115320159,
+      0.1502707788467984
+     ],
+     "sd": 0.07295481982941229,
+     "issued": false,
+     "source": "default_prior"
+    },
+    "SOFT": {
+     "mean": 0.030270778846798407,
+     "band90": [
+      0.0218407457316311,
+      0.07516898146201548
+     ],
+     "sd": 0.016210632623044247,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": 0.030270778846798407,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.21
+  },
+  "2026_China": {
+   "season": 2026,
+   "event": "China",
+   "race_id": "2026_China",
+   "sealed": false,
+   "status": "skipped",
+   "skipped": "no weekend table: fewer than 40 clean practice laps (pipeline rule), so no pre-race forecast exists",
+   "failure": null,
+   "file": null,
+   "format": null,
+   "n_rows": 0,
+   "n_drivers": 0,
+   "n_laps": null,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {},
+   "priors": {},
+   "default_prior_mean": null,
+   "pool_n": null,
+   "leakage_check": null,
+   "runtime_s": 0.76
+  },
+  "2026_Hungary": {
+   "season": 2026,
+   "event": "Hungary",
+   "race_id": "2026_Hungary",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Hungary.parquet",
+   "format": "parquet",
+   "n_rows": 1429,
+   "n_drivers": 22,
+   "n_laps": 70,
+   "errors": 25,
+   "error_messages": {
+    "KeyError: no pre-race prior for Hungary nan": 25
+   },
+   "rows_out_of_support": 25,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.05161923675885305,
+     "band90": [
+      -0.03865490608085613,
+      0.1420079712924397
+     ],
+     "sd": 0.05491761528596669,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.05768927439741813,
+     "band90": [
+      0.0279184667961157,
+      0.15041263819419054
+     ],
+     "sd": 0.037235584185415414,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.13248352263860166,
+     "band90": [
+      0.03673836706104021,
+      0.2941138756448364
+     ],
+     "sd": 0.07823659940514252,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 2.28
+  },
+  "2026_Japan": {
+   "season": 2026,
+   "event": "Japan",
+   "race_id": "2026_Japan",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Japan.parquet",
+   "format": "parquet",
+   "n_rows": 1086,
+   "n_drivers": 22,
+   "n_laps": 53,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.02892419890679973,
+     "band90": [
+      -0.017204796775766966,
+      0.08973699901606627
+     ],
+     "sd": 0.03250799768427915,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.01913933020406623,
+     "band90": [
+      -0.008786351945126888,
+      0.05159121967592417
+     ],
+     "sd": 0.01835347858063007,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.18228208448424563,
+     "band90": [
+      0.033341762557440896,
+      0.2987691751632614
+     ],
+     "sd": 0.0806842044351863,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.89
+  },
+  "2026_Miami": {
+   "season": 2026,
+   "event": "Miami",
+   "race_id": "2026_Miami",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Miami.parquet",
+   "format": "parquet",
+   "n_rows": 1032,
+   "n_drivers": 22,
+   "n_laps": 57,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 1032,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.048876625160275466,
+     "band90": [
+      -0.0038641268827876163,
+      0.10331784152294907
+     ],
+     "sd": 0.0325810049750095,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.025984925756822302,
+     "band90": [
+      -0.01252794359733746,
+      0.07189396551242942
+     ],
+     "sd": 0.025662438203158597,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02892419890679973,
+     "band90": [
+      -0.01710545126037344,
+      0.09050928701751793
+     ],
+     "sd": 0.032712557675220515,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.93
+  },
+  "2026_Monaco": {
+   "season": 2026,
+   "event": "Monaco",
+   "race_id": "2026_Monaco",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Monaco.parquet",
+   "format": "parquet",
+   "n_rows": 126,
+   "n_drivers": 21,
+   "n_laps": 45,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "sd": 0.030776024504182115,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "sd": 0.030776024504182115,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.027577618966801054,
+     "band90": [
+      -0.013275769235062622,
+      0.08796834182264004
+     ],
+     "sd": 0.030776024504182115,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 11,
+   "leakage_check": "pass: 11 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 0.92
+  },
+  "2026_Monza": {
+   "season": 2026,
+   "event": "Monza",
+   "race_id": "2026_Monza",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Monza.parquet",
+   "format": "parquet",
+   "n_rows": 992,
+   "n_drivers": 22,
+   "n_laps": 53,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 0,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.030270778846798407,
+     "band90": [
+      -0.021610483690559713,
+      0.09206928854064572
+     ],
+     "sd": 0.03455619708906758,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.030270778846798407,
+     "band90": [
+      -0.021610483690559713,
+      0.09206928854064572
+     ],
+     "sd": 0.03455619708906758,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.02449301413072191,
+     "band90": [
+      -0.03577340554710283,
+      0.09488470787509538
+     ],
+     "sd": 0.039717246349864115,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.64
+  },
+  "2026_Zandvoort": {
+   "season": 2026,
+   "event": "Zandvoort",
+   "race_id": "2026_Zandvoort",
+   "sealed": false,
+   "status": "ok",
+   "skipped": null,
+   "failure": null,
+   "file": "out/tyreformer/kalman/2026_Zandvoort.parquet",
+   "format": "parquet",
+   "n_rows": 1321,
+   "n_drivers": 21,
+   "n_laps": 72,
+   "errors": 0,
+   "error_messages": {},
+   "rows_out_of_support": 1321,
+   "prior_mode": "season_forecaster_loo",
+   "support_gate": "product",
+   "prior_sources": {
+    "HARD": "season_forecaster_loo",
+    "MEDIUM": "season_forecaster_loo",
+    "SOFT": "season_forecaster_loo"
+   },
+   "priors": {
+    "HARD": {
+     "mean": 0.023422106273692688,
+     "band90": [
+      -0.01531468995550651,
+      0.06790264624456016
+     ],
+     "sd": 0.02529627403816456,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "MEDIUM": {
+     "mean": 0.023422106273692688,
+     "band90": [
+      -0.01531468995550651,
+      0.06790264624456016
+     ],
+     "sd": 0.02529627403816456,
+     "issued": false,
+     "source": "season_forecaster_loo"
+    },
+    "SOFT": {
+     "mean": 0.037283925832409116,
+     "band90": [
+      -0.10584730840101206,
+      0.1927418027578567
+     ],
+     "sd": 0.09076464503174847,
+     "issued": true,
+     "source": "season_forecaster_loo"
+    }
+   },
+   "default_prior_mean": null,
+   "pool_n": 10,
+   "leakage_check": "pass: 10 pool source races, neither the event nor a sealed race among them",
+   "runtime_s": 1.89
+  }
+ }
+}

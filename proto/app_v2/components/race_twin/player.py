@@ -8,8 +8,8 @@
 
 `frames`, `track` and `pitlane` accept the replay dataclasses, the plain dicts they export, or file paths. Colours come from
 the frozen tokens (proto/ui/tokens.py through app_v2.theme.tokens). The player is a canvas + requestAnimationFrame loop with
-play/pause, 1x-10x, a lap scrubber, a time bar, keyboard shortcuts, gap readout (s and m), compound/age badges, the median
-ghost with a translucent 10-90 % halo along the path, SC/VSC/red shading and the pit-lane polyline. It exposes
+play/pause, 1x-10x, a lap scrubber, a time bar, keyboard shortcuts, time-gap readout, compound/age badges, 3D camera controls, recorded circuit geometry and the exact median
+ghost frame set. Outcome uncertainty remains on the parent strategy cards; road width and elevation are schematic. It exposes
 window.__orbTwin (fps, seek, play, pause, setSpeed) and data-fps on the root for the performance harness.
 """
 from __future__ import annotations
@@ -68,15 +68,15 @@ def _pitlane_dict(pitlane: Any) -> Optional[dict]:
 
 
 def player_html(frames: Any, track: Any, pitlane: Any = None, height: int = 520, presentation: bool = False, autoplay: bool = False, speed: int = 1, start_t: float = 0.0,
-                title: Optional[str] = None, show_fps: bool = True) -> str:
+                title: Optional[str] = None, show_fps: bool = True, stop_lap: Optional[int] = None) -> str:
     """Self-contained HTML for the player. `height` is the total component height in CSS px."""
     fr = _frames_dict(frames); tr = _track_dict(track); pl = _pitlane_dict(pitlane)
-    payload = dict(frames=fr, track=tr, pitlane=pl, options=dict(canvas_height=max(int(height) - CONTROLS_HEIGHT, 160), presentation=bool(presentation), autoplay=bool(autoplay), speed=int(speed) if int(speed) in (1, 2, 5, 10) else 1,
-                                                                 start_t=float(start_t), title=title or '', show_fps=bool(show_fps)),
+    payload = dict(frames=fr, track=tr, pitlane=pl, options=dict(total_height=int(height), canvas_height=max(int(height) - CONTROLS_HEIGHT, 160), presentation=bool(presentation), autoplay=bool(autoplay), speed=int(speed) if int(speed) in (1, 2, 5, 10) else 1,
+                                                                 stop_lap=int(stop_lap) if stop_lap is not None else None, start_t=float(start_t), title=title or '', show_fps=bool(show_fps)),
                    colors=dict(bg=COLORS['background'], surface=COLORS['surface'], raised=COLORS['raised'], border=COLORS['border'], text=COLORS['text'], text2=COLORS['text_secondary'], live=COLORS['live'],
                                decision=COLORS['decision'], critical=COLORS['critical'], compounds=dict(COMPOUNDS, UNKNOWN=COLORS['text_secondary']), glyphs=dict(COMPOUND_GLYPH), font=FONT_STACK))
     data = json.dumps(payload, separators=(',', ':'), allow_nan=False).replace('</', '<\\/')
-    html = TEMPLATE_PATH.read_text(encoding='utf-8')
+    html = TEMPLATE_PATH.read_text(encoding='utf-8').replace('/*__ORB_SCENE__*/', (TEMPLATE_PATH.parent / 'scene3d.js').read_text(encoding='utf-8'))
     for k, v in dict(__BG__=COLORS['background'], __SURFACE__=COLORS['surface'], __RAISED__=COLORS['raised'], __BORDER__=COLORS['border'], __TEXT__=COLORS['text'], __TEXT2__=COLORS['text_secondary'],
                      __LIVE__=COLORS['live'], __DECISION__=COLORS['decision'], __CRITICAL__=COLORS['critical'], __FONT__=FONT_STACK).items():
         html = html.replace(k, v)
@@ -84,11 +84,11 @@ def player_html(frames: Any, track: Any, pitlane: Any = None, height: int = 520,
 
 
 def race_twin_player(frames: Any, track: Any, pitlane: Any = None, height: int = 520, presentation: bool = False, autoplay: bool = False, speed: int = 1, start_t: float = 0.0,
-                     title: Optional[str] = None, show_fps: bool = True, key: Optional[str] = None) -> None:
+                     title: Optional[str] = None, show_fps: bool = True, key: Optional[str] = None, stop_lap: Optional[int] = None) -> None:
     """Streamlit entry point. Renders the player in an iframe of `height` px; the map fills the width of the container.
     `key` is accepted for call-site symmetry with other components (components.html has no key; it is unused)."""
     import streamlit.components.v1 as components
-    components.html(player_html(frames, track, pitlane, height=height, presentation=presentation, autoplay=autoplay, speed=speed, start_t=start_t, title=title, show_fps=show_fps),
+    components.html(player_html(frames, track, pitlane, height=height, presentation=presentation, autoplay=autoplay, speed=speed, start_t=start_t, title=title, show_fps=show_fps, stop_lap=stop_lap),
                     height=int(height), scrolling=False)
 
 
@@ -142,3 +142,12 @@ def load_track(event: str, root: Optional[str | Path] = None) -> TrackPath:
 
 
 __all__ = ['race_twin_player', 'player_html', 'load_assets', 'load_track', 'list_frames', 'assets_status', 'maps_dir', 'CONTROLS_HEIGHT']
+
+
+def static_track3d(track, height: int = 360) -> None:
+    """Recorded circuit in a 3D camera, without invented car positions or replay frames."""
+    import streamlit.components.v1 as components
+    data = json.dumps(_track_dict(track), separators=(',', ':'), allow_nan=False).replace('</', '<\\/')
+    js = (TEMPLATE_PATH.parent / 'scene3d.js').read_text(encoding='utf-8')
+    html = '<style>body{margin:0;background:#0d1824;color:#b8cbd9;font:12px system-ui}canvas{width:100%;height:' + str(height-40) + 'px;cursor:grab;touch-action:none}button{background:#23394c;color:#ddedf6;border:1px solid #496275;border-radius:7px;padding:5px 12px;margin:4px}footer{display:flex;justify-content:space-between;align-items:center}</style><canvas aria-label="3D circuit geometry, no car positions"></canvas><footer><span>Recorded geometry · schematic elevation</span><button id="reset">Reset view</button></footer><script>' + js + '\nconst canvas=document.querySelector("canvas"),ctx=canvas.getContext("2d"),T=' + data + ';let scene;function draw(){const d=window.devicePixelRatio||1;canvas.width=canvas.clientWidth*d;canvas.height=canvas.clientHeight*d;scene.draw({},null)}scene=window.createOrbScene3D(canvas,ctx,T,null,{},draw);document.querySelector("#reset").onclick=()=>scene.reset();new ResizeObserver(draw).observe(canvas);draw();</script>'
+    components.html(html, height=height, scrolling=False)

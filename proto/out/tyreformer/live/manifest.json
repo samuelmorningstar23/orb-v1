@@ -1,0 +1,89 @@
+{
+ "model": "Orb TyreFormer",
+ "source": "rolling_ensemble",
+ "protocol": "2026 rolling: each race forecast by a model trained on 2023-2025 and the earlier 2026 races only",
+ "conformal_margins": {
+  "h1": -0.01348885487105504,
+  "h2": 0.0068608826603245385,
+  "h3": 0.02759682099236174,
+  "h4": 0.04776520657531566,
+  "h5": 0.05797690155490541,
+  "h6": 0.08779388083242493,
+  "h7": 0.0931984981902299,
+  "h8": 0.09315898384463844,
+  "h9": 0.09669320310188512,
+  "h10": 0.10692984373655612,
+  "cum3": 0.03680571331368614,
+  "cum5": 0.18997463350336072
+ },
+ "generated_at": "2026-09-13T10:02:15",
+ "units": "seconds of corrected lap time (lap_s - 0.03 x 70 x (1 - (lap - 1) / n_laps))",
+ "uses_future_data": false,
+ "files": {
+  "2026_Australia.parquet": {
+   "sha256": "83f742ed2f716df1f3619ce2ba93bb6613915f3c0d720f98e2c58600ae770130",
+   "rows": 812,
+   "drivers": 20
+  },
+  "2026_Austria.parquet": {
+   "sha256": "446f7bd06dd75fb6d7101367fd75838467056cce269dfca81ad9376a24704557",
+   "rows": 1097,
+   "drivers": 20
+  },
+  "2026_Barcelona.parquet": {
+   "sha256": "98dfe273182bda97f00768d1d300fe4cb7e295c0ab21cbd8dcf1dea0b1ce1f57",
+   "rows": 971,
+   "drivers": 21
+  },
+  "2026_Belgium.parquet": {
+   "sha256": "4eaed634fb635b2147a329263c538289d4a33ddd6118152353187a52c7aedced",
+   "rows": 594,
+   "drivers": 21
+  },
+  "2026_Britain.parquet": {
+   "sha256": "13ca58e5147b15a635963d92770c81143670a81d87aefd0f28708a93eaa8d7c4",
+   "rows": 851,
+   "drivers": 22
+  },
+  "2026_Canada.parquet": {
+   "sha256": "3315e64eaf156d0a6a4a6faa84b2471678e5632cd2629949ce18f192e3f83ce7",
+   "rows": 964,
+   "drivers": 19
+  },
+  "2026_China.parquet": {
+   "sha256": "0bd1fd4d8d13a756e03ef4b1e32c58c4db6d806a57254033be34aeee4ee4fd92",
+   "rows": 616,
+   "drivers": 17
+  },
+  "2026_Hungary.parquet": {
+   "sha256": "96e2e6d953f92b321771ec37f17b6c1367e7843bd5d7034c6c14a782af0bec2c",
+   "rows": 1110,
+   "drivers": 22
+  },
+  "2026_Japan.parquet": {
+   "sha256": "6b7141f82ce39ecfdc457c44400cc7f9a9d6dcb2274907252da353d9e5961aae",
+   "rows": 731,
+   "drivers": 22
+  },
+  "2026_Miami.parquet": {
+   "sha256": "2bcc1f991f694c7ed1b5d87edd4d535ee72318f834b2f6956e0f98217f8a4941",
+   "rows": 653,
+   "drivers": 20
+  },
+  "2026_Monaco.parquet": {
+   "sha256": "8409be5beeb92989a6faccae134017ef779d4195c7206829e4bacbbff8ce7d53",
+   "rows": 31,
+   "drivers": 13
+  },
+  "2026_Monza.parquet": {
+   "sha256": "d6a6542ee9505319399720737218ce5ac7b566376cd813611380d07ea70ef0d9",
+   "rows": 737,
+   "drivers": 21
+  },
+  "2026_Zandvoort.parquet": {
+   "sha256": "82d765d0cc211e46199f776d9dc4354c86d7a7440cc7c78e66cfa9f140f2e9b8",
+   "rows": 1045,
+   "drivers": 20
+  }
+ }
+}

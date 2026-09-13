@@ -9,3 +9,5 @@ from app_v2.components.race_twin.player import race_twin_player, player_html, lo
 from app_v2.components.race_twin.plotly_fallback import race_twin_map, race_twin_animation
 
 __all__ = ['race_twin_player', 'player_html', 'load_assets', 'load_track', 'list_frames', 'assets_status', 'maps_dir', 'race_twin_map', 'race_twin_animation']
+
+from .player import static_track3d

@@ -1,0 +1,155 @@
+{
+ "season": 2026,
+ "event": "Madrid",
+ "race_id": "2026_Madrid",
+ "units": "s/lap per lap of tyre age",
+ "generated_at": "2026-09-13T06:13:17",
+ "git_sha": "e35c11455b752177242c3861015a574cc0cce82b",
+ "model": "huber_obs",
+ "model_description": {
+  "family": "huber",
+  "target": "obs",
+  "blend_toward_orb_v1": false,
+  "hyperparameters": {
+   "alpha": 300.0,
+   "epsilon": 1.35
+  },
+  "blend_weight": null,
+  "selection": "hyperparameter and blend weight by grouped inner CV inside this training set; model family chosen by protocol A (prerace_eval.json)"
+ },
+ "training": {
+  "rule": "development rows of earlier seasons plus this season's other development weekends",
+  "n_rows": 148,
+  "n_weekends": 64,
+  "seasons": [
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "sealed_excluded": [
+   "2023_Canada",
+   "2024_Bahrain",
+   "2024_Monza",
+   "2024_SaudiArabia",
+   "2024_Zandvoort",
+   "2025_Qatar"
+  ]
+ },
+ "completed": false,
+ "compounds": {
+  "MEDIUM": {
+   "prediction": 0.02553767113691768,
+   "band90": [
+    -0.04263269215695045,
+    0.09370803443078582
+   ],
+   "conformal_half_width90": 0.06817036329386814,
+   "orb_v1": {
+    "prediction": 0.027577618966801054,
+    "band90": [
+     -0.013275769235062622,
+     0.08796834182264004
+    ],
+    "issued": false,
+    "gate": "no positive degradation signal in cleaned practice",
+    "factor": 0.45182685386752625,
+    "factor_applied": true,
+    "basis": "low-degradation fallback: median race degradation of the 13 withheld cases in the pool"
+   },
+   "naive": 0.15318851442158327,
+   "c_number": 3,
+   "inputs": {
+    "clean": -0.19873171654805333,
+    "clean_se": 0.04396908773151788,
+    "naive": 0.15318851442158327,
+    "n_prac": 112.0,
+    "push_adj": 0.05599465959352301,
+    "energy_trend": 0.4815170921473892,
+    "practice_resid_sd": 0.9463430789689369,
+    "track_temp_practice": 49.28333333333333,
+    "sprint": 0.0,
+    "street": 1.0,
+    "comp_soft": 0.0,
+    "comp_medium": 1.0,
+    "comp_hard": 0.0,
+    "cnum": 3.0,
+    "cnum_missing": 0.0,
+    "clean_other_soft": 0.06990807511818707,
+    "clean_other_medium": null,
+    "clean_other_hard": null,
+    "clean_other_mean": 0.06990807511818707,
+    "orb_v1": 0.027577618966801054,
+    "orb_v1_missing": 0.0,
+    "orb_v1_issued": 0.0,
+    "orb_v1_factor": 0.45182685386752625,
+    "orb_v1_factor_applied": 1.0,
+    "hist_last": null,
+    "hist_mean": null,
+    "hist_missing": 1.0,
+    "season_2023": 0.0,
+    "season_2024": 0.0,
+    "season_2025": 0.0,
+    "season_2026": 1.0
+   },
+   "circuit_history_sources": []
+  },
+  "SOFT": {
+   "prediction": 0.029948726142955365,
+   "band90": [
+    -0.03822163715091277,
+    0.0981190894368235
+   ],
+   "conformal_half_width90": 0.06817036329386814,
+   "orb_v1": {
+    "prediction": 0.06762490392631254,
+    "band90": [
+     -0.11810181837771255,
+     0.2625708306893798
+    ],
+    "issued": true,
+    "gate": "ok",
+    "factor": 0.9673403796626557,
+    "factor_applied": true,
+    "basis": "cleaned Friday curve x season transfer factor"
+   },
+   "naive": 0.5121386718750017,
+   "c_number": 4,
+   "inputs": {
+    "clean": 0.06990807511818707,
+    "clean_se": 0.08141831184013738,
+    "naive": 0.5121386718750017,
+    "n_prac": 46.0,
+    "push_adj": 0.08093847040609642,
+    "energy_trend": 0.02085109498537282,
+    "practice_resid_sd": 0.9463430789689369,
+    "track_temp_practice": 49.28333333333333,
+    "sprint": 0.0,
+    "street": 1.0,
+    "comp_soft": 1.0,
+    "comp_medium": 0.0,
+    "comp_hard": 0.0,
+    "cnum": 4.0,
+    "cnum_missing": 0.0,
+    "clean_other_soft": null,
+    "clean_other_medium": -0.19873171654805333,
+    "clean_other_hard": null,
+    "clean_other_mean": -0.19873171654805333,
+    "orb_v1": 0.06762490392631254,
+    "orb_v1_missing": 0.0,
+    "orb_v1_issued": 1.0,
+    "orb_v1_factor": 0.9673403796626557,
+    "orb_v1_factor_applied": 1.0,
+    "hist_last": null,
+    "hist_mean": null,
+    "hist_missing": 1.0,
+    "season_2023": 0.0,
+    "season_2024": 0.0,
+    "season_2025": 0.0,
+    "season_2026": 1.0
+   },
+   "circuit_history_sources": []
+  }
+ },
+ "status": "development candidate from the learned prerace model; not the shipping Orb v1 forecast and not a sealed or scored result"
+}

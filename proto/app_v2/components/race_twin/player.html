@@ -36,6 +36,15 @@
   .orb-twin.present .orb-hint, .orb-twin.present .orb-fps, .orb-twin.present .orb-eng { display: none; }
   .orb-twin.present .orb-lap { font-size: 24px; } .orb-twin.present .orb-gap { font-size: 22px; }
   .orb-fps { color: var(--text2); font-size: 10.5px; margin-left: auto; }
+
+  .orb-twin {background:#0d1824;border-color:#314656;border-radius:18px;box-shadow:inset 0 1px #ffffff08}
+  .orb-hud {background:#11202d;padding:10px 16px 5px}.orb-title {font-size:10px;max-width:50%;letter-spacing:.025em}
+  .orb-lap {font-size:17px;color:#d8e8f6}.orb-gap {color:#88e7d4}.orb-gap small {display:none}
+  .orb-camera {display:flex;gap:6px;align-items:center;padding:7px 14px;background:#102030;justify-content:flex-end;border-bottom:1px solid #2a4050}
+  .orb-camera .orb-btn {font-size:10px;padding:4px 9px;background:#1c3041;min-width:30px}
+  .orb-controls {background:#142332;border-color:#2c4053;padding:9px 14px}.orb-btn.play {background:#99e6d7;color:#10262b;border-color:#99e6d7}
+  .orb-chip {background:#192e3f;border-color:#354c60;padding:3px 8px;font-size:10px}.orb-eng{font-size:9px}
+  canvas.orb-canvas {cursor:grab;touch-action:none}canvas.orb-canvas:active{cursor:grabbing}
 </style>
 <div id="orb-twin" class="orb-twin" tabindex="0" role="application" aria-label="Race Twin player: actual car and counterfactual ghost on the track map">
   <div class="orb-hud">
@@ -44,30 +53,41 @@
     <span class="grow"></span>
     <span class="orb-lap"><span id="orb-lapno">—</span><small id="orb-clock">0:00</small></span>
     <span class="grow"></span>
-    <span class="orb-gap"><span id="orb-gap">—</span><small id="orb-gapm"></small></span>
+    <span class="orb-gap" title="Ghost time minus actual time at this point in the selected simulation. Negative means the Ghost plan is ahead in modelled time."><span id="orb-gap">—</span><small id="orb-gapm"></small></span>
   </div>
   <div class="orb-hud" style="padding-top:0">
-    <span class="orb-chip" id="orb-badge-a"><span class="dot"></span><span>A</span><span id="orb-a-txt"></span></span>
-    <span class="orb-chip" id="orb-badge-g"><span class="dot"></span><span>G</span><span id="orb-g-txt"></span></span>
+    <span class="orb-chip" id="orb-badge-a"><span class="dot"></span><span>Actual</span><span id="orb-a-txt"></span></span>
+    <span class="orb-chip" id="orb-badge-g"><span class="dot"></span><span>Ghost</span><span id="orb-g-txt"></span></span>
     <span class="orb-chip warn hidden" id="orb-status"></span>
     <span class="orb-chip hidden" id="orb-pit-a">A in pit lane</span>
     <span class="orb-chip hidden" id="orb-pit-g">G in pit lane</span>
-    <span class="orb-chip orb-eng" id="orb-halo">halo: 10–90 % of counterfactual position</span>
+    <span class="orb-chip orb-eng" id="orb-halo" title="The 3D view uses recorded track coordinates. Road width, car size and height are visual styling, not surveyed measurements.">Recorded XY · schematic elevation</span>
     <span class="orb-chip orb-eng" id="orb-pitsrc"></span>
     <span class="orb-fps" id="orb-fps" aria-live="off"></span>
+  </div>
+  <div class="orb-camera" role="group" aria-label="3D camera controls">
+    <button class="orb-btn" id="orb-view-3d" title="Orbit the recorded circuit in 3D. Road width and elevation are schematic.">3D</button>
+    <button class="orb-btn" id="orb-view-top" title="Look straight down at the circuit.">Top</button>
+    <button class="orb-btn" id="orb-rotate" title="Rotate the camera clockwise. You can also drag the track.">Rotate</button>
+    <button class="orb-btn" id="orb-zoom-in" aria-label="Zoom in" title="Zoom in on the track.">+</button>
+    <button class="orb-btn" id="orb-zoom-out" aria-label="Zoom out" title="Zoom out to see more of the circuit.">−</button>
+    <button class="orb-btn" id="orb-camera-reset" title="Restore the starting 3D camera.">Reset view</button>
   </div>
   <canvas class="orb-canvas" id="orb-canvas" aria-hidden="true"></canvas>
   <div class="orb-controls">
     <button class="orb-btn play" id="orb-play" aria-label="Play or pause (space)">Play</button>
+    <button class="orb-btn" id="orb-race-start" title="Rewind to the start without changing the chosen strategy.">Lap 1</button>
+    <button class="orb-btn" id="orb-tyre-change" hidden title="Jump to the first lap on the Ghost’s replacement tyres.">Jump to tyre change</button>
     <span role="group" aria-label="Playback speed">
       <button class="orb-btn spd" data-v="1" aria-pressed="true">1x</button><button class="orb-btn spd" data-v="2" aria-pressed="false">2x</button><button class="orb-btn spd" data-v="5" aria-pressed="false">5x</button><button class="orb-btn spd" data-v="10" aria-pressed="false">10x</button>
     </span>
     <div class="orb-lapctl"><label for="orb-lapslider">lap</label><input type="range" id="orb-lapslider" min="1" max="1" value="1" step="1" aria-label="Lap scrubber"><span id="orb-lapval" style="min-width:24px">1</span></div>
     <div class="orb-time" id="orb-time" role="slider" aria-label="Race time" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><div class="fill" id="orb-fill"></div><div class="cursor" id="orb-cursor"></div></div>
-    <div class="orb-hint">space play/pause · ← → 1 s (shift 10 s) · PgUp/PgDn lap · ↑ ↓ speed · 1 2 5 0 speed · Home/End</div>
+    <div class="orb-hint">Drag to orbit · scroll to zoom · Space to play · ← → to step · Home / End to jump</div>
   </div>
 </div>
 <script>
+/*__ORB_SCENE__*/
 (function () {
   const D = /*__ORB_DATA__*/null;
   if (!D) { return; }
@@ -77,13 +97,14 @@
   const CMP = C.compounds, GLYPH = C.glyphs, NAMES = {0: 'unknown', 1: 'soft', 2: 'medium', 3: 'hard', 4: 'intermediate', 5: 'wet'};
   const compColor = (code) => CMP[NAMES[code] ? NAMES[code].toUpperCase() : 'UNKNOWN'] || C.text;
   if (O.presentation) root.classList.add('present');
+  if (!O.show_fps) document.getElementById('orb-fps').style.display='none';
   // ---- geometry helpers --------------------------------------------------------------------------------------
   function xyAtS(s) { s = ((s % L) + L) % L; const f = s / grid; let i = Math.floor(f); const a = f - i; i = i % NX; const j = (i + 1) % NX; return [T.x[i] + a * (T.x[j] - T.x[i]), T.y[i] + a * (T.y[j] - T.y[i])]; }
   function xyAtPit(sp) { const s = P.s; const m = s.length - 1; if (sp <= 0) return [P.x[0], P.y[0]]; if (sp >= s[m]) return [P.x[m], P.y[m]]; let lo = 0, hi = m; while (hi - lo > 1) { const k = (lo + hi) >> 1; if (s[k] <= sp) lo = k; else hi = k; } const a = (sp - s[lo]) / Math.max(s[hi] - s[lo], 1e-9); return [P.x[lo] + a * (P.x[hi] - P.x[lo]), P.y[lo] + a * (P.y[hi] - P.y[lo])]; }
   let W = 10, H = 10, scale = 1, ox = 0, oy = 0, minx = 0, miny = 0, maxy = 0, dpr = 1;
   const bbox = (function () { let a = Infinity, b = -Infinity, c = Infinity, d = -Infinity; const eat = (xs, ys) => { for (let i = 0; i < xs.length; i++) { if (xs[i] < a) a = xs[i]; if (xs[i] > b) b = xs[i]; if (ys[i] < c) c = ys[i]; if (ys[i] > d) d = ys[i]; } }; eat(T.x, T.y); if (P && P.x) eat(P.x, P.y); return [a, b, c, d]; })();
   function fit() {
-    dpr = window.devicePixelRatio || 1; const cw = root.clientWidth || 800; const ch = Math.max(O.canvas_height || 360, 120);
+    dpr = window.devicePixelRatio || 1; const cw = root.clientWidth || 800; const chrome = [...root.children].filter(e => e !== canvas).reduce((sum, e) => sum + e.getBoundingClientRect().height, 0); const ch = Math.max((O.total_height || 520) - chrome - 4, 120);
     canvas.style.height = ch + 'px'; canvas.width = Math.round(cw * dpr); canvas.height = Math.round(ch * dpr); W = cw; H = ch;
     const pad = 30; const bw = bbox[1] - bbox[0] || 1, bh = bbox[3] - bbox[2] || 1; scale = Math.min((W - 2 * pad) / bw, (H - 2 * pad) / bh);
     minx = bbox[0]; miny = bbox[2]; maxy = bbox[3]; ox = pad + (W - 2 * pad - bw * scale) / 2; oy = pad + (H - 2 * pad - bh * scale) / 2;
@@ -114,22 +135,14 @@
     ctx.lineWidth = 2; ctx.strokeStyle = ghost ? C.bg : C.text; if (ghost) ctx.setLineDash([3, 2]); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = C.bg; ctx.font = '600 ' + (O.presentation ? 11 : 9) + 'px ' + C.font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(label, x, y + 0.5); ctx.restore();
   }
+  const scene3d = window.createOrbScene3D(canvas, ctx, T, P, C, () => { dirty = true; });
   function draw() {
-    const s = stateAt(tau); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H); ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
-    const sc = ({4: 'SAFETY CAR', 5: 'RED FLAG', 6: 'VIRTUAL SAFETY CAR', 7: 'VSC ENDING'})[s.status];
-    if (sc) { ctx.fillStyle = s.status === 5 ? 'rgba(241,100,100,.10)' : 'rgba(240,184,75,.10)'; ctx.fillRect(0, 0, W, H); }
-    // track base + sector ticks
-    ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.strokeStyle = C.border; ctx.lineWidth = 9; strokePath(T.x, T.y, true); ctx.strokeStyle = C.raised; ctx.lineWidth = 5; strokePath(T.x, T.y, true);
-    // pit lane
-    if (P && P.x && P.x.length) { ctx.save(); ctx.setLineDash([4, 4]); ctx.strokeStyle = C.text2; ctx.lineWidth = 1.6; strokePath(P.x, P.y, false); ctx.restore(); }
-    // start/finish + sector boundaries
-    const tick = (sv, label, col) => { const p = xyAtS(sv), q = xyAtS(sv + 1); const dx = q[0] - p[0], dy = q[1] - p[1]; const nn = Math.hypot(dx, dy) || 1; const nx = -dy / nn, ny = dx / nn; const cx = tx(p[0]), cy = ty(p[1]); const ex = nx * 9 * (scale ? 1 : 1), ey = -ny * 9; ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(cx - ex, cy - ey); ctx.lineTo(cx + ex, cy + ey); ctx.stroke(); ctx.fillStyle = C.text2; ctx.font = '10px ' + C.font; ctx.textAlign = 'center'; ctx.fillText(label, cx + ex * 2.2, cy + ey * 2.2 + 3); ctx.restore(); };
-    tick(0, 'S/F', C.text); if (T.sector1_end_s != null) tick(T.sector1_end_s, 'S1|S2', C.border); if (T.sector2_end_s != null) tick(T.sector2_end_s, 'S2|S3', C.border);
-    // halo along the path between the 10-90 % positions, then the two blips
-    drawHalo(s.Sq90, s.Sq10, compColor(s.compC));
-    const pg = (s.pitG && s.progG != null && P && P.x) ? xyAtPit(s.progG) : xyAtS(s.Sc); const pa = (s.pitA && s.progA != null && P && P.x) ? xyAtPit(s.progA) : xyAtS(s.Sa);
-    blip(tx(pg[0]), ty(pg[1]), compColor(s.compC), 'G', true); blip(tx(pa[0]), ty(pa[1]), compColor(s.compA), 'A', false);
-    if (sc) { ctx.save(); ctx.fillStyle = s.status === 5 ? C.critical : C.decision; ctx.font = '600 12px ' + C.font; ctx.textAlign = 'left'; ctx.fillText('▲ ' + sc, 12, 18); ctx.restore(); }
+    const s = stateAt(tau);
+    const pa = s.pitA && P && s.progA != null ? xyAtPit(s.progA) : xyAtS(s.Sa);
+    const pg = s.pitG && P && s.progG != null ? xyAtPit(s.progG) : xyAtS(s.Sc);
+    const na = s.pitA && P && s.progA != null ? xyAtPit(s.progA + 10) : xyAtS(s.Sa + 10);
+    const ng = s.pitG && P && s.progG != null ? xyAtPit(s.progG + 10) : xyAtS(s.Sc + 10);
+    scene3d.draw(s,{actual:pa,ghost:pg,actualNext:na,ghostNext:ng});
     updateHud(s); dirty = false;
   }
   // ---- HUD -----------------------------------------------------------------------------------------------------
@@ -150,10 +163,22 @@
     const tb = $('orb-time'); tb.setAttribute('aria-valuenow', Math.round(tau)); tb.setAttribute('aria-valuemax', n - 1);
   }
   // ---- controls ------------------------------------------------------------------------------------------------
+  $('orb-view-3d').onclick=()=>scene3d.setView('3d'); $('orb-view-top').onclick=()=>scene3d.setView('top');
+  $('orb-rotate').onclick=()=>scene3d.rotate(.35); $('orb-zoom-in').onclick=()=>scene3d.zoom(.1); $('orb-zoom-out').onclick=()=>scene3d.zoom(-.1); $('orb-camera-reset').onclick=()=>scene3d.reset();
   const playBtn = $('orb-play'); function setPlaying(v) { playing = v; playBtn.textContent = v ? 'Pause' : 'Play'; playBtn.setAttribute('aria-pressed', v ? 'true' : 'false'); dirty = true; }
   function setSpeed(v) { speed = v; document.querySelectorAll('.orb-btn.spd').forEach(b => b.setAttribute('aria-pressed', Number(b.dataset.v) === v ? 'true' : 'false')); }
   function seek(t) { tau = Math.min(Math.max(t, 0), n - 1); dirty = true; }
   function lapStart(lap) { for (let i = 0; i < n; i++) if (F.lap_actual[i] >= lap) return i; return n - 1; }
+  $('orb-race-start').addEventListener('click', () => { setPlaying(false); seek(0); });
+  const change = $('orb-tyre-change');
+  if (Number.isInteger(O.stop_lap) && O.stop_lap >= 1 && O.stop_lap < nLaps) {
+    const at = F.lap_cf.findIndex(lap => lap > O.stop_lap);
+    if (at >= 0) {
+      change.hidden = false;
+      change.textContent = 'Tyre change · after lap ' + O.stop_lap;
+      change.addEventListener('click', () => { setPlaying(false); seek(at); });
+    }
+  }
   playBtn.addEventListener('click', () => { if (!playing && tau >= n - 1) seek(0); setPlaying(!playing); });
   document.querySelectorAll('.orb-btn.spd').forEach(b => b.addEventListener('click', () => setSpeed(Number(b.dataset.v))));
   const slider = $('orb-lapslider'); slider.max = nLaps; slider.addEventListener('input', () => { seek(lapStart(Number(slider.value))); });

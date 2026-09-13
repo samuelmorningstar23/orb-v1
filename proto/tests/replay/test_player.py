@@ -68,3 +68,27 @@ def test_player_on_monza_assets():
     assert fr is not None and tr.L > 5000 and pl.source == 'recorded'
     html = player_html(fr, tr, pl)
     assert len(html) < 1_500_000 and ('FIXTURE' in html or 'out/counterfactual/' in html)
+
+
+def test_tyre_change_button_uses_ghost_lap_and_rewinds_independently(mini_frames, mini_track):
+    from playwright.sync_api import sync_playwright
+    fr, _ = mini_frames; tr, pl = mini_track
+    lap = 9  # mini_frames changes to HARD after lap 9
+    first_lap = int(min(fr.arrays['lap_cf']))
+    assert max(fr.arrays['lap_cf']) > lap
+    html = player_html(fr, tr, pl, stop_lap=lap)
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={'width':1200,'height':700})
+        page.set_content(html, wait_until='load')
+        page.wait_for_function('window.__orbTwin && window.__orbTwin.frames > 0')
+        assert page.evaluate('window.__orbTwin.t') == 0
+        page.locator('#orb-tyre-change').click()
+        state=page.evaluate('window.__orbTwin.state()')
+        assert state['lapC'] == lap + 1
+        assert state['compC'] == 3 and state['ageC'] == 1  # new HARD set
+        assert not page.evaluate('window.__orbTwin.playing')
+        page.locator('#orb-race-start').click()
+        assert page.evaluate('window.__orbTwin.t') == 0
+        assert page.evaluate('window.__orbTwin.state().lapC') == first_lap
+        browser.close()

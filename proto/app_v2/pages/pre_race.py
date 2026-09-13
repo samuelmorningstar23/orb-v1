@@ -13,7 +13,7 @@ def render() -> None:
     lock, ev = ctx.lock, ctx.event
     common.header(ctx, 'prerace', session='Pre-race')
     st.markdown(f'## {ev} · tyre forecast')
-    st.caption('Expected pace loss per additional lap of tyre age. Shaded bands show uncertainty.')
+    st.caption('Compare how each tyre ages, then see the suggested pit plan. Hover over a value or graph point for its meaning.')
     if lock.is_live_event(ev):
         st.caption('Frozen before the race. Built from practice and qualifying; no race results used.')
     forecasts = [lock.forecast_for(ev, c) for c in lock.compounds_for(ev)]
@@ -35,7 +35,7 @@ def render() -> None:
             st.html(cards.card_html('Suggested plan', body, extra_class='cs-decision'))
         else:
             empty_states.no_strategy(ev)
-        if st.button('Open replay', width='stretch'):
+        if st.button(f'Replay {ev}' if not lock.is_live_event(ev) else 'Try a recorded race →', width='stretch'):
             from app_v2.pages.landing import replay_target
             from app_v2.services.asset_repository import available_race_events
             target = replay_target(ev, available_race_events())

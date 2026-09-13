@@ -206,25 +206,39 @@ def events_with_scenarios() -> frozenset:
     return frozenset(sc.event for sc in list_scenarios(None, None))
 
 
-def list_scenarios(event: Optional[str] = None, curve_source: Optional[str] = RACE_REFERENCE) -> list[Scenario]:
-    """Scenarios on disk. `curve_source` selects race_reference (audit, default), PRE_RACE (scenario explorer) or None for all."""
+@_cache
+def _scenario_catalog(snapshot: tuple) -> list[Scenario]:
+    """Read one versioned catalogue instead of unpickling every summary per selector."""
     out = []
-    for d in _scenario_dirs():
-        s = d / 'summary.json'
+    for path, mtime_ns, size in snapshot:
+        s = Path(path)
         try:
-            summary = _read_summary(str(s), _mtime(s))
+            summary = json.loads(s.read_text())
         except (json.JSONDecodeError, OSError):
             continue
         sc = summary.get('scenario', {})
         ev = event_short(sc.get('event_id', ''))
-        if event and ev != event:
-            continue
         iv = sc.get('intervention') or {}
-        item = Scenario(sc.get('scenario_id', d.name), ev, sc.get('driver_id', ''), int(iv.get('lap', 0) or 0), str(iv.get('to_compound', '')).upper(), str(iv.get('set_status', 'new')), sc.get('simulation_mode', 'tyre_only'), str(d), summary)
-        if curve_source is not None and item.curve_source != curve_source:
-            continue
-        out.append(item)
+        out.append(Scenario(sc.get('scenario_id', s.parent.name), ev, sc.get('driver_id', ''),
+                            int(iv.get('lap', 0) or 0), str(iv.get('to_compound', '')).upper(),
+                            str(iv.get('set_status', 'new')), sc.get('simulation_mode', 'tyre_only'),
+                            str(s.parent), summary))
     return out
+
+
+def list_scenarios(event: Optional[str] = None, curve_source: Optional[str] = RACE_REFERENCE) -> list[Scenario]:
+    """Prepared outputs, invalidated on file changes; source identities remain separate."""
+    snapshot = []
+    for d in _scenario_dirs():
+        path = d / 'summary.json'
+        try:
+            stat = path.stat()
+            snapshot.append((str(path), stat.st_mtime_ns, stat.st_size))
+        except OSError:
+            continue
+    return [sc for sc in _scenario_catalog(tuple(snapshot))
+            if (event is None or sc.event == event)
+            and (curve_source is None or sc.curve_source == curve_source)]
 
 
 def find_scenario(event: str, driver: str, lap: int, to_compound: str, set_status: str = 'new', mode: str = 'tyre_only', curve_source: str = RACE_REFERENCE) -> Optional[Scenario]:

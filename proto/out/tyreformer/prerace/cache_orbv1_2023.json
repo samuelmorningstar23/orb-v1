@@ -1,0 +1,1348 @@
+{
+ "season": 2023,
+ "generated_at": "2026-09-13T06:05:52",
+ "git_sha": "e35c11455b752177242c3861015a574cc0cce82b",
+ "rule": "SeasonForecaster.forecast(event, pool=development events minus event, target_obs_in_widening=False)",
+ "sealed_excluded": [
+  "2023_Canada"
+ ],
+ "events": {
+  "AbuDhabi": {
+   "race_id": "2023_AbuDhabi",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.3020560590975193,
+     "band90": [
+      -0.23368785232978717,
+      0.30505466801096487
+     ],
+     "band90_raw": [
+      0.01453101177716571,
+      0.30366536375099956
+     ],
+     "widen": 1.8632947509104947,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03152084194654137,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.03152084194654137,
+     "band90": [
+      -0.042597317285201455,
+      0.0932614283930957
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06465601093490723
+     ],
+     "widen": 1.8632947509104947,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.03152084194654137,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.03152084194654137,
+     "band90": [
+      -0.042597317285201455,
+      0.0932614283930957
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06465601093490723
+     ],
+     "widen": 1.8632947509104947,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.03152084194654137,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    }
+   }
+  },
+  "Australia": {
+   "race_id": "2023_Australia",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.04541152871820699,
+     "band90": [
+      -0.058729105916200355,
+      0.10498726426375177
+     ],
+     "band90_raw": [
+      -0.008374206175366772,
+      0.07618073546820738
+     ],
+     "widen": 1.9362129166863893,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.03548718232704218,
+     "band90": [
+      -0.031888527666386085,
+      0.09807374545050711
+     ],
+     "band90_raw": [
+      0.0006895061971183038,
+      0.06781139759494505
+     ],
+     "widen": 1.9362129166863893,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.03548718232704218,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.03548718232704218,
+     "band90": [
+      -0.031888527666386085,
+      0.09807374545050711
+     ],
+     "band90_raw": [
+      0.0006895061971183038,
+      0.06781139759494505
+     ],
+     "widen": 1.9362129166863893,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.03548718232704218,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    }
+   }
+  },
+  "Bahrain": {
+   "race_id": "2023_Bahrain",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.04161253895467618,
+     "band90": [
+      0.004302309809618224,
+      0.16244263331240816
+     ],
+     "band90_raw": [
+      0.02133447389154558,
+      0.10728355119757063
+     ],
+     "widen": 1.8399304385749844,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.22446492236505294,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.19170300044273336,
+     "band90": [
+      -0.19176080759084552,
+      0.6914039648709456
+     ],
+     "band90_raw": [
+      -0.01670912209955655,
+      0.4632898789201761
+     ],
+     "widen": 1.8399304385749844,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.034975954487890704,
+     "band90": [
+      -0.0426065207486646,
+      0.0856838672132259
+     ],
+     "band90_raw": [
+      -0.007190028317764975,
+      0.06253564460563678
+     ],
+     "widen": 1.8399304385749844,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.034975954487890704,
+     "basis": "low-degradation fallback: median race degradation of the 19 withheld cases in the pool"
+    }
+   }
+  },
+  "Barcelona": {
+   "race_id": "2023_Barcelona",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02326237624078832,
+     "band90": [
+      -0.00028005196173714816,
+      0.12178873134766763
+     ],
+     "band90_raw": [
+      0.010474558269301482,
+      0.07678009682857748
+     ],
+     "widen": 1.8410043257589623,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.22446492236505294,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.034975954487890704,
+     "band90": [
+      -0.04265180225719943,
+      0.09440156897189994
+     ],
+     "band90_raw": [
+      -0.007190028317764975,
+      0.0672548653261424
+     ],
+     "widen": 1.8410043257589623,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.034975954487890704,
+     "basis": "low-degradation fallback: median race degradation of the 19 withheld cases in the pool"
+    }
+   }
+  },
+  "Brazil": {
+   "race_id": "2023_Brazil",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.034975954487890704,
+     "band90": [
+      -0.04872158894409938,
+      0.09904811318211508
+     ],
+     "band90_raw": [
+      -0.007190028317764975,
+      0.0672548653261424
+     ],
+     "widen": 1.9849541707056766,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.034975954487890704,
+     "basis": "low-degradation fallback: median race degradation of the 19 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.04658460634067296,
+     "band90": [
+      -0.31587018540272555,
+      0.009579311889867777
+     ],
+     "band90_raw": [
+      -0.13601648193258484,
+      0.027941710198819303
+     ],
+     "widen": 1.9849541707056766,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Britain": {
+   "race_id": "2023_Britain",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.16294576094431434,
+     "band90": [
+      -0.11770270943538869,
+      0.1788105432283431
+     ],
+     "band90_raw": [
+      0.007240466429048679,
+      0.1717476282575877
+     ],
+     "widen": 1.8024337017787646,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.04828283802777378,
+     "band90": [
+      -0.04236104298662542,
+      0.21007944396888933
+     ],
+     "band90_raw": [
+      -0.002006879105758308,
+      0.1380484731140705
+     ],
+     "widen": 1.8024337017787646,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.015452305858540823,
+     "band90": [
+      -0.14909759184629895,
+      0.04033661446823479
+     ],
+     "band90_raw": [
+      -0.07584087044106493,
+      0.02925825532849161
+     ],
+     "widen": 1.8024337017787646,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.34090791198657344,
+     "factor_applied": true,
+     "factor_from_n_weekends": 4,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Hungary": {
+   "race_id": "2023_Hungary",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.03967387963159555,
+     "band90": [
+      0.002350007862826832,
+      0.15462013470059557
+     ],
+     "band90_raw": [
+      0.018648606666815462,
+      0.10442537176182075
+     ],
+     "widen": 1.7751908301638122,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.29645686394831927,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.11609732614172685,
+     "band90": [
+      -0.10815029637663237,
+      0.40824405666505165
+     ],
+     "band90_raw": [
+      -0.01022578160983018,
+      0.2806693403495548
+     ],
+     "widen": 1.7751908301638122,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.034975954487890704,
+     "band90": [
+      -0.03987671153355424,
+      0.09227718101563041
+     ],
+     "band90_raw": [
+      -0.007190028317764975,
+      0.0672548653261424
+     ],
+     "widen": 1.7751908301638122,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.034975954487890704,
+     "basis": "low-degradation fallback: median race degradation of the 19 withheld cases in the pool"
+    }
+   }
+  },
+  "Japan": {
+   "race_id": "2023_Japan",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.41983876309574797,
+     "band90": [
+      -0.28870639055972536,
+      0.4370214653275127
+     ],
+     "band90_raw": [
+      0.020343863695565515,
+      0.4295267863135878
+     ],
+     "widen": 1.7736025033593952,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 6,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.2484402584677391,
+     "band90": [
+      -0.23068501592600588,
+      0.8684801882510846
+     ],
+     "band90_raw": [
+      -0.021702162670159487,
+      0.5980337714498886
+     ],
+     "widen": 1.7736025033593952,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.20717643244131523,
+     "band90": [
+      -1.1756670449861535,
+      0.02858044837873816
+     ],
+     "band90_raw": [
+      -0.5725041751402672,
+      0.10647969587024197
+     ],
+     "widen": 1.7736025033593952,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Mexico": {
+   "race_id": "2023_Mexico",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.25868471058191744,
+     "band90": [
+      -0.2708659142323052,
+      0.26846197387384024
+     ],
+     "band90_raw": [
+      0.012318713601727673,
+      0.26323344512358177
+     ],
+     "widen": 2.1494468851430164,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.19593385564019172,
+     "band90": [
+      -0.26242978641422804,
+      0.7979154304810863
+     ],
+     "band90_raw": [
+      -0.017313396582057022,
+      0.47599733569256847
+     ],
+     "widen": 2.1494468851430164,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.031570779281678,
+     "band90": [
+      -0.3909698862863219,
+      0.09067852483222877
+     ],
+     "band90_raw": [
+      -0.16501033583617036,
+      0.0590698284366507
+     ],
+     "widen": 2.1494468851430164,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.2901545816980768,
+     "factor_applied": true,
+     "factor_from_n_weekends": 4,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Miami": {
+   "race_id": "2023_Miami",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.0384304512337863,
+     "band90": [
+      -0.04482538547907443,
+      0.08117351155568048
+     ],
+     "band90_raw": [
+      -0.005888144201758689,
+      0.06118335929254952
+     ],
+     "widen": 1.8785757060813073,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03755060465906576,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.03755060465906576,
+     "band90": [
+      -0.04850276632183256,
+      0.09439779511516543
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06781139759494505
+     ],
+     "widen": 1.8785757060813073,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.03755060465906576,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.03755060465906576,
+     "band90": [
+      -0.04850276632183256,
+      0.09439779511516543
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06781139759494505
+     ],
+     "widen": 1.8785757060813073,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.03755060465906576,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    }
+   }
+  },
+  "Monaco": {
+   "race_id": "2023_Monaco",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.03599841016619365,
+     "band90": [
+      -0.029451532432835298,
+      0.08570456374677707
+     ],
+     "band90_raw": [
+      -0.00013124421715280223,
+      0.06343718365136188
+     ],
+     "widen": 1.811529717516405,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03599841016619365,
+     "basis": "low-degradation fallback: median race degradation of the 17 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.03599841016619365,
+     "band90": [
+      -0.029451532432835298,
+      0.08570456374677707
+     ],
+     "band90_raw": [
+      -0.00013124421715280223,
+      0.06343718365136188
+     ],
+     "widen": 1.811529717516405,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.03599841016619365,
+     "basis": "low-degradation fallback: median race degradation of the 17 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.03599841016619365,
+     "band90": [
+      -0.029451532432835298,
+      0.08570456374677707
+     ],
+     "band90_raw": [
+      -0.00013124421715280223,
+      0.06343718365136188
+     ],
+     "widen": 1.811529717516405,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.03599841016619365,
+     "basis": "low-degradation fallback: median race degradation of the 17 withheld cases in the pool"
+    }
+   }
+  },
+  "Monza": {
+   "race_id": "2023_Monza",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.03677388272688553,
+     "band90": [
+      -0.033015425582437447,
+      0.06313442798123316
+     ],
+     "band90_raw": [
+      -0.001365030491921108,
+      0.05117956423041872
+     ],
+     "widen": 1.8298714467540003,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.024879041766951104,
+     "band90": [
+      -0.032381711747395237,
+      0.032975564599950796
+     ],
+     "band90_raw": [
+      -0.0064131856820977915,
+      0.029303682004582044
+     ],
+     "widen": 1.8298714467540003,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.034975954487890704,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.034975954487890704,
+     "band90": [
+      -0.04218237347249876,
+      0.09404221176312572
+     ],
+     "band90_raw": [
+      -0.007190028317764975,
+      0.0672548653261424
+     ],
+     "widen": 1.8298714467540003,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.034975954487890704,
+     "basis": "low-degradation fallback: median race degradation of the 19 withheld cases in the pool"
+    }
+   }
+  },
+  "Qatar": {
+   "race_id": "2023_Qatar",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.03755060465906576,
+     "band90": [
+      -0.05068313371127911,
+      0.09583815426483372
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06781139759494505
+     ],
+     "widen": 1.9261739019620405,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03755060465906576,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.03755060465906576,
+     "band90": [
+      -0.05068313371127911,
+      0.09583815426483372
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06781139759494505
+     ],
+     "widen": 1.9261739019620405,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.03755060465906576,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.03755060465906576,
+     "band90": [
+      -0.05068313371127911,
+      0.09583815426483372
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06781139759494505
+     ],
+     "widen": 1.9261739019620405,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.03755060465906576,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    }
+   }
+  },
+  "SaudiArabia": {
+   "race_id": "2023_SaudiArabia",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02693963943647287,
+     "band90": [
+      -0.008591985111193749,
+      0.08890005503401682
+     ],
+     "band90_raw": [
+      0.011907832669549989,
+      0.053152260061545845
+     ],
+     "widen": 2.363762726504247,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.22446492236505294,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.03599841016619365,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.0550305426965636,
+     "band90": [
+      -0.08892238356623522,
+      0.2769809718459653
+     ],
+     "band90_raw": [
+      -0.005869362631789658,
+      0.1489276274846137
+     ],
+     "widen": 2.363762726504247,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03599841016619365,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.03599841016619365,
+     "band90": [
+      -0.050568337041973666,
+      0.10988125383593185
+     ],
+     "band90_raw": [
+      -0.0006240250035961336,
+      0.0672548653261424
+     ],
+     "widen": 2.363762726504247,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.03599841016619365,
+     "basis": "low-degradation fallback: median race degradation of the 19 withheld cases in the pool"
+    }
+   }
+  },
+  "Singapore": {
+   "race_id": "2023_Singapore",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.031009614107389893,
+     "band90": [
+      -0.05301895837076413,
+      0.10976323425466594
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06781139759494505
+     ],
+     "widen": 2.139940314955314,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.031009614107389893,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.03811394889079622,
+     "band90": [
+      -0.058601253855813024,
+      0.21476281458196034
+     ],
+     "band90_raw": [
+      -0.007081331590018892,
+      0.12066245010675321
+     ],
+     "widen": 2.139940314955314,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.031009614107389893,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.031009614107389893,
+     "band90": [
+      -0.05301895837076413,
+      0.10976323425466594
+     ],
+     "band90_raw": [
+      -0.008257169125257743,
+      0.06781139759494505
+     ],
+     "widen": 2.139940314955314,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 5,
+     "floor": 0.031009614107389893,
+     "basis": "low-degradation fallback: median race degradation of the 18 withheld cases in the pool"
+    }
+   }
+  },
+  "USA": {
+   "race_id": "2023_USA",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.17841295867341955,
+     "band90": [
+      -0.17861068905967598,
+      0.677662478030987
+     ],
+     "band90_raw": [
+      -0.016540868511146663,
+      0.4510296470547325
+     ],
+     "widen": 1.8313241288415179,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.10690934211250672,
+     "band90": [
+      -0.7626651822181694,
+      0.0392788676202977
+     ],
+     "band90_raw": [
+      -0.3679244192275803,
+      0.06997951989966253
+     ],
+     "widen": 1.8313241288415179,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.03548718232704218,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Zandvoort": {
+   "race_id": "2023_Zandvoort",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Australia",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Britain",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Monza",
+    "Qatar",
+    "SaudiArabia",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.029254164725565895,
+     "band90": [
+      0.00020823403348278063,
+      0.123561827639523
+     ],
+     "band90_raw": [
+      0.015095804928894356,
+      0.07522417812516961
+     ],
+     "widen": 2.0515039248339675,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.29645686394831927,
+     "factor_applied": true,
+     "factor_from_n_weekends": 6,
+     "floor": 0.03599841016619365,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.03599841016619365,
+     "band90": [
+      -0.05260284089109783,
+      0.10012115060322543
+     ],
+     "band90_raw": [
+      -0.007190028317764975,
+      0.0672548653261424
+     ],
+     "widen": 2.0515039248339675,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 8,
+     "floor": 0.03599841016619365,
+     "basis": "low-degradation fallback: median race degradation of the 19 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.01245780358039348,
+     "band90": [
+      -0.015769470251358456,
+      0.04320026038695171
+     ],
+     "band90_raw": [
+      -0.0013015041596764927,
+      0.027443130410341555
+     ],
+     "widen": 2.0515039248339675,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.34090791198657344,
+     "factor_applied": true,
+     "factor_from_n_weekends": 4,
+     "floor": 0.03599841016619365,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  }
+ }
+}

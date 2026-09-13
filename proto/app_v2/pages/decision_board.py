@@ -45,7 +45,8 @@ def render() -> None:
     lock, ev = ctx.lock, ctx.event
     st.session_state['mode'] = 'live'
     if not A.race_csv_asset(ev).exists:
-        common.header(ctx, 'decision', n_laps=lock.n_laps(ev), support='—', latency='no feed'); empty_states.missing_feed(ev); shell.ready_marker('decision'); return
+        from app_v2.pages import pre_race
+        pre_race.render(); shell.ready_marker('decision'); return
     driver = ctx.driver or app_state.default_driver(lock, ev)
     src = app_state.source_for(ev, driver, lock.n_laps(ev))
     if src is None:

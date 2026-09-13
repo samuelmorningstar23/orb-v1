@@ -33,12 +33,11 @@ def bootstrap(page: str = "") -> Ctx:
     s = st.session_state
     if lock and page == 'ghost':
         with_sims = CF.events_with_scenarios()
-        # A race belongs on Ghost Strategy when it has a prepared simulation to show, whether or not the position feed
-        # supports the animation: the page degrades to geometry or a stated refusal when frames are unavailable.
+        # Keep the strategy workspace focused on races with a prepared analysis.
         events = [ev for ev in events
                   if lock.event_meta(ev).get('completed')
                   and A.race_csv_asset(ev).exists
-                  and (ev in with_sims or RT.assets_status(ev)['status'] == 'ok')]
+                  and ev in with_sims]
         if not events:
             st.info('No race visualisations are available yet. Choose another page above.')
             st.stop()
@@ -51,7 +50,7 @@ def bootstrap(page: str = "") -> Ctx:
     elif page != 'ghost':
         s.pop('_ghost_event_notice', None)
     with st.sidebar:
-        st.markdown('**ORB · Tyre intelligence**')
+        st.markdown('**Race workspace**')
         present = st.toggle('Presentation mode', value=bool(s.get('present', False)), help='Hides engineering controls and enlarges the decisive visuals.')
         if present != bool(s.get('present', False)):
             query_state.set_state(present=present)
@@ -61,15 +60,18 @@ def bootstrap(page: str = "") -> Ctx:
             return Ctx(None, '', None, None, present, s.get('mode', 'live'), q)
         race_files = set(A.available_race_events())
         ev = st.selectbox('Weekend', events, index=events.index(s['ev']) if s.get('ev') in events else 0,
-                          format_func=lambda e: f"{e} · {'forecast only' if e not in race_files else 'recorded race'}")
+                          format_func=lambda e: f"{e} · {'pre-race' if e not in race_files else 'replay'}", help='Choose a weekend. Pre-race weekends show the frozen tyre forecast; replay weekends reveal a recorded race lap by lap.')
         if ev != s.get('ev'):
             query_state.set_state(ev=ev, lap=None, drv=None, cmp=None)
             st.rerun()
         drivers = RS.drivers_for(ev)
+        if page == 'ghost':
+            prepared_drivers = {sc.driver for sc in CF.scenarios_for(ev, curve_source=CF.PRE_RACE if s.get('mode') == 'scenario' else CF.RACE_REFERENCE)}
+            drivers = [driver for driver in drivers if driver in prepared_drivers]
         drv = None
         if drivers:
             default = s.get('drv') if s.get('drv') in drivers else app_state.default_driver(lock, ev)
-            drv = st.selectbox('Driver', drivers, index=drivers.index(default) if default in drivers else 0)
+            drv = st.selectbox('Driver', drivers, index=drivers.index(default) if default in drivers else 0, help='All graphs and strategy results follow this driver. Ghost Strategy lists drivers with a prepared analysis.')
             if drv != s.get('drv'):
                 query_state.set_state(drv=drv, lap=None)
                 st.rerun()

@@ -73,6 +73,13 @@ ROUTES: list[tuple[str, str, dict]] = [
 ]
 
 
+# The tutorial is a product route too: audit every case and step at its example lap.
+for case, event, driver, lap in (('monza_nor', 'Monza', 'NOR', 24), ('monza_ver', 'Monza', 'VER', 24), ('austria_ver', 'Austria', 'VER', 32)):
+    for step in range(5):
+        ROUTES.append((f'guided_demo/{case}/step{step+1}', 'guided_demo',
+                       dict(ev=event, drv=driver, lap=lap, _demo_case=case, _demo_step=step, _demo_live_lap=lap)))
+
+
 def _page_script(page: str, state: dict) -> str:
     return f"""
 import sys; sys.path.insert(0, {str(PROTO)!r})
@@ -537,9 +544,9 @@ def route_references(base: ReferenceSet, lock: dict, page: str, state: dict) -> 
     specific = ReferenceSet()
     if ev:
         _race_csv_refs(specific, lock, ev)
-    if page in LIVE_PAGES and ev and drv:
+    if (page in LIVE_PAGES or (page == 'guided_demo' and state.get('_demo_step') in (1, 2))) and ev and drv:
         _live_refs(specific, ev, drv, lap)
-    if page in GHOST_PAGES and ev:
+    if (page in GHOST_PAGES or (page == 'guided_demo' and state.get('_demo_step') in (3, 4))) and ev:
         _counterfactual_refs(specific, ev)
     if page in ('validation', 'generalisation'):
         pe = PROTO / 'out' / 'live' / 'prefix_eval.json'

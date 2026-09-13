@@ -1,0 +1,1605 @@
+{
+ "season": 2025,
+ "generated_at": "2026-09-13T06:05:58",
+ "git_sha": "e35c11455b752177242c3861015a574cc0cce82b",
+ "rule": "SeasonForecaster.forecast(event, pool=development events minus event, target_obs_in_widening=False)",
+ "sealed_excluded": [
+  "2025_Qatar"
+ ],
+ "events": {
+  "AbuDhabi": {
+   "race_id": "2025_AbuDhabi",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.12178589798881478,
+     "band90": [
+      0.04002753660474065,
+      0.20374597105619446
+     ],
+     "band90_raw": [
+      0.05547158896623242,
+      0.18826381560963398
+     ],
+     "widen": 1.2328917029993107,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.09540548139490568,
+     "band90": [
+      -0.016287042741473745,
+      0.15223335233056146
+     ],
+     "band90_raw": [
+      0.004811535580638266,
+      0.1414986384803237
+     ],
+     "widen": 1.2328917029993107,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.06286358851208527,
+     "band90": [
+      -0.005321336702226037,
+      0.1574734440497551
+     ],
+     "band90_raw": [
+      0.007558710517988309,
+      0.13960176049224235
+     ],
+     "widen": 1.2328917029993107,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.2247007477068936,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Australia": {
+   "race_id": "2025_Australia",
+   "completed": false,
+   "development": false,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.01432534111031123,
+      0.08023590079733701
+     ],
+     "band90_raw": [
+      -0.007217631003984121,
+      0.06894380811743678
+     ],
+     "widen": 1.2415894841074804,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 16 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.01432534111031123,
+      0.08023590079733701
+     ],
+     "band90_raw": [
+      -0.007217631003984121,
+      0.06894380811743678
+     ],
+     "widen": 1.2415894841074804,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 16 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.01432534111031123,
+      0.08023590079733701
+     ],
+     "band90_raw": [
+      -0.007217631003984121,
+      0.06894380811743678
+     ],
+     "widen": 1.2415894841074804,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 16 withheld cases in the pool"
+    }
+   }
+  },
+  "Austria": {
+   "race_id": "2025_Austria",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02710142861203268,
+     "band90": [
+      0.00258131617607776,
+      0.06793905344299611
+     ],
+     "band90_raw": [
+      0.01087999856404966,
+      0.0541178085838421
+     ],
+     "widen": 1.5115875951395397,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4923423762648527,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.03937493406625592,
+     "band90": [
+      -0.01710061759765239,
+      0.054773661235565235
+     ],
+     "band90_raw": [
+      0.0020131881472608185,
+      0.04956205601593546
+     ],
+     "widen": 1.5115875951395397,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.03991010913504667,
+     "band90": [
+      -5.546554896410788e-05,
+      0.12192163453983688
+     ],
+     "band90_raw": [
+      0.013470639260777541,
+      0.09416533434891822
+     ],
+     "widen": 1.5115875951395397,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 3,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Bahrain": {
+   "race_id": "2025_Bahrain",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.17985264722507774,
+     "band90": [
+      0.03546164279524319,
+      0.23737408370929408
+     ],
+     "band90_raw": [
+      0.06894440954704098,
+      0.2240354630061929
+     ],
+     "widen": 1.3018961210888342,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.7219043063804816,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.16332344002074178,
+     "band90": [
+      -0.03814872854373108,
+      0.25388250566892956
+     ],
+     "band90_raw": [
+      0.00857056434893117,
+      0.23288280361455074
+     ],
+     "widen": 1.3018961210888342,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.018680540172957148,
+     "band90": [
+      -0.016369454939037086,
+      0.06951636941187524
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.05772807124356345
+     ],
+     "widen": 1.3018961210888342,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.018680540172957148,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  },
+  "Barcelona": {
+   "race_id": "2025_Barcelona",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.051788997458161,
+     "band90": [
+      0.019609880651164237,
+      0.10884917788025028
+     ],
+     "band90_raw": [
+      0.02809593385574184,
+      0.09380166337483778
+     ],
+     "widen": 1.3581661429259466,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4923423762648527,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.15124980560862866,
+     "band90": [
+      -0.04319606707258941,
+      0.23976426159705005
+     ],
+     "band90_raw": [
+      0.008081848069710578,
+      0.21642184398512027
+     ],
+     "widen": 1.3581661429259466,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.08708481506439224,
+     "band90": [
+      -0.0011382051135559595,
+      0.2649413155104939
+     ],
+     "band90_raw": [
+      0.022127357070419462,
+      0.21803823440301523
+     ],
+     "widen": 1.3581661429259466,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Belgium": {
+   "race_id": "2025_Belgium",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.02635891916528315,
+     "band90": [
+      -0.008548947724051327,
+      0.08734210374594459
+     ],
+     "band90_raw": [
+      9.118779457269535e-05,
+      0.07224799957726036
+     ],
+     "widen": 1.3289258366734369,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.02635891916528315,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02635891916528315,
+     "band90": [
+      -0.008548947724051327,
+      0.08734210374594459
+     ],
+     "band90_raw": [
+      9.118779457269535e-05,
+      0.07224799957726036
+     ],
+     "widen": 1.3289258366734369,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02635891916528315,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Brazil": {
+   "race_id": "2025_Brazil",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.018680540172957148,
+     "band90": [
+      -0.01339486144914048,
+      0.07701199642727709
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.0676406456230341
+     ],
+     "widen": 1.1914078966557509,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.018680540172957148,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.05708886130342243,
+     "band90": [
+      0.01669614513064955,
+      0.10914674205678254
+     ],
+     "band90_raw": [
+      0.023185513603483456,
+      0.10078328443045151
+     ],
+     "widen": 1.1914078966557509,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.8772830267391127,
+     "factor_applied": true,
+     "factor_from_n_weekends": 3,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve x season transfer factor"
+    }
+   }
+  },
+  "Britain": {
+   "race_id": "2025_Britain",
+   "completed": false,
+   "development": false,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.08862131874314197,
+     "band90": [
+      0.0234996982629591,
+      0.16152771073836664
+     ],
+     "band90_raw": [
+      0.03617111574629901,
+      0.14734152612926815
+     ],
+     "widen": 1.2415894841074804,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.030343605289473885,
+     "band90": [
+      -0.007901968366940487,
+      0.06568476473354844
+     ],
+     "band90_raw": [
+      -0.0004601137706205202,
+      0.05880805339929308
+     ],
+     "widen": 1.2415894841074804,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.1253350096951067,
+     "band90": [
+      -0.0025390452777465378,
+      0.3618819830724769
+     ],
+     "band90_raw": [
+      0.022342791566925778,
+      0.3158544820369754
+     ],
+     "widen": 1.2415894841074804,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Canada": {
+   "race_id": "2025_Canada",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.014664064553530663,
+     "band90": [
+      -0.01591355717316944,
+      0.049455902897600885
+     ],
+     "band90_raw": [
+      -0.00901883704126392,
+      0.041610950454899875
+     ],
+     "widen": 1.2911264949655052,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.025725418765305638,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.0387645798943872,
+     "band90": [
+      -0.0091663077760211,
+      0.0636428346781505
+     ],
+     "band90_raw": [
+      0.0016412710185292553,
+      0.05803322234016705
+     ],
+     "widen": 1.2911264949655052,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.025725418765305638,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.025725418765305638,
+     "band90": [
+      -0.018130462999995947,
+      0.0836588908966857
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.07059590384734855
+     ],
+     "widen": 1.2911264949655052,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.025725418765305638,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  },
+  "China": {
+   "race_id": "2025_China",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.1628917081685728,
+     "band90": [
+      -0.029758757737319258,
+      0.2790902195668529
+     ],
+     "band90_raw": [
+      0.007876140834743948,
+      0.25639046034158725
+     ],
+     "widen": 1.2427814136306436,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Hungary": {
+   "race_id": "2025_Hungary",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.23689256312276413,
+     "band90": [
+      -0.03283901361002589,
+      0.26338089061828895
+     ],
+     "band90_raw": [
+      0.03301739565208632,
+      0.2569136235769434
+     ],
+     "widen": 1.323023201300786,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "MEDIUM": {
+     "prediction": 0.11671895301039877,
+     "band90": [
+      -0.029585662545452265,
+      0.18661291895942383
+     ],
+     "band90_raw": [
+      0.006135393015377165,
+      0.16954793278966934
+     ],
+     "widen": 1.323023201300786,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.03969811285990943,
+     "band90": [
+      -0.0792471434899038,
+      0.21483007810501933
+     ],
+     "band90_raw": [
+      -0.050206022028176575,
+      0.17207067070539658
+     ],
+     "widen": 1.323023201300786,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 3,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Imola": {
+   "race_id": "2025_Imola",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.0150107694023568,
+      0.08132484782576385
+     ],
+     "band90_raw": [
+      -0.007217631003984121,
+      0.06894380811743678
+     ],
+     "widen": 1.2648870391555618,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 16 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.05978092255704355,
+     "band90": [
+      -0.013850450294871572,
+      0.1179979653759276
+     ],
+     "band90_raw": [
+      0.0015691055547352656,
+      0.10580641022252689
+     ],
+     "widen": 1.2648870391555618,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    }
+   }
+  },
+  "Japan": {
+   "race_id": "2025_Japan",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.07206614223577522,
+     "band90": [
+      -0.019224488520476493,
+      0.16129289239560696
+     ],
+     "band90_raw": [
+      0.006991538626294384,
+      0.13566955202616712
+     ],
+     "widen": 1.4028611115957903,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.7219043063804816,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.02635891916528315,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.02635891916528315,
+     "band90": [
+      -0.020547710106605534,
+      0.0907349255221381
+     ],
+     "band90_raw": [
+      -0.0070774836861232865,
+      0.07224799957726036
+     ],
+     "widen": 1.4028611115957903,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.02635891916528315,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02635891916528315,
+     "band90": [
+      -0.020547710106605534,
+      0.0907349255221381
+     ],
+     "band90_raw": [
+      -0.0070774836861232865,
+      0.07224799957726036
+     ],
+     "widen": 1.4028611115957903,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02635891916528315,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Mexico": {
+   "race_id": "2025_Mexico",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.026913409423789034,
+     "band90": [
+      -0.01052816364459291,
+      0.08397757610672775
+     ],
+     "band90_raw": [
+      -0.00016877201435716287,
+      0.0681889753008279
+     ],
+     "widen": 1.3825168830618713,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.4923423762648527,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.025725418765305638,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.14628891644345288,
+     "band90": [
+      -0.0450672602022224,
+      0.228476624411997
+     ],
+     "band90_raw": [
+      0.007877459057213076,
+      0.20573680382586398
+     ],
+     "widen": 1.3825168830618713,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.025725418765305638,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.025725418765305638,
+     "band90": [
+      -0.021234733627597265,
+      0.0877596219424058
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.07059590384734855
+     ],
+     "widen": 1.3825168830618713,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.025725418765305638,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  },
+  "Miami": {
+   "race_id": "2025_Miami",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "MEDIUM": {
+     "prediction": 0.06682406256103945,
+     "band90": [
+      -0.013901718969526855,
+      0.12368667351889379
+     ],
+     "band90_raw": [
+      0.002559738018102132,
+      0.11209135159398217
+     ],
+     "widen": 1.256152338092817,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.018680540172957148,
+     "band90": [
+      -0.015137928594927848,
+      0.08389414563548281
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.07059590384734855
+     ],
+     "widen": 1.256152338092817,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.018680540172957148,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  },
+  "Monaco": {
+   "race_id": "2025_Monaco",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.00531586872494667,
+      0.0844856443700375
+     ],
+     "band90_raw": [
+      9.118779457269535e-05,
+      0.07224799957726036
+     ],
+     "widen": 1.2445327180673738,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.00531586872494667,
+      0.0844856443700375
+     ],
+     "band90_raw": [
+      9.118779457269535e-05,
+      0.07224799957726036
+     ],
+     "widen": 1.2445327180673738,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.00531586872494667,
+      0.0844856443700375
+     ],
+     "band90_raw": [
+      9.118779457269535e-05,
+      0.07224799957726036
+     ],
+     "widen": 1.2445327180673738,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Monza": {
+   "race_id": "2025_Monza",
+   "completed": false,
+   "development": false,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.058656784543427994,
+     "band90": [
+      -0.012195556794742678,
+      0.14467087444783672
+     ],
+     "band90_raw": [
+      0.0015909489793461574,
+      0.12793418339820337
+     ],
+     "widen": 1.2415894841074804,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.02220297946913139,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.01432534111031123,
+      0.08023590079733701
+     ],
+     "band90_raw": [
+      -0.007217631003984121,
+      0.06894380811743678
+     ],
+     "widen": 1.2415894841074804,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 16 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.01432534111031123,
+      0.08023590079733701
+     ],
+     "band90_raw": [
+      -0.007217631003984121,
+      0.06894380811743678
+     ],
+     "widen": 1.2415894841074804,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 16 withheld cases in the pool"
+    }
+   }
+  },
+  "SaudiArabia": {
+   "race_id": "2025_SaudiArabia",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "Singapore",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.02053918008282494,
+      0.0714580370452239
+     ],
+     "band90_raw": [
+      -0.009265822855611543,
+      0.05846688579964208
+     ],
+     "widen": 1.3582391573367731,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 0.6071233413226672,
+     "factor_applied": true,
+     "factor_from_n_weekends": 8,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "MEDIUM": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.02053918008282494,
+      0.0714580370452239
+     ],
+     "band90_raw": [
+      -0.009265822855611543,
+      0.05846688579964208
+     ],
+     "widen": 1.3582391573367731,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 12,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    },
+    "HARD": {
+     "prediction": 0.02220297946913139,
+     "band90": [
+      -0.02053918008282494,
+      0.0714580370452239
+     ],
+     "band90_raw": [
+      -0.009265822855611543,
+      0.05846688579964208
+     ],
+     "widen": 1.3582391573367731,
+     "issued": false,
+     "gate": "too few clean practice laps",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.02220297946913139,
+     "basis": "low-degradation fallback: median race degradation of the 14 withheld cases in the pool"
+    }
+   }
+  },
+  "Singapore": {
+   "race_id": "2025_Singapore",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "USA",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.06584314283238933,
+     "band90": [
+      -0.09157207759497586,
+      0.2344651438525373
+     ],
+     "band90_raw": [
+      -0.05885006940406321,
+      0.19941357461056985
+     ],
+     "widen": 1.2624201237904011,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.7219043063804816,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.371159881262102,
+     "band90": [
+      -0.06469151055698474,
+      0.5962074919656664
+     ],
+     "band90_raw": [
+      0.025909212641224633,
+      0.549426693128077
+     ],
+     "widen": 1.2624201237904011,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.018680540172957148,
+     "band90": [
+      -0.015306671595621036,
+      0.08421954000940604
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.07059590384734855
+     ],
+     "widen": 1.2624201237904011,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.018680540172957148,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  },
+  "USA": {
+   "race_id": "2025_USA",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "Zandvoort"
+   ],
+   "compounds": {
+    "HARD": {
+     "prediction": 0.018680540172957148,
+     "band90": [
+      -0.014980072387240622,
+      0.08358974473198297
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.07059590384734855
+     ],
+     "widen": 1.2502889311559222,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.018680540172957148,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  },
+  "Zandvoort": {
+   "race_id": "2025_Zandvoort",
+   "completed": true,
+   "development": true,
+   "pool_events": [
+    "AbuDhabi",
+    "Austria",
+    "Bahrain",
+    "Barcelona",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Hungary",
+    "Imola",
+    "Japan",
+    "Mexico",
+    "Miami",
+    "Monaco",
+    "SaudiArabia",
+    "Singapore",
+    "USA"
+   ],
+   "compounds": {
+    "SOFT": {
+     "prediction": 0.130713836794185,
+     "band90": [
+      0.03325549445174868,
+      0.2017598509232493
+     ],
+     "band90_raw": [
+      0.05332396412751206,
+      0.18713016663082363
+     ],
+     "widen": 1.2593164839823499,
+     "issued": true,
+     "gate": "ok",
+     "factor": 0.7219043063804816,
+     "factor_applied": true,
+     "factor_from_n_weekends": 7,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve x season transfer factor"
+    },
+    "MEDIUM": {
+     "prediction": 0.04206294161176061,
+     "band90": [
+      -0.008729234469748902,
+      0.0746362175054515
+     ],
+     "band90_raw": [
+      0.0017298111179161403,
+      0.06792877939598788
+     ],
+     "widen": 1.2593164839823499,
+     "issued": true,
+     "gate": "ok",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 11,
+     "floor": 0.018680540172957148,
+     "basis": "cleaned Friday curve (weekends disagree on the factor)"
+    },
+    "HARD": {
+     "prediction": 0.018680540172957148,
+     "band90": [
+      -0.015223114575717938,
+      0.08405841342005674
+     ],
+     "band90_raw": [
+      -0.00824172692979783,
+      0.07059590384734855
+     ],
+     "widen": 1.2593164839823499,
+     "issued": false,
+     "gate": "no positive degradation signal in cleaned practice",
+     "factor": 1.0,
+     "factor_applied": false,
+     "factor_from_n_weekends": 4,
+     "floor": 0.018680540172957148,
+     "basis": "low-degradation fallback: median race degradation of the 15 withheld cases in the pool"
+    }
+   }
+  }
+ }
+}

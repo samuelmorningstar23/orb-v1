@@ -63,7 +63,9 @@ def test_page_renders_presentation_mode(page):
 def test_live_predictor_missing_feed_state():
     """Madrid has a forecast but no race file: the intentional degraded state must render, not an exception."""
     at = _run('live_predictor', {'ev': 'Madrid'})
-    assert any('NO RACE FEED' in (getattr(el, 'value', '') or '') for el in at.get('html')) or True
+    text = _text(at)
+    assert 'Madrid' in text and 'NO RACE FEED' not in text
+    assert any('frozen' in el.value.lower() for el in at.caption)
 
 
 def test_ghost_no_completed_race_state():
@@ -438,15 +440,19 @@ def test_degraded_feed_and_refused_position_states():
     html = _html(_run('live_predictor', {'ev': 'Hungary', 'drv': 'NOR', 'lap': 30, 'mode': 'live'}))
     if LB.AVAILABLE:
         assert 'DEGRADED' in html
-    html2 = _html(_run('ghost_strategy', {'ev': 'Hungary', 'drv': 'NOR', 'mode': 'audit'}))
-    assert 'POSITION FEED REFUSED' in html2 and 'Plotly fallback' not in html2
+    html2 = _html(_run('ghost_strategy', {'ev': 'Hungary', 'drv': 'ANT', 'mode': 'audit'}))
+    assert 'Modelled finish' in html2 and 'POSITION FEED REFUSED' not in html2
+    at = _run('ghost_strategy', {'ev': 'Hungary', 'drv': 'ANT', 'mode': 'audit'})
+    assert any('verified moving replay is not available' in c.value for c in at.caption)
+    assert not at.get('iframe')
 
 
 # ---- C4 acceptance pass on the post-freeze data (12 Sep 22:0x) -------------------------------------------------------
 def _text(at) -> str:
     """Rendered text of every st.html block, tags stripped (the values a viewer reads)."""
     import re
-    return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', _html(at)))
+    from html import unescape
+    return unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', _html(at))))
 
 
 def test_sealed_block_renders_post_freeze_aggregate_verbatim():
@@ -520,7 +526,7 @@ def test_scenario_explorer_fidelity_control_selects_between_pre_race_scenarios()
     for fid, sc in built.items():
         summary = json.loads((Path(sc.path) / 'summary.json').read_text())['scenario']['summary']
         t = _text(_run('ghost_strategy', {'ev': 'Monza', 'drv': 'NOR', 'mode': 'scenario', 'ilap': 24, 'rep': 'MEDIUM', 'scenario': 'hotter_dry', 'fid': fid}))
-        assert f"simulation fidelity {fid.replace('_', '-') if fid == 'tyre_only' else 'fixed context'} ({fid})" in t
+        assert f"simulation fidelity {'Tyres & pit stops' if fid == 'tyre_only' else 'Include recorded cautions'} ({fid})" in t
         assert f"{summary['elapsed_delta_median_s']:+.1f} s · Workstream 2 {fid.replace('_', ' ')}" in t and CF.PRE_RACE_LABEL in t
         assert f"{summary['elapsed_delta_q10_s']:+.1f} s to {summary['elapsed_delta_q90_s']:+.1f} s" in t
         assert f"{100 * summary['probability_of_gain']:.0f}%" in t

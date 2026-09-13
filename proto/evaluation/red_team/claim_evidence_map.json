@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13T03:08:52",
+ "generated_at": "2026-09-13T11:16:37",
  "sources": [
   "README.md",
   "out/talk_track.md",
@@ -11,6 +11,7 @@
   "app_v2/pages/driver_feedback.py",
   "app_v2/pages/generalisation.py",
   "app_v2/pages/ghost_strategy.py",
+  "app_v2/pages/guided_demo.py",
   "app_v2/pages/landing.py",
   "app_v2/pages/live_predictor.py",
   "app_v2/pages/pre_race.py",
@@ -23,12 +24,16 @@
   "app_v2/ui/charts.py",
   "app_v2/ui/empty_states.py",
   "app_v2/ui/formatting.py",
+  "app_v2/ui/ghost_summary.py",
+  "app_v2/ui/help.py",
+  "app_v2/ui/model_guide.py",
   "app_v2/ui/scorecard_evidence.py",
   "app_v2/ui/shell.py",
   "app_v2/services/__init__.py",
   "app_v2/services/asset_repository.py",
   "app_v2/services/counterfactual_repository.py",
   "app_v2/services/decision_service.py",
+  "app_v2/services/demo_service.py",
   "app_v2/services/event_service.py",
   "app_v2/services/feedback_service.py",
   "app_v2/services/live_bridge.py",
@@ -59,6 +64,11 @@
   "out/Orb_v1_Mentor_Briefing.pptx#slide-17",
   "out/Orb_v1_Mentor_Briefing.pptx#slide-18",
   "out/Orb_v1_Mentor_Briefing.pptx#slide-19",
+  "out/Orb_v1_Mentor_Briefing.pptx#slide-20",
+  "out/Orb_v1_Mentor_Briefing.pptx#slide-21",
+  "out/Orb_v1_Mentor_Briefing.pptx#slide-22",
+  "out/Orb_v1_Mentor_Briefing.pptx#slide-23",
+  "out/Orb_v1_Mentor_Briefing.pptx#slide-24",
   "out/Orb_v1_ChallengeDay.pdf#page-1",
   "out/Orb_v1_ChallengeDay.pdf#page-2",
   "out/Orb_v1_ChallengeDay.pdf#page-3",
@@ -133,9 +143,9 @@
   }
  ],
  "summary": {
-  "wording_hits": 8,
+  "wording_hits": 9,
   "reword": 0,
-  "allowed_with_context": 8,
+  "allowed_with_context": 9,
   "number_claims": 37,
   "verdicts": {
    "verified": 21,
@@ -203,9 +213,18 @@
   },
   {
    "rule": "tread",
-   "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-16",
-   "line": 16,
-   "excerpt": "| Tread depth after runs | the only route to a physical wear number |",
+   "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-21",
+   "line": 9,
+   "excerpt": "| Tread depth after runs | the only route to a physical wear number; public mode never shows tread |",
+   "verdict": "allowed_with_context",
+   "note": "public mode never displays physical tread (roadmap 7); allowed only when describing private team data or a missing channel",
+   "owner": "lead"
+  },
+  {
+   "rule": "tread",
+   "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-21",
+   "line": 9,
+   "excerpt": "| Tread depth after runs | the only route to a physical wear number; public mode never shows tread |",
    "verdict": "allowed_with_context",
    "note": "public mode never displays physical tread (roadmap 7); allowed only when describing private team data or a missing channel",
    "owner": "lead"
@@ -267,7 +286,7 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 8,
+     "line": 7,
      "excerpt": "| Naive straight line | 29 | 0.137 | +0.07 | 0.20 |",
      "kind": "deck",
      "qualified": false,
@@ -275,8 +294,8 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 22,
-     "excerpt": "Source: out/lock_v2.json validation. Development evaluation leaves each weekend out of its own training pool. Naive MAE 0.137 vs Orb v1 0.023 s/lap; wins 28/29.",
+     "line": 24,
+     "excerpt": "Source: out/lock_v2.json validation. Each weekend is left out of its own training pool. Naive MAE 0.137 against Orb v1 0.023 s/lap; Orb v1 beats the naive line on 28 of 29; calibration r 0.78 and slop",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -345,15 +364,15 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 18,
-     "excerpt": "Withheld compounds degraded at a median 0.028 s/lap in the race; 11 of 13 below 0.06 s/lap; the fallback band covered 9 of 13; fallback error 0.023 against 0.106 naive",
+     "line": 28,
+     "excerpt": "Withheld compounds degraded at a median 0.028 s/lap in the race; 11 of 13 below 0.06; fallback band covered 9 of 13; fallback error 0.023 against 0.106 naive",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 10,
+     "line": 9,
      "excerpt": "| Orb v1, issued | 16 | 0.023 | +0.76 | 0.82 |",
      "kind": "deck",
      "qualified": false,
@@ -361,65 +380,65 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 11,
-     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |",
+     "line": 10,
+     "excerpt": "| Orb v1, every case with fallback | 29 | 0.023 | +0.77 | 0.78 |",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 22,
-     "excerpt": "Source: out/lock_v2.json validation. Development evaluation leaves each weekend out of its own training pool. Naive MAE 0.137 vs Orb v1 0.023 s/lap; wins 28/29.",
+     "line": 24,
+     "excerpt": "Source: out/lock_v2.json validation. Each weekend is left out of its own training pool. Naive MAE 0.137 against Orb v1 0.023 s/lap; Orb v1 beats the naive line on 28 of 29; calibration r 0.78 and slop",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
-     "line": 6,
-     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.030 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |",
+     "line": 12,
+     "excerpt": "A per-compound constant scores 0.033 across all 148 cases. A learned transfer model (robust regression) reaches 0.030, but on untouched 2026 it scores 0.028 against Orb v1's 0.023. Kept as a second op",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
+     "line": 17,
+     "excerpt": "Sources: out/validation/ghost_scorecard.json (by_season 2026, rolling_origin_2026.pooled, development_pool, sealed_holdout.aggregate, labelled \"sealed holdout, aggregate only\"); out/tyreformer/prerace",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
      "line": 7,
+     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.03 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
+     "line": 8,
      "excerpt": "| Fuel prior 0.9 or 1.3 kg/lap | 14 / 16 | 0.026 / 0.023 | 0.74 / 0.76 |",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
-     "line": 8,
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
+     "line": 9,
      "excerpt": "| Fuel cost 0.025 or 0.035 s/kg | 14 / 16 | 0.025 / 0.023 | 0.75 / 0.78 |",
-     "kind": "deck",
-     "qualified": false,
-     "qualified_same_line": false
-    },
-    {
-     "source": "out/Orb_v1_ChallengeDay.pdf#page-4",
-     "line": 6,
-     "excerpt": "Orb v1 (issued) 0.023 +0.76 +0.82",
-     "kind": "deck",
-     "qualified": false,
-     "qualified_same_line": false
-    },
-    {
-     "source": "out/Orb_v1_ChallengeDay.pdf#page-4",
-     "line": 7,
-     "excerpt": "Orb v1, all cases incl. fallback 0.023 +0.77 +0.78",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     }
    ],
-   "n_occurrences": 12,
-   "n_occurrences_unqualified": 12,
-   "n_presentation_occurrences": 12,
-   "n_presentation_unqualified": 12,
+   "n_occurrences": 14,
+   "n_occurrences_unqualified": 14,
+   "n_presentation_occurrences": 14,
+   "n_presentation_unqualified": 14,
    "n_presentation_qualified": 0,
    "qualified_not_counted": [],
    "n_qualified_not_counted": 0,
@@ -463,7 +482,7 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 8,
+     "line": 7,
      "excerpt": "| Naive straight line | 29 | 0.137 | +0.07 | 0.20 |",
      "kind": "deck",
      "qualified": false,
@@ -525,48 +544,64 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 11,
-     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |",
+     "line": 10,
+     "excerpt": "| Orb v1, every case with fallback | 29 | 0.023 | +0.77 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
+     "line": 24,
+     "excerpt": "Source: out/lock_v2.json validation. Each weekend is left out of its own training pool. Naive MAE 0.137 against Orb v1 0.023 s/lap; Orb v1 beats the naive line on 28 of 29; calibration r 0.78 and slop",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
-     "line": 6,
-     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.030 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |",
+     "line": 9,
+     "excerpt": "Across 2023 to 2025 Friday says less about Sunday: calibration r 0.27 over 148 cases against 0.78 in 2026, and 86% band coverage. Every test still beats the naive line.",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
-     "line": 8,
+     "line": 17,
+     "excerpt": "Sources: out/validation/ghost_scorecard.json (by_season 2026, rolling_origin_2026.pooled, development_pool, sealed_holdout.aggregate, labelled \"sealed holdout, aggregate only\"); out/tyreformer/prerace",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
+     "line": 7,
+     "excerpt": "| Baseline (fuel 1.1 kg/lap, 0.03 s/kg, traffic 30%, runs 5+) | 16 | 0.023 | 0.78 |",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
+     "line": 9,
      "excerpt": "| Fuel cost 0.025 or 0.035 s/kg | 14 / 16 | 0.025 / 0.023 | 0.75 / 0.78 |",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
-     "line": 4,
-     "excerpt": "Learned transfer. the Sunday-to-Friday correction per compound is a parameter learned on training weekends and scored on held-out ones (leave-one-weekend-out, r 0.78)",
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-22",
+     "line": 7,
+     "excerpt": "| PITWALL | Same cleaning idea, 12 events; concluded practice curves do not transfer; predicts the value of a fresh tyre | Leave-one-event-out on pit-stop deltas | We deliver the curve the brief asks ",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-15",
-     "line": 10,
-     "excerpt": "| Friday-to-Sunday | Per-compound median ratio; weekend left out; agreement rule | Cross-validated median | 29 cases: r 0.78; slope 0.77 |",
-     "kind": "deck",
-     "qualified": false,
-     "qualified_same_line": false
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-17",
-     "line": 6,
-     "excerpt": "| PITWALL | Same cleaning idea, 12 events; concluded practice curves do not transfer; dropped tyre age; predicts the value of a fresh tyre | Leave-one-event-out on pit-stop deltas | We deliver the cur",
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-23",
+     "line": 18,
+     "excerpt": "In 2026, yes: r 0.78 over 29 held-out cases. Across 2023 to 2025 it is weaker (r 0.27), so we show that and keep a learned transfer model as a second opinion.",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -580,10 +615,10 @@
      "qualified_same_line": false
     }
    ],
-   "n_occurrences": 9,
-   "n_occurrences_unqualified": 9,
-   "n_presentation_occurrences": 9,
-   "n_presentation_unqualified": 9,
+   "n_occurrences": 11,
+   "n_occurrences_unqualified": 11,
+   "n_presentation_occurrences": 11,
+   "n_presentation_unqualified": 11,
    "n_presentation_qualified": 0,
    "qualified_not_counted": [],
    "n_qualified_not_counted": 0,
@@ -611,16 +646,16 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 11,
-     "excerpt": "| Orb v1, all cases with fallback | 29 | 0.023 | +0.77 | 0.78 |",
+     "line": 10,
+     "excerpt": "| Orb v1, every case with fallback | 29 | 0.023 | +0.77 | 0.78 |",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-15",
-     "line": 10,
-     "excerpt": "| Friday-to-Sunday | Per-compound median ratio; weekend left out; agreement rule | Cross-validated median | 29 cases: r 0.78; slope 0.77 |",
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
+     "line": 24,
+     "excerpt": "Source: out/lock_v2.json validation. Each weekend is left out of its own training pool. Naive MAE 0.137 against Orb v1 0.023 s/lap; Orb v1 beats the naive line on 28 of 29; calibration r 0.78 and slop",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -677,7 +712,7 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 12,
+     "line": 13,
      "excerpt": "28/29",
      "kind": "deck",
      "qualified": false,
@@ -685,8 +720,8 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 22,
-     "excerpt": "Source: out/lock_v2.json validation. Development evaluation leaves each weekend out of its own training pool. Naive MAE 0.137 vs Orb v1 0.023 s/lap; wins 28/29.",
+     "line": 24,
+     "excerpt": "Source: out/lock_v2.json validation. Each weekend is left out of its own training pool. Naive MAE 0.137 against Orb v1 0.023 s/lap; Orb v1 beats the naive line on 28 of 29; calibration r 0.78 and slop",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -782,7 +817,7 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
-     "line": 12,
+     "line": 14,
      "excerpt": "Push profile explains about two-thirds of the pooled gap on 16 issued cases; per-case shares vary widely.",
      "kind": "deck",
      "qualified": false,
@@ -790,25 +825,17 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
-     "line": 18,
-     "excerpt": "Some Fridays show a tyre getting faster with age, which is inconsistent with wear. The energy the driver puts through the tyre, computed from the public speed and position traces, shows why: where the",
-     "kind": "deck",
-     "qualified": false,
-     "qualified_same_line": false
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
-     "line": 10,
-     "excerpt": "Measured confounder. the push profile from telemetry energy, an input we did not find in the public methods we reviewed; explains about two-thirds of the pooled Friday-to-Sunday gap on the 16 issued c",
+     "line": 24,
+     "excerpt": "Some Fridays show a tyre getting faster with age, which wear cannot do. The energy the driver puts through the tyre, computed from public speed and position traces, shows why: where the cleaned Friday",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     }
    ],
-   "n_occurrences": 9,
-   "n_occurrences_unqualified": 9,
-   "n_presentation_occurrences": 9,
-   "n_presentation_unqualified": 9,
+   "n_occurrences": 8,
+   "n_occurrences_unqualified": 8,
+   "n_presentation_occurrences": 8,
+   "n_presentation_unqualified": 8,
    "n_presentation_qualified": 0,
    "qualified_not_counted": [],
    "n_qualified_not_counted": 0,
@@ -839,7 +866,7 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-7",
-     "line": 13,
+     "line": 14,
      "excerpt": "0.016 to 0.030",
      "kind": "deck",
      "qualified": false,
@@ -1030,7 +1057,7 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
-     "line": 4,
+     "line": 5,
      "excerpt": "0.285",
      "kind": "deck",
      "qualified": false,
@@ -1038,15 +1065,15 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
-     "line": 30,
-     "excerpt": "A practice lap time is not a tyre measurement. Hungary: the straight line says 0.285, the race showed 0.042, seven times wrong, and a plan built on that line loses 74 seconds against the best plan. Fi",
+     "line": 32,
+     "excerpt": "A practice lap time is not a tyre measurement. Hungary 2026, medium: a straight line through Friday laps says 0.285 s per lap of tyre age; the race showed 0.042. A plan built on that line costs +74 s ",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 8,
+     "line": 10,
      "excerpt": "0.285",
      "kind": "deck",
      "qualified": false,
@@ -1054,8 +1081,8 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 31,
-     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the",
+     "line": 34,
+     "excerpt": "Drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the stated fuel effect and the measured evolution; what is left is the tyre. Hungar",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -1092,7 +1119,7 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
-     "line": 5,
+     "line": 6,
      "excerpt": "0.042",
      "kind": "deck",
      "qualified": false,
@@ -1100,15 +1127,15 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
-     "line": 30,
-     "excerpt": "A practice lap time is not a tyre measurement. Hungary: the straight line says 0.285, the race showed 0.042, seven times wrong, and a plan built on that line loses 74 seconds against the best plan. Fi",
+     "line": 32,
+     "excerpt": "A practice lap time is not a tyre measurement. Hungary 2026, medium: a straight line through Friday laps says 0.285 s per lap of tyre age; the race showed 0.042. A plan built on that line costs +74 s ",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 23,
+     "line": 25,
      "excerpt": "0.042",
      "kind": "deck",
      "qualified": false,
@@ -1116,17 +1143,33 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 31,
-     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the",
+     "line": 34,
+     "excerpt": "Drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the stated fuel effect and the measured evolution; what is left is the tyre. Hungar",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-12",
+     "line": 14,
+     "excerpt": "2026 against 2025, fuel-corrected: soft 0.064 vs 0.064, medium 0.042 vs 0.058, hard 0.050 vs 0.045. Calendars differ: same circuits next.",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-12",
+     "line": 27,
+     "excerpt": "Source: deck_src/season_effects.py over the race lap files (feat2023/, feat2024/, feat2025/, feat/) and the race-derived reference slopes in out/tyreformer/prerace/predictions_A.csv; sealed weekends a",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     }
    ],
-   "n_occurrences": 4,
-   "n_occurrences_unqualified": 4,
-   "n_presentation_occurrences": 4,
-   "n_presentation_unqualified": 4,
+   "n_occurrences": 6,
+   "n_occurrences_unqualified": 6,
+   "n_presentation_occurrences": 6,
+   "n_presentation_unqualified": 6,
    "n_presentation_qualified": 0,
    "qualified_not_counted": [],
    "n_qualified_not_counted": 0,
@@ -1154,7 +1197,7 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 13,
+     "line": 15,
      "excerpt": "0.122",
      "kind": "deck",
      "qualified": false,
@@ -1162,8 +1205,8 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-4",
-     "line": 31,
-     "excerpt": "Step by step: drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the known fuel effect and the measured evolution; what is left is the",
+     "line": 34,
+     "excerpt": "Drop laps that cannot inform the tyre; compare each run only to itself so driver, car and fuel load cancel; subtract the stated fuel effect and the measured evolution; what is left is the tyre. Hungar",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -1234,15 +1277,23 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
-     "line": 7,
+     "line": 8,
      "excerpt": "+74 s",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
-     "line": 6,
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-2",
+     "line": 32,
+     "excerpt": "A practice lap time is not a tyre measurement. Hungary 2026, medium: a straight line through Friday laps says 0.285 s per lap of tyre age; the race showed 0.042. A plan built on that line costs +74 s ",
+     "kind": "deck",
+     "qualified": false,
+     "qualified_same_line": false
+    },
+    {
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 12,
      "excerpt": "| Hungary | M-H-H | +74 s | S-M-M 16/26/28 | +24 s | S-S-M |",
      "kind": "deck",
      "qualified": false,
@@ -1257,10 +1308,10 @@
      "qualified_same_line": false
     }
    ],
-   "n_occurrences": 3,
-   "n_occurrences_unqualified": 3,
-   "n_presentation_occurrences": 3,
-   "n_presentation_unqualified": 3,
+   "n_occurrences": 4,
+   "n_occurrences_unqualified": 4,
+   "n_presentation_occurrences": 4,
+   "n_presentation_unqualified": 4,
    "n_presentation_qualified": 0,
    "qualified_not_counted": [],
    "n_qualified_not_counted": 0,
@@ -1306,7 +1357,7 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 7,
+     "line": 8,
      "excerpt": "×0.97",
      "kind": "deck",
      "qualified": false,
@@ -1314,7 +1365,7 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 8,
+     "line": 9,
      "excerpt": "×0.45",
      "kind": "deck",
      "qualified": false,
@@ -1449,8 +1500,8 @@
    "counts_only_unqualified": false,
    "found_in": [
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
-     "line": 7,
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
+     "line": 8,
      "excerpt": "| Fuel prior 0.9 or 1.3 kg/lap | 14 / 16 | 0.026 / 0.023 | 0.74 / 0.76 |",
      "kind": "deck",
      "qualified": false,
@@ -1553,40 +1604,24 @@
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 18,
-     "excerpt": "Withheld compounds degraded at a median 0.028 s/lap in the race; 11 of 13 below 0.06 s/lap; the fallback band covered 9 of 13; fallback error 0.023 against 0.106 naive",
+     "line": 28,
+     "excerpt": "Withheld compounds degraded at a median 0.028 s/lap in the race; 11 of 13 below 0.06; fallback band covered 9 of 13; fallback error 0.023 against 0.106 naive",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-6",
-     "line": 23,
+     "line": 34,
      "excerpt": "The same estimator runs on race laps, so for every past weekend we know how much Sunday shrank Friday, per compound. For a new weekend the median of the other weekends is applied only when they agree.",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 11,
-     "excerpt": "+0.028 s/lap",
-     "kind": "deck",
-     "qualified": false,
-     "qualified_same_line": false
-    },
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
-     "line": 25,
-     "excerpt": "Madrid: refreshed after FP3 (landed 18:11) and after qualifying (landed 21:33, FP1, FP2, FP3 and Q in the lock). Hashed before the race, verifiable after the event. soft issued at +0.068 s/lap with a ",
-     "kind": "deck",
-     "qualified": false,
-     "qualified_same_line": false
-    },
-    {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-14",
-     "line": 5,
-     "excerpt": "Selective prediction. the gate is a validated abstention rule with a scored fallback (withheld compounds degraded at a median 0.028 s/lap in the race, 11 of 13 below 0.06, band covered 9 of 13); next,",
+     "line": 12,
+     "excerpt": "+0.028 s/lap",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -1616,10 +1651,10 @@
      "qualified_same_line": false
     }
    ],
-   "n_occurrences": 11,
-   "n_occurrences_unqualified": 11,
-   "n_presentation_occurrences": 11,
-   "n_presentation_unqualified": 11,
+   "n_occurrences": 9,
+   "n_occurrences_unqualified": 9,
+   "n_presentation_occurrences": 9,
+   "n_presentation_unqualified": 9,
    "n_presentation_qualified": 0,
    "qualified_not_counted": [],
    "n_qualified_not_counted": 0,
@@ -1778,8 +1813,8 @@
    "counts_only_unqualified": false,
    "found_in": [
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
-     "line": 4,
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-10",
+     "line": 5,
      "excerpt": "| Race | Naive plan | Cost | Orb v1 plan | Cost | Best plan |",
      "kind": "deck",
      "qualified": false,
@@ -1935,7 +1970,7 @@
    "found_in": [
     {
      "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-5",
-     "line": 7,
+     "line": 8,
      "excerpt": "+0.10",
      "kind": "deck",
      "qualified": false,
@@ -2319,9 +2354,9 @@
      "qualified_same_line": false
     },
     {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-8",
-     "line": 16,
-     "excerpt": "A continuous-time cell read each race stint lap by lap, scored on held-out stints. Per-lap inputs cut the age-only error by about a quarter, lap-weighted, with the three degenerate Hungary cells exclu",
+     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-9",
+     "line": 17,
+     "excerpt": "A continuous-time (CfC) cell read each race stint lap by lap, scored on held-out stints. Per-lap inputs cut the age-only error by about a quarter; the continuous-time network on the same inputs beat t",
      "kind": "deck",
      "qualified": false,
      "qualified_same_line": false
@@ -2374,20 +2409,11 @@
    "qualified_by": [],
    "disqualified_by": [],
    "counts_only_unqualified": false,
-   "found_in": [
-    {
-     "source": "out/Orb_v1_Mentor_Briefing.pptx#slide-12",
-     "line": 9,
-     "excerpt": "count = clamp(round(0.18 × eligible), 4, 6) = 6 weekends, chosen by metadata only, hashed before any tuning: Canada 2023, Bahrain 2024, Monza 2024, Saudi Arabia 2024, Zandvoort 2024, Qatar 2025. Resul",
-     "kind": "deck",
-     "qualified": false,
-     "qualified_same_line": false
-    }
-   ],
-   "n_occurrences": 1,
-   "n_occurrences_unqualified": 1,
-   "n_presentation_occurrences": 1,
-   "n_presentation_unqualified": 1,
+   "found_in": [],
+   "n_occurrences": 0,
+   "n_occurrences_unqualified": 0,
+   "n_presentation_occurrences": 0,
+   "n_presentation_unqualified": 0,
    "n_presentation_qualified": 0,
    "qualified_not_counted": [],
    "n_qualified_not_counted": 0,

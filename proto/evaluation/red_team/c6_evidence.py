@@ -8,7 +8,7 @@ from math import isfinite
 from urllib.parse import urlparse
 from evaluation.red_team.browser_consistency import browser_routes, VIEWPORTS
 
-NAV_TITLES = {'Landing','Pre-race plan','Live Predictor','Decision board','Driver feedback','Ghost Strategy','Generalisation','Validation'}
+NAV_TITLES = {'Overview','Forecast','Live Predictor','Decision board','Driver feedback','Ghost Strategy','Generalisation','Validation','Guided demo'}
 
 
 def finite_number(value):

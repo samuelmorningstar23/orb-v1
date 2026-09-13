@@ -103,6 +103,7 @@ def test_numeric_browser_navigation_preserves_query_and_uses_internal_link():
         def goto(self,url,**kwargs):self.calls.append(('goto',url))
         def wait_for_selector(self,selector,**kwargs):self.calls.append(('wait',selector))
         def get_by_role(self,role,**kwargs):self.calls.append(('role',role,kwargs));return self
+        def is_visible(self):return True
         def click(self):self.calls.append(('click',))
     page=Page();navigate(page,'http://localhost:8502/','/ghost?ev=Monza&drv=NOR&ilap=24&rep=MEDIUM&presentation=1','ghost_strategy')
     assert page.calls[0]==('goto','http://localhost:8502/?ev=Monza&drv=NOR&ilap=24&rep=MEDIUM&presentation=1')

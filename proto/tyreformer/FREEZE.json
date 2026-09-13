@@ -1,0 +1,35 @@
+{
+ "model": "Orb TyreFormer ensemble (transformer temporal_final + gradient-boosted median experts gbm_temporal_final)",
+ "frozen_at": "2026-09-13T06:17:12+05:30",
+ "frozen_by": "lead",
+ "training_data": "2023-2025 development weekends only (sealed weekends refused by tyreformer.data)",
+ "selection": "architecture, hyperparameters, ensemble weights and conformal margins chosen on 5-fold weekend-grouped cross-validation of 2023-2025; no sealed weekend was loaded before this freeze",
+ "sealed_race_ids": [
+  "2023_Canada",
+  "2024_Bahrain",
+  "2024_Monza",
+  "2024_SaudiArabia",
+  "2024_Zandvoort",
+  "2025_Qatar"
+ ],
+ "orb_v1_freeze_sha256": "7846c3a49a6d775fed47e47ea8411188d725dd6fd62155aa422a1abf8a5ab115",
+ "note": "Frozen after 2023-2025 CV selection and the 2026 temporal head to head; before any sealed weekend was loaded. The Orb v1 freeze and sealed manifest pair are unchanged.",
+ "files": {
+  "tyreformer/__init__.py": "2274a6502620e898e00a27bee937d50bb3ed91e91433483e6fd2f0340500b0f0",
+  "tyreformer/data.py": "824df357a829d9fd3689c39ea756a5e2fffc93bf98ed8dc4efb2b702094c7e7e",
+  "tyreformer/model.py": "223ba4a8f46f86497a5c2049352034bfc0698201b6b3e6fc8a72d7a97ea92069",
+  "tyreformer/train.py": "34efc040ceb595cff780293dc2c5b8ca0f43eb6ab6f565d78b3bbf746fb5c50e",
+  "tyreformer/gbm.py": "2f420ad1f3b88e1cb1aebcbd138f8f3040c4bfb86dea8d166b04d0193084ebd4",
+  "tyreformer/blend.py": "a95f7e6da19d2c69ba62852fe356bdd5cae918f8d8ad731bab2a37c726849840",
+  "tyreformer/metrics.py": "f233535fb74b5cb02e5de3935e69482f8d9c53185f87479aaaf7bb489356aa2b",
+  "tyreformer/headtohead.py": "2cc72e35eb7151146ed97df43b355b29e0ae0fe2022a6e6608ee18862d1a5280",
+  "tyreformer/sealed.py": "1e23b638744089ff7e4607ec80657ccb5b774093a8185ba14adc9c3023beb733",
+  "tyreformer/baseline_kalman.py": "2177c4a2746ce56793e0f9cfdf9c7bff2698d964f3b03449c95ef4bff2c1bb51",
+  "out/tyreformer/models/temporal_final.pt": "17cb7d8cd82734b8595d5f807be7fbae314222ef64f729deeb7132f195ba5f6f",
+  "out/tyreformer/models/gbm_temporal_final.pkl": "a5f29c75a5df707bb4edd81574e6c359e5adc90ac8bb8b28d23c79dfe664eef4",
+  "out/tyreformer/ensemble.json": "fca85f5cab8c1a201a96165921dc242b642611467c7f1adc232d0c04faa7d1b7",
+  "out/tyreformer/conformal_margins.json": "0e556693d19c0f19ae10fac6321018d392d6cee3444cbd3387ce48920a10f072",
+  "out/tyreformer/cache/samples_dev_v3.npz": "5901011b50611b259f6ca4e57281500c1e66a8e169d23d00b8d10d83188c10cf",
+  "tyreformer/data/pirelli_compounds.csv": "e107cebf90f0ab46a26444a7af5aaf9c808f2e4be61de32a6fe21f44e6a8a7ea"
+ }
+}
